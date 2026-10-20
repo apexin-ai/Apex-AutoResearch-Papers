@@ -1,0 +1,1917 @@
+# cron hook repo level cls 8b conda 20260514T225937 432450
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 2
+- **Tool calls:** 27
+- **Original source:** `logs/chats/archive/cron_hook_repo-level-cls-8b-conda_20260514T225937_432450.jsonl`
+- **Structured JSON:** [`798b5865033da94a5083.json`](../../sessions/79/798b5865033da94a5083.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T19:36:41.347321+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #12。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: cuda:0/1/2/3（仅 westd）。home 服务器只有 cuda:0。不得越界。
+- **D063 方法论红线**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。之前所有 checkpoint sweep 结果均在 test 上做的，属于 cherry-picking，论文不可直接引用。
+- eval_repo_cls.py 的 max_seq_length 硬编码 2048，val 评估必须手动传 `--max_seq_length 8192`，否则截断率飙升（D077 教训）。
+- CWM vs CLS apple-to-apple 比较必须用 westd conda 环境的数据，不可跨 server/env 混比。
+- 8B eval batch_size 需下调到 1-2（5090 显存限制）。
+- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv。
+
+### 2. 🖥️ 基础设施快照
+- **westd**: root@seetacloud-westd-4x5090, 工作目录 `/root/exec-sim-repair-verifier`（推测，需确认），4x RTX 5090
+  - Python: `/root/miniconda3/bin/python`（conda base）
+  - HF cache: 需确认（AutoDL 应在 `/root/autodl-tmp/.hf_cache`）
+  - 模型: Qwen3-8B / Qwen3-4B（HF 或本地缓存）
+- **home**: sonny@home-1x5090, 工作目录 `/home/sonny/exec-sim-repair-verifier`, 1x RTX 5090
+- **Checkpoints (westd)**:
+  - `checkpoints_repo_cls_8b_conda/`: ckpt 200, 400, 600（完成）
+  - `checkpoints_repo_cls_8b_seed123_conda/`: ckpt 200, 1800-3000（训练中）
+  - `checkpoints_repo_cwm_8b_conda/`: ckpt 400-1600（训练中）
+  - `checkpoints_repo_cwm_conda_v12/`: ckpt 300-700
+  - `checkpoints_repo_cwm_seed123_conda/`: ckpt 200-600
+- **活跃进程**:
+  - `repo-level-cls-8b-seed123-conda-v3`: PID 266444, cuda:3, westd（registry 有记录）
+  - ROADMAP 提到 PID 210568 (CWM 8B, cuda:2) 和 PID 210652 (CLS 8B s123, cuda:3) — 这些是旧 PID，v3 重启后 PID 已变，需 SSH 确认 cuda:2 上是否仍有 CWM 8B 训练
+  - CWM v12 eval (cuda:1) 和 CWM seed123 eval (cuda:0) 的 ETA 是 ~02:20-02:30 UTC May 15 — 可能已完成，需确认
+- **Cron**: 本 session 无活跃 cron。上一个 session 的 cron 已随 session 销毁。**需立即为 RUNNING 实验重建 cron 监控。**
+
+### 3. 📊 当前状态
+**刚完成的关键事件**（过去 24h）:
+- CLS 8B seed42: **success**, acc=84.52%, F1_macro=80.89, best=ckpt-400（但此结果基于 test set，D063 要求 val 重选）
+- CLS 8B seed123 训练多次失败/重启（v1 failed → v2 重启 → v3 修正 resume 路径），v3 当前 RUNNING
+- CWM 8B v3: **failed**（原因未记录）
+- D072/D073: 8B 训练崩溃根因 = Worker 误杀 DataLoader 子进程，修复方案 num_workers=0
+- D077: val unparseable 20.2% 根因 = 截断，已修复截断逻辑
+
+**Registry RUNNING (3)**:
+- `repo-level-cls-8b-seed123-conda-v3` — PID 266444, cuda:3, 实际在跑
+- `repo-level-cls-8b-seed123-conda-v2` — pid=null, 疑似 stale（被 v3 取代）
+- `repo-level-cwm-8b-conda-v2` — pid=null, 疑似 stale（v3 已 failed，v2 状态未清理）
+
+**总计**: 65 实验 (62 DONE + 3 RUNNING), 其中 36 success / 3 negative / 16 failed
+
+**等待中**: 
+- 无 Worker 在跑（Worker 池 = 0，违反 L1 约束）
+- 无 Cron 监控（新 session 需重建）
+- CWM v12/seed123 eval 可能已完成但无人收割结果
+
+### 4. 📋 待办（条件触发式）
+- **立即**: SSH 确认 westd cuda:0/1/2/3 上各进程实际状态（CWM eval 是否完成、CWM 8B 训练是否存活、CLS 8B s123 v3 训练进度）
+- **立即**: 清理 stale RUNNING 记录（v2 entries 若确认已死，转 DONE(failed)）
+- **立即**: 为 `repo-level-cls-8b-seed123-conda-v3` 注册 cron 监控
+- CWM v12 eval 完成 → 收割结果 → 更新 registry → CLS-CWM gap 计算 → 解除 D057 论文阻塞
+- CWM seed123 eval 完成 → 收割 → paired bootstrap 统计检验
+- CLS 8B 所有模型 → val set checkpoint sweep（D063 修复）→ val 选 best ckpt → test 最终 eval
+- 8B CLS s123 训练完成 → 8B eval pipeline（val sweep → test final）
+- 8B CWM 训练完成（若 cuda:2 仍活） → 同上
+- 所有 final numbers 就绪 → Paper Agent patch（11 天倒计时）
+
+### 5. 🎯 战略上下文
+**核心结论**: CLS reformulation 优于 CWM，优势随代码复杂度/模型规模增长（C1 claim）。Function-level 已稳固（5 seeds, p=0.008）。Repo-level 是论文差异化亮点，8B scaling 数据正在积累。
+
+**决策链要点**:
+- D063: test-set checkpoint selection = cherry-picking，必须 val 重做。**ROADMAP 里所有 repo-level accuracy 数字目前都不可直接用于论文。**
+- D072/D073: DataLoader num_workers>0 在 westd 上会被平台 SIGTERM，已全部改 num_workers=0
+- D077/D074: 截断是 unparseable 的主因但非误分类主因（test@4096 仅 +0.54pp）
+
+**易错点**:
+- 不要把 stale RUNNING 记录（v2 无 PID）当成真实运行进程，它们可能已死
+- ROADMAP 里的 PID (210568/210652) 是旧值，v3 重启后已变（v3 PID=266444）
+- CWM eval 极慢（~20h for 9784 samples），不要因为没看到结果就以为失败了
+- home 和 westd 的数据/环境不完全一致，跨 server 比较需谨慎标注
+- eval_repo_cls.py 不像其他脚本那样自动切换 max_seq_length，val 必须手动传 8192
+
+## 可查的历史
+前 71 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T19:36:52.809068+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T19:36:52.910038+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T19:36:56.588949+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "exec-sim-repair-verifier",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "exec-sim-repair-verifier",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T19:36:57.044155+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T19:36:57.097279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"repo-level-cls-8b-seed123-conda-v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:43:51.115Z\", \"updated_at\": \"2026-05-14T17:49:09.695Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"266444\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"submitted_at\": \"2026-05-14T17:43:50.914Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 37338, \"model_name\": \"Qwen3-8B\", \"seed\": 123}, \"hypothesis\": \"8B CLS seed123 训练重启（第三次提交，修正 resume 路径指向 checkpoint-3000）。与 v1/v2 同配置，num_workers=0。验证 8B CLS multi-seed robustness。\", \"parent\": \"\", \"notes\": \"8B CLS seed123 训练第三次提交，修正 resume 路径指向 checkpoint-3000。实际 Python PID=266896，tmux wrapper PID=266444。初始化确认无 FileNotFoundError，checkpoint 路径修复生效。\"}, \"repo-level-cls-8b-seed123-conda-v2\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-14T17:24:41.279Z\", \"updated_at\": \"2026-05-14T17:46:01.782Z\", \"hypothesis\": \"8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"seetacloud-westd-4x5090\", 
+…[truncated 4466 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 508
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T19:36:57.599500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T19:36:57.599947+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T19:36:57.700727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| repo-level-cls-8b-seed123-conda-v3 | 8B CLS seed123 训练重启（第三次提交，修正 resume 路径指向 checkpoint-3000）。与 v1/v2 同配置，num_workers=0。验证 8B CLS multi-seed robustness。 | — | — | — |\\n| repo-level-cls-8b-seed123-conda-v2 | 8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。 | — | — | — |\\n| repo-level-cwm-8b-conda-v2 | 8B CWM 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CWM repo-level 性能，与 8B CLS 对比 scaling effect。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **repo-level-cwm-8b-conda-v3** (failed): 8B CWM 训练重启（第三次提交，修正 resume 路径）。从 checkpoint-1600 resume。与 v1/v2 同配置，num_workers=0。验证 8B CWM repo-level 性能。\\n- **repo-level-cls-8b-conda** (success): —\\n- **repo-level-cls-8b-seed123-conda** (failed): —\\n\\n## 趋势\\n成功 36 / 负向 3 / 失败 16 / 共 62\\naccuracy: 84.52 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-home: 训练失败 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n- repo-level-cwm-v6: 训练失败 — unknown\\n- repo-level-cwm-v7: 训练失败 — unknown\\n- repo-level-cwm-v8: 训练失败 — unknown\\n- repo-level-cwm-v9: 训练失败 — unknown\\n- repo-level-cls-seed123: 已被终止 — unknown\\n- repo-level-cwm-seed123: 已被终止 — unknown\\n- repo-level-cwm-v11: 已被终止 — unknow
+…[truncated 359 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T19:36:57.751466+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T19:36:57.752134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-14 06:10 UTC | 更新原因: D061 8B 训练已启动 GPU 2/3, P2 gap 描述修正, D063 val sweep Worker 已派发\\n\\n## 核心方向\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research → Paper Number Finalization（D057 论文阻塞中，等 CWM v12 全量 eval）\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 11 天）\\n- **🔴 D063 方法论修复**: checkpoint sweep 在 test set 上做 = cherry-picking → 需改为 val set 选 checkpoint\\n- **C1 (Complexity-Dependent Advantage)**: ✅ 极度稳固\\n  - Function-level: CLS-CWM gap 1.24pp (5 seeds) → 8B: 2.43pp (3 seeds, p=0.008)\\n  - Repo-level CLS best: 8B ckpt-400 = 84.52% (F1_macro=80.89, +11.56pp vs majority)\\n  - Repo-level CWM early signal: v12 ~58.3%, seed123 ~57.3%（25% done）\\n  - 4B-4B repo-level gap: ~18pp (v5-conda 78.43% vs CWM v12 ~58%), 8B-8B: TBD\\n  - ⚠️ 上述 repo-level CLS 数字需在 val set 上重新选 checkpoint 后可能变化\\n- **C2 (Diagnostic Granularity)**: ✅ 完成 (TOST p=0.007)\\n- **C3 (Accuracy-Utility Frontier)**: ✅ 完成\\n\\n## Checkpoint Sweep 结果（⚠️ 均在 test set 上，需 val set 重跑）\\n\\n| 模型 | Server | Best Ckpt | Accuracy | F1 macro | Gap vs Maj | 备注 |\\n|------|--------|-----------|----------|----------|------------|------|\\n| CLS 8B (s42) | westd | ckpt-400 | 84.52% | 80.89 | +11.56pp | ★ repo-level 最佳 |\\n| CLS 4B v5 (s42) | home | ckpt-4000 | 81.51% | 72.56 | +8.55pp | pass-biased |\\n| CLS 4B seed123 | home | ckpt-600 | 80.73% | 77.31 | +7.78pp | fail recall 77.4% |\\n| CLS 4B v5-conda (s42) | westd | ckpt-600 | 76.37% | 71.17 | +3.41pp | D062 F1_macro 选 |\\n| CWM v12 (s42) | westd | — | ~58.3%* | TBD | ~-14.7pp | *25% running |\\n| CWM seed123 | westd | — | ~57.3%* | TBD | ~-15.7pp | *25% running |\\n\\n## 近期任务\\n- [ ] **D063 修复**: eval 脚本增加 --split 参数 + val set checkpoint sweep（所有 
+…[truncated 2089 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T19:37:20.892103+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T19:37:20.992967+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T19:37:28.166063+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T19:37:29.070605+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cwm-8b-conda-v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cwm-8b-conda-v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T19:37:29.576493+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.2321}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1410
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T19:37:31.036142+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.3099}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1965
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T19:37:31.591948+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "repo-level-cls-8b-seed123-conda-v3",
+  "server": "seetacloud-westd-4x5090",
+  "pid": "266444",
+  "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v3",
+    "server": "seetacloud-westd-4x5090",
+    "pid": "266444",
+    "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T19:37:31.592385+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "exec-sim-repair-verifier",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "exec-sim-repair-verifier",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T19:37:31.999319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"repo-level-cls-8b-seed123-conda-v3\", \"server\": \"seetacloud-westd-4x5090\", \"pid\": \"266444\", \"wandb_run_id\": null, \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"interval_seconds\": 120, \"project\": \"exec-sim-repair-verifier\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-14T19:37:31.734Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 407
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T19:37:31.999811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"exec-sim-repair-verifier\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/home/sonny/exec-sim-repair-verifier\", \"servers\": [{\"account\": \"root\", \"server\": \"seetacloud-westd-4x5090\"}, {\"account\": \"sonny\", \"server\": \"home-1x5090\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 407
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T19:37:38.390128+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+    "field": "conclusion",
+    "value": "failed",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T19:37:39.298017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"repo-level-cls-8b-seed123-conda-v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-14T17:24:41.279Z\", \"updated_at\": \"2026-05-14T19:37:38.722Z\", \"hypothesis\": \"8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T17:26:13.712Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/\\\"\"}, \"parent\": \"repo-level-cls-8b-seed123-conda\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-3000 子目录。PID 266891, cuda:3。num_workers=0。\", \"failure_reason\": \"同样的 resume_from_checkpoint 路径 bug，指向根目录而非 checkpoint-3000 子目录\", \"completed_at\": \"2026-05-14T17:43:36.686Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-3000 子目录。PID 266891, cuda:3。num_workers=0。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --
+…[truncated 518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 907
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T19:37:39.802964+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cwm-8b-conda-v2",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cwm-8b-conda-v2",
+    "field": "conclusion",
+    "value": "failed",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T19:37:40.408030+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"repo-level-cwm-8b-conda-v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-14T17:24:39.553Z\", \"updated_at\": \"2026-05-14T19:37:40.020Z\", \"hypothesis\": \"8B CWM 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CWM repo-level 性能，与 8B CLS 对比 scaling effect。\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T17:26:12.598Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/\\\"\", \"finished_at\": \"2026-05-14T17:36:56.049Z\", \"training_hours\": 0.18}, \"parent\": \"repo-level-cwm-8b-conda\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-1600 子目录。PID 266811, cuda:2。num_workers=0。\", \"failure_reason\": \"FileNotFoundError: resume_from_checkpoint 指向根目录而非 checkpoint-1600 子目录, EXIT_CODE=129\", \"completed_at\": \"2026-05-14T17:36:58.114Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:37:02.348074+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-1600 子目录。PID 266811, cuda:2。num_workers=0。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --bat
+…[truncated 645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 605
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T19:38:03.333015+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "infra:westd-gpu-status-check",
+  "project": "exec-sim-repair-verifier",
+  "task_prompt": "## 任务：检查 westd 服务器所有 GPU 上的进程状态\n\n### 目标\nSSH 到 seetacloud-westd-4x5090（account: root），检查 4 块 GPU (cuda:0/1/2/3) 上所有活跃进程，确认以下实验状态：\n\n### 需要确认的事项\n\n1. **cuda:3**: `repo-level-cls-8b-seed123-conda-v3` (PID 266444 tmux / 266896 python)\n   - 是否仍在运行？\n   - 当前训练到第几个 step？loss 多少？\n   - 读 log: `~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log`，取最后 30 行\n\n2. **cuda:2**: CWM 8B 训练\n   - ROADMAP 说旧 PID 210568 在跑，但 registry 的 `repo-level-cwm-8b-conda-v2` 和 v3 都已 failed\n   - 检查 cuda:2 上是否还有任何 python 训练进程\n   - 如果有，报告 PID、命令行、运行时间\n   - 如果没有，确认 cuda:2 空闲\n\n3. **cuda:0**: CWM seed123 eval\n   - ROADMAP 说 ETA ~02:30 UTC May 15，可能已完成\n   - 检查是否有 eval 进程在跑\n   - 如果已完成，查找结果文件。可能在：\n     - `/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/` 下的 eval 结果\n     - 或 `~/runs/exec-sim-repair-verifier/` 下的 log\n   - 如果找到结果，报告完整的 accuracy、F1、unparseable rate 等指标\n\n4. **cuda:1**: CWM v12 eval\n   - ROADMAP 说 ETA ~02:20 UTC May 15，可能已完成\n   - 检查是否有 eval 进程在跑\n   - 如果已完成，查找结果文件。可能在：\n     - `/root/autodl-tmp/checkpoints_repo_cwm_conda_v12/` 下的 eval 结果\n     - 或 `~/runs/exec-sim-repair-verifier/` 下的 log\n   - 如果找到结果，报告完整的 accuracy、F1、unparseable rate 等指标\n\n### 执行方式\n\n用 ssh_read_only 执行以下检查（不修改任何服务器状态）：\n\n```bash\n# 1. 全局 GPU 进程\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader\nnvidia-smi\n\n# 2. 所有 python 进程\nps aux | grep -E 'python|train|eval' | grep -v grep\n\n# 3. tmux sessions\ntmux ls 2>/dev/null\n\n# 4. v3 训练日志\ntail -30 ~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log 2>/dev/null\n\n# 5. 查找 eval 结果文件\nfind /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/ -name \"*.json\" -newer /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/ -mtime -1 2>/dev/null\nfind /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/ -name \"*.json\" -mtime -1 2>/dev/null\nls -lt ~/runs/exec-sim-repair-verifier/ | head -20\n\n# 6. 如果找到 eval 结果 JSON，cat 出来\n```\n\n### 产出要求\n为每个 GPU (0/1/2/3) 报告：\n- 状态：运行中 / 空闲 / 已完成\n- 如果运行中：PID、进程命令、运行时长、当前进度\n- 如果有 eval 结果：完整指标（accuracy, F1_macro, F1_weighted, unparseable_rate 等）\n- 如果空闲：确认空闲",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "infra:westd-gpu-status-check",
+    "project": "exec-sim-repair-verifier",
+    "task_prompt": "## 任务：检查 westd 服务器所有 GPU 上的进程状态\n\n### 目标\nSSH 到 seetacloud-westd-4x5090（account: root），检查 4 块 GPU (cuda:0/1/2/3) 上所有活跃进程，确认以下实验状态：\n\n### 需要确认的事项\n\n1. **cuda:3**: `repo-level-cls-8b-seed123-conda-v3` (PID 266444 tmux / 266896 python)\n   - 是否仍在运行？\n   - 当前训练到第几个 step？loss 多少？\n   - 读 log: `~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log`，取最后 30 行\n\n2. **cuda:2**: CWM 8B 训练\n   - ROADMAP 说旧 PID 210568 在跑，但 registry 的 `repo-level-cwm-8b-conda-v2` 和 v3 都已 failed\n   - 检查 cuda:2 上是否还有任何 python 训练进程\n   - 如果有，报告 PID、命令行、运行时间\n   - 如果没有，确认 cuda:2 空闲\n\n3. **cuda:0**: CWM seed123 eval\n   - ROADMAP 说 ETA ~02:30 UTC May 15，可能已完成\n   - 检查是否有 eval 进程在跑\n   - 如果已完成，查找结果文件。可能在：\n     - `/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/` 下的 eval 结果\n     - 或 `~/runs/exec-sim-repair-verifier/` 下的 log\n   - 如果找到结果，报告完整的 accuracy、F1、unparseable rate 等指标\n\n4. **cuda:1**: CWM v12 eval\n   - ROADMAP 说 ETA ~02:20 UTC May 15，可能已完成\n   - 检查是否有 eval 进程在跑\n   - 如果已完成，查找结果文件。可能在：\n     - `/root/autodl-tmp/checkpoints_repo_cwm_conda_v12/` 下的 eval 结果\n     - 或 `~/runs/exec-sim-repair-verifier/` 下的 log\n   - 如果找到结果，报告完整的 accuracy、F1、unparseable rate 等指标\n\n### 执行方式\n\n用 ssh_read_only 执行以下检查（不修改任何服务器状态）：\n\n```bash\n# 1. 全局 GPU 进程\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader\nnvidia-smi\n\n# 2. 所有 python 进程\nps aux | grep -E 'python|train|eval' | grep -v grep\n\n# 3. tmux sessions\ntmux ls 2>/dev/null\n\n# 4. v3 训练日志\ntail -30 ~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log 2>/dev/null\n\n# 5. 查找 eval 结果文件\nfind /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/ -name \"*.json\" -newer /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/ -mtime -1 2>/dev/null\nfind /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/ -name \"*.json\" -mtime -1 2>/dev/null\nls -lt ~/runs/exec-sim-repair-verifier/ | head -20\n\n# 6. 如果找到 eval 结果 JSON，cat 出来\n```\n\n### 产出要求\n为每个 GPU (0/1/2/3) 报告：\n- 状态：运行中 / 空闲 / 已完成\n- 如果运行中：PID、进程命令、运行时长、当前进度\n- 如果有 eval 结果：完整指标（accuracy, F1_macro, F1_weighted, unparseable_rate 等）\n- 如果空闲：确认空闲",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T19:38:06.300482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_westd-gpu-status-check_20260514T193803\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_infra_westd-gpu-status-check_20260514T193803.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_westd-gpu-status-check_20260514T193803 started. Use get_worker_status('worker_infra_westd-gpu-status-check_20260514T193803') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2967
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T19:38:15.001001+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T19:38:15.615623+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "repo-level-cwm-8b-conda-v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "repo-level-cwm-8b-conda-v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T19:38:16.217853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"repo-level-cls-8b-seed123-conda-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T17:24:41.279Z\", \"updated_at\": \"2026-05-14T19:38:15.382Z\", \"hypothesis\": \"8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T17:26:13.712Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/\\\"\"}, \"parent\": \"repo-level-cls-8b-seed123-conda\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-3000 子目录。PID 266891, cuda:3。num_workers=0。\", \"failure_reason\": \"同样的 resume_from_checkpoint 路径 bug，指向根目录而非 checkpoint-3000 子目录\", \"completed_at\": \"2026-05-14T17:43:36.686Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-3000 子目录。PID 266891, cuda:3。num_workers=0。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --res
+…[truncated 560 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1216
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-14T19:56:41.639956+00:00_
+
+Conclusion 已设，现在转 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:repo-level-cls-8b-conda"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 32 · 2026-05-14T22:57:43.504010+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T22:57:52.183116+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T22:57:52.234216+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T22:57:55.953739+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T22:57:56.054473+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T22:57:56.405987+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T22:57:56.965303+00:00_
+
+Error: result (141,051 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1011
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T22:57:56.965848+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T22:57:57.116570+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "exec-sim-repair-verifier",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "exec-sim-repair-verifier",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T22:58:05.766295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"repo-level-cls-8b-seed123-conda-v3\", \"success\": true, \"actions\": [\"Job still running (pid=266444)\"]}, {\"exp_id\": \"repo-level-cwm-8b-conda-v4\", \"success\": true, \"actions\": [\"Job still running (pid=266816)\"]}, {\"exp_id\": \"repo-level-cls-8b-s42-resume\", \"success\": true, \"actions\": [\"Job still running (pid=295794)\"]}, {\"exp_id\": \"cls4b-v5-val5120-sweep-home\", \"success\": true, \"actions\": [\"Job still running (pid=3180425)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 9711
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T22:58:05.767118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| cls4b-v5-val5120-sweep-home | D063 val sweep: 4B CLS v5 (s42) val@5120 sweep (ckpt-600/4000/4200/4400/4600) | — | — | — |\\n| cls8b-s42-ckpt800-val8192-eval | — | — | — | — |\\n| cls4b-v5-ckpt600-val5120-eval | Evaluate repo-level classification v5 checkpoint-600 on val split with max_seq_length=5120 | — | — | — |\\n\\n## 待处理\\n- repo-level-cls-8b-s42-ckpt200-val（准备中）\\n- cls8b-ckpt3000-test-v2（准备中）\\n- cls8b-ckpt3000-test-eval（准备中）\\n\\n## 近期结论\\n- **repo-level-cls-8b-conda** (success): —\\n- **cls8b-s42-ckpt200-val8192-eval-v2** (success): D063 val sweep: 8B CLS s42 ckpt-200 val@8192，补全 val sweep 数据（之前 PID 死了标记 failed） ← 基于 repo-level-cls-8b-conda\\n- **cls4b-seed123-ckpt800-val5120-eval** (success): D063 val@5120: 4B CLS seed123 ckpt-800 在 val set 上评估 ← 基于 repo-level-cls-seed123-home\\n\\n## 趋势\\n成功 41 / 负向 3 / 失败 18 / 共 70\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-home: 训练失败 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n- repo-level-cwm-v6: 训练失败 — unknown\\n- repo-level-cwm-v7: 训练失败 — unknown\\n- repo-level-cwm-v8: 训练失败 — unknown\\n- repo-level-cwm-v9: 训练失败 — unknown\\n- repo-level-cls-seed123: 已被终止 — unknown\\n- repo-level-cwm-seed123: 已被终止 — unknown\\n- repo-level-cwm-v11: 已被终止 — unknown\\n- repo-level-cls-8b: 已被终止 — unknown\\n- repo-level-cwm-v12
+…[truncated 451 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 9361
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T22:58:05.767633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-14 21:00 UTC | 更新原因: CWM error analysis 完成 (D082), 更新任务状态, 补充 error analysis 关键发现\\n\\n## 核心方向\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research → Paper Number Finalization（D057 已解除 ✅）\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 11 天）\\n- **C1 (Complexity-Dependent Advantage)**: ✅ 极度稳固\\n  - Function-level: CLS-CWM gap 1.24pp (5 seeds) → 8B: 2.43pp (3 seeds, p=0.008)\\n  - **Repo-level CWM 完成**: CWM v12=58.04% (unparseable 53.7%), CWM seed123=59.09% (unparseable 67.2%)\\n  - **两个 seed 均低于 majority baseline (72.96%)**，确认 token-budget exhaustion\\n  - CLS 4B best=82.35% vs CWM 4B=58.04% → **gap=24.31pp**\\n  - CLS 8B best=84.52% vs CWM 4B → **gap≈26pp**; 8B-8B gap 待 CWM 8B 训练完成\\n  - ⚠️ CLS checkpoint 选择在 test set 上做 (D063)，需 val set 重新选\\n- **C2 (Diagnostic Granularity)**: ✅ 完成 (TOST p=0.007)\\n- **C3 (Accuracy-Utility Frontier)**: ✅ 完成\\n- **D063 val sweep 进展**: 8B s42 val@8192 已完成 2/3:\\n  - ckpt-200: 63.52% (below baseline)\\n  - ckpt-400: **80.96%** (gap=+5.09pp) ← val best so far\\n  - ckpt-600: 进行中 (westd cuda:0, PID 285772)\\n- **CWM Error Analysis (D082)**: ✅ 完成\\n  - Parseable-only accuracy: **42.88%** (v12) / **42.68%** (seed123) — 远低于 overall 58%\\n  - 38% 的\\\"正确\\\"来自 unparseable 默认归类为 majority class 的巧合\\n  - Per-repo unparseable: scikit-learn ~0% vs sphinx 100% → **直接支持 complexity-dependent failure**\\n  - Error modes: no_keywords 80%, ambiguous_both 20%\\n\\n## Repo-level 最终结果\\n\\n| 模型 | Accuracy | F1_macro | Unparseable | vs Majority |\\n|------|----------|----------|-------------|-------------|\\n| CLS 8B s42 (ckpt-400) | 84.52% | 80.89 | — | +11.56pp |\\n| CLS 4B v5 s42 (ckpt-4600) | 82.35% | 74.74 | — | +9.39pp |\\n| CLS 4
+…[truncated 2845 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 8801
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T22:58:05.818226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"exec-sim-repair-verifier\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/home/sonny/exec-sim-repair-verifier\", \"servers\": [{\"account\": \"root\", \"server\": \"seetacloud-westd-4x5090\"}, {\"account\": \"sonny\", \"server\": \"home-1x5090\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 8701
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T22:58:16.813676+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show RUNNING, PREPARING, ANALYZING experiments\nfor e in exps:\n    if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING', 'ALLOCATED', 'QUEUED', 'PENDING'):\n        print(f\\\"--- {e['exp_id']} ---\\\")\n        print(f\\\"  status: {e.get('status')}\\\")\n        print(f\\\"  hypothesis: {e.get('hypothesis','N/A')}\\\")\n        print(f\\\"  server: {e.get('server','N/A')}\\\")\n        print(f\\\"  gpu: {e.get('gpu','N/A')}\\\")\n        print(f\\\"  pid: {e.get('pid','N/A')}\\\")\n        spec = e.get('spec', {})\n        if spec:\n            print(f\\\"  spec.command: {spec.get('command','N/A')[:120]}\\\")\n            print(f\\\"  spec.server: {spec.get('server','N/A')}\\\")\n        print()\n\"\n",
+  "description": "Extract RUNNING/PREPARING experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show RUNNING, PREPARING, ANALYZING experiments\nfor e in exps:\n    if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING', 'ALLOCATED', 'QUEUED', 'PENDING'):\n        print(f\\\"--- {e['exp_id']} ---\\\")\n        print(f\\\"  status: {e.get('status')}\\\")\n        print(f\\\"  hypothesis: {e.get('hypothesis','N/A')}\\\")\n        print(f\\\"  server: {e.get('server','N/A')}\\\")\n        print(f\\\"  gpu: {e.get('gpu','N/A')}\\\")\n        print(f\\\"  pid: {e.get('pid','N/A')}\\\")\n        spec = e.get('spec', {})\n        if spec:\n            print(f\\\"  spec.command: {spec.get('command','N/A')[:120]}\\\")\n            print(f\\\"  spec.server: {spec.get('server','N/A')}\\\")\n        print()\n\"\n",
+    "description": "Extract RUNNING/PREPARING experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T22:58:17.266374+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING', 'ALLOCATED', 'QUEUED', 'PENDING'):
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T22:58:23.808008+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# The result might be double-encoded\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    d = result.get('data', result)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        print(f'experiments count: {len(exps)}')\n        if exps:\n            e0 = exps[0]\n            print(f'type of first: {type(e0)}')\n            if isinstance(e0, str):\n                print(f'first exp (str): {e0[:200]}')\n            elif isinstance(e0, dict):\n                print(f'first exp keys: {list(e0.keys())}')\n\" 2>&1 | head -20\n",
+  "description": "Inspect registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# The result might be double-encoded\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    d = result.get('data', result)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        print(f'experiments count: {len(exps)}')\n        if exps:\n            e0 = exps[0]\n            print(f'type of first: {type(e0)}')\n            if isinstance(e0, str):\n                print(f'first exp (str): {e0[:200]}')\n            elif isinstance(e0, dict):\n                print(f'first exp keys: {list(e0.keys())}')\n\" 2>&1 | head -20\n",
+    "description": "Inspect registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T22:58:24.109644+00:00_
+
+Traceback (most recent call last):
+  File "&lt;string>", line 16, in &lt;module>
+    e0 = exps[0]
+         ~~~~^^^
+KeyError: 0
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+['experiments', 'count', 'total', 'baseline']
+experiments count: 79
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T22:58:30.563204+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# It's a dict with exp_id as keys\nfor eid, e in exps.items():\n    status = e.get('status','')\n    if status in ('RUNNING', 'PREPARING', 'ANALYZING', 'ALLOCATED', 'QUEUED', 'PENDING'):\n        print(f'--- {eid} ---')\n        print(f'  status: {status}')\n        print(f'  hypothesis: {e.get(\\\"hypothesis\\\",\\\"N/A\\\")[:100]}')\n        print(f'  server: {e.get(\\\"server\\\",\\\"N/A\\\")}')\n        print(f'  gpu: {e.get(\\\"gpu\\\",\\\"N/A\\\")}')\n        print(f'  pid: {e.get(\\\"pid\\\",\\\"N/A\\\")}')\n        spec = e.get('spec', {}) or {}\n        if spec:\n            print(f'  spec.command: {str(spec.get(\\\"command\\\",\\\"N/A\\\"))[:120]}')\n        print()\n\" 2>&1",
+  "description": "Extract RUNNING/PREPARING experiments from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-1aed9aa8/f481e0b7-50de-4e64-a734-4c6226940fa2/tool-results/mcp-agent-ml-research-read_registry-1778799476685.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# It's a dict with exp_id as keys\nfor eid, e in exps.items():\n    status = e.get('status','')\n    if status in ('RUNNING', 'PREPARING', 'ANALYZING', 'ALLOCATED', 'QUEUED', 'PENDING'):\n        print(f'--- {eid} ---')\n        print(f'  status: {status}')\n        print(f'  hypothesis: {e.get(\\\"hypothesis\\\",\\\"N/A\\\")[:100]}')\n        print(f'  server: {e.get(\\\"server\\\",\\\"N/A\\\")}')\n        print(f'  gpu: {e.get(\\\"gpu\\\",\\\"N/A\\\")}')\n        print(f'  pid: {e.get(\\\"pid\\\",\\\"N/A\\\")}')\n        spec = e.get('spec', {}) or {}\n        if spec:\n            print(f'  spec.command: {str(spec.get(\\\"command\\\",\\\"N/A\\\"))[:120]}')\n        print()\n\" 2>&1",
+    "description": "Extract RUNNING/PREPARING experiments from registry dict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T22:58:30.664310+00:00_
+
+--- cls4b-v5-val5120-sweep-home ---
+  status: RUNNING
+  hypothesis: D063 val sweep: 4B CLS v5 (s42) val@5120 sweep (ckpt-600/4000/4200/4400/4600)
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: 4B CLS v5 val@5120 sweep (ckpt-600/4000/4200/4400/4600)
+
+--- cls8b-s42-ckpt800-val8192-eval ---
+  status: RUNNING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name
+
+--- cls4b-v5-ckpt600-val5120-eval ---
+  status: RUNNING
+  hypothesis: Evaluate repo-level classification v5 checkpoint-600 on val split with max_seq_length=5120
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val -
+
+--- repo-level-cls-8b-s42-resume ---
+  status: RUNNING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --gr
+
+--- repo-level-cls-8b-s42-ckpt200-val ---
+  status: PREPARING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifie
+
+--- cls8b-ckpt3000-test-v2 ---
+  status: PREPARING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifie
+
+--- cls8b-ckpt3000-test-eval ---
+  status: PREPARING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+  spec.command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifie
+
+--- repo-level-cwm-8b-conda-v4 ---
+  status: RUNNING
+  hypothesis: 8B CWM 训练（从 checkpoint-1600 resume，第四次追踪）。PID 266816 在 cuda:2 上运行中，step 1700/6633。与 v2/v3 同实验但修正了脚本和
+  se
+…[truncated 518 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T22:58:33.783164+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T22:58:33.833983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\", \"content\": \"# Memory — exec-sim-repair-verifier\\n\\n## D088 Checkpoint 选择策略再修订 (2026-05-14)\\n- **主指标回到 val-selected checkpoint**（ML 社区规范）\\n- D087 的 test-selected 策略撤回（Reviewer 指出方法论风险）\\n- Val-selected = ckpt-600 for 8B s42, test=79.05%。CLS-CWM gap 仍有 21pp，C1 安全\\n- Resume 新 ckpt：**先跑 val@8192，超过 val-best (85.00%) 再跑 test@8192**\\n- 完整 sweep curve (val+test) 用于 supplementary 画图\\n- CLS 和 CWM 统一用 val-selected checkpoint\\n\\n## Val-Test 分布偏移根因 (D085, 2026-05-14)\\n- **Repo 不匹配（主因）**：37.5% val 样本来自 test 没有的 repo（sympy 19.1% + pylint 12.1% + sklearn 6.3%）；28.2% test 样本来自 val 没有的 repo（xarray 23.7% + requests 4.5%）\\n- **Mutation type 偏移（派生）**：operator_swap val 19.1% → test 34.3%（+15pp）；off_by_one val 10% → test 1.9%\\n- **Problem 零重叠**：Val 22 problems, Test 25 problems, overlap = 0\\n- Split 按 instance_id stratified 80/10/10，仅按 label 分层未按 repo 分层\\n- 分析报告：`artifacts/val_test_distribution_analysis.md`\\n\\n## Val-Test Ranking Reversal 数据 (2026-05-14)\\n- 8B s42: val@8192 best=ckpt-600 (85.0%), test@8192 best=ckpt-400 (84.79%)。ckpt-600 test=79.05%\\n- 4B seed123: val@5120 best=ckpt-800 (87.92%), test@2048 best=ckpt-600 (80.73%)。4B 有 seq_len confound\\n- **结论**：reversal 由 val/test 分布偏移导致，但 val-selected 是标准做法，论文在 supplementary 报告此现象\\n\\n## CWM Repo-level 分析结论 (2026-05-14)\\n- CWM v12 (seed42): 58.04% acc, F1_macro=51.67, unparseable=53.7%\\n- CWM seed123: 59.09% acc, F1_macro=43.43, unparseable=67.2%\\n- 两个模型都低于 majority baseline (72.96%)\\n- **结论**: CWM 在 repo-level 完全不可用，支持 C1 (CLS >> CWM at complex code)\\n\\n## s42 8B CLS Resume 规格 (D081+)\\n- 从 ckpt-600 resume，训练到 step 6633（完整 3 epochs）\\n- GPU: westd cuda:1，RUNNING (PID 295794)\\n- Output dir: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\\n- **D088 更新**：新 ckpt 先跑 val@8192，超过 85.00% 再跑 test@8192\\n\\n## eval_repo_cls.py 参数名\\n- --checkpoint_dir (非 --check
+…[truncated 516 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T22:58:37.588477+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T22:58:37.639276+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T22:58:40.555993+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T22:58:40.606680+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:repo-level-cls-8b-conda",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-14T22:59:37.430583+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: westd cuda:0/1/2/3 + home cuda:0。submit_training_job 脚本内 `--gpu 0`（框架注入 CUDA_VISIBLE_DEVICES）
+- **D088 决策**: 主指标 = val-selected checkpoint，test set 只报最终数字。新 ckpt 先跑 val@8192，超过当前 val-best (85.00%) 才跑 test@8192
+- **D063**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 仅最终报告。违反此规则的数字不可入论文主表
+- CLS vs CWM apple-to-apple 对比必须用 westd conda 环境同数据
+- eval_repo_cls.py 参数: `--checkpoint_dir`（非 --checkpoint_path）, `--device`（非 --gpu）, 必须显式 `--max_seq_length 8192`（默认 2048 会截断）, 8B+8192 必须 `--batch_size 1`
+- 8B seed123 checkpoint 正确路径: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000`（不是 `checkpoints_repo_cls_seed123/` 那是 4B 的）
+
+### 2. 🖥️ 基础设施快照
+- **westd** (seetacloud-westd-4x5090, root): 工作目录 `/home/sonny/exec-sim-repair-verifier`
+  - Python: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）
+  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+  - 模型缓存: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+  - Checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`, `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/`
+- **home** (home-1x5090, sonny): 工作目录 `/home/sonny/exec-sim-repair-verifier`
+- **活跃进程 (cron 确认)**:
+  - `repo-level-cls-8b-seed123-conda-v3`: PID 266444, westd cuda:3, 8B CLS seed123 训练 from ckpt-3000
+  - `repo-level-cwm-8b-conda-v4`: PID 266816, westd cuda:2, 8B CWM 训练 from ckpt-1600, ~step 1700/6633
+  - `repo-level-cls-8b-s42-resume`: PID 295794, westd cuda:1, 8B CLS s42 resume from ckpt-600
+  - `cls4b-v5-val5120-sweep-home`: PID 3180425, home cuda:0, 4B val sweep (ckpt-600/4000/4200/4400/4600)
+- **另有 RUNNING evals（无 cron，可能已完成或 orphaned）**:
+  - `cls8b-s42-ckpt800-val8192-eval`, `cls4b-v5-ckpt600-val5120-eval` — 需 SSH 确认状态
+
+### 3. 📊 当前状态
+**刚做完**: CWM error analysis (D082), val-test distribution analysis (D085-D087), D088 修订 checkpoint 选择策略回到 val-selected。
+
+**Registry 概览**: 成功 41 / 负向 3 / 失败 18 / 共 79。4 个 RUNNING（cron 监控中），3 个 PREPARING（待提交），2 个 RUNNING eval（无 cron）。
+
+**RUNNING 训练**:
+| exp_id | GPU | 说明 |
+|--------|-----|------|
+| repo-level-cls-8b-s42-resume | westd cuda:1 | 8B CLS s42 从 ckpt-600 resume 到 6633 步 |
+| repo-level-cwm-8b-conda-v4 | westd cuda:2 | 8B CWM 训练，~step 1700/6633 |
+| repo-level-cls-8b-seed123-conda-v3 | westd cuda:3 | 8B CLS seed123 从 ckpt-3000 resume |
+| cls4b-v5-val5120-sweep-home | home cuda:0 | 4B v5 val sweep 多 checkpoint |
+
+**PREPARING（未提交）**: `repo-level-cls-8b-s42-ckpt200-val`, `cls8b-ckpt3000-test-v2`, `cls8b-ckpt3000-test-eval` — 这些是 D088 之前创建的 test eval，D088 后策略改为"val 先行"，可能需要重新评估是否仍需要。
+
+**等待中**: 无活跃 Worker（池=0）。等 4 个 cron 回调。无 pending Director 决策。
+
+### 4. 📋 待办（条件触发式）
+- `repo-level-cls-8b-s42-resume` cron 回调（训练完成）→ 对所有新 checkpoint 跑 val@8192 sweep → 找到 val-best → 如果超过 85.00% 再跑 test@8192 → 更新 ROADMAP 最终数字
+- `repo-level-cwm-8b-conda-v4` cron 回调 → 跑 repo-level eval → 得到 8B CWM accuracy → 计算 8B-8B CLS-CWM gap → 更新论文 headline
+- `repo-level-cls-8b-seed123-conda-v3` cron 回调 → val@8192 sweep → 为 8B multi-seed 提供第二个数据点
+- `cls4b-v5-val5120-sweep-home` cron 回调 → 收集所有 4B val 结果 → 确定 4B val-best checkpoint
+- `cls8b-s42-ckpt800-val8192-eval` / `cls4b-v5-ckpt600-val5120-eval` 状态不明 → SSH 确认是否已完成，如完成则收集结果更新 registry
+- 所有 val sweep 完成 → 汇总 val-selected checkpoints 表 → 论文 Table 1 最终数字锁定 → 派 Worker 写论文 patch
+- 3 个 PREPARING 实验需要在 D088 框架下重新评估：test eval 应等 val-selected 确定后再做
+
+### 5. 🎯 战略上下文
+**项目核心结论**: CLS >> CWM，且差距随代码复杂度增大（function-level gap ~2pp → repo-level gap 24-26pp）。C1/C2/C3 三个 claim 均已验证。
+
+**DDL**: EMNLP ARR May 25，剩 11 天。当前卡在 D063 val sweep 完成 → 锁定论文主表数字。
+
+**决策链关键节点**:
+- D063: checkpoint 必须 val-selected（不能在 test 上选）
+- D082: CWM error analysis 已完成，数据可直接入论文
+- D085-D087: val-test 分布偏移已确认（repo 不匹配 + mutation type 偏移），val-selected 是标准做法，supplementary 报告 reversal
+- D088: 撤回 D087 的 test-selected 策略，回到 val-selected
+
+**易错点**:
+- 不要把 val@5120 和 val@8192 的结果直接对比（seq_len confound，4B 用 5120，8B 用 8192）
+- 不要混淆 westd checkpoints 路径和 home checkpoints 路径
+- resume 训练的新 checkpoint 编号从原 ckpt 号继续（如 from ckpt-600 resume，新 ckpt 从 800 起）
+- Worker 池当前为 0，下一个 session 启动后应立即 dispatch 至少检查 orphaned eval 状态的 Worker
+- CWM 8B 训练只到 step 1700/6633（约 25%），预计还需较长时间，可能是 DDL 前的瓶颈
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:repo-level-cls-8b-conda"
+}
+```
+
+</details>
+
+---

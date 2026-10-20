@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33341d2c299bd688db12",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls error examples",
+  "task_key": "worker_analysis_cls-error-examples_20260517T094017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-error-examples_20260517T094017_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "c1585ba9b4fd3fc0ebd70aac7f6cbaf789450c1047124b891c541d8d2915d0a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成：`artifacts/qualitative_cls_error_examples.json`\n\n收集了 3 个样本：\n\n| ID | Model | Level | Error Type | Problem | Mutation | 错误原因 |\n|---|---|---|---|---|---|---|\n| FP-1 | Qwen3-4B | func | false positive | HumanEval/37 | off_by_one | slice step 2→1 改变了列表长度，但模型未追踪 zip+append 的传播效果 |\n| FN-1 | Qwen3-4B | func | false negative | HumanEval/130 | original | Tribonacci 自引用递推式用了代数化简，模型无法验证数学等价性（该题贡献了 27/160 FN） |\n| FP-2 | Qwen3-8B | repo | false positive | pytest-7490 | boundary_removal | `if True:` 替换了 guard condition，导致 None.reason 抛 AttributeError，但模型未追踪跨 concern 的 None 传播 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-error-examples.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a5ca10cee398dda865",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home 4b enable thinking rootcause",
+  "task_key": "worker_fix_home-4b-enable-thinking-rootcause_20260515T015407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-4b-enable-thinking-rootcause_20260515T015407_result.json",
+    "occurrence": 1,
+    "bytes": 2431,
+    "sha256": "2eff2f0a8177bef2514f4d4063178b5db7cd201d226969102a04ede3a4e3e183"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码状态确认。以下是完整报告。\n\n---\n\n## 产出报告\n\n### 1. Kill 结果\n- PID 3199357 已 kill（SIGTERM，无需 SIGKILL）\n- GPU 完全释放（nvidia-smi 显示无 compute apps）\n\n### 2. 根因分析：enable_thinking 不是真正根因\n\n**原始代码已经在 chat template 层正确禁用了 thinking**：\n- `detect_thinking_support()` 检测到 Qwen3 支持 `enable_thinking` 参数\n- 返回 `{\"enable_thinking\": False}` 作为 `tmpl_kw`\n- `apply_chat_template(..., enable_thinking=False)` 预填空 `<think>\\n\\n</think>` 块\n- 所有已保存的 predictions 的 `gen_text` 都是干净的 \"pass\"/\"fail\"，**零 thinking tokens**\n\n**实验验证**：\n- Qwen3-4B 的 `generation_config` 默认**不含** `enable_thinking` 字段（不是 True）\n- `model.generate(..., enable_thinking=False)` **会 crash**（transformers 4.57.6 的 `_validate_model_kwargs` 报 ValueError）\n- 加 `generation_config.enable_thinking = False` 无害但可能也无实际效果\n\n### 3. 代码修改\n\n唯一保留的改动：`load_model()` 中加了 `generation_config.enable_thinking = False`（第 142-143 行），作为防御性措施。\n\n**已回滚**：`model.generate()` 中加 `enable_thinking=False` 会导致 `ValueError: model_kwargs not used: ['enable_thinking']`，已撤回。\n\n### 4. 进程实际不是\"卡死\"\n\ntmux `eval_8b_val5120_fix` 的日志显示进程**正在正常处理**：\n- ~7.5s/batch, batch_size=16, max_seq_length=5120\n- running_acc=89.7%\n- `repo_cls_v5_ckpt4400_val5120`: 已处理 6544/9335 samples（70%）后被 kill\n- `repo_cls_v5_ckpt4400_val5120_v2`: 已处理 2000/9335 samples 后被本次 kill\n\n### 5. Watchdog 分析\n\nWatchdog (180s) 未触发因为**每个 batch 在 180s 内完成**（7.5-7.8s/batch）。Watchdog 实现本身没有 bug。\n\n注意 SIGALRM handler 有一个潜在问题：无法中断 CUDA kernel 调用（信号只在 Python 字节码执行时处理），但线程 watchdog 用 `os._exit(1)` 兜底，在正常情况下是有效的。\n\n### 6. 真正的性能瓶颈\n\n- **flash-attn 未安装**，使用 SDPA fallback\n- 9335 test samples × 7.5s/batch ÷ 16 ≈ **73 分钟**总运行时间（4B 模型实际上很快）\n- VRAM ~7.5GB 用于 4B 模型（不是 31.7GB）\n\n**建议**：如果观测到 31.7GB VRAM，可能是在运行 8B 模型时（tmux session 名含 \"8b\"），不是 4B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-4b-enable-thinking-rootcause.md"
+}

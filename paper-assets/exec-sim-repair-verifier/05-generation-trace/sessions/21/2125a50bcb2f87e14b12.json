@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2125a50bcb2f87e14b12",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home ckpt600 wait then submit ckpt800",
+  "task_key": "worker_eval_home-ckpt600-wait-then-submit-ckpt800_20260514T210915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-ckpt600-wait-then-submit-ckpt800_20260514T210915_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "7b0b43801a9e05839bbb3f352104c715576710ccb8d64f71591e5aa54efd0dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n### 1. ckpt-600 val@5120 完整 metrics\n\n| 指标 | 值 |\n|---|---|\n| **accuracy** | 81.89 |\n| **F1_macro** | 77.01 |\n| **F1_pass** | 87.60 |\n| **F1_fail** | 66.43 |\n| precision_pass | 91.16 |\n| precision_fail | 60.07 |\n| recall_pass | 84.30 |\n| recall_fail | 74.29 |\n| unparseable | 0 |\n| truncated | 234 |\n| total | 9335 |\n| majority_baseline | 75.88 |\n| gap_vs_majority | +6.01pp |\n\n### 2. ckpt-800 eval 提交确认\n\n- **PID**: 3172988（已在运行，GPU 占用 31718 MiB）\n- **exp_id**: `cls4b-seed123-ckpt800-val5120-eval`\n- **parent**: `repo-level-cls-seed123-home`\n- **status**: RUNNING（registry 已注册）\n\n注：ckpt-800 eval 在 ckpt-600 完成后被自动启动（可能由 val_sweep 脚本触发），参数完全匹配，无需重复提交。\n\n### 3. eval_repo_cls.py max_seq_length 默认值\n\n**`--max_seq_length` 默认值 = 2048**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-ckpt600-wait-then-submit-ckpt800.md"
+}

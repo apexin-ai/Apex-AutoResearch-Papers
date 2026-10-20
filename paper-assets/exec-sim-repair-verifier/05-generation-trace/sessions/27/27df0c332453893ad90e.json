@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27df0c332453893ad90e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek traj func s42 eval",
+  "task_key": "worker_eval_deepseek-traj-func-s42-eval_20260516T125903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-traj-func-s42-eval_20260516T125903_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "e64f5dad3850172bc4f3d624d3a5d91e0eecb4d21995cee2e04ca292ac5222b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在后台运行中（PID 509151），280/1032 完成。预计约2分钟完成，到时检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-traj-func-s42-eval.md"
+}

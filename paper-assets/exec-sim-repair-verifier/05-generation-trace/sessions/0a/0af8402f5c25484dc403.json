@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0af8402f5c25484dc403",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check cwm8b progress and cuda0 task",
+  "task_key": "worker_ops_check-cwm8b-progress-and-cuda0-task_20260515T234348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cwm8b-progress-and-cuda0-task_20260515T234348_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "65b26a3b26f62ba41025e4f05ccbab3df113800465b780e7d2a072fcaba98148"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 任务 1: CWM 8B 训练进度（repo-level-cwm-8b-conda-v5）\n\n| 指标 | 值 |\n|------|-----|\n| 训练步数 | **~6100 / 6633** (92%) |\n| 当前状态 | 正在跑 validation（5071/9335，54%） |\n| 速度 | ~12s/step（训练），~9.8 it/s（验证） |\n| 最新 train loss | **0.0035** (epoch 2.74) → 稳定下降 |\n| 最新 eval loss | **0.5161** (epoch 2.71) |\n| 预估剩余 | ~2小时（含剩余训练步 + 验证轮） |\n\n**Loss 趋势**: 0.0056 (ep 2.37) → 0.0053 (ep 2.40) → 0.0035 (ep 2.74)，持续下降，正常。\n\n### 任务 2: CWM 8B ckpt-400 test eval 进度\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **5040 / 9784** (51.5%) |\n| running_acc | **64.8%** |\n| 速度 | ~8.4 samples/min |\n| 预估剩余 | ~9.4 小时 |\n| 恢复样本 | 359 resumed + 4681 new |\n\n### 任务 3: cuda:0 空闲任务建议\n\n**GPU 状态**:\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| **0** | **0%** | **0 / 32607 MiB (空闲)** |\n| **1** | **0%** | **0 / 32607 MiB (空闲)** |\n| 2 | 96% | 21059 / 32607 MiB |\n| 3 | 89% | 22527 / 32607 MiB |\n\n**Option A — CWM 4B seed123 val sweep**: \n- checkpoints 可用: ckpt-200, 300, 400, 500, 600（共 5 个）\n- 已完成 eval: 仅 `cls_seed123_ckpt200`\n- **还有 4 个 checkpoint 待 eval，适合在 cuda:0 上批量跑**\n\n**Option B — 补跑 ckpt-5600/5800**:\n- 未找到任何 5600/5800 相关的 JSON 结果或运行进程\n- 未找到对应 checkpoint 目录\n\n**建议: Option A**。seed123 有 4 个未 eval 的 checkpoint（300-600），GPU 0+1 都空闲，可以并行跑两个 eval。Option B 的 checkpoint 不存在或路径不明确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cwm8b-progress-and-cuda0-task.md"
+}

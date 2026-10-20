@@ -1,0 +1,76 @@
+{
+  "comparison": "CLS vs TRAJ (variant-level, pooled across 5 seeds)",
+  "data_source": "clustered_bootstrap_5paired.json from home-1x5090",
+  "n_seeds": 5,
+  "n_problems": 114,
+  "n_variants_pooled": 523,
+  "mean_diff_pp": -0.4505,
+  "se_pp": 0.6517,
+  "ci_95": [
+    -1.707,
+    0.8405
+  ],
+  "se_derivation": "directly from clustered bootstrap (10k resamples, 114 clusters)",
+  "method": "normal approximation with bootstrap SE (justified by CLT over 10k resamples)",
+  "bootstrap_reference_p_at_2pp": 0.0071,
+  "margins": [
+    {
+      "delta_pp": 0.5,
+      "tost_p": 0.469727,
+      "p_lower": 0.469727,
+      "p_upper": 0.072352,
+      "equivalent": false
+    },
+    {
+      "delta_pp": 1.0,
+      "tost_p": 0.199564,
+      "p_lower": 0.199564,
+      "p_upper": 0.013017,
+      "equivalent": false
+    },
+    {
+      "delta_pp": 1.5,
+      "tost_p": 0.053655,
+      "p_lower": 0.053655,
+      "p_upper": 0.001382,
+      "equivalent": false
+    },
+    {
+      "delta_pp": 1.71,
+      "tost_p": 0.02664,
+      "p_lower": 0.02664,
+      "p_upper": 0.000458,
+      "equivalent": true
+    },
+    {
+      "delta_pp": 2.0,
+      "tost_p": 0.008712,
+      "p_lower": 0.008712,
+      "p_upper": 8.5e-05,
+      "equivalent": true
+    },
+    {
+      "delta_pp": 2.5,
+      "tost_p": 0.000831,
+      "p_lower": 0.000831,
+      "p_upper": 3e-06,
+      "equivalent": true
+    },
+    {
+      "delta_pp": 3.0,
+      "tost_p": 4.6e-05,
+      "p_lower": 4.6e-05,
+      "p_upper": 0.0,
+      "equivalent": true
+    },
+    {
+      "delta_pp": 5.0,
+      "tost_p": 0.0,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "equivalent": true
+    }
+  ],
+  "smallest_equivalence_margin_pp": 1.5225,
+  "note": "Independent recalculation for Round 4 review. Normal approx may differ slightly from bootstrap quantile-based p (e.g. ~0.009 vs 0.0071 at +/-2pp due to non-Gaussianity of bootstrap distribution)."
+}

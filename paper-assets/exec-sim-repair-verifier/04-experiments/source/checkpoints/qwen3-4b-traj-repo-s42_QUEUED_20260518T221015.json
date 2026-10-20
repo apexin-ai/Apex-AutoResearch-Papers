@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen3-4b-traj-repo-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:10:00.484Z",
+    "updated_at": "2026-05-18T22:10:14.995Z",
+    "hypothesis": "Qwen3-4B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ achieves 75.35% ± 5.00 (6 seeds); Qwen3-4B TRAJ expected to be comparable or higher given Qwen3 在 CLS repo-level 的强表现 (83.63%)."
+  },
+  "timestamp": "2026-05-18T22:10:15.375145+00:00",
+  "trigger": "update_registry"
+}

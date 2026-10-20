@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "168dc5408bdae8df8596",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905827.md",
+  "task_key": "loop_19_1778905827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905827.md",
+    "occurrence": 1,
+    "bytes": 5543,
+    "sha256": "2ef440723414695a4198a55f0acb5d60fb3966e1f342e11b808271eb98b01c9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:30:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3（必须查 `get_project_status` 确认，不得用白名单外 GPU）\n- **D103**: seq_length / batch_size / precision / lr 变更需 Director 审批，Worker 不得自行降级\n- **eval 禁止 --max_samples**: test eval 必须跑满 n=9784，val eval 跑满 n=9335（D088 教训，被 Reviewer 抓过）\n- **标 FAILED 前必须 `ps -p PID` 确认进程已退出**（之前误标导致同 GPU OOM 事故）\n- **CWM 8B eval 用 ckpt-400**（唯一 checkpoint），不存在\"val-best\"选择，eval 脚本在 westd 版（支持 --max_new_tokens）\n- **8B eval**: batch_size=1 + max_seq_length=8192 + max_new_tokens=8；4B eval: batch_size=16 + max_seq_length=5120\n- **s42 resume checkpoints 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`**（从 ckpt-600 开始），不在原始训练目录\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090（4×RTX 5090）\n- **工作目录**: `/root/autodl-tmp/` 下各子目录\n- **Python**: conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- **模型路径**: CLS 8B checkpoints 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`，CWM 8B 在 `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ckpt-400`\n- **CWM 4B**: s42 = `/root/autodl-tmp/checkpoints_repo_cwm_conda/`，seed123 类似\n- **CLS 4B v5**: `/root/autodl-tmp/checkpoints_repo_cls_v5/`，val-best = ckpt-4600\n- **eval 脚本**: `eval_repo_cls.py`（CLS）/ `eval_cwm_baseline.py`（CWM），均在项目根目录\n- **活跃进程**（截至 handoff 时刻）:\n  - cwm8b-ckpt400-test-eval-shard2 (idx 7680-9784, cuda:1, RUNNING)\n  - cwm8b-ckpt400-test-eval-v3 (~57% complete, cuda:3, RUNNING)\n  - cwm8b-ckpt400-test-eval-shard3 (gap shard, cuda:0, 待启动/刚启动)\n  - cwm8b-ckpt400-test-eval-shard4 (cuda:?, registry 中存在)\n  - CWM 4B mutation breakdown (cuda:2, Worker 进行中)\n- **home 服务器**: home-1x5090，**已确认离线**（D099: 无加速路径）\n- **W&B**: 用于 function-level 实验，repo-level eval 未走 W&B\n\n### 3. 📊 当前状态\n**刚做完**:\n- CLS 4B/8B(s42/s123) 全部 mutation breakdown + P/R 分析完成，写入 memory.md\n- CWM 4B s42/s123 mutation breakdown 完成，关键发现：parseable-only acc=42.9%，gold_acc=23.5%（灾难性）\n- D104-D107 决策记录完成\n- seq_length confound ablation 完成（CLS@2048 vs CWM gap 仍 25pp）\n- LoRA rank ablation 完成（rank32 vs 16 差 -0.51pp，capacity 非瓶颈）\n\n**正在进行**:\n- CWM 8B repo-level eval 3-shard 并行（**最后一个阻塞主表的实验**）\n- Paper writing（Paper Agent Full Draft 阶段）\n- D107: Oracle ICC sensitivity analysis 待完成\n\n**Registry**: 148 实验，成功 84 / 负向 5 / 失败 35。3 个 RUNNING（CWM 8B eval shards）。\n\n**等待中**:\n- CWM 8B eval shard 完成 cron 回调 → 合并 shards → 锁定 8B-8B gap\n- CWM 4B mutation Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- **CWM 8B 3-shard 全部完成** → 合并 v3 + shard2 + shard3（去重 idx overlap）→ 计算最终 accuracy/unparseable → 更新主表 → 锁定 8B-8B gap → 汇报 Director\n- **CWM 8B 最终数字出来** → 派 Worker 跑 CWM 8B mutation breakdown → 填满 Mutation Breakdown 对比表最后一列\n- **CWM 8B mutation breakdown 完成** → 完整 5×5 mutation 表（CLS 4B/8B × CWM 4B/8B × 5 mutation types）→ 送 Paper Agent\n- **D107 Oracle ICC sensitivity** → 需要 Worker 计算 repo-level ICC=0.3146 下的 per-test advantage 分层分析\n- **所有数据锁定** → Paper Agent 整合 scaling + mutation + oracle 发现 → 全文草稿\n- **CWM 8B unparseable ≥70%（interim 已确认 73.8%）** → 强化 \"generation bottleneck\" narrative，论文 §2.3 failure modes 重点\n- **CWM 8B parseable-only acc < CWM 4B** → 进一步证明 scaling 对 CWM 无效，可 claim \"inverse scaling\" for generation formulation\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- **C1 (Complexity-Dependent Advantage)**: Function-level gap ~1pp（null）→ Repo-level gap ~26pp（massive）。4B-4B same-size 已锁（25.59pp），8B-8B 待 CWM 8B eval 锁定。\n- **C2 (Diagnostic Granularity)**: TOST p=0.007 确认 per-test ≡ trajectory-level，免费获得 per-test 诊断信号。\n- **C3 (Oracle Frontier)**: F2P 集中优势，T≥2 实例贡献 55%；P2P regression ~1% 诚实报告。\n\n**关键发现（论文差异化武器）**:\n- CWM 8B unparseable=73.8% > CWM 4B 53.7% → 4B→8B scaling 使 CWM 更差（\"inverse scaling for generation\"）\n- CWM parseable-only acc ~42% 远低于 majority baseline 73% → CWM 的 58% overall acc 是 unparseable→pass 默认膨胀的虚假数字\n- boundary_removal ~45% 是 scale-invariant failure mode（4B 和 8B 一样差）→ task-intrinsic difficulty\n\n**易错点**:\n- **不要把 GC4-par 和 GC4-seq 直接对比**（如果涉及）\n- **CWM 4B gold_acc=23.5%** 是 parseable-only 的（parse_rate=43.5%），overall gold acc 因默认 pass 被拉高到 98%+ → 报数字时必须注明 parseable-only vs overall\n- **4B seed123 test=75.33%** 是早期 ckpt-800 的结果（seed variance 大），不代表 4B 方法不行 → 论文以 s42 为主，seed123 放 appendix\n- **shard 合并需去重**: v3 和 shard2/3 可能有 index overlap，合并时按 idx 去重取最新\n- **DDL: May 25 ARR**，9 天，CWM 8B eval 是唯一 blocker，其余全部就绪或可并行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905827.md"
+}

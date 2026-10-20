@@ -1,0 +1,26 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:16:19.540Z",
+    "updated_at": "2026-05-15T12:17:35.182Z",
+    "hypothesis": "CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。",
+    "spec": {
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400",
+      "eval_data": "test@full(n=9784)",
+      "max_new_tokens": 1024,
+      "batch_size": 1,
+      "estimated_hours": 54
+    }
+  },
+  "timestamp": "2026-05-15T12:17:35.440621+00:00",
+  "trigger": "update_registry"
+}

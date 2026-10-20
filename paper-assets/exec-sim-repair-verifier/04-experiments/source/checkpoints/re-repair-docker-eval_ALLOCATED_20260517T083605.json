@@ -1,0 +1,26 @@
+{
+  "exp_id": "re-repair-docker-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:26:36.395Z",
+    "updated_at": "2026-05-17T08:36:04.619Z",
+    "hypothesis": "Per-test diagnostic information (CLS predictions or oracle labels) improves LLM patch repair success rate compared to minimal or random diagnostics, following information gradient A1 < A2 < D ≈ B < C",
+    "conclusion": "negative",
+    "metrics": {
+      "A1_pass1": 52.3,
+      "A2_pass1": 43.2,
+      "B_pass1": 36.4,
+      "C_pass1": 38.6,
+      "D_pass1": 40.9,
+      "n_instances": 44,
+      "error_rate": 38.6,
+      "total_samples": 1475
+    }
+  },
+  "timestamp": "2026-05-17T08:36:05.210972+00:00",
+  "trigger": "update_registry"
+}

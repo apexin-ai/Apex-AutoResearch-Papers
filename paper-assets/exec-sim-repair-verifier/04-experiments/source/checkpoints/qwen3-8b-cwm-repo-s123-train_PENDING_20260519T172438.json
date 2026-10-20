@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen3-8b-cwm-repo-s123-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:51:57.661Z",
+    "updated_at": "2026-05-19T17:24:37.656Z",
+    "hypothesis": "Qwen3-8B CWM repo-level s123: multi-seed replication for Table 3 cross-model comparison. s42 CWM checkpoint-400 is val-best (eval_loss=0.286), training s123 with identical config for seed diversity. 预期 CWM 在 repo-level 仍显著低于 CLS（s42 CWM ~58% vs CLS ~84%）。",
+    "parent": "repo-level-cwm-8b-conda-v5"
+  },
+  "timestamp": "2026-05-19T17:24:38.122522+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15d26142a75ce8564a3a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_13_1778815660.md",
+  "task_key": "loop_13_1778815660",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778815660.md",
+    "occurrence": 1,
+    "bytes": 5619,
+    "sha256": "0f7aac60ae94ec0bdbd172b03847e7afd9b5d052595110f018d5707e9c792613"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-15T02:05:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd cuda:0/1/2/3 + home cuda:0。**不得用白名单外 GPU**\n- D063 核心约束: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。违反 = 论文方法论 flaw\n- `checkpoints_repo_cls_8b/checkpoint-3000` 是旧环境 (transformers 5.x / peft 0.19.1) 产物，**禁止引用其 89.50% val 结果**（D080 已确认无效）\n- Apple-to-apple 比较必须用 westd conda 环境数据（CLS vs CWM 同 server/env/data）\n- D088: 主指标 = val-selected checkpoint 的 test@8192 结果。**不用 test-selected**\n- CWM eval 的\"正确率\"有 38% 来自 unparseable 默认归入 majority class 的巧合，引用时必须标注 parseable-only acc (42.88%)\n\n### 2. 🖥️ 基础设施快照\n- **westd**: seetacloud-westd-4x5090, account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`（conda base，不是 venv）\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - Checkpoints:\n    - CLS 8B s42 原始: `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` (ckpt-200~600)\n    - CLS 8B s42 resume: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` (ckpt-800~1600+, 每 ~40min 新增)\n    - CLS 8B seed123: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` (ckpt-3000~)\n    - CLS 8B seed123 备份: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000`\n  - 活跃进程:\n    - cuda:0: `cls8b-s42-ckpt1000-test8192-eval` PID 312975 — **⚠️ cron 报 process gone (miss 2/5)**，需立即排查\n    - cuda:1: `repo-level-cls-8b-s42-resume` PID 295789, step 1797/6633, ~10.9h 剩余\n    - cuda:2: `repo-level-cwm-8b-conda-v4` PID 266816, step 2815/6633, ~8.5h 剩余\n    - cuda:3: `repo-level-cls-8b-seed123-conda-v3` PID 266444, step 5351/6633, ~3h 剩余\n  - Cron 活跃: 4 个（3 训练 + 1 eval，eval 那个在 escalate）\n- **home**: home-1x5090, account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 4B v5 checkpoints: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - 用 `python3` 不是 `python`\n\n### 3. 📊 当前状态\n**刚做完**: D088 val 策略修订（val-selected 回归 ML 规范）、ckpt-1000 成为新 val-best (88.23%)、派发 ckpt-1000 test@8192 eval。\n\n**RUNNING (4)**:\n| exp_id | GPU | 进度 | 预计完成 |\n|--------|-----|------|---------|\n| cls8b-s42-ckpt1000-test8192-eval | cuda:0 | 2700/9784 (27.6%), running_acc=82.7% | **⚠️ cron 报进程消失，需排查** |\n| repo-level-cls-8b-seed123-conda-v3 | cuda:3 | 5351/6633 (80.7%) | ~3h (~12:46 UTC) |\n| repo-level-cwm-8b-conda-v4 | cuda:2 | 2815/6633 (42.4%) | ~8.5h (~18:16 UTC) |\n| repo-level-cls-8b-s42-resume | cuda:1 | 1797/6633 (27.1%) | ~10.9h (~20:36 UTC) |\n\n**PREPARING 待跑 (有效 3 个)**:\n- cls8b-s42-ckpt1200/1400/1600-val8192-eval: 等 cuda:0 空出后排队跑 val sweep\n\n**Running Workers (2)**:\n- `worker_analysis_4b-eval-hang-root-cause`: 分析 4B eval 卡死原因\n- `worker_monitor_westd-training-progress-loop14`: 监控训练进度\n\n**等待中**: 无 Director 决策阻塞项\n\n### 4. 📋 待办（条件触发式）\n- **cls8b-s42-ckpt1000-test8192-eval cron escalation** → 立即 SSH 查 PID 312975 状态；若死 → 检查 log 确认结果是否已完成写入，如完成则收割结果更新 registry；如未完成则在 cuda:0 重跑\n- cuda:0 空出 → 按序跑 val sweep: ckpt-1200 → ckpt-1400 → ckpt-1600 (val@8192)，每个 ~15min\n- seed123 训练完成 (~3h) → 收割最终 checkpoint，开始 seed123 val sweep + test eval（可能产生第三个 8B seed 的 headline 数字）\n- CWM 8B 训练完成 (~8.5h) → eval on test → 锁定 8B-8B CLS-CWM gap（当前只有 8B CLS vs 4B CWM）\n- s42 resume 训练完成 (~10.9h) → 补完 ckpt-1800~6633 的 val sweep，选最终 val-best，跑 test@8192\n- 所有 val sweep + test eval 完成 → 锁定论文所有数字，更新 paper_framing.md，派 Worker 写论文\n- 若 ckpt-1000 test < ckpt-400 test (84.79%) → 确认 val-test reversal pattern，在 supplementary 报告\n\n### 5. 🎯 战略上下文\n**核心结论链**: CLS >> CWM at repo-level (gap 24-26pp)，CWM 低于 majority baseline，支持 \"complexity-dependent advantage\" (C1)。C2/C3 已完成。\n\n**论文 DDL**: EMNLP 2026 ARR May 25，剩余 **10 天**。\n\n**最易判断错的事**:\n1. **Val-test reversal 是已知现象**（D084-D088），不是 bug。val-best ≠ test-best，但论文用 val-selected（标准做法）。不要因为 test 数字低就换 checkpoint\n2. **ckpt-1000 的 running_acc=82.7% 是 test 上的**（不是 val），val acc 是 88.23%。两个数字不要搞混\n3. **CWM 8B 训练还在跑**（cuda:2, ~8.5h），这是拿 8B-8B apple-to-apple gap 的关键。不要因为 4B CWM 已经 fail 就忽略 8B CWM\n4. **PREPARING 里有 3 个 killed/invalid 实验**（cls8b-ckpt3000-test-eval, v2, ckpt200-val），这些是历史残留，不要重跑\n5. **resume 训练的 checkpoint 编号从 800 开始**（因为从 ckpt-600 resume），不要和原始训练的 ckpt-200~600 混淆。原始在 `checkpoints_repo_cls_8b_conda/`，resume 在 `checkpoints_repo_cls_8b_s42_resume/`\n\n**决策链**:\n- D080: 旧 8B ckpt-3000 无效 → D081: 启动 8B seed123 重训 + s42 resume\n- D083: 暂停 headline 数字 → D084-D087: val-test reversal 调查 → D088: 回归 val-selected\n- D082: CWM error analysis 完成 → parseable-only acc 42%，直接支持 C1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778815660.md"
+}

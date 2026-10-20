@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0517c704ca58314e2305",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code mvp b train script",
+  "task_key": "worker_code_mvp-b-train-script_20260511T190206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-b-train-script_20260511T190206_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "5d782648f2c91e2c79a0c6dd78ff5238f4521f00f9f0ff4a4dc423c0188acf93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run complete. Summary:\n\n**Scripts created:**\n- `/home/sonny/exec-sim-repair-verifier/train_verifier.py` (222 lines)\n- `/home/sonny/exec-sim-repair-verifier/eval_verifier.py` (235 lines)\n\n**Dry-run results (Qwen3-0.6B, 2 steps):**\n- Status: success\n- Per step: ~1.0s/step (0.6B model; 4B will be ~5-7x slower ≈ 5-7s/step)\n- Loss: 5.06 (expected for untrained model)\n- LoRA params: 4.59M / 600.6M total (0.76% trainable)\n- Truncation: 10/15290 (0.1%) train, 0/1896 val — `max_seq_length=2048` covers 99.9% of data\n- VRAM: freed after exit; estimate for 4B model: ~15-20GB of 32GB (comfortable)\n\n**Estimated full training time (Qwen3-4B):**\n- ~478 steps/epoch × 3 epochs = ~1,434 steps\n- At ~6s/step ≈ 2.4 hours\n\n**To launch full training:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier\npython train_verifier.py \\\n  --data_dir data/ \\\n  --model_name Qwen/Qwen3-4B \\\n  --output_dir checkpoints/ \\\n  --wandb_project exec-sim-repair-verifier \\\n  --seed 42\n```\n\n**To evaluate after training:**\n```bash\npython eval_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir checkpoints/best/ \\\n  --output eval_results.json\n```\n\nNote: Qwen3-4B is not cached on the server — first run will download ~8GB. If bandwidth is slow, you could also use the cached Qwen3-8B (but needs more VRAM) or Qwen3-0.6B (faster but less capable)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-b-train-script.md"
+}

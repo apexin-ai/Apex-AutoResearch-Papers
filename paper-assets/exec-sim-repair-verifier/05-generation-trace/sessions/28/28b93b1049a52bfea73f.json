@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28b93b1049a52bfea73f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek cls repo s123 results",
+  "task_key": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-cls-repo-s123-results_20260518T223828_result.json",
+    "occurrence": 1,
+    "bytes": 2320,
+    "sha256": "bd0b82e7423a275a9bb3d74f90725fb973abcc50267a0f4619279d5968691e88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete summary:\n\n---\n\n## deepseek-cls-repo-s123 完整结果\n\n### 训练\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 6633 (3 epochs) |\n| 训练时间 | 21h30m |\n| 平均 train_loss | 0.0393 |\n| eval_loss | nan (所有 epoch, metric 计算 bug) |\n| best checkpoint | epoch 3 (因 eval_loss=nan, 默认取最后) |\n\n**Loss 轨迹:**\n\n| Epoch | Loss |\n|-------|------|\n| 0.5 | 0.0195 |\n| 1.0 | 0.0099 |\n| 1.5 | 0.0081 |\n| 2.0 | 0.0052 |\n| 2.5 | 0.0031 |\n| 3.0 | 0.0039 |\n\n### 评估结果对比\n\n| 指标 | seq8192 | seq2048 |\n|------|---------|---------|\n| Per-test Accuracy | **74.93%** | 82.62% |\n| Majority baseline | 72.96% | 72.96% |\n| Gap vs majority | +1.97pp | +9.67pp |\n| F1 macro | **53.94%** | 71.35% |\n| F1 fail | 22.84% | 53.37% |\n| F1 pass | 85.03% | 89.32% |\n| Precision fail | 68.11% | 97.30% |\n| Recall fail | 13.72% | 36.77% |\n| Recall pass | 97.62% | 99.62% |\n| Unparseable | **0** | 2796 (28.6%) |\n| **Variant accuracy (AND)** | **7/25 = 28.00%** | **9/25 = 36.00%** |\n\nseq2048 的 \"更高\" 指标是假象: 2796 个 unparseable 样本默认预测为 pass, 而 73% 样本本身就是 pass, 所以 accuracy 被虚高了。seq8192 无 truncation, 是更可靠的度量。\n\n### Variant-level 详细 (seq8192)\n\n- **7/25 correct** (全部是纯 pass 的 variant, 无 fail test case)\n- 所有含 fail test 的 variant 都未完全正确\n- Fail recall 极低 (13.72%), 模型倾向于预测 pass\n\n### Checkpoints\n\n- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/` (65MB LoRA adapter, epoch 3)\n- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-4422/` (epoch 2)\n- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/` (epoch 3)\n- LoRA: r=16, alpha=32, dropout=0.05, target=[q,k,v,o_proj]\n\n### 关键问题\n\n1. **eval_loss=nan**: 所有 epoch 的 eval loss 都是 nan, `best_metric=inf`, `best_model_checkpoint=None`。Trainer 实际保存了最后一个 checkpoint 作为 best\n2. **seq8192 variant accuracy 只有 28%**: 比 seq2048 的 36% 更低, 说明更长 context 反而让模型在某些 all-pass variant 上也犯错 (如 django-10880, django-14376)\n3. **Fail detection 几乎失效**: seq8192 recall_fail=13.72%, 模型严重偏向预测 pass"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-cls-repo-s123-results.md"
+}

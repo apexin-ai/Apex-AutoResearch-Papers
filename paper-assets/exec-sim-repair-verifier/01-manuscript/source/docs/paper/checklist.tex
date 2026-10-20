@@ -1,0 +1,57 @@
+% ARR Responsible NLP Research Checklist
+% Reference: https://aclrollingreview.org/responsibleNLPresearch/
+
+\section*{Responsible NLP Research Checklist}
+
+This paper follows the ARR Responsible NLP Research checklist.
+
+\subsection*{A. For Every Submission}
+
+\paragraph{A1. Did you describe the limitations of your work?}
+Yes. Section~\ref{sec:conclusion} (Limitations paragraph) discusses: ${\leq}$8B LoRA scope and generalization beyond this regime, Python-only evaluation domain, and synthetic mutation vs.\ real bug representativeness. Section~\ref{sec:threats} discusses checkpoint selection, preprocessing, and seed coverage. Extended validity discussion in Appendix~\ref{app:limitations}.
+
+\paragraph{A2. Did you discuss any potential risks of your work?}
+This work compares formulations for execution-free code verification on public benchmarks. The primary application is improving automated program repair pipelines. We identify no significant risks: the methods predict test outcomes rather than generating executable code, the datasets are derived from open-source repositories, and no personally identifiable information is involved. Misuse potential is limited because the verifiers require task-specific fine-tuning on labeled data and do not generalize to arbitrary code generation.
+
+\subsection*{B. Did You Use or Create Scientific Artifacts?}
+
+\paragraph{B1. Did you cite the creators of artifacts you used?}
+Yes. All datasets (HumanEval~\cite{chen2021humaneval}, MBPP~\cite{austin2021mbpp}, SWE-bench Verified~\cite{chowdhury2024swebenchverified}), models (Qwen3~\cite{qwen2025qwen3}, DeepSeek-Coder~\cite{guo2024deepseekcoder}), and methods (LoRA~\cite{hu2022lora}, QLoRA~\cite{dettmers2024qlora}) are cited in Sections~\ref{sec:setup} and~\ref{sec:formulations}.
+
+\paragraph{B2. Did you discuss the license or terms for use and/or distribution of any artifacts?}
+HumanEval is released under MIT license; MBPP under CC-BY-4.0; SWE-bench Verified under MIT license. Qwen3 models are released under Apache 2.0; DeepSeek-Coder under the DeepSeek License. All uses are consistent with their respective licenses. We do not release new artifacts in this submission.
+
+\paragraph{B3. Did you discuss if your use of existing artifact(s) was consistent with their intended use?}
+Yes. All benchmarks are used for their intended purpose of evaluating code understanding and generation capabilities. SWE-bench Verified is used for repository-level evaluation as designed by its creators.
+
+\paragraph{B4. Did you discuss the steps taken to check whether the data contains any information that names or uniquely identifies individual people or offensive content?}
+Not applicable. Our datasets consist of code snippets and test cases from open-source repositories. The mutation-based data construction process operates on source code only and does not involve personal data or natural language content that could contain offensive material.
+
+\paragraph{B5. Did you provide documentation of the artifacts?}
+Yes. Section~\ref{sec:setup} documents dataset statistics (sizes, splits, label distributions, majority baselines). The mutation-based data construction process is described in Section~\ref{sec:setup}. Appendix~\ref{app:hyperparams} provides full hyperparameter details.
+
+\paragraph{B6. Did you report relevant statistics like the number of examples, details of train/test/dev splits, etc.?}
+Yes. Section~\ref{sec:setup}: function-level 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\approx$ 52:48); repo-level ${\sim}$70K training, val $n{=}9{,}335$, test $n{=}9{,}784$ (majority baseline 72.96\%).
+
+\subsection*{C. Did You Run Computational Experiments?}
+
+\paragraph{C1. Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure?}
+Yes. Models: Qwen3-4B (${\sim}$4B parameters, LoRA rank 16 $\approx$ 4M trainable), Qwen3-8B (${\sim}$8B), DeepSeek-Coder-6.7B (${\sim}$6.7B). Infrastructure: 4$\times$ NVIDIA RTX 5090 GPUs. Total compute: ${\sim}$370 GPU-hours across 223 completed runs (${\sim}$46 configurations including seeds, formulations, model sizes, and ablations). Appendix~\ref{app:hyperparams} provides per-run details.
+
+\paragraph{C2. Did you discuss the experimental setup, including hyperparameter search and best-found hyperparameter values?}
+Yes. Section~\ref{sec:setup} reports the training configuration (LoRA rank 16, 3 epochs, 5 seeds with mixed precision). Appendix~\ref{app:hyperparams} provides full hyperparameter values. We use a fixed configuration rather than extensive hyperparameter search; repo-level models use validation accuracy for checkpoint selection.
+
+\paragraph{C3. Did you report descriptive statistics about your results with, e.g., error bars or confidence intervals?}
+Yes. All multi-seed results report mean $\pm$ standard deviation. Confidence intervals use clustered bootstrap (114 problem clusters, 10K resamples; Section~\ref{sec:setup}). Equivalence testing uses TOST with $\pm$2\pp{} margin and seed-level paired analysis (\cls{}--\cwm{} $p{=}0.007$, \cls{}--\traj{} $p{=}0.025$; Section~\ref{sec:equivalence}). ICC quantifies within-problem correlation with design effect reported.
+
+\paragraph{C4. If you used existing packages, did you report the implementation and version numbers?}
+Yes. Implementation uses HuggingFace Transformers (${\geq}$4.44), PEFT (${\geq}$0.12), PyTorch (${\geq}$2.0), bitsandbytes (${\geq}$0.43, for NF4 quantization), and Python 3.10. LoRA~\cite{hu2022lora} and QLoRA~\cite{dettmers2024qlora} configurations are detailed in Appendix~\ref{app:hyperparams}. Exact version pinning is provided in the code repository.
+
+\subsection*{D. Did You Use Human Annotators?}
+
+Not applicable. This work uses no human annotators or participants. All labels are derived from automated test execution.
+
+\subsection*{E. AI Assistants}
+
+\paragraph{E1. Did you use AI assistants (e.g., ChatGPT, Copilot) in any part of the paper writing or coding process?}
+Yes. See Appendix~\ref{app:ai-assistants} for details on the AI assistant (Claude, Anthropic) used for code development, writing, and literature summarization.

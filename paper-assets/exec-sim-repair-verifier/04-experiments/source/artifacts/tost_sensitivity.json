@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "purpose": "Dream A6: TOST margin sensitivity",
+    "date": "2026-05-17",
+    "method": "Paired TOST (Two One-Sided Tests)",
+    "alpha": 0.05,
+    "note": "Qwen SE_d reverse-engineered from known p=0.007 at delta=2pp"
+  },
+  "qwen3_4b": {
+    "n_seeds": 5,
+    "mean_cls": 88.43,
+    "mean_cwm": 87.19,
+    "mean_diff": 1.24,
+    "se_d": 0.1821,
+    "implied_sd_d": 0.4073,
+    "margins": [
+      {
+        "delta_pp": 1.0,
+        "tost_p": 0.870999,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 1.5,
+        "tost_p": 0.113303,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 2.0,
+        "tost_p": 0.007,
+        "equivalent": true
+      },
+      {
+        "delta_pp": 3.0,
+        "tost_p": 0.000321,
+        "equivalent": true
+      },
+      {
+        "delta_pp": 5.0,
+        "tost_p": 1.6e-05,
+        "equivalent": true
+      }
+    ],
+    "min_margin_for_equivalence": 1.628
+  },
+  "deepseek_6_7b": {
+    "n_seeds": 2,
+    "mean_cls": 86.85,
+    "mean_cwm": 86.83,
+    "mean_diff": 0.025,
+    "se_d": 1.135,
+    "sd_d": 1.6051,
+    "paired_diffs": [
+      1.16,
+      -1.11
+    ],
+    "margins": [
+      {
+        "delta_pp": 1.0,
+        "tost_p": 0.274091,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 1.5,
+        "tost_p": 0.208767,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 2.0,
+        "tost_p": 0.166029,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 3.0,
+        "tost_p": 0.116014,
+        "equivalent": false
+      },
+      {
+        "delta_pp": 5.0,
+        "tost_p": 0.071397,
+        "equivalent": false
+      }
+    ],
+    "min_margin_for_equivalence": 7.191
+  },
+  "summary_table": "| Margin (pp) | Qwen3-4B p | Qwen eq? | DeepSeek p | DS eq? | Both equivalent? |\n|---|---|---|---|---|---|\n| \u00b11.0 | 0.8710 | No | 0.2741 | No | No |\n| \u00b11.5 | 0.1133 | No | 0.2088 | No | No |\n| \u00b12.0 | 0.0070 | Yes | 0.1660 | No | No |\n| \u00b13.0 | 0.0003 | Yes | 0.1160 | No | No |\n| \u00b15.0 | 0.0000 | Yes | 0.0714 | No | No |"
+}

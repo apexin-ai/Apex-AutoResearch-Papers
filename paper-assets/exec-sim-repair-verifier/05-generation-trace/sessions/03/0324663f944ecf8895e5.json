@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0324663f944ecf8895e5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops home pilot prep",
+  "task_key": "worker_ops_home-pilot-prep_20260517T043347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_home-pilot-prep_20260517T043347_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "d71d99a7870cc44185a5a1b8a672f61f5e125ec38c988d01ffac956bdcd0a3eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已开始正常进行。以下是当前状态总结：\n\n## 环境准备结果\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **可用 Instruct 模型** | 下载中 | Qwen3-8B 正在下载（~16GB），PID 3584510 |\n| **备选模型** | 可用 | DeepSeek-R1-Distill-Qwen-7B, Qwen3-4B, Qwen3-0.6B |\n| **GPU** | 空闲 | RTX 5090 32GB, 0% 使用率 |\n| **磁盘** | 充足 | 347G 可用 (66% used) |\n| **Docker 镜像** | 235 个 SWE-bench 镜像 | django, astropy 等 |\n| **re_repair_pilot.py** | 就位 | 359行，路径已适配 home，prepare 验证通过（9 instances） |\n| **vLLM** | v0.19.1 已安装 | |\n| **数据** | 就位 | `data/swebench_full/` 含 mutation patches + oracle labels |\n\n## 模型路径\n\n下载完成后模型路径：\n```\n/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218\n```\n\n## 运行命令（下载完成后执行）\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier\npython3 re_repair_pilot.py generate \\\n    --n-instances 9 --n-samples 5 \\\n    --conditions A1 A2 B C D\n```\n\n模型下载预计需要 5-10 分钟（~16GB，已下载 ~1.4G）。可用 `tail -f /home/sonny/qwen3_8b_download.log` 监控进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-home-pilot-prep.md"
+}

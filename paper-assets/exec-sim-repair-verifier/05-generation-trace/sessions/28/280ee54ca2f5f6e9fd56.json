@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "280ee54ca2f5f6e9fd56",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check ckpt800 val4096 result",
+  "task_key": "worker_check_ckpt800-val4096-result_20260514T154408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ckpt800-val4096-result_20260514T154408_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "64d66f00c984169a629eadfa571ea68fa38001e54fa1e385305bbb9817381e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inference running smoothly — 22.5GB/32.6GB VRAM, no OOM risk. Here's the full report:\n\n---\n\n## ckpt-800 val@4096 最终结果\n\n**结果不匹配**：PID 3125543 跑的实际是 **test@2048**（非 val@4096）。\n\n实际跑出的 `repo_cls_seed123_ckpt800` 结果（test split, seq_len=2048, Qwen3-4B）：\n- accuracy: 74.27%（仅比 majority baseline 72.96% 高 1.3pp）\n- f1_macro: 66.03\n- fail_f1: 49.31 / pass_f1: 82.76\n- precision_fail: 52.8% / recall_fail: 46.3%\n- unparseable: 132/9784 (1.35%)\n- vs ckpt-600 test@2048 (80.73%): **-6.46pp，严重退化**\n\nckpt-800 比 ckpt-600 差很多，fail 检测能力几乎崩溃（fail_f1 从 68.49 降到 49.31）。但**这不是 val@4096 的结果**——val@4096 eval 从未实际执行。\n\n## 8B s42 val@5120 sweep 状态\n\n- 模型路径: `/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B`（本地，16GB）\n- tmux session: `eval_8b_val5120` on home cuda:0\n- VRAM: 22.5GB/32.6GB，batch_size=4，无 OOM 风险\n- **ckpt-400 (conda)**: 已启动，正在推理中（checkpoint: `checkpoints_repo_cls_8b_conda_westd/checkpoint-400`）\n- **ckpt-3000 (主版本)**: 排队中，ckpt-400 完成后自动开始（checkpoint: `checkpoints_repo_cls_8b_westd/checkpoint-3000`）\n- 输出目录: `results/repo_cls_8b_conda_ckpt400_val5120/` 和 `results/repo_cls_8b_ckpt3000_val5120/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ckpt800-val4096-result.md"
+}

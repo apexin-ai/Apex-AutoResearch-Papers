@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bfc3a2c966078154f68",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra post restart full gpu check",
+  "task_key": "worker_infra_post-restart-full-gpu-check_20260518T163243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_post-restart-full-gpu-check_20260518T163243_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "5c46008370d797950ce4cb3f79e0d2f9a7f6763df713837335bb9380ab270e67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n| 服务器 | GPU | 任务 | PID | 存活 | 进度 | running_acc | GPU util% | VRAM (MiB) | 已运行 | ETA |\n|--------|-----|------|-----|------|------|-------------|-----------|------------|--------|-----|\n| seetacloud | 0 | CLS v5 retrain | 698033 | ✅ | 4894/6315 steps (77%) | eval_loss=0.159 @ep2 | 99% | 24861/32607 | 13h45m | ~4.0h |\n| seetacloud | 1 | CWM s42 best @seq4096 | 662946 | ✅ | 6971/9784 (71.3%) | 56.6% (3943/6971) | 51% | 17699/32607 | 1d 0h13m | ~9.8h |\n| seetacloud | 2 | CWM s42 e3 @seq2048 | 734440 | ✅ | 891/9784 (9.1%) | 65.9% (587/891) | 55% | 15765/32607 | 2h43m | ~27.2h |\n| seetacloud | 3 | CWM s123 e2 @seq4096 | 668680 | ✅ | 6543/9784 (66.9%) | 61.6% (4032/6543) | 46% | 17699/32607 | 23h02m | ~11.4h |\n| home | 0 | CWM s42 e2 @seq2048 | 4141145 | ✅ | 841/9784 (8.6%) | 66.9% (563/841) | 86% | 15575/32607 | 1h38m | ~17.4h |\n\n**5/5 进程全部存活，服务器重启未受影响。**\n\n关键观察：\n- seq2048 的两个 eval (GPU 2, home) 刚启动不久，running_acc 都偏高 (~66%)，样本量还小\n- seq4096 的两个 eval (GPU 1, GPU 3) 已跑 2/3+，s123 的 acc (61.6%) 明显高于 s42 best (56.6%)\n- CLS v5 训练 77% 完成，约 4 小时后结束"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-restart-full-gpu-check.md"
+}

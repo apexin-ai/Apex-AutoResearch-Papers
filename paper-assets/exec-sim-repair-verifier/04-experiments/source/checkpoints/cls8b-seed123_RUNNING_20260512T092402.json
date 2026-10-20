@@ -1,0 +1,32 @@
+{
+  "exp_id": "cls8b-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T09:23:37.452Z",
+    "updated_at": "2026-05-12T09:24:02.252Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cls8b_seed123/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 123 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b_seed123/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cls8b_seed123.json\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "22433",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123.log",
+      "submitted_at": "2026-05-12T09:23:50.088Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123
+    },
+    "hypothesis": "验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性"
+  },
+  "timestamp": "2026-05-12T09:24:02.302097+00:00",
+  "trigger": "update_registry"
+}

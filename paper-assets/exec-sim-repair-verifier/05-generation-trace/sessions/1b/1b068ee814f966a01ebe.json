@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b068ee814f966a01ebe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval ckpt1600 test8192",
+  "task_key": "worker_eval_ckpt1600-test8192_20260515T062913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt1600-test8192_20260515T062913_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "9e2e96a5759159c2b46df907ed2c14d257f0bf6f700a38eeff3a53dc759545e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交到 westd cuda:0，3 分钟后开始轮询日志。\n\n- **exp_id**: cls8b-s42-ckpt1600-test8192-eval\n- **GPU**: cuda:0 @ seetacloud-westd-4x5090\n- **PID**: 339064\n- **状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt1600-test8192.md"
+}

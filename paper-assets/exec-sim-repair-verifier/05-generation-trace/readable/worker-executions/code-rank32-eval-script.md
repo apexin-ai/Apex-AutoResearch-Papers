@@ -1,0 +1,5444 @@
+# code rank32 eval script
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/workers/worker_code_rank32-eval-script_20260515T132749.log`
+- **Structured JSON:** [`757d902e95a712b044ed.json`](../../sessions/75/757d902e95a712b044ed.json)
+
+## Before a recorded user message
+
+114 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c7f70ede-01b2-4d27-a7c3-5a05b1a0f9ac",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779206400,
+    "rateLimitType": "seven_day",
+    "utilization": 0.79,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "2bddf972-9723-4340-b383-d9efe7131558",
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the existing eval scripts and registry information in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1ff7d82d-7581-4e62-8b9f-9a4ffbd79b2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KExKUikRg8h8hSFthLdFad",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11707,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11707
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tsgmmnj47ieGbLfPbffhYw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c2e84be9-8055-4adc-a7c3-dd9f6a0bd4ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KExKUikRg8h8hSFthLdFad",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11707,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11707
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T13:28:00.639Z_
+
+<details><summary>↩ Tool result · `toolu_01Tsgmmnj47ieGbLfPbffhYw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "2b3ac676-addb-42dc-acfe-fc6d4ddd7134",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the eval scripts on the server and the registry for CWM baseline experiments in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "96d2a815-40b1-447a-b61f-d5f93970a02e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrihWD3Mhb4ny4p7KAKqFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 23548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W4N839tE4f5WEAn6DL1KCs`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/eval_*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3449c9d4-07c1-4b2c-8455-fad019bb0f49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrihWD3Mhb4ny4p7KAKqFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 23548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ucxwfQg8MNyT5qmnomvFn`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b896c225-0324-40f9-9808-b23c0cb636a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrihWD3Mhb4ny4p7KAKqFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 23548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T13:28:07.740Z_
+
+<details><summary>↩ Tool result · `toolu_01W4N839tE4f5WEAn6DL1KCs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\n/home/sonny/exec-sim-repair-verifier/eval_pertest_diagnostic.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_level.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3e41856f-07e5-46d6-9ac0-8713ff528b24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_pertest_diagnostic.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_repo_level.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_repo_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\n/home/sonny/exec-sim-repair-verifier/eval_pertest_diagnostic.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_level.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T13:28:08.271Z_
+
+<details><summary>↩ Tool result · `toolu_019ucxwfQg8MNyT5qmnomvFn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n# Output: Formatted report to stdout + JSON to --output\\n# Key difference from eval_verifier.py:\\n#   - Generates execution output string instead of \\\"pass\\\"/\\\"fail\\\"\\n#   - Extracts pass/fail from generated output via keyword matching\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import (\\n    accuracy_score,\\n    confusion_matrix,\\n    f1_score,\\n    precision_score,\\n    recall_score,\\n)\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code snippet and a test case, \\\"\\n    \\\"predict the execution result.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef extract_pass_fail(text):\\n    \\\"\\\"\\\"Extract pass/fail prediction from generated execution output.\\\"\\\"\\\"\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_clean = text.strip()\\n    text_lower = text_clean.lower()\\n\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n\\n    fail_patterns = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_patterns = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n\\n    has_fail = any(p in text_lower for p in fail_patterns)\\n    has_pass = any(p in text_lower for p in pass_patterns)\\n\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return 0\\n\\n\\ndef extract_error_type(target):\\n    \\\"\\\"\\\"Extract error type from target string like 'FAIL: AssertionError: ...'.\\\"\\\"\\\"\\n    if target.startswith(\\\"PASS\\\"):\\n        return \\\"PASS\\\"\\n    match = re.match(r\\\"FAIL:\\\\s*(\\\\w+Error|\\\\w+Exception|Error)\\\", target)\\n    if match:\\n        return match.group(1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "d26af56c-1aec-460a-80bd-379d59b91b6c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\\\n# Output: Formatted report to stdout + JSON to --output\\\\n# Key difference from eval_verifier.py:\\\\n#   - Generates execution output string instead of \\\\\\\"pass\\\\\\\"/\\\\\\\"fail\\\\\\\"\\\\n#   - Extracts pass/fail from generated output via keyword matching\\\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport statistics\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score,\\\\n    confusion_matrix,\\\\n    f1_score,\\\\n    precision_score,\\\\n    recall_score,\\\\n)\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code snippet and a test case, \\\\\\\"\\\\n    \\\\\\\"predict the execution result.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = f\\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if len(ids) > max_len:\\\\n        ids = ids[:max_len]\\\\n    return ids\\\\n\\\\n\\\\ndef extract_pass_fail(text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract pass/fail prediction from generated execution output.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_clean = text.strip()\\\\n    text_lower = text_clean.lower()\\\\n\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n\\\\n    fail_patterns = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n    pass_patterns = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n\\\\n    has_fail = any(p in text_lower for p in fail_patterns)\\\\n    has_pass = any(p in text_lower for p in pass_patterns)\\\\n\\\\n    if has_fail and not has_pass:\\\\n        return 0\\\\n    if has_pass and not has_fail:\\\\n        return 1\\\\n    return 0\\\\n\\\\n\\\\ndef extract_error_type(target):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract error type from target string like 'FAIL: AssertionError: ...'.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if target.startswith(\\\\\\\"PASS\\\\\\\"):\\\\n        return \\\\\\\"PASS\\\\\\\"\\\\n    match = re.match(r\\\\\\\"FAIL:\\\\\\\\s*(\\\\\\\\w+Error|\\\\\\\\w+Exception|Error)\\\\\\\", target)\\\\n    if match:\\\\n        return match.group(1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n# Output: Formatted report to stdout + JSON to --output\\n# Key difference from eval_verifier.py:\\n#   - Generates execution output string instead of \\\"pass\\\"/\\\"fail\\\"\\n#   - Extracts pass/fail from generated output via keyword matching\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import (\\n    accuracy_score,\\n    confusion_matrix,\\n    f1_score,\\n    precision_score,\\n    recall_score,\\n)\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code snippet and a test case, \\\"\\n    \\\"predict the execution result.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef extract_pass_fail(text):\\n    \\\"\\\"\\\"Extract pass/fail prediction from generated execution output.\\\"\\\"\\\"\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_clean = text.strip()\\n    text_lower = text_clean.lower()\\n\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n\\n    fail_patterns = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_patterns = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n\\n    has_fail = any(p in text_lower for p in fail_patterns)\\n    has_pass = any(p in text_lower for p in pass_patterns)\\n\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return 0\\n\\n\\ndef extract_error_type(target):\\n    \\\"\\\"\\\"Extract error type from target string like 'FAIL: AssertionError: ...'.\\\"\\\"\\\"\\n    if target.startswith(\\\"PASS\\\"):\\n        return \\\"PASS\\\"\\n    match = re.match(r\\\"FAIL:\\\\s*(\\\\w+Error|\\\\w+Exception|Error)\\\", target)\\n    if match:\\n        return match.group(1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01VZwHo4ZAKCfZGWnf2tqPiT`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "name",
+    "status",
+    "spec",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "f1e1ac4a-4d57-480f-8a69-d84cd3a47b67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrihWD3Mhb4ny4p7KAKqFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 23548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T13:28:09.179Z_
+
+<details><summary>↩ Tool result · `toolu_01VZwHo4ZAKCfZGWnf2tqPiT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}, \"conclusion\": \"killed\"}, \"cwm-4b-rank32-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}, \"conclusion\": \"killed\"}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}, \"conclusion\": \"failed\"}, \"cls8b-seed123-ckpt200-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 72.55, \"f1_macro\": 70.18, \"pass_f1\": 78.58, \"fail_f1\": 61.78, \"pass_precision\": 91.21, \"pass_recall\": 69.02, \"fail_precision\": 49.54, \"fail_recall\": 82.05, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 72.96, \"unparseable\": 0, \"confusion_matrix\": {\"tn\": 2171, \"fp\": 475, \"fn\": 2211, \"tp\": 4927}}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 82.83, \"f1_macro\": 76.88, \"fail_precision\": 72.2, \"fail_recall\": 59.3, \"fail_f1\": 65.2, \"pass_precision\": 85.9, \"pass_recall\": 91.5, \"pass_f1\": 88.6, \"unparseable\": 136}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6633-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 84.89, \"f1_macro\": 77.56, \"f1_fail\": 64.7, \"f1_pass\": 90.4, \"precision_fail\": 87.8, \"recall_fail\": 51.2, \"precision_pass\": 84.3, \"recall_pass\": 97.4, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 11.9, \"total_samples\": 9784, \"unparseable_count\": 0}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6600-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.9, \"f1_macro\": 77.58, \"pass_f1\": 90.4, \"fail_f1\": 64.8, \"pass_precision\": 84.3, \"pass_recall\": 97.4, \"fail_precision\": 87.8, \"fail_recall\": 51.3, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 1357, \"fail_as_pass\": 1289, \"pass_as_fail\": 188, \"pass_as_pass\": 6950}}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 70.07, \"f1_macro\": 68.18, \"pass_f1\": 75.9, \"fail_f1\": 60.4, \"pass_precision\": 91.8, \"pass_recall\": 64.7, \"fail_precision\": 47, \"fail_recall\": 84.5, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 2235, \"fail_as_pass\": 411, \"pass_as_fail\": 2517, \"pass_as_pass\": 4621}}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"status\": \"DONE\", \"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 77.74, \"f1_macro\": 74.74, \"f1_fail\": 66.03, \"f1_pass\": 83.44, \"precision_fail\": 56.21, \"recall_fail\": 80.01, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 4.78, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"status\": \"DONE\", \"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 85.08, \"f1_fail\": 65.32, \"f1_pass\": 90.49, \"f1_macro\": 77.91, \"precision_fail\": 87.92, \"precision_pass\": 84.54, \"recall_fail\": 51.97, \"recall_pass\": 97.35, \"n_instances\": 9784, \"n_cls_unparseable\": 0}, \"conclusion\": \"success\"}}, \"count\": 10, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4432}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "4e8fb2d7-0f50-45b1-bea3-bebb9e3a3eb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm-rank32-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"368823\\\", \\\"log_path\\\": \\\"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:29:23.401Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"val_count\\\": 1896, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lora_dropout\\\": 0.05, \\\"lora_target_modules\\\": [\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"], \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 2, \\\"grad_accumulation\\\": 16, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"warmup_ratio\\\": 0.1, \\\"total_steps\\\": 1434, \\\"estimated_hours\\\": 1.6, \\\"hypothesis\\\": \\\"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\\\", \\\"wall_clock_seconds\\\": 1088.4, \\\"gpu_hours\\\": 0.3}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"cwm-4b-rank32-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"369497\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:32:30Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"estimated_hours\\\": 2.8, \\\"wall_clock_seconds\\\": 857.2, \\\"gpu_hours\\\": 0.24}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"cls4b-v5-ckpt4000-test5120-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-4000 test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3274167\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:46:00.336Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"test@5120(n=9784)\\\", \\\"wall_clock_seconds\\\": 2783.1, \\\"gpu_hours\\\": 0.77}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"cls8b-seed123-ckpt200-test-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363037\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:29:27.560Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 2550.6, \\\"gpu_hours\\\": 0.71}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 72.55, \\\"f1_macro\\\": 70.18, \\\"pass_f1\\\": 78.58, \\\"fail_f1\\\": 61.78, \\\"pass_precision\\\": 91.21, \\\"pass_recall\\\": 69.02, \\\"fail_precision\\\": 49.54, \\\"fail_recall\\\": 82.05, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 72.96, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"tn\\\": 2171, \\\"fp\\\": 475, \\\"fn\\\": 2211, \\\"tp\\\": 4927}}}, \\\"cls8b-s42-ckpt1000-test-seq2048-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"360735\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:59:58.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"test@2048(n=9784)\\\", \\\"wall_clock_seconds\\\": 1763.2, \\\"gpu_hours\\\": 0.49}, \\\"metrics\\\": {\\\"accuracy\\\": 82.83, \\\"f1_macro\\\": 76.88, \\\"fail_precision\\\": 72.2, \\\"fail_recall\\\": 59.3, \\\"fail_f1\\\": 65.2, \\\"pass_precision\\\": 85.9, \\\"pass_recall\\\": 91.5, \\\"pass_f1\\\": 88.6, \\\"unparseable\\\": 136}, \\\"conclusion\\\": \\\"success\\\"}, \\\"cls8b-seed123-ckpt6633-test-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"360877\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:00:00.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 1723.0, \\\"gpu_hours\\\": 0.48}, \\\"metrics\\\": {\\\"accuracy\\\": 84.89, \\\"f1_macro\\\": 77.56, \\\"f1_fail\\\": 64.7, \\\"f1_pass\\\": 90.4, \\\"precision_fail\\\": 87.8, \\\"recall_fail\\\": 51.2, \\\"precision_pass\\\": 84.3, \\\"recall_pass\\\": 97.4, \\\"majority_baseline\\\": 73, \\\"gap_vs_majority_pp\\\": 11.9, \\\"total_samples\\\": 9784, \\\"unparseable_count\\\": 0}, \\\"conclusion\\\": \\\"success\\\"}, \\\"cls8b-seed123-ckpt6600-test-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-6600 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"358109\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:08.559Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"wall_clock_seconds\\\": 1429.0, \\\"gpu_hours\\\": 0.4}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 84.9, \\\"f1_macro\\\": 77.58, \\\"pass_f1\\\": 90.4, \\\"fail_f1\\\": 64.8, \\\"pass_precision\\\": 84.3, \\\"pass_recall\\\": 97.4, \\\"fail_precision\\\": 87.8, \\\"fail_recall\\\": 51.3, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 1357, \\\"fail_as_pass\\\": 1289, \\\"pass_as_fail\\\": 188, \\\"pass_as_pass\\\": 6950}}}, \\\"cls8b-s42-ckpt200-test8192-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... s42 ckpt-200 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"358249\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:10.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1426.0, \\\"gpu_hours\\\": 0.4}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 70.07, \\\"f1_macro\\\": 68.18, \\\"pass_f1\\\": 75.9, \\\"fail_f1\\\": 60.4, \\\"pass_precision\\\": 91.8, \\\"pass_recall\\\": 64.7, \\\"fail_precision\\\": 47, \\\"fail_recall\\\": 84.5, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 2235, \\\"fail_as_pass\\\": 411, \\\"pass_as_fail\\\": 2517, \\\"pass_as_pass\\\": 4621}}}, \\\"cls4b-v5-ckpt600-test5120-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 77.74, \\\"f1_macro\\\": 74.74, \\\"f1_fail\\\": 66.03, \\\"f1_pass\\\": 83.44, \\\"precision_fail\\\": 56.21, \\\"recall_fail\\\": 80.01, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 4.78, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt6400-test-eval-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"355710\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.08, \\\"f1_fail\\\": 65.32, \\\"f1_pass\\\": 90.49, \\\"f1_macro\\\": 77.91, \\\"precision_fail\\\": 87.92, \\\"precision_pass\\\": 84.54, \\\"recall_fail\\\": 51.97, \\\"recall_pass\\\": 97.35, \\\"n_instances\\\": 9784, \\\"n_cls_unparseable\\\": 0}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 10, \\\"total\\\": 118, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4432}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}, \"conclusion\": \"killed\"}, \"cwm-4b-rank32-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}, \"conclusion\": \"killed\"}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}, \"conclusion\": \"failed\"}, \"cls8b-seed123-ckpt200-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 72.55, \"f1_macro\": 70.18, \"pass_f1\": 78.58, \"fail_f1\": 61.78, \"pass_precision\": 91.21, \"pass_recall\": 69.02, \"fail_precision\": 49.54, \"fail_recall\": 82.05, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 72.96, \"unparseable\": 0, \"confusion_matrix\": {\"tn\": 2171, \"fp\": 475, \"fn\": 2211, \"tp\": 4927}}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"status\": \"DONE\", \"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 82.83, \"f1_macro\": 76.88, \"fail_precision\": 72.2, \"fail_recall\": 59.3, \"fail_f1\": 65.2, \"pass_precision\": 85.9, \"pass_recall\": 91.5, \"pass_f1\": 88.6, \"unparseable\": 136}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6633-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 84.89, \"f1_macro\": 77.56, \"f1_fail\": 64.7, \"f1_pass\": 90.4, \"precision_fail\": 87.8, \"recall_fail\": 51.2, \"precision_pass\": 84.3, \"recall_pass\": 97.4, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 11.9, \"total_samples\": 9784, \"unparseable_count\": 0}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6600-test-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.9, \"f1_macro\": 77.58, \"pass_f1\": 90.4, \"fail_f1\": 64.8, \"pass_precision\": 84.3, \"pass_recall\": 97.4, \"fail_precision\": 87.8, \"fail_recall\": 51.3, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 1357, \"fail_as_pass\": 1289, \"pass_as_fail\": 188, \"pass_as_pass\": 6950}}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 70.07, \"f1_macro\": 68.18, \"pass_f1\": 75.9, \"fail_f1\": 60.4, \"pass_precision\": 91.8, \"pass_recall\": 64.7, \"fail_precision\": 47, \"fail_recall\": 84.5, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 2235, \"fail_as_pass\": 411, \"pass_as_fail\": 2517, \"pass_as_pass\": 4621}}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"status\": \"DONE\", \"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 77.74, \"f1_macro\": 74.74, \"f1_fail\": 66.03, \"f1_pass\": 83.44, \"precision_fail\": 56.21, \"recall_fail\": 80.01, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 4.78, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"status\": \"DONE\", \"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 85.08, \"f1_fail\": 65.32, \"f1_pass\": 90.49, \"f1_macro\": 77.91, \"precision_fail\": 87.92, \"precision_pass\": 84.54, \"recall_fail\": 51.97, \"recall_pass\": 97.35, \"n_instances\": 9784, \"n_cls_unparseable\": 0}, \"conclusion\": \"success\"}}, \"count\": 10, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4432}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find the CWM baseline (rank=16) eval experiment in the registry. Let me search specifically for CWM baseline experiments. I also need to see the rest of eval_cwm_baseline.py to understand the full argparse arguments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "d394c7cf-359b-4433-aba0-31022ac573a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLRf1Pnz55umqiaZG3aQxx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 25227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+需要查看 CWM baseline (rank=16) 的 eval 记录和 eval 脚本的完整参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "0306e7dc-e266-4b36-9d34-a5bbef056796",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLRf1Pnz55umqiaZG3aQxx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 25227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_019jQQXszUPAuh6ne4aNU2AD`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "name": "cwm"
+  },
+  "fields": [
+    "exp_id",
+    "name",
+    "status",
+    "spec",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b8bf31a7-f336-4504-913b-2e68456a0db5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLRf1Pnz55umqiaZG3aQxx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 25227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T13:28:17.019Z_
+
+<details><summary>↩ Tool result · `toolu_019jQQXszUPAuh6ne4aNU2AD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3732}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "ed98ff82-1228-42e1-8196-a93a25b97588",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3732}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3732}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0198qKFbCEvB2ari154b9ait`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"argparse\\|add_argument\\|parse_args\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "f14951dc-b525-4d42-a5f4-f647bf562898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLRf1Pnz55umqiaZG3aQxx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 25227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T13:28:18.076Z_
+
+<details><summary>↩ Tool result · `toolu_0198qKFbCEvB2ari154b9ait`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "892f00a6-cfcc-480b-9789-1aa1e4b4178c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M1Ec64HK8mixkRS4s9qv7V`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "48a2212f-e072-4681-8f47-98cb5ea3586a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLRf1Pnz55umqiaZG3aQxx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7222,
+      "cache_read_input_tokens": 25227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7222
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T13:28:19.263Z_
+
+<details><summary>↩ Tool result · `toolu_01M1Ec64HK8mixkRS4s9qv7V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoint-478\\ncheckpoint-956\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1cf40b00-0e88-4f23-9418-48a9bae71fff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint-478\\\\ncheckpoint-956\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"checkpoint-478\\ncheckpoint-956\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry search for "cwm" didn't find anything with `name` filter. Let me try searching by exp_id pattern. Also I need to read the argparse section of eval_cwm_baseline.py. And I see that the checkpoint directory has checkpoint-478 and checkpoint-956 but training is still ongoing (step 324/1434), so there will be a final checkpoint. Let me check more.
+
+Let me read the argparse section of eval_cwm_baseline.py and also search the registry more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3ec50572-66dc-40d8-bc18-1d48cf9561fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vjS1DjHZSe9CEs7vVPEwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 32449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vgep39p81NV4EwZrU5hMry`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"add_argument\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "50735535-78c0-402c-b6fe-63c3d354584b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vjS1DjHZSe9CEs7vVPEwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 32449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T13:28:26.567Z_
+
+<details><summary>↩ Tool result · `toolu_01Vgep39p81NV4EwZrU5hMry`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"106:    p.add_argument(\\\"--data_dir\\\", required=True)\\n107:    p.add_argument(\\\"--checkpoint_dir\\\", required=True)\\n108:    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\")\\n109:    p.add_argument(\\\"--output\\\", default=\\\"eval_cwm_results.json\\\")\\n110:    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n111:    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n112:    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=64)\\n113:    p.add_argument(\\\"--save_predictions\\\", action=\\\"store_true\\\", help=\\\"Save per-instance predictions to JSON\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b21abf8b-5f95-428c-9210-38f561df2478",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"106:    p.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True)\\\\n107:    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", required=True)\\\\n108:    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\")\\\\n109:    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_cwm_results.json\\\\\\\")\\\\n110:    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n111:    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n112:    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=64)\\\\n113:    p.add_argument(\\\\\\\"--save_predictions\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Save per-instance predictions to JSON\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"106:    p.add_argument(\\\"--data_dir\\\", required=True)\\n107:    p.add_argument(\\\"--checkpoint_dir\\\", required=True)\\n108:    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\")\\n109:    p.add_argument(\\\"--output\\\", default=\\\"eval_cwm_results.json\\\")\\n110:    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n111:    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n112:    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=64)\\n113:    p.add_argument(\\\"--save_predictions\\\", action=\\\"store_true\\\", help=\\\"Save per-instance predictions to JSON\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Sxfo6mhMDw42NYLnMxExia`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "exp_id": "cwm-baseline"
+  },
+  "fields": [
+    "exp_id",
+    "name",
+    "status",
+    "spec",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "8c095423-9c1a-4f80-be6d-57b1413d2686",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vjS1DjHZSe9CEs7vVPEwj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 32449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T13:28:30.302Z_
+
+<details><summary>↩ Tool result · `toolu_01Sxfo6mhMDw42NYLnMxExia`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3866}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3ef88ab1-b8d1-4984-8a8c-17d7fb586a00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3866}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3866}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for CWM baseline experiments in the registry more broadly, and also check the existing eval results/commands for the rank=16 baseline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "2597d595-bf09-474c-86e1-bbb94caec8c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJRagDcxbx8hCMLmVKtmvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 33285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01NQK7yFbKUUqRdSqaE4DgC9`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "spec"
+  ],
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "acf79958-b04b-4ac6-8fe2-4a336a642537",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJRagDcxbx8hCMLmVKtmvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 33285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T13:28:34.914Z_
+
+<details><summary>↩ Tool result · `toolu_01NQK7yFbKUUqRdSqaE4DgC9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}}, \"cwm-4b-rank32-ablation\": {\"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}}, \"cls8b-seed123-ckpt200-test-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}}, \"cls8b-seed123-ckpt6633-test-eval\": {\"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}}, \"cls8b-seed123-ckpt6600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}}, \"cls8b-seed123-ckpt6200-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"355567\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\"}}, \"cls8b-seed123-ckpt6400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"353235\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:13.996Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1533.6, \"gpu_hours\": 0.43}}, \"cls8b-seed123-ckpt6200-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353094\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:11.145Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1535.3, \"gpu_hours\": 0.43}}, \"cls8b-s42-ckpt200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353498\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:17.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\", \"eval_data\": \"val@8192\", \"wall_clock_seconds\": 1527.9, \"gpu_hours\": 0.42}}, \"cls4b-seed123-ckpt800-test5120-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3264842\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\", \"submitted_at\": \"2026-05-15T09:36:59.423Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1662.9, \"gpu_hours\": 0.46}}, \"repo-level-cls-8b-seed123-conda-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"266444\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"submitted_at\": \"2026-05-14T17:43:50.914Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 37338, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 45617.8, \"gpu_hours\": 12.67, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\", \"best_model_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\", \"final_train_loss\": 0.162, \"final_eval_loss\": 0.464, \"train_runtime_seconds\": 45210}}, \"cls4b-seed123-ckpt800-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3261669\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\", \"submitted_at\": \"2026-05-15T09:16:22.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"checkpoint_source\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"eval_data\": \"test\", \"data_path\": \"repo-level-cls-test\", \"data_count\": 9784, \"checkpoint_path\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"wall_clock_seconds\": 1216.7, \"gpu_hours\": 0.34}}, \"cls8b-seed123-ckpt6633-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"346231\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"val@8192\"}}, \"cls8b-seed123-ckpt3000-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\", \"submitted_at\": \"2026-05-15T15:33:50Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\", \"eval_data\": \"test@8192\"}}, \"cls8b-seed123-ckpt3000-test8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"346590\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\", \"submitted_at\": \"2026-05-15T07:59:04.721Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 443.8, \"gpu_hours\": 0.12}}, \"cls4b-v5-ckpt4400-test5120-eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3244661\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\", \"submitted_at\": \"2026-05-15T07:30:01.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1752.2, \"gpu_hours\": 0.49}}, \"cls8b-seed123-ckpt6400-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"343011\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:26:03.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1959.6, \"gpu_hours\": 0.54}}, \"cls8b-seed123-ckpt6200-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"343605\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:29:46.229Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1727.2, \"gpu_hours\": 0.48}}, \"cls4b-v5-val-sweep-ckpt4600\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3221945\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\", \"submitted_at\": \"2026-05-15T04:42:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 10715.3, \"gpu_hours\": 2.98}}, \"cls8b-seed123-ckpt6600-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"340511\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\", \"submitted_at\": \"2026-05-15T06:49:09.694Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2204.3, \"gpu_hours\": 0.61}}, \"cls8b-s42-ckpt1600-test8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"339064\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\", \"submitted_at\": \"2026-05-15T06:30:12.425Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"test@8192\", \"wall_clock_seconds\": 3328.2, \"gpu_hours\": 0.92}}, \"cls4b-v5-ckpt4600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3238979\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\", \"submitted_at\": \"2026-05-15T06:49:49.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": null, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4600\", \"eval_data\": \"test\", \"wall_clock_seconds\": 2155.2, \"gpu_hours\": 0.6}}, \"cls8b-s42-ckpt1400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"335070\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T05:32:38.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"cls8b-s42-ckpt1200-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"test@8192\"}}, \"cls8b-s42-ckpt800-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"eval_data\": \"swebench_test\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"log_path\": \"/tmp/eval_cls8b_ckpt800_test8192.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"parent\": \"repo-level-cls-8b-s42-resume\"}}}, \"count\": 30, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3467}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1d7d251e-2add-4435-a72f-67cfee402c5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"368823\\\", \\\"log_path\\\": \\\"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:29:23.401Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"val_count\\\": 1896, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lora_dropout\\\": 0.05, \\\"lora_target_modules\\\": [\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"], \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 2, \\\"grad_accumulation\\\": 16, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"warmup_ratio\\\": 0.1, \\\"total_steps\\\": 1434, \\\"estimated_hours\\\": 1.6, \\\"hypothesis\\\": \\\"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\\\", \\\"wall_clock_seconds\\\": 1088.4, \\\"gpu_hours\\\": 0.3}}, \\\"cwm-4b-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"369497\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:32:30Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"estimated_hours\\\": 2.8, \\\"wall_clock_seconds\\\": 857.2, \\\"gpu_hours\\\": 0.24}}, \\\"cls4b-v5-ckpt4000-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-4000 test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3274167\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:46:00.336Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"test@5120(n=9784)\\\", \\\"wall_clock_seconds\\\": 2783.1, \\\"gpu_hours\\\": 0.77}}, \\\"cls8b-seed123-ckpt200-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363037\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:29:27.560Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 2550.6, \\\"gpu_hours\\\": 0.71}}, \\\"cls8b-s42-ckpt1000-test-seq2048-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"360735\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:59:58.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"test@2048(n=9784)\\\", \\\"wall_clock_seconds\\\": 1763.2, \\\"gpu_hours\\\": 0.49}}, \\\"cls8b-seed123-ckpt6633-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"360877\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:00:00.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 1723.0, \\\"gpu_hours\\\": 0.48}}, \\\"cls8b-seed123-ckpt6600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-6600 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"358109\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:08.559Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"wall_clock_seconds\\\": 1429.0, \\\"gpu_hours\\\": 0.4}}, \\\"cls8b-s42-ckpt200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... s42 ckpt-200 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"358249\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:10.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1426.0, \\\"gpu_hours\\\": 0.4}}, \\\"cls4b-v5-ckpt600-test5120-eval\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\\\"}}, \\\"cls8b-seed123-ckpt6400-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"355710\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\\\"}}, \\\"cls8b-seed123-ckpt6200-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"355567\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\\\"}}, \\\"cls8b-seed123-ckpt6400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"353235\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:13.996Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1533.6, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-seed123-ckpt6200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353094\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:11.145Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1535.3, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-s42-ckpt200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353498\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:17.501Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"wall_clock_seconds\\\": 1527.9, \\\"gpu_hours\\\": 0.42}}, \\\"cls4b-seed123-ckpt800-test5120-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3264842\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:36:59.423Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1662.9, \\\"gpu_hours\\\": 0.46}}, \\\"repo-level-cls-8b-seed123-conda-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"266444\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:43:50.914Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/\\\", \\\"data_count\\\": 37338, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 45617.8, \\\"gpu_hours\\\": 12.67, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\\\", \\\"best_model_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\\\", \\\"final_train_loss\\\": 0.162, \\\"final_eval_loss\\\": 0.464, \\\"train_runtime_seconds\\\": 45210}}, \\\"cls4b-seed123-ckpt800-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3261669\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:16:22.098Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"eval_data\\\": \\\"test\\\", \\\"data_path\\\": \\\"repo-level-cls-test\\\", \\\"data_count\\\": 9784, \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"wall_clock_seconds\\\": 1216.7, \\\"gpu_hours\\\": 0.34}}, \\\"cls8b-seed123-ckpt6633-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"346231\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"val@8192\\\"}}, \\\"cls8b-seed123-ckpt3000-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T15:33:50Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\\\", \\\"eval_data\\\": \\\"test@8192\\\"}}, \\\"cls8b-seed123-ckpt3000-test8192-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"346590\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:59:04.721Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 443.8, \\\"gpu_hours\\\": 0.12}}, \\\"cls4b-v5-ckpt4400-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3244661\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:30:01.279Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1752.2, \\\"gpu_hours\\\": 0.49}}, \\\"cls8b-seed123-ckpt6400-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"343011\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:26:03.290Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1959.6, \\\"gpu_hours\\\": 0.54}}, \\\"cls8b-seed123-ckpt6200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"343605\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:29:46.229Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1727.2, \\\"gpu_hours\\\": 0.48}}, \\\"cls4b-v5-val-sweep-ckpt4600\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3221945\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:42:23.647Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 10715.3, \\\"gpu_hours\\\": 2.98}}, \\\"cls8b-seed123-ckpt6600-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"340511\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:09.694Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2204.3, \\\"gpu_hours\\\": 0.61}}, \\\"cls8b-s42-ckpt1600-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"339064\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:30:12.425Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"test@8192\\\", \\\"wall_clock_seconds\\\": 3328.2, \\\"gpu_hours\\\": 0.92}}, \\\"cls4b-v5-ckpt4600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3238979\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:49.224Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4600\\\", \\\"eval_data\\\": \\\"test\\\", \\\"wall_clock_seconds\\\": 2155.2, \\\"gpu_hours\\\": 0.6}}, \\\"cls8b-s42-ckpt1400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"335070\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:32:38.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"cls8b-s42-ckpt1200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"test@8192\\\"}}, \\\"cls8b-s42-ckpt800-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"eval_data\\\": \\\"swebench_test\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"log_path\\\": \\\"/tmp/eval_cls8b_ckpt800_test8192.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\"}}}, \\\"count\\\": 30, \\\"total\\\": 118, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3467}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}}, \"cwm-4b-rank32-ablation\": {\"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}}, \"cls8b-seed123-ckpt200-test-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}}, \"cls8b-seed123-ckpt6633-test-eval\": {\"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}}, \"cls8b-seed123-ckpt6600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}}, \"cls8b-seed123-ckpt6200-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"355567\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\"}}, \"cls8b-seed123-ckpt6400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"353235\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:13.996Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1533.6, \"gpu_hours\": 0.43}}, \"cls8b-seed123-ckpt6200-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353094\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:11.145Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1535.3, \"gpu_hours\": 0.43}}, \"cls8b-s42-ckpt200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353498\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:17.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\", \"eval_data\": \"val@8192\", \"wall_clock_seconds\": 1527.9, \"gpu_hours\": 0.42}}, \"cls4b-seed123-ckpt800-test5120-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3264842\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\", \"submitted_at\": \"2026-05-15T09:36:59.423Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1662.9, \"gpu_hours\": 0.46}}, \"repo-level-cls-8b-seed123-conda-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"266444\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"submitted_at\": \"2026-05-14T17:43:50.914Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 37338, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 45617.8, \"gpu_hours\": 12.67, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\", \"best_model_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\", \"final_train_loss\": 0.162, \"final_eval_loss\": 0.464, \"train_runtime_seconds\": 45210}}, \"cls4b-seed123-ckpt800-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3261669\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\", \"submitted_at\": \"2026-05-15T09:16:22.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"checkpoint_source\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"eval_data\": \"test\", \"data_path\": \"repo-level-cls-test\", \"data_count\": 9784, \"checkpoint_path\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"wall_clock_seconds\": 1216.7, \"gpu_hours\": 0.34}}, \"cls8b-seed123-ckpt6633-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"346231\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"val@8192\"}}, \"cls8b-seed123-ckpt3000-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\", \"submitted_at\": \"2026-05-15T15:33:50Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\", \"eval_data\": \"test@8192\"}}, \"cls8b-seed123-ckpt3000-test8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"346590\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\", \"submitted_at\": \"2026-05-15T07:59:04.721Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 443.8, \"gpu_hours\": 0.12}}, \"cls4b-v5-ckpt4400-test5120-eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3244661\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\", \"submitted_at\": \"2026-05-15T07:30:01.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1752.2, \"gpu_hours\": 0.49}}, \"cls8b-seed123-ckpt6400-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"343011\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:26:03.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1959.6, \"gpu_hours\": 0.54}}, \"cls8b-seed123-ckpt6200-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"343605\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:29:46.229Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1727.2, \"gpu_hours\": 0.48}}, \"cls4b-v5-val-sweep-ckpt4600\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3221945\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\", \"submitted_at\": \"2026-05-15T04:42:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 10715.3, \"gpu_hours\": 2.98}}, \"cls8b-seed123-ckpt6600-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"340511\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\", \"submitted_at\": \"2026-05-15T06:49:09.694Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2204.3, \"gpu_hours\": 0.61}}, \"cls8b-s42-ckpt1600-test8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"339064\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\", \"submitted_at\": \"2026-05-15T06:30:12.425Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"test@8192\", \"wall_clock_seconds\": 3328.2, \"gpu_hours\": 0.92}}, \"cls4b-v5-ckpt4600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3238979\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\", \"submitted_at\": \"2026-05-15T06:49:49.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": null, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4600\", \"eval_data\": \"test\", \"wall_clock_seconds\": 2155.2, \"gpu_hours\": 0.6}}, \"cls8b-s42-ckpt1400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"335070\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T05:32:38.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"cls8b-s42-ckpt1200-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"test@8192\"}}, \"cls8b-s42-ckpt800-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"eval_data\": \"swebench_test\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"log_path\": \"/tmp/eval_cls8b_ckpt800_test8192.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"parent\": \"repo-level-cls-8b-s42-resume\"}}}, \"count\": 30, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3467}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U689j5LAAKfTAkp5Ee9EKf`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "7668db6b-1eb5-4062-b435-053c85e81146",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJRagDcxbx8hCMLmVKtmvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 33285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T13:28:35.955Z_
+
+<details><summary>↩ Tool result · `toolu_01U689j5LAAKfTAkp5Ee9EKf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "616ae19f-1e1d-4a5c-af2d-2f3c3f38aeaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fnz1mqzEgGxLT4DnauarMA`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "5a870e76-944c-44f2-b7fe-b5fdf281bb20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJRagDcxbx8hCMLmVKtmvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 33285,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T13:28:36.498Z_
+
+<details><summary>↩ Tool result · `toolu_01Fnz1mqzEgGxLT4DnauarMA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cls8b_seed123_predictions.json\\ncls8b_seed123_results.json\\ncls8b_seed123_results_predictions.json\\ncls8b_seed42.json\\ncls8b_seed42_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "0b371635-5b2f-469a-8137-418565cfd8ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cls8b_seed123_predictions.json\\\\ncls8b_seed123_results.json\\\\ncls8b_seed123_results_predictions.json\\\\ncls8b_seed42.json\\\\ncls8b_seed42_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"cls8b_seed123_predictions.json\\ncls8b_seed123_results.json\\ncls8b_seed123_results_predictions.json\\ncls8b_seed42.json\\ncls8b_seed42_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I didn't find the CWM baseline (rank=16) eval experiments in the registry. Let me search more broadly. Also, let me check the existing CWM baseline checkpoints and look for any CWM eval results. Let me also see the full eval_cwm_baseline.py argparse section and check the CWM baseline checkpoint location.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "2762ef78-1829-4beb-8257-277162ca000f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+需要找 CWM baseline rank=16 的实验记录和 checkpoint 路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "a6b0ea0d-f983-478e-9f61-531e78a15133",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UcHbh3dQL2jiYqx45Nmf5k`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "exp_id",
+    "name",
+    "status",
+    "spec"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "2000264d-266a-473f-b647-8f5d2bb463e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T13:28:43.816Z_
+
+<details><summary>↩ Tool result · `toolu_01UcHbh3dQL2jiYqx45Nmf5k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation-v2\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"gpu\": \"cuda:0\", \"pid\": 368823, \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"total_steps\": 1434, \"description\": \"CWM rank=32 ablation (vs baseline rank=16). Function-level data. Alpha kept at 32.\", \"estimated_duration\": \"~1.5h total\"}}, \"cwm8b-ckpt400-test-eval\": {\"status\": \"RUNNING\", \"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\", \"eval_data\": \"test@full(n=9784)\", \"max_new_tokens\": 1024, \"batch_size\": 1, \"estimated_hours\": 54, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"367292\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval.log\"}}, \"repo-level-cls-8b-s42-resume\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --save_total_limit 35 --dataloader_num_workers 0 --epochs 3\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"295789\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log\", \"submitted_at\": \"2026-05-14T21:48:30.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"resume_checkpoint\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600\", \"save_steps\": 200, \"num_workers\": 0, \"lora_r\": 16, \"lora_alpha\": 32, \"hypothesis\": \"8B CLS s42 full training (ckpt-600 -> 6633), every 200 steps save checkpoint, for CLS vs CWM apple-to-apple comparison + val sweep\"}}, \"repo-level-cwm-8b-conda-v4\": {\"status\": \"RUNNING\", \"spec\": {\"gpu\": [\"cuda:2\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v4.log\"}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3475}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "ec916c51-652a-4f9d-82ba-78200480ca6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm-rank32-ablation-v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\\\", \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 368823, \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 2, \\\"grad_accumulation\\\": 16, \\\"total_steps\\\": 1434, \\\"description\\\": \\\"CWM rank=32 ablation (vs baseline rank=16). Function-level data. Alpha kept at 32.\\\", \\\"estimated_duration\\\": \\\"~1.5h total\\\"}}, \\\"cwm8b-ckpt400-test-eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"max_new_tokens\\\": 1024, \\\"batch_size\\\": 1, \\\"estimated_hours\\\": 54, \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"367292\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval.log\\\"}}, \\\"repo-level-cls-8b-s42-resume\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --save_total_limit 35 --dataloader_num_workers 0 --epochs 3\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"295789\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T21:48:30.485Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"resume_checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600\\\", \\\"save_steps\\\": 200, \\\"num_workers\\\": 0, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"hypothesis\\\": \\\"8B CLS s42 full training (ckpt-600 -> 6633), every 200 steps save checkpoint, for CLS vs CWM apple-to-apple comparison + val sweep\\\"}}, \\\"repo-level-cwm-8b-conda-v4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"gpu\\\": [\\\"cuda:2\\\"], \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v4.log\\\"}}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3475}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation-v2\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"gpu\": \"cuda:0\", \"pid\": 368823, \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"total_steps\": 1434, \"description\": \"CWM rank=32 ablation (vs baseline rank=16). Function-level data. Alpha kept at 32.\", \"estimated_duration\": \"~1.5h total\"}}, \"cwm8b-ckpt400-test-eval\": {\"status\": \"RUNNING\", \"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\", \"eval_data\": \"test@full(n=9784)\", \"max_new_tokens\": 1024, \"batch_size\": 1, \"estimated_hours\": 54, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"367292\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval.log\"}}, \"repo-level-cls-8b-s42-resume\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --save_total_limit 35 --dataloader_num_workers 0 --epochs 3\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"295789\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log\", \"submitted_at\": \"2026-05-14T21:48:30.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"resume_checkpoint\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600\", \"save_steps\": 200, \"num_workers\": 0, \"lora_r\": 16, \"lora_alpha\": 32, \"hypothesis\": \"8B CLS s42 full training (ckpt-600 -> 6633), every 200 steps save checkpoint, for CLS vs CWM apple-to-apple comparison + val sweep\"}}, \"repo-level-cwm-8b-conda-v4\": {\"status\": \"RUNNING\", \"spec\": {\"gpu\": [\"cuda:2\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v4.log\"}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3475}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FeW9VrV88u3KiPQSdB2UpW`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -maxdepth 1 -type d -name \"checkpoints_cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "0d88c4bc-f134-4660-9d1b-f9adbf44a98e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T13:28:45.380Z_
+
+<details><summary>↩ Tool result · `toolu_01FeW9VrV88u3KiPQSdB2UpW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "62d78918-5973-4f77-af68-0a028d91361c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GYHG4S9dzgWJ9NvmtazPVz`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp -maxdepth 1 -type d -name \"checkpoints_cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "252ed125-c6c9-48b2-a42f-aaa9b11ff5de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T13:28:46.326Z_
+
+<details><summary>↩ Tool result · `toolu_01GYHG4S9dzgWJ9NvmtazPVz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "127915a8-c635-4380-9e79-307e8b4f7da0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints_cwm_4b_rank32\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DNNymvPxgWRfU5NrgoP6Yy`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -60 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "41195510-5d3e-41e2-a10a-7585978f81a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZZt27491Qbd7NCt3Js3DY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12278,
+      "cache_read_input_tokens": 34250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T13:28:46.870Z_
+
+<details><summary>↩ Tool result · `toolu_01DNNymvPxgWRfU5NrgoP6Yy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"EVALUATION REPORT: CWM Generation Baseline\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {total} examples\\\")\\n    print(f\\\"Class balance: pass={n_pass} ({n_pass/total*100:.1f}%), fail={n_fail} ({n_fail/total*100:.1f}%)\\\")\\n    print(f\\\"Majority baseline accuracy: {majority_baseline*100:.1f}%\\\")\\n    print(f\\\"\\\\nOverall accuracy: {acc*100:.1f}%\\\")\\n    gap_status = \\\"PASS\\\" if gap >= 0.10 else \\\"FAIL\\\"\\n    print(f\\\"Accuracy vs baseline gap: {gap*100:+.1f}pp [{gap_status}] (threshold: >=10pp)\\\")\\n    print(f\\\"\\\\nPer-class metrics:\\\")\\n    print(f\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\")\\n    print(f\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\")\\n    for name, idx in [(\\\"fail\\\", 0), (\\\"pass\\\", 1)]:\\n        f1_status = \\\"OK\\\" if f1[idx] > 0.65 else \\\"LOW\\\"\\n        support = n_fail if idx == 0 else n_pass\\n        print(f\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\")\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\")\\n    print(f\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\")\\n\\n    print(f\\\"\\\\n--- CWM-Specific Metrics ---\\\")\\n    print(f\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\")\\n    print(f\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\")\\n    print(f\\\"\\\\nPer error-type breakdown:\\\")\\n    print(f\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\")\\n    print(f\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\")\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\"total\\\"]):\\n        print(f\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\")\\n\\n    f1_ok = all(x > 0.65 for x in f1)\\n    gap_ok = gap >= 0.10\\n    print(f\\\"\\\\nMVP-B CRITERIA (same thresholds as classification):\\\")\\n    print(f\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\")\\n    print(f\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\")\\n    print(f\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n    if args.save_predictions:\\n        pred_path = args.output.replace(\\\".json\\\", \\\"_predictions.json\\\")\\n        pred_data = {\\n            \\\"metadata\\\": {\\n                \\\"model\\\": args.model_name,\\n                \\\"checkpoint\\\": args.checkpoint_dir,\\n                \\\"test_set_size\\\": total,\\n            },\\n            \\\"predictions\\\": predictions_list,\\n        }\\n        with open(pred_path, \\\"w\\\") as f:\\n            json.dump(pred_data, f, indent=2)\\n        log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "6ca5d3f3-9193-4fb2-8ccf-0dc33fa7c2f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"EVALUATION REPORT: CWM Generation Baseline\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {total} examples\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={n_pass} ({n_pass/total*100:.1f}%), fail={n_fail} ({n_fail/total*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline accuracy: {majority_baseline*100:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nOverall accuracy: {acc*100:.1f}%\\\\\\\")\\\\n    gap_status = \\\\\\\"PASS\\\\\\\" if gap >= 0.10 else \\\\\\\"FAIL\\\\\\\"\\\\n    print(f\\\\\\\"Accuracy vs baseline gap: {gap*100:+.1f}pp [{gap_status}] (threshold: >=10pp)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nPer-class metrics:\\\\\\\")\\\\n    print(f\\\\\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\\\\\")\\\\n    for name, idx in [(\\\\\\\"fail\\\\\\\", 0), (\\\\\\\"pass\\\\\\\", 1)]:\\\\n        f1_status = \\\\\\\"OK\\\\\\\" if f1[idx] > 0.65 else \\\\\\\"LOW\\\\\\\"\\\\n        support = n_fail if idx == 0 else n_pass\\\\n        print(f\\\\\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- CWM-Specific Metrics ---\\\\\\\")\\\\n    print(f\\\\\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\\\\\")\\\\n    print(f\\\\\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nPer error-type breakdown:\\\\\\\")\\\\n    print(f\\\\\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\\\\\")\\\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\\\\\"total\\\\\\\"]):\\\\n        print(f\\\\\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\\\\\")\\\\n\\\\n    f1_ok = all(x > 0.65 for x in f1)\\\\n    gap_ok = gap >= 0.10\\\\n    print(f\\\\\\\"\\\\\\\\nMVP-B CRITERIA (same thresholds as classification):\\\\\\\")\\\\n    print(f\\\\\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\\\\\")\\\\n    print(f\\\\\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    log.info(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\\n    if args.save_predictions:\\\\n        pred_path = args.output.replace(\\\\\\\".json\\\\\\\", \\\\\\\"_predictions.json\\\\\\\")\\\\n        pred_data = {\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"model\\\\\\\": args.model_name,\\\\n                \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n                \\\\\\\"test_set_size\\\\\\\": total,\\\\n            },\\\\n            \\\\\\\"predictions\\\\\\\": predictions_list,\\\\n        }\\\\n        with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(pred_data, f, indent=2)\\\\n        log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"EVALUATION REPORT: CWM Generation Baseline\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {total} examples\\\")\\n    print(f\\\"Class balance: pass={n_pass} ({n_pass/total*100:.1f}%), fail={n_fail} ({n_fail/total*100:.1f}%)\\\")\\n    print(f\\\"Majority baseline accuracy: {majority_baseline*100:.1f}%\\\")\\n    print(f\\\"\\\\nOverall accuracy: {acc*100:.1f}%\\\")\\n    gap_status = \\\"PASS\\\" if gap >= 0.10 else \\\"FAIL\\\"\\n    print(f\\\"Accuracy vs baseline gap: {gap*100:+.1f}pp [{gap_status}] (threshold: >=10pp)\\\")\\n    print(f\\\"\\\\nPer-class metrics:\\\")\\n    print(f\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\")\\n    print(f\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\")\\n    for name, idx in [(\\\"fail\\\", 0), (\\\"pass\\\", 1)]:\\n        f1_status = \\\"OK\\\" if f1[idx] > 0.65 else \\\"LOW\\\"\\n        support = n_fail if idx == 0 else n_pass\\n        print(f\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\")\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\")\\n    print(f\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\")\\n\\n    print(f\\\"\\\\n--- CWM-Specific Metrics ---\\\")\\n    print(f\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\")\\n    print(f\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\")\\n    print(f\\\"\\\\nPer error-type breakdown:\\\")\\n    print(f\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\")\\n    print(f\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\")\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\"total\\\"]):\\n        print(f\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\")\\n\\n    f1_ok = all(x > 0.65 for x in f1)\\n    gap_ok = gap >= 0.10\\n    print(f\\\"\\\\nMVP-B CRITERIA (same thresholds as classification):\\\")\\n    print(f\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\")\\n    print(f\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\")\\n    print(f\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n    if args.save_predictions:\\n        pred_path = args.output.replace(\\\".json\\\", \\\"_predictions.json\\\")\\n        pred_data = {\\n            \\\"metadata\\\": {\\n                \\\"model\\\": args.model_name,\\n                \\\"checkpoint\\\": args.checkpoint_dir,\\n                \\\"test_set_size\\\": total,\\n            },\\n            \\\"predictions\\\": predictions_list,\\n        }\\n        with open(pred_path, \\\"w\\\") as f:\\n            json.dump(pred_data, f, indent=2)\\n        log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me find the CWM baseline (rank=16) checkpoint and eval info. Looking at the checkpoint dirs, the baseline CWM checkpoints are probably in a directory without "rank32" in the name. Let me check for existing CWM baseline eval results and the baseline checkpoint directories.
+
+From the dirs found:
+- checkpoints_cwm8b, checkpoints_cwm8b_seed123, checkpoints_cwm8b_seed456 - these are 8B models
+- checkpoints_cwm_seed123, checkpoints_cwm_seed789 - these might be 4B function-level baselines with different seeds
+
+
+- checkpoints_cwm_rank32 - the current rank=32 ablation
+
+I notice there's no plain "checkpoints_cwm" directory, so the baseline might be stored under a different naming convention. I should also check the eval script to see if there's a `--device` argument I missed, and look through past eval runs to find the baseline results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "abda62d9-2f10-495c-90cc-80770a7f3218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KxkUq7Cg61BFx9PFfUuZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 46528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4006
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0153jP9kmcxCpq9ScGcLHYEX`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -maxdepth 1 -type d -name \"checkpoints_cwm\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "a07e5dcc-3740-4025-b5f1-a0155e3d0b8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KxkUq7Cg61BFx9PFfUuZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 46528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4006
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jt589eNWsQFgk5ZrtaR5Sn`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "9b26dd29-de09-4b25-9dd0-901a5c30e643",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KxkUq7Cg61BFx9PFfUuZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 46528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4006
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T13:29:00.782Z_
+
+<details><summary>↩ Tool result · `toolu_0153jP9kmcxCpq9ScGcLHYEX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "33d52d0b-20bf-479f-8a06-9ce3266d686f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T13:29:01.328Z_
+
+<details><summary>↩ Tool result · `toolu_01Jt589eNWsQFgk5ZrtaR5Sn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "0bc8e8d3-9640-4a8f-a87c-f36d93b0a38f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kjc8c1M73AdNFaE4H7Gw7v`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1ff2340d-e1c3-4f06-9e2d-60dd2b0a9e1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KxkUq7Cg61BFx9PFfUuZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 46528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4006
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T13:29:01.975Z_
+
+<details><summary>↩ Tool result · `toolu_01Kjc8c1M73AdNFaE4H7Gw7v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "23627d27-5eda-4553-b3e3-a2ef1aef4fed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Rngte1UzumYNnwUhfJWb38`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "spec",
+    "metrics"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "724eb899-6097-4f4e-aee4-7ae8687fdbbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015KxkUq7Cg61BFx9PFfUuZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 46528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4006
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T13:29:03.452Z_
+
+<details><summary>↩ Tool result · `toolu_01Rngte1UzumYNnwUhfJWb38`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (51.7KB). Full output saved to: /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/9bd7d334-62db-4941-a113-39bb90b2f9e8/tool-results/toolu_01Rngte1UzumYNnwUhfJWb38.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}}, \"cwm-4b-rank32-ablation\": {\"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "cd4e7794-e759-4071-8ec2-d22aaa128a4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"368823\\\", \\\"log_path\\\": \\\"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:29:23.401Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"val_count\\\": 1896, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lora_dropout\\\": 0.05, \\\"lora_target_modules\\\": [\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"], \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 2, \\\"grad_accumulation\\\": 16, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"warmup_ratio\\\": 0.1, \\\"total_steps\\\": 1434, \\\"estimated_hours\\\": 1.6, \\\"hypothesis\\\": \\\"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\\\", \\\"wall_clock_seconds\\\": 1088.4, \\\"gpu_hours\\\": 0.3}}, \\\"cwm-4b-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"369497\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:32:30Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"estimated_hours\\\": 2.8, \\\"wall_clock_seconds\\\": 857.2, \\\"gpu_hours\\\": 0.24}}, \\\"cls4b-v5-ckpt4000-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-4000 test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3274167\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:46:00.336Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"test@5120(n=9784)\\\", \\\"wall_clock_seconds\\\": 2783.1, \\\"gpu_hours\\\": 0.77}}, \\\"cls8b-seed123-ckpt200-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363037\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:29:27.560Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 2550.6, \\\"gpu_hours\\\": 0.71}, \\\"metrics\\\": {\\\"accuracy\\\": 72.55, \\\"f1_macro\\\": 70.18, \\\"pass_f1\\\": 78.58, \\\"fail_f1\\\": 61.78, \\\"pass_precision\\\": 91.21, \\\"pass_recall\\\": 69.02, \\\"fail_precision\\\": 49.54, \\\"fail_recall\\\": 82.05, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 72.96, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"tn\\\": 2171, \\\"fp\\\": 475, \\\"fn\\\": 2211, \\\"tp\\\": 4927}}}, \\\"cls8b-s42-ckpt1000-test-seq2048-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"360735\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:59:58.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"test@2048(n=9784)\\\", \\\"wall_clock_seconds\\\": 1763.2, \\\"gpu_hours\\\": 0.49}, \\\"metrics\\\": {\\\"accuracy\\\": 82.83, \\\"f1_macro\\\": 76.88, \\\"fail_precision\\\": 72.2, \\\"fail_recall\\\": 59.3, \\\"fail_f1\\\": 65.2, \\\"pass_precision\\\": 85.9, \\\"pass_recall\\\": 91.5, \\\"pass_f1\\\": 88.6, \\\"unparseable\\\": 136}}, \\\"cls8b-seed123-ckpt6633-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"360877\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:00:00.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 1723.0, \\\"gpu_hours\\\": 0.48}, \\\"metrics\\\": {\\\"accuracy\\\": 84.89, \\\"f1_macro\\\": 77.56, \\\"f1_fail\\\": 64.7, \\\"f1_pass\\\": 90.4, \\\"precision_fail\\\": 87.8, \\\"recall_fail\\\": 51.2, \\\"precision_pass\\\": 84.3, \\\"recall_pass\\\": 97.4, \\\"majority_baseline\\\": 73, \\\"gap_vs_majority_pp\\\": 11.9, \\\"total_samples\\\": 9784, \\\"unparseable_count\\\": 0}}, \\\"cls8b-seed123-ckpt6600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-6600 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"358109\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:08.559Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"wall_clock_seconds\\\": 1429.0, \\\"gpu_hours\\\": 0.4}, \\\"metrics\\\": {\\\"accuracy\\\": 84.9, \\\"f1_macro\\\": 77.58, \\\"pass_f1\\\": 90.4, \\\"fail_f1\\\": 64.8, \\\"pass_precision\\\": 84.3, \\\"pass_recall\\\": 97.4, \\\"fail_precision\\\": 87.8, \\\"fail_recall\\\": 51.3, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 1357, \\\"fail_as_pass\\\": 1289, \\\"pass_as_fail\\\": 188, \\\"pass_as_pass\\\": 6950}}}, \\\"cls8b-s42-ckpt200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... s42 ckpt-200 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"358249\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:10.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1426.0, \\\"gpu_hours\\\": 0.4}, \\\"metrics\\\": {\\\"accuracy\\\": 70.07, \\\"f1_macro\\\": 68.18, \\\"pass_f1\\\": 75.9, \\\"fail_f1\\\": 60.4, \\\"pass_precision\\\": 91.8, \\\"pass_recall\\\": 64.7, \\\"fail_precision\\\": 47, \\\"fail_recall\\\": 84.5, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 2235, \\\"fail_as_pass\\\": 411, \\\"pass_as_fail\\\": 2517, \\\"pass_as_pass\\\": 4621}}}, \\\"cls4b-v5-ckpt600-test5120-eval\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 77.74, \\\"f1_macro\\\": 74.74, \\\"f1_fail\\\": 66.03, \\\"f1_pass\\\": 83.44, \\\"precision_fail\\\": 56.21, \\\"recall_fail\\\": 80.01, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 4.78, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt6400-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"355710\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.08, \\\"f1_fail\\\": 65.32, \\\"f1_pass\\\": 90.49, \\\"f1_macro\\\": 77.91, \\\"precision_fail\\\": 87.92, \\\"precision_pass\\\": 84.54, \\\"recall_fail\\\": 51.97, \\\"recall_pass\\\": 97.35, \\\"n_instances\\\": 9784, \\\"n_cls_unparseable\\\": 0}}, \\\"cls8b-seed123-ckpt6200-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"355567\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 84.7, \\\"f1_fail\\\": 63.71, \\\"f1_pass\\\": 90.31, \\\"f1_macro\\\": 77.01, \\\"precision_fail\\\": 88.84, \\\"precision_pass\\\": 83.96, \\\"recall_fail\\\": 49.66, \\\"recall_pass\\\": 97.69, \\\"n_instances\\\": 9784, \\\"n_cls_unparseable\\\": 0}}, \\\"cls8b-seed123-ckpt6400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"353235\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:13.996Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1533.6, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-seed123-ckpt6200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353094\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:11.145Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1535.3, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-s42-ckpt200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353498\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:17.501Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"wall_clock_seconds\\\": 1527.9, \\\"gpu_hours\\\": 0.42}}, \\\"cls4b-seed123-ckpt800-test5120-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3264842\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:36:59.423Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1662.9, \\\"gpu_hours\\\": 0.46}, \\\"metrics\\\": {\\\"accuracy\\\": 75.33, \\\"f1_macro\\\": 67.03, \\\"f1_fail\\\": 50.5, \\\"f1_pass\\\": 83.6, \\\"precision_fail\\\": 55.2, \\\"recall_fail\\\": 46.5, \\\"precision_pass\\\": 81.3, \\\"recall_pass\\\": 86, \\\"majority_baseline\\\": 73, \\\"gap_vs_majority_pp\\\": 2.4, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"repo-level-cls-8b-seed123-conda-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"266444\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:43:50.914Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/\\\", \\\"data_count\\\": 37338, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 45617.8, \\\"gpu_hours\\\": 12.67, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\\\", \\\"best_model_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\\\", \\\"final_train_loss\\\": 0.162, \\\"final_eval_loss\\\": 0.464, \\\"train_runtime_seconds\\\": 45210}}, \\\"cls4b-seed123-ckpt800-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3261669\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:16:22.098Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"eval_data\\\": \\\"test\\\", \\\"data_path\\\": \\\"repo-level-cls-test\\\", \\\"data_count\\\": 9784, \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"wall_clock_seconds\\\": 1216.7, \\\"gpu_hours\\\": 0.34}}, \\\"cls8b-seed123-ckpt6633-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"346231\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"val@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 87.1, \\\"f1_macro\\\": 78.79, \\\"f1_fail\\\": 65.52, \\\"f1_pass\\\": 92.07, \\\"precision_fail\\\": 92.26, \\\"recall_fail\\\": 50.8, \\\"precision_pass\\\": 86.31, \\\"recall_pass\\\": 98.64, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.23, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-seed123-ckpt3000-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T15:33:50Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\\\", \\\"eval_data\\\": \\\"test@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.6, \\\"f1_macro\\\": 78.38, \\\"f1_fail\\\": 65.89, \\\"f1_pass\\\": 90.87, \\\"precision_fail\\\": 91.65, \\\"recall_fail\\\": 51.44, \\\"precision_pass\\\": 84.52, \\\"recall_pass\\\": 98.26, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.64, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt3000-test8192-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"346590\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:59:04.721Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 443.8, \\\"gpu_hours\\\": 0.12}}, \\\"cls4b-v5-ckpt4400-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3244661\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:30:01.279Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1752.2, \\\"gpu_hours\\\": 0.49}, \\\"metrics\\\": {\\\"accuracy\\\": 83.24, \\\"f1_macro\\\": 74.44, \\\"f1_fail\\\": 59.45, \\\"f1_pass\\\": 89.44, \\\"precision_fail\\\": 85.98, \\\"recall_fail\\\": 45.43, \\\"precision_pass\\\": 82.78, \\\"recall_pass\\\": 97.25, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.28, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt6400-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"343011\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:26:03.290Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1959.6, \\\"gpu_hours\\\": 0.54}, \\\"metrics\\\": {\\\"accuracy\\\": 87.48, \\\"f1_macro\\\": 79.66, \\\"f1_fail\\\": 67.04, \\\"f1_pass\\\": 92.27, \\\"precision_fail\\\": 91.81, \\\"recall_fail\\\": 52.8, \\\"precision_pass\\\": 86.78, \\\"recall_pass\\\": 98.5, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.6, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-seed123-ckpt6200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"343605\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:29:46.229Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1727.2, \\\"gpu_hours\\\": 0.48}, \\\"metrics\\\": {\\\"accuracy\\\": 87.52, \\\"f1_macro\\\": 79.26, \\\"f1_fail\\\": 66.16, \\\"f1_pass\\\": 92.35, \\\"precision_fail\\\": 95.63, \\\"recall_fail\\\": 50.58, \\\"precision_pass\\\": 86.33, \\\"recall_pass\\\": 99.27, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.64, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls4b-v5-val-sweep-ckpt4600\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3221945\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:42:23.647Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 10715.3, \\\"gpu_hours\\\": 2.98}, \\\"metrics\\\": {\\\"accuracy\\\": 90.07, \\\"f1_macro\\\": 85.04, \\\"f1_fail\\\": 76.37, \\\"f1_pass\\\": 93.71, \\\"precision_fail\\\": 89.65, \\\"recall_fail\\\": 66.52, \\\"precision_pass\\\": 90.16, \\\"recall_pass\\\": 97.56, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 14.19, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9335, \\\"n_truncated\\\": 234}}, \\\"cls8b-seed123-ckpt6600-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"340511\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:09.694Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2204.3, \\\"gpu_hours\\\": 0.61}, \\\"metrics\\\": {\\\"accuracy\\\": 87.23, \\\"f1_macro\\\": 79.02, \\\"f1_fail\\\": 65.9, \\\"f1_pass\\\": 92.14, \\\"precision_fail\\\": 92.6, \\\"recall_fail\\\": 51.15, \\\"precision_pass\\\": 86.4, \\\"recall_pass\\\": 98.7, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.36, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-s42-ckpt1600-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"339064\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:30:12.425Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"test@8192\\\", \\\"wall_clock_seconds\\\": 3328.2, \\\"gpu_hours\\\": 0.92}, \\\"metrics\\\": {\\\"accuracy\\\": 84.99, \\\"f1_macro\\\": 78.94, \\\"f1_fail\\\": 67.65, \\\"f1_pass\\\": 90.22, \\\"precision_fail\\\": 81.06, \\\"recall_fail\\\": 58.05, \\\"precision_pass\\\": 85.93, \\\"recall_pass\\\": 94.97, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.03, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls4b-v5-ckpt4600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3238979\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:49.224Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4600\\\", \\\"eval_data\\\": \\\"test\\\", \\\"wall_clock_seconds\\\": 2155.2, \\\"gpu_hours\\\": 0.6}, \\\"metrics\\\": {\\\"accuracy\\\": 83.63, \\\"f1_macro\\\": 75.63, \\\"f1_fail\\\": 61.67, \\\"f1_pass\\\": 89.59, \\\"precision_fail\\\": 84.03, \\\"recall_fail\\\": 48.72, \\\"precision_pass\\\": 83.55, \\\"recall_pass\\\": 96.57, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.67, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt1400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"335070\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:32:38.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.47, \\\"f1_macro\\\": 78.9, \\\"f1_fail\\\": 67.13, \\\"f1_pass\\\": 90.67, \\\"precision_fail\\\": 86.43, \\\"recall_fail\\\": 54.88, \\\"precision_pass\\\": 85.27, \\\"recall_pass\\\": 96.81, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.51, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt1200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"test@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.84, \\\"f1_macro\\\": 77.47, \\\"f1_fail\\\": 65.49, \\\"f1_pass\\\": 89.45, \\\"precision_fail\\\": 77.52, \\\"recall_fail\\\": 56.69, \\\"precision_pass\\\": 85.4, \\\"recall_pass\\\": 93.91, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.89, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt800-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"eval_data\\\": \\\"swebench_test\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"log_path\\\": \\\"/tmp/eval_cls8b_ckpt800_test8192.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.53, \\\"f1_macro\\\": 78.97, \\\"f1_fail\\\": 69.17, \\\"f1_pass\\\": 88.77, \\\"precision_fail\\\": 70.07, \\\"recall_fail\\\": 68.29, \\\"precision_pass\\\": 88.36, \\\"recall_pass\\\": 89.18, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.58, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls4b-v5-val-sweep-ckpt4200\\\": {\\\"spec\\\": {\\\"command\\\": \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4200 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4200_val5120\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4200\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"parent\\\": \\\"cls4b-v5-train\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 89.06, \\\"f1_macro\\\": 83.07, \\\"f1_fail\\\": 73, \\\"f1_pass\\\": 93.1, \\\"precision_fail\\\": 90.3, \\\"recall_fail\\\": 61.3, \\\"precision_pass\\\": 88.8, \\\"recall_pass\\\": 97.9}}, \\\"cls8b-s42-ckpt1600-val8192-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"parent\\\": \\\"cls8b-s42\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"val\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 8192, \\\"notes\\\": \\\"v2 resubmit: v1 failed due to network unreachable (no network_turbo). Fixed by using local model path + OFFLINE flags + network_turbo.\\\", \\\"log_path\\\": \\\"/tmp/eval_cls8b_ckpt1600_val8192_v2.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 86.75, \\\"f1_macro\\\": 78.94, \\\"f1_fail\\\": 66.12, \\\"f1_pass\\\": 91.76, \\\"precision_fail\\\": 86.28, \\\"precision_pass\\\": 86.83, \\\"recall_fail\\\": 53.6, \\\"recall_pass\\\": 97.29, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.87, \\\"unparseable\\\": 9, \\\"total\\\": 9335}}, \\\"cls8b-s42-ckpt1600-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"pid\\\": 324412, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-val8192-eval.log\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"cls8b-s42-ckpt1400-val8192-eval\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}}, \\\"cls4b-v5-val-sweep-ckpt4400-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v3\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3204975\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4400-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T02:08:34.304Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4469.9, \\\"gpu_hours\\\": 1.24}, \\\"metrics\\\": {\\\"accuracy\\\": 89.96, \\\"f1_macro\\\": 84.94, \\\"f1_fail\\\": 76.25, \\\"f1_pass\\\": 93.64, \\\"precision_fail\\\": 88.84, \\\"precision_pass\\\": 90.21, \\\"recall_fail\\\": 66.79, \\\"recall_pass\\\": 97.33, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 14.09, \\\"n_instances\\\": 9335, \\\"n_truncated\\\": 234, \\\"n_unparseable\\\": 0}}, \\\"cls8b-s42-ckpt1200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"/tmp/eval_ckpt1200.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}}, \\\"cls8b-s42-ckpt1200-val8192-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"accuracy\\\": 87.76, \\\"f1_macro\\\": 81.25, \\\"f1_fail\\\": 70.2, \\\"f1_pass\\\": 92.3, \\\"precision_fail\\\": 85, \\\"recall_fail\\\": 59.8, \\\"precision_pass\\\": 88.3, \\\"recall_pass\\\": 96.7, \\\"majority_baseline\\\": 75.9, \\\"gap_vs_majority\\\": 11.9, \\\"unparseable\\\": 9}}, \\\"cls8b-s42-ckpt1200-val8192-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}}, \\\"cls8b-s42-ckpt1000-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"312975\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test8192-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"swebench test split\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.52, \\\"f1_macro\\\": 77.5, \\\"f1_fail\\\": 65.85, \\\"f1_pass\\\": 89.14, \\\"precision_fail\\\": 74.93, \\\"recall_fail\\\": 58.73, \\\"precision_pass\\\": 85.84, \\\"recall_pass\\\": 92.72, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority\\\": 10.56, \\\"unparseable_count\\\": 0, \\\"unparseable_rate\\\": 0, \\\"total_samples\\\": 9784, \\\"tp\\\": 6618, \\\"fp\\\": 1092, \\\"fn\\\": 520, \\\"tn\\\": 1554}}, \\\"cls8b-s42-ckpt1200-val8192\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315834\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T02:06:09.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 99.2, \\\"gpu_hours\\\": 0.03}}, \\\"cls4b-v5-val-sweep-ckpt4400\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v2\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"parent\\\": \\\"cls4b-v5-train\\\"}}, \\\"cls4b-v5-ckpt4400-val5120-eval-v2\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"log_path\\\": \\\"/tmp/eval_v2.log\\\", \\\"kill_reason\\\": \\\"Director ordered kill - second time stuck (7h no output), enable_thinking not properly disabled\\\"}}, \\\"cls4b-v5-ckpt4400-val5120-eval\\\": {\\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-val5120-eval.log\\\", \\\"checkpoint_path\\\": \\\"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\\\", \\\"kill_reason\\\": \\\"Director ordered kill - process stuck 16h, predictions stopped at 5824/9335 (62.4%), suspected Qwen3 thinking mode hang\\\", \\\"command\\\": \\\"killed before completion\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"/home/ubuntu/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"swebench val split\\\"}, \\\"metrics\\\": {\\\"accuracy_partial_70pct\\\": 89.69, \\\"f1_macro_partial_70pct\\\": 84.61, \\\"samples_completed\\\": 6544, \\\"samples_total\\\": 9335}}, \\\"cls8b-s42-ckpt1000-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"310114\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:03:36.501Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"swebench val split\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"wall_clock_seconds\\\": 2045.2, \\\"gpu_hours\\\": 0.57}, \\\"metrics\\\": {\\\"accuracy\\\": 88.23, \\\"f1_macro\\\": 82.72, \\\"f1_fail\\\": 73, \\\"f1_pass\\\": 92.5, \\\"precision_fail\\\": 81.8, \\\"recall_fail\\\": 65.8, \\\"precision_pass\\\": 89.8, \\\"recall_pass\\\": 95.3, \\\"unparseable\\\": 9, \\\"total_instances\\\": 9335}}, \\\"cls8b-s42-ckpt800-val8192-eval\\\": {\\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt800-val8192-eval.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 84.5, \\\"f1_macro\\\": 79.2}}, \\\"cls4b-v5-ckpt4000-val5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split val --max_new_tokens 512 --max_seq_length 5120 --batch_size 16 --device cuda:0\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3186818\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"val@5120 9335 samples\\\", \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-val5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 89.84, \\\"f1_macro\\\": 84.25, \\\"f1_fail\\\": 74.85, \\\"f1_pass\\\": 93.64, \\\"precision_fail\\\": 92.95, \\\"recall_fail\\\": 62.66, \\\"precision_pass\\\": 89.24, \\\"recall_pass\\\": 98.49, \\\"unparseable\\\": 0, \\\"truncated\\\": 234, \\\"total\\\": 9335}}, \\\"cls4b-v5-ckpt600-val5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --device cuda:0\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3179262\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"eval_data\\\": \\\"val@5120 9335 samples\\\", \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-val5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 82.82, \\\"f1_macro\\\": 79.81, \\\"f1_fail\\\": 72.03, \\\"f1_pass\\\": 87.6, \\\"precision_fail\\\": 59.3, \\\"recall_fail\\\": 91.7, \\\"unparseable\\\": 0, \\\"total\\\": 9335}}, \\\"cls4b-v5-val5120-sweep-home\\\": {\\\"spec\\\": {\\\"command\\\": \\\"4B CLS v5 val@5120 sweep (ckpt-600/4000/4200/4400/4600)\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"val set (9335 samples)\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B CLS v5 s42\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (sweep replaced by individual evals)\\\", \\\"log_path\\\": \\\"N/A\\\"}}, \\\"repo-level-cls-8b-conda\\\": {\\\"spec\\\": {\\\"hypothesis\\\": \\\"CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling effect。之前 8B 在 transformers 5.8.0 训练结果无效 (71.37%)。\\\", \\\"server\\\": \\\"westd-48478\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"learning_rate\\\": 5e-05, \\\"weight_decay\\\": 0.01, \\\"warmup_ratio\\\": 0.05, \\\"save_steps\\\": 200, \\\"eval_steps\\\": 200, \\\"save_total_limit\\\": 5, \\\"num_train_epochs\\\": 3, \\\"lora_rank\\\": 16, \\\"lora_alpha\\\": 32, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"max_seq_length\\\": 2048, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log\\\", \\\"env\\\": \\\"conda base, transformers 4.57.6\\\", \\\"pid\\\": 185438, \\\"account\\\": \\\"root\\\", \\\"total_steps\\\": 6633, \\\"speed\\\": \\\"~8.3s/step\\\", \\\"estimated_hours\\\": 15.3, \\\"gpu_mem_used\\\": \\\"25751/32607 MiB\\\", \\\"tmux_session\\\": \\\"cls8b-conda\\\"}, \\\"metrics\\\": {\\\"val_8192\\\": {\\\"ckpt_200\\\": {\\\"accuracy\\\": 63.52, \\\"f1_macro\\\": 61.17, \\\"f1_fail\\\": 51.6, \\\"f1_pass\\\": 70.7, \\\"unparseable\\\": 9}, \\\"ckpt_400\\\": {\\\"accuracy\\\": 80.96}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 85}, \\\"best_acc\\\": \\\"ckpt_600\\\"}, \\\"val_5120\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 80.47, \\\"f1_macro\\\": 75.84}}, \\\"test_2048\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 84.52, \\\"f1_macro\\\": 80.89}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 78.51}}, \\\"test_8192\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 84.79, \\\"f1_macro\\\": 81.18, \\\"f1_fail\\\": 72.93, \\\"f1_pass\\\": 89.43, \\\"unparseable\\\": 0, \\\"total\\\": 9784}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 79.05, \\\"f1_macro\\\": 75.12, \\\"f1_fail\\\": 65.24, \\\"f1_pass\\\": 85, \\\"unparseable\\\": 0, \\\"total\\\": 9784}}}}, \\\"cls8b-s42-ckpt200-val8192-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"297542\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:06:16.784Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"val set 9335 samples\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"val set\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1950.3, \\\"gpu_hours\\\": 0.54}, \\\"metrics\\\": {\\\"accuracy\\\": 63.52, \\\"f1_macro\\\": 61.17, \\\"f1_fail\\\": 51.6, \\\"f1_pass\\\": 70.7, \\\"unparseable\\\": 9, \\\"total\\\": 9335}}}, \\\"count\\\": 50, \\\"total\\\": 118, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4391}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}}, \"cwm-4b-rank32-ablation\": {\"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}}, \"cls8b-seed123-ckpt200-test-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}, \"metrics\": {\"accuracy\": 72.55, \"f1_macro\": 70.18, \"pass_f1\": 78.58, \"fail_f1\": 61.78, \"pass_precision\": 91.21, \"pass_recall\": 69.02, \"fail_precision\": 49.54, \"fail_recall\": 82.05, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 72.96, \"unparseable\": 0, \"confusion_matrix\": {\"tn\": 2171, \"fp\": 475, \"fn\": 2211, \"tp\": 4927}}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 82.83, \"f1_macro\": 76.88, \"fail_precision\": 72.2, \"fail_recall\": 59.3, \"fail_f1\": 65.2, \"pass_precision\": 85.9, \"pass_recall\": 91.5, \"pass_f1\": 88.6, \"unparseable\": 136}}, \"cls8b-seed123-ckpt6633-test-eval\": {\"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 84.89, \"f1_macro\": 77.56, \"f1_fail\": 64.7, \"f1_pass\": 90.4, \"precision_fail\": 87.8, \"recall_fail\": 51.2, \"precision_pass\": 84.3, \"recall_pass\": 97.4, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 11.9, \"total_samples\": 9784, \"unparseable_count\": 0}}, \"cls8b-seed123-ckpt6600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}, \"metrics\": {\"accuracy\": 84.9, \"f1_macro\": 77.58, \"pass_f1\": 90.4, \"fail_f1\": 64.8, \"pass_precision\": 84.3, \"pass_recall\": 97.4, \"fail_precision\": 87.8, \"fail_recall\": 51.3, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 1357, \"fail_as_pass\": 1289, \"pass_as_fail\": 188, \"pass_as_pass\": 6950}}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}, \"metrics\": {\"accuracy\": 70.07, \"f1_macro\": 68.18, \"pass_f1\": 75.9, \"fail_f1\": 60.4, \"pass_precision\": 91.8, \"pass_recall\": 64.7, \"fail_precision\": 47, \"fail_recall\": 84.5, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 2235, \"fail_as_pass\": 411, \"pass_as_fail\": 2517, \"pass_as_pass\": 4621}}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}, \"metrics\": {\"accuracy\": 77.74, \"f1_macro\": 74.74, \"f1_fail\": 66.03, \"f1_pass\": 83.44, \"precision_fail\": 56.21, \"recall_fail\": 80.01, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 4.78, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 85.08, \"f1_fail\": 65.32, \"f1_pass\": 90.49, \"f1_macro\": 77.91, \"precision_fail\": 87.92, \"precision_pass\": 84.54, \"recall_fail\": 51.97, \"recall_pass\": 97.35, \"n_instances\": 9784, \"n_cls_unparseable\": 0}}, \"cls8b-seed123-ckpt6200-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"355567\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 84.7, \"f1_fail\": 63.71, \"f1_pass\": 90.31, \"f1_macro\": 77.01, \"precision_fail\": 88.84, \"precision_pass\": 83.96, \"recall_fail\": 49.66, \"recall_pass\": 97.69, \"n_instances\": 9784, \"n_cls_unparseable\": 0}}, \"cls8b-seed123-ckpt6400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"353235\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:13.996Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1533.6, \"gpu_hours\": 0.43}}, \"cls8b-seed123-ckpt6200-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353094\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:11.145Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1535.3, \"gpu_hours\": 0.43}}, \"cls8b-s42-ckpt200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353498\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:17.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\", \"eval_data\": \"val@8192\", \"wall_clock_seconds\": 1527.9, \"gpu_hours\": 0.42}}, \"cls4b-seed123-ckpt800-test5120-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3264842\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\", \"submitted_at\": \"2026-05-15T09:36:59.423Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1662.9, \"gpu_hours\": 0.46}, \"metrics\": {\"accuracy\": 75.33, \"f1_macro\": 67.03, \"f1_fail\": 50.5, \"f1_pass\": 83.6, \"precision_fail\": 55.2, \"recall_fail\": 46.5, \"precision_pass\": 81.3, \"recall_pass\": 86, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 2.4, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"repo-level-cls-8b-seed123-conda-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"266444\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"submitted_at\": \"2026-05-14T17:43:50.914Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 37338, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 45617.8, \"gpu_hours\": 12.67, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\", \"best_model_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\", \"final_train_loss\": 0.162, \"final_eval_loss\": 0.464, \"train_runtime_seconds\": 45210}}, \"cls4b-seed123-ckpt800-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3261669\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\", \"submitted_at\": \"2026-05-15T09:16:22.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"checkpoint_source\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"eval_data\": \"test\", \"data_path\": \"repo-level-cls-test\", \"data_count\": 9784, \"checkpoint_path\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"wall_clock_seconds\": 1216.7, \"gpu_hours\": 0.34}}, \"cls8b-seed123-ckpt6633-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"346231\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"val@8192\"}, \"metrics\": {\"accuracy\": 87.1, \"f1_macro\": 78.79, \"f1_fail\": 65.52, \"f1_pass\": 92.07, \"precision_fail\": 92.26, \"recall_fail\": 50.8, \"precision_pass\": 86.31, \"recall_pass\": 98.64, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.23, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt3000-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\", \"submitted_at\": \"2026-05-15T15:33:50Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\", \"eval_data\": \"test@8192\"}, \"metrics\": {\"accuracy\": 85.6, \"f1_macro\": 78.38, \"f1_fail\": 65.89, \"f1_pass\": 90.87, \"precision_fail\": 91.65, \"recall_fail\": 51.44, \"precision_pass\": 84.52, \"recall_pass\": 98.26, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.64, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt3000-test8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"346590\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\", \"submitted_at\": \"2026-05-15T07:59:04.721Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 443.8, \"gpu_hours\": 0.12}}, \"cls4b-v5-ckpt4400-test5120-eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3244661\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\", \"submitted_at\": \"2026-05-15T07:30:01.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1752.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 83.24, \"f1_macro\": 74.44, \"f1_fail\": 59.45, \"f1_pass\": 89.44, \"precision_fail\": 85.98, \"recall_fail\": 45.43, \"precision_pass\": 82.78, \"recall_pass\": 97.25, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.28, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"343011\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:26:03.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1959.6, \"gpu_hours\": 0.54}, \"metrics\": {\"accuracy\": 87.48, \"f1_macro\": 79.66, \"f1_fail\": 67.04, \"f1_pass\": 92.27, \"precision_fail\": 91.81, \"recall_fail\": 52.8, \"precision_pass\": 86.78, \"recall_pass\": 98.5, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.6, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt6200-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"343605\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:29:46.229Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1727.2, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 87.52, \"f1_macro\": 79.26, \"f1_fail\": 66.16, \"f1_pass\": 92.35, \"precision_fail\": 95.63, \"recall_fail\": 50.58, \"precision_pass\": 86.33, \"recall_pass\": 99.27, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.64, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls4b-v5-val-sweep-ckpt4600\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3221945\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\", \"submitted_at\": \"2026-05-15T04:42:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 10715.3, \"gpu_hours\": 2.98}, \"metrics\": {\"accuracy\": 90.07, \"f1_macro\": 85.04, \"f1_fail\": 76.37, \"f1_pass\": 93.71, \"precision_fail\": 89.65, \"recall_fail\": 66.52, \"precision_pass\": 90.16, \"recall_pass\": 97.56, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.19, \"unparseable_count\": 0, \"total_samples\": 9335, \"n_truncated\": 234}}, \"cls8b-seed123-ckpt6600-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"340511\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\", \"submitted_at\": \"2026-05-15T06:49:09.694Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2204.3, \"gpu_hours\": 0.61}, \"metrics\": {\"accuracy\": 87.23, \"f1_macro\": 79.02, \"f1_fail\": 65.9, \"f1_pass\": 92.14, \"precision_fail\": 92.6, \"recall_fail\": 51.15, \"precision_pass\": 86.4, \"recall_pass\": 98.7, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.36, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-s42-ckpt1600-test8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"339064\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\", \"submitted_at\": \"2026-05-15T06:30:12.425Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"test@8192\", \"wall_clock_seconds\": 3328.2, \"gpu_hours\": 0.92}, \"metrics\": {\"accuracy\": 84.99, \"f1_macro\": 78.94, \"f1_fail\": 67.65, \"f1_pass\": 90.22, \"precision_fail\": 81.06, \"recall_fail\": 58.05, \"precision_pass\": 85.93, \"recall_pass\": 94.97, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.03, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-ckpt4600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3238979\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\", \"submitted_at\": \"2026-05-15T06:49:49.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": null, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4600\", \"eval_data\": \"test\", \"wall_clock_seconds\": 2155.2, \"gpu_hours\": 0.6}, \"metrics\": {\"accuracy\": 83.63, \"f1_macro\": 75.63, \"f1_fail\": 61.67, \"f1_pass\": 89.59, \"precision_fail\": 84.03, \"recall_fail\": 48.72, \"precision_pass\": 83.55, \"recall_pass\": 96.57, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.67, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"335070\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T05:32:38.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"accuracy\": 85.47, \"f1_macro\": 78.9, \"f1_fail\": 67.13, \"f1_pass\": 90.67, \"precision_fail\": 86.43, \"recall_fail\": 54.88, \"precision_pass\": 85.27, \"recall_pass\": 96.81, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.51, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1200-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"test@8192\"}, \"metrics\": {\"accuracy\": 83.84, \"f1_macro\": 77.47, \"f1_fail\": 65.49, \"f1_pass\": 89.45, \"precision_fail\": 77.52, \"recall_fail\": 56.69, \"precision_pass\": 85.4, \"recall_pass\": 93.91, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.89, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt800-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"eval_data\": \"swebench_test\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"log_path\": \"/tmp/eval_cls8b_ckpt800_test8192.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"parent\": \"repo-level-cls-8b-s42-resume\"}, \"metrics\": {\"accuracy\": 83.53, \"f1_macro\": 78.97, \"f1_fail\": 69.17, \"f1_pass\": 88.77, \"precision_fail\": 70.07, \"recall_fail\": 68.29, \"precision_pass\": 88.36, \"recall_pass\": 89.18, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.58, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-val-sweep-ckpt4200\": {\"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4200 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4200_val5120\", \"server\": \"home-1x5090\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4200\", \"eval_data\": \"val@5120\", \"parent\": \"cls4b-v5-train\"}, \"metrics\": {\"accuracy\": 89.06, \"f1_macro\": 83.07, \"f1_fail\": 73, \"f1_pass\": 93.1, \"precision_fail\": 90.3, \"recall_fail\": 61.3, \"precision_pass\": 88.8, \"recall_pass\": 97.9}}, \"cls8b-s42-ckpt1600-val8192-v2\": {\"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"parent\": \"cls8b-s42\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"val\", \"data_path\": \"val split\", \"data_count\": 8192, \"notes\": \"v2 resubmit: v1 failed due to network unreachable (no network_turbo). Fixed by using local model path + OFFLINE flags + network_turbo.\", \"log_path\": \"/tmp/eval_cls8b_ckpt1600_val8192_v2.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\"}, \"metrics\": {\"accuracy\": 86.75, \"f1_macro\": 78.94, \"f1_fail\": 66.12, \"f1_pass\": 91.76, \"precision_fail\": 86.28, \"precision_pass\": 86.83, \"recall_fail\": 53.6, \"recall_pass\": 97.29, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.87, \"unparseable\": 9, \"total\": 9335}}, \"cls8b-s42-ckpt1600-val8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"val split\", \"data_count\": 0, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"val@8192\", \"pid\": 324412, \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-val8192-eval.log\", \"gpu\": \"cuda:0\"}}, \"cls8b-s42-ckpt1400-val8192-eval\": {\"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\"}, \"metrics\": {\"accuracy\": 85.97, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.09, \"f1_macro\": 77.15, \"f1_fail\": 62.95, \"f1_pass\": 91.34, \"precision_fail\": 86.68, \"precision_pass\": 85.85, \"recall_fail\": 49.42, \"recall_pass\": 97.59, \"n_instances\": 9335, \"n_unparseable\": 9, \"confusion_matrix\": {\"tn\": 1113, \"fp\": 1139, \"fn\": 171, \"tp\": 6912}}}, \"cls4b-v5-val-sweep-ckpt4400-v3\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v3\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3204975\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4400-v3.log\", \"submitted_at\": \"2026-05-15T02:08:34.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4400\", \"eval_data\": \"val@5120\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 4469.9, \"gpu_hours\": 1.24}, \"metrics\": {\"accuracy\": 89.96, \"f1_macro\": 84.94, \"f1_fail\": 76.25, \"f1_pass\": 93.64, \"precision_fail\": 88.84, \"precision_pass\": 90.21, \"recall_fail\": 66.79, \"recall_pass\": 97.33, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.09, \"n_instances\": 9335, \"n_truncated\": 234, \"n_unparseable\": 0}}, \"cls8b-s42-ckpt1200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"/tmp/eval_ckpt1200.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}}, \"cls8b-s42-ckpt1200-val8192-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}, \"metrics\": {\"accuracy\": 87.76, \"f1_macro\": 81.25, \"f1_fail\": 70.2, \"f1_pass\": 92.3, \"precision_fail\": 85, \"recall_fail\": 59.8, \"precision_pass\": 88.3, \"recall_pass\": 96.7, \"majority_baseline\": 75.9, \"gap_vs_majority\": 11.9, \"unparseable\": 9}}, \"cls8b-s42-ckpt1200-val8192-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}}, \"cls8b-s42-ckpt1000-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"312975\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test8192-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9784, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"swebench test split\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\"}, \"metrics\": {\"accuracy\": 83.52, \"f1_macro\": 77.5, \"f1_fail\": 65.85, \"f1_pass\": 89.14, \"precision_fail\": 74.93, \"recall_fail\": 58.73, \"precision_pass\": 85.84, \"recall_pass\": 92.72, \"majority_baseline\": 72.96, \"gap_vs_majority\": 10.56, \"unparseable_count\": 0, \"unparseable_rate\": 0, \"total_samples\": 9784, \"tp\": 6618, \"fp\": 1092, \"fn\": 520, \"tn\": 1554}}, \"cls8b-s42-ckpt1200-val8192\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"315834\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192.log\", \"submitted_at\": \"2026-05-15T02:06:09.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 99.2, \"gpu_hours\": 0.03}}, \"cls4b-v5-val-sweep-ckpt4400\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v2\", \"server\": \"home-1x5090\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4400\", \"eval_data\": \"val@5120\", \"parent\": \"cls4b-v5-train\"}}, \"cls4b-v5-ckpt4400-val5120-eval-v2\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4400\", \"log_path\": \"/tmp/eval_v2.log\", \"kill_reason\": \"Director ordered kill - second time stuck (7h no output), enable_thinking not properly disabled\"}}, \"cls4b-v5-ckpt4400-val5120-eval\": {\"spec\": {\"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-val5120-eval.log\", \"checkpoint_path\": \"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\", \"kill_reason\": \"Director ordered kill - process stuck 16h, predictions stopped at 5824/9335 (62.4%), suspected Qwen3 thinking mode hang\", \"command\": \"killed before completion\", \"server\": \"home-1x5090\", \"data_path\": \"/home/ubuntu/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\", \"eval_data\": \"swebench val split\"}, \"metrics\": {\"accuracy_partial_70pct\": 89.69, \"f1_macro_partial_70pct\": 84.61, \"samples_completed\": 6544, \"samples_total\": 9335}}, \"cls8b-s42-ckpt1000-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"310114\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-val8192-eval.log\", \"submitted_at\": \"2026-05-15T01:03:36.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"swebench val split\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"wall_clock_seconds\": 2045.2, \"gpu_hours\": 0.57}, \"metrics\": {\"accuracy\": 88.23, \"f1_macro\": 82.72, \"f1_fail\": 73, \"f1_pass\": 92.5, \"precision_fail\": 81.8, \"recall_fail\": 65.8, \"precision_pass\": 89.8, \"recall_pass\": 95.3, \"unparseable\": 9, \"total_instances\": 9335}}, \"cls8b-s42-ckpt800-val8192-eval\": {\"spec\": {\"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt800-val8192-eval.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\"}, \"metrics\": {\"accuracy\": 84.5, \"f1_macro\": 79.2}}, \"cls4b-v5-ckpt4000-val5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split val --max_new_tokens 512 --max_seq_length 5120 --batch_size 16 --device cuda:0\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3186818\", \"account\": \"sonny\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"val@5120 9335 samples\", \"checkpoint_path\": \"checkpoints_repo_cls_v5/checkpoint-4000\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-val5120-eval.log\"}, \"metrics\": {\"accuracy\": 89.84, \"f1_macro\": 84.25, \"f1_fail\": 74.85, \"f1_pass\": 93.64, \"precision_fail\": 92.95, \"recall_fail\": 62.66, \"precision_pass\": 89.24, \"recall_pass\": 98.49, \"unparseable\": 0, \"truncated\": 234, \"total\": 9335}}, \"cls4b-v5-ckpt600-val5120-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --device cuda:0\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3179262\", \"account\": \"sonny\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-600\", \"eval_data\": \"val@5120 9335 samples\", \"checkpoint_path\": \"checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-val5120-eval.log\"}, \"metrics\": {\"accuracy\": 82.82, \"f1_macro\": 79.81, \"f1_fail\": 72.03, \"f1_pass\": 87.6, \"precision_fail\": 59.3, \"recall_fail\": 91.7, \"unparseable\": 0, \"total\": 9335}}, \"cls4b-v5-val5120-sweep-home\": {\"spec\": {\"command\": \"4B CLS v5 val@5120 sweep (ckpt-600/4000/4200/4400/4600)\", \"server\": \"home-1x5090\", \"data_path\": \"val set (9335 samples)\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B CLS v5 s42\", \"seed\": 42, \"checkpoint_path\": \"N/A (sweep replaced by individual evals)\", \"log_path\": \"N/A\"}}, \"repo-level-cls-8b-conda\": {\"spec\": {\"hypothesis\": \"CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling effect。之前 8B 在 transformers 5.8.0 训练结果无效 (71.37%)。\", \"server\": \"westd-48478\", \"gpu\": \"cuda:3\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"learning_rate\": 5e-05, \"weight_decay\": 0.01, \"warmup_ratio\": 0.05, \"save_steps\": 200, \"eval_steps\": 200, \"save_total_limit\": 5, \"num_train_epochs\": 3, \"lora_rank\": 16, \"lora_alpha\": 32, \"batch_size\": 1, \"grad_accumulation\": 32, \"max_seq_length\": 2048, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/\", \"log_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log\", \"env\": \"conda base, transformers 4.57.6\", \"pid\": 185438, \"account\": \"root\", \"total_steps\": 6633, \"speed\": \"~8.3s/step\", \"estimated_hours\": 15.3, \"gpu_mem_used\": \"25751/32607 MiB\", \"tmux_session\": \"cls8b-conda\"}, \"metrics\": {\"val_8192\": {\"ckpt_200\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9}, \"ckpt_400\": {\"accuracy\": 80.96}, \"ckpt_600\": {\"accuracy\": 85}, \"best_acc\": \"ckpt_600\"}, \"val_5120\": {\"ckpt_400\": {\"accuracy\": 80.47, \"f1_macro\": 75.84}}, \"test_2048\": {\"ckpt_400\": {\"accuracy\": 84.52, \"f1_macro\": 80.89}, \"ckpt_600\": {\"accuracy\": 78.51}}, \"test_8192\": {\"ckpt_400\": {\"accuracy\": 84.79, \"f1_macro\": 81.18, \"f1_fail\": 72.93, \"f1_pass\": 89.43, \"unparseable\": 0, \"total\": 9784}, \"ckpt_600\": {\"accuracy\": 79.05, \"f1_macro\": 75.12, \"f1_fail\": 65.24, \"f1_pass\": 85, \"unparseable\": 0, \"total\": 9784}}}}, \"cls8b-s42-ckpt200-val8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"297542\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log\", \"submitted_at\": \"2026-05-14T22:06:16.784Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"val set 9335 samples\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"data_path\": \"val set\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1950.3, \"gpu_hours\": 0.54}, \"metrics\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9, \"total\": 9335}}}, \"count\": 50, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4391}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search the registry results for CWM baseline eval experiments. The output was too large, so let me look at the persisted file. But first, let me also check the existing CWM baseline checkpoint directory (the one without "rank32") and find the CWM baseline eval entries.
+
+Actually, from the `find` result, there's no `checkpoints_cwm` directory (without suffix). The directories are:
+- checkpoints_cwm8b (8B model)
+- checkpoints_cwm8b_seed123 (8B seed 123)
+
+
+- checkpoints_cwm8b_seed456 (8B seed 456)
+- checkpoints_cwm_seed123 (4B seed 123)
+- checkpoints_cwm_seed789 (4B seed 789)
+- checkpoints_cwm_rank32 (4B rank 32)
+
+The baseline CWM 4B with rank=16 and seed=42 might have been in a different location or cleaned up, so let me check the persisted eval output and the default output directory in train_cwm_baseline.py.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "02a2d753-ed64-4e3d-83ab-1ca737e46350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lnmm9rNq5XoWQLhmNfztfx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2234,
+      "cache_read_input_tokens": 50534,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0162uBoGMGePLS1xTaKgPQnH`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"output_dir\\|default\" /home/sonny/exec-sim-repair-verifier/train_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c152cb51-77ba-4a2d-98c5-67e849e3e233",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lnmm9rNq5XoWQLhmNfztfx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2234,
+      "cache_read_input_tokens": 50534,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T13:29:13.654Z_
+
+<details><summary>↩ Tool result · `toolu_0162uBoGMGePLS1xTaKgPQnH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "fd9a7aaa-7d87-4da5-b96e-3dd12335ec64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018DAQbFs4utWP4KzTBprR9P`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -maxdepth 2 -name \"eval_cwm*results*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "abb3793f-35da-456a-87e3-9910bc4a90c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lnmm9rNq5XoWQLhmNfztfx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2234,
+      "cache_read_input_tokens": 50534,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T13:29:15.150Z_
+
+<details><summary>↩ Tool result · `toolu_018DAQbFs4utWP4KzTBprR9P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "4b635e79-4766-4dde-af96-d983eb89a8eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016LJfd7wvtA2u5E8oUU5Cn4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/9bd7d334-62db-4941-a113-39bb90b2f9e8/tool-results/toolu_01Rngte1UzumYNnwUhfJWb38.txt",
+  "offset": 0,
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "9c925764-20bb-4d5b-b775-141dfd38afc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lnmm9rNq5XoWQLhmNfztfx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2234,
+      "cache_read_input_tokens": 50534,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2234
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T13:29:17.840Z_
+
+<details><summary>↩ Tool result · `toolu_016LJfd7wvtA2u5E8oUU5Cn4`</summary>
+
+```text
+0	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm-rank32-ablation\": {\"spec\": {\"command\": \"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"368823\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:29:23.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"val_count\": 1896, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lora_dropout\": 0.05, \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 2, \"grad_accumulation\": 16, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"warmup_ratio\": 0.1, \"total_steps\": 1434, \"estimated_hours\": 1.6, \"hypothesis\": \"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\", \"wall_clock_seconds\": 1088.4, \"gpu_hours\": 0.3}}, \"cwm-4b-rank32-ablation\": {\"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"369497\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\", \"submitted_at\": \"2026-05-15T12:32:30Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\", \"lora_rank\": 32, \"lora_alpha\": 32, \"lr\": 0.0002, \"epochs\": 3, \"batch_size\": 1, \"grad_accumulation\": 32, \"effective_batch_size\": 32, \"max_seq_length\": 2048, \"estimated_hours\": 2.8, \"wall_clock_seconds\": 857.2, \"gpu_hours\": 0.24}}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-4000 test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3274167\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\", \"submitted_at\": \"2026-05-15T10:46:00.336Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"test@5120(n=9784)\", \"wall_clock_seconds\": 2783.1, \"gpu_hours\": 0.77}}, \"cls8b-seed123-ckpt200-test-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"363037\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\", \"submitted_at\": \"2026-05-15T11:29:27.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 2550.6, \"gpu_hours\": 0.71}, \"metrics\": {\"accuracy\": 72.55, \"f1_macro\": 70.18, \"pass_f1\": 78.58, \"fail_f1\": 61.78, \"pass_precision\": 91.21, \"pass_recall\": 69.02, \"fail_precision\": 49.54, \"fail_recall\": 82.05, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 72.96, \"unparseable\": 0, \"confusion_matrix\": {\"tn\": 2171, \"fp\": 475, \"fn\": 2211, \"tp\": 4927}}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"spec\": {\"command\": \"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"360735\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\", \"submitted_at\": \"2026-05-15T10:59:58.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"test@2048(n=9784)\", \"wall_clock_seconds\": 1763.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 82.83, \"f1_macro\": 76.88, \"fail_precision\": 72.2, \"fail_recall\": 59.3, \"fail_f1\": 65.2, \"pass_precision\": 85.9, \"pass_recall\": 91.5, \"pass_f1\": 88.6, \"unparseable\": 136}}, \"cls8b-seed123-ckpt6633-test-eval\": {\"spec\": {\"command\": \"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"360877\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\", \"submitted_at\": \"2026-05-15T11:00:00.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"test@full(n=9784)\", \"wall_clock_seconds\": 1723.0, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 84.89, \"f1_macro\": 77.56, \"f1_fail\": 64.7, \"f1_pass\": 90.4, \"precision_fail\": 87.8, \"recall_fail\": 51.2, \"precision_pass\": 84.3, \"recall_pass\": 97.4, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 11.9, \"total_samples\": 9784, \"unparseable_count\": 0}}, \"cls8b-seed123-ckpt6600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... ckpt-6600 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"358109\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\", \"submitted_at\": \"2026-05-15T10:35:08.559Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\", \"wall_clock_seconds\": 1429.0, \"gpu_hours\": 0.4}, \"metrics\": {\"accuracy\": 84.9, \"f1_macro\": 77.58, \"pass_f1\": 90.4, \"fail_f1\": 64.8, \"pass_precision\": 84.3, \"pass_recall\": 97.4, \"fail_precision\": 87.8, \"fail_recall\": 51.3, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 1357, \"fail_as_pass\": 1289, \"pass_as_fail\": 188, \"pass_as_pass\": 6950}}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py ... s42 ckpt-200 test\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"358249\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T10:35:10.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"test@full(n=9784)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1426.0, \"gpu_hours\": 0.4}, \"metrics\": {\"accuracy\": 70.07, \"f1_macro\": 68.18, \"pass_f1\": 75.9, \"fail_f1\": 60.4, \"pass_precision\": 91.8, \"pass_recall\": 64.7, \"fail_precision\": 47, \"fail_recall\": 84.5, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 2235, \"fail_as_pass\": 411, \"pass_as_fail\": 2517, \"pass_as_pass\": 4621}}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\"}, \"metrics\": {\"accuracy\": 77.74, \"f1_macro\": 74.74, \"f1_fail\": 66.03, \"f1_pass\": 83.44, \"precision_fail\": 56.21, \"recall_fail\": 80.01, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 4.78, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"355710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 85.08, \"f1_fail\": 65.32, \"f1_pass\": 90.49, \"f1_macro\": 77.91, \"precision_fail\": 87.92, \"precision_pass\": 84.54, \"recall_fail\": 51.97, \"recall_pass\": 97.35, \"n_instances\": 9784, \"n_cls_unparseable\": 0}}, \"cls8b-seed123-ckpt6200-test-eval-v2\": {\"spec\": {\"data_path\": \"test split\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\", \"eval_data\": \"test@full(n=9784)\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"355567\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\"}, \"metrics\": {\"accuracy\": 84.7, \"f1_fail\": 63.71, \"f1_pass\": 90.31, \"f1_macro\": 77.01, \"precision_fail\": 88.84, \"precision_pass\": 83.96, \"recall_fail\": 49.66, \"recall_pass\": 97.69, \"n_instances\": 9784, \"n_cls_unparseable\": 0}}, \"cls8b-seed123-ckpt6400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"353235\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:13.996Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1533.6, \"gpu_hours\": 0.43}}, \"cls8b-seed123-ckpt6200-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353094\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:11.145Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1535.3, \"gpu_hours\": 0.43}}, \"cls8b-s42-ckpt200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"353498\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T09:43:17.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\", \"eval_data\": \"val@8192\", \"wall_clock_seconds\": 1527.9, \"gpu_hours\": 0.42}}, \"cls4b-seed123-ckpt800-test5120-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3264842\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\", \"submitted_at\": \"2026-05-15T09:36:59.423Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1662.9, \"gpu_hours\": 0.46}, \"metrics\": {\"accuracy\": 75.33, \"f1_macro\": 67.03, \"f1_fail\": 50.5, \"f1_pass\": 83.6, \"precision_fail\": 55.2, \"recall_fail\": 46.5, \"precision_pass\": 81.3, \"recall_pass\": 86, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 2.4, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"repo-level-cls-8b-seed123-conda-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"266444\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\", \"submitted_at\": \"2026-05-14T17:43:50.914Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 37338, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 45617.8, \"gpu_hours\": 12.67, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\", \"best_model_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\", \"final_train_loss\": 0.162, \"final_eval_loss\": 0.464, \"train_runtime_seconds\": 45210}}, \"cls4b-seed123-ckpt800-test5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3261669\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\", \"submitted_at\": \"2026-05-15T09:16:22.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"checkpoint_source\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"eval_data\": \"test\", \"data_path\": \"repo-level-cls-test\", \"data_count\": 9784, \"checkpoint_path\": \"checkpoints_repo_cls_seed123_home/checkpoint-800\", \"wall_clock_seconds\": 1216.7, \"gpu_hours\": 0.34}}, \"cls8b-seed123-ckpt6633-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"346231\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\", \"eval_data\": \"val@8192\"}, \"metrics\": {\"accuracy\": 87.1, \"f1_macro\": 78.79, \"f1_fail\": 65.52, \"f1_pass\": 92.07, \"precision_fail\": 92.26, \"recall_fail\": 50.8, \"precision_pass\": 86.31, \"recall_pass\": 98.64, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.23, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt3000-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\", \"submitted_at\": \"2026-05-15T15:33:50Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\", \"eval_data\": \"test@8192\"}, \"metrics\": {\"accuracy\": 85.6, \"f1_macro\": 78.38, \"f1_fail\": 65.89, \"f1_pass\": 90.87, \"precision_fail\": 91.65, \"recall_fail\": 51.44, \"precision_pass\": 84.52, \"recall_pass\": 98.26, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.64, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt3000-test8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"346590\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\", \"submitted_at\": \"2026-05-15T07:59:04.721Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 443.8, \"gpu_hours\": 0.12}}, \"cls4b-v5-ckpt4400-test5120-eval\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3244661\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\", \"submitted_at\": \"2026-05-15T07:30:01.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 1752.2, \"gpu_hours\": 0.49}, \"metrics\": {\"accuracy\": 83.24, \"f1_macro\": 74.44, \"f1_fail\": 59.45, \"f1_pass\": 89.44, \"precision_fail\": 85.98, \"recall_fail\": 45.43, \"precision_pass\": 82.78, \"recall_pass\": 97.25, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.28, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"343011\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:26:03.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1959.6, \"gpu_hours\": 0.54}, \"metrics\": {\"accuracy\": 87.48, \"f1_macro\": 79.66, \"f1_fail\": 67.04, \"f1_pass\": 92.27, \"precision_fail\": 91.81, \"recall_fail\": 52.8, \"precision_pass\": 86.78, \"recall_pass\": 98.5, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.6, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt6200-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"343605\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\", \"submitted_at\": \"2026-05-15T07:29:46.229Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1727.2, \"gpu_hours\": 0.48}, \"metrics\": {\"accuracy\": 87.52, \"f1_macro\": 79.26, \"f1_fail\": 66.16, \"f1_pass\": 92.35, \"precision_fail\": 95.63, \"recall_fail\": 50.58, \"precision_pass\": 86.33, \"recall_pass\": 99.27, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.64, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls4b-v5-val-sweep-ckpt4600\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3221945\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\", \"submitted_at\": \"2026-05-15T04:42:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 10715.3, \"gpu_hours\": 2.98}, \"metrics\": {\"accuracy\": 90.07, \"f1_macro\": 85.04, \"f1_fail\": 76.37, \"f1_pass\": 93.71, \"precision_fail\": 89.65, \"recall_fail\": 66.52, \"precision_pass\": 90.16, \"recall_pass\": 97.56, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.19, \"unparseable_count\": 0, \"total_samples\": 9335, \"n_truncated\": 234}}, \"cls8b-seed123-ckpt6600-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"340511\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\", \"submitted_at\": \"2026-05-15T06:49:09.694Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2204.3, \"gpu_hours\": 0.61}, \"metrics\": {\"accuracy\": 87.23, \"f1_macro\": 79.02, \"f1_fail\": 65.9, \"f1_pass\": 92.14, \"precision_fail\": 92.6, \"recall_fail\": 51.15, \"precision_pass\": 86.4, \"recall_pass\": 98.7, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.36, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-s42-ckpt1600-test8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"339064\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\", \"submitted_at\": \"2026-05-15T06:30:12.425Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"test@8192\", \"wall_clock_seconds\": 3328.2, \"gpu_hours\": 0.92}, \"metrics\": {\"accuracy\": 84.99, \"f1_macro\": 78.94, \"f1_fail\": 67.65, \"f1_pass\": 90.22, \"precision_fail\": 81.06, \"recall_fail\": 58.05, \"precision_pass\": 85.93, \"recall_pass\": 94.97, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.03, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-ckpt4600-test-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3238979\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\", \"submitted_at\": \"2026-05-15T06:49:49.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"test split\", \"data_count\": null, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": null, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4600\", \"eval_data\": \"test\", \"wall_clock_seconds\": 2155.2, \"gpu_hours\": 0.6}, \"metrics\": {\"accuracy\": 83.63, \"f1_macro\": 75.63, \"f1_fail\": 61.67, \"f1_pass\": 89.59, \"precision_fail\": 84.03, \"recall_fail\": 48.72, \"precision_pass\": 83.55, \"recall_pass\": 96.57, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.67, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1400-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"335070\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\", \"submitted_at\": \"2026-05-15T05:32:38.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"accuracy\": 85.47, \"f1_macro\": 78.9, \"f1_fail\": 67.13, \"f1_pass\": 90.67, \"precision_fail\": 86.43, \"recall_fail\": 54.88, \"precision_pass\": 85.27, \"recall_pass\": 96.81, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.51, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1200-test8192-eval\": {\"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"test@8192\"}, \"metrics\": {\"accuracy\": 83.84, \"f1_macro\": 77.47, \"f1_fail\": 65.49, \"f1_pass\": 89.45, \"precision_fail\": 77.52, \"recall_fail\": 56.69, \"precision_pass\": 85.4, \"recall_pass\": 93.91, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.89, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt800-test8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"eval_data\": \"swebench_test\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\", \"data_count\": 9784, \"log_path\": \"/tmp/eval_cls8b_ckpt800_test8192.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\", \"parent\": \"repo-level-cls-8b-s42-resume\"}, \"metrics\": {\"accuracy\": 83.53, \"f1_macro\": 78.97, \"f1_fail\": 69.17, \"f1_pass\": 88.77, \"precision_fail\": 70.07, \"recall_fail\": 68.29, \"precision_pass\": 88.36, \"recall_pass\": 89.18, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.58, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-val-sweep-ckpt4200\": {\"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4200 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4200_val5120\", \"server\": \"home-1x5090\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4200\", \"eval_data\": \"val@5120\", \"parent\": \"cls4b-v5-train\"}, \"metrics\": {\"accuracy\": 89.06, \"f1_macro\": 83.07, \"f1_fail\": 73, \"f1_pass\": 93.1, \"precision_fail\": 90.3, \"recall_fail\": 61.3, \"precision_pass\": 88.8, \"recall_pass\": 97.9}}, \"cls8b-s42-ckpt1600-val8192-v2\": {\"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"parent\": \"cls8b-s42\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"val\", \"data_path\": \"val split\", \"data_count\": 8192, \"notes\": \"v2 resubmit: v1 failed due to network unreachable (no network_turbo). Fixed by using local model path + OFFLINE flags + network_turbo.\", \"log_path\": \"/tmp/eval_cls8b_ckpt1600_val8192_v2.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\"}, \"metrics\": {\"accuracy\": 86.75, \"f1_macro\": 78.94, \"f1_fail\": 66.12, \"f1_pass\": 91.76, \"precision_fail\": 86.28, \"precision_pass\": 86.83, \"recall_fail\": 53.6, \"recall_pass\": 97.29, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.87, \"unparseable\": 9, \"total\": 9335}}, \"cls8b-s42-ckpt1600-val8192-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"val split\", \"data_count\": 0, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\", \"eval_data\": \"val@8192\", \"pid\": 324412, \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-val8192-eval.log\", \"gpu\": \"cuda:0\"}}, \"cls8b-s42-ckpt1400-val8192-eval\": {\"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\"}, \"metrics\": {\"accuracy\": 85.97, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.09, \"f1_macro\": 77.15, \"f1_fail\": 62.95, \"f1_pass\": 91.34, \"precision_fail\": 86.68, \"precision_pass\": 85.85, \"recall_fail\": 49.42, \"recall_pass\": 97.59, \"n_instances\": 9335, \"n_unparseable\": 9, \"confusion_matrix\": {\"tn\": 1113, \"fp\": 1139, \"fn\": 171, \"tp\": 6912}}}, \"cls4b-v5-val-sweep-ckpt4400-v3\": {\"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v3\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3204975\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4400-v3.log\", \"submitted_at\": \"2026-05-15T02:08:34.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4400\", \"eval_data\": \"val@5120\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 4469.9, \"gpu_hours\": 1.24}, \"metrics\": {\"accuracy\": 89.96, \"f1_macro\": 84.94, \"f1_fail\": 76.25, \"f1_pass\": 93.64, \"precision_fail\": 88.84, \"precision_pass\": 90.21, \"recall_fail\": 66.79, \"recall_pass\": 97.33, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.09, \"n_instances\": 9335, \"n_truncated\": 234, \"n_unparseable\": 0}}, \"cls8b-s42-ckpt1200-val8192-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"/tmp/eval_ckpt1200.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}}, \"cls8b-s42-ckpt1200-val8192-v3\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}, \"metrics\": {\"accuracy\": 87.76, \"f1_macro\": 81.25, \"f1_fail\": 70.2, \"f1_pass\": 92.3, \"precision_fail\": 85, \"recall_fail\": 59.8, \"precision_pass\": 88.3, \"recall_pass\": 96.7, \"majority_baseline\": 75.9, \"gap_vs_majority\": 11.9, \"unparseable\": 9}}, \"cls8b-s42-ckpt1200-val8192-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"316940\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\", \"eval_data\": \"val@8192\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42}}, \"cls8b-s42-ckpt1000-test8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"312975\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test8192-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9784, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"swebench test split\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\"}, \"metrics\": {\"accuracy\": 83.52, \"f1_macro\": 77.5, \"f1_fail\": 65.85, \"f1_pass\": 89.14, \"precision_fail\": 74.93, \"recall_fail\": 58.73, \"precision_pass\": 85.84, \"recall_pass\": 92.72, \"majority_baseline\": 72.96, \"gap_vs_majority\": 10.56, \"unparseable_count\": 0, \"unparseable_rate\": 0, \"total_samples\": 9784, \"tp\": 6618, \"fp\": 1092, \"fn\": 520, \"tn\": 1554}}, \"cls8b-s42-ckpt1200-val8192\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"315834\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192.log\", \"submitted_at\": \"2026-05-15T02:06:09.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 99.2, \"gpu_hours\": 0.03}}, \"cls4b-v5-val-sweep-ckpt4400\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v2\", \"server\": \"home-1x5090\", \"data_path\": \"data/swebench_full/swebench_val.jsonl\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4400\", \"eval_data\": \"val@5120\", \"parent\": \"cls4b-v5-train\"}}, \"cls4b-v5-ckpt4400-val5120-eval-v2\": {\"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4400\", \"log_path\": \"/tmp/eval_v2.log\", \"kill_reason\": \"Director ordered kill - second time stuck (7h no output), enable_thinking not properly disabled\"}}, \"cls4b-v5-ckpt4400-val5120-eval\": {\"spec\": {\"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-val5120-eval.log\", \"checkpoint_path\": \"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\", \"kill_reason\": \"Director ordered kill - process stuck 16h, predictions stopped at 5824/9335 (62.4%), suspected Qwen3 thinking mode hang\", \"command\": \"killed before completion\", \"server\": \"home-1x5090\", \"data_path\": \"/home/ubuntu/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\", \"eval_data\": \"swebench val split\"}, \"metrics\": {\"accuracy_partial_70pct\": 89.69, \"f1_macro_partial_70pct\": 84.61, \"samples_completed\": 6544, \"samples_total\": 9335}}, \"cls8b-s42-ckpt1000-val8192-eval\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"310114\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-val8192-eval.log\", \"submitted_at\": \"2026-05-15T01:03:36.501Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": 9335, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"eval_data\": \"swebench val split\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\", \"wall_clock_seconds\": 2045.2, \"gpu_hours\": 0.57}, \"metrics\": {\"accuracy\": 88.23, \"f1_macro\": 82.72, \"f1_fail\": 73, \"f1_pass\": 92.5, \"precision_fail\": 81.8, \"recall_fail\": 65.8, \"precision_pass\": 89.8, \"recall_pass\": 95.3, \"unparseable\": 9, \"total_instances\": 9335}}, \"cls8b-s42-ckpt800-val8192-eval\": {\"spec\": {\"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt800-val8192-eval.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\"}, \"metrics\": {\"accuracy\": 84.5, \"f1_macro\": 79.2}}, \"cls4b-v5-ckpt4000-val5120-eval\": {\"spec\": {\"command\": \"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split val --max_new_tokens 512 --max_seq_length 5120 --batch_size 16 --device cuda:0\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3186818\", \"account\": \"sonny\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-4000\", \"eval_data\": \"val@5120 9335 samples\", \"checkpoint_path\": \"checkpoints_repo_cls_v5/checkpoint-4000\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-val5120-eval.log\"}, \"metrics\": {\"accuracy\": 89.84, \"f1_macro\": 84.25, \"f1_fail\": 74.85, \"f1_pass\": 93.64, \"precision_fail\": 92.95, \"recall_fail\": 62.66, \"precision_pass\": 89.24, \"recall_pass\": 98.49, \"unparseable\": 0, \"truncated\": 234, \"total\": 9335}}, \"cls4b-v5-ckpt600-val5120-eval\": {\"spec\": {\"command\": \"python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --device cuda:0\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"3179262\", \"account\": \"sonny\", \"data_path\": \"val split\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"checkpoints_repo_cls_v5/checkpoint-600\", \"eval_data\": \"val@5120 9335 samples\", \"checkpoint_path\": \"checkpoints_repo_cls_v5/checkpoint-600\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-val5120-eval.log\"}, \"metrics\": {\"accuracy\": 82.82, \"f1_macro\": 79.81, \"f1_fail\": 72.03, \"f1_pass\": 87.6, \"precision_fail\": 59.3, \"recall_fail\": 91.7, \"unparseable\": 0, \"total\": 9335}}, \"cls4b-v5-val5120-sweep-home\": {\"spec\": {\"command\": \"4B CLS v5 val@5120 sweep (ckpt-600/4000/4200/4400/4600)\", \"server\": \"home-1x5090\", \"data_path\": \"val set (9335 samples)\", \"data_count\": 9335, \"model_name\": \"Qwen3-4B CLS v5 s42\", \"seed\": 42, \"checkpoint_path\": \"N/A (sweep replaced by individual evals)\", \"log_path\": \"N/A\"}}, \"repo-level-cls-8b-conda\": {\"spec\": {\"hypothesis\": \"CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling effect。之前 8B 在 transformers 5.8.0 训练结果无效 (71.37%)。\", \"server\": \"westd-48478\", \"gpu\": \"cuda:3\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"learning_rate\": 5e-05, \"weight_decay\": 0.01, \"warmup_ratio\": 0.05, \"save_steps\": 200, \"eval_steps\": 200, \"save_total_limit\": 5, \"num_train_epochs\": 3, \"lora_rank\": 16, \"lora_alpha\": 32, \"batch_size\": 1, \"grad_accumulation\": 32, \"max_seq_length\": 2048, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/\", \"log_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log\", \"env\": \"conda base, transformers 4.57.6\", \"pid\": 185438, \"account\": \"root\", \"total_steps\": 6633, \"speed\": \"~8.3s/step\", \"estimated_hours\": 15.3, \"gpu_mem_used\": \"25751/32607 MiB\", \"tmux_session\": \"cls8b-conda\"}, \"metrics\": {\"val_8192\": {\"ckpt_200\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9}, \"ckpt_400\": {\"accuracy\": 80.96}, \"ckpt_600\": {\"accuracy\": 85}, \"best_acc\": \"ckpt_600\"}, \"val_5120\": {\"ckpt_400\": {\"accuracy\": 80.47, \"f1_macro\": 75.84}}, \"test_2048\": {\"ckpt_400\": {\"accuracy\": 84.52, \"f1_macro\": 80.89}, \"ckpt_600\": {\"accuracy\": 78.51}}, \"test_8192\": {\"ckpt_400\": {\"accuracy\": 84.79, \"f1_macro\": 81.18, \"f1_fail\": 72.93, \"f1_pass\": 89.43, \"unparseable\": 0, \"total\": 9784}, \"ckpt_600\": {\"accuracy\": 79.05, \"f1_macro\": 75.12, \"f1_fail\": 65.24, \"f1_pass\": 85, \"unparseable\": 0, \"total\": 9784}}}}, \"cls8b-s42-ckpt200-val8192-eval-v2\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"297542\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log\", \"submitted_at\": \"2026-05-14T22:06:16.784Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"eval_data\": \"val set 9335 samples\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"data_path\": \"val set\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\", \"wall_clock_seconds\": 1950.3, \"gpu_hours\": 0.54}, \"metrics\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9, \"total\": 9335}}}, \"count\": 50, \"total\": 118, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4391}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "973328f5-7220-4fad-bb08-8bec899ebe73",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/9bd7d334-62db-4941-a113-39bb90b2f9e8/tool-results/toolu_01Rngte1UzumYNnwUhfJWb38.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"368823\\\", \\\"log_path\\\": \\\"/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:29:23.401Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"val_count\\\": 1896, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lora_dropout\\\": 0.05, \\\"lora_target_modules\\\": [\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"], \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 2, \\\"grad_accumulation\\\": 16, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"warmup_ratio\\\": 0.1, \\\"total_steps\\\": 1434, \\\"estimated_hours\\\": 1.6, \\\"hypothesis\\\": \\\"LoRA rank=32 (vs baseline rank=16) ablation for CWM 4B function-level. All other config matches baseline default exactly (lr=2e-4, epochs=3, seed=42, alpha=32, bs=2, ga=16, max_seq=2048). Addresses reviewer C3 rank ablation request.\\\", \\\"wall_clock_seconds\\\": 1088.4, \\\"gpu_hours\\\": 0.3}}, \\\"cwm-4b-rank32-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"369497\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:32:30Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_cwm_4b_rank32/\\\", \\\"lora_rank\\\": 32, \\\"lora_alpha\\\": 32, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"effective_batch_size\\\": 32, \\\"max_seq_length\\\": 2048, \\\"estimated_hours\\\": 2.8, \\\"wall_clock_seconds\\\": 857.2, \\\"gpu_hours\\\": 0.24}}, \\\"cls4b-v5-ckpt4000-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-4000 test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3274167\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:46:00.336Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"test@5120(n=9784)\\\", \\\"wall_clock_seconds\\\": 2783.1, \\\"gpu_hours\\\": 0.77}}, \\\"cls8b-seed123-ckpt200-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363037\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:29:27.560Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 2550.6, \\\"gpu_hours\\\": 0.71}, \\\"metrics\\\": {\\\"accuracy\\\": 72.55, \\\"f1_macro\\\": 70.18, \\\"pass_f1\\\": 78.58, \\\"fail_f1\\\": 61.78, \\\"pass_precision\\\": 91.21, \\\"pass_recall\\\": 69.02, \\\"fail_precision\\\": 49.54, \\\"fail_recall\\\": 82.05, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 72.96, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"tn\\\": 2171, \\\"fp\\\": 475, \\\"fn\\\": 2211, \\\"tp\\\": 4927}}}, \\\"cls8b-s42-ckpt1000-test-seq2048-ablation\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"360735\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:59:58.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"test@2048(n=9784)\\\", \\\"wall_clock_seconds\\\": 1763.2, \\\"gpu_hours\\\": 0.49}, \\\"metrics\\\": {\\\"accuracy\\\": 82.83, \\\"f1_macro\\\": 76.88, \\\"fail_precision\\\": 72.2, \\\"fail_recall\\\": 59.3, \\\"fail_f1\\\": 65.2, \\\"pass_precision\\\": 85.9, \\\"pass_recall\\\": 91.5, \\\"pass_f1\\\": 88.6, \\\"unparseable\\\": 136}}, \\\"cls8b-seed123-ckpt6633-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"360877\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:00:00.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"wall_clock_seconds\\\": 1723.0, \\\"gpu_hours\\\": 0.48}, \\\"metrics\\\": {\\\"accuracy\\\": 84.89, \\\"f1_macro\\\": 77.56, \\\"f1_fail\\\": 64.7, \\\"f1_pass\\\": 90.4, \\\"precision_fail\\\": 87.8, \\\"recall_fail\\\": 51.2, \\\"precision_pass\\\": 84.3, \\\"recall_pass\\\": 97.4, \\\"majority_baseline\\\": 73, \\\"gap_vs_majority_pp\\\": 11.9, \\\"total_samples\\\": 9784, \\\"unparseable_count\\\": 0}}, \\\"cls8b-seed123-ckpt6600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... ckpt-6600 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"358109\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:08.559Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600\\\", \\\"wall_clock_seconds\\\": 1429.0, \\\"gpu_hours\\\": 0.4}, \\\"metrics\\\": {\\\"accuracy\\\": 84.9, \\\"f1_macro\\\": 77.58, \\\"pass_f1\\\": 90.4, \\\"fail_f1\\\": 64.8, \\\"pass_precision\\\": 84.3, \\\"pass_recall\\\": 97.4, \\\"fail_precision\\\": 87.8, \\\"fail_recall\\\": 51.3, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 1357, \\\"fail_as_pass\\\": 1289, \\\"pass_as_fail\\\": 188, \\\"pass_as_pass\\\": 6950}}}, \\\"cls8b-s42-ckpt200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py ... s42 ckpt-200 test\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"358249\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:35:10.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1426.0, \\\"gpu_hours\\\": 0.4}, \\\"metrics\\\": {\\\"accuracy\\\": 70.07, \\\"f1_macro\\\": 68.18, \\\"pass_f1\\\": 75.9, \\\"fail_f1\\\": 60.4, \\\"pass_precision\\\": 91.8, \\\"pass_recall\\\": 64.7, \\\"fail_precision\\\": 47, \\\"fail_recall\\\": 84.5, \\\"n_samples\\\": 9784, \\\"n_pass\\\": 7138, \\\"n_fail\\\": 2646, \\\"majority_baseline\\\": 73, \\\"unparseable\\\": 0, \\\"confusion_matrix\\\": {\\\"fail_as_fail\\\": 2235, \\\"fail_as_pass\\\": 411, \\\"pass_as_fail\\\": 2517, \\\"pass_as_pass\\\": 4621}}}, \\\"cls4b-v5-ckpt600-test5120-eval\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-test5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 77.74, \\\"f1_macro\\\": 74.74, \\\"f1_fail\\\": 66.03, \\\"f1_pass\\\": 83.44, \\\"precision_fail\\\": 56.21, \\\"recall_fail\\\": 80.01, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 4.78, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt6400-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"355710\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test-eval-v2.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.08, \\\"f1_fail\\\": 65.32, \\\"f1_pass\\\": 90.49, \\\"f1_macro\\\": 77.91, \\\"precision_fail\\\": 87.92, \\\"precision_pass\\\": 84.54, \\\"recall_fail\\\": 51.97, \\\"recall_pass\\\": 97.35, \\\"n_instances\\\": 9784, \\\"n_cls_unparseable\\\": 0}}, \\\"cls8b-seed123-ckpt6200-test-eval-v2\\\": {\\\"spec\\\": {\\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200\\\", \\\"eval_data\\\": \\\"test@full(n=9784)\\\", \\\"parent\\\": \\\"repo-level-cls-8b-seed123-conda-v3\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"355567\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test-eval-v2.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 84.7, \\\"f1_fail\\\": 63.71, \\\"f1_pass\\\": 90.31, \\\"f1_macro\\\": 77.01, \\\"precision_fail\\\": 88.84, \\\"precision_pass\\\": 83.96, \\\"recall_fail\\\": 49.66, \\\"recall_pass\\\": 97.69, \\\"n_instances\\\": 9784, \\\"n_cls_unparseable\\\": 0}}, \\\"cls8b-seed123-ckpt6400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"353235\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:13.996Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1533.6, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-seed123-ckpt6200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200/eval_test8192 --output eval_summary.json --pred_output eval_predictions.jsonl\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353094\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:11.145Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1535.3, \\\"gpu_hours\\\": 0.43}}, \\\"cls8b-s42-ckpt200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt200_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"353498\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:43:17.501Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"wall_clock_seconds\\\": 1527.9, \\\"gpu_hours\\\": 0.42}}, \\\"cls4b-seed123-ckpt800-test5120-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3264842\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:36:59.423Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1662.9, \\\"gpu_hours\\\": 0.46}, \\\"metrics\\\": {\\\"accuracy\\\": 75.33, \\\"f1_macro\\\": 67.03, \\\"f1_fail\\\": 50.5, \\\"f1_pass\\\": 83.6, \\\"precision_fail\\\": 55.2, \\\"recall_fail\\\": 46.5, \\\"precision_pass\\\": 81.3, \\\"recall_pass\\\": 86, \\\"majority_baseline\\\": 73, \\\"gap_vs_majority_pp\\\": 2.4, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"repo-level-cls-8b-seed123-conda-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ --dataloader_num_workers 0 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"266444\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cls-8b-seed123-conda-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:43:50.914Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/\\\", \\\"data_count\\\": 37338, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 45617.8, \\\"gpu_hours\\\": 12.67, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/\\\", \\\"best_model_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/best/\\\", \\\"final_train_loss\\\": 0.162, \\\"final_eval_loss\\\": 0.464, \\\"train_runtime_seconds\\\": 45210}}, \\\"cls4b-seed123-ckpt800-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3261669\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:16:22.098Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"eval_data\\\": \\\"test\\\", \\\"data_path\\\": \\\"repo-level-cls-test\\\", \\\"data_count\\\": 9784, \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_seed123_home/checkpoint-800\\\", \\\"wall_clock_seconds\\\": 1216.7, \\\"gpu_hours\\\": 0.34}}, \\\"cls8b-seed123-ckpt6633-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"346231\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633\\\", \\\"eval_data\\\": \\\"val@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 87.1, \\\"f1_macro\\\": 78.79, \\\"f1_fail\\\": 65.52, \\\"f1_pass\\\": 92.07, \\\"precision_fail\\\": 92.26, \\\"recall_fail\\\": 50.8, \\\"precision_pass\\\": 86.31, \\\"recall_pass\\\": 98.64, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.23, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-seed123-ckpt3000-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T15:33:50Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000\\\", \\\"eval_data\\\": \\\"test@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.6, \\\"f1_macro\\\": 78.38, \\\"f1_fail\\\": 65.89, \\\"f1_pass\\\": 90.87, \\\"precision_fail\\\": 91.65, \\\"recall_fail\\\": 51.44, \\\"precision_pass\\\": 84.52, \\\"recall_pass\\\": 98.26, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.64, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt3000-test8192-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"346590\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:59:04.721Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 443.8, \\\"gpu_hours\\\": 0.12}}, \\\"cls4b-v5-ckpt4400-test5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_test5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3244661\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-test5120-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:30:01.279Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 1752.2, \\\"gpu_hours\\\": 0.49}, \\\"metrics\\\": {\\\"accuracy\\\": 83.24, \\\"f1_macro\\\": 74.44, \\\"f1_fail\\\": 59.45, \\\"f1_pass\\\": 89.44, \\\"precision_fail\\\": 85.98, \\\"recall_fail\\\": 45.43, \\\"precision_pass\\\": 82.78, \\\"recall_pass\\\": 97.25, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.28, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-seed123-ckpt6400-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"343011\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:26:03.290Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1959.6, \\\"gpu_hours\\\": 0.54}, \\\"metrics\\\": {\\\"accuracy\\\": 87.48, \\\"f1_macro\\\": 79.66, \\\"f1_fail\\\": 67.04, \\\"f1_pass\\\": 92.27, \\\"precision_fail\\\": 91.81, \\\"recall_fail\\\": 52.8, \\\"precision_pass\\\": 86.78, \\\"recall_pass\\\": 98.5, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.6, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-seed123-ckpt6200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"343605\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:29:46.229Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1727.2, \\\"gpu_hours\\\": 0.48}, \\\"metrics\\\": {\\\"accuracy\\\": 87.52, \\\"f1_macro\\\": 79.26, \\\"f1_fail\\\": 66.16, \\\"f1_pass\\\": 92.35, \\\"precision_fail\\\": 95.63, \\\"recall_fail\\\": 50.58, \\\"precision_pass\\\": 86.33, \\\"recall_pass\\\": 99.27, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.64, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls4b-v5-val-sweep-ckpt4600\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3221945\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:42:23.647Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"wall_clock_seconds\\\": 10715.3, \\\"gpu_hours\\\": 2.98}, \\\"metrics\\\": {\\\"accuracy\\\": 90.07, \\\"f1_macro\\\": 85.04, \\\"f1_fail\\\": 76.37, \\\"f1_pass\\\": 93.71, \\\"precision_fail\\\": 89.65, \\\"recall_fail\\\": 66.52, \\\"precision_pass\\\": 90.16, \\\"recall_pass\\\": 97.56, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 14.19, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9335, \\\"n_truncated\\\": 234}}, \\\"cls8b-seed123-ckpt6600-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"340511\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:09.694Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2204.3, \\\"gpu_hours\\\": 0.61}, \\\"metrics\\\": {\\\"accuracy\\\": 87.23, \\\"f1_macro\\\": 79.02, \\\"f1_fail\\\": 65.9, \\\"f1_pass\\\": 92.14, \\\"precision_fail\\\": 92.6, \\\"recall_fail\\\": 51.15, \\\"precision_pass\\\": 86.4, \\\"recall_pass\\\": 98.7, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 11.36, \\\"unparseable_count\\\": 9, \\\"total_samples\\\": 9335}}, \\\"cls8b-s42-ckpt1600-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"339064\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:30:12.425Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"test@8192\\\", \\\"wall_clock_seconds\\\": 3328.2, \\\"gpu_hours\\\": 0.92}, \\\"metrics\\\": {\\\"accuracy\\\": 84.99, \\\"f1_macro\\\": 78.94, \\\"f1_fail\\\": 67.65, \\\"f1_pass\\\": 90.22, \\\"precision_fail\\\": 81.06, \\\"recall_fail\\\": 58.05, \\\"precision_pass\\\": 85.93, \\\"recall_pass\\\": 94.97, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.03, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls4b-v5-ckpt4600-test-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_test\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3238979\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4600-test-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T06:49:49.224Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"test split\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4600\\\", \\\"eval_data\\\": \\\"test\\\", \\\"wall_clock_seconds\\\": 2155.2, \\\"gpu_hours\\\": 0.6}, \\\"metrics\\\": {\\\"accuracy\\\": 83.63, \\\"f1_macro\\\": 75.63, \\\"f1_fail\\\": 61.67, \\\"f1_pass\\\": 89.59, \\\"precision_fail\\\": 84.03, \\\"recall_fail\\\": 48.72, \\\"precision_pass\\\": 83.55, \\\"recall_pass\\\": 96.57, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.67, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt1400-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192 --max_new_tokens 8\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"335070\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-test8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:32:38.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.47, \\\"f1_macro\\\": 78.9, \\\"f1_fail\\\": 67.13, \\\"f1_pass\\\": 90.67, \\\"precision_fail\\\": 86.43, \\\"recall_fail\\\": 54.88, \\\"precision_pass\\\": 85.27, \\\"recall_pass\\\": 96.81, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 12.51, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt1200-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"test@8192\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.84, \\\"f1_macro\\\": 77.47, \\\"f1_fail\\\": 65.49, \\\"f1_pass\\\": 89.45, \\\"precision_fail\\\": 77.52, \\\"recall_fail\\\": 56.69, \\\"precision_pass\\\": 85.4, \\\"recall_pass\\\": 93.91, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.89, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls8b-s42-ckpt800-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"eval_data\\\": \\\"swebench_test\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"log_path\\\": \\\"/tmp/eval_cls8b_ckpt800_test8192.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.53, \\\"f1_macro\\\": 78.97, \\\"f1_fail\\\": 69.17, \\\"f1_pass\\\": 88.77, \\\"precision_fail\\\": 70.07, \\\"recall_fail\\\": 68.29, \\\"precision_pass\\\": 88.36, \\\"recall_pass\\\": 89.18, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": 10.58, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784}}, \\\"cls4b-v5-val-sweep-ckpt4200\\\": {\\\"spec\\\": {\\\"command\\\": \\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4200 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4200_val5120\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4200\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"parent\\\": \\\"cls4b-v5-train\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 89.06, \\\"f1_macro\\\": 83.07, \\\"f1_fail\\\": 73, \\\"f1_pass\\\": 93.1, \\\"precision_fail\\\": 90.3, \\\"recall_fail\\\": 61.3, \\\"precision_pass\\\": 88.8, \\\"recall_pass\\\": 97.9}}, \\\"cls8b-s42-ckpt1600-val8192-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"parent\\\": \\\"cls8b-s42\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"val\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 8192, \\\"notes\\\": \\\"v2 resubmit: v1 failed due to network unreachable (no network_turbo). Fixed by using local model path + OFFLINE flags + network_turbo.\\\", \\\"log_path\\\": \\\"/tmp/eval_cls8b_ckpt1600_val8192_v2.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 86.75, \\\"f1_macro\\\": 78.94, \\\"f1_fail\\\": 66.12, \\\"f1_pass\\\": 91.76, \\\"precision_fail\\\": 86.28, \\\"precision_pass\\\": 86.83, \\\"recall_fail\\\": 53.6, \\\"recall_pass\\\": 97.29, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.87, \\\"unparseable\\\": 9, \\\"total\\\": 9335}}, \\\"cls8b-s42-ckpt1600-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"pid\\\": 324412, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-val8192-eval.log\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"cls8b-s42-ckpt1400-val8192-eval\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}}, \\\"cls4b-v5-val-sweep-ckpt4400-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v3\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3204975\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4400-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T02:08:34.304Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4469.9, \\\"gpu_hours\\\": 1.24}, \\\"metrics\\\": {\\\"accuracy\\\": 89.96, \\\"f1_macro\\\": 84.94, \\\"f1_fail\\\": 76.25, \\\"f1_pass\\\": 93.64, \\\"precision_fail\\\": 88.84, \\\"precision_pass\\\": 90.21, \\\"recall_fail\\\": 66.79, \\\"recall_pass\\\": 97.33, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 14.09, \\\"n_instances\\\": 9335, \\\"n_truncated\\\": 234, \\\"n_unparseable\\\": 0}}, \\\"cls8b-s42-ckpt1200-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"/tmp/eval_ckpt1200.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}}, \\\"cls8b-s42-ckpt1200-val8192-v3\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"accuracy\\\": 87.76, \\\"f1_macro\\\": 81.25, \\\"f1_fail\\\": 70.2, \\\"f1_pass\\\": 92.3, \\\"precision_fail\\\": 85, \\\"recall_fail\\\": 59.8, \\\"precision_pass\\\": 88.3, \\\"recall_pass\\\": 96.7, \\\"majority_baseline\\\": 75.9, \\\"gap_vs_majority\\\": 11.9, \\\"unparseable\\\": 9}}, \\\"cls8b-s42-ckpt1200-val8192-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316940\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200\\\", \\\"eval_data\\\": \\\"val@8192\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}}, \\\"cls8b-s42-ckpt1000-test8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"312975\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test8192-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"swebench test split\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 83.52, \\\"f1_macro\\\": 77.5, \\\"f1_fail\\\": 65.85, \\\"f1_pass\\\": 89.14, \\\"precision_fail\\\": 74.93, \\\"recall_fail\\\": 58.73, \\\"precision_pass\\\": 85.84, \\\"recall_pass\\\": 92.72, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority\\\": 10.56, \\\"unparseable_count\\\": 0, \\\"unparseable_rate\\\": 0, \\\"total_samples\\\": 9784, \\\"tp\\\": 6618, \\\"fp\\\": 1092, \\\"fn\\\": 520, \\\"tn\\\": 1554}}, \\\"cls8b-s42-ckpt1200-val8192\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"315834\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T02:06:09.563Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 99.2, \\\"gpu_hours\\\": 0.03}}, \\\"cls4b-v5-val-sweep-ckpt4400\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v2\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"val@5120\\\", \\\"parent\\\": \\\"cls4b-v5-train\\\"}}, \\\"cls4b-v5-ckpt4400-val5120-eval-v2\\\": {\\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4400\\\", \\\"log_path\\\": \\\"/tmp/eval_v2.log\\\", \\\"kill_reason\\\": \\\"Director ordered kill - second time stuck (7h no output), enable_thinking not properly disabled\\\"}}, \\\"cls4b-v5-ckpt4400-val5120-eval\\\": {\\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4400-val5120-eval.log\\\", \\\"checkpoint_path\\\": \\\"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\\\", \\\"kill_reason\\\": \\\"Director ordered kill - process stuck 16h, predictions stopped at 5824/9335 (62.4%), suspected Qwen3 thinking mode hang\\\", \\\"command\\\": \\\"killed before completion\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"/home/ubuntu/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/home/ubuntu/models/repo_cls_v5/checkpoint-4400\\\", \\\"eval_data\\\": \\\"swebench val split\\\"}, \\\"metrics\\\": {\\\"accuracy_partial_70pct\\\": 89.69, \\\"f1_macro_partial_70pct\\\": 84.61, \\\"samples_completed\\\": 6544, \\\"samples_total\\\": 9335}}, \\\"cls8b-s42-ckpt1000-val8192-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"310114\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:03:36.501Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"eval_data\\\": \\\"swebench val split\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000\\\", \\\"wall_clock_seconds\\\": 2045.2, \\\"gpu_hours\\\": 0.57}, \\\"metrics\\\": {\\\"accuracy\\\": 88.23, \\\"f1_macro\\\": 82.72, \\\"f1_fail\\\": 73, \\\"f1_pass\\\": 92.5, \\\"precision_fail\\\": 81.8, \\\"recall_fail\\\": 65.8, \\\"precision_pass\\\": 89.8, \\\"recall_pass\\\": 95.3, \\\"unparseable\\\": 9, \\\"total_instances\\\": 9335}}, \\\"cls8b-s42-ckpt800-val8192-eval\\\": {\\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt800-val8192-eval.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 84.5, \\\"f1_macro\\\": 79.2}}, \\\"cls4b-v5-ckpt4000-val5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split val --max_new_tokens 512 --max_seq_length 5120 --batch_size 16 --device cuda:0\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3186818\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"eval_data\\\": \\\"val@5120 9335 samples\\\", \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_v5/checkpoint-4000\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-val5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 89.84, \\\"f1_macro\\\": 84.25, \\\"f1_fail\\\": 74.85, \\\"f1_pass\\\": 93.64, \\\"precision_fail\\\": 92.95, \\\"recall_fail\\\": 62.66, \\\"precision_pass\\\": 89.24, \\\"recall_pass\\\": 98.49, \\\"unparseable\\\": 0, \\\"truncated\\\": 234, \\\"total\\\": 9335}}, \\\"cls4b-v5-ckpt600-val5120-eval\\\": {\\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --device cuda:0\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3179262\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"val split\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"eval_data\\\": \\\"val@5120 9335 samples\\\", \\\"checkpoint_path\\\": \\\"checkpoints_repo_cls_v5/checkpoint-600\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt600-val5120-eval.log\\\"}, \\\"metrics\\\": {\\\"accuracy\\\": 82.82, \\\"f1_macro\\\": 79.81, \\\"f1_fail\\\": 72.03, \\\"f1_pass\\\": 87.6, \\\"precision_fail\\\": 59.3, \\\"recall_fail\\\": 91.7, \\\"unparseable\\\": 0, \\\"total\\\": 9335}}, \\\"cls4b-v5-val5120-sweep-home\\\": {\\\"spec\\\": {\\\"command\\\": \\\"4B CLS v5 val@5120 sweep (ckpt-600/4000/4200/4400/4600)\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"data_path\\\": \\\"val set (9335 samples)\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-4B CLS v5 s42\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (sweep replaced by individual evals)\\\", \\\"log_path\\\": \\\"N/A\\\"}}, \\\"repo-level-cls-8b-conda\\\": {\\\"spec\\\": {\\\"hypothesis\\\": \\\"CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling effect。之前 8B 在 transformers 5.8.0 训练结果无效 (71.37%)。\\\", \\\"server\\\": \\\"westd-48478\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"learning_rate\\\": 5e-05, \\\"weight_decay\\\": 0.01, \\\"warmup_ratio\\\": 0.05, \\\"save_steps\\\": 200, \\\"eval_steps\\\": 200, \\\"save_total_limit\\\": 5, \\\"num_train_epochs\\\": 3, \\\"lora_rank\\\": 16, \\\"lora_alpha\\\": 32, \\\"batch_size\\\": 1, \\\"grad_accumulation\\\": 32, \\\"max_seq_length\\\": 2048, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log\\\", \\\"env\\\": \\\"conda base, transformers 4.57.6\\\", \\\"pid\\\": 185438, \\\"account\\\": \\\"root\\\", \\\"total_steps\\\": 6633, \\\"speed\\\": \\\"~8.3s/step\\\", \\\"estimated_hours\\\": 15.3, \\\"gpu_mem_used\\\": \\\"25751/32607 MiB\\\", \\\"tmux_session\\\": \\\"cls8b-conda\\\"}, \\\"metrics\\\": {\\\"val_8192\\\": {\\\"ckpt_200\\\": {\\\"accuracy\\\": 63.52, \\\"f1_macro\\\": 61.17, \\\"f1_fail\\\": 51.6, \\\"f1_pass\\\": 70.7, \\\"unparseable\\\": 9}, \\\"ckpt_400\\\": {\\\"accuracy\\\": 80.96}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 85}, \\\"best_acc\\\": \\\"ckpt_600\\\"}, \\\"val_5120\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 80.47, \\\"f1_macro\\\": 75.84}}, \\\"test_2048\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 84.52, \\\"f1_macro\\\": 80.89}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 78.51}}, \\\"test_8192\\\": {\\\"ckpt_400\\\": {\\\"accuracy\\\": 84.79, \\\"f1_macro\\\": 81.18, \\\"f1_fail\\\": 72.93, \\\"f1_pass\\\": 89.43, \\\"unparseable\\\": 0, \\\"total\\\": 9784}, \\\"ckpt_600\\\": {\\\"accuracy\\\": 79.05, \\\"f1_macro\\\": 75.12, \\\"f1_fail\\\": 65.24, \\\"f1_pass\\\": 85, \\\"unparseable\\\": 0, \\\"total\\\": 9784}}}}, \\\"cls8b-s42-ckpt200-val8192-eval-v2\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"297542\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T22:06:16.784Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"eval_data\\\": \\\"val set 9335 samples\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"val set\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\", \\\"wall_clock_seconds\\\": 1950.3, \\\"gpu_hours\\\": 0.54}, \\\"metrics\\\": {\\\"accuracy\\\": 63.52, \\\"f1_macro\\\": 61.17, \\\"f1_fail\\\": 51.6, \\\"f1_pass\\\": 70.7, \\\"unparseable\\\": 9, \\\"total\\\": 9335}}}, \\\"count\\\": 50, \\\"total\\\": 118, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4391}}\"}",
+      "numLines": 1,
+      "startLine": 0,
+      "totalLines": 1
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I don't see CWM baseline (rank=16) eval experiments specifically in the registry. The baseline CWM was probably trained with default rank=16 and its checkpoints could be in a non-obvious location. Let me search for CWM-specific experiments more aggressively.
+
+Actually, looking at the CWM seed directories on the server:
+- checkpoints_cwm_seed123 - CWM 4B seed 123
+- checkpoints_cwm_seed789 - CWM 4B seed 789
+
+These likely are the baseline rank=16 checkpoints (different seeds). The seed=42 baseline would be the primary one. 
+
+Now I'm checking whether there's a default checkpoints directory that might still exist, and looking at the eval script's arguments—it doesn't have a `--device` flag, only options for data directory, checkpoint path, model name, output file, batch size, sequence length, token generation, and prediction saving.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "5910c64d-2fbe-4357-af36-1f1fd417332d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUTHNRRoANZnRvmv3fbVom",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23849,
+      "cache_read_input_tokens": 52768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23849
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017GGjw5eVbufUQEZCn2XkCs`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"device\\|cuda\\|CUDA\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "6ba69e30-322f-4407-98fb-77bb6e1f326b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUTHNRRoANZnRvmv3fbVom",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23849,
+      "cache_read_input_tokens": 52768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23849
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T13:29:32.015Z_
+
+<details><summary>↩ Tool result · `toolu_017GGjw5eVbufUQEZCn2XkCs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "30788031-04b4-4576-847e-1ce742f7a345",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0122fhFLFLCMgHijhcs6mdUm`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b309bbf6-e6db-4b0e-82cd-3b60addd5fb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUTHNRRoANZnRvmv3fbVom",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23849,
+      "cache_read_input_tokens": 52768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23849
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T13:29:33.405Z_
+
+<details><summary>↩ Tool result · `toolu_0122fhFLFLCMgHijhcs6mdUm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best\\ncheckpoint-1434\\ncheckpoint-956\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "772761da-e554-4c78-87b3-281e4c616a24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"best\\\\ncheckpoint-1434\\\\ncheckpoint-956\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"best\\ncheckpoint-1434\\ncheckpoint-956\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KRGS1KPGighGSmMtS49LGD`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "filters": {
+    "exp_id": "cwm-baseline-eval"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "a02b9cd2-3cae-457e-b75d-3514f3b22bac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUTHNRRoANZnRvmv3fbVom",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23849,
+      "cache_read_input_tokens": 52768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23849
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T13:29:34.426Z_
+
+<details><summary>↩ Tool result · `toolu_01KRGS1KPGighGSmMtS49LGD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3843}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "9582a941-a0e0-4df2-9eb3-62b103f1d16d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3843}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3843}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for "device" and "cuda" in the eval script without using pipes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "d10c5b04-5ddb-4e44-8c5d-3bd40d00e3a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToSHKbz4mJtQiLk4KBNJ6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 76617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015aSkcuLyJ8CvWM4d9JZzXN`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"device\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "bde8c3e5-a28d-42c4-ab13-9f7657b3006c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToSHKbz4mJtQiLk4KBNJ6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 76617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T13:29:38.410Z_
+
+<details><summary>↩ Tool result · `toolu_015aSkcuLyJ8CvWM4d9JZzXN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"178:        input_ids = torch.tensor(padded, device=\\\"cuda\\\")\\n179:        attention_mask = torch.tensor(masks, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "23e8ba2d-49fe-4fa6-9121-56337c07ed94",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178:        input_ids = torch.tensor(padded, device=\\\\\\\"cuda\\\\\\\")\\\\n179:        attention_mask = torch.tensor(masks, device=\\\\\\\"cuda\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"178:        input_ids = torch.tensor(padded, device=\\\"cuda\\\")\\n179:        attention_mask = torch.tensor(masks, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018VbRU9kVYHgVMGss7qz1AZ`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"cuda\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "e8490429-8034-48af-8a6e-6727f1a9a8ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToSHKbz4mJtQiLk4KBNJ6j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 76617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T13:29:39.036Z_
+
+<details><summary>↩ Tool result · `toolu_018VbRU9kVYHgVMGss7qz1AZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"139:    model = model.cuda()\\n178:        input_ids = torch.tensor(padded, device=\\\"cuda\\\")\\n179:        attention_mask = torch.tensor(masks, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "50d44d34-2252-4cd3-b1b9-907e83f10f5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"139:    model = model.cuda()\\\\n178:        input_ids = torch.tensor(padded, device=\\\\\\\"cuda\\\\\\\")\\\\n179:        attention_mask = torch.tensor(masks, device=\\\\\\\"cuda\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"139:    model = model.cuda()\\n178:        input_ids = torch.tensor(padded, device=\\\"cuda\\\")\\n179:        attention_mask = torch.tensor(masks, device=\\\"cuda\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval script uses `model.cuda()` on line 139 and hardcodes `device="cuda"` on lines 178-179. No --device argument. So we need to use CUDA_VISIBLE_DEVICES to control which GPU it uses.
+
+Now I have all the information I need. Let me also check if there's a CWM baseline seed=42 training experiment with rank=16 in the registry.
+
+Actually, looking at the checkpoint directories:
+- checkpoints_cwm_seed123: has best, checkpoint-1434, checkpoint-956 → this is a completed CWM baseline with seed 123, 3 epochs, 1434 steps total
+
+
+- checkpoints_cwm_seed789: probably similar structure
+- checkpoints_cwm_rank32: currently training, has checkpoint-478, checkpoint-956 (in progress)
+
+The registry mentions "cwm-rank32-ablation" as a LoRA rank=32 ablation versus the baseline rank=16, so the default must be 16. I need to find where the seed=42 baseline checkpoints are stored, since the training command for rank=32 explicitly sets `--lora_rank 32`.
+
+Let me check what the default training script uses for LoRA rank.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "075f3168-85ad-4272-881a-5430b35ed92d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3gQtuHMKG91RLpxGk1wnd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 77693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MvTuCRBPrPBFCNqKejr5ez`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"lora_rank\" /home/sonny/exec-sim-repair-verifier/train_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "fbe21137-953c-4baf-9db3-8ea0ff041fb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3gQtuHMKG91RLpxGk1wnd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 77693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T13:29:50.765Z_
+
+<details><summary>↩ Tool result · `toolu_01MvTuCRBPrPBFCNqKejr5ez`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"118:    p.add_argument(\\\"--lora_rank\\\", type=int, default=16)\\n165:        r=args.lora_rank,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "2abe4d5b-2d73-4b99-86b7-22b99bdca621",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"118:    p.add_argument(\\\\\\\"--lora_rank\\\\\\\", type=int, default=16)\\\\n165:        r=args.lora_rank,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"118:    p.add_argument(\\\"--lora_rank\\\", type=int, default=16)\\n165:        r=args.lora_rank,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015sNg4Zee2MdHW5C8f1Mq6X`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -maxdepth 2 -name \"eval_cwm*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3f21f2c0-4201-4ae0-90a3-1ad9ba2091e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3gQtuHMKG91RLpxGk1wnd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 77693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T13:29:51.300Z_
+
+<details><summary>↩ Tool result · `toolu_015sNg4Zee2MdHW5C8f1Mq6X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "bb07abe3-2065-461f-90cb-62dc01c5506f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check one of the existing eval result files (like eval_cwm_seed123.json) to see the exact parameters used for a baseline CWM eval, and also check if there was a seed=42 eval.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c6fd8233-068d-4028-ad09-eaec8a7ff8aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1SjtGd2HmW6MhG8hPPDWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 78296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gzMNrrw6t3339V9pws3ZT`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -30 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "5997efae-5c98-4e67-b596-98bb800a9386",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1SjtGd2HmW6MhG8hPPDWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 78296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T13:29:56.310Z_
+
+<details><summary>↩ Tool result · `toolu_019gzMNrrw6t3339V9pws3ZT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.04,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.44,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.01,\\n      \\\"recall\\\": 82.41,\\n      \\\"f1\\\": 86.95,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 172,\\n    \\\"tp\\\": 806\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "a2fd0567-d9d2-4901-a27d-d107d010e0d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.2,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.45,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 83.04,\\\\n      \\\\\\\"recall\\\\\\\": 92.32,\\\\n      \\\\\\\"f1\\\\\\\": 87.44,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 92.01,\\\\n      \\\\\\\"recall\\\\\\\": 82.41,\\\\n      \\\\\\\"f1\\\\\\\": 86.95,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 842,\\\\n    \\\\\\\"fp\\\\\\\": 70,\\\\n    \\\\\\\"fn\\\\\\\": 172,\\\\n    \\\\\\\"tp\\\\\\\": 806\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.04,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.44,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.01,\\n      \\\"recall\\\": 82.41,\\n      \\\"f1\\\": 86.95,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 172,\\n    \\\"tp\\\": 806\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CAbXnWuDkMLCnxXmL5xagR`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -maxdepth 2 -name \"eval_cwm*seed42*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "44b0c7dd-5bdf-4231-a08b-16cd070582ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1SjtGd2HmW6MhG8hPPDWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 78296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T13:29:56.854Z_
+
+<details><summary>↩ Tool result · `toolu_01CAbXnWuDkMLCnxXmL5xagR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "4c4601be-67a7-4ea4-bc06-3affa5695eb2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No seed=42 eval result exists. Let me check the rest of the eval_cwm_seed123.json to see the config (checkpoint path, model, etc.) used:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "bf847134-a1ea-4916-97b3-45c3ad7e05f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRSewRv23CsQsqLZns3WCE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 79472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MywffXydB3rkQnv6QnJvtr`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -30 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b5a82327-8dae-4f43-8dc7-be4dd2057b39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRSewRv23CsQsqLZns3WCE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 79472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T13:30:01.154Z_
+
+<details><summary>↩ Tool result · `toolu_01MywffXydB3rkQnv6QnJvtr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"exact_match_rate\\\": 44.44,\\n        \\\"pass_fail_accuracy\\\": 88.89\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 3,\\n        \\\"exact_match_rate\\\": 42.86,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 28.2,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "78ba8518-c039-4970-b198-f1dafe7b8a20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"exact_match_rate\\\\\\\": 44.44,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 88.89\\\\n      },\\\\n      \\\\\\\"RecursionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 7,\\\\n        \\\\\\\"exact_match\\\\\\\": 3,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 42.86,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"ValueError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 5,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 40.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"OverflowError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 3,\\\\n        \\\\\\\"exact_match\\\\\\\": 0,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 0.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"generation_length\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 28.2,\\\\n      \\\\\\\"median\\\\\\\": 33.0,\\\\n      \\\\\\\"max\\\\\\\": 103\\\\n    }\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"exact_match_rate\\\": 44.44,\\n        \\\"pass_fail_accuracy\\\": 88.89\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 3,\\n        \\\"exact_match_rate\\\": 42.86,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 28.2,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PkmfY4KfVT88vBzisvMxXw`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"checkpoint\\|model_name\\|data_dir\\|batch_size\\|max_seq\\|max_new\" /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "91dec8b9-a04a-42d1-8ce6-d3036f556580",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRSewRv23CsQsqLZns3WCE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 79472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 909
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T13:30:01.940Z_
+
+<details><summary>↩ Tool result · `toolu_01PkmfY4KfVT88vBzisvMxXw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1f5bf727-0692-4036-b837-f686a6495c89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check if there's a config section in the JSON file that tells us the exact command used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c387ae52-713a-4d79-be4c-5bf334dd0a86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDqDRSP2MviQKtVcUE2DCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 80381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EtdVSC4K2d85ab1gAUyPJZ`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep \"checkpoint\" /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "4c56eedd-611b-4081-a411-42e5fc22bed9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDqDRSP2MviQKtVcUE2DCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 80381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T13:30:10.303Z_
+
+<details><summary>↩ Tool result · `toolu_01EtdVSC4K2d85ab1gAUyPJZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "d67ccba7-6c6a-4386-a2c8-7560f896cbb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012FQTvtL6c4UrP2ecj2NB4P`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep \"config\" /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "3028889f-4c3b-4495-bb5a-f0b42dd7d905",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDqDRSP2MviQKtVcUE2DCV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 80381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T13:30:11.100Z_
+
+<details><summary>↩ Tool result · `toolu_012FQTvtL6c4UrP2ecj2NB4P`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "b7a04d4c-afaf-4ff4-ba3c-bb5c344b4a5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSON doesn't have checkpoint or config info stored in it. Let me look at the eval_cwm_seed123_with_preds.json which has predictions and metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "f427cb7f-ff5e-44b4-875c-3638d3ad0915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PVGgxLGPGCP6SsEFYKrMJ8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 508,
+      "cache_read_input_tokens": 81315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014fKERcY4t9NsV9K5bxshnu`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -10 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "742b8e9e-f7ed-4a2a-90b8-dafc99a39d62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PVGgxLGPGCP6SsEFYKrMJ8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 508,
+      "cache_read_input_tokens": 81315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 508
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T13:30:14.968Z_
+
+<details><summary>↩ Tool result · `toolu_014fKERcY4t9NsV9K5bxshnu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1cade229-5e59-4606-bf7b-814d8ec1a500",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.2,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.45,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the predictions file to get the metadata with the model and checkpoint info:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "9b827c05-399d-4712-95d6-13152130f856",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKgYvJaYc6zFmincHzcHEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 81823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VJa5ENRKFmdje6xqVLD7NS`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -10 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "703cdc01-9690-489f-929d-725c7d9ca919",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKgYvJaYc6zFmincHzcHEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 81823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-15T13:30:20.888Z_
+
+<details><summary>↩ Tool result · `toolu_01VJa5ENRKFmdje6xqVLD7NS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/root/.cache/huggingface/hub/Qwen/Qwen3-4B\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm_seed123/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "903a8e1c-1320-4578-959a-49cbdb544f4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/huggingface/hub/Qwen/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints_cwm_seed123/best\\\\\\\",\\\\n    \\\\\\\"test_set_size\\\\\\\": 1890\\\\n  },\\\\n  \\\\\\\"predictions\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/root/.cache/huggingface/hub/Qwen/Qwen3-4B\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm_seed123/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me summarize:
+
+**CWM baseline eval (seed 123) was run with:**
+- `--checkpoint_dir checkpoints_cwm_seed123/best`
+- `--model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B` (or probably `Qwen/Qwen3-4B` or local path)
+- `--data_dir data/` 
+- Test set: cwm_test.jsonl (1890 samples)
+- Default args: batch_size=16, max_seq_length=2048, max_new_tokens=64, --save_predictions
+
+
+- For the rank=32 eval, I'll use the checkpoint from `checkpoints_cwm_rank32/` (which is still training but will have a final checkpoint at step 1434), the cached model at `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`, and the same evaluation parameters.
+- The eval script hardcodes `model.cuda()` without a device argument, so I'll need to set `CUDA_VISIBLE_DEVICES=0` to run it—though since training is currently using GPU 0, I should wait for that to finish or use a different GPU.
+- Based on the pattern from previous training runs, the final checkpoint will be `checkpoint-1434` along with a `best` directory once training completes its 1434 total steps.
+- I'm constructing the evaluation command that will run on GPU 0 after training finishes, pointing to the best checkpoint in the rank=32 directory.
+
+Writing the eval script...
+
+Now I'm realizing the `--output` parameter takes a file path rather than a directory, so I need to create the parent directory structure first before the script runs. Let me adjust the command to handle that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c990c373-0a44-4402-9a4b-3e627b49e0ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFMkcbFCwwiVmB1PYVAP3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 82230,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019s96hegeuAvVDscyaHY2Dg`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"cwm_test\\|data_dir\\|test_path\\|test_file\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "ab78186f-648f-4a1d-ab13-f7240ae3221b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFMkcbFCwwiVmB1PYVAP3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 82230,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T13:30:44.985Z_
+
+<details><summary>↩ Tool result · `toolu_019s96hegeuAvVDscyaHY2Dg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "60b76d47-0488-49b2-9d23-590baed25f22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VGnbTBd47qqhBDNsh396jw`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"cwm_test\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "96f0a3f4-9c66-459b-88b5-746743e26a76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rxnz1avGd4zDXFz8kpZ8hX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1285,
+      "cache_read_input_tokens": 82630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1285
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JfnEffEbXnh9fgf9xGFowq`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"data_dir\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "6332d3ea-2ad1-45ce-84c6-aef33da9093d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rxnz1avGd4zDXFz8kpZ8hX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1285,
+      "cache_read_input_tokens": 82630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1285
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T13:30:51.080Z_
+
+<details><summary>↩ Tool result · `toolu_01VGnbTBd47qqhBDNsh396jw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\"cwm_test.jsonl\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "21506099-0610-44c3-9a8a-e712c02c9dec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\\\\\"cwm_test.jsonl\\\\\\\"))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\"cwm_test.jsonl\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T13:30:51.626Z_
+
+<details><summary>↩ Tool result · `toolu_01JfnEffEbXnh9fgf9xGFowq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n106:    p.add_argument(\\\"--data_dir\\\", required=True)\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\"cwm_test.jsonl\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "a129cc54-176a-49a0-a91f-e4dd23bbc39c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\\\n106:    p.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True)\\\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\\\\\"cwm_test.jsonl\\\\\\\"))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n106:    p.add_argument(\\\"--data_dir\\\", required=True)\\n141:    test_data = load_jsonl(os.path.join(args.data_dir, \\\"cwm_test.jsonl\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything I need. Let me write the eval command script.
+
+Summary:
+- eval_cwm_baseline.py reads `data_dir/cwm_test.jsonl` (1890 samples)
+- Loads LoRA checkpoint from `checkpoint_dir` merged with base model `model_name`
+- No `--device` arg, uses `model.cuda()` directly, so CUDA_VISIBLE_DEVICES needed
+- Default batch_size=16, max_seq_length=2048, max_new_tokens=64
+
+The existing seed123 eval used `checkpoints_cwm_seed123/best` as checkpoint. For rank=32, training completes at step 1434, so checkpoint will be at `checkpoints_cwm_rank32/best` or `checkpoints_cwm_rank32/checkpoint-1434`.
+
+
+I'll go with `checkpoints_cwm_rank32/best` to keep it consistent with the baseline pattern, and I can note the fallback option if needed.
+
+Writing the evaluation script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "027ae111-acfc-4ef9-97a5-6e77087125ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XmP4AaeJoLBCPsz67GhnW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 83915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+已收集全部信息。写 eval 命令脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "172bdab0-9e7f-4f08-8791-f29c7d59d4f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XmP4AaeJoLBCPsz67GhnW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 83915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Ng9bMpqXEbqBKeC7Y5F5fv`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "dfa9e446-f187-4f73-93b8-1b0edd489803",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XmP4AaeJoLBCPsz67GhnW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 83915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T13:31:02.152Z_
+
+<details><summary>↩ Tool result · `toolu_01Ng9bMpqXEbqBKeC7Y5F5fv`</summary>
+
+```text
+4b_8b_cls_cwm_paired_bootstrap_corrected.json
+4b_eval_hang_analysis.md
+_project
+all_experiments_parsed.json
+analysis_5paired_bootstrap.py
+block-corr-empirical
+block_correlation_analysis.py
+cls4b-v5-ckpt4400-val5120-eval
+cls8b_seed123_ckpt3000_val_eval_pending.md
+comprehensive_results_summary.md
+cwm8b_seed123_analysis.txt
+cwm_error_mode_analysis.md
+cwm_v6_diagnosis.md
+cwm_v6_health_check.md
+d008_eval_commands.md
+d076_val_unparseable_root_cause.md
+d077_fix_report.md
+diag_cls_v4.md
+diag_cwm_v10.md
+diagnosis_cwm_v12_cls_8b.md
+dream_reports
+error_analysis_data.md
+error_overlap_matched_seed.json
+eval_pipeline_prep.md
+eval_readiness_report.md
+eval_repo_cls.py
+eval_repo_cls_v2.py
+eval_status_check_20260514.md
+extract_predictions_generic.py
+figures
+manifest.yaml
+multi_seed_test_curves.json
+mutation_type_accuracy.csv
+mvp-a-oracle-sim
+mvp-b-data-prep
+oracle-f2p-stratified
+p2p-regression-rate
+paper_materials.md
+parse_all_experiments.py
+progress_check_20260514.md
+relaxed_matching_results.csv
+repo_8b_training_plan.md
+repo_level_failure_diagnosis.md
+review_issues.yaml
+review_reports
+run_8b_eval.sh
+run_val_sweep.sh
+seed123_launch_configs.md
+seed123_launch_plan.md
+swebench_pipeline_design.md
+tost_multi_margin.csv
+training_progress_20260512.md
+training_progress_check_20260514.md
+training_status_20260515.md
+val_sweep_compilation.md
+val_test_distribution_analysis.md
+val_truncation_label_bias_analysis.md
+westd_48478_readiness.md
+westd_status_loop14.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "ea19d299-7e9e-4dae-9d0a-86e36b2e4a73",
+  "tool_use_result": {
+    "stdout": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nblock-corr-empirical\nblock_correlation_analysis.py\ncls4b-v5-ckpt4400-val5120-eval\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncomprehensive_results_summary.md\ncwm8b_seed123_analysis.txt\ncwm_error_mode_analysis.md\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\nd076_val_unparseable_root_cause.md\nd077_fix_report.md\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndiagnosis_cwm_v12_cls_8b.md\ndream_reports\nerror_analysis_data.md\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\neval_repo_cls.py\neval_repo_cls_v2.py\neval_status_check_20260514.md\nextract_predictions_generic.py\nfigures\nmanifest.yaml\nmulti_seed_test_curves.json\nmutation_type_accuracy.csv\nmvp-a-oracle-sim\nmvp-b-data-prep\noracle-f2p-stratified\np2p-regression-rate\npaper_materials.md\nparse_all_experiments.py\nprogress_check_20260514.md\nrelaxed_matching_results.csv\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nreview_issues.yaml\nreview_reports\nrun_8b_eval.sh\nrun_val_sweep.sh\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\ntost_multi_margin.csv\ntraining_progress_20260512.md\ntraining_progress_check_20260514.md\ntraining_status_20260515.md\nval_sweep_compilation.md\nval_test_distribution_analysis.md\nval_truncation_label_bias_analysis.md\nwestd_48478_readiness.md\nwestd_status_loop14.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01VjXy9kDj3qixw8EtCJW6bL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_rank32_eval_command.sh",
+  "content": "#!/bin/bash\n# CWM rank=32 ablation — function-level eval on full test set\n# Matches rank=16 baseline eval parameters exactly (batch_size=16, max_seq=2048, max_new=64)\n# Run after training completes (1434/1434 steps)\n#\n# Baseline reference: eval_cwm_seed123.json → acc=87.2%, f1_macro=87.2%\n#   command: python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed123/best\n#            --model_name Qwen/Qwen3-4B --save_predictions (all other args default)\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\ncd /home/sonny/exec-sim-repair-verifier\n\n# 创建输出目录\nmkdir -p eval_results/cwm_rank32_eval\n\n# GPU 0 训练完成后释放，直接使用\nCUDA_VISIBLE_DEVICES=0 python3 eval_cwm_baseline.py \\\n    --data_dir data/ \\\n    --checkpoint_dir checkpoints_cwm_rank32/best \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n    --output eval_results/cwm_rank32_eval/eval_cwm_rank32_results.json \\\n    --batch_size 16 \\\n    --max_seq_length 2048 \\\n    --max_new_tokens 64 \\\n    --save_predictions\n\n# 参数说明:\n#   --data_dir data/               → 读取 data/cwm_test.jsonl (1890 samples, function-level)\n#   --checkpoint_dir ...rank32/best → 训练自动保存的最优 checkpoint\n#   --model_name                   → Qwen3-4B 本地路径 (base model for LoRA merge)\n#   --output                       → 结果 JSON 输出路径\n#   --batch_size 16                → 与 baseline 一致\n#   --max_seq_length 2048          → 与 baseline 一致\n#   --max_new_tokens 64            → 与 baseline 一致\n#   --save_predictions             → 保存逐条预测 (用于 error analysis)\n#\n# 如果 best/ 不存在，改用最后一个 checkpoint:\n#   --checkpoint_dir checkpoints_cwm_rank32/checkpoint-1434\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "03cdb9fc-cf1f-43d8-9f44-6f55e9fa2e32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWrbGfkUKyoC893V5XF9U8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 946,
+      "cache_read_input_tokens": 84643,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 946
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-15T13:31:17.614Z_
+
+<details><summary>↩ Tool result · `toolu_01VjXy9kDj3qixw8EtCJW6bL`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_rank32_eval_command.sh
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "1d106445-beed-4daf-8357-842425190b21",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_rank32_eval_command.sh",
+    "content": "#!/bin/bash\n# CWM rank=32 ablation — function-level eval on full test set\n# Matches rank=16 baseline eval parameters exactly (batch_size=16, max_seq=2048, max_new=64)\n# Run after training completes (1434/1434 steps)\n#\n# Baseline reference: eval_cwm_seed123.json → acc=87.2%, f1_macro=87.2%\n#   command: python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed123/best\n#            --model_name Qwen/Qwen3-4B --save_predictions (all other args default)\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\ncd /home/sonny/exec-sim-repair-verifier\n\n# 创建输出目录\nmkdir -p eval_results/cwm_rank32_eval\n\n# GPU 0 训练完成后释放，直接使用\nCUDA_VISIBLE_DEVICES=0 python3 eval_cwm_baseline.py \\\n    --data_dir data/ \\\n    --checkpoint_dir checkpoints_cwm_rank32/best \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n    --output eval_results/cwm_rank32_eval/eval_cwm_rank32_results.json \\\n    --batch_size 16 \\\n    --max_seq_length 2048 \\\n    --max_new_tokens 64 \\\n    --save_predictions\n\n# 参数说明:\n#   --data_dir data/               → 读取 data/cwm_test.jsonl (1890 samples, function-level)\n#   --checkpoint_dir ...rank32/best → 训练自动保存的最优 checkpoint\n#   --model_name                   → Qwen3-4B 本地路径 (base model for LoRA merge)\n#   --output                       → 结果 JSON 输出路径\n#   --batch_size 16                → 与 baseline 一致\n#   --max_seq_length 2048          → 与 baseline 一致\n#   --max_new_tokens 64            → 与 baseline 一致\n#   --save_predictions             → 保存逐条预测 (用于 error analysis)\n#\n# 如果 best/ 不存在，改用最后一个 checkpoint:\n#   --checkpoint_dir checkpoints_cwm_rank32/checkpoint-1434\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_014fuqkzpMhax2hJJBbowRCy`</summary>
+
+```json
+{
+  "name": "cwm-rank32-eval-command",
+  "type": "intermediate",
+  "description": "CWM rank=32 ablation eval command script. Matches rank=16 baseline parameters (batch_size=16, max_seq=2048, max_new=64, full test set 1890 samples). Ready to submit after training completes.",
+  "project": "exec-sim-repair-verifier",
+  "exp_id": "cwm-rank32-ablation-v2",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_rank32_eval_command.sh",
+  "tags": [
+    "eval",
+    "cwm",
+    "rank-ablation",
+    "ready-to-submit"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "7e47e79a-9dcc-417c-ac52-047bbab20c3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PAykQqmZ9UbzXf9LrwPEk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 85589,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-15T13:31:24.244Z_
+
+<details><summary>↩ Tool result · `toolu_014fuqkzpMhax2hJJBbowRCy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_0cace2\", \"name\": \"cwm-rank32-eval-command\", \"type\": \"intermediate\", \"description\": \"CWM rank=32 ablation eval command script. Matches rank=16 baseline parameters (batch_size=16, max_seq=2048, max_new=64, full test set 1890 samples). Ready to submit after training completes.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/cwm-rank32-ablation-v2/intermediate/cwm_rank32_eval_command.sh\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": \"cwm-rank32-ablation-v2\", \"skill\": \"\", \"created_at\": \"2026-05-15T13:31:24.101467+00:00\", \"tags\": [\"eval\", \"cwm\", \"rank-ablation\", \"ready-to-submit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "5cec1a34-3499-4c86-b357-b86480acf633",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_0cace2\\\", \\\"name\\\": \\\"cwm-rank32-eval-command\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"CWM rank=32 ablation eval command script. Matches rank=16 baseline parameters (batch_size=16, max_seq=2048, max_new=64, full test set 1890 samples). Ready to submit after training completes.\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/cwm-rank32-ablation-v2/intermediate/cwm_rank32_eval_command.sh\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": \\\"cwm-rank32-ablation-v2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T13:31:24.101467+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"cwm\\\", \\\"rank-ablation\\\", \\\"ready-to-submit\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_0cace2\", \"name\": \"cwm-rank32-eval-command\", \"type\": \"intermediate\", \"description\": \"CWM rank=32 ablation eval command script. Matches rank=16 baseline parameters (batch_size=16, max_seq=2048, max_new=64, full test set 1890 samples). Ready to submit after training completes.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/cwm-rank32-ablation-v2/intermediate/cwm_rank32_eval_command.sh\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": \"cwm-rank32-ablation-v2\", \"skill\": \"\", \"created_at\": \"2026-05-15T13:31:24.101467+00:00\", \"tags\": [\"eval\", \"cwm\", \"rank-ablation\", \"ready-to-submit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+完成。eval 命令已写入 `artifacts/cwm_rank32_eval_command.sh` 并注册。
+
+关键信息：
+- **eval 脚本**: `eval_cwm_baseline.py`，读取 `data/cwm_test.jsonl`（1890 samples，function-level）
+- **参数与 baseline 一致**: `batch_size=16, max_seq_length=2048, max_new_tokens=64, --save_predictions`
+- **checkpoint**: `checkpoints_cwm_rank32/best`（训练完成后自动生成，备选 `checkpoint-1434`）
+- **输出**: `eval_results/cwm_rank32_eval/eval_cwm_rank32_results.json`
+- **GPU**: `CUDA_VISIBLE_DEVICES=0`（训练完成释放后可用）
+- eval 脚本无 `--device` 参数，用 `model.cuda()` 硬编码，需通过 `CUDA_VISIBLE_DEVICES` 控制
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "uuid": "c664fded-240b-4bb2-a87e-2892d08ef9f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FFR6eDkaagh1kKPSFGmAS2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 86408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 114_
+
+完成。eval 命令已写入 `artifacts/cwm_rank32_eval_command.sh` 并注册。
+
+关键信息：
+- **eval 脚本**: `eval_cwm_baseline.py`，读取 `data/cwm_test.jsonl`（1890 samples，function-level）
+- **参数与 baseline 一致**: `batch_size=16, max_seq_length=2048, max_new_tokens=64, --save_predictions`
+- **checkpoint**: `checkpoints_cwm_rank32/best`（训练完成后自动生成，备选 `checkpoint-1434`）
+- **输出**: `eval_results/cwm_rank32_eval/eval_cwm_rank32_results.json`
+- **GPU**: `CUDA_VISIBLE_DEVICES=0`（训练完成释放后可用）
+- eval 脚本无 `--device` 参数，用 `model.cuda()` 硬编码，需通过 `CUDA_VISIBLE_DEVICES` 控制
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 217593,
+  "duration_api_ms": 212176,
+  "num_turns": 45,
+  "stop_reason": "end_turn",
+  "session_id": "9bd7d334-62db-4941-a113-39bb90b2f9e8",
+  "total_cost_usd": 1.4095262500000003,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 75221,
+    "cache_read_input_tokens": 1371442,
+    "output_tokens": 10079,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 75221,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 270,
+        "cache_read_input_tokens": 86408,
+        "cache_creation_input_tokens": 654,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 654
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1464,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001574,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 10079,
+      "cacheReadInputTokens": 1371442,
+      "cacheCreationInputTokens": 75221,
+      "webSearchRequests": 0,
+      "costUSD": 1.4079522500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8020cfed-b397-485b-80e0-ec94bca4629c"
+}
+```
+
+</details>
+
+---

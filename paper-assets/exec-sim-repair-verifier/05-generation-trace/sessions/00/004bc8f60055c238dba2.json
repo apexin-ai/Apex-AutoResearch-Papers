@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "004bc8f60055c238dba2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh training progress check loop5",
+  "task_key": "worker_ssh_training-progress-check-loop5_20260512T223128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training-progress-check-loop5_20260512T223128_result.json",
+    "occurrence": 1,
+    "bytes": 1902,
+    "sha256": "5470f0281dfc2f61cc9ba135b052753a53710ab78be73402c3ff835e3f8fc202"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have complete data. Here's the summary:\n\n---\n\n## 实验 1: repo-level-cls-v4 (home-1x5090)\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **200 / 6,633** (3.0%) |\n| **已用时间** | ~36 min |\n| **训练速度** | ~6.89 s/step |\n| **每次 eval 耗时** | 776.7s (每 200 步一次) |\n| **预估总时长** | ~19.8h (训练 12.7h + eval 33次×12.9min=7.1h) |\n| **预估剩余** | **~19.2h** |\n| **Checkpoint** | 目录为空 (step 200 eval 刚完成，checkpoint 正在写入) |\n| **磁盘** | 4KB (尚无 checkpoint 文件) |\n\n**训练 loss 趋势**:\n- step 50: loss=80.21, grad_norm=195.3\n- step 100: loss=2.18, grad_norm=62.2\n- step 150: loss=1.36, grad_norm=58.0\n- step 200: loss=1.42, grad_norm=17.4\n\n**Eval**: eval_loss=**0.0701** (step 200, epoch 0.09)\n\n---\n\n## 实验 2: repo-level-cwm-v9 (seetacloud-westd-4x5090)\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **200 / 6,633** (3.0%), 正在做 step 200 的 eval (28%) |\n| **已用时间** | ~48 min |\n| **训练速度** | ~7.88 s/step |\n| **每次 eval 耗时** | 730s (每 100 步一次) |\n| **预估总时长** | ~27.9h (训练 14.5h + eval 66次×12.2min=13.4h) |\n| **预估剩余** | **~27.2h** |\n| **Checkpoint** | checkpoint-100 (136MB) |\n| **磁盘** | 136MB |\n\n**训练 loss 趋势**:\n- step 50: loss=28.20\n- step 100: loss=16.35\n- step 150: loss=11.20\n- step 200: loss=7.73\n\n**Eval**: eval_loss=**0.4337** (step 100, epoch 0.05)\n\n---\n\n## 异常与注意事项\n\n1. **实验 2 eval 开销过大**: eval_steps=100 导致 eval 总时间占 48% (13.4h/27.9h)。如果改成 eval_steps=200，总时间可降至 ~21h，节省 ~7 小时。\n2. **实验 1 checkpoint 目录为空**: step 200 eval 刚完成，checkpoint 应正在写入中。如果下次检查仍为空则需排查。\n3. **两个实验 loss 都在正常下降**，无训练异常信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-progress-check-loop5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc494cea2e2e12a72c7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cls home checkpoint provenance",
+  "task_key": "worker_check_cls-home-checkpoint-provenance_20260514T063058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cls-home-checkpoint-provenance_20260514T063058_result.json",
+    "occurrence": 1,
+    "bytes": 2969,
+    "sha256": "50d7b25b96bf3d7f61f7a14ef827a40f672e49c1645aaad70513f49158aac770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部关键信息已收集。logging_dir 显示 home 训练于 May 12 14:58:01 启动。以下是完整报告。\n\n---\n\n## 调查报告：checkpoints_repo_cls_home/ 中 3 个 checkpoint 的来源\n\n### 1. 文件时间戳\n\n| Checkpoint | 时间戳 | Global Step | Epoch |\n|---|---|---|---|\n| checkpoint-200 | May 12 15:34 | 200 | 0.090 |\n| checkpoint-2400 | May 12 22:15 | 2400 | 1.085 |\n| checkpoint-2600 | May 12 22:51 | 2600 | 1.176 |\n\n### 2. 来源推断\n\n**这 3 个 checkpoint 来自同一次连续训练**，依据：\n- log_history 在每个 checkpoint 中累积（后者包含前者的全部训练日志，且数值完全一致）\n- logging_dir 中的时间戳表明训练于 **May 12 14:58:01** 启动\n- run_name = `repo-cls-qwen3-4b-lora-home`\n- `save_total_limit=3`，所以只保留了 3 个 checkpoint（checkpoint-200 作为 best_model 被保留，checkpoint-2400 和 checkpoint-2600 是最近的两个）\n- 训练在 step 2600 后被中止或仍在运行时被 kill（max_steps=6633 远未完成）\n\n**与 registry 记录的关系**：registry 的 `repo-level-cls-home` 被记录为 May 12 kill（687 秒，零 checkpoint）。这次训练显然是另一次独立运行——它从 14:58 运行到至少 22:51（近 8 小时），且 `report_to=[]`（未接入 wandb），说明不是通过标准实验管理流程启动的。\n\n### 3. 环境版本\n\n| | home (这3个) | seed123 | v5 |\n|---|---|---|---|\n| PEFT | **0.19.1** | **0.19.1** | **0.14.0** |\n| transformers | 4.57.6 (当前环境) | 4.57.6 (当前环境) | wandb 记录 5.8.0，但 training_args schema 与 home 完全一致(132 key)，存疑 |\n| 当前服务器环境 | transformers==4.57.6, peft==0.19.1 | | |\n\n### 4. 训练超参差异（关键）\n\n| 参数 | home (这3个) | seed123 | v5 |\n|---|---|---|---|\n| **learning_rate** | **0.0002** | 5e-05 | 5e-05 |\n| **warmup_ratio** | **0.1** | 0.05 | 0.05 |\n| **weight_decay** | **0.0** | — | 0.01 |\n| seed | 42 | 123 | 42 |\n| save_total_limit | 3 | — | 5 |\n| report_to | [] (无) | — | wandb |\n\nlr 是 seed123/v5 的 **4 倍**，warmup 是 **2 倍**，且无 weight_decay。\n\n### 5. LoRA 配置\n\n三者完全相同：r=16, alpha=32, dropout=0.05, target=q/k/v/o_proj, base_model=Qwen/Qwen3-4B, task=CAUSAL_LM。权重格式上是兼容的。\n\n### 6. 结论\n\n**这 3 个 home checkpoint 不能与 seed123/v5 的 val sweep 结果混用。**\n\n原因：\n- **超参完全不同**（4x lr, 2x warmup, 无 weight_decay），混用会比较不同超参配置的效果而非训练进度/epoch 的效果，在科学上无效\n- 来自一次**未注册、未追踪**的独立训练运行，无法溯源完整训练过程\n- 训练未完成（2600/6633 steps），且因 `save_total_limit=3` 已丢失中间 checkpoint\n\n建议处理方式：视为废弃的探索性训练残留，不纳入 val sweep。如需这个 output_dir 用于新训练，应先清理这 3 个 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cls-home-checkpoint-provenance.md"
+}

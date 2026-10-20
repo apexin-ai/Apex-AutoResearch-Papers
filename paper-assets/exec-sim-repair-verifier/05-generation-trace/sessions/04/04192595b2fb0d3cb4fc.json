@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04192595b2fb0d3cb4fc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 4b eval hang root cause",
+  "task_key": "worker_analysis_4b-eval-hang-root-cause_20260515T020036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-eval-hang-root-cause_20260515T020036_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "d8d3b82d5cb7dfd61a1aab11b0c41740de11e96389b820d07469e43e43dfd6fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/4b_eval_hang_analysis.md`。\n\n**核心结论**：根因是 **RTX 5090 的间歇性 CUDA hang**（driver 570.211.01 是早期 Blackwell 驱动）。\n\n关键证据：\n- v1 卡在 sample 6544，v2 卡在 sample 2000 — 位置不同，非特定 sample 问题\n- 所有已处理 batch 耗时正常 (7-8s)，无渐进退化\n- v2 的双层 watchdog（signal.alarm + threading+os._exit）均未触发 — 说明阻塞在 Python 层以下\n\nwatchdog 失效原因：SIGALRM 无法打断 CUDA C 调用；`os._exit()` 在 CUDA driver 异常时可能被 driver cleanup 死锁。\n\n**最高优先级修复**：\n1. watchdog 改用 `os.kill(os.getpid(), SIGKILL)` 替代 `os._exit(1)` — SIGKILL 不可屏蔽\n2. 加断点续跑 — 被 kill 后从上次完成的 sample 继续（v2 已有增量写入，只差 resume 逻辑）\n3. `max_new_tokens` 从 512 降回 8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-eval-hang-root-cause.md"
+}

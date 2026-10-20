@@ -1,0 +1,15 @@
+{
+  "exp_id": "cls4b-v5-val5120-sweep-home",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:34:54.309Z",
+    "updated_at": "2026-05-14T22:51:39.734Z",
+    "hypothesis": "D063 val sweep: 4B CLS v5 (s42) val@5120 sweep (ckpt-600/4000/4200/4400/4600)"
+  },
+  "timestamp": "2026-05-14T22:51:39.893683+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "model": "deepseek-coder-6.7b-instruct",
+  "method": "zero-shot",
+  "test_set_size": 1890,
+  "accuracy": 56.56,
+  "pass_f1": 39.5,
+  "fail_f1": 66.12,
+  "unparseable_rate": 0.79,
+  "confusion_matrix": {"tp": 268, "fp": 111, "fn": 710, "tn": 801},
+  "elapsed_seconds": 173,
+  "prompt_template": "System: You are a code verifier. Given a code snippet and a test case, predict whether the test will pass or fail.\n\nUser:\n## Code\n{code}\n\n## Test\n{test}\n\nWill this test pass or fail?",
+  "full_results": {
+    "model": "deepseek-ai/deepseek-coder-6.7b-instruct",
+    "mode": "per_test",
+    "quantize_4bit": false,
+    "class_balance": {
+      "pass": 978,
+      "fail": 912,
+      "pass_pct": 51.7
+    },
+    "majority_baseline_accuracy": 51.75,
+    "overall_accuracy": 56.56,
+    "accuracy_vs_baseline_gap_pp": 4.81,
+    "per_class": {
+      "fail": {
+        "precision": 53.01,
+        "recall": 87.83,
+        "f1": 66.12,
+        "support": 912
+      },
+      "pass": {
+        "precision": 70.71,
+        "recall": 27.4,
+        "f1": 39.5,
+        "support": 978
+      }
+    },
+    "confusion_matrix": {
+      "tn": 801,
+      "fp": 111,
+      "fn": 710,
+      "tp": 268
+    },
+    "unparseable_predictions": 15
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "4B_cls_vs_cwm_5seeds": {
+    "paired_diffs": [0.32, 2.32, 0.90, 2.33, 0.37],
+    "mean_gap_pp": 1.25,
+    "std": 1.01,
+    "paired_t": 2.77,
+    "p_value_one_sided": 0.0253,
+    "bootstrap_95ci": [0.46, 2.04],
+    "cohens_d": 1.24,
+    "tost_p_2pp": 0.0855,
+    "note": "CLS significantly better, not equivalent"
+  },
+  "8B_cls_vs_cwm_3seeds": {
+    "mean_gap_pp": 2.26,
+    "paired_t": 8.60,
+    "p_value_one_sided": 0.0066,
+    "bootstrap_95ci": [1.80, 2.71],
+    "cohens_d": 4.97
+  },
+  "scaling_trend": {
+    "gap_increase_pp": 1.01,
+    "p_8b_gt_4b": 0.988
+  }
+}

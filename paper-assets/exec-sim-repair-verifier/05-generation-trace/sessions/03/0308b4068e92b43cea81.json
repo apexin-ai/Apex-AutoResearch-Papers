@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0308b4068e92b43cea81",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh gpu health and eval prep",
+  "task_key": "worker_ssh_gpu-health-and-eval-prep_20260519T221254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-health-and-eval-prep_20260519T221254_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "17ad7a4d2fca37972566a12cc82d0cb4c5a525e4f7d8b1e6a9c609a7540da714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| GPU | 任务 | 状态 | 详情 |\n|-----|------|------|------|\n| **0** | CWM s123 训练 | **已死 (EXIT_CODE=124)** | timeout 触发。进度 2320/6633 (35%)，运行 ~2h27m 后被 kill。父进程 862540 仍在（壳），子进程 862545 仍占 21GB 显存 |\n| **1** | CLS s456 训练 | **已死** | PID 840928 不存在。但 **checkpoint-2200 已存在**（05:51 写入），还有 2000/1800/1600/600 共 5 个 checkpoint |\n| **2** | DeepSeek CWM eval | **运行中** | PID 833667，已跑 9h34m，占 29.6GB 显存，GPU 利用率 85% |\n| **3** | DeepSeek CLS s456 训练 | **运行中** | PID 842751，已跑 7h42m，占 26.8GB 显存，GPU 利用率 99% |\n\n关键发现：\n- **GPU 0 CWM s123**：timeout 86400s 不应在 2.5h 触发——日志显示 `EXIT_CODE=124`，实际是训练脚本内的 timeout 或 OOM 后被 kill。子进程 862545 仍挂着占显存，需要手动清理。\n- **GPU 1 空闲**（0MB 显存、100% util 是空转），checkpoint-2200 可用于 eval。\n- **eval 脚本**：只有 `eval_repo_cls.py`，无 `_v2` 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-health-and-eval-prep.md"
+}

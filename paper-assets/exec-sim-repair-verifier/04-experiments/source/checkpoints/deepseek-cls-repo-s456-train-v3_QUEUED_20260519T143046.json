@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek-cls-repo-s456-train-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:30:24.175Z",
+    "updated_at": "2026-05-19T14:30:45.577Z",
+    "hypothesis": "DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage。修复D154 config confound + v2参数修复（--task替代--formulation, --model_name_or_path替代--model_name）。",
+    "parent": "deepseek-cls-repo-v5"
+  },
+  "timestamp": "2026-05-19T14:30:46.007556+00:00",
+  "trigger": "update_registry"
+}

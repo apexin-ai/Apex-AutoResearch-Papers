@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1715ba4dc5bfe77d6393",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh post restart gpu check",
+  "task_key": "worker_ssh_post-restart-gpu-check_20260520T092345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_post-restart-gpu-check_20260520T092345_result.json",
+    "occurrence": 1,
+    "bytes": 2542,
+    "sha256": "3e1ffec9688521e7eccf4d3b5fab01a015b56dc56b4caa2fb4d1f300d87ed333"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面检查结果\n\n### 1. GPU 状态总览\n\n| GPU | 利用率 | 显存占用 | 总显存 | 温度 |\n|-----|--------|----------|--------|------|\n| 0 | 96% | 21255 / 32607 MiB | 76°C |\n| 1 | 90% | 20251 / 32607 MiB | 75°C |\n| 2 | 99% | 20001 / 32607 MiB | 73°C |\n| 3 | 99% | 31261 / 32607 MiB | 73°C |\n\nGPU 占用进程：\n- PID 886278 → GPU 0, 21246 MiB\n- PID 949112 → GPU 1, 20242 MiB\n- PID 925638 → GPU 2, 19992 MiB\n- PID 886352 → GPU 3, 31252 MiB\n\n**4 块 GPU 全部满载运行。**\n\n---\n\n### 2. Qwen s123 (GPU 0, PID 886278) — ALIVE\n\n```\n运行时间: 07:54:08\n命令: train_repo_cwm.py --seed 123 --device cuda:0 --epochs 3\n```\n- 日志进度: **72% (6706/9335)** epoch 内迭代，~8.35 it/s\n- Checkpoints: checkpoint-300, 800, 900, 1000, **1100** (最新 16:50)\n\n### 3. Qwen s456 (GPU 3, PID 886352) — ALIVE\n\n```\n运行时间: 07:54:07\n命令: train_repo_cwm.py --seed 456 --device cuda:0 --epochs 3\n```\n- 日志进度: epoch 2 已完成 eval (9335/9335)，进入 epoch 3: **18% (1207/6633)**，~52 s/it（eval 后速度在恢复中）\n- Checkpoints: checkpoint-300, 900, 1000, 1100, **1200** (最新 17:22)\n\n### 4. DeepSeek s123-v2 (GPU 2, PID 925638) — ALIVE\n\n```\n运行时间: 03:40:55\n命令: train_unified.py --seed 123 --model deepseek-coder-6.7b-instruct --epochs 3\n包装进程 PID 925633 也存活\n```\n- 日志进度: **12% (1590/12627)**，~7.84 s/it，已训练 3h31m\n- Checkpoint 目录: **空**（尚未保存第一个 checkpoint）\n- training.log: 不存在（进度只在 tmux log 中）\n\n### 5. DeepSeek s456-v2 (GPU 1, PID 949112) — ALIVE\n\n```\n运行时间: 00:19:51\n命令: train_unified.py --seed 456 --model deepseek-coder-6.7b-instruct --epochs 3\n```\n- 日志进度: **step 84/12627**，~7.50 s/it，刚跑了约 11 分钟\n- Checkpoint 目录: 有 training.log (6643 bytes)，**无 checkpoint 子目录**\n\n---\n\n### 汇总\n\n| 任务 | GPU | PID | 状态 | 进度 | 最新 Checkpoint |\n|------|-----|-----|------|------|----------------|\n| Qwen s123 | 0 | 886278 | **ALIVE** | ~72% epoch内 | checkpoint-1100 |\n| Qwen s456 | 3 | 886352 | **ALIVE** | epoch3 18% | checkpoint-1200 |\n| DeepSeek s123-v2 | 2 | 925638 | **ALIVE** | 12% (1590/12627) | 无（目录空） |\n| DeepSeek s456-v2 | 1 | 949112 | **ALIVE** | 0.7% (84/12627) | 无 |\n\n**全部 4 个训练进程存活，无死亡进程。** 服务重启未影响训练。DeepSeek 两个任务尚未产生 checkpoint，需关注后续是否正常保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-post-restart-gpu-check.md"
+}

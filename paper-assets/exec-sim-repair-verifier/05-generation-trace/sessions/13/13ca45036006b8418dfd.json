@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13ca45036006b8418dfd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check orphaned eval home",
+  "task_key": "worker_check_orphaned-eval-home_20260514T230201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_orphaned-eval-home_20260514T230201_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "a1882f16dbc309ff78068ab5cb8fb718d7708223e0acaa40b6ad6b4396947dcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "val 集共 9784 条，已处理 5056 条（51.7%）。以下是完整报告：\n\n---\n\n## 状态报告\n\n### cuda:0\nGPU 满载：100% utilization, 31727/32607 MiB\n\n### cls4b-v5-ckpt600-val5120-eval (PID 3179262)\n- **状态**: 运行中（started 15:24:23）\n- **进度**: 5056 / 9784 = **51.7%**\n- 输出目录 `repo_cls_v5_ckpt600_val5120/` 已有 predictions.jsonl，但尚未生成 eval_repo_cls.json\n\n### cls4b-v5-val5120-sweep-home (PID 3180425)\n- **状态**: 运行中，但在 **sleep 30 循环中等待 ckpt-600 eval 完成**\n- **进度**: 0/4 checkpoints started（等待解锁）\n- 计划执行: ckpt-4000 → 4200 → 4400 → 4600（val@5120）\n- 脚本会跳过已有结果的 checkpoint\n\n### 已有 v5 结果（max_seq_length=2048，非 val5120）\n\n| Checkpoint | Accuracy | F1_macro | F1_fail | F1_pass | gap_vs_majority |\n|------------|----------|----------|---------|---------|-----------------|\n| ckpt-600   | 76.74    | 73.74    | 64.88   | 82.61   | +3.78pp         |\n| ckpt-4000  | 81.51    | 72.56    | 56.90   | 88.23   | +8.55pp         |\n| ckpt-4200  | 80.64    | 72.10    | 56.66   | 87.54   | +7.69pp         |\n| ckpt-4400  | 82.11    | 73.94    | 59.34   | 88.54   | +9.16pp         |\n| **ckpt-4600** | **82.35** | **74.74** | **60.87** | **88.60** | **+9.39pp** |\n\nckpt-4600 在 seq_len=2048 下表现最好。val5120 的 ckpt-600 大约还需等 ~38 分钟完成，之后 sweep 会依次跑 4 个 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-orphaned-eval-home.md"
+}

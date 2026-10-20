@@ -1,0 +1,38 @@
+{
+  "exp_id": "8b-baseline-rerun",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:36:27.917Z",
+    "updated_at": "2026-05-22T22:02:47.948Z",
+    "hypothesis": "Qwen3-8B 0-shot/3-shot baseline rerun with unified NF4 quantization and identical prompt to 14B baseline, ensuring fair comparison. Expected: 0-shot ~52%, 3-shot ~60%.",
+    "spec": {
+      "command": "python3 eval_14b_baseline.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --num_shots 0 then --num_shots 3",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "gpu": [
+        "cuda:1"
+      ],
+      "checkpoint_path": "N/A (0-shot/3-shot eval, no fine-tuning)",
+      "log_path": "/root/autodl-tmp/results_8b_0shot_rerun.json + results_8b_3shot_nf4_rerun.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "0shot_accuracy": 60.53,
+      "0shot_f1_macro": 55.73,
+      "3shot_accuracy": 60.42,
+      "3shot_f1_macro": 56.09,
+      "0shot_unparseable": 5,
+      "3shot_unparseable": 1
+    },
+    "completed_at": "2026-05-22T22:02:47.948Z"
+  },
+  "timestamp": "2026-05-22T22:02:48.406443+00:00",
+  "trigger": "update_registry"
+}

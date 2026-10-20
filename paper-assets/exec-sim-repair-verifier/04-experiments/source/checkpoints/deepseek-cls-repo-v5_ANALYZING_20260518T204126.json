@@ -1,0 +1,49 @@
+{
+  "exp_id": "deepseek-cls-repo-v5",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:47:56.629Z",
+    "updated_at": "2026-05-18T20:41:25.612Z",
+    "hypothesis": "DeepSeek CLS repo-level s42 完整 3 epoch 训练，预期与 s123 (~74%) 相近，提供 R1-N1 要求的多 seed 证据",
+    "reproduce": {
+      "finished_at": "2026-05-18T20:35:45.428Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T20:35:47.523864+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python train_unified.py --formulation cls --data_dir data/swebench_full --model_name deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5 --seed 42 --max_seq_length 8192 --epochs 3",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full/",
+      "data_count": 2211,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss_final": 0.0399,
+      "eval_loss_epoch1": 0.0886,
+      "eval_loss_epoch2": 0.1587,
+      "eval_loss_epoch3": 0.1975,
+      "total_steps": 6315,
+      "train_time_seconds": 63312,
+      "best_checkpoint": "checkpoint-2105 (epoch 1)",
+      "lora_params": "16.8M"
+    }
+  },
+  "timestamp": "2026-05-18T20:41:26.018480+00:00",
+  "trigger": "update_registry"
+}

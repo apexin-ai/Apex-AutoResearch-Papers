@@ -1,0 +1,15 @@
+{
+  "exp_id": "repo-level-0shot-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:08:25.505Z",
+    "updated_at": "2026-05-17T23:12:50.988Z",
+    "hypothesis": "0-shot instruction 在 repo-level 的基准表现，预期远低于 fine-tuned CLS/CWM"
+  },
+  "timestamp": "2026-05-17T23:12:51.330351+00:00",
+  "trigger": "update_registry"
+}

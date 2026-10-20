@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1185f800c32515f5aed1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent cwm 8b correct restart",
+  "task_key": "worker_urgent_cwm-8b-correct-restart_20260514T143053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_cwm-8b-correct-restart_20260514T143053_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "a2b2d356b44017551a10f2e9371d60fe9f26ab92fa6bbf0b17893f88b215c8ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CWM 8B 已正常运行，无需干预。汇总：\n\n**状态：已在正确运行**\n- 脚本：`train_repo_cwm.py`（正确，不是 train_repo_verifier.py）\n- GPU 2：98% 利用率，21199 MiB\n- 进度：从 checkpoint-1200 恢复，已到 step 1201/6633\n- 参数全部正确：`--save_total_limit 20`, `--dataloader_num_workers 0`, `--resume_from_checkpoint checkpoint-1200`\n- tmux session：`repo_cwm_8b_restart`\n- PID：245775\n\n**发现时的情况**：CWM 8B 已经被另一个 Worker 用正确脚本启动（tmux session 22:28:20 创建），只是在做 70K 样本 preprocessing + 模型加载，所以 GPU 2 暂时显示 0 MiB。没有需要杀掉的错误进程。\n\n**注意**：GPU 3 掉到 0 MiB / 0%——CLS 8B s123 似乎已停止运行，不是我操作导致的，但需要关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-cwm-8b-correct-restart.md"
+}

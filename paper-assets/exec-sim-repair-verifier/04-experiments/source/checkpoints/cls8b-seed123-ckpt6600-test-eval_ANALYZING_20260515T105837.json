@@ -1,0 +1,47 @@
+{
+  "exp_id": "cls8b-seed123-ckpt6600-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:35:08.915Z",
+    "updated_at": "2026-05-15T10:58:37.080Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py ... ckpt-6600 test",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "358109",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6600-test-eval.log",
+      "submitted_at": "2026-05-15T10:35:08.559Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6600",
+      "eval_data": "test@full(n=9784)"
+    },
+    "hypothesis": "seed123 test curve 补点: ckpt-6600 test@full(n=9784)。Supplementary val+test 双线图。",
+    "reproduce": {
+      "finished_at": "2026-05-15T10:56:49.721Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T10:56:55.215417+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T10:58:37.301984+00:00",
+  "trigger": "update_registry"
+}

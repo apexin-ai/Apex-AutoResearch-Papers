@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d2f3fbe7607b9cb0e8b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code w5 mixed effects regression",
+  "task_key": "worker_code_w5-mixed-effects-regression_20260520T023456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5-mixed-effects-regression_20260520T023456_result.json",
+    "occurrence": 1,
+    "bytes": 1660,
+    "sha256": "d448f0c931d87ca2bc22c9cc5724f480dffc8a82121e8c01f3cbc3e7a4bb3180"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模型都跑通了。结果汇总：\n\n---\n\n## 产出总结\n\n### 1. 脚本\n- 本地：`w5_mixed_effects.py`\n- 服务器：`/home/sonny/exec-sim-repair-verifier/w5_mixed_effects.py`\n\n### 2. 数据概况\n- **78,272 observations**, 25 unique problem_ids, 8 个 eval 文件\n- CLS: 5 runs (Qwen s42/s456 + DeepSeek s42/s123/s456)\n- CWM: 3 runs (Qwen s42 + DeepSeek s42/s123)\n\n### 3. Dry-run 结果\n\n**GLMM (logit scale, baseline = CLS + DeepSeek):**\n\n| Effect | Coef | z | \n|---|---|---|\n| Intercept (CLS/DeepSeek) | +2.45 | 252.6 |\n| CWM vs CLS | **-1.49** | **-106.7** |\n| Qwen vs DeepSeek | +0.10 | 6.0 |\n| CWM:Qwen interaction | +0.06 | 2.3 |\n\n**LPM (probability scale, with p-values):**\n\n| Effect | Coef | p |\n|---|---|---|\n| CWM vs CLS | **-0.221** | **<0.001** |\n| Qwen vs DeepSeek | +0.011 | 0.002 |\n| CWM:Qwen | +0.016 | 0.006 |\n| Random (problem_id) var | 0.035 | — |\n\n核心结论：formulation (CLS vs CWM) 是最强主效应，CWM 比 CLS 低约 22pp；model 效应显著但小（~1pp）；交互项显著（CWM 在 Qwen 上衰减略少）。\n\n### 4. 缺失数据/待填路径\n\n| 数据 | 状态 |\n|---|---|\n| Qwen CLS s123 | 缺少 repo-level test predictions |\n| Qwen CWM s123 | 缺少 repo-level test predictions |\n| **TRAJ 全部** | 只有 summary JSON (48 问题)，无 per-sample predictions；且 TRAJ 是 problem-level (48) vs CLS/CWM 的 test-case-level (9784)，粒度不同 |\n| DeepSeek TRAJ repo | 未做 repo-level TRAJ eval |\n\n要加入 TRAJ，需要：(a) 重跑 TRAJ eval 保存 per-sample predictions，(b) 决定是在 problem-level 聚合分析还是排除 TRAJ。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-mixed-effects-regression.md"
+}

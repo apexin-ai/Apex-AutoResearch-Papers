@@ -1,0 +1,43 @@
+{
+  "exp_id": "cls14b-func-s42-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:36:01.821Z",
+    "updated_at": "2026-05-23T02:26:34.263Z",
+    "hypothesis": "Qwen3-14B QLoRA CLS on function-level data (15K train.jsonl) should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend 4B→8B→14B. v2 fixes data bug: v1 used 70K repo-level swebench_full instead of 15K function-level train.jsonl.",
+    "parent": "cls14b-func-s42",
+    "spec": {
+      "command": "python3 train_unified.py --task cls --train_file train.jsonl --val_file val.jsonl --model Qwen3-14B --epochs 3 --quantize_4bit",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "pid": "215642",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/exec-sim-repair-verifier/cls14b-func-s42-v2.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_cls14b_func_s42_v2/checkpoint-956",
+      "checkpoint_source": "pretrained Qwen3-14B (fresh LoRA)",
+      "eval_data": "data/test.jsonl (1890 samples)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 89.47,
+      "f1_fail": 89.02,
+      "f1_pass": 89.88,
+      "unparseable": 0,
+      "checkpoint": "checkpoint-956",
+      "delta_vs_8b": -0.47,
+      "cls_cwm_gap_14b": 0.21
+    },
+    "completed_at": "2026-05-23T02:26:34.263Z"
+  },
+  "timestamp": "2026-05-23T02:26:34.741649+00:00",
+  "trigger": "update_registry"
+}

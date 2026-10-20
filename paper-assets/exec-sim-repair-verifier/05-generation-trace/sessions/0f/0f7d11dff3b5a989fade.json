@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f7d11dff3b5a989fade",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_20_1778940766.md",
+  "task_key": "loop_20_1778940766",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1778940766.md",
+    "occurrence": 1,
+    "bytes": 4055,
+    "sha256": "7f2d7609b76f211ad9c40ffa0b4cf0f6b19d9f176fe6f8c90e318b9a4dc52df2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-16T12:04:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：seetacloud-westd-4x5090 的 cuda:0/1/2/3（四卡全部分配给本项目）\n- DeepSeek 系列实验用 `--no_wandb`，metrics 只能从 log 文件提取，不能查 W&B\n- DeepSeek 模型路径固定：`/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`，HF_HUB_OFFLINE=1\n- EMNLP ARR DDL = May 25（剩 9 天），所有实验必须为论文服务\n- D103 红线：seq_length/bs/precision/lr 变更必须 Director 审批\n\n### 2. 🖥️ 基础设施快照\n- 服务器：seetacloud-westd-4x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：Qwen 系列 `/root/autodl-tmp/models/Qwen/`，DeepSeek `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- Checkpoint 路径：`/root/autodl-tmp/checkpoints_deepseek_{cls_func,cwm_func,cwm_func_seed123,cls_repo}/`\n- Log 路径：`~/runs/exec-sim-repair-verifier/deepseek-{cls-func,cwm-func,cwm-func-s123,cls-repo}.log`\n- 活跃进程：deepseek-cls-repo (PID 470263, cuda:0, tmux, cron 监控中)\n- W&B：本批 DeepSeek 实验全部 `--no_wandb`\n\n### 3. 📊 当前状态\n刚收到 deepseek-cls-func 的 CRON 完成回调（进程正常退出）。完成 session-start 初始化后，派了 Worker `worker_analysis_deepseek-logs_20260516T080136` SSH 读取 3 个 ANALYZING 实验的日志提取 metrics。**Worker 尚未返回**。\n\nRegistry 当前状态：\n- **ANALYZING (3)**：deepseek-cls-func (cuda:2)、deepseek-cwm-func (cuda:1)、deepseek-cwm-func-s123 (cuda:3) — 全部训练完成，等 Worker 提取 metrics 后推进到 DONE\n- **RUNNING (1)**：deepseek-cls-repo (cuda:0, PID 470263) — 仍在训练中，cron 监控活跃\n- reconcile_crons 确认 deepseek-cls-repo 进程存活\n\n等待中：\n1. Worker `analysis:deepseek-logs` 回调 → 拿到 3 个实验的 metrics\n2. deepseek-cls-repo cron 完成回调 → 最后一个 DeepSeek 训练实验\n\n### 4. 📋 待办\n- Worker `analysis:deepseek-logs` 回调到达 → 用返回的 metrics 逐个 `update_registry(status=DONE, conclusion=..., metrics=...)` 推进 3 个 ANALYZING 实验 → 更新 report.md → 汇报 Director（带 [资源] 行 + DeepSeek vs Qwen 对比分析）\n- deepseek-cls-repo cron 回调 → 同样提取 metrics → 推进 DONE → 此时 4 个 DeepSeek 实验全部完成，做完整的跨模型对比（DeepSeek 6.7B vs Qwen3 4B/8B，CLS vs CWM）\n- 4 个 DeepSeek 实验全部 DONE → 汇总 ROADMAP 的 Mutation Breakdown 表格中 DeepSeek 列 → 论文 D108 scope 扩展（第二模型家族）数据就绪 → 派 Paper Writing Worker\n- 如果 DeepSeek CLS ≈ CWM（类似 Qwen 4B func-level null result）→ 强化 C1 claim \"formulation equivalence at function-level generalizes across model families\"\n- 如果 DeepSeek CLS >> CWM → 更强的 scaling evidence（跨架构）\n\n### 5. 🎯 战略上下文\n- **核心叙事**：CLS vs CWM 在 func-level 近似等价，但 CLS 在 8B scaling 和 repo-level 占优（C1）。DeepSeek 实验是 D108 决策的产物——加第二模型家族回应 reviewer \"只在一个模型上验证\" 的攻击面\n- **关键数字锚点**：Qwen3-4B CLS 87.51% vs CWM 87.51%（null diff）；Qwen3-8B CLS 90.48% vs CWM 87.67%（+2.81pp）；CWM 8B unparseable=73.8%\n- **易错点**：DeepSeek 6.7B 是 decoder-only instruct 模型，和 Qwen3 4B/8B 不是严格 size-matched 对比——论文里要说明是 \"cross-architecture validation\" 而非 \"size-controlled comparison\"\n- **易错点**：这批 DeepSeek 没开 W&B，所有 metrics 必须从 log 提取，Worker 没返回前不能编造数字\n- **决策链**：D108（加第二模型家族）→ 4 个 DeepSeek 实验（cls/cwm × func/repo）→ D109 之后 CWM 8B 已有结论（65.17% acc, 73.8% unparseable）→ 论文需整合 scaling + mutation + cross-model 三条 evidence line\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1778940766.md"
+}

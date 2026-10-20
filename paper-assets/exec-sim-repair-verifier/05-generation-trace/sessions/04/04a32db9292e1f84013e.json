@@ -1,0 +1,496 @@
+{
+  "schema_version": "1.0",
+  "id": "04a32db9292e1f84013e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analyze traj level seed789",
+  "task_key": "worker_analyze_traj-level-seed789_20260512T090511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_traj-level-seed789_20260512T090511.jsonl",
+    "occurrence": 1,
+    "bytes": 25878,
+    "sha256": "566898ac8d0760d3aa7344796bb4a6148780931edb1e013d981e86ef2abccf93"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T09:06:41.886980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T09:06:41.887456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T09:06:41.888113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T09:06:41.888373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "tail -100 ~/runs/exec-sim-repair-verifier/traj-level-seed789.log",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T09:06:41.888652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1032,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"resolved\\\\\\\": 479,\\\\n    \\\\\\\"unresolved\\\\\\\": 553,\\\\n    \\\\\\\"resolved_pct\\\\\\\": 46.4\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 53.59,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.31,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 33.72,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"unresolved\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 87.41,\\\\n      \\\\\\\"recall\\\\\\\": 89.15,\\\\n      \\\\\\\"f1\\\\\\\": 88.27,\\\\n      \\\\\\\"support\\\\\\\": 553\\\\n    },\\\\n    \\\\\\\"resolved\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 87.18,\\\\n      \\\\\\\"recall\\\\\\\": 85.18,\\\\n      \\\\\\\"f1\\\\\\\": 86.17,\\\\n      \\\\\\\"support\\\\\\\": 479\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 493,\\\\n    \\\\\\\"fp\\\\\\\": 60,\\\\n    \\\\\\\"fn\\\\\\\": 71,\\\\n    \\\\\\\"tp\\\\\\\": 408\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0,\\\\n  \\\\\\\"per_test_consistency\\\\\\\": {\\\\n    \\\\\\\"n_compared\\\\\\\": 1032,\\\\n    \\\\\\\"n_consistent\\\\\\\": 792,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 76.74\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T09:06:41.888909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "ls -la /home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T09:06:41.889126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "filters": "{'exp_id': 'traj-level-seed789'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T09:06:41.889450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 70%|██████▉   | 349/501 [00:16<00:07, 19.14it/s]\\\\u001b[A\\\\n\\\\r 70%|███████   | 351/501 [00:16<00:07, 18.76it/s]\\\\u001b[A\\\\n\\\\r 71%|███████   | 354/501 [00:16<00:07, 20.63it/s]\\\\u001b[A\\\\n\\\\r 71%|███████▏  | 357/501 [00:16<00:06, 22.10it/s]\\\\u001b[A\\\\n\\\\r 72%|███████▏  | 360/501 [00:16<00:06, 22.71it/s]\\\\u001b[A\\\\n\\\\r 72%|███████▏  | 363/501 [00:16<00:06, 22.79it/s]\\\\u001b[A\\\\n\\\\r 73%|███████▎  | 366/501 [00:17<00:05, 23.54it/s]\\\\u001b[A\\\\n\\\\r 74%|███████▎  | 369/501 [00:17<00:05, 23.89it/s]\\\\u001b[A\\\\n\\\\r 74%|███████▍  | 372/501 [00:17<00:05, 22.62it/s]\\\\u001b[A\\\\n\\\\r 75%|███████▍  | 375/501 [00:17<00:05, 21.44it/s]\\\\u001b[A\\\\n\\\\r 75%|███████▌  | 378/501 [00:17<00:05, 22.20it/s]\\\\u001b[A\\\\n\\\\r 76%|███████▌  | 381/501 [00:17<00:05, 22.73it/s]\\\\u001b[A\\\\n\\\\r 77%|███████▋  | 384/501 [00:17<00:04, 23.40it/s]\\\\u001b[A\\\\n\\\\r 77%|███████▋  | 387/501 [00:17<00:05, 22.50it/s]\\\\u001b[A\\\\n\\\\r 78%|██████��▊  | 390/501 [00:18<00:04, 22.38it/s]\\\\u001b[A\\\\n\\\\r 78%|███████▊  | 393/501 [00:18<00:04, 23.27it/s]\\\\u001b[A\\\\n\\\\r 79%|███████▉  | 396/501 [00:18<00:04, 22.76it/s]\\\\u001b[A\\\\n\\\\r 80%|███████▉  | 399/501 [00:18<00:04, 22.60it/s]\\\\u001b[A\\\\n\\\\r 80%|████████  | 402/501 [00:18<00:04, 23.39it/s]\\\\u001b[A\\\\n\\\\r 81%|████████  | 405/501 [00:18<00:04, 22.27it/s]\\\\u001b[A\\\\n\\\\r 81%|████████▏ | 408/501 [00:18<00:04, 22.37it/s]\\\\u001b[A\\\\n\\\\r 82%|████████▏ | 411/501 [00:19<00:04, 22.39it/s]\\\\u001b[A\\\\n\\\\r 83%|████████▎ | 414/501 [00:19<00:03, 22.36it/s]\\\\u001b[A\\\\n\\\\r 83%|████████▎ | 417/501 [00:19<00:03, 21.91it/s]\\\\u001b[A\\\\n\\\\r 84%|████████▍ | 420/501 [00:19<00:03, 21.53it/s]\\\\u001b[A\\\\n\\\\r 84%|████████▍ | 423/501 [00:19<00:03, 22.03it/s]\\\\u001b[A\\\\n\\\\r 85%|████████▌ | 426/501 [00:19<00:03, 22.18it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▌ | 429/501 [00:19<00:03, 22.43it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▌ | 432/501 [00:19<00:03, 22.06it/s]\\\\u001b[A\\\\n\\\\r 87%|████████▋ | 435/501 [00:20<00:03, 20.82it/s]\\\\u001b[A\\\\n\\\\r 87%|████████▋ | 438\n…[truncated 4331 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T09:06:41.889737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 61680\\\\ndrwxrwxr-x 2 sonny sonny     4096 May 12 02:02 .\\\\ndrwxrwxr-x 5 sonny sonny     4096 May 12 02:02 ..\\\\n-rw-rw-r-- 1 sonny sonny     1043 May 12 02:02 adapter_config.json\\\\n-rw-rw-r-- 1 sonny sonny 47224624 May 12 02:02 adapter_model.safetensors\\\\n-rw-rw-r-- 1 sonny sonny      707 May 12 02:02 added_tokens.json\\\\n-rw-rw-r-- 1 sonny sonny     4168 May 12 02:02 chat_template.jinja\\\\n-rw-rw-r-- 1 sonny sonny  1671853 May 12 02:02 merges.txt\\\\n-rw-rw-r-- 1 sonny sonny     5180 May 12 02:02 README.md\\\\n-rw-rw-r-- 1 sonny sonny      613 May 12 02:02 special_tokens_map.json\\\\n-rw-rw-r-- 1 sonny sonny     5431 May 12 02:02 tokenizer_config.json\\\\n-rw-rw-r-- 1 sonny sonny 11422654 May 12 02:02 tokenizer.json\\\\n-rw-rw-r-- 1 sonny sonny     5905 May 12 02:02 training_args.bin\\\\n-rw-rw-r-- 1 sonny sonny  2776833 May 12 02:02 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T09:06:41.889993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0585}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T09:06:41.890471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport numpy as np\nfrom scipy import stats\n\n# Traj-level 4 seeds\ntraj_acc = [85.66, 85.47, 87.40, 87.31]\ntraj_uf1 = [87.50, 87.00, 88.70, 88.27]\ntraj_rf1 = [83.18, 83.52, 85.80, 86.17]\ntraj_con = [79.94, 78.59, 78.80, 76.74]\n\nprint('=== 4-seed traj-level summary ===')\nfor name, vals in [('accuracy', traj_acc), ('unresolved_f1', traj_uf1), ('resolved_f1', traj_rf1), ('consistency', traj_con)]:\n    print(f'{name}: {np.mean(vals):.2f} ± {np.std(vals, ddof=1):.2f}')\n\n# Per-test 3-seed: mean=88.41, std=0.96\n# We don't have individual values, use Welch's t-test from summary stats\ntraj_mean = np.mean(traj_acc)\ntraj_std = np.std(traj_acc, ddof=1)\ntraj_n = 4\npt_mean = 88.41\npt_std = 0.96\npt_n = 3\n\n# Welch's t-test\nse = np.sqrt(traj_std**2/traj_n + pt_std**2/pt_n)\nt_stat = (traj_mean - pt_mean) / se\n# Welch-Satterthwaite df\nnum = (traj_std**2/traj_n + pt_std**2/pt_n)**2\nden = (traj_std**2/traj_n)**2/(traj_n-1) + (pt_std**2/pt_n)**2/(pt_n-1)\ndf = num / den\np_val = 2 * stats.t.sf(abs(t_stat), df)\n\nprint(f'\\n=== t-test: traj-level vs per-test accuracy ===')\nprint(f'Traj-level: {traj_mean:.2f} ± {traj_std:.2f} (n={traj_n})')\nprint(f'Per-test:   {pt_mean:.2f} ± {pt_std:.2f} (n={pt_n})')\nprint(f't = {t_stat:.3f}, df = {df:.2f}, p = {p_val:.4f}')\nprint(f'Significant at 0.05? {\\\"YES\\\" if p_val < 0.05 else \\\"NO\\\"}')\nprint(f'Difference: {traj_mean - pt_mean:.2f} pp')\n\"\n",
+              "description": "Compute 4-seed stats and t-test"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T09:06:41.891326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== 4-seed traj-level summary ===\naccuracy: 86.46 ± 1.04\nunresolved_f1: 87.87 ± 0.76\nresolved_f1: 84.67 ± 1.54\nconsistency: 78.52 ± 1.33\n\n=== t-test: traj-level vs per-test accuracy ===\nTraj-level: 86.46 ± 1.04 (n=4)\nPer-test:   88.41 ± 0.96 (n=3)\nt = -2.569, df = 4.66, p = 0.0536\nSignificant at 0.05? NO\nDifference: -1.95 pp"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T09:06:41.891548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "traj-level-seed789",
+              "field": "metrics",
+              "value": "{'overall_accuracy': 87.31, 'unresolved_f1': 88.27, 'resolved_f1': 86.17, 'unresolved_precision': 87.41, 'unresolved_recall': 89.15, 'resolved_precision': 87.18, 'resolved_recall': 85.18, 'consistency_rate': 76.74, 'eval_loss': 0.1115, 'train_loss': 0.2255, 'train_runtime_sec': 2055.9}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T09:06:41.891848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"traj-level-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:23:44.159Z\\\", \\\"updated_at\\\": \\\"2026-05-12T09:06:22.143Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed789/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 789 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed789/best --model_name Qwen/Qwen3-4B --output eval_traj_seed789.json\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"2598017\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T08:28:22.549Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/traj_train.jsonl\\\", \\\"data_count\\\": 8052, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"n/a (training from scratch)\\\", \\\"eval_data\\\": \\\"data/traj_test.jsonl\\\"}, \\\"hypothesis\\\": \\\"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\\\", \\\"parent\\\": \\\"traj-level-finetuned\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T09:04:01.723Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T09:04:03.029128+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 87.31, \\\"unresolved_f1\\\": 88.27, \\\"resolved_f1\\\": 86.17, \\\"unresolved_precision\\\": 87.41, \\\"unresolved_recall\\\": 89.15, \\\"resolved_precision\\\": 87.18, \\\"resolved_recall\\\": 85.18, \\\"consistency_rate\\\": 76.74, \\\"eval_loss\\\": 0.1115, \\\"train_loss\\\": 0.2255, \\\"train_runtime_sec\\\": 2055.9}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1151}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T09:06:41.892111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "traj-level-seed789",
+              "field": "conclusion",
+              "value": "success",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T09:06:41.892386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"traj-level-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:23:44.159Z\\\", \\\"updated_at\\\": \\\"2026-05-12T09:06:23.117Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed789/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 789 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed789/best --model_name Qwen/Qwen3-4B --output eval_traj_seed789.json\\\\\\\"\\\", \\\"server\\\": \\\"home-1x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"2598017\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T08:28:22.549Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"sonny\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/traj_train.jsonl\\\", \\\"data_count\\\": 8052, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 789, \\\"checkpoint_source\\\": \\\"n/a (training from scratch)\\\", \\\"eval_data\\\": \\\"data/traj_test.jsonl\\\"}, \\\"hypothesis\\\": \\\"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\\\", \\\"parent\\\": \\\"traj-level-finetuned\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T09:04:01.723Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T09:04:03.029128+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 87.31, \\\"unresolved_f1\\\": 88.27, \\\"resolved_f1\\\": 86.17, \\\"unresolved_precision\\\": 87.41, \\\"unresolved_recall\\\": 89.15, \\\"resolved_precision\\\": 87.18, \\\"resolved_recall\\\": 85.18, \\\"consistency_rate\\\": 76.74, \\\"eval_loss\\\": 0.1115, \\\"train_loss\\\": 0.2255, \\\"train_runtime_sec\\\": 2055.9}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1068}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T09:06:41.892642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "traj-level-seed789",
+              "field": "spec",
+              "value": "{'checkpoint_path': '/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/', 'log_path': '~/runs/exec-sim-repair-verifier/traj-level-seed789.log'}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T09:06:41.894951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"traj-level-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:23:44.159Z\\\", \\\"updated_at\\\": \\\"2026-05-12T09:06:24.427Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\\\"}, \\\"hypothesis\\\": \\\"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\\\", \\\"parent\\\": \\\"traj-level-finetuned\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T09:04:01.723Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T09:04:03.029128+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 87.31, \\\"unresolved_f1\\\": 88.27, \\\"resolved_f1\\\": 86.17, \\\"unresolved_precision\\\": 87.41, \\\"unresolved_recall\\\": 89.15, \\\"resolved_precision\\\": 87.18, \\\"resolved_recall\\\": 85.18, \\\"consistency_rate\\\": 76.74, \\\"eval_loss\\\": 0.1115, \\\"train_loss\\\": 0.2255, \\\"train_runtime_sec\\\": 2055.9}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0937}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T09:06:41.895270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "traj-level-seed789",
+              "field": "notes",
+              "value": "## seed789 结果\naccuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\ntrain_loss=0.2255, eval_loss=0.1115, wall_time=34.3min\n\n## 4-seed traj-level 汇总\n| metric | seed42 | seed123 | seed456 | seed789 | mean±std |\n|--------|--------|---------|---------|---------|----------|\n| accuracy | 85.66 | 85.47 | 87.40 | 87.31 | 86.46±1.04 |\n| unresolved_f1 | 87.50 | 87.00 | 88.70 | 88.27 | 87.87±0.76 |\n| resolved_f1 | 83.18 | 83.52 | 85.80 | 86.17 | 84.67±1.54 |\n| consistency | 79.94 | 78.59 | 78.80 | 76.74 | 78.52±1.33 |\n\n## Welch's t-test: traj-level vs per-test accuracy\n- Traj-level (4 seeds): 86.46±1.04\n- Per-test (3 seeds): 88.41±0.96\n- t=-2.569, df=4.66, p=0.054 (two-tailed)\n- Difference: -1.95pp, NOT significant at α=0.05\n\n## 结论\n4 seeds 仍未达到 p<0.05 的显著性差异（p=0.054，边缘）。traj-level 一致地低于 per-test ~2pp，但方差较大。需要第 5 seed 才能确认差异的统计显著性。",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T09:06:41.895557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"traj-level-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:23:44.159Z\\\", \\\"updated_at\\\": \\\"2026-05-12T09:06:35.082Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\\\"}, \\\"hypothesis\\\": \\\"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\\\", \\\"parent\\\": \\\"traj-level-finetuned\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T09:04:01.723Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T09:04:03.029128+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 87.31, \\\"unresolved_f1\\\": 88.27, \\\"resolved_f1\\\": 86.17, \\\"unresolved_precision\\\": 87.41, \\\"unresolved_recall\\\": 89.15, \\\"resolved_precision\\\": 87.18, \\\"resolved_recall\\\": 85.18, \\\"consistency_rate\\\": 76.74, \\\"eval_loss\\\": 0.1115, \\\"train_loss\\\": 0.2255, \\\"train_runtime_sec\\\": 2055.9}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"## seed789 结果\\\\naccuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\\\\ntrain_loss=0.2255, eval_loss=0.1115, wall_time=34.3min\\\\n\\\\n## 4-seed traj-level 汇总\\\\n| metric | seed42 | seed123 | seed456 | seed789 | mean±std |\\\\n|--------|--------|---------|---------|---------|----------|\\\\n| accuracy | 85.66 | 85.47 | 87.40 | 87.31 | 86.46±1.04 |\\\\n| unresolved_f1 | 87.50 | 87.00 | 88.70 | 88.27 | 87.87±0.76 |\\\\n| resolved_f1 | 83.18 | 83.52 | 85.80 | 86.17 | 84.67±1.54 |\\\\n| consistency | 79.94 | 78.59 | 78.80 | 76.74 | 78.52±1.33 |\\\\n\\\\n## Welch's t-test: traj-level vs per-test accuracy\\\\n- Traj-level (4 seeds): 86.46±1.04\\\\n- Per-test (3 seeds): 88.41±0.96\\\\n- t=-2.569, df=4.66, p=0.054 (two-tailed)\\\\n- Difference: -1.95pp, NOT significant at α=0.05\\\\n\\\\n## 结论\\\\n4 seeds 仍未达到 p<0.05 的显著性差异（p=0.054，边缘）。traj-level 一致地低于 per-test ~2pp，但方差较大。需要第 5 seed 才能确认差异的统计显著性。\\\"}}, \\\"e\n…[truncated 60 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T09:06:41.895810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "traj-level-seed789",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T09:06:41.896187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"traj-level-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:23:44.159Z\\\", \\\"updated_at\\\": \\\"2026-05-12T09:06:35.540Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\\\"}, \\\"hypothesis\\\": \\\"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\\\", \\\"parent\\\": \\\"traj-level-finetuned\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T09:04:01.723Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T09:04:03.029128+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 87.31, \\\"unresolved_f1\\\": 88.27, \\\"resolved_f1\\\": 86.17, \\\"unresolved_precision\\\": 87.41, \\\"unresolved_recall\\\": 89.15, \\\"resolved_precision\\\": 87.18, \\\"resolved_recall\\\": 85.18, \\\"consistency_rate\\\": 76.74, \\\"eval_loss\\\": 0.1115, \\\"train_loss\\\": 0.2255, \\\"train_runtime_sec\\\": 2055.9}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"## seed789 结果\\\\naccuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\\\\ntrain_loss=0.2255, eval_loss=0.1115, wall_time=34.3min\\\\n\\\\n## 4-seed traj-level 汇总\\\\n| metric | seed42 | seed123 | seed456 | seed789 | mean±std |\\\\n|--------|--------|---------|---------|---------|----------|\\\\n| accuracy | 85.66 | 85.47 | 87.40 | 87.31 | 86.46±1.04 |\\\\n| unresolved_f1 | 87.50 | 87.00 | 88.70 | 88.27 | 87.87±0.76 |\\\\n| resolved_f1 | 83.18 | 83.52 | 85.80 | 86.17 | 84.67±1.54 |\\\\n| consistency | 79.94 | 78.59 | 78.80 | 76.74 | 78.52±1.33 |\\\\n\\\\n## Welch's t-test: traj-level vs per-test accuracy\\\\n- Traj-level (4 seeds): 86.46±1.04\\\\n- Per-test (3 seeds): 88.41±0.96\\\\n- t=-2.569, df=4.66, p=0.054 (two-tailed)\\\\n- Difference: -1.95pp, NOT significant at α=0.05\\\\n\\\\n## 结论\\\\n4 seeds 仍未达到 p<0.05 的显著性差异（p=0.054，边缘）。traj-level 一致地低于 per-test ~2pp，但方差较大。需要第 5 seed 才能确认差异的统计显著性。\\\", \\\"complete\n…[truncated 154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T09:06:41.896480+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。汇总：\n\n**seed789 结果**: accuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\n\n**4-seed traj-level 汇总**:\n\n| metric | mean±std |\n|--------|----------|\n| accuracy | 86.46±1.04 |\n| unresolved_f1 | 87.87±0.76 |\n| resolved_f1 | 84.67±1.54 |\n| consistency | 78.52±1.33 |\n\n**t-test (traj-level vs per-test accuracy)**: t=-2.569, df=4.66, **p=0.054** — 边缘不显著。traj-level 一致低于 per-test ~2pp，但 4 seeds 仍不足以在 α=0.05 下拒绝 H₀。需要第 5 seed 将 p 值推过阈值。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_traj-level-seed789_20260512T090511"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-traj-level-seed789.md"
+}

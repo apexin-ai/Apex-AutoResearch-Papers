@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b858c05ef7150e85951",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis inference efficiency benchmark",
+  "task_key": "worker_analysis_inference-efficiency-benchmark_20260517T111546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_inference-efficiency-benchmark_20260517T111546_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "c3bb194cedb1579e480276f68c141c070583ea6c1244ca1774af4f3a147ba76c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 正在后台运行，2 分钟后检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inference-efficiency-benchmark.md"
+}

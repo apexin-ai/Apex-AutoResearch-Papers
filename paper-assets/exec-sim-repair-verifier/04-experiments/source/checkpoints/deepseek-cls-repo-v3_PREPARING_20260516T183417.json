@@ -1,0 +1,14 @@
+{
+  "exp_id": "deepseek-cls-repo-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:34:17.017Z",
+    "updated_at": "2026-05-16T18:34:17.017Z"
+  },
+  "timestamp": "2026-05-16T18:34:17.331114+00:00",
+  "trigger": "update_registry"
+}

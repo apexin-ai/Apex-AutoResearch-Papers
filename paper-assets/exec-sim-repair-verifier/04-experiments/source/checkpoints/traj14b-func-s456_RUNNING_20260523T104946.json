@@ -1,0 +1,30 @@
+{
+  "exp_id": "traj14b-func-s456",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:04:54.197Z",
+    "updated_at": "2026-05-23T10:49:46.391Z",
+    "hypothesis": "TRAJ 14B (seed 456) 补完 Table 2 的 14B TRAJ 行。与 CLS/CWM 14B 对比验证三公式在 14B 的 scaling 趋势。4B→8B TRAJ scaling +2.13pp，14B 应保持或扩大趋势。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python3 train_traj_verifier.py --data_dir data/ --model_name /dev/shm/Qwen3-14B --output_dir /root/autodl-tmp/checkpoints/traj14b-func-s456/ --seed 456 --lr 2e-4 --epochs 3 --lora_rank 16 --lora_alpha 32 --batch_size 1 --grad_accumulation 32 --run_name traj14b-func-s456 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/traj_train.jsonl",
+      "data_count": 8052,
+      "model_name": "Qwen3-14B",
+      "seed": 456,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/traj14b-func-s456/",
+      "log_path": "/tmp/traj14b_s456.log",
+      "pid": 265996,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "effective_batch_size": 32
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T10:49:46.850231+00:00",
+  "trigger": "update_registry"
+}

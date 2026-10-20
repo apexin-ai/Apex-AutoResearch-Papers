@@ -1,0 +1,25 @@
+{
+  "exp_id": "cls4b-v5-val-sweep-ckpt4400",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:51:21.256Z",
+    "updated_at": "2026-05-15T01:51:21.256Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v2",
+      "server": "home-1x5090",
+      "data_path": "data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints_repo_cls_v5/checkpoint-4400",
+      "eval_data": "val@5120",
+      "parent": "cls4b-v5-train"
+    }
+  },
+  "timestamp": "2026-05-15T01:51:21.462583+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "cls8b-s42-ckpt600-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:40:33.560Z",
+    "updated_at": "2026-05-14T22:04:59.962Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --max_new_tokens 512 --batch_size 1 --device cuda:0\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "294727",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt600-test8192-eval.log",
+      "submitted_at": "2026-05-14T21:40:33.234Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "CRITICAL D063: 8B CLS s42 ckpt-600 test@8192，消除 max_seq_length 混杂变量，与 ckpt-400 test@8192 比较",
+    "parent": "repo-level-cls-8b-conda",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T22:05:00.198775+00:00",
+  "trigger": "update_registry"
+}

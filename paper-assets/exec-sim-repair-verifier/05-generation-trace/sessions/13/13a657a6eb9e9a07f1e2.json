@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "13a657a6eb9e9a07f1e2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls seed789",
+  "task_key": "worker_analysis_cls-seed789_20260512T112455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-seed789_20260512T112455_result.json",
+    "occurrence": 1,
+    "bytes": 2038,
+    "sha256": "47a878fc58c6e85f264717fb41cdb89e9e66ef339c0e9b60a1793fa84bf83907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练和评估均正常完成，checkpoint 存在。\n\n```json\n{\n  \"seed\": 789,\n  \"status\": \"COMPLETED\",\n  \"accuracy\": 88.99,\n  \"per_class\": {\n    \"pass\": { \"precision\": 93.26, \"recall\": 84.87, \"f1\": 88.87 },\n    \"fail\": { \"precision\": 85.20, \"recall\": 93.42, \"f1\": 89.12 }\n  },\n  \"confusion_matrix\": { \"tn\": 852, \"fp\": 60, \"fn\": 148, \"tp\": 830 },\n  \"unparseable_predictions\": 0,\n  \"train_loss\": 0.2357,\n  \"eval_loss\": 0.0871,\n  \"train_runtime_sec\": 3433.07,\n  \"train_samples_per_second\": 13.361,\n  \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/\",\n  \"checkpoint_confirmed\": true,\n  \"warnings\": [],\n  \"mvp_b_criteria\": \"PASS\"\n}\n```\n\n**4-seed 汇总：**\n\n| Seed | Accuracy | Pass F1 | Fail F1 |\n|------|----------|---------|---------|\n| 42   | 87.83    | 88.06   | 87.59   |\n| 123  | 89.52    | 89.64   | 89.40   |\n| 456  | 87.88    | 87.53   | 88.21   |\n| **789** | **88.99** | **88.87** | **89.12** |\n| **Mean** | **88.56** | **88.53** | **88.58** |\n| **Std**  | **0.77**  | **0.89**  | **0.76**  |\n\nseed789 accuracy=88.99 在正常范围内（87-90%），与 seed123 接近，标准差 <1pp，结果稳定。还差 seed 1 个即可完成 5-seed comparison。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "seed": 789,
+              "status": "COMPLETED",
+              "accuracy": 88.99,
+              "per_class": {
+                "pass": {
+                  "precision": 93.26,
+                  "recall": 84.87,
+                  "f1": 88.87
+                },
+                "fail": {
+                  "precision": 85.2,
+                  "recall": 93.42,
+                  "f1": 89.12
+                }
+              },
+              "confusion_matrix": {
+                "tn": 852,
+                "fp": 60,
+                "fn": 148,
+                "tp": 830
+              },
+              "unparseable_predictions": 0,
+              "train_loss": 0.2357,
+              "eval_loss": 0.0871,
+              "train_runtime_sec": 3433.07,
+              "train_samples_per_second": 13.361,
+              "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/",
+              "checkpoint_confirmed": true,
+              "warnings": [],
+              "mvp_b_criteria": "PASS"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-seed789.md"
+}

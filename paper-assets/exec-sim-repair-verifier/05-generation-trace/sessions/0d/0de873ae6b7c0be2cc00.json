@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0de873ae6b7c0be2cc00",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 8b ckpt3000 val cuda1 submit",
+  "task_key": "worker_eval_seed123-8b-ckpt3000-val-cuda1-submit_20260514T205428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-8b-ckpt3000-val-cuda1-submit_20260514T205428_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "db8e090ec661f2b71b0d13df74fee167cfe07d7219b5adb80c65e5771d778ce1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 281646 仍在 cuda:1 上跑（13.6GB 显存占用）。90 秒后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-8b-ckpt3000-val-cuda1-submit.md"
+}

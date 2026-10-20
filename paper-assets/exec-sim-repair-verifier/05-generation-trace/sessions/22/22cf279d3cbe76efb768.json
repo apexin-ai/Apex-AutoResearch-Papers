@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22cf279d3cbe76efb768",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval qwen3 8b cwm func level",
+  "task_key": "worker_eval_qwen3-8b-cwm-func-level_20260516T101005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen3-8b-cwm-func-level_20260516T101005_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "8f23e0196772bcedcb71c52410b80d8b699cdd49918500b4a2e8026a6c81c226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：Qwen3-8B CWM func-level checkpoint 不存在。**\n\n服务器上所有 CWM checkpoint 情况：\n\n| 路径 | 模型 | 级别 |\n|------|------|------|\n| `checkpoints_repo_cwm_8b_conda` | Qwen3-8B | repo-level |\n| `checkpoints_backup_cwm_8b` | Qwen3-8B | repo-level |\n| `checkpoints_deepseek_cwm_func` | DeepSeek | func-level |\n| `checkpoints_deepseek_cwm_func_seed123` | DeepSeek | func-level |\n\n唯一的 func-level CWM 都是 DeepSeek 的。Qwen3-8B 只有 repo-level CWM（已跑过 eval，accuracy=65.17%）。\n\n**从未训练过 Qwen3-8B func-level CWM。** 如果论文对比表需要这个数据点，需要用 func-level CWM 训练数据重新训练一个 Qwen3-8B LoRA adapter。训练数据应该已有（DeepSeek 用的同一份），只是没在 8B 上跑过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen3-8b-cwm-func-level.md"
+}

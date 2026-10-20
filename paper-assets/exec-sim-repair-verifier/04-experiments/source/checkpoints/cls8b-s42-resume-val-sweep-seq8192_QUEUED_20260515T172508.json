@@ -1,0 +1,18 @@
+{
+  "exp_id": "cls8b-s42-resume-val-sweep-seq8192",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:25:04.128Z",
+    "updated_at": "2026-05-15T17:25:07.818Z",
+    "notes": "OOM fix: batch_size 8→1, added PYTORCH_ALLOC_CONF=expandable_segments:True. Restarted from ckpt-1800 (no prior completed results). New PID=396591. GPU0 using 17.8GB/32GB, inference running ~85% acc at 150/9335.",
+    "spec": {
+      "pid": 396591
+    }
+  },
+  "timestamp": "2026-05-15T17:25:08.088584+00:00",
+  "trigger": "update_registry"
+}

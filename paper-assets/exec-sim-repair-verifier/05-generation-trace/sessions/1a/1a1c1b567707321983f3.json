@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a1c1b567707321983f3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_7_1778739081.md",
+  "task_key": "loop_7_1778739081",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778739081.md",
+    "occurrence": 1,
+    "bytes": 4670,
+    "sha256": "7b42925a1b065d749ece3c148951b741a0b1b6ea3dfa716d7cdd86e52870caf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T05:21:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（来自 project config），仅限 westd-48478 和 home-1x5090 服务器\n- **CWM v11 数字已废止**（D057）：论文不得引用 CWM v11 的 66.6%/500-sample eval 数据，需等 CWM v12 或新 CWM 训练的全量 eval\n- **跨服务器对比无效**：home (transformers 4.57.6) vs westd (transformers 5.8.0) 训出的模型不能 apple-to-apple 比。所有对比必须同服务器同 conda 环境\n- **Checkpoint sweep 必做**：eval_loss 最低 ≠ test accuracy 最高（实测差 16pp），每次 eval 至少 3 个 checkpoint\n- **CWM seed123 conda 已被 kill**，不要尝试恢复——需要重新训练\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：\n  - `westd-48478` (sonny@)：主力训练/eval 服务器，4×5090，工作目录 /home/sonny/exec-sim-repair-verifier\n  - `home-1x5090` (sonny@)：1×5090，transformers 4.57.6\n  - `seetacloud-westd-4x5090` (root@)：备用，之前 transformers 5.8.0 环境问题多\n- **Python 环境**：westd-48478 用 conda（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），transformers 4.57.6\n- **数据/模型路径**：在 westd-48478 的项目目录下，具体路径需 SSH 确认（上一轮未记录到 memory）\n- **W&B**：未在 config 中看到 wandb project 配置，需 SSH 确认\n- **活跃进程**：无 RUNNING 实验，无活跃 cron（reconcile = 0）\n- **活跃 Worker**：1 个 running (`worker_check_full-status-westd_20260514T051859`，类型 check:full-status-westd)\n\n### 3. 📊 当前状态\n**刚完成的事**：上一轮 session 执行了 D056（early stop 5 个 repo-level 训练 + 启动 eval pipeline）和 D057（废止 CWM v11 数字）。\n\n**两个 ANALYZING 实验待处理**：\n1. `repo-level-cls-v5-conda` — **conclusion=success**。CLS seed42 在 westd conda 环境重训，全量 eval (9784 样本)：accuracy 78.43% (ckpt-400)，f1_macro 71.17% (ckpt-600)。与 home 上的 CLS v5 (76.92%) 接近，确认跨 seed/环境稳健。unparseable 仅 1.35%。\n2. `repo-level-cwm-seed123-conda` — **conclusion=killed**。CWM seed123 conda 重训被 kill，无可用结果。\n\n**关键缺口**：没有可用的 CWM repo-level 数据点与 CLS v5-conda 做 apple-to-apple 对比。CWM v12 (conda 重训) 也 failed，CWM seed123 conda 也 killed。**论文 repo-level §3.6 的 CWM 数字悬空。**\n\n**等待中**：\n- Worker `worker_check_full-status-westd` 仍在 running（状态检查）\n- 无活跃 cron，无 Director 待决策\n\n### 4. 📋 待办（条件触发式）\n- **立即**：处理两个 ANALYZING 实验（update_registry → report.md → 汇报 Director）\n- CLS v5 conda success → 更新 memory.md 核心数字表，加入 78.43% 数据点\n- CWM 全线失败 → 向 Director 汇报现状：repo-level CWM 无可用 apple-to-apple 数据点，需决策：(a) 重新训练 CWM v13 on westd conda，(b) 降级论文 claim 只用 CLS 单臂数据，(c) 用 CWM v11 的 500-sample 数据标注为 \"preliminary\"\n- Worker check-full-status-westd 回调 → 了解 westd 当前进程状态、GPU 空闲情况\n- **Director 决策 CWM 方向后** → 立即 spawn worker 执行（训练/eval/论文修改）\n- 8B CLS repo-level eval（ROADMAP 中待办）：检查 8B CLS conda 训练是否有可用 checkpoint（registry 显示 failed，需确认是训练失败还是 eval 失败）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D052: D008 GO — repo-level 明确放大 CLS vs CWM gap (10.3pp)\n- D054: 环境一致性修复 — 旧 westd 实验全部废止，改用 conda 环境\n- D055: CWM v11 checkpoint 混合版本不可用\n- D057: CWM v11 数字废止，阻塞论文 patch\n\n**项目处于 Paper Patch 阶段**，三个 Core Claims 都有实验支撑，但 repo-level 的 CWM 对照臂（C1 的关键证据）缺失。Paper Agent 已 patch §3.6 + Abstract + Intro + Conclusion，但用的是旧 CWM v11 数字（已废止）。\n\n**最容易判断错的事**：\n1. 不要以为 CLS v5 conda 78.43% 替代了原 CLS v5 76.92% —— 它们是不同环境（westd vs home），CLS v5 conda 是新的独立数据点，mean 可以更新但不是简单替换\n2. 不要用 CWM v11 的 66.6% 与 CLS v5 conda 的 78.43% 直接对比 —— 环境不同（D054/D057 已废止这个对比）\n3. Repo-level 过拟合严重（best checkpoint 在 step 200-600 / total 6633），如果重训 CWM，同样需要 checkpoint sweep\n4. majority baseline = 72.96%，CLS 超出 ~5pp，CWM 在旧数据中低于 baseline —— 这是核心 story 的支撑，但需要同环境验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778739081.md"
+}

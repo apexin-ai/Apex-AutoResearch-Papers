@@ -1,0 +1,29 @@
+TOST Multi-Margin Equivalence Test Results
+===========================================
+Date: 2026-05-15
+Method: Clustered bootstrap (by problem_id), 10,000 resamples
+Data: 4 CLS-CWM pairs (2 CLS seeds x 2 CWM seeds), 7,560 total obs, 114 clusters
+
+Per-pair accuracy differences (CLS - CWM):
+  Pair 1: cls_s42 vs cwm_s123  → +0.21pp (87.51% vs 87.30%)
+  Pair 2: cls_s42 vs cwm_s789  → +0.85pp (87.51% vs 86.67%)
+  Pair 3: cls_s0  vs cwm_s123  → +0.48pp (87.78% vs 87.30%)
+  Pair 4: cls_s0  vs cwm_s789  → +1.11pp (87.78% vs 86.67%)
+
+Pooled mean diff: +0.661pp
+95% CI: [-0.479, +1.792]pp
+Bootstrap SE: 0.577pp
+
+TOST Results:
+  Margin    90% CI                p-value    Equivalent?
+  ±1pp      [-0.275, +1.620]     0.2854     NO
+  ±2pp      [-0.275, +1.620]     0.0104     YES
+  ±3pp      [-0.275, +1.620]     0.0000     YES
+
+Minimum equivalence margin: 1.620pp
+
+Conclusions:
+- At ±2pp: EQUIVALENT (p=0.010), confirming the C2 claim
+- At ±1pp: NOT equivalent (p=0.285), 90% CI upper bound 1.62pp exceeds 1pp
+- At ±3pp: trivially equivalent (p≈0)
+- The smallest margin that still yields equivalence is ±1.62pp

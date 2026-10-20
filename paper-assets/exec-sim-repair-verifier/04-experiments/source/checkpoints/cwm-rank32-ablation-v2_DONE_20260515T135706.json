@@ -1,0 +1,53 @@
+{
+  "exp_id": "cwm-rank32-ablation-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:50:32.964Z",
+    "updated_at": "2026-05-15T13:57:05.959Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "log_path": "/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/",
+      "gpu": "cuda:0",
+      "pid": 368823,
+      "lora_rank": 32,
+      "lora_alpha": 32,
+      "lr": 0.0002,
+      "epochs": 3,
+      "batch_size": 2,
+      "grad_accumulation": 16,
+      "total_steps": 1434,
+      "description": "CWM rank=32 ablation (vs baseline rank=16). Function-level data. Alpha kept at 32.",
+      "estimated_duration": "~1.5h total"
+    },
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=32 vs baseline rank=16. 回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。PID 368823 在 GPU 0 上正常训练，step 324/1434 (22%)。注意：训练命令未串联 eval，完成后需单独触发 eval。",
+    "conclusion": "success",
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/best",
+    "log_path": "/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log",
+    "notes": "诊断结论: 训练成功完成 (EXIT_CODE=0)\n最后 step: 1434/1434 (100%)\n训练时间: 5003.67s (~83min)\ntrain_loss=0.2536, eval_loss=0.0688\nCheckpoints: best/, checkpoint-1434/, checkpoint-478/\n评估结果: accuracy=87.0% (+35.2pp), F1(fail)=87.1%, F1(pass)=86.9%, exact_match=83.4%\nMVP-B: PASS (per-class F1>65%, gap>=10pp)\ncuda:0 当前空闲 (0MiB, 0% util)",
+    "metrics": {
+      "accuracy": 87,
+      "exact_match": 83.4,
+      "fail_f1": 87.1,
+      "pass_f1": 86.9,
+      "eval_loss": 0.0688,
+      "train_loss_final": 0.0152,
+      "train_loss_avg": 0.2536,
+      "total_steps": 1434,
+      "epochs": 3,
+      "training_time_seconds": 5003
+    },
+    "completed_at": "2026-05-15T13:57:05.960Z"
+  },
+  "timestamp": "2026-05-15T13:57:06.240721+00:00",
+  "trigger": "update_registry"
+}

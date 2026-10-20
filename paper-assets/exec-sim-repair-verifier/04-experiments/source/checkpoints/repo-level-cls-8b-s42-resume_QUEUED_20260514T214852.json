@@ -1,0 +1,27 @@
+{
+  "exp_id": "repo-level-cls-8b-s42-resume",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:48:30.781Z",
+    "updated_at": "2026-05-14T21:48:51.806Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --save_total_limit 35 --dataloader_num_workers 0 --epochs 3\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "295789",
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log",
+      "submitted_at": "2026-05-14T21:48:30.485Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T21:48:52.016702+00:00",
+  "trigger": "update_registry"
+}

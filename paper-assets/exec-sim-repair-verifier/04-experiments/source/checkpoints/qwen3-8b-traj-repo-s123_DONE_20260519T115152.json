@@ -1,0 +1,43 @@
+{
+  "exp_id": "qwen3-8b-traj-repo-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:51:14.265Z",
+    "updated_at": "2026-05-19T11:51:52.084Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python train_traj_verifier.py --data_dir data/swebench_full/ --model_name Qwen3-8B --output_dir checkpoints_qwen3_8b_traj_repo_s123/ --seed 123 --max_seq_length 4096 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --epochs 3 --lora_rank 16 --lora_alpha 32",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full/",
+      "data_count": 48,
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_qwen3_8b_traj_repo_s123/checkpoint-98",
+      "log_path": "/root/autodl-tmp/logs/traj_s123_train.log"
+    },
+    "hypothesis": "Qwen3-8B TRAJ repo-level s123: multi-seed replication for N1. s42=72.92%; DeepSeek TRAJ s123=77.1%",
+    "parent": "qwen3-8b-traj-repo-s42-v2",
+    "metrics": {
+      "variant_accuracy": 77.08,
+      "variant_correct": 37,
+      "variant_total": 48,
+      "f1_macro": 76.59,
+      "overall_accuracy": 77.08,
+      "precision_unresolved": 78.95,
+      "recall_unresolved": 68.18,
+      "f1_unresolved": 73.17,
+      "precision_resolved": 75.86,
+      "recall_resolved": 84.62,
+      "f1_resolved": 80,
+      "train_loss": 0.5706,
+      "eval_loss_all_nan": true
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T11:51:52.084Z"
+  },
+  "timestamp": "2026-05-19T11:51:52.482927+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2510f550a324d920c4a8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra westd gpu check",
+  "task_key": "worker_infra_westd-gpu-check_20260516T010909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-gpu-check_20260516T010909_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "d25a4b18c60c40370a0be058903cea46d590a78fae7990eab487b99e29c18544"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 型号 | 显存占用 | GPU 利用率 | PID | 进程 |\n|-----|------|---------|-----------|-----|------|\n| 0 | RTX 5090 | 17609/32607 MiB (54%) | 99% | 444502 | `eval_repo_cls.py` — CLS 8B ckpt1000 test mutation eval (s42) |\n| 1 | RTX 5090 | 17609/32607 MiB (54%) | 85% | 444130 | `eval_repo_cls.py` — CLS 8B ckpt1000 test mutation eval (s42_resume) |\n| 2 | RTX 5090 | 29273/32607 MiB (90%) | 97% | 442200 | `train_repo_cwm.py` — CWM 8B 训练 (从 ckpt-6100 恢复, epoch 3) |\n| 3 | RTX 5090 | 21133/32607 MiB (65%) | 100% | 443221 | `eval_repo_cwm.py` — CWM 8B ckpt400 test eval |\n\n**4 块 GPU 全部占满，无空闲。**\n\n### CWM 8B 训练 (GPU 2)\n- 进度：6198/6633 steps (93%)，已训练约 6h15m\n- 速度：~12s/it，预计剩余约 1h43m\n\n### CWM 8B ckpt400 test eval (GPU 3)\n- 结果文件：`/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl`\n- 已完成：5472 样本（5287 new + resumed），总计 9784 样本\n- 进度：约 54%，running_acc=57.1%\n\n### CLS 8B eval (GPU 0 & 1)\n- 两个并行的 CLS 8B s42 ckpt1000 test mutation eval，分别输出到不同目录\n\n### Orphan 进程\n- 无 orphan 进程。旧的 `eval_cwm_seed123` tmux session (PID 194398) 仍在，但无对应 python 进程运行。\n- `auto_backup_checkpoints.sh` 后台脚本在运行（PID 228420）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-gpu-check.md"
+}

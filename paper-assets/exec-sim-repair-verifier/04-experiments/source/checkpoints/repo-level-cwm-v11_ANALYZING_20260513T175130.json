@@ -1,0 +1,23 @@
+{
+  "exp_id": "repo-level-cwm-v11",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:42:42.615Z",
+    "updated_at": "2026-05-13T17:51:29.888Z",
+    "hypothesis": "D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v10 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CWM execution simulator 在正确超参下的性能。",
+    "spec": {
+      "pid": 145692,
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:2",
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /usr/bin/python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v11/ --seed 42 --no_wandb --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_v11/checkpoint-500",
+      "log_path": "/tmp/cwm_v11_restart.log"
+    },
+    "notes": "系统 Python 重启后运行正常。Step 1477/6633 (22%) @ 15:44 UTC。速度 ~8.9s/step（恢复前 conda 16-24s/step）。PID 145692, cuda:2 16297 MiB, GPU util 77%。预估完成 ~明天 04:30 UTC。"
+  },
+  "timestamp": "2026-05-13T17:51:30.031047+00:00",
+  "trigger": "update_registry"
+}

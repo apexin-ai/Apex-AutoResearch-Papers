@@ -1,0 +1,52 @@
+{
+  "per_seed": [
+    {
+      "seed": 0,
+      "n_samples": 1890,
+      "cls_accuracy": 87.78,
+      "cwm_accuracy": 87.57,
+      "both_correct": 1611,
+      "cls_only_wrong": 44,
+      "cwm_only_wrong": 48,
+      "both_wrong": 187,
+      "oracle_accuracy": 90.11,
+      "jaccard_overlap": 0.6703,
+      "complementarity_rate": 0.3297
+    },
+    {
+      "seed": 42,
+      "n_samples": 1890,
+      "cls_accuracy": 87.83,
+      "cwm_accuracy": 87.51,
+      "both_correct": 1601,
+      "cls_only_wrong": 53,
+      "cwm_only_wrong": 59,
+      "both_wrong": 177,
+      "oracle_accuracy": 90.63,
+      "jaccard_overlap": 0.6125,
+      "complementarity_rate": 0.3875
+    },
+    {
+      "seed": 456,
+      "n_samples": 1890,
+      "cls_accuracy": 87.88,
+      "cwm_accuracy": 86.98,
+      "both_correct": 1610,
+      "cls_only_wrong": 34,
+      "cwm_only_wrong": 51,
+      "both_wrong": 195,
+      "oracle_accuracy": 89.68,
+      "jaccard_overlap": 0.6964,
+      "complementarity_rate": 0.3036
+    }
+  ],
+  "aggregated": {
+    "mean_cls_accuracy": 87.83,
+    "mean_cwm_accuracy": 87.35,
+    "mean_oracle_accuracy": 90.14,
+    "mean_complementarity_rate": 0.3403,
+    "mean_jaccard_overlap": 0.6597,
+    "oracle_gain_over_cls": 2.31,
+    "oracle_gain_over_cwm": 2.79
+  }
+}

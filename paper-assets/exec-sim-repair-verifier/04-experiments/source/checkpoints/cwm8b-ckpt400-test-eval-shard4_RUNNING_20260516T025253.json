@@ -1,0 +1,24 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval-shard4",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:52:45.544Z",
+    "updated_at": "2026-05-16T02:52:52.722Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --start_idx 9100 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/",
+      "data_count": 684,
+      "model_name": "Qwen3-8B + CWM ckpt-400",
+      "seed": 42,
+      "checkpoint_source": "cwm8b-ckpt400-test-eval-v3",
+      "eval_data": "test split idx 9100-9783 (684 samples)"
+    }
+  },
+  "timestamp": "2026-05-16T02:52:53.067000+00:00",
+  "trigger": "update_registry"
+}

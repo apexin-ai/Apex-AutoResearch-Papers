@@ -1,0 +1,72 @@
+# director / loop_11.md
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_11.md`
+- **Structured JSON:** [`0dd62426104757495072.json`](../../sessions/0d/0dd62426104757495072.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 11
+reason: max_messages
+updated: '2026-05-14T21:26:00+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 home 服务器只分配 cuda:0，不得使用其他卡
+- westd 服务器分配 cuda:0-3，训练用 cuda:2,3，eval 用 cuda:0,1
+- test@8192 评估是当前最高优先级——Reviewer 发现 val-selected best ckpt 在不同 seq_len 下排名反转，必须用 test set 定论
+- 8B CLS 模型 eval 必须用 max_seq_length=8192 + batch_size=1（之前 batch_size>1 导致 OOM）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd（westd-8x6000），工作目录 /root/repo-level-cls-8b-conda
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型 checkpoints：/root/repo-level-cls-8b-conda/outputs/cls-8b-s42/checkpoint-{200,400,600}
+- seed123 checkpoints：/root/repo-level-cls-8b-conda/outputs/cls-8b-seed123/checkpoint-{1000,2000,3000}
+- 数据集：/root/repo-level-cls-8b-conda/data/
+- home 服务器：工作目录 /root/exec-sim-repair-verifier/
+- 活跃进程（截至 handoff）：
+  - cuda:0 westd: Worker `eval:critical-8b-s42-test8192-ckpt400-ckpt600` — 串行跑 ckpt-400 和 ckpt-600 的 test@8192
+  - cuda:1 westd: seed123 val@8192 评估（修复后重新提交）
+  - cuda:2,3 westd: 训练任务
+
+### 3. 📊 当前状态
+核心等待项：**ckpt-400 vs ckpt-600 的 test@8192 结果**。这是决定 8B CLS headline 数字的关键实验。
+
+已知数据：
+- val@8192: ckpt-600=85.00% > ckpt-400=80.96%（ckpt-600 胜）
+- test@2048: ckpt-400=84.52% > ckpt-600=78.51%（ckpt-400 胜）
+- 排名反转是 Reviewer 发现的 critical issue，test@8192 将给出最终定论
+
+Registry 状态：多个 eval 实验 RUNNING，等 Worker 回调。旧的错误 eval（cls8b-seed123-ckpt3000-val-eval）已 kill。
+
+### 4. 📋 待办
+- test@8192 结果回来 → 确定 val-selected best checkpoint → 更新 8B CLS headline 数字 → 汇报用户
+- seed123 val@8192 完成 → 收集结果，与 s42 交叉验证 checkpoint 选择一致性
+- 两个 seed 的 test@8192 全部完成 → 综合分析，写最终 8B CLS 结论
+- 如果 test@8192 仍然排名反转（val 选 ckpt-600 但 test 选 ckpt-400）→ 需要讨论 eval protocol 问题，可能需要加 val@8192 作为正式 validation set
+
+### 5. 🎯 战略上下文
+- 项目核心：exec-sim-repair-verifier，研究 execution simulation 用于代码修复验证
+- 8B CLS 模型是核心实验之一，当前卡在 checkpoint 选择问题上
+- Reviewer 发现的 seq_len 敏感性问题是真实的——不同 max_seq_length 下 best checkpoint 不同，说明模型对长上下文的利用能力在训练过程中非单调变化
+- 易错点：不要用 test@2048 的结果做最终结论——项目的 claim 基于 8192 token 上下文，必须用 test@8192
+- 易错点：eval 脚本的 max_seq_length 参数必须显式设为 8192，默认值可能不是 8192
+- 决策链：先前已决定用 val set 选 checkpoint 再报 test 数字（标准 ML 流程），但 val@8192 和 test@2048 的排名反转暴露了 seq_len 不一致问题
+
+
+---

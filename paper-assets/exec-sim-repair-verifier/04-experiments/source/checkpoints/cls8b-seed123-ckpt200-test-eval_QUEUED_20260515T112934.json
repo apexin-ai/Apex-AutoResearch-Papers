@@ -1,0 +1,28 @@
+{
+  "exp_id": "cls8b-seed123-ckpt200-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:29:27.906Z",
+    "updated_at": "2026-05-15T11:29:33.925Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "363037",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log",
+      "submitted_at": "2026-05-15T11:29:27.560Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "seed123 test curve 最后补点: ckpt-200 test@full(n=9784)。完成后 seed123 test curve 6/6 全齐。"
+  },
+  "timestamp": "2026-05-15T11:29:34.195499+00:00",
+  "trigger": "update_registry"
+}

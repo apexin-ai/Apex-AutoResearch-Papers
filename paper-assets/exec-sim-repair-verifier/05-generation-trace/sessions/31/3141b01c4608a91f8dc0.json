@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "3141b01c4608a91f8dc0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose repo level cls home",
+  "task_key": "worker_diagnose_repo-level-cls-home_20260512T211653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_repo-level-cls-home_20260512T211653_result.json",
+    "occurrence": 1,
+    "bytes": 2108,
+    "sha256": "2b7770d28df0783f341dfc9b019a88d8d739a2171a3619439b26d930f9efd659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有足够信息做诊断了。\n\n关键发现：\n\n1. **旧运行日志已被覆盖** — 新运行（PID 2880203）在旧运行退出 12 秒后自动启动（21:14:26 UTC），覆盖了同名日志文件\n2. **EXIT_CODE=130 = SIGINT** — 外部信号终止，不是 OOM（137）、不是代码错误（1）、不是段错误（139）\n3. **新运行正在正常训练** — GPU 100% 利用率，19.4/32.6 GB 显存，step 2/6633，7.2s/step\n4. **Checkpoint 目录为空** — 旧运行未达到 save_steps=200 就被杀掉\n5. **代码已修复** — eval_strategy=\"steps\"、save_steps=200（D036 的 epoch 问题已修）\n6. **无其他干扰进程** — CWM v8 在 seetacloud 上，不在 home\n\n```json\n{\"root_cause\":\"EXIT_CODE=130 (SIGINT) — 进程被外部信号终止，旧日志已被自动重启的新运行覆盖无法追溯具体触发源。最可能是 Worker 框架在 D037 策略调整中主动 kill-and-restart\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复 — 新运行(PID 2880203)已自动启动并正常训练中(step 2/6633, 7.2s/step)\",\"注册表中 repo-level-cls-home 状态仍为 DONE，需更新为 RUNNING 并绑定新 PID\",\"建议后续日志写入带时间戳的文件名避免覆盖(如 repo-level-cls-home.20260512T211426.log)\"],\"can_auto_fix\":true,\"checkpoints_saved\":false,\"checkpoint_path\":null}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "EXIT_CODE=130 (SIGINT) — 进程被外部信号终止，旧日志已被自动重启的新运行覆盖无法追溯具体触发源。最可能是 Worker 框架在 D037 策略调整中主动 kill-and-restart",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复 — 新运行(PID 2880203)已自动启动并正常训练中(step 2/6633, 7.2s/step)",
+                "注册表中 repo-level-cls-home 状态仍为 DONE，需更新为 RUNNING 并绑定新 PID",
+                "建议后续日志写入带时间戳的文件名避免覆盖(如 repo-level-cls-home.20260512T211426.log)"
+              ],
+              "can_auto_fix": true,
+              "checkpoints_saved": false,
+              "checkpoint_path": null
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-repo-level-cls-home.md"
+}

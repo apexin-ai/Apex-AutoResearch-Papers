@@ -1,0 +1,14 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:29:52.481Z",
+    "updated_at": "2026-05-16T17:30:07.512Z"
+  },
+  "timestamp": "2026-05-16T17:30:07.812564+00:00",
+  "trigger": "update_registry"
+}

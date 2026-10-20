@@ -1,0 +1,14 @@
+{
+  "exp_id": "deepseek-traj-func",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:09:15.058Z",
+    "updated_at": "2026-05-16T12:09:15.058Z"
+  },
+  "timestamp": "2026-05-16T12:09:15.407177+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "repo-level-cwm-8b-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:28:04.512Z",
+    "updated_at": "2026-05-14T05:28:04.512Z",
+    "spec": {
+      "hypothesis": "D058: 8B CWM repo-level 训练，补全 2×2 scaling table (4B/8B × CLS/CWM)。验证 CWM 在 8B 是否能追上 CLS，还是因 token exhaustion 持续落后。",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/",
+      "server": "westd-48478",
+      "gpu": "cuda:2",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "max_seq_length": 2048,
+      "env": "conda base, transformers 4.57.6"
+    }
+  },
+  "timestamp": "2026-05-14T05:28:04.661078+00:00",
+  "trigger": "update_registry"
+}

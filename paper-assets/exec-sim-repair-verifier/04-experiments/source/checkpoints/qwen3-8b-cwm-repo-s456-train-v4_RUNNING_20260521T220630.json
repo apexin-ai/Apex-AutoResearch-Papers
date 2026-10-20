@@ -1,0 +1,32 @@
+{
+  "exp_id": "qwen3-8b-cwm-repo-s456-train-v4",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:47:24.823Z",
+    "updated_at": "2026-05-21T22:06:30.309Z",
+    "hypothesis": "Qwen3-8B CWM repo-level s456 训练恢复 (v4): 从 v3 的 checkpoint-6100 恢复（v3 被 SIGTERM 在 step 6200 杀死），跑完剩余 ~533 步。与 s42 config 一致 (train_repo_cwm.py, bs=1, ga=32, lr=5e-5, seq2048, epochs=3, lora_r=16)。",
+    "parent": "",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/ --seed 456 --resume_from_checkpoint checkpoint-6100 --max_seq_length 2048 --batch_size 1 --grad_accumulation 32 --lr 5e-5 --epochs 3 --lora_rank 16 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "83238",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 456,
+      "log_path": "~/runs/exec-sim-repair-verifier/qwen_cwm_s456_resume2.log"
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-6633",
+    "log_path": "~/runs/exec-sim-repair-verifier/qwen_cwm_s456_resume2.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T22:06:30.814025+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03b57dbfd5dede3740e0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze traj level seed789",
+  "task_key": "worker_analyze_traj-level-seed789_20260512T090511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_traj-level-seed789_20260512T090511_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "cbcb2a47b221ed933853806997907b38a3b75e3d3ed4844a29dc20d80c9aa2c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新。汇总：\n\n**seed789 结果**: accuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\n\n**4-seed traj-level 汇总**:\n\n| metric | mean±std |\n|--------|----------|\n| accuracy | 86.46±1.04 |\n| unresolved_f1 | 87.87±0.76 |\n| resolved_f1 | 84.67±1.54 |\n| consistency | 78.52±1.33 |\n\n**t-test (traj-level vs per-test accuracy)**: t=-2.569, df=4.66, **p=0.054** — 边缘不显著。traj-level 一致低于 per-test ~2pp，但 4 seeds 仍不足以在 α=0.05 下拒绝 H₀。需要第 5 seed 将 p 值推过阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-traj-level-seed789.md"
+}

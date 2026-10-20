@@ -1,0 +1,29 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123-eval-1epoch",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:16:05.664Z",
+    "updated_at": "2026-05-21T06:17:43.144Z",
+    "hypothesis": "DeepSeek CWM repo-level s123-v2 1-epoch checkpoint (checkpoint-4209) eval. 参考数据点，验证 1-epoch 训练的 CWM 表现。与 s42 3-epoch (61.49%) 对比。",
+    "parent": "deepseek-cwm-repo-s123-train-v2",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 75.45,
+      "f1_macro": 65.08,
+      "f1_fail": 46.05,
+      "f1_pass": 84.11,
+      "unparseable_rate": 66.4,
+      "unparseable_count": 6500,
+      "n_instances": 9784,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_pp": 2.49,
+      "truncated": 0
+    }
+  },
+  "timestamp": "2026-05-21T06:17:43.571541+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2035 @@
+# code cwm error mode analysis script
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/chats/worker_code_cwm-error-mode-analysis-script_20260514T162722.jsonl`
+- **Structured JSON:** [`5e51318d6bb42ecb4a68.json`](../../sessions/5e/5e51318d6bb42ecb4a68.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+69 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T16:31:42.758945+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T16:31:42.759303+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T16:31:42.759467+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/exec-sim-repair-verifier/results/ -name \"*cwm*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/exec-sim-repair-verifier/results/ -name \"*cwm*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T16:31:42.759601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -lt /root/autodl-tmp/exec-sim-repair-verifier/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -lt /root/autodl-tmp/exec-sim-repair-verifier/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T16:31:42.759733+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/exec-sim-repair-verifier/results/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T16:31:42.759882+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/exec-sim-repair-verifier/results/ -name \"*cls*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/exec-sim-repair-verifier/results/ -name \"*cls*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T16:31:42.760013+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/exec-sim-repair-verifier/results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T16:31:42.760136+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/exec-sim-repair-verifier/results/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T16:31:42.760253+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/exec-sim-repair-verifier/ -maxdepth 2 -name \"*eval*repo*\" -o -name \"*repo*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/exec-sim-repair-verifier/ -maxdepth 2 -name \"*eval*repo*\" -o -name \"*repo*eval*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T16:31:42.760378+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/exec-sim-repair-verifier/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T16:31:42.760523+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T16:31:42.760682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8b_scaling_bootstrap_results.json\\n__pycache__\\nanalysis_5paired_bootstrap.py\\nanalysis_8b_scaling_bootstrap.py\\nanalysis_error_overlap.py\\nanalysis_error_overlap_report.json\\nanalyze_p2p_regression.py\\nauto_eval_on_complete.sh\\nblock_corr_from_predictions.py\\nbootstrap_preliminary_2pairs.json\\nbuild_cwm_data.py\\nbuild_data.py\\nbuild_swebench_data.py\\nbuild_trace_data.py\\nbuild_traj_data.py\\ncheckpoints\\ncheckpoints_cls8b\\ncheckpoints_cls8b_seed123\\ncheckpoints_cls_seed0\\ncheckpoints_cwm8b\\ncheckpoints_cwm8b_seed123\\ncheckpoints_cwm8b_seed456\\ncheckpoints_cwm_seed123\\ncheckpoints_cwm_seed789\\ncheckpoints_repo_cls\\ncheckpoints_repo_cls_seed123\\ncheckpoints_repo_cwm\\ndata\\neval_block_correlation_v2.json\\neval_cls8b_results.json\\neval_cls8b_seed123.json\\neval_cls8b_seed42.json\\neval_cls_seed0.json\\neval_cwm8b_results.json\\neval_cwm8b_seed123.json\\neval_cwm8b_seed456.json\\neval_cwm_baseline.py\\neval_cwm_seed123.json\\neval_cwm_seed123_with_preds.json\\neval_cwm_seed123_with_preds_predictions.json\\neval_cwm_seed789.json\\neval_llm_judge_32b.json\\neval_llm_judge_8b.json\\neval_majority_voting.json\\neval_majority_voting.py\\neval_pertest_diag.json\\neval_pertest_diagnostic.py\\neval_repo_bootstrap.py\\neval_repo_cls.py\\neval_repo_cls.py.bak\\neval_repo_cwm.py\\neval_repo_cwm.py.bak\\neval_repo_level.py\\neval_repo_level.py.bak\\neval_repo_verifier.py\\neval_results\\neval_results_bf16.json\\neval_results_bf16_predictions.json\\neval_trace_judge.py\\neval_traj_verifier.py\\neval_verifier.py\\neval_verifier.py.bak\\nextract_cls_seed0.py\\nextract_predictions_generic.py\\nllm_judge_zeroshot.py\\nmeasure_inference_cost.py\\nmvp_a_oracle_sim.py\\nmvp_a_real_f2p_sim.py\\nmvp_a_sensitivity.py\\nmvp_a_total_sim.py\\noutputs\\npaired_bootstrap_repo.py\\npredictions_cls_seed0.jsonl\\npredictions_cls_seed42.jsonl\\npredictions_cwm_seed123.jsonl\\npredictions_cwm_seed789.jsonl\\nresults\\n
+…[truncated 517 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T16:31:42.760841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -maxdepth 1 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier/ -maxdepth 1 -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T16:31:42.760983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/\\n/home/sonny/exec-sim-repair-verifier/data\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\n/home/sonny/exec-sim-repair-verifier/__pycache__\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0\\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls\\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cwm\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456\\n/home/sonny/exec-sim-repair-verifier/outputs\\n/home/sonny/exec-sim-repair-verifier/eval_results\\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123\\n/home/sonny/exec-sim-repair-verifier/results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T16:31:42.761115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps aux --no-headers -p 195531,195668",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ps aux --no-headers -p 195531,195668",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T16:31:42.761275+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2520 ?        Ss   May12   0:00 bash /init/boot/boot.sh\\nroot        917  1.7  0.0 718816 19848 ?        Sl   May12  60:52 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        938  0.0  0.0 191552 104304 ?       S    May12   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        939  0.0  0.0  15444  9344 ?        S    May12   0:02 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        940  0.3  0.0 6970840 105560 ?      Sl   May12  12:35 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        941  0.0  0.0 4147828 79924 ?       Sl   May12   1:21 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        942  0.0  0.0 3385888 18936 ?       Sl   May12   0:56 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        944  0.0  0.0 3830328 21156 ?       Sl   May12   2:58 proxy -c /init/proxy/proxy.ini\\nroot       1052  0.0  0.0 28341192 11212 ?      Sl   May12   3:03 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_orcm2xv0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_orcm2xv0/startup_error\\nroot     152897  0.0  0.0  16776 11092 ?        Ss   May13   0:06 sshd: root@notty\\nroot     152928  0.0  0.0  16796 10956 ?        Ss   May13   0:10 sshd: root@notty\\nroot     194398  0.0  0.0   7364  5124 ?        Ss   May14   0:04 tmux new-session -d -s eval_cwm_seed123 cd /home/sonny/exec-sim-repair-verifier && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500 --model_name /root/a
+…[truncated 5014 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T16:31:42.761451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /root/autodl-tmp/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T16:31:42.761583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  8 root root 4096 May 14 09:00 .\\ndrwxr-xr-x 31 root root 4096 May 14 22:39 ..\\ndrwxr-xr-x  2 root root   10 May 14 08:16 checkpoints_repo_cwm_conda_v12_eval\\ndrwxr-xr-x  2 root root   83 May 14 09:38 repo_cls_8b_conda_eval\\ndrwxr-xr-x  2 root root   83 May 14 09:28 repo_cls_v5_conda_eval\\ndrwxr-xr-x  2 root root   10 May 14 09:00 repo_cwm_seed123_conda_eval\\ndrwxr-xr-x  2 root root   83 May 13 15:54 repo_cwm_v10_eval\\ndrwxr-xr-x  2 root root   10 May 14 09:00 repo_cwm_v12_conda_eval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T16:31:42.761709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/results/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/results/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T16:31:42.761854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm.json\\n/root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls.json\\n/root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls_predictions.jsonl\\n/root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls.json\\n/root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T16:31:42.761980+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T16:31:42.762216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeEr
+…[truncated 7148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T16:31:42.762375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T16:31:42.762627+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_{args.split}.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Usage:\\n#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nimport signal\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict whether the test will pass or fail when run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\nLABEL_MAP = {1: \\\"pass\\\", 0: \\\"fail\\\"}\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\
+…[truncated 7300 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T16:31:42.762856+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T16:31:42.763092+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"+ pytest -rA xarray/tests/test_dataset.py\\\\n============================= test session starts ==============================\\\\nplatform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0\\\\nrootdir: /testbed\\\\nconfigfile: setup.cfg\\\\nplugins:\\\", \\\"unparseable\\\": true}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"django__django-14315\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"+ ./tests/runtests.py --verbosity 2 --settings=test_sqlite --parallel 1 dbshell.test_postgresql\\\\nCreating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...\\\\ntest_0001_create_db_and_table_and_table_with_custom_pk\\\", \\\"unparseable\\\": true}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"pytest-dev__pytest-7490\\\", \\\"label\\\": 0, \\\"pred\\\": 1, \\\"correct\\\": 0, \\\"truncated\\\": true, \\\"gen_text\\\": \\\"--- Modified File: src/_pytest/skipping.py (lines 299-400) ---\\\\n        if item.config.option.runxfail:\\\\n            if xfailed.strict:\\\\n                if rep.skipped:\\\\n                    if rep.expected_result == \\\\\\\"fail\\\\\\\":\\\\n                        rep.outcome = \\\\\\\"passed\\\\\\\"\\\\n                    else:\\\", \\\"unparseable\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T16:31:42.763298+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T16:31:42.763506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CWM\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_v9/checkpoint-400\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cwm_unparseable\\\": 9102,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 69.91,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": -3.05,\\n    \\\"f1_fail\\\": 11.54,\\n    \\\"f1_pass\\\": 81.87,\\n    \\\"f1_macro\\\": 46.71,\\n    \\\"precision_fail\\\": 28.15,\\n    \\\"precision_pass\\\": 73.04,\\n    \\\"recall_fail\\\": 7.26,\\n    \\\"recall_pass\\\": 93.14,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 192,\\n      \\\"fp\\\": 2454,\\n      \\\"fn\\\": 490,\\n      \\\"tp\\\": 6648\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"generation_stats\\\": {\\n    \\\"mean\\\": 251.1,\\n    \\\"median\\\": 239.0,\\n    \\\"max\\\": 416,\\n    \\\"min\\\": 157\\n  },\\n  \\\"truncation\\\": {\\n    \\\"truncated_count\\\": 478,\\n    \\\"truncated_pct\\\": 4.89,\\n    \\\"truncated_accuracy\\\": 21.76,\\n    \\\"non_truncated_accuracy\\\": 72.38\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"max_new_tokens\\\": 64,\\n    \\\"batch_size\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T16:31:42.763655+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls_predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls_predictions.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T16:31:42.763839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 0, \\\"correct\\\": 0, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"fail\\\", \\\"unparseable\\\": false}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"django__django-14315\\\", \\\"label\\\": 1, \\\"pred\\\": 0, \\\"correct\\\": 0, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"fail\\\", \\\"unparseable\\\": false}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"pytest-dev__pytest-7490\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"correct\\\": 1, \\\"truncated\\\": true, \\\"gen_text\\\": \\\"# If the test failed, and\\\", \\\"unparseable\\\": false}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T16:31:42.764012+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/results/repo_cls_v5_conda_eval/eval_repo_cls.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T16:31:42.764165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CLS\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_v5_conda/checkpoint-200\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cls_unparseable\\\": 132,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 52.96,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": -19.99,\\n    \\\"f1_fail\\\": 51.02,\\n    \\\"f1_pass\\\": 54.76,\\n    \\\"f1_macro\\\": 52.89,\\n    \\\"precision_fail\\\": 35.51,\\n    \\\"precision_pass\\\": 91.79,\\n    \\\"recall_fail\\\": 90.59,\\n    \\\"recall_pass\\\": 39.02,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 2397,\\n      \\\"fp\\\": 249,\\n      \\\"fn\\\": 4353,\\n      \\\"tp\\\": 2785\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"batch_size\\\": 16\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T16:31:42.764300+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -5 /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -5 /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T16:31:42.764541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"diff --git a/xarray/core/dataset.py b/xarray/core/dataset.py\\\\n--- a/xarray/core/dataset.py\\\\n+++ b/xarray/core/dataset.py\\\\n@@ -4026,10 +4026,11 @@ def set_index(\\\\n         dim_coords = either_dict_or_kwargs(indexes, indexes_kwargs, \\\\\\\"set_index\\\\\\\")\\\\n \\\\n         new_indexes: dict[Hashable, Index] = {}\\\\n-        new_variables: dict[Hashable, IndexVariable] = {}\\\\n-        maybe_drop_indexes: list[Hashable] = []\\\\n-        drop_variables: list[Hashable] = []\\\\n+        new_variables: dict[Hashable, Variable] = {}\\\\n+        drop_indexes: set[Hashable] = set()\\\\n+        drop_variables: set[Hashable] = set()\\\\n         replace_dims: dict[Hashable, Hashable] = {}\\\\n+        all_var_names: set[Hashable] = set()\\\\n \\\\n         for dim, _var_names in dim_coords.items():\\\\n             if isinstance(_var_names, str) or not isinstance(_var_names, Sequence):\\\\n@@ -4044,16 +4045,19 @@ def set_index(\\\\n                     + \\\\\\\" variable(s) do not exist\\\\\\\"\\\\n                 )\\\\n \\\\n-            current_coord_names = self.xindexes.get_all_coords(dim, errors=\\\\\\\"ignore\\\\\\\")\\\\n+            all_var_names.update(var_names)\\\\n+            drop_variables.update(var_names)\\\\n \\\\n-            # drop any pre-existing index involved\\\\n-            maybe_drop_indexes += list(current_coord_names) + var_names\\\\n+            # drop any pre-existing index involved and its corresponding coordinates\\\\n+            index_coord_names = self.xindexes.get_all_coords(dim, errors=\\\\\\\"ignore\\\\\\\")\\\\n+            all_index_coord_names = set(index_coord_names)\\\\n             for k in var_names:\\\\n-                maybe_drop_indexes += list(\\\\n+                all_index_coord_names.update(\\\\n                     self.xindexes.get_all_coords(k, errors=\\\\\\\"ignore\\\\\\\")\\\\n                 )\\\\n \\\\n-            drop_
+…[truncated 6956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T16:31:42.764738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T16:31:42.764896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 14 09:00 .\\ndrwxr-xr-x 8 root root 4096 May 14 09:00 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T16:31:42.765022+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/results/repo_cwm_v12_conda_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /root/autodl-tmp/results/repo_cwm_v12_conda_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T16:31:42.765151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 14 09:00 .\\ndrwxr-xr-x 8 root root 4096 May 14 09:00 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T16:31:42.765270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T16:31:42.765391+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/results_incremental.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T16:31:42.765506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /root/autodl-tmp/results/repo_cwm_v12_conda_eval/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /root/autodl-tmp/results/repo_cwm_v12_conda_eval/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T16:31:42.765623+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/results/repo_cwm_v12_conda_eval/results_incremental.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T16:31:42.765752+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -10 /tmp/eval_cwm_seed123.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tail -10 /tmp/eval_cwm_seed123.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T16:31:42.765899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 00:20:30,892 INFO [CWM] 8616/9784  running_acc=59.0%\\n2026-05-15 00:21:13,660 INFO [CWM] 8624/9784  running_acc=59.0%\\n2026-05-15 00:22:05,757 INFO [CWM] 8632/9784  running_acc=59.0%\\n2026-05-15 00:22:57,834 INFO [CWM] 8640/9784  running_acc=59.0%\\n2026-05-15 00:23:49,854 INFO [CWM] 8648/9784  running_acc=59.0%\\n2026-05-15 00:24:41,862 INFO [CWM] 8656/9784  running_acc=59.0%\\n2026-05-15 00:25:34,057 INFO [CWM] 8664/9784  running_acc=59.0%\\n2026-05-15 00:26:25,837 INFO [CWM] 8672/9784  running_acc=59.0%\\n2026-05-15 00:27:17,870 INFO [CWM] 8680/9784  running_acc=59.0%\\n2026-05-15 00:28:09,983 INFO [CWM] 8688/9784  running_acc=59.0%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T16:31:42.766028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -10 /tmp/eval_cwm_v12.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tail -10 /tmp/eval_cwm_v12.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T16:31:42.766153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 00:20:32,584 INFO [CWM] 8720/9784  running_acc=57.8%\\n2026-05-15 00:21:23,989 INFO [CWM] 8728/9784  running_acc=57.8%\\n2026-05-15 00:22:15,183 INFO [CWM] 8736/9784  running_acc=57.8%\\n2026-05-15 00:23:06,583 INFO [CWM] 8744/9784  running_acc=57.8%\\n2026-05-15 00:23:58,068 INFO [CWM] 8752/9784  running_acc=57.8%\\n2026-05-15 00:24:49,371 INFO [CWM] 8760/9784  running_acc=57.8%\\n2026-05-15 00:25:41,115 INFO [CWM] 8768/9784  running_acc=57.8%\\n2026-05-15 00:26:32,360 INFO [CWM] 8776/9784  running_acc=57.8%\\n2026-05-15 00:27:24,095 INFO [CWM] 8784/9784  running_acc=57.8%\\n2026-05-15 00:28:15,555 INFO [CWM] 8792/9784  running_acc=57.8%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T16:31:42.766304+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"incremental\\|results_incremental\\|def run_inference\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -n \"incremental\\|results_incremental\\|def run_inference\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T16:31:42.766426+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T16:31:42.766541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/results/ -name \"results_incremental*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/results/ -name \"results_incremental*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T16:31:42.766658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T16:31:42.766768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"incremental\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -n \"incremental\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T16:31:42.766915+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"122:                  max_new_tokens, device, incremental_path=None, completed_indices=None):\\n139:            log.info(f\\\"[CWM] {done}/{total}  (skipped, already in incremental)\\\")\\n190:            if incremental_path:\\n191:                with open(incremental_path, \\\"a\\\") as _fout:\\n320:    incremental_path = os.path.join(out_dir, \\\"results_incremental.jsonl\\\")\\n323:    if os.path.exists(incremental_path):\\n324:        with open(incremental_path) as _f:\\n339:                            incremental_path=incremental_path,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T16:31:42.767040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/ -name \"results_incremental*\" -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/ -name \"results_incremental*\" -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T16:31:42.767171+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T16:31:42.767399+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /home/sonny/exec-sim-repair-verifier/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T16:31:42.767560+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T16:31:42.767696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 72\\ndrwxr-xr-x  8 root root 4096 May 14 11:08 .\\ndrwxr-xr-x 19 root root 4096 May 14 22:27 ..\\n-rw-r--r--  1 root root 9629 May 14 11:45 eval_8b_ckpt400.log\\n-rw-r--r--  1 root root 9628 May 14 11:45 eval_8b_ckpt600.log\\n-rw-r--r--  1 root root 9745 May 14 10:30 eval_cls_8b_conda.log\\n-rw-r--r--  1 root root 5726 May 14 10:20 eval_cls_v5_conda.log\\n-rw-r--r--  1 root root 5731 May 14 11:07 eval_cls_v5_conda_ckpt400.log\\n-rw-r--r--  1 root root 5731 May 14 11:07 eval_cls_v5_conda_ckpt600.log\\ndrwxr-xr-x  2 root root   83 May 14 11:45 repo_cls_8b_conda_ckpt400\\ndrwxr-xr-x  2 root root   83 May 14 11:45 repo_cls_8b_conda_ckpt600\\ndrwxr-xr-x  2 root root   83 May 14 10:30 repo_cls_8b_conda_eval\\ndrwxr-xr-x  2 root root   83 May 14 11:07 repo_cls_v5_conda_ckpt400\\ndrwxr-xr-x  2 root root   83 May 14 11:07 repo_cls_v5_conda_ckpt600\\ndrwxr-xr-x  2 root root   83 May 14 10:20 repo_cls_v5_conda_eval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T16:31:42.767846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 644\\ndrwxr-xr-x  2 root root   4096 May 13 01:25 .\\ndrwxr-xr-x 19 root root   4096 May 14 22:27 ..\\n-rw-r--r--  1 root root 212459 May 13 01:25 cls8b_seed123_predictions.json\\n-rw-r--r--  1 root root    574 May 13 01:25 cls8b_seed123_results.json\\n-rw-r--r--  1 root root 212459 May 13 01:25 cls8b_seed123_results_predictions.json\\n-rw-r--r--  1 root root    575 May 13 01:24 cls8b_seed42.json\\n-rw-r--r--  1 root root 212459 May 13 01:24 cls8b_seed42_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T16:31:42.767980+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T16:31:42.768124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CLS\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cls_unparseable\\\": 136,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 70.22,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": -2.74,\\n    \\\"f1_fail\\\": 60.23,\\n    \\\"f1_pass\\\": 76.19,\\n    \\\"f1_macro\\\": 68.21,\\n    \\\"precision_fail\\\": 47.14,\\n    \\\"precision_pass\\\": 91.4,\\n    \\\"recall_fail\\\": 83.41,\\n    \\\"recall_pass\\\": 65.33,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 2207,\\n      \\\"fp\\\": 439,\\n      \\\"fn\\\": 2475,\\n      \\\"tp\\\": 4663\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"batch_size\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T16:31:42.768249+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T16:31:42.768383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"pass\\\", \\\"unparseable\\\": false}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"django__django-14315\\\", \\\"label\\\": 1, \\\"pred\\\": 0, \\\"correct\\\": 0, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"fail\\\", \\\"unparseable\\\": false}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"pytest-dev__pytest-7490\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"correct\\\": 1, \\\"truncated\\\": true, \\\"gen_text\\\": \\\"# The test failed, but it\\\", \\\"unparseable\\\": false}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T16:31:42.768648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+````json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_cwm_errors.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Error mode analysis for CWM (and optional CLS comparison) repo-level eval.\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter, defaultdict\n\n\ndef load_jsonl(path):\n    results = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                results.append(json.loads(line))\n    return results\n\n\ndef extract_repo(problem_id):\n    parts = problem_id.split(\"__\")\n    if len(parts) >= 2:\n        return parts[0].replace(\"_\", \"-\") + \"/\" + parts[1].rsplit(\"-\", 1)[0].replace(\"_\", \"-\")\n    return problem_id\n\n\ndef classify_error_mode(r):\n    \"\"\"Classify each prediction into an error mode.\"\"\"\n    unparseable = r.get(\"unparseable\", False)\n    truncated = r.get(\"truncated\", False)\n    correct = r[\"correct\"]\n    label = r[\"label\"]\n    pred = r[\"pred\"]\n\n    if correct:\n        if unparseable:\n            return \"unparseable_correct_by_majority\"\n        return \"correct\"\n    else:\n        if unparseable and truncated:\n            return \"truncated_unparseable\"\n        if unparseable:\n            return \"unparseable_wrong\"\n        if truncated:\n            return \"truncated_parsed_wrong\"\n        return \"wrong_class\"\n\n\ndef classify_unparseable_pattern(gen_text):\n    \"\"\"Classify the pattern of an unparseable output.\"\"\"\n    if not gen_text or len(gen_text.strip()) == 0:\n        return \"empty\"\n    text = gen_text.strip()\n    if len(text) < 5:\n        return \"too_short\"\n\n    text_lower = text.lower()\n    has_fail = any(kw in text_lower for kw in [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\"])\n    has_pass = any(kw in text_lower for kw in [\"pass\", \"success\", \"completed\"])\n\n    if has_fail and has_pass:\n        return \"ambiguous_both_keywords\"\n    if not has_fail and not has_pass:\n        return \"no_keywords\"\n\n    if \"```\" in text or \"def \" in text or \"class \" in text:\n        return \"code_output\"\n    if \"test session\" in text_lower or \"pytest\" in text_lower:\n        return \"test_trace_fragment\"\n    return \"other\"\n\n\ndef compute_metrics(labels, preds):\n    n = len(labels)\n    correct = sum(l == p for l, p in zip(labels, preds))\n    acc = round(correct / n * 100, 2) if n else 0\n\n    tp = sum(l == 1 and p == 1 for l, p in zip(labels, preds))\n    tn = sum(l == 0 and p == 0 for l, p in zip(labels, preds))\n    fp = sum(l == 0 and p == 1 for l, p in zip(labels, preds))\n    fn = sum(l == 1 and p == 0 for l, p in zip(labels, preds))\n\n    prec_fail = round(tn / (tn + fn) * 100, 2) if (tn + fn) else 0\n    rec_fail = round(tn / (tn + fp) * 100, 2) if (tn + fp) else 0\n    f1_fail = round(2 * prec_fail * rec_fail / (prec_fail + rec_fail), 2) if (prec_fail + rec_fail) else 0\n\n    prec_pass = round(tp / (tp + fp) * 100, 2) if (tp + fp) else 0\n    rec_pass = round(tp / (tp + fn) * 100, 2) if (tp + fn) else 0\n    f1_pass = round(2 * prec_pass * rec_pass / (prec_pass + rec_pass), 2) if (prec_pass + rec_pass) else 0\n\n    f1_macro = round((f1_fail + f1_pass) / 2, 2)\n\n    return {\n        \"accuracy\": acc, \"f1_macro\": f1_macro,\n        \"f1_fail\": f1_fail, \"f1_pass\": f1_pass,\n        \"precision_fail\": prec_fail, \"recall_fail\": rec_fail,\n        \"precision_pass\": prec_pass, \"recall_pass\": rec_pass,\n        \"confusion_matrix\": {\"tn\": tn, \"fp\": fp, \"fn\": fn, \"tp\": tp},\n    }\n\n\ndef analyze_single(results, label=\"CWM\"):\n    n = len(results)\n    labels = [r[\"label\"] for r in results]\n    preds = [r[\"pred\"] for r in results]\n\n    majority_class = 1 if labels.count(1) >= labels.count(0) else 0\n    majority_acc = round(labels.count(majority_class) / n * 100, 2)\n\n    metrics = compute_metrics(labels, preds)\n\n    # Error mode classification\n    modes = Counter(classify_error_mode(r) for r in results)\n\n    # Unparseable stats\n    unparseable = [r for r in results if r.get(\"unparseable\", False)]\n    n_unparseable = len(unparseable)\n    unparseable_labels = Counter(r[\"label\"] for r in unparseable)\n\n    # Unparseable pattern classification\n    unparseable_patterns = Counter(classify_unparseable_pattern(r.get(\"gen_text\", \"\")) for r in unparseable)\n\n    # Truncation stats\n    truncated = [r for r in results if r.get(\"truncated\", False)]\n    n_truncated = len(truncated)\n\n    # Parseable-only metrics\n    parseable = [r for r in results if not r.get(\"unparseable\", False)]\n    if parseable:\n        parseable_metrics = compute_metrics(\n            [r[\"label\"] for r in parseable], [r[\"pred\"] for r in parseable])\n    else:\n        parseable_metrics = None\n\n    # Per-repo accuracy\n    repo_stats = defaultdict(lambda: {\"total\": 0, \"correct\": 0, \"unparseable\": 0})\n    for r in results:\n        repo = extract_repo(r[\"problem_id\"])\n        repo_stats[repo][\"total\"] += 1\n        repo_stats[repo][\"correct\"] += r[\"correct\"]\n        if r.get(\"unparseable\", False):\n            repo_stats[repo][\"unparseable\"] += 1\n\n    repo_acc = {}\n    for repo, st in repo_stats.items():\n        repo_acc[repo] = {\n            \"total\": st[\"total\"],\n            \"accuracy\": round(st[\"correct\"] / st[\"total\"] * 100, 2),\n            \"unparseable_pct\": round(st[\"unparseable\"] / st[\"total\"] * 100, 1),\n        }\n\n    # Wrong class breakdown (FP vs FN among parseable)\n    parseable_wrong = [r for r in parseable if not r[\"correct\"]]\n    fp_count = sum(1 for r in parseable_wrong if r[\"label\"] == 0 and r[\"pred\"] == 1)\n    fn_count = sum(1 for r in parseable_wrong if r[\"label\"] == 1 and r[\"pred\"] == 0)\n\n    # Gen text length stats\n    gen_lengths = [len(r.get(\"gen_text\", \"\")) for r in results]\n    gen_length_stats = {\n        \"mean\": round(sum(gen_lengths) / len(gen_lengths), 1) if gen_lengths else 0,\n        \"median\": sorted(gen_lengths)[len(gen_lengths) // 2] if gen_lengths else 0,\n        \"min\": min(gen_lengths) if gen_lengths else 0,\n        \"max\": max(gen_lengths) if gen_lengths else 0,\n    }\n\n    return {\n        \"label\": label,\n        \"n_total\": n,\n        \"majority_class\": majority_class,\n        \"majority_baseline\": majority_acc,\n        \"metrics\": metrics,\n        \"parseable_only_metrics\": parseable_metrics,\n        \"error_modes\": dict(modes),\n        \"n_unparseable\": n_unparseable,\n        \"unparseable_pct\": round(n_unparseable / n * 100, 2),\n        \"unparseable_label_dist\": dict(unparseable_labels),\n        \"unparseable_patterns\": dict(unparseable_patterns),\n        \"n_truncated\": n_truncated,\n        \"truncated_pct\": round(n_truncated / n * 100, 2),\n        \"parseable_wrong_breakdown\": {\"false_positive\": fp_count, \"false_negative\": fn_count},\n        \"gen_length_stats\": gen_length_stats,\n        \"per_repo\": repo_acc,\n    }\n\n\ndef print_single_report(analysis):\n    label = analysis[\"label\"]\n    print(f\"\\n{'='*70}\")\n    print(f\"  {label} Error Mode Analysis\")\n    print(f\"{'='*70}\")\n\n    m = analysis[\"metrics\"]\n    print(f\"\\n--- Basic Stats ---\")\n    print(f\"  Total samples:      {analysis['n_total']}\")\n    print(f\"  Accuracy:           {m['accuracy']}%  (majority baseline: {analysis['majority_baseline']}%)\")\n    print(f\"  F1 macro:           {m['f1_macro']}%\")\n    print(f\"  F1 fail:            {m['f1_fail']}%   (P={m['precision_fail']}% R={m['recall_fail']}%)\")\n    print(f\"  F1 pass:            {m['f1_pass']}%   (P={m['precision_pass']}% R={m['recall_pass']}%)\")\n\n    cm = m[\"confusion_matrix\"]\n    print(f\"\\n--- Confusion Matrix ---\")\n    print(f\"                  Predicted\")\n    print(f\"                  fail    pass\")\n    print(f\"  Actual fail    {cm['tn']:>5}   {cm['fp']:>5}\")\n    print(f\"  Actual pass    {cm['fn']:>5}   {cm['tp']:>5}\")\n\n    print(f\"\\n--- Error Modes ---\")\n    modes = analysis[\"error_modes\"]\n    for mode in sorted(modes, key=modes.get, reverse=True):\n        pct = round(modes[mode] / analysis[\"n_total\"] * 100, 1)\n        print(f\"  {mode:<40s} {modes[mode]:>5}  ({pct}%)\")\n\n    print(f\"\\n--- Unparseable Analysis ---\")\n    print(f\"  Unparseable:        {analysis['n_unparseable']} ({analysis['unparseable_pct']}%)\")\n    print(f\"  Unparseable labels: fail={analysis['unparseable_label_dist'].get(0, 0)}, \"\n          f\"pass={analysis['unparseable_label_dist'].get(1, 0)}\")\n\n    patterns = analysis[\"unparseable_patterns\"]\n    if patterns:\n        print(f\"  Unparseable patterns:\")\n        for pat in sorted(patterns, key=patterns.get, reverse=True):\n            print(f\"    {pat:<35s} {patterns[pat]:>5}\")\n\n    print(f\"\\n--- Truncation ---\")\n    print(f\"  Truncated:          {analysis['n_truncated']} ({analysis['truncated_pct']}%)\")\n\n    pm = analysis.get(\"parseable_only_metrics\")\n    if pm:\n        print(f\"\\n--- Parseable-Only Metrics ---\")\n        print(f\"  Accuracy:           {pm['accuracy']}%\")\n        print(f\"  F1 macro:           {pm['f1_macro']}%\")\n        print(f\"  F1 fail:            {pm['f1_fail']}%\")\n        print(f\"  F1 pass:            {pm['f1_pass']}%\")\n\n    wb = analysis[\"parseable_wrong_breakdown\"]\n    if wb[\"false_positive\"] or wb[\"false_negative\"]:\n        print(f\"\\n--- Parseable Wrong Predictions ---\")\n        print(f\"  False positive (fail→pass): {wb['false_positive']}\")\n        print(f\"  False negative (pass→fail): {wb['false_negative']}\")\n\n    print(f\"\\n--- Gen Text Length ---\")\n    gs = analysis[\"gen_length_stats\"]\n    print(f\"  Mean={gs['mean']}, Median={gs['median']}, Min={gs['min']}, Max={gs['max']}\")\n\n    # Top/bottom repos\n    repos = analysis[\"per_repo\"]\n    if repos:\n        sorted_repos = sorted(repos.items(), key=lambda x: x[1][\"accuracy\"])\n        print(f\"\\n--- Worst 10 Repos (by accuracy) ---\")\n        for repo, st in sorted_repos[:10]:\n            print(f\"  {repo:<40s}  acc={st['accuracy']:>5.1f}%  n={st['total']:>4}  unparse={st['unparseable_pct']:>4.1f}%\")\n        print(f\"\\n--- Best 10 Repos (by accuracy) ---\")\n        for repo, st in sorted_repos[-10:]:\n            print(f\"  {repo:<40s}  acc={st['accuracy']:>5.1f}%  n={st['total']:>4}  unparse={st['unparseable_pct']:>4.1f}%\")\n\n\ndef print_comparison(cwm_analysis, cls_analysis):\n    print(f\"\\n{'='*70}\")\n    print(f\"  CWM vs CLS Comparison\")\n    print(f\"{'='*70}\")\n\n    print(f\"\\n--- Overall Metrics ---\")\n    print(f\"  {'Metric':<25s} {'CWM':>10s} {'CLS':>10s} {'Delta':>10s}\")\n    print(f\"  {'-'*55}\")\n    for key in [\"accuracy\", \"f1_macro\", \"f1_fail\", \"f1_pass\"]:\n        cwm_val = cwm_analysis[\"metrics\"][key]\n        cls_val = cls_analysis[\"metrics\"][key]\n        delta = round(cwm_val - cls_val, 2)\n        sign = \"+\" if delta > 0 else \"\"\n        print(f\"  {key:<25s} {cwm_val:>9.2f}% {cls_val:>9.2f}% {sign}{delta:>9.2f}%\")\n\n    print(f\"\\n--- Unparseable ---\")\n    print(f\"  CWM: {cwm_analysis['n_unparseable']} ({cwm_analysis['unparseable_pct']}%)\")\n    print(f\"  CLS: {cls_analysis['n_unparseable']} ({cls_analysis['unparseable_pct']}%)\")\n\n    # Per-instance comparison\n    cwm_by_idx = {r[\"index\"]: r for r in cwm_analysis.get(\"_raw_results\", [])}\n    cls_by_idx = {r[\"index\"]: r for r in cls_analysis.get(\"_raw_results\", [])}\n    common = set(cwm_by_idx.keys()) & set(cls_by_idx.keys())\n\n    if common:\n        cwm_only_correct = 0\n        cls_only_correct = 0\n        both_correct = 0\n        both_wrong = 0\n        for idx in common:\n            cc = cwm_by_idx[idx][\"correct\"]\n            lc = cls_by_idx[idx][\"correct\"]\n            if cc and lc:\n                both_correct += 1\n            elif cc and not lc:\n                cwm_only_correct += 1\n            elif not cc and lc:\n                cls_only_correct += 1\n            else:\n                both_wrong += 1\n\n        print(f\"\\n--- Per-Instance Agreement (n={len(common)}) ---\")\n        print(f\"  Both correct:       {both_correct:>5}  ({round(both_correct/len(common)*100,1)}%)\")\n        print(f\"  CWM only correct:   {cwm_only_correct:>5}  ({round(cwm_only_correct/len(common)*100,1)}%)\")\n        print(f\"  CLS only correct:   {cls_only_correct:>5}  ({round(cls_only_correct/len(common)*100,1)}%)\")\n        print(f\"  Both wrong:         {both_wrong:>5}  ({round(both_wrong/len(common)*100,1)}%)\")\n\n        # Analyze CWM-only errors (CLS correct, CWM wrong)\n        cwm_only_errors = [idx for idx in common\n                           if not cwm_by_idx[idx][\"correct\"] and cls_by_idx[idx][\"correct\"]]\n        if cwm_only_errors:\n            cwm_err_unparseable = sum(1 for idx in cwm_only_errors\n                                      if cwm_by_idx[idx].get(\"unparseable\", False))\n            cwm_err_truncated = sum(1 for idx in cwm_only_errors\n                                    if cwm_by_idx[idx].get(\"truncated\", False))\n            cwm_err_labels = Counter(cwm_by_idx[idx][\"label\"] for idx in cwm_only_errors)\n            print(f\"\\n--- CWM-Only Errors (CLS got right, CWM got wrong): {len(cwm_only_errors)} ---\")\n            print(f\"  Of these: unparseable={cwm_err_unparseable}, truncated={cwm_err_truncated}\")\n            print(f\"  Label distribution: fail={cwm_err_labels.get(0,0)}, pass={cwm_err_labels.get(1,0)}\")\n\n        # Per-repo comparison\n        cwm_repos = cwm_analysis[\"per_repo\"]\n        cls_repos = cls_analysis[\"per_repo\"]\n        common_repos = set(cwm_repos.keys()) & set(cls_repos.keys())\n        if common_repos:\n            repo_diffs = []\n            for repo in common_repos:\n                diff = cwm_repos[repo][\"accuracy\"] - cls_repos[repo][\"accuracy\"]\n                repo_diffs.append((repo, diff, cwm_repos[repo], cls_repos[repo]))\n            repo_diffs.sort(key=lambda x: x[1])\n\n            print(f\"\\n--- Repos Where CWM is Worst vs CLS (top 10) ---\")\n            for repo, diff, cwm_st, cls_st in repo_diffs[:10]:\n                if cwm_st[\"total\"] >= 10:\n                    print(f\"  {repo:<40s}  CWM={cwm_st['accuracy']:>5.1f}%  CLS={cls_st['accuracy']:>5.1f}%  Δ={diff:>+6.1f}pp  n={cwm_st['total']}\")\n\n            print(f\"\\n--- Repos Where CWM is Best vs CLS (top 10) ---\")\n            for repo, diff, cwm_st, cls_st in repo_diffs[-10:]:\n                if cwm_st[\"total\"] >= 10:\n                    print(f\"  {repo:<40s}  CWM={cwm_st['accuracy']:>5.1f}%  CLS={cls_st['accuracy']:>5.1f}%  Δ={diff:>+6.1f}pp  n={cwm_st['total']}\")\n\n\ndef print_unparseable_samples(results, n=10):\n    unparseable = [r for r in results if r.get(\"unparseable\", False)]\n    if not unparseable:\n        print(\"\\nNo unparseable samples found.\")\n        return\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  Unparseable Sample Outputs (first {min(n, len(unparseable))})\")\n    print(f\"{'='*70}\")\n\n    for i, r in enumerate(unparseable[:n]):\n        text = r.get(\"gen_text\", \"\")\n        pattern = classify_unparseable_pattern(text)\n        print(f\"\\n--- Sample {i+1} ---\")\n        print(f\"  Index: {r['index']}  Problem: {r['problem_id']}  Label: {'pass' if r['label']==1 else 'fail'}  Truncated: {r.get('truncated', False)}\")\n        print(f\"  Pattern: {pattern}\")\n        display = text[:500] + (\"...\" if len(text) > 500 else \"\")\n        print(f\"  Output:\\n    {display}\")\n\n\ndef main():\n    p = argparse.ArgumentParser(\n        description=\"CWM error mode analysis (with optional CLS comparison)\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"Examples:\n  python analyze_cwm_errors.py --cwm_results path/to/cwm_predictions.jsonl\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --cls_results cls.jsonl\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --output_dir /tmp/analysis/\n\"\"\")\n    p.add_argument(\"--cwm_results\", required=True, help=\"CWM predictions JSONL file\")\n    p.add_argument(\"--cls_results\", help=\"CLS predictions JSONL (optional, for comparison)\")\n    p.add_argument(\"--output_dir\", help=\"Directory to save JSON summary (default: same as cwm_results)\")\n    p.add_argument(\"--show_samples\", type=int, default=10, help=\"Number of unparseable samples to show\")\n    args = p.parse_args()\n\n    output_dir = args.output_dir or os.path.dirname(os.path.abspath(args.cwm_results))\n    os.makedirs(output_dir, exist_ok=True)\n\n    # CWM analysis\n    cwm_results = load_jsonl(args.cwm_results)\n    print(f\"Loaded {len(cwm_results)} CWM predictions from {args.cwm_results}\")\n    cwm_analysis = analyze_single(cwm_results, label=\"CWM\")\n    cwm_analysis[\"_raw_results\"] = cwm_results\n    print_single_report(cwm_analysis)\n    print_unparseable_samples(cwm_results, n=args.show_samples)\n\n    # CLS comparison\n    cls_analysis = None\n    if args.cls_results:\n        cls_results = load_jsonl(args.cls_results)\n        print(f\"\\nLoaded {len(cls_results)} CLS predictions from {args.cls_results}\")\n        cls_analysis = analyze_single(cls_results, label=\"CLS\")\n        cls_analysis[\"_raw_results\"] = cls_results\n        print_single_report(cls_analysis)\n        print_comparison(cwm_analysis, cls_analysis)\n\n    # Save JSON summary\n    summary = {\"cwm\": {k: v for k, v in cwm_analysis.items() if k != \"_raw_results\"}}\n    if cls_analysis:\n        summary[\"cls\"] = {k: v for k, v in cls_analysis.items() if k != \"_raw_results\"}\n\n    json_path = os.path.join(output_dir, \"error_analysis_summary.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nJSON summary saved to {json_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"DONE: $?\"",
+  "account": "root"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_cwm_errors.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Error mode analysis for CWM (and optional CLS comparison) repo-level eval.\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nfrom collections import Counter, defaultdict\n\n\ndef load_jsonl(path):\n    results = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                results.append(json.loads(line))\n    return results\n\n\ndef extract_repo(problem_id):\n    parts = problem_id.split(\"__\")\n    if len(parts) >= 2:\n        return parts[0].replace(\"_\", \"-\") + \"/\" + parts[1].rsplit(\"-\", 1)[0].replace(\"_\", \"-\")\n    return problem_id\n\n\ndef classify_error_mode(r):\n    \"\"\"Classify each prediction into an error mode.\"\"\"\n    unparseable = r.get(\"unparseable\", False)\n    truncated = r.get(\"truncated\", False)\n    correct = r[\"correct\"]\n    label = r[\"label\"]\n    pred = r[\"pred\"]\n\n    if correct:\n        if unparseable:\n            return \"unparseable_correct_by_majority\"\n        return \"correct\"\n    else:\n        if unparseable and truncated:\n            return \"truncated_unparseable\"\n        if unparseable:\n            return \"unparseable_wrong\"\n        if truncated:\n            return \"truncated_parsed_wrong\"\n        return \"wrong_class\"\n\n\ndef classify_unparseable_pattern(gen_text):\n    \"\"\"Classify the pattern of an unparseable output.\"\"\"\n    if not gen_text or len(gen_text.strip()) == 0:\n        return \"empty\"\n    text = gen_text.strip()\n    if len(text) < 5:\n        return \"too_short\"\n\n    text_lower = text.lower()\n    has_fail = any(kw in text_lower for kw in [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\"])\n    has_pass = any(kw in text_lower for kw in [\"pass\", \"success\", \"completed\"])\n\n    if has_fail and has_pass:\n        return \"ambiguous_both_keywords\"\n    if not has_fail and not has_pass:\n        return \"no_keywords\"\n\n    if \"```\" in text or \"def \" in text or \"class \" in text:\n        return \"code_output\"\n    if \"test session\" in text_lower or \"pytest\" in text_lower:\n        return \"test_trace_fragment\"\n    return \"other\"\n\n\ndef compute_metrics(labels, preds):\n    n = len(labels)\n    correct = sum(l == p for l, p in zip(labels, preds))\n    acc = round(correct / n * 100, 2) if n else 0\n\n    tp = sum(l == 1 and p == 1 for l, p in zip(labels, preds))\n    tn = sum(l == 0 and p == 0 for l, p in zip(labels, preds))\n    fp = sum(l == 0 and p == 1 for l, p in zip(labels, preds))\n    fn = sum(l == 1 and p == 0 for l, p in zip(labels, preds))\n\n    prec_fail = round(tn / (tn + fn) * 100, 2) if (tn + fn) else 0\n    rec_fail = round(tn / (tn + fp) * 100, 2) if (tn + fp) else 0\n    f1_fail = round(2 * prec_fail * rec_fail / (prec_fail + rec_fail), 2) if (prec_fail + rec_fail) else 0\n\n    prec_pass = round(tp / (tp + fp) * 100, 2) if (tp + fp) else 0\n    rec_pass = round(tp / (tp + fn) * 100, 2) if (tp + fn) else 0\n    f1_pass = round(2 * prec_pass * rec_pass / (prec_pass + rec_pass), 2) if (prec_pass + rec_pass) else 0\n\n    f1_macro = round((f1_fail + f1_pass) / 2, 2)\n\n    return {\n        \"accuracy\": acc, \"f1_macro\": f1_macro,\n        \"f1_fail\": f1_fail, \"f1_pass\": f1_pass,\n        \"precision_fail\": prec_fail, \"recall_fail\": rec_fail,\n        \"precision_pass\": prec_pass, \"recall_pass\": rec_pass,\n        \"confusion_matrix\": {\"tn\": tn, \"fp\": fp, \"fn\": fn, \"tp\": tp},\n    }\n\n\ndef analyze_single(results, label=\"CWM\"):\n    n = len(results)\n    labels = [r[\"label\"] for r in results]\n    preds = [r[\"pred\"] for r in results]\n\n    majority_class = 1 if labels.count(1) >= labels.count(0) else 0\n    majority_acc = round(labels.count(majority_class) / n * 100, 2)\n\n    metrics = compute_metrics(labels, preds)\n\n    # Error mode classification\n    modes = Counter(classify_error_mode(r) for r in results)\n\n    # Unparseable stats\n    unparseable = [r for r in results if r.get(\"unparseable\", False)]\n    n_unparseable = len(unparseable)\n    unparseable_labels = Counter(r[\"label\"] for r in unparseable)\n\n    # Unparseable pattern classification\n    unparseable_patterns = Counter(classify_unparseable_pattern(r.get(\"gen_text\", \"\")) for r in unparseable)\n\n    # Truncation stats\n    truncated = [r for r in results if r.get(\"truncated\", False)]\n    n_truncated = len(truncated)\n\n    # Parseable-only metrics\n    parseable = [r for r in results if not r.get(\"unparseable\", False)]\n    if parseable:\n        parseable_metrics = compute_metrics(\n            [r[\"label\"] for r in parseable], [r[\"pred\"] for r in parseable])\n    else:\n        parseable_metrics = None\n\n    # Per-repo accuracy\n    repo_stats = defaultdict(lambda: {\"total\": 0, \"correct\": 0, \"unparseable\": 0})\n    for r in results:\n        repo = extract_repo(r[\"problem_id\"])\n        repo_stats[repo][\"total\"] += 1\n        repo_stats[repo][\"correct\"] += r[\"correct\"]\n        if r.get(\"unparseable\", False):\n            repo_stats[repo][\"unparseable\"] += 1\n\n    repo_acc = {}\n    for repo, st in repo_stats.items():\n        repo_acc[repo] = {\n            \"total\": st[\"total\"],\n            \"accuracy\": round(st[\"correct\"] / st[\"total\"] * 100, 2),\n            \"unparseable_pct\": round(st[\"unparseable\"] / st[\"total\"] * 100, 1),\n        }\n\n    # Wrong class breakdown (FP vs FN among parseable)\n    parseable_wrong = [r for r in parseable if not r[\"correct\"]]\n    fp_count = sum(1 for r in parseable_wrong if r[\"label\"] == 0 and r[\"pred\"] == 1)\n    fn_count = sum(1 for r in parseable_wrong if r[\"label\"] == 1 and r[\"pred\"] == 0)\n\n    # Gen text length stats\n    gen_lengths = [len(r.get(\"gen_text\", \"\")) for r in results]\n    gen_length_stats = {\n        \"mean\": round(sum(gen_lengths) / len(gen_lengths), 1) if gen_lengths else 0,\n        \"median\": sorted(gen_lengths)[len(gen_lengths) // 2] if gen_lengths else 0,\n        \"min\": min(gen_lengths) if gen_lengths else 0,\n        \"max\": max(gen_lengths) if gen_lengths else 0,\n    }\n\n    return {\n        \"label\": label,\n        \"n_total\": n,\n        \"majority_class\": majority_class,\n        \"majority_baseline\": majority_acc,\n        \"metrics\": metrics,\n        \"parseable_only_metrics\": parseable_metrics,\n        \"error_modes\": dict(modes),\n        \"n_unparseable\": n_unparseable,\n        \"unparseable_pct\": round(n_unparseable / n * 100, 2),\n        \"unparseable_label_dist\": dict(unparseable_labels),\n        \"unparseable_patterns\": dict(unparseable_patterns),\n        \"n_truncated\": n_truncated,\n        \"truncated_pct\": round(n_truncated / n * 100, 2),\n        \"parseable_wrong_breakdown\": {\"false_positive\": fp_count, \"false_negative\": fn_count},\n        \"gen_length_stats\": gen_length_stats,\n        \"per_repo\": repo_acc,\n    }\n\n\ndef print_single_report(analysis):\n    label = analysis[\"label\"]\n    print(f\"\\n{'='*70}\")\n    print(f\"  {label} Error Mode Analysis\")\n    print(f\"{'='*70}\")\n\n    m = analysis[\"metrics\"]\n    print(f\"\\n--- Basic Stats ---\")\n    print(f\"  Total samples:      {analysis['n_total']}\")\n    print(f\"  Accuracy:           {m['accuracy']}%  (majority baseline: {analysis['majority_baseline']}%)\")\n    print(f\"  F1 macro:           {m['f1_macro']}%\")\n    print(f\"  F1 fail:            {m['f1_fail']}%   (P={m['precision_fail']}% R={m['recall_fail']}%)\")\n    print(f\"  F1 pass:            {m['f1_pass']}%   (P={m['precision_pass']}% R={m['recall_pass']}%)\")\n\n    cm = m[\"confusion_matrix\"]\n    print(f\"\\n--- Confusion Matrix ---\")\n    print(f\"                  Predicted\")\n    print(f\"                  fail    pass\")\n    print(f\"  Actual fail    {cm['tn']:>5}   {cm['fp']:>5}\")\n    print(f\"  Actual pass    {cm['fn']:>5}   {cm['tp']:>5}\")\n\n    print(f\"\\n--- Error Modes ---\")\n    modes = analysis[\"error_modes\"]\n    for mode in sorted(modes, key=modes.get, reverse=True):\n        pct = round(modes[mode] / analysis[\"n_total\"] * 100, 1)\n        print(f\"  {mode:<40s} {modes[mode]:>5}  ({pct}%)\")\n\n    print(f\"\\n--- Unparseable Analysis ---\")\n    print(f\"  Unparseable:        {analysis['n_unparseable']} ({analysis['unparseable_pct']}%)\")\n    print(f\"  Unparseable labels: fail={analysis['unparseable_label_dist'].get(0, 0)}, \"\n          f\"pass={analysis['unparseable_label_dist'].get(1, 0)}\")\n\n    patterns = analysis[\"unparseable_patterns\"]\n    if patterns:\n        print(f\"  Unparseable patterns:\")\n        for pat in sorted(patterns, key=patterns.get, reverse=True):\n            print(f\"    {pat:<35s} {patterns[pat]:>5}\")\n\n    print(f\"\\n--- Truncation ---\")\n    print(f\"  Truncated:          {analysis['n_truncated']} ({analysis['truncated_pct']}%)\")\n\n    pm = analysis.get(\"parseable_only_metrics\")\n    if pm:\n        print(f\"\\n--- Parseable-Only Metrics ---\")\n        print(f\"  Accuracy:           {pm['accuracy']}%\")\n        print(f\"  F1 macro:           {pm['f1_macro']}%\")\n        print(f\"  F1 fail:            {pm['f1_fail']}%\")\n        print(f\"  F1 pass:            {pm['f1_pass']}%\")\n\n    wb = analysis[\"parseable_wrong_breakdown\"]\n    if wb[\"false_positive\"] or wb[\"false_negative\"]:\n        print(f\"\\n--- Parseable Wrong Predictions ---\")\n        print(f\"  False positive (fail→pass): {wb['false_positive']}\")\n        print(f\"  False negative (pass→fail): {wb['false_negative']}\")\n\n    print(f\"\\n--- Gen Text Length ---\")\n    gs = analysis[\"gen_length_stats\"]\n    print(f\"  Mean={gs['mean']}, Median={gs['median']}, Min={gs['min']}, Max={gs['max']}\")\n\n    # Top/bottom repos\n    repos = analysis[\"per_repo\"]\n    if repos:\n        sorted_repos = sorted(repos.items(), key=lambda x: x[1][\"accuracy\"])\n        print(f\"\\n--- Worst 10 Repos (by accuracy) ---\")\n        for repo, st in sorted_repos[:10]:\n            print(f\"  {repo:<40s}  acc={st['accuracy']:>5.1f}%  n={st['total']:>4}  unparse={st['unparseable_pct']:>4.1f}%\")\n        print(f\"\\n--- Best 10 Repos (by accuracy) ---\")\n        for repo, st in sorted_repos[-10:]:\n            print(f\"  {repo:<40s}  acc={st['accuracy']:>5.1f}%  n={st['total']:>4}  unparse={st['unparseable_pct']:>4.1f}%\")\n\n\ndef print_comparison(cwm_analysis, cls_analysis):\n    print(f\"\\n{'='*70}\")\n    print(f\"  CWM vs CLS Comparison\")\n    print(f\"{'='*70}\")\n\n    print(f\"\\n--- Overall Metrics ---\")\n    print(f\"  {'Metric':<25s} {'CWM':>10s} {'CLS':>10s} {'Delta':>10s}\")\n    print(f\"  {'-'*55}\")\n    for key in [\"accuracy\", \"f1_macro\", \"f1_fail\", \"f1_pass\"]:\n        cwm_val = cwm_analysis[\"metrics\"][key]\n        cls_val = cls_analysis[\"metrics\"][key]\n        delta = round(cwm_val - cls_val, 2)\n        sign = \"+\" if delta > 0 else \"\"\n        print(f\"  {key:<25s} {cwm_val:>9.2f}% {cls_val:>9.2f}% {sign}{delta:>9.2f}%\")\n\n    print(f\"\\n--- Unparseable ---\")\n    print(f\"  CWM: {cwm_analysis['n_unparseable']} ({cwm_analysis['unparseable_pct']}%)\")\n    print(f\"  CLS: {cls_analysis['n_unparseable']} ({cls_analysis['unparseable_pct']}%)\")\n\n    # Per-instance comparison\n    cwm_by_idx = {r[\"index\"]: r for r in cwm_analysis.get(\"_raw_results\", [])}\n    cls_by_idx = {r[\"index\"]: r for r in cls_analysis.get(\"_raw_results\", [])}\n    common = set(cwm_by_idx.keys()) & set(cls_by_idx.keys())\n\n    if common:\n        cwm_only_correct = 0\n        cls_only_correct = 0\n        both_correct = 0\n        both_wrong = 0\n        for idx in common:\n            cc = cwm_by_idx[idx][\"correct\"]\n            lc = cls_by_idx[idx][\"correct\"]\n            if cc and lc:\n                both_correct += 1\n            elif cc and not lc:\n                cwm_only_correct += 1\n            elif not cc and lc:\n                cls_only_correct += 1\n            else:\n                both_wrong += 1\n\n        print(f\"\\n--- Per-Instance Agreement (n={len(common)}) ---\")\n        print(f\"  Both correct:       {both_correct:>5}  ({round(both_correct/len(common)*100,1)}%)\")\n        print(f\"  CWM only correct:   {cwm_only_correct:>5}  ({round(cwm_only_correct/len(common)*100,1)}%)\")\n        print(f\"  CLS only correct:   {cls_only_correct:>5}  ({round(cls_only_correct/len(common)*100,1)}%)\")\n        print(f\"  Both wrong:         {both_wrong:>5}  ({round(both_wrong/len(common)*100,1)}%)\")\n\n        # Analyze CWM-only errors (CLS correct, CWM wrong)\n        cwm_only_errors = [idx for idx in common\n                           if not cwm_by_idx[idx][\"correct\"] and cls_by_idx[idx][\"correct\"]]\n        if cwm_only_errors:\n            cwm_err_unparseable = sum(1 for idx in cwm_only_errors\n                                      if cwm_by_idx[idx].get(\"unparseable\", False))\n            cwm_err_truncated = sum(1 for idx in cwm_only_errors\n                                    if cwm_by_idx[idx].get(\"truncated\", False))\n            cwm_err_labels = Counter(cwm_by_idx[idx][\"label\"] for idx in cwm_only_errors)\n            print(f\"\\n--- CWM-Only Errors (CLS got right, CWM got wrong): {len(cwm_only_errors)} ---\")\n            print(f\"  Of these: unparseable={cwm_err_unparseable}, truncated={cwm_err_truncated}\")\n            print(f\"  Label distribution: fail={cwm_err_labels.get(0,0)}, pass={cwm_err_labels.get(1,0)}\")\n\n        # Per-repo comparison\n        cwm_repos = cwm_analysis[\"per_repo\"]\n        cls_repos = cls_analysis[\"per_repo\"]\n        common_repos = set(cwm_repos.keys()) & set(cls_repos.keys())\n        if common_repos:\n            repo_diffs = []\n            for repo in common_repos:\n                diff = cwm_repos[repo][\"accuracy\"] - cls_repos[repo][\"accuracy\"]\n                repo_diffs.append((repo, diff, cwm_repos[repo], cls_repos[repo]))\n            repo_diffs.sort(key=lambda x: x[1])\n\n            print(f\"\\n--- Repos Where CWM is Worst vs CLS (top 10) ---\")\n            for repo, diff, cwm_st, cls_st in repo_diffs[:10]:\n                if cwm_st[\"total\"] >= 10:\n                    print(f\"  {repo:<40s}  CWM={cwm_st['accuracy']:>5.1f}%  CLS={cls_st['accuracy']:>5.1f}%  Δ={diff:>+6.1f}pp  n={cwm_st['total']}\")\n\n            print(f\"\\n--- Repos Where CWM is Best vs CLS (top 10) ---\")\n            for repo, diff, cwm_st, cls_st in repo_diffs[-10:]:\n                if cwm_st[\"total\"] >= 10:\n                    print(f\"  {repo:<40s}  CWM={cwm_st['accuracy']:>5.1f}%  CLS={cls_st['accuracy']:>5.1f}%  Δ={diff:>+6.1f}pp  n={cwm_st['total']}\")\n\n\ndef print_unparseable_samples(results, n=10):\n    unparseable = [r for r in results if r.get(\"unparseable\", False)]\n    if not unparseable:\n        print(\"\\nNo unparseable samples found.\")\n        return\n\n    print(f\"\\n{'='*70}\")\n    print(f\"  Unparseable Sample Outputs (first {min(n, len(unparseable))})\")\n    print(f\"{'='*70}\")\n\n    for i, r in enumerate(unparseable[:n]):\n        text = r.get(\"gen_text\", \"\")\n        pattern = classify_unparseable_pattern(text)\n        print(f\"\\n--- Sample {i+1} ---\")\n        print(f\"  Index: {r['index']}  Problem: {r['problem_id']}  Label: {'pass' if r['label']==1 else 'fail'}  Truncated: {r.get('truncated', False)}\")\n        print(f\"  Pattern: {pattern}\")\n        display = text[:500] + (\"...\" if len(text) > 500 else \"\")\n        print(f\"  Output:\\n    {display}\")\n\n\ndef main():\n    p = argparse.ArgumentParser(\n        description=\"CWM error mode analysis (with optional CLS comparison)\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"Examples:\n  python analyze_cwm_errors.py --cwm_results path/to/cwm_predictions.jsonl\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --cls_results cls.jsonl\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --output_dir /tmp/analysis/\n\"\"\")\n    p.add_argument(\"--cwm_results\", required=True, help=\"CWM predictions JSONL file\")\n    p.add_argument(\"--cls_results\", help=\"CLS predictions JSONL (optional, for comparison)\")\n    p.add_argument(\"--output_dir\", help=\"Directory to save JSON summary (default: same as cwm_results)\")\n    p.add_argument(\"--show_samples\", type=int, default=10, help=\"Number of unparseable samples to show\")\n    args = p.parse_args()\n\n    output_dir = args.output_dir or os.path.dirname(os.path.abspath(args.cwm_results))\n    os.makedirs(output_dir, exist_ok=True)\n\n    # CWM analysis\n    cwm_results = load_jsonl(args.cwm_results)\n    print(f\"Loaded {len(cwm_results)} CWM predictions from {args.cwm_results}\")\n    cwm_analysis = analyze_single(cwm_results, label=\"CWM\")\n    cwm_analysis[\"_raw_results\"] = cwm_results\n    print_single_report(cwm_analysis)\n    print_unparseable_samples(cwm_results, n=args.show_samples)\n\n    # CLS comparison\n    cls_analysis = None\n    if args.cls_results:\n        cls_results = load_jsonl(args.cls_results)\n        print(f\"\\nLoaded {len(cls_results)} CLS predictions from {args.cls_results}\")\n        cls_analysis = analyze_single(cls_results, label=\"CLS\")\n        cls_analysis[\"_raw_results\"] = cls_results\n        print_single_report(cls_analysis)\n        print_comparison(cwm_analysis, cls_analysis)\n\n    # Save JSON summary\n    summary = {\"cwm\": {k: v for k, v in cwm_analysis.items() if k != \"_raw_results\"}}\n    if cls_analysis:\n        summary[\"cls\"] = {k: v for k, v in cls_analysis.items() if k != \"_raw_results\"}\n\n    json_path = os.path.join(output_dir, \"error_analysis_summary.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    print(f\"\\nJSON summary saved to {json_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"DONE: $?\"",
+    "account": "root"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T16:31:42.769003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T16:31:42.769156+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 analyze_cwm_errors.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 analyze_cwm_errors.py --help",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T16:31:42.769299+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: analyze_cwm_errors.py [-h] --cwm_results CWM_RESULTS\\n                             [--cls_results CLS_RESULTS]\\n                             [--output_dir OUTPUT_DIR]\\n                             [--show_samples SHOW_SAMPLES]\\n\\nCWM error mode analysis (with optional CLS comparison)\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --cwm_results CWM_RESULTS\\n                        CWM predictions JSONL file\\n  --cls_results CLS_RESULTS\\n                        CLS predictions JSONL (optional, for comparison)\\n  --output_dir OUTPUT_DIR\\n                        Directory to save JSON summary (default: same as\\n                        cwm_results)\\n  --show_samples SHOW_SAMPLES\\n                        Number of unparseable samples to show\\n\\nExamples:\\n  python analyze_cwm_errors.py --cwm_results path/to/cwm_predictions.jsonl\\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --cls_results cls.jsonl\\n  python analyze_cwm_errors.py --cwm_results cwm.jsonl --output_dir /tmp/analysis/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T16:31:42.769508+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 analyze_cwm_errors.py --cwm_results /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl --cls_results /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl --output_dir /root/autodl-tmp/results/repo_cwm_v10_eval/ --show_samples 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 analyze_cwm_errors.py --cwm_results /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl --cls_results /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl --output_dir /root/autodl-tmp/results/repo_cwm_v10_eval/ --show_samples 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T16:31:42.769743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 9784 CWM predictions from /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl\\n\\n======================================================================\\n  CWM Error Mode Analysis\\n======================================================================\\n\\n--- Basic Stats ---\\n  Total samples:      9784\\n  Accuracy:           69.91%  (majority baseline: 72.96%)\\n  F1 macro:           46.7%\\n  F1 fail:            11.54%   (P=28.15% R=7.26%)\\n  F1 pass:            81.87%   (P=73.04% R=93.14%)\\n\\n--- Confusion Matrix ---\\n                  Predicted\\n                  fail    pass\\n  Actual fail      192    2454\\n  Actual pass      490    6648\\n\\n--- Error Modes ---\\n  unparseable_correct_by_majority           6648  (67.9%)\\n  unparseable_wrong                         2300  (23.5%)\\n  wrong_class                                270  (2.8%)\\n  truncated_parsed_wrong                     220  (2.2%)\\n  correct                                    192  (2.0%)\\n  truncated_unparseable                      154  (1.6%)\\n\\n--- Unparseable Analysis ---\\n  Unparseable:        9102 (93.03%)\\n  Unparseable labels: fail=2454, pass=6648\\n  Unparseable patterns:\\n    no_keywords                          8980\\n    ambiguous_both_keywords               122\\n\\n--- Truncation ---\\n  Truncated:          478 (4.89%)\\n\\n--- Parseable-Only Metrics ---\\n  Accuracy:           28.15%\\n  F1 macro:           21.96%\\n  F1 fail:            43.93%\\n  F1 pass:            0%\\n\\n--- Parseable Wrong Predictions ---\\n  False positive (fail→pass): 0\\n  False negative (pass→fail): 490\\n\\n--- Gen Text Length ---\\n  Mean=251.1, Median=239, Min=157, Max=416\\n\\n--- Worst 10 Repos (by accuracy) ---\\n  pytest-dev/pytest                         acc= 32.2%  n= 522  unparse=56.3%\\n  sympy/sympy                               acc= 48.6%  n= 105  unparse=100.0%\\n  matplotlib/matplotlib  
+…[truncated 6525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-14T16:31:42.770006+00:00_
+
+脚本运行成功。关键发现：
+
+**CWM v10 (max_new_tokens=64) 的问题根源**：
+- **93% unparseable** — 生成的执行 trace 太短（只有 ~251 chars），没有 pass/fail 关键词，全被归为 majority class
+- Parseable-only accuracy 仅 28.15%，490 个 parseable 错误全是 false negative (pass→fail)
+- 实际分类能力几乎为零，accuracy 69.91% 全靠 majority fallback
+
+**CWM vs CLS 8B 对比**：
+- 互补性不错：49% 都对，21% CWM 独对，21% CLS 独对
+- CWM 独有错误 2079 个中 97% 是 unparseable（label=fail 的样本被 majority fallback 误判为 pass）
+
+正在跑的两个 eval（max_new_tokens=1024）running acc 57-59%，已到 ~89%，预计 1-2 小时完成。那时用同一脚本分析会更有意义——unparseable 率应该大幅下降，能看到真正的分类错误模式。
+
+脚本位于 `/home/sonny/exec-sim-repair-verifier/analyze_cwm_errors.py`，eval 完成后运行：
+```bash
+python3 analyze_cwm_errors.py \
+  --cwm_results /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/eval_repo_cwm_predictions.jsonl \
+  --cls_results /root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl \
+  --output_dir /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_cwm-error-mode-analysis-script_20260514T162722"
+}
+```
+
+</details>
+
+---

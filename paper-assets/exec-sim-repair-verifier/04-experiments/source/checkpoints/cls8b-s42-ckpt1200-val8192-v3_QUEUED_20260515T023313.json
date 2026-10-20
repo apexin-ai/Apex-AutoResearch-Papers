@@ -1,0 +1,16 @@
+{
+  "exp_id": "cls8b-s42-ckpt1200-val8192-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:32:59.322Z",
+    "updated_at": "2026-05-15T02:33:13.340Z",
+    "hypothesis": "D089 val sweep: ckpt-1200 val@8192。PID 316940 实际在跑（v1 OOM, v2 GPU冲突, 此条目追踪实际运行进程）。",
+    "parent": "repo-level-cls-8b-conda"
+  },
+  "timestamp": "2026-05-15T02:33:13.571618+00:00",
+  "trigger": "update_registry"
+}

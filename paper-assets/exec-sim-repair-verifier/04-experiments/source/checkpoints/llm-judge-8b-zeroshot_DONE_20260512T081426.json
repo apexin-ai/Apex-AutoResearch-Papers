@@ -1,0 +1,71 @@
+{
+  "exp_id": "llm-judge-8b-zeroshot",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T05:08:46.511Z",
+    "updated_at": "2026-05-12T08:14:26.582Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 llm_judge_zeroshot.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --data_dir data/ --output eval_llm_judge_8b.json --gpu 0\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "13295",
+      "log_path": "~/runs/exec-sim-repair-verifier/llm-judge-8b-zeroshot.log",
+      "submitted_at": "2026-05-12T08:09:25.634Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 0,
+      "checkpoint_path": "n/a (eval only, zero-shot)",
+      "wall_clock_seconds": 300.9,
+      "gpu_hours": 0.08
+    },
+    "hypothesis": "Qwen3-8B zero-shot LLM-as-judge 在 per-test 和 trajectory-level 判别上均低于 fine-tuned 4B 模型，确认 fine-tuning 的必要性",
+    "reproduce": {
+      "finished_at": "2026-05-12T08:12:32.985Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T08:12:34.081464+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_accuracy": 64.4,
+      "fail_precision": 57.9,
+      "fail_recall": 95.8,
+      "fail_f1": 72.2,
+      "pass_precision": 90,
+      "pass_recall": 35.1,
+      "pass_f1": 50.5,
+      "majority_baseline": 51.7,
+      "accuracy_vs_baseline_gap": 12.6,
+      "traj_accuracy": 99.1,
+      "traj_problems": 114,
+      "traj_true_resolved": 1,
+      "traj_pred_resolved": 0,
+      "confusion": {
+        "TP_fail": 874,
+        "FN_fail": 38,
+        "FP_fail": 635,
+        "TN_fail": 343
+      }
+    },
+    "conclusion": "success",
+    "notes": "Qwen3-8B zero-shot LLM-as-judge 远低于 fine-tuned 4B：accuracy 64.4% vs 88.41% (-24pp), fail_f1 72.2% vs 88.4% (-16.2pp), pass_f1 50.5% vs 88.4% (-37.9pp)。模型严重偏向预测 FAIL（1509/1890 预测为 FAIL），fail recall 95.8% 但 precision 仅 57.9%，pass recall 仅 35.1%。Trajectory-level 99.1% accuracy 无意义（114 problems 中仅 1 个 resolved，模型全部预测 unresolved）。结论：fine-tuning 必要性强验证，即使更大的 zero-shot 模型（8B）也无法匹敌更小的 fine-tuned 模型（4B），差距达 24pp。",
+    "completed_at": "2026-05-12T08:14:26.582Z"
+  },
+  "timestamp": "2026-05-12T08:14:26.617834+00:00",
+  "trigger": "update_registry"
+}

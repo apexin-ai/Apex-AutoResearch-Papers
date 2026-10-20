@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f2076e2e65e9c8bc31",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt600 test8192 final metrics",
+  "task_key": "worker_collect_ckpt600-test8192-final-metrics_20260514T220239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt600-test8192-final-metrics_20260514T220239_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "c84b454d91fef17c9ff45d90b6917eaad4ff78d5756e5fe36ad59602e3e144d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ckpt-600 test@8192 完整指标\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 79.05% |\n| **F1 macro** | 75.12% |\n| **F1 fail (positive)** | 65.24% |\n| **F1 pass (negative)** | 85.00% |\n| **Precision fail** | 59.16% |\n| **Precision pass** | 88.95% |\n| **Recall fail** | 72.71% |\n| **Recall pass** | 81.40% |\n| **Unparseable rate** | 0 / 9784 (0.00%) |\n| **Gap vs majority** | +6.09pp |\n\n**混淆矩阵：**\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1924 (TN) | 722 (FP) |\n| **Actual pass** | 1328 (FN) | 5810 (TP) |\n\n测试集 9784 条，类别分布 pass=7138 / fail=2646，majority baseline 73.0%。模型 Qwen3-8B，checkpoint-600，max_seq_length=8192。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt600-test8192-final-metrics.md"
+}

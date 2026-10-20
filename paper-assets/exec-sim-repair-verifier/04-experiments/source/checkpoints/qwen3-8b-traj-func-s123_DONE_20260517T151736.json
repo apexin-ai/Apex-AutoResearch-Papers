@@ -1,0 +1,41 @@
+{
+  "exp_id": "qwen3-8b-traj-func-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:19:44.990Z",
+    "updated_at": "2026-05-17T15:17:35.756Z",
+    "hypothesis": "Qwen3-8B TRAJ func-level seed 123 复制实验，验证 s42 结果的稳定性。预期与 s42 差距 &lt;1.5pp，与 4B TRAJ (86.30±0.97%) 的 scaling pattern 一致",
+    "parent": "qwen3-8b-traj-func-s42",
+    "spec": {
+      "command": "python3 train_traj_verifier.py --model_name Qwen/Qwen3-8B --seed 123 --batch_size 2 --grad_accumulation 16 --epochs 3 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length 2048",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/traj_train.jsonl",
+      "data_count": 8052,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "training-from-scratch",
+      "eval_data": "data/traj_test.jsonl",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_traj_8b_seed123/best",
+      "log_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_traj_8b_seed123/trainer_state.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "test_accuracy": 87.79,
+      "best_eval_loss": 0.0782,
+      "pass_f1": 86.74,
+      "fail_f1": 88.69,
+      "unparseable": 0,
+      "per_test_consistency": 76.07,
+      "total_steps": 756,
+      "test_set_size": 1032,
+      "eval_script": "eval_traj_verifier_8b.py"
+    },
+    "completed_at": "2026-05-17T15:17:35.756Z"
+  },
+  "timestamp": "2026-05-17T15:17:36.094605+00:00",
+  "trigger": "update_registry"
+}

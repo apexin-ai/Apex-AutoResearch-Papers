@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19ed6fd8380259fe5bf9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778596344.md",
+  "task_key": "loop_2_1778596344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778596344.md",
+    "occurrence": 1,
+    "bytes": 4849,
+    "sha256": "4857e4c5110e2201163b6f4c4332f49181ee134aed6ffdb3f4c9c4f30708e3ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T14:32:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3，分布在 seetacloud-westd-4x5090 和 home-1x5090\n- home-1x5090 账号是 sonny（不是 root），seetacloud-westd-4x5090 账号是 root\n- seetacloud-westd-4x5090 使用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- home-1x5090 直接用系统 python，项目路径 `/home/sonny/exec-sim-repair-verifier`\n- HF_HOME 在 seetacloud 上必须设为 `/root/autodl-tmp/.hf_cache`（根分区只有 30GB）\n- per-test vs traj accuracy 不能直接比较（不同粒度: 1890 tests vs 1032 variants），必须用 clustered bootstrap variant-level align（D018/D019）\n- Repo-level Go/No-Go 标准（D008）: F1 diff ≥3pp+p<0.05 → EMNLP Main; <1pp → Kill C1 pivot Plan B\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (root): 4×RTX 5090, workdir `/home/sonny/exec-sim-repair-verifier`, Python `/root/miniconda3/bin/python`, HF cache `/root/autodl-tmp/.hf_cache`, 8B 模型路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`, 32B 模型 `/root/autodl-tmp/models/Qwen/Qwen3-32B`\n- **home-1x5090** (sonny): 1×RTX 5090, workdir `/home/sonny/exec-sim-repair-verifier`, 系统 Python\n- **westd-48478** (sonny): 配置中但本轮未实际使用\n- W&B: 大部分实验用 `--no_wandb`，无活跃 W&B run\n- 活跃进程: cls-seed0 (PID 31570, tmux, seetacloud cuda:1, RUNNING)\n- Cron: cls-seed0 有 1 个活跃 cron 监控\n\n### 3. 📊 当前状态\n**刚做完**: session 初始化（read_registry, reconcile_crons, 读 report.md/ROADMAP）\n\n**正在等**:\n- Worker `analysis:cls-seed789` — 读 home-1x5090 上的 eval_seed789.json 和日志，拿 metrics 后需 update_registry → DONE\n- Worker `diagnosis:repo-level-failures` — 诊断 repo-level-cls 和 repo-level-cwm 的 EXIT_CODE=1 失败原因（seetacloud cuda:2/cuda:3）\n\n**Registry 关键状态**:\n- `cls-seed789`: ANALYZING（home-1x5090:cuda:0, 正常退出, 等 Worker 拿 metrics）\n- `cls-seed0`: RUNNING（seetacloud:cuda:1, 4B cls 第 5 个 seed, 估计还需 ~30-40min）\n- `repo-level-cls`: DONE(failed)（seetacloud:cuda:2, EXIT_CODE=1, 原因未知）\n- `repo-level-cwm`: DONE(failed)（seetacloud:cuda:3, EXIT_CODE=1, 原因未知）\n- 其余 22 个实验全部 DONE（18 success, 3 negative, 3 failed）\n\n**空闲 GPU**: home-1x5090:cuda:0, seetacloud:cuda:2, seetacloud:cuda:3（3 张空闲=失职，需尽快铺任务）\n\n### 4. 📋 待办\n- Worker `analysis:cls-seed789` 回调 → 提取 metrics → `update_registry(cls-seed789, status=DONE, conclusion=success/negative)` → 更新 report.md → 若 5 seeds cls 全完成（cls-seed0 也完成后），做 5-seed paired comparison 统计汇总\n- Worker `diagnosis:repo-level-failures` 回调 → 根据诊断结果决定：修代码重试 or 向 Director 汇报不可修复\n- cls-seed0 cron 回调 → 同 cls-seed789 流程，拿 metrics → DONE → 5-seed cls 汇总完成\n- 5-seed cls + 5-seed traj 全部完成 → 做 paired t-test / bootstrap comparison → 向 Director 汇报统计结果\n- repo-level 修复后 → 重新提交 cuda:2/cuda:3 → 这是 ROADMAP 的决胜战场（Pillar 1 complexity hypothesis）\n- Director 尚未对 repo-level 失败做决策，诊断完后需 `main_agent_post_to_director` 汇报\n\n### 5. 🎯 战略上下文\n- **核心假说已 pivot 三次**: granularity → reformulation → complexity-dependent advantage。函数级 cls vs cwm 是 null result（F1 diff <0.2pp at 4B），但 8B 放大了 gap（2.81pp），支撑 complexity hypothesis\n- **Repo-level 是最后机会**（ROADMAP 原话）。如果 repo-level 也是 null，则 pivot Plan B（EMNLP Findings/workshop，scope 收缩到 oracle frontier + null results + efficiency）\n- **5-seed comparison 接近完成**: traj 5 seeds 全 done（mean acc=86.30±0.97），cls 还差 seed789(ANALYZING) 和 seed0(RUNNING)。但注意：per-test vs traj 的直接 accuracy 比较是无效的（不同粒度），variant-level clustered bootstrap 显示 gap 不显著 (p=0.646)。per-test 的真正价值在 diagnostic granularity\n- **8B scaling 是强数据点**: cls 8B gap (2.81pp seed42, 2.42pp seed123) 远大于 4B gap (0.9pp)，CWM 对 model size 几乎无收益 (+0.16pp)。这支撑 Pillar 1\n- **易错点**: (1) 不要把 per-test accuracy 和 traj accuracy 直接比较说\"per-test 更好\"，已被 D018/D019 否定 (2) majority voting 已证明无效 (-0.69pp, 实验 per-test-majority-voting) (3) trace-then-judge 有方法论缺陷（trace 模板泄漏 mutation type），结果不可用 (4) zero-shot LLM judge 远低于 fine-tuned（32B 仅 71.69% vs fine-tuned 4B 88.41%）\n- **时间线**: ARR May 25 截止，剩 13 天。关键路径是 repo-level 数据→训练→eval→写作，0 容错\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778596344.md"
+}

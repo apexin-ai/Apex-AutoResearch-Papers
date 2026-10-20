@@ -1,0 +1,10 @@
+status: partial (process stuck, killed)
+completed: 6544/9335 (70.1%)
+unparseable: 0
+truncated: 155
+label_dist: fail(0)=1598, pass(1)=4946
+pred_dist: fail(0)=1189, pass(1)=5355
+accuracy: 0.8969
+f1_macro: 0.8461
+f1_fail: 0.7578 (P=0.8881 R=0.6608)
+f1_pass: 0.9345 (P=0.8988 R=0.9731)

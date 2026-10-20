@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a334aa4dac280cba56c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh verify cls v4 ckpt200",
+  "task_key": "worker_ssh_verify-cls-v4-ckpt200_20260512T223958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-cls-v4-ckpt200_20260512T223958_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "2a1c65c8ee8dfaacb82b015d92696a0ce1c3683ce8425cb6d452b9ffc91b11f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**checkpoint-200 已成功写出，文件完整：**\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| adapter_model.safetensors | 45MB | OK |\n| optimizer.pt | 90MB | OK |\n| trainer_state.json | 1.8KB | OK |\n| adapter_config.json, scheduler.pt, rng_state.pth 等 | - | OK |\n\n**当前训练进度：**\n- Step: **252 / 6633**（3.8%）\n- 最近 loss（step 250）: **1.0429**\n- eval_loss（step 200 eval）: **0.0701**\n- 速度: ~6.6-7.0 s/it\n\n一切正常，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-cls-v4-ckpt200.md"
+}

@@ -1,0 +1,10 @@
+exp_id,model,checkpoint,match_type,parse_rate,accuracy_parsed,accuracy_overall,f1_macro,upper_bound
+cwm-4b-v12-strict,CWM 4B,checkpoint-500,strict,46.3,42.88,58.04,51.67,59.04
+cwm-4b-v12-normalized,CWM 4B,checkpoint-500,normalized,69.6,54.16,59.61,,59.87
+cwm-4b-v12-enhanced,CWM 4B,checkpoint-500,enhanced,77.2,60.79,62.34,,63.57
+cwm-4b-seed123-strict,CWM 4B seed123,checkpoint-500,strict,32.8,,59.09,43.43,
+cls-8b-s42-ckpt1000,CLS 8B,ckpt-1000,strict,100.0,83.52,83.52,77.50,
+cls-8b-seed123-ckpt3000,CLS 8B seed123,ckpt-3000,strict,100.0,85.60,85.60,78.38,
+cls-4b-s42-ckpt4600,CLS 4B,ckpt-4600,strict,100.0,83.63,83.63,75.63,
+cls-4b-seed123-ckpt800,CLS 4B seed123,ckpt-800,strict,100.0,75.33,75.33,67.03,
+majority-baseline,Majority,,strict,100.0,72.96,72.96,,

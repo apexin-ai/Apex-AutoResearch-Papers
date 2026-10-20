@@ -1,0 +1,68 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:29:52.481Z",
+    "updated_at": "2026-05-22T01:07:45.373Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --train_file swebench_full/swebench_train.jsonl --val_file swebench_full/swebench_val.jsonl --task cwm --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --epochs 3 --batch_size 2 --grad_accumulation 8 --lr 2e-4 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/ --run_name deepseek-cwm-repo-s123\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "542901",
+      "log_path": "/home/sonny/exec-sim-repair-verifier/logs/",
+      "submitted_at": "2026-05-16T17:30:20Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/checkpoint-12627",
+      "wall_clock_seconds": 81656.1,
+      "gpu_hours": 22.68
+    },
+    "hypothesis": "DeepSeek CWM repo-level seed 123 replication — multi-seed evidence to address Dream review concern about single-seed repo results",
+    "reproduce": {
+      "finished_at": "2026-05-17T16:11:18.726Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-17T16:11:16.146Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T16:11:32.178598+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: 进程在 step 9489/13266 (71%, epoch 3 中途) 静默死亡, 无 Traceback/Error | 诊断中: worker_diagnose_deepseek-cwm-repo-s123 正在查系统日志和 checkpoint 可用性 | 已有成果: 至少有 epoch 1-2 checkpoints, eval worker 正在评估",
+    "metrics": {
+      "accuracy": 61.9,
+      "majority_baseline": 72.96,
+      "gap_vs_majority": -11.06,
+      "f1_macro": 51.5,
+      "f1_pass": 73.96,
+      "f1_fail": 29.04,
+      "recall_pass": 74.15,
+      "recall_fail": 28.84,
+      "unparseable_rate": 65.53,
+      "total": 9784,
+      "correct": 6056,
+      "truncated": 0,
+      "checkpoint": "checkpoint-8844 (epoch 2)",
+      "seq_length": 4096,
+      "source_file": "/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/eval_deepseek_cwm_repo_s123.json"
+    }
+  },
+  "timestamp": "2026-05-22T01:07:45.916663+00:00",
+  "trigger": "update_registry"
+}

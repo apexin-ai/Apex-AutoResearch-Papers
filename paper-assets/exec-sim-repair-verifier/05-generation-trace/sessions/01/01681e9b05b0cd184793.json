@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01681e9b05b0cd184793",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778893569.md",
+  "task_key": "loop_18_1778893569",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778893569.md",
+    "occurrence": 1,
+    "bytes": 5361,
+    "sha256": "c2b4282ae41622f5c2d80e8e7d26b6ddab1738dee9b2d0d4038ecca7785e0e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:03:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: `cuda:0, cuda:1, cuda:2, cuda:3` (westd) + home `cuda:0`。westd cuda:2 正跑 CWM 8B v5 (PID 400279)，cuda:3 正跑 CWM 8B ckpt-400 test eval (PID 381618)——**提交前必须确认 GPU 空闲**\n- **CWM 8B val-best = ckpt-400**（eval_loss 单调递增，step 400 后全在过拟合）——不要评其他 CWM 8B checkpoint\n- **Test eval 禁止 --max_samples**：必须评完整 test set (n=9784)，否则与主表不可比（前车之鉴：seed123 ckpt-6200/6400 事故）\n- **s42 resume checkpoint 目录从 ckpt-600 起**：`/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`，原始训练 ckpt-200/400 在另一个目录\n- **D103**: seq_length/bs/precision/lr 变更需 Director 审批，不得 Worker 自主降级\n- **主表数字已更新**: s42 val-best 已切换到 ckpt-3600 (90.28%)，test=84.48%——所有引用旧 ckpt-1000 的地方需同步\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090, root@): 工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **home** (home-1x5090, sonny@): 工作目录 `/home/sonny/exec-sim-repair-verifier`，用 `python3`\n- 模型: 8B → `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` (westd)\n- s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n- seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- 4B v5 ckpts (home): `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- 活跃进程: CWM 8B v5 训练 PID 400279 (cuda:2), CWM 8B ckpt-400 test eval PID 381618 (cuda:3, ~30%)\n- Cron: reconcile 返回 0 条——可能 cron 已过期或未注册，接手后需重新检查这两个 PID 是否还活着\n\n### 3. 📊 当前状态\n- **Paper Writing 阶段**，EMNLP ARR May 25 DDL（剩 **9 天**）\n- Registry: 145 实验，140 DONE，2 RUNNING，1 PENDING，1 ALLOCATED，1 PREPARING\n- **RUNNING**: `cls8b-s42-resume-ckpt1000-test-mutation` 和 `cls8b-s42-ckpt1000-test-mutation`——registry 中无 server/gpu/pid，**状态可疑**，可能是 Worker 提交但未写回 spec，接手后需 SSH 确认是否真在跑\n- **PENDING**: `cls8b-s42-resume-ckpt3600-test`——ckpt-3600 (新 val-best) 的 test eval，等 Director 审批\n- **ALLOCATED**: `cwm8b-ckpt400-test-eval-v3`——CWM 8B ckpt-400 test eval 的第三次尝试（v1 被 SIGKILL，v2 被 killed），等待提交到 cuda:3（但 cuda:3 可能还在跑 v2 的残留进程 PID 381618）\n- **PREPARING**: `cls8b-s42-resume-ckpt3600-mutation`——ckpt-3600 的 mutation-type breakdown\n- Paper Workers 已在 Session 19 派发（intro/related/conclusion + figures），但无回调记录——可能还在跑或已完成但未处理\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 检查 PID 400279 (CWM 8B v5 cuda:2) 和 PID 381618 (CWM 8B eval cuda:3) 是否还活着\n- **CWM 8B v5 训练完成** → 不需要 val sweep（eval_loss 单调增，val-best = ckpt-400 已确定），只需确认训练日志记录完整\n- **CWM 8B ckpt-400 test eval 完成** → 拿到 8B CWM test accuracy + unparseable rate → 锁定 8B-8B gap → 更新主表\n- **ckpt-3600 test eval 审批通过** → submit 到 cuda:0 或 cuda:1 → 结果决定是否更新主表 s42 行\n- **ckpt-3600 test 出结果** → 若 > ckpt-1000 的 83.52%，主表 s42 test 更新；若 < ，仍用 ckpt-3600 因为 val-selected 是规范\n- **mutation-type breakdown 就绪** → per-mutation CLS accuracy 是 paper 重要分析维度\n- **Paper Workers 回调到达** → 审阅草稿，集成到 LaTeX\n- **CWM 8B test 出结果 + CLS 8B ckpt-3600 test 出结果** → 所有主表数字锁定 → 进入 paper 最终编辑\n\n### 5. 🎯 战略上下文\n- **核心结论**: Classification formulation >> CWM generation，repo-level gap ~26pp（multi-seed mean）。CLS 在所有配置下稳定优于 CWM。\n- **论文 story**: Task reformulation（execution simulation 从 generation 转 classification），核心 claims: C1=CLS>>CWM gap, C2=统计显著(TOST p=0.007), C3=Oracle frontier\n- **主表已基本锁定**: s42 ckpt-3600 val=90.28% test=84.48%, seed123 ckpt-3000 val=88.69% test=85.60%, 4B s42 ckpt-4600 val=90.07% test=83.63%。CWM 8B test 是最后一个缺口。\n- **CWM 8B running_acc ~65%**: 远低于 majority baseline (72.96%)——如果最终确认，8B CWM 实际比 random 还差，gap 将超过 26pp\n- **易错点**: (1) 两个 RUNNING 的 mutation 实验无 spec，可能是\"幽灵\"——先确认再操作 (2) CWM 8B eval 已经 v3 了，v1/v2 都出过问题（SIGKILL/killed），提交前确保 cuda:3 干净 (3) reconcile_crons 返回 0，说明没有活跃 cron 在监控那两个 PID——需要手动检查或重新注册 cron (4) Paper Workers 可能已完成但回调丢失——检查 worker 列表\n- **D088**: 主指标 = val-selected checkpoint（ML 社区规范），不是 test-best\n- **关键 ablation 已完成**: rank ablation (rank=16 不低估 CWM), seq_length ablation (CLS@2048 vs CWM gap 仍 25pp), CWM relaxed matching (反而降低准确率)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778893569.md"
+}

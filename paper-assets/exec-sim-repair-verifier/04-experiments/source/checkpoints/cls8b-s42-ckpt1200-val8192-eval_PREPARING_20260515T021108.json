@@ -1,0 +1,35 @@
+{
+  "exp_id": "cls8b-s42-ckpt1200-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T01:44:38.194Z",
+    "updated_at": "2026-05-15T02:11:07.986Z",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "parent": "repo-level-cls-8b-conda",
+    "reproduce": {
+      "finished_at": "2026-05-15T02:09:34.488Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-15T02:09:38.693Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T02:09:41.436348+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v1 (PID 315418) OOM，Worker 清理后重提交为 v2 (PID 316307, tmux: ckpt1200-val8192-v2)。18238 MiB VRAM。"
+      }
+    },
+    "notes": "v1 (PID 315418) OOM，Worker 清理后重提交为 v2 (PID 316307, tmux: ckpt1200-val8192-v2)。18238 MiB VRAM。"
+  },
+  "timestamp": "2026-05-15T02:11:08.325567+00:00",
+  "trigger": "update_registry"
+}

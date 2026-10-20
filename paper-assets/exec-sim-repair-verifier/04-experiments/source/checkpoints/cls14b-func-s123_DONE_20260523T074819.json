@@ -1,0 +1,51 @@
+{
+  "exp_id": "cls14b-func-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:44:03.567Z",
+    "updated_at": "2026-05-23T07:48:19.344Z",
+    "spec": {
+      "command": "python3 train_unified.py --task cls --seed 123",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "241053",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls14b-func-s123.log",
+      "submitted_at": "2026-05-23T04:44:02.810Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train.jsonl",
+      "data_count": 0,
+      "model_name": "Qwen3-14B",
+      "seed": 123,
+      "wall_clock_seconds": 11056.5,
+      "gpu_hours": 3.07
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/cls14b-func-s123/checkpoint-956",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls14b-func-s123.log",
+    "metrics": {
+      "accuracy": 90.79,
+      "f1_fail": 90.58,
+      "f1_pass": 90.99,
+      "precision_fail": 89.42,
+      "recall_fail": 91.78,
+      "precision_pass": 92.14,
+      "recall_pass": 89.88,
+      "unparseable": 0,
+      "best_checkpoint": "checkpoint-956",
+      "dtype": "bf16",
+      "best_train_loss": 0.063
+    },
+    "hypothesis": "Qwen3-14B LoRA CLS bf16 eval (seed 123) should exceed NF4 accuracy (89.47%) from s42-v2, confirming that quantization was a confound in the 8B→14B regression. Multi-seed replication to verify s42 result is not a seed artifact.",
+    "completed_at": "2026-05-23T07:48:19.344Z"
+  },
+  "timestamp": "2026-05-23T07:48:19.801679+00:00",
+  "trigger": "update_registry"
+}

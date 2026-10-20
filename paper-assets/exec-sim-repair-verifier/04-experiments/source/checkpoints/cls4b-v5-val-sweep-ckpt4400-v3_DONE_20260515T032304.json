@@ -1,0 +1,66 @@
+{
+  "exp_id": "cls4b-v5-val-sweep-ckpt4400-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:08:08.786Z",
+    "updated_at": "2026-05-15T03:23:04.176Z",
+    "hypothesis": "v1/v2 因 RTX 5090 间歇性 CUDA hang 卡死（详见 4b_eval_hang_analysis.md）。v3 未修改 watchdog，验证是否为低概率事件。SIGKILL + resume 修复待实施。",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4400 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4400_val5120_v3\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3204975",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4400-v3.log",
+      "submitted_at": "2026-05-15T02:08:34.304Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "checkpoint_source": "checkpoints_repo_cls_v5/checkpoint-4400",
+      "eval_data": "val@5120",
+      "data_path": "data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "wall_clock_seconds": 4469.9,
+      "gpu_hours": 1.24
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T03:19:29.874Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T03:19:32.726372+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 89.96,
+      "f1_macro": 84.94,
+      "f1_fail": 76.25,
+      "f1_pass": 93.64,
+      "precision_fail": 88.84,
+      "precision_pass": 90.21,
+      "recall_fail": 66.79,
+      "recall_pass": 97.33,
+      "majority_baseline": 75.88,
+      "gap_vs_majority_pp": 14.09,
+      "n_instances": 9335,
+      "n_truncated": 234,
+      "n_unparseable": 0
+    },
+    "checkpoint_path": "results/repo_cls_v5_ckpt4400_val5120_v3",
+    "completed_at": "2026-05-15T03:23:04.176Z"
+  },
+  "timestamp": "2026-05-15T03:23:04.410990+00:00",
+  "trigger": "update_registry"
+}

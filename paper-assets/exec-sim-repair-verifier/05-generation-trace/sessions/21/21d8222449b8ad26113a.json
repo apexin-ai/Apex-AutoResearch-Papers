@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21d8222449b8ad26113a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis tost margin sweep c1 v2",
+  "task_key": "worker_analysis_tost-margin-sweep-c1-v2_20260519T090720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-margin-sweep-c1-v2_20260519T090720_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "2b87efcf7fd102a4554681876614e1a8af9f1d9fc0b0ddfd91caff891a439f11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n| 检查项 | 预期 | 实际 | 状态 |\n|--------|------|------|------|\n| mean_diff | -0.45pp | -0.4505pp | OK |\n| ±2pp p-value | ~0.007 | 0.0087 (normal approx) / 0.0071 (bootstrap ref) | OK |\n| ±1.71pp p-value | ~0.021 | 0.0266 (normal approx) | OK |\n| 单调递减 | yes | yes | OK |\n| ±3pp p << 0.001 | yes | 4.6e-05 | OK |\n\nNormal approximation 与 bootstrap quantile-based p 有系统性偏差（~20%），因为 bootstrap 分布非完美正态。两者结论完全一致：equivalence 在 ±1.52pp 以上成立（p<0.05）。\n\n**产出文件（home-1x5090）：**\n- `tost_margin_sweep_v2.py`\n- `tost_margin_sweep_v2_results.json`\n\n**关键数值摘要：**\n- Mean diff: -0.4505pp, SE: 0.6517pp, 95% CI: [-1.71, +0.84]\n- Smallest equivalence margin: **±1.52pp**\n- ±2pp: p=0.0087 (normal) / 0.0071 (bootstrap), equivalent\n- ±1.5pp: p=0.054, borderline non-equivalent\n- ±1.71pp: p=0.027, equivalent"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-margin-sweep-c1-v2.md"
+}

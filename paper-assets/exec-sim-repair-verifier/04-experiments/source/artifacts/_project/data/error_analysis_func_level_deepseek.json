@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "model_family": "DeepSeek-coder-6.7B",
+    "note": "Func-level error analysis using DeepSeek CLS and CWM predictions",
+    "source": "seetacloud-westd-4x5090, seed42 primary, cross-seed with s123 CWM"
+  },
+  "overall": {
+    "n": 1890,
+    "cls_acc": 86.93,
+    "cwm_acc": 85.77,
+    "oracle_ensemble_acc": 91.53,
+    "oracle_gain_pp": 4.6,
+    "complementarity": 55.1,
+    "error_overlap": 44.9,
+    "agreement": null
+  },
+  "per_label_asymmetry": {
+    "cwm_fail_recall": 93.86,
+    "cwm_pass_recall": 78.22,
+    "cls_fail_recall": 86.51,
+    "cls_pass_recall": 87.32,
+    "note": "CWM has strong fail-bias: high fail recall but low pass recall (conservative predictor)"
+  },
+  "by_mutation_type": {
+    "boundary_removal": {"n": 36, "cls_acc": 94.44, "cwm_acc": 86.11, "oracle_acc": 100.0, "complementarity": 100.0, "cls_minus_cwm": 8.33},
+    "off_by_one": {"n": 671, "cls_acc": 78.39, "cwm_acc": 78.99, "oracle_acc": 85.25, "complementarity": 47.1, "cls_minus_cwm": -0.60},
+    "operator_swap": {"n": 298, "cls_acc": 83.22, "cwm_acc": 86.24, "oracle_acc": 92.62, "complementarity": 68.1, "cls_minus_cwm": -3.02},
+    "original": {"n": 398, "cls_acc": 91.96, "cwm_acc": 84.92, "oracle_acc": 92.96, "complementarity": 56.2, "cls_minus_cwm": 7.04},
+    "return_value": {"n": 402, "cls_acc": 96.27, "cwm_acc": 96.02, "oracle_acc": 98.01, "complementarity": 65.2, "cls_minus_cwm": 0.25},
+    "variable_swap": {"n": 85, "cls_acc": 96.47, "cwm_acc": 92.94, "oracle_acc": 96.47, "complementarity": 50.0, "cls_minus_cwm": 3.53}
+  },
+  "cross_seed_cwm": {
+    "cwm_s42_acc": 85.77,
+    "cwm_s123_acc": 87.88,
+    "agreement": 93.44,
+    "oracle": 90.11
+  },
+  "cross_model_comparison": {
+    "qwen_patterns_replicated": "4/5",
+    "replicated": [
+      "CLS > CWM overall",
+      "CLS advantage on variable_swap (DeepSeek +3.5pp, Qwen +5.9pp)",
+      "Meaningful oracle gain (DeepSeek +4.6pp > Qwen +2pp)",
+      "return_value highest complementarity (DeepSeek 65.2%, Qwen 61.5%)"
+    ],
+    "key_difference": "DeepSeek complementarity much higher (55.1% vs 31.2%) due to CWM fail-bias creating more differentiated error patterns"
+  }
+}

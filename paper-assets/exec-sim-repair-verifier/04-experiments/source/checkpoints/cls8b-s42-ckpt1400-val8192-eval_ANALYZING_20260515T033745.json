@@ -1,0 +1,68 @@
+{
+  "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:44:39.102Z",
+    "updated_at": "2026-05-15T03:37:45.674Z",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "parent": "repo-level-cls-8b-conda",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /tmp/eval_ckpt1400_val",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "321780",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log",
+      "submitted_at": "2026-05-15T03:07:31.441Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400",
+      "eval_data": "val split"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T03:35:20.058Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T03:35:22.925701+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 85.97,
+      "majority_baseline": 75.88,
+      "gap_vs_majority_pp": 10.09,
+      "f1_macro": 77.15,
+      "f1_fail": 62.95,
+      "f1_pass": 91.34,
+      "precision_fail": 86.68,
+      "precision_pass": 85.85,
+      "recall_fail": 49.42,
+      "recall_pass": 97.59,
+      "n_instances": 9335,
+      "n_unparseable": 9,
+      "confusion_matrix": {
+        "tn": 1113,
+        "fp": 1139,
+        "fn": 171,
+        "tp": 6912
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T03:37:45.855054+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "145cdc586f11ae543076",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper figures generation",
+  "task_key": "worker_paper_figures-generation_20260515T230013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figures-generation_20260515T230013_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "2163b84a15ce1ae968156a66e88e94112faf1c836bf008507867272b9074f27b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个图表全部生成并注册完成：\n\n| 图表 | 文件 | 放置位置 |\n|------|------|----------|\n| Fig 1: Task Reformulation | `fig1_reformulation.{pdf,png}` | Introduction |\n| Fig 2: Gap Amplification | `fig2_gap_amplification.{pdf,png}` | Experiments |\n| Fig 3: Oracle Stratified | `fig3_oracle_stratified.{pdf,png}` | Experiments |\n\n- Fig 1: CLS/CWM/TRAJ 三条 pipeline 对比，CWM 失败模式（token exhaustion、53-67% unparseable）红字标注\n- Fig 2: broken axis 展示 gap 从 1.24pp → 2.43pp → 25.59pp 的急剧增长，含误差线和 p 值\n- Fig 3: 双轴图，block advantage 柱 + instance % 线，标注 T=2 贡献 55.3% 总 advantage"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figures-generation.md"
+}

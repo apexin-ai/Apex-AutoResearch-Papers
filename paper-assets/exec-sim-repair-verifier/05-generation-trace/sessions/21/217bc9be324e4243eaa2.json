@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "217bc9be324e4243eaa2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 8b ckpt3000 val cuda0",
+  "task_key": "worker_eval_seed123-8b-ckpt3000-val-cuda0_20260514T204318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-8b-ckpt3000-val-cuda0_20260514T204318_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "ed9df538d408a5dfeecc218211c884f2daf4bc213876e28d80f2990005979690"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n\n**s42 8B ckpt-400 val 结果**（PID 280392 已完成）：\n- Accuracy: **84.52%**, F1 macro: 80.89%\n- seq_len=2048, 9784 instances, 136 unparseable\n- F1 fail: 72.57%, F1 pass: 89.21%\n\n**cuda:0 占用**：PID 285772 正在跑 8B ckpt-600 val（seq_len=8192），进度 1330/9335，约 20 分钟后完成。等它结束后提交 seed123 job。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-8b-ckpt3000-val-cuda0.md"
+}

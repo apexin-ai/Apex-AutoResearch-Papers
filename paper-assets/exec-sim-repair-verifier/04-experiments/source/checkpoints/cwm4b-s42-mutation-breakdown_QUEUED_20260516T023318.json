@@ -1,0 +1,14 @@
+{
+  "exp_id": "cwm4b-s42-mutation-breakdown",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:33:17.769Z",
+    "updated_at": "2026-05-16T02:33:17.770Z"
+  },
+  "timestamp": "2026-05-16T02:33:18.110687+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,45 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Gu et~al.(2024)Gu, Rozière, Leather, Solar-Lezama, Synnaeve, and
+  Wang}]{gu2024cruxeval}
+Alex Gu, Baptiste Rozière, Hugh Leather, Armando Solar-Lezama, Gabriel
+  Synnaeve, and Sida~I Wang. 2024.
+\newblock {CRUX}eval: A benchmark for code reasoning, understanding and
+  execution.
+\newblock In \emph{ICML}.
+
+\bibitem[{Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan}]{jimenez2024swebench}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
+  Press, and Karthik Narasimhan. 2024.
+\newblock {SWE}-bench: Can language models resolve real-world {GitHub} issues?
+\newblock In \emph{ICLR}.
+
+\bibitem[{Li(2025)}]{li2025coderm}
+others Li. 2025.
+\newblock Outcome reward models for code generation.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Ni et~al.(2024)}]{ni2024selfexec}
+Pengyu Ni and 1 others. 2024.
+\newblock Self-execution simulation: Code world models for code generation.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Shi et~al.(2024)}]{shi2024coderm}
+Freda Shi and 1 others. 2024.
+\newblock {CodeRM}: Reward modeling for code generation.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Ruan, Fan, and
+  Roychoudhury}]{zhang2024autocoderover}
+Yuntong Zhang, Haifeng Ruan, Zhiyu Fan, and Abhik Roychoudhury. 2024.
+\newblock Auto{C}ode{R}over: Autonomous program improvement.
+\newblock \emph{arXiv preprint arXiv:2404.05427}.
+
+\bibitem[{Zhang et~al.(2025)}]{zhang2025swerm}
+Yuntong Zhang and 1 others. 2025.
+\newblock {SWE}-rewardmodel: Reward modeling for software engineering agents.
+\newblock \emph{arXiv preprint}.
+
+\end{thebibliography}

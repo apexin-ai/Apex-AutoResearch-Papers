@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-a-routing",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:20:05.183Z",
+    "updated_at": "2026-05-19T03:43:38.843Z",
+    "hypothesis": "Complexity-aware routing（按 test count/confidence/learned features 选 formulation）在 repo-level 可以超越任何单一 formulation 的 accuracy，证明 formulation 具有互补性",
+    "metrics": {
+      "oracle_routing_7cls": 100,
+      "oracle_best_pair": 95.83,
+      "test_count_heuristic": 85.42,
+      "agreement_confidence": 83.33,
+      "majority_vote": "75-79%",
+      "best_single_cls": 81.25,
+      "test_count_heuristic_delta": "+4.17pp",
+      "oracle_delta": "+18.75pp",
+      "traj_per_variant": "unavailable",
+      "cwm_repo_level": "45-52%",
+      "n_variants": 48
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T03:43:39.205750+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+# infra seetacloud gpu diag
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_infra_seetacloud-gpu-diag_20260512T052627_result.json`
+- **Structured JSON:** [`03ce0cc78b1cce03c8bc.json`](../../sessions/03/03ce0cc78b1cce03c8bc.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+```
+Resetting GPU 00000000:27:00.0 is not supported.
+Resetting GPU 00000000:49:00.0 is not supported.
+Resetting GPU 00000000:5A:00.0 is not supported.
+Resetting GPU 00000000:A8:00.0 is not supported.
+RESET_NOT_SUPPORTED
+```
+
+容器环境不支持 GPU 重置。
+
+---
+
+### 诊断结论
+
+GPU 1/2/3（不只是 0/2）均处于 zombie 状态：**P0 性能态、100% utilization、0 MiB 显存、无任何进程、功耗 101-114W**。但张量分配测试全部通过，说明 GPU 硬件本身可用，这是典型的**驱动层计数器卡死**（可能由之前异常退出的 CUDA 进程导致 GPU compute context 未正确释放）。容器内无法 `nvidia-smi -r` 也无法访问 dmesg。**唯一可靠的修复方式是重启容器实例**（或联系 seetacloud 重置宿主机 GPU）。重启后 utilization 计数器会归零，GPU 应恢复正常。
+
+---

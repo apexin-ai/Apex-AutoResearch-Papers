@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "206900d33e70cfb7b72d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deepseek cwm s123 pipeline v2",
+  "task_key": "worker_ssh_deepseek-cwm-s123-pipeline-v2_20260520T020315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek-cwm-s123-pipeline-v2_20260520T020315_result.json",
+    "occurrence": 1,
+    "bytes": 146,
+    "sha256": "73de29d2c5b81a472360ac5519c9dd08e47f8b060f71c46240d7cf35d0a645e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training at 42% (1214/2865 steps). Polling every 60s until completion. Will automatically check back and proceed to eval when done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-cwm-s123-pipeline-v2.md"
+}

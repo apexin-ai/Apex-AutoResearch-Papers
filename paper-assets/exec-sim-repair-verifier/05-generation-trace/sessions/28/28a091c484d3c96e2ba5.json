@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28a091c484d3c96e2ba5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code prepare cwm8b merge",
+  "task_key": "worker_code_prepare-cwm8b-merge_20260516T042811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-cwm8b-merge_20260516T042811_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "797cd6db411e41450b08648616aac697d491d04dac76f9245bc2f7d9ccb92650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好：`merge_cwm8b_shards.py`\n\n- 按优先级读取 4 个 shard（main → shard3 → shard2 → shard4），按 `index` 去重保留先遇到的\n- 从 `swebench_full/swebench_test.jsonl` 按行号查 `mutation_type` 关联到结果\n- 验证 idx 0-9783 完整覆盖\n- 输出 overall accuracy / unparseable rate / parseable-only accuracy / per-mutation breakdown\n- 写出 `results_merged.jsonl` + `summary.json`\n\n运行命令：\n```bash\npython3 /home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-cwm8b-merge.md"
+}

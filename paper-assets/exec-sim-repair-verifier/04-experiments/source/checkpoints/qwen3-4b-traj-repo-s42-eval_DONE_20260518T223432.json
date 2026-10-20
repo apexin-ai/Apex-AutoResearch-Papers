@@ -1,0 +1,43 @@
+{
+  "exp_id": "qwen3-4b-traj-repo-s42-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:28:24.376Z",
+    "updated_at": "2026-05-18T22:34:32.172Z",
+    "hypothesis": "Qwen3-4B TRAJ repo-level eval on test set (best checkpoint, epoch 2). Table 4 canonical number. DeepSeek TRAJ s42=81.25%; Qwen3 CLS repo=83.63%. 预期 variant-level ~75-85%.",
+    "parent": "qwen3-4b-traj-repo-s42",
+    "spec": {
+      "command": "python eval_traj_verifier.py --model_path /root/autodl-tmp/checkpoints_qwen3_4b_traj_repo/best --test_file swebench_test.jsonl --output /root/autodl-tmp/eval_results/qwen3_4b_traj_repo_s42_best/eval_test_s42.json --seed 42",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "swebench_test.jsonl",
+      "data_count": 48,
+      "model_name": "Qwen3-4B-TRAJ-repo-s42-best",
+      "seed": 42,
+      "checkpoint_source": "qwen3-4b-traj-repo-s42",
+      "eval_data": "swebench_test.jsonl (48 variants)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_qwen3_4b_traj_repo/best",
+      "log_path": "/root/autodl-tmp/eval_results/qwen3_4b_traj_repo_s42_best/eval_test_s42.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "variant_accuracy": 72.92,
+      "variant_correct": 35,
+      "variant_total": 48,
+      "f1_macro": 72.62,
+      "resolved_precision": 74.1,
+      "resolved_recall": 76.9,
+      "resolved_f1": 75.5,
+      "unresolved_precision": 71.4,
+      "unresolved_recall": 68.2,
+      "unresolved_f1": 69.8,
+      "vs_majority_baseline_pp": 18.8
+    },
+    "completed_at": "2026-05-18T22:34:32.172Z"
+  },
+  "timestamp": "2026-05-18T22:34:32.531319+00:00",
+  "trigger": "update_registry"
+}

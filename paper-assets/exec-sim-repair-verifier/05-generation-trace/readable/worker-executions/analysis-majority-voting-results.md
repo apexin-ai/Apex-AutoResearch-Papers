@@ -1,0 +1,487 @@
+# analysis majority voting results
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_analysis_majority-voting-results_20260512T093118.log`
+- **Structured JSON:** [`0917eff989980d9d9bdc.json`](../../sessions/09/0917eff989980d9d9bdc.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8a38bab3-eabc-43a7-aab5-5b7a950d4f9b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778594400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4b0bca8a-a874-4254-85c8-5a93691697a6",
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the experiment results from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "598c13cb-cc4e-4fab-90f4-e24bfa1ef14d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMe9Tc7AkJ28FvmSUtHVq7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11392,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11392
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013dEJ7bRixiQ6UTBZU5MpEp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "1329cc47-92be-47a8-b00c-b6fbcbde5c36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMe9Tc7AkJ28FvmSUtHVq7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11392,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11392
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T09:31:32.047Z_
+
+<details><summary>↩ Tool result · `toolu_013dEJ7bRixiQ6UTBZU5MpEp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "1a995465-f7c3-4b06-ab23-a9f4e1dac818",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0153MAF66gQiySo4kcU59Qx6`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_majority_voting.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "c39a177a-1377-4619-b38c-005b7bc1a1f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUDxXwSZ6UEProRB3woNR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 23093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WF6LtCxkbh9TyzPtyJyxd7`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -30 /root/runs/exec-sim-repair-verifier/per-test-majority-voting.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "5294d1ee-e46a-4110-b92d-b8b4c8fc7843",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUDxXwSZ6UEProRB3woNR6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 23093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T09:31:38.916Z_
+
+<details><summary>↩ Tool result · `toolu_0153MAF66gQiySo4kcU59Qx6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"K\\\": 3,\\n  \\\"temperature\\\": 0.7,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"single_pass_accuracy\\\": 87.51,\\n  \\\"majority_vote_accuracy\\\": 86.83,\\n  \\\"improvement_pp\\\": -0.69,\\n  \\\"agreement_distribution\\\": {\\n    \\\"3/3\\\": {\\n      \\\"count\\\": 1763,\\n      \\\"pct\\\": 93.3\\n    },\\n    \\\"2/3\\\": {\\n      \\\"count\\\": 127,\\n      \\\"pct\\\": 6.7\\n    }\\n  },\\n  \\\"per_pass_accuracies\\\": [\\n    86.72,\\n    86.83,\\n    87.62\\n  ],\\n  \\\"flipped_correct\\\": 15,\\n  \\\"flipped_wrong\\\": 28,\\n  \\\"net_flips\\\": -13,\\n  \\\"single_pass\\\": {\\n    \\\"accuracy\\\": 87.51,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 82.75,\\n        \\\"recall\\\": 93.64,\\n        \\\"f1\\\": 87.86,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 81.8,\\n        \\\"f1\\\": 87.15,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 854,\\n      \\\"fp\\\": 58,\\n      \\\"fn\\\": 178,\\n      \\\"tp\\\": 800\\n    },\\n    \\\"unparseable\\\": 0\\n  },\\n  \\\"majority_vote\\\": {\\n    \\\"accuracy\\\": 86.83,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.08,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 81.66,\\n        \\\"recall\\\": 93.75,\\n        \\\"f1\\\": 87.29,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 80.37,\\n        \\\"f1\\\": 86.33,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 855,\\n      \\\"fp\\\": 57,\\n      \\\"fn\\\": 192,\\n      \\\"tp\\\": 786\\n    },\\n    \\\"unparseable\\\": 0\\n  },\\n  \\\"timing\\\": {\\n    \\\"greedy_seconds\\\": 29.7,\\n    \\\"sampling_seconds\\\": 90.1,\\n    \\\"total_seconds\\\": 119.8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "28986bbd-e0ab-4d7d-a205-250e1acbece9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"temperature\\\\\\\": 0.7,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"single_pass_accuracy\\\\\\\": 87.51,\\\\n  \\\\\\\"majority_vote_accuracy\\\\\\\": 86.83,\\\\n  \\\\\\\"improvement_pp\\\\\\\": -0.69,\\\\n  \\\\\\\"agreement_distribution\\\\\\\": {\\\\n    \\\\\\\"3/3\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 1763,\\\\n      \\\\\\\"pct\\\\\\\": 93.3\\\\n    },\\\\n    \\\\\\\"2/3\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 127,\\\\n      \\\\\\\"pct\\\\\\\": 6.7\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_pass_accuracies\\\\\\\": [\\\\n    86.72,\\\\n    86.83,\\\\n    87.62\\\\n  ],\\\\n  \\\\\\\"flipped_correct\\\\\\\": 15,\\\\n  \\\\\\\"flipped_wrong\\\\\\\": 28,\\\\n  \\\\\\\"net_flips\\\\\\\": -13,\\\\n  \\\\\\\"single_pass\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 87.51,\\\\n    \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.77,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"FAIL\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 82.75,\\\\n        \\\\\\\"recall\\\\\\\": 93.64,\\\\n        \\\\\\\"f1\\\\\\\": 87.86,\\\\n        \\\\\\\"support\\\\\\\": 912\\\\n      },\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.24,\\\\n        \\\\\\\"recall\\\\\\\": 81.8,\\\\n        \\\\\\\"f1\\\\\\\": 87.15,\\\\n        \\\\\\\"support\\\\\\\": 978\\\\n      }\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 854,\\\\n      \\\\\\\"fp\\\\\\\": 58,\\\\n      \\\\\\\"fn\\\\\\\": 178,\\\\n      \\\\\\\"tp\\\\\\\": 800\\\\n    },\\\\n    \\\\\\\"unparseable\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"majority_vote\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 86.83,\\\\n    \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.08,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"FAIL\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 81.66,\\\\n        \\\\\\\"recall\\\\\\\": 93.75,\\\\n        \\\\\\\"f1\\\\\\\": 87.29,\\\\n        \\\\\\\"support\\\\\\\": 912\\\\n      },\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.24,\\\\n        \\\\\\\"recall\\\\\\\": 80.37,\\\\n        \\\\\\\"f1\\\\\\\": 86.33,\\\\n        \\\\\\\"support\\\\\\\": 978\\\\n      }\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 855,\\\\n      \\\\\\\"fp\\\\\\\": 57,\\\\n      \\\\\\\"fn\\\\\\\": 192,\\\\n      \\\\\\\"tp\\\\\\\": 786\\\\n    },\\\\n    \\\\\\\"unparseable\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"timing\\\\\\\": {\\\\n    \\\\\\\"greedy_seconds\\\\\\\": 29.7,\\\\n    \\\\\\\"sampling_seconds\\\\\\\": 90.1,\\\\n    \\\\\\\"total_seconds\\\\\\\": 119.8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"K\\\": 3,\\n  \\\"temperature\\\": 0.7,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"single_pass_accuracy\\\": 87.51,\\n  \\\"majority_vote_accuracy\\\": 86.83,\\n  \\\"improvement_pp\\\": -0.69,\\n  \\\"agreement_distribution\\\": {\\n    \\\"3/3\\\": {\\n      \\\"count\\\": 1763,\\n      \\\"pct\\\": 93.3\\n    },\\n    \\\"2/3\\\": {\\n      \\\"count\\\": 127,\\n      \\\"pct\\\": 6.7\\n    }\\n  },\\n  \\\"per_pass_accuracies\\\": [\\n    86.72,\\n    86.83,\\n    87.62\\n  ],\\n  \\\"flipped_correct\\\": 15,\\n  \\\"flipped_wrong\\\": 28,\\n  \\\"net_flips\\\": -13,\\n  \\\"single_pass\\\": {\\n    \\\"accuracy\\\": 87.51,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 82.75,\\n        \\\"recall\\\": 93.64,\\n        \\\"f1\\\": 87.86,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 81.8,\\n        \\\"f1\\\": 87.15,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 854,\\n      \\\"fp\\\": 58,\\n      \\\"fn\\\": 178,\\n      \\\"tp\\\": 800\\n    },\\n    \\\"unparseable\\\": 0\\n  },\\n  \\\"majority_vote\\\": {\\n    \\\"accuracy\\\": 86.83,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.08,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 81.66,\\n        \\\"recall\\\": 93.75,\\n        \\\"f1\\\": 87.29,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 80.37,\\n        \\\"f1\\\": 86.33,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 855,\\n      \\\"fp\\\": 57,\\n      \\\"fn\\\": 192,\\n      \\\"tp\\\": 786\\n    },\\n    \\\"unparseable\\\": 0\\n  },\\n  \\\"timing\\\": {\\n    \\\"greedy_seconds\\\": 29.7,\\n    \\\"sampling_seconds\\\": 90.1,\\n    \\\"total_seconds\\\": 119.8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T09:31:39.433Z_
+
+<details><summary>↩ Tool result · `toolu_01WF6LtCxkbh9TyzPtyJyxd7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 17:24:54,625 INFO   2/3: 127 (6.7%)\\n2026-05-12 17:24:54,642 INFO Results saved to eval_majority_voting.json\\n\\n============================================================\\nMAJORITY VOTING REPORT: Per-test Self-Consistency (K=3)\\n============================================================\\n\\nTest set: 1890 examples (pass=978, fail=912)\\nTemperature: 0.7, K=3\\n\\nSingle-pass (greedy): 87.51%\\nMajority vote (K=3):  86.83%\\nImprovement:           -0.69pp\\n\\nAgreement distribution:\\n  3/3 unanimous: 1763 (93.3%)\\n  2/3 unanimous: 127 (6.7%)\\n\\nFlipped predictions: 15 correct, 28 wrong (net: -13)\\n\\nPer-pass accuracies: [86.72, 86.83, 87.62]\\n\\nPer-class (majority vote):\\n  Class     Precision     Recall         F1\\n  FAIL          81.7%      93.8%      87.3%\\n  PASS          93.2%      80.4%      86.3%\\n\\nTiming: greedy=30s, sampling=90s, total=120s\\n============================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "deb0a7d9-1198-49d5-b19d-1be189fb6499",
+  "uuid": "a0d42ad8-3343-490e-b015-5d70c8741648",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-12 17:24:54,625 INFO   2/3: 127 (6.7%)\\\\n2026-05-12 17:24:54,642 INFO Results saved to eval_majority_voting.json\\\\n\\\\n============================================================\\\\nMAJORITY VOTING REPORT: Per-test Self-Consistency (K=3)\\\\n============================================================\\\\n\\\\nTest set: 1890 examples (pass=978, fail=912)\\\\nTemperature: 0.7, K=3\\\\n\\\\nSingle-pass (greedy): 87.51%\\\\nMajority vote (K=3):  86.83%\\\\nImprovement:           -0.69pp\\\\n\\\\nAgreement distribution:\\\\n  3/3 unanimous: 1763 (93.3%)\\\\n  2/3 unanimous: 127 (6.7%)\\\\n\\\\nFlipped predictions: 15 correct, 28 wrong (net: -13)\\\\n\\\\nPer-pass accuracies: [86.72, 86.83, 87.62]\\\\n\\\\nPer-class (majority vote):\\\\n  Class     Precision     Recall         F1\\\\n  FAIL          81.7%      93.8%      87.3%\\\\n  PASS          93.2%      80.4%      86.3%\\\\n\\\\nTiming: greedy=30s, sampling=90s, total=120s\\\\n============================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-12 17:24:54,625 INFO   2/3: 127 (6.7%)\\n2026-05-12 17:24:54,642 INFO Results saved to eval_majority_voting.json\\n\\n============================================================\\nMAJORITY VOTING REPORT: Per-test Self-Consistency (K=3)\\n============================================================\\n\\nTest set: 1890 examples (pass=978, fail=912)\\nTemperature: 0.7, K=3\\n\\nSingle-pass (greedy): 87.51%\\nMajority vote (K=3):  86.83%\\nImprovement:           -0.69pp\\n\\nAgreement distribution:\\n  3/3 unanimous: 1763 (93.3%)\\n  2/3 unanimous: 127 (6.7%)\\n\\nFlipped predictions: 15 correct, 28 wrong (net: -13)\\n\\nPer-pass accuracies: [86.72, 86.83, 87.62]\\n\\nPer-class (majority vote):\\n  Class     Precision     Recall         F1\\n  FAIL          81.7%      93.8%      87.3%\\n  PASS          93.2%      80.4%      86.3%\\n\\nTiming: greedy=30s, sampling=90s, total=120s\\n============================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

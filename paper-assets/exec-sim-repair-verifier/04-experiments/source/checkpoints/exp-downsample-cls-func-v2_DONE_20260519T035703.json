@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-downsample-cls-func-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:53:57.925Z",
+    "updated_at": "2026-05-19T03:57:03.429Z",
+    "hypothesis": "CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势",
+    "parent": "exp-downsample-cls-func",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir data/ --task cls --train_file train_downsampled.jsonl --val_file val.jsonl --output_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/ --run_name cls-downsample-qwen3-4b-lora --epochs 3 --batch_size 2 --grad_accumulation 16 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --seed 42 --wandb_project exec-sim-repair-verifier",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "795647",
+      "log_path": "~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v2.log",
+      "submitted_at": "2026-05-19T03:54:35.653Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 147.8,
+      "gpu_hours": 0.04
+    },
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:1",
+    "pid": "795647",
+    "log_path": "~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v2.log",
+    "wandb_run_id": "cls-downsample-qwen3-4b-lora",
+    "reproduce": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir data/ --task cls --train_file train_downsampled.jsonl --val_file val.jsonl --output_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/ --run_name cls-downsample-qwen3-4b-lora --epochs 3 --batch_size 2 --grad_accumulation 16 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --seed 42 --wandb_project exec-sim-repair-verifier",
+      "wandb_run_id": "cls-downsample-qwen3-4b-lora",
+      "finished_at": "2026-05-19T03:56:58.879Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T03:57:03.429Z"
+  },
+  "timestamp": "2026-05-19T03:57:03.982026+00:00",
+  "trigger": "update_registry"
+}

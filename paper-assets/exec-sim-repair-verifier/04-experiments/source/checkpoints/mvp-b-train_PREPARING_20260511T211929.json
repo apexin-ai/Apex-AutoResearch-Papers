@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp-b-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:24:04.462Z",
+    "updated_at": "2026-05-11T21:19:29.035Z",
+    "hypothesis": "Qwen3-4B LoRA 在函数级 (code, test) → pass/fail 上可达 per-class F1 >65%, accuracy > majority+10pp",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints/best/ --output eval_results.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2102798",
+      "log_path": "~/runs/exec-sim-repair-verifier/mvp-b-train.log",
+      "submitted_at": "2026-05-11T20:06:48.617Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "notes": "OOM at step 15 (2nd attempt). Root cause: cross_entropy logits fp32 = 9.4GB + model 26GB > 32GB VRAM. Fix: bs 8→2, grad_accum 4→16, effective bs unchanged at 32. Retry count: 2.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-11T21:19:29.070322+00:00",
+  "trigger": "update_registry"
+}

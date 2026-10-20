@@ -1,0 +1,41 @@
+{
+  "exp_id": "deepseek-cwm-repo-s456-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:35:34.894Z",
+    "updated_at": "2026-05-20T05:12:44.616Z",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --data_dir data/ --task cwm --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s456/ --run_name deepseek-cwm-repo-s456 --seed 456 --max_seq_length 2048 --batch_size 2 --grad_accumulation 8 --lr 2e-4 --epochs 3 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "917644",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s456-train.log",
+      "submitted_at": "2026-05-20T04:59:56.137Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 768.5,
+      "gpu_hours": 0.21
+    },
+    "hypothesis": "DeepSeek CWM repo-level s456 训练：第 3 seed，与 s42/s123 组成 3-seed coverage。Config 与 s42 一致（train_unified.py --task cwm, bs=2, ga=8, lr=2e-4, seq2048, epochs=3, lora_r=16）。",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:2",
+    "pid": "917644",
+    "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s456-train.log",
+    "reproduce": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --data_dir data/ --task cwm --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s456/ --run_name deepseek-cwm-repo-s456 --seed 456 --max_seq_length 2048 --batch_size 2 --grad_accumulation 8 --lr 2e-4 --epochs 3 --no_wandb",
+      "finished_at": "2026-05-20T05:12:41.064Z"
+    },
+    "conclusion": "failed",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T05:12:44.617Z"
+  },
+  "timestamp": "2026-05-20T05:12:45.065870+00:00",
+  "trigger": "update_registry"
+}

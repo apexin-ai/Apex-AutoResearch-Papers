@@ -1,0 +1,79 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problem Formulation}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM Generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direct Classification.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-then-Judge (Ablation).}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Model Architecture and Training}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Datasets}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Function-Level.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repo-Level (SWE-bench-PerTest).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Trajectory-Level Aggregation}{2}{subsection.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Multi-seed function-level comparison (macro F\textsubscript  {1}). Paired bootstrap 95\% CI: $[-0.85, +0.85]$; $p{=}0.98$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:multiseed}{{1}{3}{Multi-seed function-level comparison (macro \fone ). Paired bootstrap 95\% CI: $[-0.85, +0.85]$; $p{=}0.98$}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Formulation ablation on function-level benchmarks.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{3}{Formulation ablation on function-level benchmarks}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Function-Level Experiments}{3}{section.3}\protected@file@percent }
+\newlabel{sec:func-results}{{3}{3}{Function-Level Experiments}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Multi-Seed Validation (Claim 1 Baseline)}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Formulation Ablation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}2$\times $2 Factorial Decomposition}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Model Size Scaling}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Repo-Level Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:repo-results}{{4}{3}{Repo-Level Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Classification vs.\ CWM on SWE-bench-PerTest}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $2{\times }2$ factorial decomposition (function-level). $^*$Trajectory accuracy derived via AND-aggregation. Formulation effect: $0.0\,\text  {pp}$; granularity effect: $+2.1\,\text  {pp}$.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:factorial}{{3}{4}{$2{\times }2$ factorial decomposition (function-level). $^*$Trajectory accuracy derived via AND-aggregation. Formulation effect: $0.0\pp $; granularity effect: $+2.1\pp $}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scaling behavior (function-level). The gap remains negligible at 8B.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:scaling-func}{{4}{4}{Scaling behavior (function-level). The gap remains negligible at 8B}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Complexity-Dependent Gap Analysis}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Token-budget exhaustion (15.2\%).}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{String-value prediction errors (18.5\%).}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}LLM-as-Judge Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Diagnostic Re-repair}{4}{section.5}\protected@file@percent }
+\newlabel{sec:rerepair}{{5}{4}{Diagnostic Re-repair}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Setup}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Repo-level classification vs.\ CWM on SWE-bench-PerTest. Classification outperforms CWM by $11.5\,\text  {pp}$ at both scales.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:repo-main}{{5}{5}{Repo-level classification vs.\ CWM on SWE-bench-PerTest. Classification outperforms CWM by $11.5\pp $ at both scales}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Complexity-dependent gap. Classification drops $5.5\,\text  {pp}$ from function to repo level; CWM drops $17.0\,\text  {pp}$. The $11.5\,\text  {pp}$ gap emerges entirely from complexity.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:complexity-gap}{{6}{5}{Complexity-dependent gap. Classification drops $5.5\pp $ from function to repo level; CWM drops $17.0\pp $. The $11.5\pp $ gap emerges entirely from complexity}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stratification by F2P count.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Accuracy--Utility Frontier}{5}{section.6}\protected@file@percent }
+\newlabel{sec:frontier}{{6}{5}{Accuracy--Utility Frontier}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Oracle F2P-Stratified Analysis}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Block-Correlation Empirical Validation}{5}{subsection.6.2}\protected@file@percent }
+\citation{gu2024cruxeval}
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Accuracy--cost Pareto frontier. Fine-tuned 4B classifiers dominate zero-shot LLM judges.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:pareto}{{7}{6}{Accuracy--cost Pareto frontier. Fine-tuned 4B classifiers dominate zero-shot LLM judges}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Diagnostic re-repair results. Per-test failure localization provides $+5.5\,\text  {pp}$ lift beyond blind re-repair.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:rerepair}{{8}{6}{Diagnostic re-repair results. Per-test failure localization provides $+5.5\pp $ lift beyond blind re-repair}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{6}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code World Models.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Verification.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Based Repair.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}\protected@file@percent }
+\bibcite{gu2024cruxeval}{{1}{2024}{{Gu et~al.}}{{Gu, Roziere, Leather, Solar-Lezama, Synnaeve, and Wang}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Diagnostic lift by F2P count.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:rerepair-strat}{{9}{7}{Diagnostic lift by F2P count}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-test advantage stratified by F2P count (oracle, accuracy $\in [70\%, 85\%]$). Advantage concentrates in multi-F2P instances and is amplified by block-correlated errors.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:oracle-strat}{{10}{7}{Per-test advantage stratified by F2P count (oracle, accuracy $\in [70\%, 85\%]$). Advantage concentrates in multi-F2P instances and is amplified by block-correlated errors}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}SWE-bench-PerTest Dataset Details}{7}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Diagnostic Signal Quality}{7}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Majority Voting}{7}{appendix.C}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Empirical error correlation structure. Within-instance $\rho {=}0.43$ places the real advantage closer to the block-correlated bound.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:block-corr}{{11}{8}{Empirical error correlation structure. Within-instance $\rho {=}0.43$ places the real advantage closer to the block-correlated bound}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces SWE-bench-PerTest dataset statistics.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:dataset}{{12}{8}{SWE-bench-PerTest dataset statistics}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Per-test diagnostic signal quality (function-level). Failure localization exact match: 78.2\%; Precision@1: 89.3\%; FPR: 8.3\%.}}{8}{table.13}\protected@file@percent }
+\newlabel{tab:diagnostic}{{13}{8}{Per-test diagnostic signal quality (function-level). Failure localization exact match: 78.2\%; Precision@1: 89.3\%; FPR: 8.3\%}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Majority voting provides marginal improvement ($+1.4\,\text  {pp}$) at $3{\times }$ cost. Model scaling (4B$\to $8B) is more cost-effective.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:voting}{{14}{8}{Majority voting provides marginal improvement ($+1.4\pp $) at $3{\times }$ cost. Model scaling (4B$\to $8B) is more cost-effective}{table.14}{}}
+\gdef \@abspage@last{8}

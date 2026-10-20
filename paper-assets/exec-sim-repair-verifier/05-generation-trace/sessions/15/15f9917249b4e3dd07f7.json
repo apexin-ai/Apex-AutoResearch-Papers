@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15f9917249b4e3dd07f7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b seed123 ckpt3000 mutation",
+  "task_key": "worker_eval_cls8b-seed123-ckpt3000-mutation_20260516T012056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-seed123-ckpt3000-mutation_20260516T012056_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "860135a4eb662107ef5f773c5d24d6fb69186021b9ba0bc1f6af79fd51ad4838"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，汇总：\n\n- **exp_id**: `cls8b-seed123-ckpt3000-mutation`\n- **PID**: `447483`\n- **设备**: `cuda:0` @ seetacloud-westd-4x5090\n- **流程**: `eval_repo_cls.py` (test split) → `mutation_breakdown.py`\n- **日志**: `/root/autodl-tmp/eval_results/cls8b_seed123_ckpt3000_test_mutation/run.log`\n- **输出**: `/root/autodl-tmp/eval_results/cls8b_seed123_ckpt3000_test_mutation/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-seed123-ckpt3000-mutation.md"
+}

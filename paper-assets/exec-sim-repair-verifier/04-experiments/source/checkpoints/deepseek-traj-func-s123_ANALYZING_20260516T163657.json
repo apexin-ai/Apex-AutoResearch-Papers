@@ -1,0 +1,23 @@
+{
+  "exp_id": "deepseek-traj-func-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:27:03.108Z",
+    "updated_at": "2026-05-16T16:36:56.849Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --task cls --train_file traj_train_cls.jsonl --val_file traj_val_cls.jsonl --output_dir /root/autodl-tmp/checkpoints_deepseek_traj_func_s123/ --run_name deepseek-traj-func-s123 --seed 123 --epochs 3 --lora_rank 16 --lora_alpha 32 --lr 2e-4 --batch_size 4 --grad_accumulation 4 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/traj_train_cls.jsonl",
+      "data_count": 8052,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T16:36:57.273587+00:00",
+  "trigger": "update_registry"
+}

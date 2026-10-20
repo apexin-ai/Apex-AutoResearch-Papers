@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "175e68f7f9c2d95817f8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops v5 ckpt2105 variant pipeline verify",
+  "task_key": "worker_ops_v5-ckpt2105-variant-pipeline-verify_20260519T001201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v5-ckpt2105-variant-pipeline-verify_20260519T001201_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "3068f31aea389be1b23d5e1e62fc5644a6e0b28d5d883103fafbd06b20e61a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**脚本**: `/home/sonny/exec-sim-repair-verifier/aggregate_variant_level_v2.py`（已添加 v5 ckpt-2105 config 条目）\n\n**命令**: `python3 aggregate_variant_level_v2.py`\n\n**结果**: DeepSeek CLS v5 s42 ckpt-2105 variant-level accuracy = **39/48 = 81.25%**，与预期完全一致。\n\n**9 个错误 variant**:\n- 7 个 FN（gold/resolved 预测为 unresolved）: astropy-7336 gold, django-11848/12325/12406/13109/15037 gold, django-14351 mutation_boundary_removal\n- 2 个 FP（mutation 预测为 resolved）: pytest-6202 mutation_return_value, pytest-7490 mutation_operator_swap\n\n**已更新文件**:\n- `artifacts/variant_level_all_configs.json` — 已添加 v5 ckpt-2105 条目\n- `artifacts/variant_level_verified_results.md` — 已创建，含全部配置的对比表和 v5 ckpt-2105 错误明细"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v5-ckpt2105-variant-pipeline-verify.md"
+}

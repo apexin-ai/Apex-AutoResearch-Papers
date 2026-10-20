@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "029155f72c568805f153",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 14b table and figure scripts",
+  "task_key": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-table-and-figure-scripts_20260523T052047_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "5993a37422cc73ee26be07dde54bf0d6197e34ae95e60517086c529a521b024a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都通过验证，`CONFIRMED_14B` 的 `True`/`False` 两条路径均正常。\n\n产出：\n- **`artifacts/update_14b_table.py`** — 顶部填入 s123/s456 accuracy 后运行，输出 mean±std、TOST p-value、LaTeX 行。当前仅有 s42 数据时自动跳过 TOST。3-seed 完整时会提示需新增 s456 列。\n- **`artifacts/plot_figure2_v3.py`** — 顶部修改 `cls_acc_14b`/`cwm_acc_14b` 和 `CONFIRMED_14B`。确认后自动切换为实线+实心 marker，移除 exploratory 标注，gap 使用实际数值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-table-and-figure-scripts.md"
+}

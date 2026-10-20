@@ -1,0 +1,72 @@
+{
+  "exp_id": "cls8b-s42-ckpt200-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:35:10.602Z",
+    "updated_at": "2026-05-15T10:58:56.283Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py ... s42 ckpt-200 test",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "358249",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-test8192-eval.log",
+      "submitted_at": "2026-05-15T10:35:10.288Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200",
+      "eval_data": "test@full(n=9784)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200",
+      "wall_clock_seconds": 1426.0,
+      "gpu_hours": 0.4
+    },
+    "hypothesis": "s42 test curve 补点: ckpt-200 test@full(n=9784)。补齐与 val curve 对齐的最后一个缺失点。",
+    "reproduce": {
+      "finished_at": "2026-05-15T10:56:21.866Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T10:56:25.466058+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 70.07,
+      "f1_macro": 68.18,
+      "pass_f1": 75.9,
+      "fail_f1": 60.4,
+      "pass_precision": 91.8,
+      "pass_recall": 64.7,
+      "fail_precision": 47,
+      "fail_recall": 84.5,
+      "n_samples": 9784,
+      "n_pass": 7138,
+      "n_fail": 2646,
+      "majority_baseline": 73,
+      "unparseable": 0,
+      "confusion_matrix": {
+        "fail_as_fail": 2235,
+        "fail_as_pass": 411,
+        "pass_as_fail": 2517,
+        "pass_as_pass": 4621
+      }
+    },
+    "completed_at": "2026-05-15T10:58:56.283Z"
+  },
+  "timestamp": "2026-05-15T10:58:56.514037+00:00",
+  "trigger": "update_registry"
+}

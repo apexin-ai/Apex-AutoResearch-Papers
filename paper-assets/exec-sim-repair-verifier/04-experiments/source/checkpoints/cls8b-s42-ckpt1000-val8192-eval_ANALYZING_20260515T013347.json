@@ -1,0 +1,38 @@
+{
+  "exp_id": "cls8b-s42-ckpt1000-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:03:36.750Z",
+    "updated_at": "2026-05-15T01:33:47.795Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --batch_size 1 --device cuda:0\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "310114",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-val8192-eval.log",
+      "submitted_at": "2026-05-15T01:03:36.501Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000",
+      "eval_data": "swebench val split"
+    },
+    "hypothesis": "D088 val pipeline: s42 ckpt-1000 val@8192 (resume 训练产出)。如 > 85.00% 需补跑 test@8192",
+    "parent": "repo-level-cls-8b-conda",
+    "reproduce": {
+      "finished_at": "2026-05-15T01:33:47.289Z"
+    }
+  },
+  "timestamp": "2026-05-15T01:33:47.980725+00:00",
+  "trigger": "update_registry"
+}

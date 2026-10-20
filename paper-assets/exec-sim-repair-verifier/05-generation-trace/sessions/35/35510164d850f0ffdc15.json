@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35510164d850f0ffdc15",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "experiment cwm rank32 resubmit",
+  "task_key": "worker_experiment_cwm-rank32-resubmit_20260515T124842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_cwm-rank32-resubmit_20260515T124842_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "ec5c9eed97fd801231982700298fcc31b592d6afc0b55455fbbe4143f6cccfd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**`cwm-rank32-ablation` (PID 368823) 未被 killed，正在 GPU 0 上正常训练。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 368823 | 活跃，`/proc/368823/cmdline` 确认是 `train_cwm_baseline.py --lora_rank 32` |\n| GPU 0 | 18238MiB / 32607MiB, 59% util |\n| 进度 | step 324/1434 (22%), ~3.3s/it |\n| 预计完成 | ~60min (服务器时间 ~21:50) |\n| 配置 | bs=2, ga=16, rank=32, seed=42 — 与 baseline 一致（仅 rank 不同） |\n\n**`cwm-4b-rank32-ablation` (PID 369497) 是重复提交**，在第一个进程还占 GPU 0 时启动，因显存争夺仅跑到 step 38 就死了（速度 6.5s/it 约 2x 正常值）。\n\n**不需要重新提交任务。** Registry hypothesis 字段已更新标注 PID 368823 仍在运行。\n\n唯一的小问题：运行中的命令未串联 eval。训练完成后需要手动或由 cron 触发 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-cwm-rank32-resubmit.md"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "repo-level-cls-8b-s42-resume",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:48:30.781Z",
+    "updated_at": "2026-05-15T18:37:52.578Z",
+    "spec": {
+      "command": "python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600 --save_total_limit 35 --dataloader_num_workers 0 --epochs 3",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "295789",
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log",
+      "submitted_at": "2026-05-14T21:48:30.485Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "resume_checkpoint": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-600",
+      "save_steps": 200,
+      "num_workers": 0,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "hypothesis": "8B CLS s42 full training (ckpt-600 -> 6633), every 200 steps save checkpoint, for CLS vs CWM apple-to-apple comparison + val sweep"
+    },
+    "notes": "2026-05-15 09:39 UTC: step 4041/6633 (60.9%), eval_loss=0.3694 @step4000 (epoch 1.81), ~8s/it + 14min eval/100steps. ETA ~May 16 06:00 UTC (~12h).",
+    "reproduce": {
+      "finished_at": "2026-05-15T18:37:51.216Z"
+    }
+  },
+  "timestamp": "2026-05-15T18:37:53.150246+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,8 @@
+Remote server: home-1x5090:/home/sonny/exec-sim-repair-verifier/mvp_a_results.json (7.2K)
+Remote chart:  home-1x5090:/home/sonny/exec-sim-repair-verifier/mvp_a_curves.pdf (21K)
+Remote script: home-1x5090:/home/sonny/exec-sim-repair-verifier/mvp_a_oracle_sim.py
+
+Key results (70-85% accuracy range):
+  Block-correlated mean advantage: 36.2% (min 33.5%, max 37.5%)
+  I.I.D. mean advantage: 18.5% (min 14.0%, max 21.4%)
+  Pass criterion (block >= 5%): PASS

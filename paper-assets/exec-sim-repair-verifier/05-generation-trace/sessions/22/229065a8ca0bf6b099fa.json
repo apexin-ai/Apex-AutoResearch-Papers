@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "229065a8ca0bf6b099fa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose qwen s456 train status",
+  "task_key": "worker_diagnose_qwen-s456-train-status_20260521T215744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen-s456-train-status_20260521T215744_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "5d81a5d9c0684a392f2a1bb7f64f063b4eafefcabb40ed83dd011dd5fc1b35cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen CWM s456 训练状态\n\n### 1. 训练进度\n- **PID 83243 仍在运行**，已运行 3h20m\n- 当前 step: **6601/6633**（99.5%），刚完成 step 6600 的 eval\n- 剩余 32 步 × ~12s/step ≈ **~6 min 训练 + ~19 min 最终 eval ≈ 25 min 后完成**\n\n### 2. 指标\n- train_loss: **0.0032–0.0036**（step 6200, epoch 2.78–2.80）\n- eval_loss: **0.5061**（step 6600, epoch 2.94）\n\n### 3. Checkpoints\n- 路径: `/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/`\n- 已保存: checkpoint-6200, 6300, 6400, **6500**（最新, May 22 05:19）\n- **best model: 无**（目录不存在）\n\n### 4. 原 PID 4561 失败原因\n```\nwandb.errors.errors.UsageError: No API key configured. Use `wandb login` to log in.\n```\n首次 resume 未加 `--no_wandb`，wandb init 失败。当前运行已修复（加了 `--no_wandb`）。\n\n### 5. GPU 3 状态\n- PID 83243 占用 **27128 MiB**，正在训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen-s456-train-status.md"
+}

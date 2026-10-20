@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c19246651d1e4928b30",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd cuda0 6200 then 6633",
+  "task_key": "worker_poll_westd-cuda0-6200-then-6633_20260515T075720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-cuda0-6200-then-6633_20260515T075720_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "d23bb411581c32c4545f1ed74baa1e4f0db77c179921735b572d7ed9dc672bb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**阶段一完成**: ckpt-6200 val = **87.52%** accuracy, f1_macro=79.26%, registry 已标 DONE。\n\n**阶段二已启动**: ckpt-6633 eval 已提交 (PID 346231, cuda:0)，3 分钟后开始轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-cuda0-6200-then-6633.md"
+}

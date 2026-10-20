@@ -1,0 +1,14 @@
+{
+  "exp_id": "cls14b-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:08:16.477Z",
+    "updated_at": "2026-05-22T17:08:16.477Z"
+  },
+  "timestamp": "2026-05-22T17:08:16.968863+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "repo-level-cwm-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T14:41:28.527Z",
+    "updated_at": "2026-05-12T16:10:13.997Z",
+    "hypothesis": "Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。与 repo-level-cls-v2 对比验证 complexity gap。",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm/ --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "63096",
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cwm-v2.log",
+      "submitted_at": "2026-05-12T15:57:03.090Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-12T16:10:14.070428+00:00",
+  "trigger": "update_registry"
+}

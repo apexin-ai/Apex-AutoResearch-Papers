@@ -1,0 +1,83 @@
+{
+  "exp_id": "repo-level-cls-v5-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:55:01.260Z",
+    "updated_at": "2026-05-14T05:24:22.630Z",
+    "spec": {
+      "hypothesis": "CLS seed42 conda 重训 (westd, transformers 4.57.6)，与 CWM v12 同服务器+同环境 apple-to-apple 对比。消除 CLS v5 (home) vs CWM v12 (westd) 的跨服务器差异。",
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 train_repo_verifier.py --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/",
+      "server": "westd-48478",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 2,
+      "grad_accumulation": 16,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_v5_conda/",
+      "log_path": "/root/autodl-tmp/checkpoints_repo_cls_v5_conda/train.log",
+      "env": "conda base, transformers 4.57.6",
+      "tmux_session": "cls-v5-conda",
+      "gpu": "cuda:2"
+    },
+    "notes": "Checkpoint sweep 完成 (ckpt 200/400/600)。ckpt-200=52.96% (极差), ckpt-400=78.43% (accuracy 最高, pass-biased), ckpt-600=76.37% (f1_macro 最高=71.17, 更均衡)。与 home CLS v5 ckpt-600 (76.92%) 仅差 0.55pp，确认 home vs westd conda 环境差异可忽略。checkpoint 选择才是主因。D056 early stop 导致只看了 ckpt-200 险些误判。",
+    "conclusion": "success",
+    "metrics": {
+      "checkpoint_sweep": {
+        "ckpt_200": {
+          "accuracy": 52.96,
+          "f1_macro": 52.89,
+          "fail_f1": 51.02,
+          "pass_f1": 54.76
+        },
+        "ckpt_400": {
+          "accuracy": 78.43,
+          "f1_macro": 68.41,
+          "fail_f1": 50.61,
+          "pass_f1": 86.21,
+          "fail_precision": 66.48,
+          "fail_recall": 40.85,
+          "pass_precision": 80.82,
+          "pass_recall": 92.36
+        },
+        "ckpt_600": {
+          "accuracy": 76.37,
+          "f1_macro": 71.17,
+          "fail_f1": 58.93,
+          "pass_f1": 83.41,
+          "fail_precision": 55.6,
+          "fail_recall": 62.7,
+          "pass_precision": 85.49,
+          "pass_recall": 81.44
+        }
+      },
+      "best_checkpoint_accuracy": "checkpoint-400",
+      "best_checkpoint_f1": "checkpoint-600",
+      "eval_samples": 9784,
+      "accuracy": 78.43,
+      "f1_macro": 71.17,
+      "unparseable": 132,
+      "unparseable_pct": 1.35,
+      "majority_baseline": 72.96,
+      "eval_server": "westd-48478",
+      "eval_env": "conda, transformers 4.57.6"
+    },
+    "completed_at": "2026-05-14T05:21:01.269Z"
+  },
+  "timestamp": "2026-05-14T05:24:22.773239+00:00",
+  "trigger": "update_registry"
+}

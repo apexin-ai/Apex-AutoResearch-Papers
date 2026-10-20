@@ -1,0 +1,66 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Code Verification.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SWE-bench and Code Repair.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classification vs.\ Generation in NLP.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CLS (Per-Test Classification).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM (Code World Model / Generation).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TRAJ (Trajectory-Level Classification).}{2}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench-PerTest dataset statistics.}}{2}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:dataset-stats}{{1}{2}{SWE-bench-PerTest dataset statistics}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Failure mode breakdown for unsuccessful dataset construction instances.}}{2}{table.caption.11}\protected@file@percent }
+\newlabel{tab:dataset-failures}{{2}{2}{Failure mode breakdown for unsuccessful dataset construction instances}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}\textsc  {SWE-bench-PerTest} Dataset}{2}{section.4}\protected@file@percent }
+\newlabel{sec:dataset}{{4}{2}{\textsc {SWE-bench-PerTest} Dataset}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Construction.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistics.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Failure Analysis.}{2}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Repo-level CLS accuracy across model families. $\Delta $Maj = gap vs.\ majority baseline (72.96\%). All models substantially exceed the baseline, demonstrating that binary classification learns genuine test-outcome discrimination.}}{3}{table.caption.12}\protected@file@percent }
+\newlabel{tab:repo-cls}{{3}{3}{Repo-level CLS accuracy across model families. $\Delta $Maj = gap vs.\ majority baseline (72.96\%). All models substantially exceed the baseline, demonstrating that binary classification learns genuine test-outcome discrimination}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DeepSeek repo-level CLS checkpoint sweep showing monotonic improvement through training.}}{3}{table.caption.13}\protected@file@percent }
+\newlabel{tab:ds-cls-sweep}{{4}{3}{DeepSeek repo-level CLS checkpoint sweep showing monotonic improvement through training}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Repo-Level Per-Test Classification}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:repo-cls}{{5.1}{3}{Repo-Level Per-Test Classification}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Repo-Level CWM: Systematic Generation Failure}{3}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:repo-cwm}{{5.2}{3}{Repo-Level CWM: Systematic Generation Failure}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Failure Mode Analysis.}{3}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Repo-level CWM results. Unparseable rates range from 53\% to 93\% across models, and CWM accuracy \emph  {falls below} the majority baseline. The CLS--CWM gap exceeds 15 pp in all cases.}}{3}{table.caption.14}\protected@file@percent }
+\newlabel{tab:repo-cwm}{{5}{3}{Repo-level CWM results. Unparseable rates range from 53\% to 93\% across models, and CWM accuracy \emph {falls below} the majority baseline. The CLS--CWM gap exceeds 15 pp in all cases}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces CWM failure mode breakdown for DeepSeek-7B on repo-level data. Over half of all predictions are unparseable.}}{3}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cwm-failure}{{6}{3}{CWM failure mode breakdown for DeepSeek-7B on repo-level data. Over half of all predictions are unparseable}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Three-Format Comparison}{3}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:three-format}{{5.3}{3}{Three-Format Comparison}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Seed Consistency for TRAJ}{3}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:seed}{{5.4}{3}{Seed Consistency for TRAJ}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces DeepSeek-7B repo-level three-format comparison. The ordering CLS $>$ TRAJ $>$ CWM is consistent with results on Qwen models.}}{4}{table.caption.17}\protected@file@percent }
+\newlabel{tab:three-format}{{7}{4}{DeepSeek-7B repo-level three-format comparison. The ordering CLS $>$ TRAJ $>$ CWM is consistent with results on Qwen models}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces DeepSeek repo-level TRAJ across two seeds. The 0.6 pp accuracy difference is within normal seed variance.}}{4}{table.caption.18}\protected@file@percent }
+\newlabel{tab:traj-seeds}{{8}{4}{DeepSeek repo-level TRAJ across two seeds. The 0.6 pp accuracy difference is within normal seed variance}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Function-Level Results: The Null Baseline}{4}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:func-level}{{5.5}{4}{Function-Level Results: The Null Baseline}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces DeepSeek accuracy: function-level vs.\ repo-level. CLS degrades gracefully ($-$4.7 pp) while CWM collapses ($-$22.0 pp).}}{4}{table.caption.19}\protected@file@percent }
+\newlabel{tab:func-vs-repo}{{9}{4}{DeepSeek accuracy: function-level vs.\ repo-level. CLS degrades gracefully ($-$4.7 pp) while CWM collapses ($-$22.0 pp)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Re-repair resolve rates. CLS diagnostics yield a 5.0 pp improvement ($p{=}0.038$, Cohen's $d{=}0.31$). Oracle diagnostics set a 9.5 pp upper bound.}}{4}{table.caption.21}\protected@file@percent }
+\newlabel{tab:rerepair}{{10}{4}{Re-repair resolve rates. CLS diagnostics yield a 5.0 pp improvement ($p{=}0.038$, Cohen's $d{=}0.31$). Oracle diagnostics set a 9.5 pp upper bound}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Diagnostic Re-Repair}{4}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:rerepair}{{5.6}{4}{Diagnostic Re-Repair}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{4}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Effect Concentration in Multi-Test Instances.}{4}{section*.22}\protected@file@percent }
+\bibdata{references}
+\bibstyle{acl_natbib}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Re-repair improvement by F2P test count. Improvement concentrates in multi-test instances where per-test diagnostics provide non-trivial information gain.}}{5}{table.caption.23}\protected@file@percent }
+\newlabel{tab:rerepair-breakdown}{{11}{5}{Re-repair improvement by F2P test count. Improvement concentrates in multi-test instances where per-test diagnostics provide non-trivial information gain}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Does Classification Scale Better?}{5}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Model Consistency.}{5}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{5}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}\protected@file@percent }
+\gdef \@abspage@last{5}

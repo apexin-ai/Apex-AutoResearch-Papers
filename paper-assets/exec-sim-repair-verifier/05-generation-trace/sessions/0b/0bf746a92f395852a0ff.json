@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bf746a92f395852a0ff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b tost analysis",
+  "task_key": "worker_ssh_14b-tost-analysis_20260523T080227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-tost-analysis_20260523T080227_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "429cd052129c3d911da1a186e40de5bec3ae3d3b0e67838ab2cfc33e33a40d16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B Clustered Bootstrap TOST 结果\n\n| 指标 | 值 |\n|------|-----|\n| Observed mean diff (CLS−CWM) | **+0.423pp** |\n| 95% CI | [−0.455, +1.315]pp |\n| Bootstrap SE | 0.458pp |\n| TOST 90% CI | [−0.320, +1.176]pp |\n| TOST p-value | **0.0006** |\n| Equivalent (±2pp) | **YES** |\n| Clusters | 114 |\n| Total observations | 5,670 (3 seeds × 1,890) |\n\nPer-seed breakdown:\n- s42: CLS 89.21% vs CWM 89.26%, diff = −0.05pp\n- s123: CLS 90.79% vs CWM 88.99%, diff = +1.80pp\n- s456: CLS 89.79% vs CWM 90.26%, diff = −0.48pp\n\n90% CI 完全落在 ±2pp SESOI 内，TOST p=0.0006，等价性成立。结果已保存到 `/root/autodl-tmp/eval_results/14b_tost_bootstrap.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-tost-analysis.md"
+}

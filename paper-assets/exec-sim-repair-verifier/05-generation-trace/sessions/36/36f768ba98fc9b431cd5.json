@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36f768ba98fc9b431cd5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778897578.md",
+  "task_key": "loop_18_1778897578",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778897578.md",
+    "occurrence": 1,
+    "bytes": 4857,
+    "sha256": "27b17404a3a19d5e48a4cdb73fb86c73d1d375c6a34ccf01cc98187a5cc609e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:36:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd cuda:0/1/2/3 **仅此四张**。home-1x5090 当前离线，不可用\n- CWM 8B eval **禁止 --max_samples**，必须评完整 test set (n=9784)，否则与主表不可比（D099 教训）\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出（2026-05-15 事故：误标导致同 GPU OOM）\n- s42 resume checkpoints 从 ckpt-600 起步，目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`，不含 ckpt-200/400\n- CWM 8B eval_loss 单调递增，**val-best = ckpt-400**，不需要 val sweep\n- DDL: **EMNLP 2026 ARR May 25**，剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090 (account: root)\n- **工作目录**: `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **8B 模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **CLS 8B s42 resume ckpts**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n- **CLS 8B seed123 ckpts**: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- **CWM 8B ckpts**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- **CWM 4B test**: s42=58.04%, seed123=59.09%\n- **活跃进程**:\n  - `cwm8b-ckpt400-test-eval-v3`: PID 443221, tmux session, cuda:3, cron 监控中\n  - `cwm8b-ckpt400-test-eval-shard2`: cuda:1, idx 7680-9784 (无 cron，Worker 提交)\n  - `cls8b-seed123-ckpt3000-mutation`: PID 447483, cuda:0 (Worker 提交)\n  - `cls8b-s42-resume-ckpt3600-test-v2`: PID 446868, cuda:2, 状态 ALLOCATED（已提交但未转 RUNNING）\n\n### 3. 📊 当前状态\n**刚做完**: 上一轮 session 派了多个 Worker 铺开 8B eval 收尾 + mutation 分析。所有 4 张 GPU 都在跑。\n\n**Registry 活跃实验**:\n| exp_id | GPU | 任务 | 状态 |\n|--------|-----|------|------|\n| cwm8b-ckpt400-test-eval-v3 | cuda:3 | CWM 8B ckpt-400 全量 test eval (n=9784) | RUNNING, ~57%, cron 监控 |\n| cwm8b-ckpt400-test-eval-shard2 | cuda:1 | CWM 8B shard2 (idx 7680-9784) | RUNNING, 无 cron |\n| cls8b-seed123-ckpt3000-mutation | cuda:0 | seed123 test mutation breakdown | RUNNING, PID 447483 |\n| cls8b-s42-resume-ckpt3600-test-v2 | cuda:2 | ckpt-3600 test eval (重跑) | ALLOCATED→需转 RUNNING |\n\n**等待中**: \n- cwm8b-ckpt400-test-eval-v3 的 cron 回调（完成后锁 CWM 8B test 数字）\n- shard2 和 mutation 两个实验无 cron，需要手动 poll 或等 Worker 回调\n- cls8b-s42-resume-ckpt3600-test-v2 状态卡在 ALLOCATED，需检查是否实际在跑并转 RUNNING\n- **0 个 Worker 在跑** — Worker 池 < 2，需立即补充\n\n### 4. 📋 待办（条件触发式）\n- **cls8b-s42-resume-ckpt3600-test-v2 状态异常** → 检查 PID 446868 是否存活，存活则转 RUNNING + 注册 cron；死亡则诊断重提交\n- **cwm8b-ckpt400-test-eval-v3 cron 回调到达** → 提取 accuracy + unparseable rate → 锁 CWM 8B 主表数字 → 计算 8B-8B gap → 汇报 Director\n- **cwm8b-ckpt400-test-eval-shard2 完成** → 与 v3 结果合并（注意 shard2 是 v3 的子集还是独立 eval，需确认是否重复计算）\n- **cls8b-seed123-ckpt3000-mutation 完成** → 提取 mutation breakdown → 与 s42 ckpt-3600 mutation 对比 → boundary_removal 跨 seed 验证\n- **所有 eval 完成** → 论文主表全部锁定 → 全力 Paper Writing（intro/related/conclusion/figures）\n- **CWM 8B test < majority baseline (72.96%)** → 强化 \"CWM completely fails at repo-level\" narrative，CLS-CWM gap 可能 >25pp\n- **CWM 8B test > 72.96%** → 重新评估 gap 强度，但仍应远低于 CLS\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS formulation 在 repo-level 大幅优于 CWM (~26pp gap)，且 gap 非 seq_length artifact (ablation 已证)、非 LoRA rank artifact (ablation 已证)\n- **决策链**: D088(val-selected ckpt) → D093(multi-seed 确认) → D094(seq ablation) → D096(8B-8B 主表) → D097(rank ablation) → D099(CWM 8B 跑完不截断) → D100(relaxed matching 排除) → D102(CWM bs=8 加速)\n- **主表数字已锁**: CLS 8B s42 84.48%, seed123 85.60%, CLS 4B 83.63%, CWM 4B 58.04%/59.09%。**唯一缺口: CWM 8B test**\n- **易错点 1**: shard2 和 v3 的关系不明 — shard2 看起来是 v3 后段的并行加速（idx 7680-9784），需确认 v3 是否也在跑这段，避免重复。合并时注意去重\n- **易错点 2**: cls8b-s42-resume-ckpt3600-test-v2 卡在 ALLOCATED，有 PID 但未转 RUNNING，可能是上一轮 session 中断导致状态未更新\n- **易错点 3**: Worker 池 = 0，违反 L1 红线第 4 条。接手后应立即派 Worker 做论文写作或其他非 GPU 任务\n- **Paper Writing 进度**: Full Draft 已启动，但 intro/related/conclusion + figures 仍待完成。9 天 DDL 紧迫\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778897578.md"
+}

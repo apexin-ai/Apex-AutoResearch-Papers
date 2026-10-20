@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16ef01b7ae03d125f3bb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 cwm eval check v3",
+  "task_key": "worker_ssh_d046-cwm-eval-check-v3_20260513T075721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-cwm-eval-check-v3_20260513T075721_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "eb9543168bf234dd1c25c401a3dfb9f58d2389e56062ff4909f8f2d19d6cab91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 10 分钟后自动唤醒检查 PID 123610 状态。届时会连接 seetacloud 查看 eval 是否完成并收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-cwm-eval-check-v3.md"
+}

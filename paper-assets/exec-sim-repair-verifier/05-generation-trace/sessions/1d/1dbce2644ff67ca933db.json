@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dbce2644ff67ca933db",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cwm func s123 fix",
+  "task_key": "worker_eval_deepseek-cwm-func-s123-fix_20260516T084207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cwm-func-s123-fix_20260516T084207_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "a2ae293eb50b6e944c5b6c74a54a06b929e958cb80d211412367034e5ec1d0d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM Func Eval 结果对比\n\n| 指标 | seed42 | seed123 | Δ |\n|------|--------|---------|---|\n| **Accuracy** | 85.77% | **87.88%** | +2.11pp |\n| **F1 macro** | 85.73% | **87.88%** | +2.15pp |\n| Unparseable | 0% | 0% | — |\n| F1 (fail) | 86.42% | 88.09% | +1.67pp |\n| F1 (pass) | 85.05% | 87.67% | +2.62pp |\n| Precision (fail) | 80.07% | 83.78% | +3.71pp |\n| Recall (fail) | 93.86% | 92.87% | -0.99pp |\n| Precision (pass) | 93.18% | 92.61% | -0.57pp |\n| Recall (pass) | 78.22% | 83.23% | +5.01pp |\n\n**seed123 比 seed42 高出 +2.1pp accuracy / +2.15pp F1**，且 class balance 验证一致 (fail=912, pass=978)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cwm-func-s123-fix.md"
+}

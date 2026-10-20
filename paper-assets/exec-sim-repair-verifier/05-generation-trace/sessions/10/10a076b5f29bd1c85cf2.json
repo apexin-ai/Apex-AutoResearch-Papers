@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10a076b5f29bd1c85cf2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh eval health check",
+  "task_key": "worker_ssh_eval-health-check_20260519T231959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-health-check_20260519T231959_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "79e852c5da7e4d5bf6806073ad90fcf63248eaddd75f159605dd16893855eeb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认结果：\n\n**两个 eval 都因参数错误立即崩溃了（EXIT_CODE=2）。** 原始 PID 875433 和 875580 均已死亡。\n\n**根因**：命令用了 `--output_dir`，但脚本实际参数是 `--output`。\n\n正确参数名：\n- `--output` — Summary JSON 输出路径（默认 `eval_repo_cls.json`）\n- `--pred_output` — Predictions JSONL 输出路径（默认 `eval_repo_cls_predictions.jsonl`）\n\n**当前 GPU 状态**（来自 nvidia-smi）：\n| GPU | 显存占用 | PID | 说明 |\n|-----|---------|-----|------|\n| 0 | 17173/32607 MiB | 876210 | 有进程在跑（不是你的 eval） |\n| 1 | 0 MiB | — | 空闲 |\n| 2 | 29615/32607 MiB | 833672 | 有进程在跑 |\n| 3 | 16377/32607 MiB | 876070 | 有进程在跑（不是你的 eval） |\n\n两个 eval 需要用 `--output` 替代 `--output_dir` 重新提交。需要我现在修复命令并重跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-health-check.md"
+}

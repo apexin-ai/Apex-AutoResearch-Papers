@@ -1,0 +1,16 @@
+{
+  "exp_id": "traj-level-finetuned",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T04:01:30.468Z",
+    "updated_at": "2026-05-12T04:01:37.177Z",
+    "hypothesis": "Trajectory-level verifier (聚合 per-test → resolved/unresolved) 的 accuracy 低于 per-test classification 聚合后的准确率，验证 per-test granularity 的信息优势",
+    "parent": "multi-seed-core"
+  },
+  "timestamp": "2026-05-12T04:01:37.202273+00:00",
+  "trigger": "update_registry"
+}

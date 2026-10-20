@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "321b89cdc0a38547c5de",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh setup qwen watch scripts",
+  "task_key": "worker_ssh_setup-qwen-watch-scripts_20260521T181331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_setup-qwen-watch-scripts_20260521T181331_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "e59294558f42888db20b63a5a5731e3b359f20adc247d40e856a6a25adc6cb33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 80733 存活，确认是 watch_qwen 进程。\n\n---\n\n**汇总：**\n\n1. **run_*.sh vs eval_*.sh 对比**：核心参数一致（checkpoint sort、GPU 分配、batch_size=4），但 output_dir 路径不同（`run_*` 缺 `repo`）、`eval_*` 有结果汇总脚本而 `run_*` 没有。\n\n2. **修改内容**：`watch_qwen_train_then_eval.sh` 第 24、36 行，将调用目标从 `run_qwen_cwm_s123_eval.sh 0 \"$BATCH_SIZE\"` / `run_qwen_cwm_s456_eval.sh 3 \"$BATCH_SIZE\"` 改为 `eval_qwen_cwm_s123.sh` / `eval_qwen_cwm_s456.sh`（已验证脚本，GPU 和 batch_size 已硬编码，无需传参）。\n\n3. **Watch 脚本 PID**：80733\n\n4. **Watch 日志前 5 行**：\n   ```\n   [Fri May 22 02:15:16 CST 2026] Watcher started. batch_size=4\n   [Fri May 22 02:15:16 CST 2026] Monitoring: s123 PID=4271 → GPU 0, s456 PID=4561 → GPU 3\n   ```\n   正在每 60 秒轮询 PID 4271 和 4561，训练结束后自动触发对应 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-setup-qwen-watch-scripts.md"
+}

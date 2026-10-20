@@ -1,0 +1,69 @@
+{
+  "exp_id": "multi-seed-core",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-11T22:31:56.650Z",
+    "updated_at": "2026-05-12T03:21:45.917Z",
+    "hypothesis": "Classification verifier 在 3 seeds 下稳定达到 ~87% accuracy/F1，CWM ≈ classification 的 null result robust",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed42/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed42/best/ --output eval_seed42.json && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed123/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 123 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed123/best/ --output eval_seed123.json && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed456/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 456 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed456/best/ --output eval_seed456.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2135757",
+      "log_path": "~/runs/exec-sim-repair-verifier/multi-seed-core.log",
+      "submitted_at": "2026-05-11T23:56:06.403Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "metrics": {
+      "seed42": {
+        "accuracy": 87.83,
+        "pass_f1": 88.06,
+        "fail_f1": 87.59,
+        "pass_precision": 89.45,
+        "pass_recall": 86.71,
+        "fail_precision": 86.2,
+        "fail_recall": 89.04
+      },
+      "seed123": {
+        "accuracy": 89.52,
+        "pass_f1": 89.64,
+        "fail_f1": 89.4,
+        "pass_precision": 91.76,
+        "pass_recall": 87.63,
+        "fail_precision": 87.34,
+        "fail_recall": 91.56
+      },
+      "seed456": {
+        "accuracy": 87.88,
+        "pass_f1": 87.53,
+        "fail_f1": 88.21,
+        "pass_precision": 93.6,
+        "pass_recall": 82.21,
+        "fail_precision": 83.12,
+        "fail_recall": 93.97
+      },
+      "mean": {
+        "accuracy": 88.41,
+        "pass_f1": 88.41,
+        "fail_f1": 88.4
+      },
+      "std": {
+        "accuracy": 0.96,
+        "pass_f1": 1.1,
+        "fail_f1": 0.92
+      }
+    },
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_seed{42,123,456}/best/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T03:21:45.939590+00:00",
+  "trigger": "update_registry"
+}

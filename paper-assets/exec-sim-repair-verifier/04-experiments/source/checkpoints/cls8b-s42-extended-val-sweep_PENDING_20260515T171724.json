@@ -1,0 +1,16 @@
+{
+  "exp_id": "cls8b-s42-extended-val-sweep",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:32:48.699Z",
+    "updated_at": "2026-05-15T17:17:24.398Z",
+    "notes": "已暂停：Director URGENT 指令，cuda:0 优先跑 cwm-rank32-alpha64-ablation（修正 alpha/rank ratio 混淆变量）。rank32-alpha64 完成后（~1.5h）恢复 val sweep。ckpt-1800 已开始评估但被中断。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T17:17:24.683320+00:00",
+  "trigger": "update_registry"
+}

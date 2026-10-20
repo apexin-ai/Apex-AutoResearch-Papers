@@ -1,0 +1,47 @@
+{
+  "exp_id": "cls-seed0",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T10:22:27.264Z",
+    "updated_at": "2026-05-12T12:31:22.221Z",
+    "hypothesis": "补充 cls seed=0 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性",
+    "spec": {
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls-seed0.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T12:29:09.860Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T12:29:11.272583+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 87.94,
+      "pass_f1": 87.79,
+      "fail_f1": 88.08,
+      "pass_precision": 92.13,
+      "pass_recall": 83.84,
+      "fail_precision": 84.2,
+      "fail_recall": 92.32,
+      "train_loss": 0.2347,
+      "eval_loss": 0.0963,
+      "train_runtime_sec": 4976.75,
+      "unparseable": 0
+    },
+    "conclusion": "success",
+    "notes": "5-seed cls comparison complete. Seeds: seed0=87.94, seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.00. Cls 5-seed mean=88.43±0.78 (sample std). Traj 5-seed mean=86.30±0.97. Cls outperforms traj by +2.13pp with lower variance (0.78 vs 0.97). All 5 cls seeds pass MVP-B criteria (per-class F1>65%, accuracy gap>=10pp). Classification approach shows consistent advantage over trajectory-level approach across all seeds.",
+    "completed_at": "2026-05-12T12:31:22.221Z"
+  },
+  "timestamp": "2026-05-12T12:31:22.284348+00:00",
+  "trigger": "update_registry"
+}

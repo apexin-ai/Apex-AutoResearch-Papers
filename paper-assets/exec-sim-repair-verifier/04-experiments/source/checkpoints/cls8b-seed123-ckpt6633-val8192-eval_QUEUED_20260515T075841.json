@@ -1,0 +1,20 @@
+{
+  "exp_id": "cls8b-seed123-ckpt6633-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:42:16.467Z",
+    "updated_at": "2026-05-15T07:58:40.904Z",
+    "hypothesis": "seed123 val sweep: ckpt-6633 (最后一个 checkpoint) val@8192。确定 seed123 val-best。",
+    "parent": "repo-level-cls-8b-seed123-conda-v3",
+    "spec": {
+      "hypothesis": "seed123 val sweep 最后一点: ckpt-6633 val@8192",
+      "parent": "repo-level-cls-8b-seed123-conda-v3"
+    }
+  },
+  "timestamp": "2026-05-15T07:58:41.122904+00:00",
+  "trigger": "update_registry"
+}

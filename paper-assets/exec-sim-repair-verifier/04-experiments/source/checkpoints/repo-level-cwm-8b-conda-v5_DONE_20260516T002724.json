@@ -1,0 +1,36 @@
+{
+  "exp_id": "repo-level-cwm-8b-conda-v5",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:53:05.606Z",
+    "updated_at": "2026-05-16T00:27:23.780Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200 --save_total_limit 5 --dataloader_num_workers 0 --epochs 3",
+      "server": "seetacloud-westd-4x5090",
+      "pid": 400279,
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v5.log",
+      "resume_checkpoint": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200"
+    },
+    "hypothesis": "CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps",
+    "parent": "repo-level-cwm-8b-conda-v4",
+    "reproduce": {
+      "finished_at": "2026-05-16T00:27:21.785Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T00:27:23.780Z"
+  },
+  "timestamp": "2026-05-16T00:27:24.062014+00:00",
+  "trigger": "update_registry"
+}

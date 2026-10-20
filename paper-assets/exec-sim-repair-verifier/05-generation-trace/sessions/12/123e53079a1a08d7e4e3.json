@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "123e53079a1a08d7e4e3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor training progress loop6",
+  "task_key": "worker_monitor_training-progress-loop6_20260513T001229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-loop6_20260513T001229_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "748556128a0b4ce097d45e3bd8ed6674f428552d0b2ccf9375c171581838640c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n### CLS v4 (home-1x5090)\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | **运行中** (PID 2885139, uptime 2h17m) |\n| 进度 | step **970/4668** (**20.8%**) |\n| 速度 | ~6 it/s |\n| 最新 checkpoint | checkpoint-600 |\n| 磁盘 | 66% used, 351GB 可用 |\n| 预估剩余 | **~8-9 小时** |\n\n> ⚠️ 总步数从之前的 6633 变为 4668，可能训练配置有变。\n\n### CWM v10 (seetacloud-westd-4x5090)\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | **运行中** (PID 105205, uptime 33m, 从 ckpt-200 恢复) |\n| 进度 | step **316/6633** (**4.8%**) |\n| eval_loss | **0.3228** @step 300 (vs 上次 loss=4.80，已大幅下降) |\n| 速度 | ~8-10 s/step |\n| 最新 checkpoint | checkpoint-300 |\n| GPU | 仅 GPU2 在用，96% 利用率，21GB/32GB VRAM |\n| 预估剩余 | **~15-20 小时**（含 eval 开销，eval 每 100 步一次，每次~12 分钟） |\n\n两个实验均正常运行，无异常。Registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-loop6.md"
+}

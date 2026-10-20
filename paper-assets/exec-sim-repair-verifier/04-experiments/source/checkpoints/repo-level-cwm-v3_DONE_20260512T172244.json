@@ -1,0 +1,45 @@
+{
+  "exp_id": "repo-level-cwm-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-12T16:30:59.064Z",
+    "updated_at": "2026-05-12T17:22:44.690Z",
+    "hypothesis": "Repo-level CWM (SWE-bench, Qwen3-4B LoRA). WeightedDataCollator 修复后 v3。与 cls-v3 配对验证 complexity gap。",
+    "notes": "v3 WeightedDataCollator 修复已生效。PID 69888 在 cuda:3 上正常训练，step 3/6633 at ~10.7s/it（截至 17:03）。预计总训练时间 ~19.7h。",
+    "reproduce": {
+      "finished_at": "2026-05-12T17:09:20.159Z"
+    },
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "completed_at": "2026-05-12T17:09:22.135Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T17:09:24.124724+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v3 WeightedDataCollator 修复已生效。PID 69888 在 cuda:3 上正常训练，step 3/6633 at ~10.7s/it（截至 17:03）。预计总训练时间 ~19.7h。"
+      }
+    },
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py'",
+      "server": "westd-48478",
+      "gpu_id": "cuda:3",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70000,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "notes": "Director 确认正常运行, 之前 SIGKILL 检测为误报。预计 CWM ~12:40 UTC 完成"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-12T17:22:44.771361+00:00",
+  "trigger": "update_registry"
+}

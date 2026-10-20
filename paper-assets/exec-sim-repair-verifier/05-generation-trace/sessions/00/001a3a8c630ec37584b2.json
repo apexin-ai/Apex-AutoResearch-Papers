@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "001a3a8c630ec37584b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh qwen eval prep",
+  "task_key": "worker_ssh_qwen-eval-prep_20260521T131554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-eval-prep_20260521T131554_result.json",
+    "occurrence": 1,
+    "bytes": 3092,
+    "sha256": "f0a3cd4d855dd781f1332040b62b80ee80d8d6f10f0246699cd0643803b2188b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇总报告\n\n### 1. Eval 脚本列表\n\n| 脚本 | 路径 | 用途 |\n|------|------|------|\n| **eval_repo_cwm.py** | `/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py` (19KB, May 18) | 主 eval 脚本，已支持 `--split`, `--batch_size`, `--max_samples`, `--output_dir`, `--start_idx` |\n| eval_cwm_baseline.py | `/root/exec-sim-repair-verifier/eval_cwm_baseline.py` | function-level CWM eval（不适用） |\n| cwm8b_final_test_eval.sh | `/root/autodl-tmp/scripts/cwm8b_final_test_eval.sh` | **旧版，有 bug**（传了 `--split`/`--output_dir` 但调用的是旧版 eval_repo_cwm.py）|\n| test_qwen_eval_batch2.sh | `/home/sonny/.../test_qwen_eval_batch2.sh` | 旧版 batch test，指向不存在的 checkpoint-4200 |\n\n### 2. GPU 分配\n\n- 所有脚本使用 `CUDA_VISIBLE_DEVICES=$GPU` + `--device cuda:0` 模式（正确）\n- 没有硬编码的 GPU 编号问题\n- **新建脚本**：s123 eval 默认 GPU 0，s456 eval 默认 GPU 3，均可通过参数覆盖\n\n### 3. batch_size 配置\n\n`/home/sonny/` 版本的 `eval_repo_cwm.py` 已完整支持：\n- `--batch_size` (默认=1)\n- `--max_samples` (默认=None, 即全量)\n- `--max_seq_length` (默认=8192)\n- `--max_new_tokens` (默认=512)\n\n### 4. Checkpoint 排序逻辑\n\n使用 `awk -F'checkpoint-' '{print $NF, $0}' | sort -n | tail -1`，**数值排序正确**，不存在 `sort -t'-' -k2` bug。\n\n### 5. 新建脚本\n\n| 脚本 | 路径 | 说明 |\n|------|------|------|\n| `test_qwen_eval_batch.sh` | `/home/sonny/.../` | 自动检测最新 checkpoint，测试 batch=2/4 各 50 samples，`bash test_qwen_eval_batch.sh [GPU]` |\n| `run_qwen_cwm_s123_eval.sh` | `/home/sonny/.../` | s123 全量 test eval，`bash run_qwen_cwm_s123_eval.sh [GPU] [BATCH_SIZE]` |\n| `run_qwen_cwm_s456_eval.sh` | `/home/sonny/.../` | s456 全量 test eval，`bash run_qwen_cwm_s456_eval.sh [GPU] [BATCH_SIZE]` |\n| `watch_qwen_train_then_eval.sh` | `/home/sonny/.../` | 监控训练 PID，完成后自动启动 eval |\n\n### 6. 训练进度 (**关键更新**)\n\n| Seed | PID | 当前 Step | 总 Step | 进度 | 速度 |\n|------|-----|-----------|---------|------|------|\n| s123 | 4271 | **5400**/6633 | 6633 | **81%** | ~12.3s/step |\n| s456 | 4561 | **5400**/6633 | 6633 | **81%** | ~12.0s/step |\n\n**剩余：1233 steps**\n- 纯训练：~4.3h\n- 含 12 次 eval（每次 ~19min）：~3.8h\n- **预计完成：05:00-05:30 UTC+8 (5月22日)**\n\n⚠️ **这比你预估的 01:00 UTC+8 晚约 4-5 小时。** GPU 全部满载（GPU 0/1/2/3 利用率 99%/80%/100%/98%），batch test 需要等训练完成后才能跑。\n\n### 启动方式\n\n训练完成后手动启动：\n```bash\n# 先跑 batch test（训练完成后某个 GPU 空闲时）\nbash test_qwen_eval_batch.sh 0\n\n# 根据 batch test 结果，启动全量 eval\nbash run_qwen_cwm_s123_eval.sh 0 [BATCH_SIZE]\nbash run_qwen_cwm_s456_eval.sh 3 [BATCH_SIZE]\n```\n\n或者现在启动 watcher 自动触发（默认 batch=1，可改）：\n```bash\nnohup bash watch_qwen_train_then_eval.sh 1 > watch_qwen_eval.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-eval-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ec6d9bec2cabc20c47",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code block corr empirical",
+  "task_key": "worker_code_block-corr-empirical_20260512T082738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_block-corr-empirical_20260512T082738_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "70124cfb7fb5615c13795bb2f8683508340dfaddf7eda8c84e92834ae3a88bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果汇总：\n\n## Block Correlation 验证结果\n\n**结论：误差确实是 block-correlated，强有力支持 oracle 模拟的假设。**\n\n| 指标 | 值 | 含义 |\n|------|-----|------|\n| **ICC** | 0.2329 | 同一 problem 内误差相关性显著 |\n| **p-value** | 0.0000 (2000 次 permutation) | 远超显著性阈值 |\n| **Design Effect (DEFF)** | 4.62 | 因 block correlation，有效样本量仅为名义的 1/4.6 |\n| **All-correct problems** | 46 observed vs 12.8 expected (3.6x) | 模型对\"简单\"problem 倾向全对 |\n| **Error rate std** | 0.1747 observed vs 0.0854 expected (2.05x) | 组间异质性远超 i.i.d. 预期 |\n\n- 整体错误率 14.07%（266/1890），0 个 unparseable\n- Shuffle baseline ICC ≈ 0.0002（基本为零），观测 ICC = 0.233 是 shuffle p99 (0.021) 的 11 倍\n- 46/114 个 problem 全部预测正确，i.i.d. 下期望仅 12.8 个"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-block-corr-empirical.md"
+}

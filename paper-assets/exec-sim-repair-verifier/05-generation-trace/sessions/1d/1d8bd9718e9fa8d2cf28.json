@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8bd9718e9fa8d2cf28",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deepseek cwm full audit",
+  "task_key": "worker_ssh_deepseek-cwm-full-audit_20260520T053758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek-cwm-full-audit_20260520T053758_result.json",
+    "occurrence": 1,
+    "bytes": 5869,
+    "sha256": "72c6f513e77bf7650cf370321a0ba25c63af2e5711959165f7f9f5a25fea666a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计原始输出\n\n### A. DeepSeek CWM eval 目录清查\n\n**A1: s42 eval dir (seq4096)**\n```\nDIR_NOT_FOUND\nls: cannot access '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s42_seq4096/': No such file or directory\n```\n\n**A2: s42 eval dir (e3_seq4096)**\n```\nDIR_NOT_FOUND\nls: cannot access '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s42_e3_seq4096/': No such file or directory\n```\n\n**A3: s123 eval dir**\n```\nDIR_NOT_FOUND\nls: cannot access '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s123_seq4096/': No such file or directory\n```\n\n**A4: s42 results head (seq4096)**\n```\nNO_FILE\nhead: cannot open '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s42_seq4096/results.jsonl' for reading: No such file or directory\n```\n\n**A5: s42 results head (e3_seq4096)**\n```\nNO_FILE\nhead: cannot open '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s42_e3_seq4096/results.jsonl' for reading: No such file or directory\n```\n\n**A6: s123 results head**\n```\nNO_FILE\nhead: cannot open '/home/sonny/exec-sim-repair-verifier/deepseek_cwm_repo_s123_seq4096/results.jsonl' for reading: No such file or directory\n```\n\n**A-补充: find deepseek_cwm / qwen_cwm 目录**\n```\nfind /home/sonny/exec-sim-repair-verifier -maxdepth 1 -type d -name \"*deepseek_cwm*\" → (empty)\nfind /home/sonny/exec-sim-repair-verifier -maxdepth 1 -type d -name \"*qwen_cwm*\" → (empty)\n```\n\n---\n\n### B. Checkpoint 溯源\n\n**B1: s42 checkpoint dir**\n```\ntotal 20\ndrwxr-xr-x  5 root root   81 May 17 23:33 .\ndrwxr-xr-x 70 root root 4096 May 20 13:00 ..\ndrwxr-xr-x  2 root root 4096 May 17 23:33 best\ndrwxr-xr-x  2 root root 4096 May 17 23:33 checkpoint-13266\ndrwxr-xr-x  2 root root 4096 May 17 13:07 checkpoint-8844\n```\n\n**B2: s123 checkpoint best dir**\n```\ntotal 67852\ndrwxr-xr-x 2 root root     4096 May 20 10:54 .\ndrwxr-xr-x 5 root root       80 May 20 10:54 ..\n-rw-r--r-- 1 root root     5282 May 20 10:54 README.md\n-rw-r--r-- 1 root root     1094 May 20 10:54 adapter_config.json\n-rw-r--r-- 1 root root 67143296 May 20 10:54 adapter_model.safetensors\n-rw-r--r-- 1 root root     1041 May 20 10:54 chat_template.jinja\n-rw-r--r-- 1 root root      462 May 20 10:54 special_tokens_map.json\n-rw-r--r-- 1 root root  2289810 May 20 10:54 tokenizer.json\n-rw-r--r-- 1 root root     4324 May 20 10:54 tokenizer_config.json\n-rw-r--r-- 1 root root     5969 May 20 10:54 training_args.bin\n```\n\n**B2 adapter_config.json:**\n```json\n{\n  \"alora_invocation_tokens\": null,\n  \"alpha_pattern\": {},\n  \"arrow_config\": null,\n  \"auto_mapping\": null,\n  \"base_model_name_or_path\": \"/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"bias\": \"none\",\n  \"corda_config\": null,\n  \"ensure_weight_tying\": false,\n  \"eva_config\": null,\n  \"exclude_modules\": null,\n  \"fan_in_fan_out\": false,\n  \"inference_mode\": true,\n  \"init_lora_weights\": true,\n  \"layer_replication\": null,\n  \"layers_pattern\": null,\n  \"layers_to_transform\": null,\n  \"loftq_config\": {},\n  \"lora_alpha\": 32,\n  \"lora_bias\": false,\n  \"lora_dropout\": 0.05,\n  \"lora_ga_config\": null,\n  \"megatron_config\": null,\n  \"megatron_core\": \"megatron.core\",\n  \"modules_to_save\": null,\n  \"peft_type\": \"LORA\",\n  \"peft_version\": \"0.19.0\",\n  \"qalora_group_size\": 16,\n  \"r\": 16,\n  \"rank_pattern\": {},\n  \"revision\": null,\n  \"target_modules\": [\"q_proj\", \"v_proj\", \"o_proj\", \"k_proj\"],\n  \"target_parameters\": null,\n  \"task_type\": \"CAUSAL_LM\",\n  \"trainable_token_indices\": null,\n  \"use_bdlora\": null,\n  \"use_dora\": false,\n  \"use_qalora\": false,\n  \"use_rslora\": false\n}\n```\n\n---\n\n### C. GPU 2 进程确认\n\n**C1: PID 917649 status**\n```\n   PID   PPID     ELAPSED CMD\n917649 917648       38:30 /root/miniconda3/bin/python train_unified.py --data_dir data/ --task cwm --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s456/ --run_name deepseek-cwm-repo-s456 --seed 456 --max_seq_length 2048 --batch_size 2 --grad_accumulation 8 --lr 2e-4 --epochs 3 --no_wandb\n```\n\n**C2: GPU compute apps**\n```\n886278, GPU-fc6e3c91-6d49-c4b1-63c9-3e7082c4ac10, 21246 MiB\n917649, GPU-19c6fdd6-dd98-c089-da56-c21260f588cd, 16404 MiB\n886352, GPU-02eb6271-cb5b-7542-230f-44000133e276, 31252 MiB\n```\n\n---\n\n### D. Qwen CWM s42 eval 输出格式\n\n**D1: Qwen s42 results head**\n```\nNO_FILE\nhead: cannot open '/home/sonny/exec-sim-repair-verifier/qwen_cwm_repo_s42_seq4096/results.jsonl' for reading: No such file or directory\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "alora_invocation_tokens": null,
+              "alpha_pattern": {},
+              "arrow_config": null,
+              "auto_mapping": null,
+              "base_model_name_or_path": "/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct",
+              "bias": "none",
+              "corda_config": null,
+              "ensure_weight_tying": false,
+              "eva_config": null,
+              "exclude_modules": null,
+              "fan_in_fan_out": false,
+              "inference_mode": true,
+              "init_lora_weights": true,
+              "layer_replication": null,
+              "layers_pattern": null,
+              "layers_to_transform": null,
+              "loftq_config": {},
+              "lora_alpha": 32,
+              "lora_bias": false,
+              "lora_dropout": 0.05,
+              "lora_ga_config": null,
+              "megatron_config": null,
+              "megatron_core": "megatron.core",
+              "modules_to_save": null,
+              "peft_type": "LORA",
+              "peft_version": "0.19.0",
+              "qalora_group_size": 16,
+              "r": 16,
+              "rank_pattern": {},
+              "revision": null,
+              "target_modules": [
+                "q_proj",
+                "v_proj",
+                "o_proj",
+                "k_proj"
+              ],
+              "target_parameters": null,
+              "task_type": "CAUSAL_LM",
+              "trainable_token_indices": null,
+              "use_bdlora": null,
+              "use_dora": false,
+              "use_qalora": false,
+              "use_rslora": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-cwm-full-audit.md"
+}

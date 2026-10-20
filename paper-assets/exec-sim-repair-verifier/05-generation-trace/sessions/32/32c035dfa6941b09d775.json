@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32c035dfa6941b09d775",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag cwm8b shard3 failure",
+  "task_key": "worker_diag_cwm8b-shard3-failure_20260516T054405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cwm8b-shard3-failure_20260516T054405_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "72a5b367a43fe0e00b394d406c00a4672d71a9503005eef55a9d0db568dec5ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 根因：实验已完成，非真正失败\n\n实验**实际上已成功完成全部 1480 个样本的评估**。监控系统误判为失败。\n\n**证据：**\n- `results_incremental.jsonl` = 1480 行（覆盖 index 6200→7679，恰好 = test[6200:7680]）\n- `eval_repo_cwm.json` 包含完整的 metrics 摘要（accuracy 64.26%, F1_macro 52.81%）\n- 进程完成全部推理后正常退出，但未写入 sentinel 文件或上报 W&B，导致监控认为它是异常死亡\n\n### 已回收数据\n\n| 指标 | 值 |\n|------|-----|\n| 完成样本数 | 1480/1480 (100%) |\n| Accuracy | 64.26% |\n| F1 macro | 52.81% |\n| Unparseable | 1076/1480 (72.7%) |\n| Truncated | 75/1480 (5.07%) |\n\n### 修复方案\n\n无需重跑。数据已完整产出，只需：\n1. 将该实验状态从 `failed` 标记为 `completed`\n2. 如果需要合并到其他 shard 结果，直接使用 `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/` 下的文件即可\n\n### GPU 状态\n- GPU 0-2 空闲（0MiB），GPU 3 有其他任务在跑（21GB/32GB, 88% util）\n- 无 OOM 迹象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cwm8b-shard3-failure.md"
+}

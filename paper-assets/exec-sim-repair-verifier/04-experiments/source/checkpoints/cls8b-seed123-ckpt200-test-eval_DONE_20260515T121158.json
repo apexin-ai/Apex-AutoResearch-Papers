@@ -1,0 +1,73 @@
+{
+  "exp_id": "cls8b-seed123-ckpt200-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:29:27.906Z",
+    "updated_at": "2026-05-15T12:11:58.203Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200/eval_test_full --output eval_summary.json --pred_output eval_predictions.jsonl\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "363037",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log",
+      "submitted_at": "2026-05-15T11:29:27.560Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200",
+      "eval_data": "test@full(n=9784)",
+      "wall_clock_seconds": 2550.6,
+      "gpu_hours": 0.71
+    },
+    "hypothesis": "seed123 test curve 最后补点: ckpt-200 test@full(n=9784)。完成后 seed123 test curve 6/6 全齐。",
+    "reproduce": {
+      "finished_at": "2026-05-15T11:52:02.852Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T11:52:06.230063+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 72.55,
+      "f1_macro": 70.18,
+      "pass_f1": 78.58,
+      "fail_f1": 61.78,
+      "pass_precision": 91.21,
+      "pass_recall": 69.02,
+      "fail_precision": 49.54,
+      "fail_recall": 82.05,
+      "n_samples": 9784,
+      "n_pass": 7138,
+      "n_fail": 2646,
+      "majority_baseline": 72.96,
+      "unparseable": 0,
+      "confusion_matrix": {
+        "tn": 2171,
+        "fp": 475,
+        "fn": 2211,
+        "tp": 4927
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt200-test-eval.log",
+    "completed_at": "2026-05-15T12:11:58.203Z"
+  },
+  "timestamp": "2026-05-15T12:11:58.500378+00:00",
+  "trigger": "update_registry"
+}

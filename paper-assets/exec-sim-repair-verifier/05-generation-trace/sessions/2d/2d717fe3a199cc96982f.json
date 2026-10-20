@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d717fe3a199cc96982f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research cls home progress check",
+  "task_key": "worker_research_cls-home-progress-check_20260512T185916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cls-home-progress-check_20260512T185916_result.json",
+    "occurrence": 1,
+    "bytes": 2127,
+    "sha256": "e4775d9d5edd7bb8dccdc3396ea1d92a69562b137b829f9130ada67c9618657b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇总如下：\n\n---\n\n## 训练进度报告\n\n### 1. 当前训练状态\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **862 / 6633** (13%) |\n| 速度 | ~7.1 s/it |\n| 已运行 | 1h42m |\n| 剩余 steps | 5771 |\n| 预计剩余时间 | **~11.4h** |\n| 预计完成时间 | **2026-05-12 ~23:24** |\n| 进程 PID 2840844 | 运行中 (elapsed 1h45m) |\n\n### 2. GPU 利用率\n| GPU利用率 | 显存使用 | 显存总量 |\n|-----------|----------|----------|\n| 77% | 19,465 MiB | 32,607 MiB (60%) |\n\n### 3. Checkpoint 保存情况\n**目录为空** — 这是正常的。训练脚本 `save_strategy=\"epoch\"`，不是 `save_steps`。每 epoch ~2211 步才保存一次，当前才 862 步，第一个 checkpoint 预计在 step ~2211 时出现（约 2.7h 后）。`save_total_limit=2`，最终只保留 2 个 checkpoint + best。\n\nhandoff 提到的 \"save_steps=50 已生效\" 是**不准确的**，脚本中没有 `save_steps` 参数。\n\n### 4. Eval 脚本就绪状态\n**没有** `eval_repo_*.py`。可用的 eval 脚本：\n- `eval_verifier.py` — 对应 cls 模型，最可能适用\n- `eval_traj_verifier.py` — trajectory 模型\n- `eval_cwm_baseline.py` — CWM baseline\n- `eval_precision_recall.py` / `eval_majority_voting.py` — 分析工具\n\nrepo-level cls 训练完后，大概率需要基于 `eval_verifier.py` 写一个 `eval_repo_verifier.py`，或直接用 `eval_verifier.py` 并指向新 checkpoint。\n\n### 5. cls8b-eval-seed123 差异说明\n服务器上**不存在** `eval_cls8b_seed123` 相关文件。现有 seed123 eval 结果：\n- `eval_seed123.json`: accuracy **89.52**, fail F1 **89.40**, pass F1 89.64\n- `eval_cls_seed123_with_preds.json`: 与上面完全相同\n- `eval_traj_seed123.json`: accuracy 85.47（trajectory 模型，不同任务）\n\n仅有的 cls8b eval 是 `eval_cls8b_seed456.json`（accuracy 88.31）。\n\nhandoff 提到的三个值 89.52 / 89.40 / 89.37 中：\n- 89.52 = overall accuracy\n- 89.40 = fail-class F1\n- 89.37 在所有 JSON 文件中**未找到**，可能是记忆偏差或来自 wandb/其他来源"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cls-home-progress-check.md"
+}

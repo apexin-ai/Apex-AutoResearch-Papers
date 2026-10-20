@@ -1,0 +1,41 @@
+{
+  "exp_id": "deepseek-cls-repo-s456-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:58:24.742Z",
+    "updated_at": "2026-05-19T12:37:14.678Z",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --data_dir data/ --task cls --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s456/ --run_name deepseek-cls-repo-s456 --seed 456 --max_seq_length 2048 --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "828872",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s456-train.log",
+      "submitted_at": "2026-05-19T11:58:24.108Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 5829,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 456,
+      "checkpoint_source": "deepseek-cls-repo-v5 (seed variant, training from scratch)",
+      "eval_data": "N/A (training job, not eval)",
+      "checkpoint_path": "N/A (killed due to corrupted training data)",
+      "notes": "swebench_train.jsonl corrupted: 5829 lines vs expected 70748. Killed to free GPU 3 for CWM eval.",
+      "wall_clock_seconds": 2330.6,
+      "gpu_hours": 0.65
+    },
+    "hypothesis": "DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage，回应N1审稿意见",
+    "parent": "deepseek-cls-repo-v5",
+    "conclusion": "killed",
+    "completed_at": "2026-05-19T12:37:14.678Z"
+  },
+  "timestamp": "2026-05-19T12:37:15.156437+00:00",
+  "trigger": "update_registry"
+}

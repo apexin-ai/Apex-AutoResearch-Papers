@@ -1,0 +1,29 @@
+{
+  "exp_id": "cls8b-s42-resume-ckpt1000-test-mutation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:47:04.634Z",
+    "updated_at": "2026-05-16T01:08:31.106Z",
+    "hypothesis": "CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。",
+    "spec": {
+      "hypothesis": "CLS 8B s42 resume ckpt-1000 test eval + mutation-type breakdown",
+      "server": "seetacloud-westd-4x5090",
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/",
+      "eval_data": "data/swebench_full/swebench_test.jsonl",
+      "parent": "cls8b-s42-resume",
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt1000_test_mutation/ + mutation_breakdown.py",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T01:08:31.106Z"
+  },
+  "timestamp": "2026-05-16T01:08:31.435700+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31a20bd913aa3a50f5b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval 14b zeroshot fewshot baseline",
+  "task_key": "worker_eval_14b-zeroshot-fewshot-baseline_20260522T175229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_14b-zeroshot-fewshot-baseline_20260522T175229_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "2e5875f5df0c7349287261dd8724ef8ac3323ef0d775e606847473f707b04106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台进程已启动，会在模型下载完成后自动运行 0-shot 和 3-shot 评估。\n\n当前状态：\n- 脚本 `eval_14b_baseline.py` 已上传到服务器\n- Qwen3-14B 通过 ModelScope 下载到 `/dev/shm/Qwen3-14B`（约 1.8G/29G 已下载）\n- 后台监控脚本 (PID 201294) 会自动等待下载完成后依次运行两次评估\n- 结果会写入 `results_14b_0shot.json` 和 `results_14b_3shot.json`\n- 4.5 分钟后自动检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-14b-zeroshot-fewshot-baseline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "125575dbf66227e68b86",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra submit cls8b seed456 home",
+  "task_key": "worker_infra_submit-cls8b-seed456-home_20260512T135526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_submit-cls8b-seed456-home_20260512T135526_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "b026e2214796437289e4afb518e27de35742bf470ea140105eb14da433110139"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动。\n\n**cls8b-seed456 已提交并确认运行：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 2810143 |\n| Server | home-1x5090, GPU 0 |\n| GPU 占用 | 17617 MiB / 32607 MiB, 94% 利用率 |\n| tmux session | cls8b-seed456 |\n| 模型 | `/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B` (15.3M/8.2B trainable, 0.19%) |\n| 超参 | batch_size=2, grad_accum=16, lr=2e-4, epochs=3, seed=456 |\n| 训练速度 | ~3.6s/step, 1434 steps total, 预计 ~1.4h |\n| 完整命令 | `bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output_dir checkpoints_cls8b_seed456/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b_seed456/best --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output eval_cls8b_seed456.json\"` |\n\n注：首次提交因 `--device cuda:0` 参数不被脚本支持而失败（EXIT_CODE=2），已移除并重新提交。GPU 选择由 `CUDA_VISIBLE_DEVICES=0` 自动处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-submit-cls8b-seed456-home.md"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "repo-level-cwm-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-12T16:30:59.064Z",
+    "updated_at": "2026-05-12T17:20:38.402Z",
+    "hypothesis": "Repo-level CWM (SWE-bench, Qwen3-4B LoRA). WeightedDataCollator 修复后 v3。与 cls-v3 配对验证 complexity gap。",
+    "notes": "v3 WeightedDataCollator 修复已生效。PID 69888 在 cuda:3 上正常训练，step 3/6633 at ~10.7s/it（截至 17:03）。预计总训练时间 ~19.7h。",
+    "reproduce": {
+      "finished_at": "2026-05-12T17:09:20.159Z"
+    },
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "completed_at": "2026-05-12T17:09:22.135Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T17:09:24.124724+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v3 WeightedDataCollator 修复已生效。PID 69888 在 cuda:3 上正常训练，step 3/6633 at ~10.7s/it（截至 17:03）。预计总训练时间 ~19.7h。"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T17:20:38.487354+00:00",
+  "trigger": "update_registry"
+}

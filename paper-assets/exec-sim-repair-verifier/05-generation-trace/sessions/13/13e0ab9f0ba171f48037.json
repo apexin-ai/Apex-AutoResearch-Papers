@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e0ab9f0ba171f48037",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home val sweep hung",
+  "task_key": "worker_fix_home-val-sweep-hung_20260514T062601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-val-sweep-hung_20260514T062601_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "ae3a3442b1c775a9d176563d938042db391e2b9d84d67e87bcfbbd06959483b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "稳定运行中。160/9335，GPU 12.3/32.6 GiB（38%），充足余量。\n\n---\n\n**汇总：**\n\n1. **卡死原因**：进程并非卡死，实际在正常推理（kill 时已到 5120/9335, acc=62.9%）。val_eval_results/ 为空是因为结果在每个 checkpoint 跑完才写盘。重跑时的 OOM 级联崩溃是因为残留 python 进程占了 17.9 GiB GPU 内存。\n\n2. **修复内容**：\n   - `eval_repo_cls.py`：添加 per-batch 120s signal timeout 安全网\n   - `run_val_sweep.sh`：batch_size 16→8（避免 OOM），加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`，加错误处理（失败自动清理残留文件），checkpoint 间加 3s sleep\n\n3. **重跑状态**：已成功启动，checkpoint seed123/200 正在推理（160/9335, 12.3 GiB / 32.6 GiB）\n\n4. **ETA**：~27 min/checkpoint × 13 = ~5.8h。第一个结果文件预计 ~00:00 出现。\n\n需要我 25 分钟后检查第一个 checkpoint 是否完成吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-val-sweep-hung.md"
+}

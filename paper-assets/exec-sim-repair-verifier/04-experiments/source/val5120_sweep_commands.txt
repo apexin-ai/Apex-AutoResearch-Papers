@@ -1,0 +1,152 @@
+# val@5120 Checkpoint Sweep Commands
+# D063: checkpoint 选择必须在 val set (9335 samples) 上做
+# max_seq_length=5120 解决 val@2048 的 20.2% unparseable 截断问题 (D077)
+# 目标：在 westd cuda:0/1 释放后零延迟启动
+#
+# 前置：cd /home/sonny/exec-sim-repair-verifier
+#       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+
+# ============================================================
+# 创建 CLS 输出目录（CLS 脚本不自动 makedirs）
+# ============================================================
+mkdir -p results/val5120_cls_v5_ckpt200
+mkdir -p results/val5120_cls_v5_ckpt400
+mkdir -p results/val5120_cls_v5_ckpt600
+
+# ============================================================
+# 1. CLS v5-conda (seed42) — 3 checkpoints
+#    脚本: eval_repo_cls.py | base: Qwen/Qwen3-4B
+#    ckpt 目录: /root/autodl-tmp/checkpoints_repo_cls_v5_conda/
+#    batch_size=8 (CLS max_new_tokens=8, 轻量)
+# ============================================================
+
+# CLS v5 ckpt-200
+python eval_repo_cls.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/checkpoint-200 \
+  --split val --max_seq_length 5120 --batch_size 8 \
+  --device cuda:0 \
+  --output results/val5120_cls_v5_ckpt200/eval_repo_cls.json \
+  --pred_output results/val5120_cls_v5_ckpt200/eval_repo_cls_predictions.jsonl
+
+# CLS v5 ckpt-400
+python eval_repo_cls.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/checkpoint-400 \
+  --split val --max_seq_length 5120 --batch_size 8 \
+  --device cuda:0 \
+  --output results/val5120_cls_v5_ckpt400/eval_repo_cls.json \
+  --pred_output results/val5120_cls_v5_ckpt400/eval_repo_cls_predictions.jsonl
+
+# CLS v5 ckpt-600
+python eval_repo_cls.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/checkpoint-600 \
+  --split val --max_seq_length 5120 --batch_size 8 \
+  --device cuda:0 \
+  --output results/val5120_cls_v5_ckpt600/eval_repo_cls.json \
+  --pred_output results/val5120_cls_v5_ckpt600/eval_repo_cls_predictions.jsonl
+
+# ============================================================
+# 2. CWM v12 (seed42) — 5 checkpoints
+#    脚本: eval_repo_cwm.py | base: Qwen/Qwen3-4B
+#    ckpt 目录: /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/
+#    batch_size 自动=2 (max_seq_length>2048), max_new_tokens=1024
+#    output_dir 自动 makedirs
+# ============================================================
+
+# CWM v12 ckpt-300
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-300 \
+  --split val --max_seq_length 5120 \
+  --device cuda:1 \
+  --output_dir results/val5120_cwm_v12_ckpt300
+
+# CWM v12 ckpt-400
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-400 \
+  --split val --max_seq_length 5120 \
+  --device cuda:1 \
+  --output_dir results/val5120_cwm_v12_ckpt400
+
+# CWM v12 ckpt-500
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-500 \
+  --split val --max_seq_length 5120 \
+  --device cuda:1 \
+  --output_dir results/val5120_cwm_v12_ckpt500
+
+# CWM v12 ckpt-600
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-600 \
+  --split val --max_seq_length 5120 \
+  --device cuda:1 \
+  --output_dir results/val5120_cwm_v12_ckpt600
+
+# CWM v12 ckpt-700
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-700 \
+  --split val --max_seq_length 5120 \
+  --device cuda:1 \
+  --output_dir results/val5120_cwm_v12_ckpt700
+
+# ============================================================
+# 3. CWM seed123 — 5 checkpoints
+#    脚本: eval_repo_cwm.py | base: Qwen/Qwen3-4B
+#    ckpt 目录: /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/
+# ============================================================
+
+# CWM seed123 ckpt-200
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-200 \
+  --split val --max_seq_length 5120 \
+  --device cuda:0 \
+  --output_dir results/val5120_cwm_seed123_ckpt200
+
+# CWM seed123 ckpt-300
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-300 \
+  --split val --max_seq_length 5120 \
+  --device cuda:0 \
+  --output_dir results/val5120_cwm_seed123_ckpt300
+
+# CWM seed123 ckpt-400
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-400 \
+  --split val --max_seq_length 5120 \
+  --device cuda:0 \
+  --output_dir results/val5120_cwm_seed123_ckpt400
+
+# CWM seed123 ckpt-500
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500 \
+  --split val --max_seq_length 5120 \
+  --device cuda:0 \
+  --output_dir results/val5120_cwm_seed123_ckpt500
+
+# CWM seed123 ckpt-600
+python eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-600 \
+  --split val --max_seq_length 5120 \
+  --device cuda:0 \
+  --output_dir results/val5120_cwm_seed123_ckpt600
+
+# ============================================================
+# 执行策略（2 GPU 并行）
+# ============================================================
+# Phase 1: CLS v5 全部 3 ckpts 顺序跑 cuda:0 (快, ~30min)
+#         + CWM v12 ckpt-300 on cuda:1 (慢, ~1-2hr)
+# Phase 2: CWM seed123 ckpt-200 on cuda:0
+#         + CWM v12 ckpt-400 on cuda:1
+# Phase 3: CWM seed123 ckpt-300 on cuda:0
+#         + CWM v12 ckpt-500 on cuda:1
+# Phase 4: CWM seed123 ckpt-400 on cuda:0
+#         + CWM v12 ckpt-600 on cuda:1
+# Phase 5: CWM seed123 ckpt-500 on cuda:0
+#         + CWM v12 ckpt-700 on cuda:1
+# Phase 6: CWM seed123 ckpt-600 on cuda:0
+#
+# 总计: 13 runs, ~6 phases ≈ 6-12hr (取决于 CWM 速度)
+
+# ============================================================
+# nohup 启动模板 (Phase 1 示例)
+# ============================================================
+# nohup python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/checkpoint-200 --split val --max_seq_length 5120 --batch_size 8 --device cuda:0 --output results/val5120_cls_v5_ckpt200/eval_repo_cls.json --pred_output results/val5120_cls_v5_ckpt200/eval_repo_cls_predictions.jsonl > results/val5120_cls_v5_ckpt200/eval.log 2>&1 &
+# nohup python eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-300 --split val --max_seq_length 5120 --device cuda:1 --output_dir results/val5120_cwm_v12_ckpt300 > results/val5120_cwm_v12_ckpt300/eval.log 2>&1 &

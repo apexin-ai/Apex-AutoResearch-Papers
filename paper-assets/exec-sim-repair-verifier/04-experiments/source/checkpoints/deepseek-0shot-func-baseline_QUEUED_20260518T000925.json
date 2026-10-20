@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek-0shot-func-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:30:55.534Z",
+    "updated_at": "2026-05-18T00:09:25.053Z",
+    "hypothesis": "DeepSeek 0-shot instruction 在 func-level 的基准表现，完成 2×2 model×level 0-shot 矩阵",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T00:09:25.372524+00:00",
+  "trigger": "update_registry"
+}

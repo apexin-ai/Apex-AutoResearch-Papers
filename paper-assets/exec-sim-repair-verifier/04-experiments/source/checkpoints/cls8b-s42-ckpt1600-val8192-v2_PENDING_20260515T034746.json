@@ -1,0 +1,27 @@
+{
+  "exp_id": "cls8b-s42-ckpt1600-val8192-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:47:46.239Z",
+    "updated_at": "2026-05-15T03:47:46.239Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "parent": "cls8b-s42",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1600",
+      "eval_data": "val",
+      "data_path": "val split",
+      "data_count": 8192,
+      "notes": "v2 resubmit: v1 failed due to network unreachable (no network_turbo). Fixed by using local model path + OFFLINE flags + network_turbo."
+    }
+  },
+  "timestamp": "2026-05-15T03:47:46.439659+00:00",
+  "trigger": "update_registry"
+}

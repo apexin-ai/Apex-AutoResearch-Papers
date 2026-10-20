@@ -1,0 +1,16 @@
+{
+  "exp_id": "5-paired-clustered-bootstrap",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:10:42.139Z",
+    "updated_at": "2026-05-12T13:10:45.521Z",
+    "hypothesis": "5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 variant 级别是否等价（扩展之前 3-paired 分析）",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T13:10:45.605749+00:00",
+  "trigger": "update_registry"
+}

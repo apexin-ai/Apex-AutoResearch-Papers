@@ -1,0 +1,15 @@
+{
+  "exp_id": "cls4b-v5-val-sweep-ckpt4400-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:08:08.786Z",
+    "updated_at": "2026-05-15T02:08:20.297Z",
+    "hypothesis": "4B v5 ckpt-4400 val@5120 eval 第三次运行。前两次被误杀（进程正常但被误判为卡死）。thinking mode 已确认在 chat template 层正确禁用。"
+  },
+  "timestamp": "2026-05-15T02:08:20.745899+00:00",
+  "trigger": "update_registry"
+}

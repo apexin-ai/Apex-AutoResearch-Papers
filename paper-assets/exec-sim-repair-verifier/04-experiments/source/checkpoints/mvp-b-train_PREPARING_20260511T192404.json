@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp-b-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:24:04.462Z",
+    "updated_at": "2026-05-11T19:24:04.463Z"
+  },
+  "timestamp": "2026-05-11T19:24:04.472041+00:00",
+  "trigger": "update_registry"
+}

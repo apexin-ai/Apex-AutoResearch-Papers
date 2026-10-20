@@ -1,0 +1,29 @@
+{
+  "correct_accuracy": "both are valid; 87.98% from eval_traj_verifier.py (model.cuda()), 87.60% from eval_traj_verifier_8b.py (device_map=auto). Recommend using 87.60% as canonical since eval_traj_verifier_8b.py is the 8B-specific script.",
+  "discrepancy_reason": "Two concurrent workers ran different eval scripts on the same checkpoint, writing to the same output file (eval_traj_8b_seed42.json). Worker 1 (analysis) used eval_traj_verifier.py (model.cuda()) → 87.98%. Worker 2 (eval-and-train) used eval_traj_verifier_8b.py (device_map='auto', no model.cuda()) → 87.60%, overwriting the first result. The diff between scripts is only 3 lines: device_map='auto', low_cpu_mem_usage=True added to from_pretrained(), and model.cuda() commented out. This causes 4 out of 1032 samples to flip predictions due to bf16 numerical differences from different tensor placement strategies.",
+  "confusion_matrix_comparison": {
+    "eval1_87.98_model_cuda": {"tn": 513, "fp": 40, "fn": 84, "tp": 395, "correct": 908},
+    "eval2_87.60_device_map_auto": {"tn": 512, "fp": 41, "fn": 87, "tp": 392, "correct": 904},
+    "delta_samples": 4
+  },
+  "eval_granularity": "per-test (each row is one test case assertion)",
+  "n_1032_explanation": "TRAJ traj_test.jsonl has 1032 rows. Each row is one test case with trajectory-format prompt (code + test_summary). These cover 447 unique (problem_id, mutation_type) variants, with 1-11 test cases per variant. Total sum of num_tests across variants = 1890.",
+  "n_1890_explanation": "CLS test.jsonl has 1890 rows. Each row is one test case with classification-format prompt (code + individual test assertion). Same 447 unique variants as TRAJ. TRAJ 1032 is a subset of CLS 1890 tests — same problems, fewer test cases per variant selected for trajectory evaluation.",
+  "cls_vs_traj_granularity_comparison": "Both CLS and TRAJ evaluate at per-test granularity (each row = one test case). CLS uses 1890 test cases, TRAJ uses 1032 test cases. They share the same 447 (problem_id, mutation_type) variants. The difference in n is because TRAJ includes fewer individual test assertions per variant (1032/1890 = 54.6% of CLS tests).",
+  "4b_traj_granularity": "Same as 8B TRAJ: per-test level on 1032 samples from traj_test.jsonl. 4B TRAJ results: seed42=85.66%, seed0=85.66%, seed123=85.47%, seed456=87.40%, seed789=87.31%. Average=86.30%.",
+  "recommendation_for_paper": "Use 87.60% (from eval_traj_verifier_8b.py with device_map=auto) as the canonical 8B TRAJ result, since: (1) eval_traj_verifier_8b.py is the purpose-built 8B eval script, (2) it uses the same loading strategy that will be used for all future 8B evals, (3) 4B TRAJ evals used eval_traj_verifier.py with model.cuda() which works fine for 4B models. If consistency with 4B eval methodology matters, re-run 8B eval with eval_traj_verifier.py after freeing GPU. Alternatively, report mean of both runs: (87.98+87.60)/2 = 87.79%. The difference (0.38pp) is well within typical seed variance (4B TRAJ std=0.97pp).",
+  "timeline": {
+    "training_finished": "2026-05-17T14:10:45Z",
+    "analysis_worker_eval_start": "~2026-05-17T14:14:33Z (using eval_traj_verifier.py)",
+    "analysis_worker_eval_result": "87.98% (wrote eval_traj_8b_seed42.json)",
+    "analysis_worker_registered": "2026-05-17T14:18:49Z (87.98% to registry)",
+    "eval_worker_eval_start": "~2026-05-17T07:18:12Z server local time",
+    "eval_worker_eval_result": "87.60% (overwrote eval_traj_8b_seed42.json)",
+    "current_file_on_disk": "87.60% (eval_traj_verifier_8b.py result)"
+  },
+  "scripts_diff": {
+    "eval_traj_verifier.py": "model.cuda() explicit placement (4B default script)",
+    "eval_traj_verifier_8b.py": "device_map='auto' + low_cpu_mem_usage=True, model.cuda() commented out (8B specific script)",
+    "lines_changed": 3
+  }
+}

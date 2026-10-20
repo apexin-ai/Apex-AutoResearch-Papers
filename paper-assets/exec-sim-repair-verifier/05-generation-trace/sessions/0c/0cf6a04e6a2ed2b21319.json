@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf6a04e6a2ed2b21319",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check verify training start",
+  "task_key": "worker_check_verify-training-start_20260514T055033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_verify-training-start_20260514T055033_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "9c0ce42f3b6e3e37a2107c76fe37b2c45c29e3487c0d18f007b931574e7a4803"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练 session 完全空白。session 存在但没有运行任何命令。汇报：\n\n- **GPU 0**: 84% 利用率, 13.0/32.6 GB — `eval_cwm_seed123` CWM eval 进行中, 2696/9784 (27.5%), running_acc=57.4%\n- **GPU 1**: 88% 利用率, 13.0/32.6 GB — `eval_cwm_v12` CWM eval 进行中, 2720/9784 (27.8%), running_acc=57.9%\n- **GPU 2**: 0% 利用率, 0 MB 显存 — `repo-level-cwm-8b-conda` session 存在但 **pane 为空，训练未启动**，无任何输出\n- **GPU 3**: 0% 利用率, 0 MB 显存 — `repo-level-cls-8b-seed123-conda` session 存在但 **pane 为空，训练未启动**，无任何输出\n\n**结论**: 两个训练 tmux session 已创建但里面没有执行训练命令，需要手动进入 session 启动训练脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-verify-training-start.md"
+}

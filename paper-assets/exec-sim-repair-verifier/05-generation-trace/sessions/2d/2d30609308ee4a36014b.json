@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d30609308ee4a36014b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "audit paper number consistency",
+  "task_key": "worker_audit_paper-number-consistency_20260521T092353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-number-consistency_20260521T092353_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "97044f4dc2bb3655344088bc263e6899c54ab9cbe4cbf4b4ef690445a42a3762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。~180 个数字已交叉验证，结果写入 `artifacts/paper_number_audit.md`。\n\n**必须修复的 3 个高严重度问题：**\n\n1. **experiments.tex L60: \"13–26pp\" 应为 \"19–26pp\"** — 全文其他位置（abstract、intro、conclusion）都写 19–26pp，唯独这里写了 13。13 无任何数据来源支持。\n\n2. **TOST p 值不一致** — 同一个 ±2pp TOST 检验，sensitivity table 写 0.0087，Holm table 写 0.0071，正文写 0.007。三处应该是同一个数。\n\n3. **Table 2 TRAJ 4B 数值与 registry 不符** — Table 2 写 s42=85.27, s123=86.72；registry 存的是 s42=85.66, s123=85.47。差距 0.39–1.25pp，不是四舍五入能解释的。需要查来源。\n\n**中等严重度 2 个：**\n- Table 3 DeepSeek 0-shot 写 48.50，appendix 同一个数写 48.54（registry 也是 48.54）\n- CLS 8B s123 function-level: Table 2 写 89.40，registry 记录 89.37\n\n**低严重度 3 个 + 清晰度警告 2 个** 详见报告。其余 ~167 个数字全部验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-number-consistency.md"
+}

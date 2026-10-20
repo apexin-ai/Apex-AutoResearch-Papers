@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b56a4716f9aa42145fc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b acceleration eval",
+  "task_key": "worker_ssh_14b-acceleration-eval_20260522T211407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-acceleration-eval_20260522T211407_result.json",
+    "occurrence": 1,
+    "bytes": 2459,
+    "sha256": "80ad607a06b108780e56ec230e2faacdad71c55933de53716a94c3d556628576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕，汇总如下：\n\n---\n\n## CLS 14B 加速评估报告\n\n### 1. CLS 14B 数据：**用了错误的 70K repo-level 数据**\n\n日志确认：\n- `Train file: data/swebench_full/swebench_train.jsonl`\n- `Loaded train=70748` → kept 68093 → **6384 steps**\n- 速度 ~14s/step → 预计 **24.8h**\n\n根因在 `train_unified.py:306-308`，CLS 模式默认优先加载 `swebench_full/`：\n```python\nrepo_path = os.path.join(args.data_dir, \"swebench_full\", \"swebench_train.jsonl\")\ntrain_path = repo_path if os.path.exists(repo_path) else func_path\n```\n启动命令没传 `--train_file train.jsonl`，自动选了 70K。\n\n### 2. CWM 14B 数据：**正确（15K function-level）**\n- `Train file: data/cwm_train.jsonl`\n- `Loaded train=15290` → **1434 steps** at ~9.8s/step → 预计 **3.9h**\n- 当前 step 294/1434 (20%)，预计还剩 ~3.1h\n\n### 3. 8B CLS function-level：**用的 15K**\n- `model-size-scaling-cls8b.log`: `Loaded train=15290`, 1434 steps at ~3.8s/step → ~1.5h\n- 说明之前 8B 训练时 `swebench_full/` 目录可能还不存在，或者传了 `--train_file`\n\n### 4. 当前进度\n- CLS 14B: step 155/6384 (**2%**)，已跑 ~36 min，**应该立即 kill 重启**\n- CWM 14B: step 294/1434 (20%)，正常运行中\n\n### 5. GPU 状态\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 87% | 15.3/32.6 GB | CLS 14B |\n| 1 | 0% | 0/32.6 GB | **空闲** |\n| 2 | 97% | 14.4/32.6 GB | CWM 14B |\n| 3 | 0% | 0/32.6 GB | **空闲** |\n\n### 6. DDP 可行性\n- accelerate: **1.13.0** ✓ (需 ≥0.27)\n- bitsandbytes: **0.49.2** ✓ (需 ≥0.41)\n- 版本满足 QLoRA+DDP 要求\n\n### 7. 推荐方案\n\n**方案 A（强烈推荐）：Kill → 用 15K 数据重启**\n- 命令加 `--train_file train.jsonl --val_file val.jsonl`\n- 步数 6384 → **1434**（降 4.5x）\n- 时间 14s/step × 1434 = **5.6h**\n- 仅浪费已跑 36 min，完全在 DDL 内\n\n**方案 B（可选叠加）：DDP 双卡 GPU 0+1**\n- 理论 1.5-1.7x 加速 → **~3.3h**\n- 但 QLoRA+DDP 有兼容性风险，需测试\n- 如果 5.6h 可接受，没必要冒这个险\n\n**方案 C：增大 batch_size**\n- GPU 显存还剩 ~17GB，理论可以 bs 2→4\n- 但需要 Director 批准参数变更\n\n**结论**：最优路径是方案 A — 立即 kill CLS 14B，加 `--train_file train.jsonl --val_file val.jsonl` 重启。5.6h 完成，无风险。是否立即执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-acceleration-eval.md"
+}

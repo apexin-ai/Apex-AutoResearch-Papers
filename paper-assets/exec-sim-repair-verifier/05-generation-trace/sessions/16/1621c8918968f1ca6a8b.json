@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1621c8918968f1ca6a8b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm8b v4 exit",
+  "task_key": "worker_diagnose_cwm8b-v4-exit_20260515T174750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm8b-v4-exit_20260515T174750_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "e234e160f16324d20ecd0707427c919d1b92b167e6e983e15efae3f83c3a1caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n**结论：FAILED — timeout 超时被杀**\n\n| 项目 | 值 |\n|------|-----|\n| 退出原因 | `EXIT_CODE=124`（timeout 命令超时杀死进程） |\n| 最终 step | 5273/6633（79%） |\n| 最后 eval（step 5200） | eval_loss=0.5038, epoch=2.31 |\n| 最后 train_loss | 0.0057 |\n| 最新 checkpoint | `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200` |\n| cuda:2 | **空闲**（0 MiB, 0% utilization），可立即使用 |\n\n需要从 checkpoint-5200 resume 训练，剩余约 1400 steps（~4.7h）。启动时需加大 timeout 限制或不设 timeout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm8b-v4-exit.md"
+}

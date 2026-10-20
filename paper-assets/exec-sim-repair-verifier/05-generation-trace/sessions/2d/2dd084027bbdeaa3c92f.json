@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd084027bbdeaa3c92f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code f1 macro fix and extract",
+  "task_key": "worker_code_f1-macro-fix-and-extract_20260516T162319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_f1-macro-fix-and-extract_20260516T162319_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "aeeafb0d983d738afd07a2ddba1fb2150c2762b87767469f46e3b560c3a4ac94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### Part 1: Eval 脚本修改\n\n| 脚本 | 状态 |\n|------|------|\n| `eval_repo_verifier.py` | ✅ 新增 `f1_macro` 到 results dict（L250）、`compute_subset_metrics`（L89/L104）、print 输出（L271） |\n| `eval_traj_verifier.py` | ✅ 新增 `f1_macro` 到 results dict（L232）、print 输出（L263） |\n| `eval_repo_cls.py` | ✅ 已有 `f1_macro`（L268） |\n| `eval_repo_cwm.py` | ✅ 已有 `f1_macro`（L281） |\n| `eval_unified.py` | 不存在，跳过 |\n\n### Part 2: F1-macro 回溯提取\n\n79/164 个实验有可计算的 f1_macro，已输出到 `artifacts/f1_macro_summary.json`。\n\n数据来源分布：\n- `direct:f1_macro` — 45 个\n- `avg(pass_f1, fail_f1)` — 21 个\n- `avg(resolved_f1, unresolved_f1)` — 7 个\n- `direct:test_f1_macro` / `eval_test_f1_macro` — 6 个\n\n85 个实验缺少 F1 数据（多为训练类/调试类实验，无 eval metrics）。\n\n### Part 3: Git commit\n\n服务器 `/home/sonny/exec-sim-repair-verifier/` 无 `.git` 目录，无法在服务器上 commit。修改已直接应用在服务器文件上。如需 git 管理，需要先在服务器上 `git init` 或从本地推送。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-f1-macro-fix-and-extract.md"
+}

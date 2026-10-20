@@ -1,0 +1,1708 @@
+# research val unparseable diagnose
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_research_val-unparseable-diagnose_20260514T145443.jsonl`
+- **Structured JSON:** [`204961a56c733accd59e.json`](../../sessions/20/204961a56c733accd59e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T15:00:52.636578+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T15:00:52.636985+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T15:00:52.637191+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:00:52.637328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/val_eval_results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/val_eval_results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T15:00:52.637605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\n# v2: watchdog thread timeout (CUDA-safe), per-batch timing, incremental result saving\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nimport signal\\nimport threading\\nimport time\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict whether the test will pass or fail when run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\nLABEL_MAP = {1: \\\"pass\\\", 0: \\\"fail\\\"}\\n\\nBATCH_TIMEOUT = 180\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input
+…[truncated 7261 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T15:00:52.637822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoints_repo_cls_home_checkpoint-200.json\\ncheckpoints_repo_cls_home_checkpoint-200_predictions.jsonl\\ncheckpoints_repo_cls_seed123_home_checkpoint-1000.json\\ncheckpoints_repo_cls_seed123_home_checkpoint-1000_predictions.jsonl\\ncheckpoints_repo_cls_seed123_home_checkpoint-200.json\\ncheckpoints_repo_cls_seed123_home_checkpoint-200_predictions.jsonl\\ncheckpoints_repo_cls_seed123_home_checkpoint-400.json\\ncheckpoints_repo_cls_seed123_home_checkpoint-400_predictions.jsonl\\ncheckpoints_repo_cls_seed123_home_checkpoint-600.json\\ncheckpoints_repo_cls_seed123_home_checkpoint-600_predictions.jsonl\\ncheckpoints_repo_cls_seed123_home_checkpoint-800.json\\ncheckpoints_repo_cls_seed123_home_checkpoint-800_predictions.jsonl\\ncheckpoints_repo_cls_v5_checkpoint-4000.json\\ncheckpoints_repo_cls_v5_checkpoint-4000_predictions.jsonl\\ncheckpoints_repo_cls_v5_checkpoint-4200.json\\ncheckpoints_repo_cls_v5_checkpoint-4200_predictions.jsonl\\ncheckpoints_repo_cls_v5_checkpoint-4400.json\\ncheckpoints_repo_cls_v5_checkpoint-4400_predictions.jsonl\\ncheckpoints_repo_cls_v5_checkpoint-4600.json\\ncheckpoints_repo_cls_v5_checkpoint-4600_predictions.jsonl\\ncheckpoints_repo_cls_v5_checkpoint-600.json\\ncheckpoints_repo_cls_v5_checkpoint-600_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T15:00:52.638046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "python3 -c \"\nimport json\nunp = []\ntotal = 0\ntrunc_count = 0\ntrunc_unp = 0\nwith open('/home/sonny/exec-sim-repair-verifier/val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-600_predictions.jsonl') as f:\n    for line in f:\n        total += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc_count += 1\n        if d.get('unparseable', False):\n            unp.append(d)\n            if is_trunc: trunc_unp += 1\nprint(f'Total: {total}, Truncated: {trunc_count}, Unparseable: {len(unp)}, Trunc+Unp: {trunc_unp}')\nprint()\nfor d in unp[:5]:\n    print('---')\n    print(f'Truncated: {d.get(\\\"truncated\\\")}, OrigLen: {d.get(\\\"original_length\\\")}, MaxSeq: {d.get(\\\"max_seq_length\\\", \\\"?\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'Generated ({len(gen)} chars): {repr(gen[:300])}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "python3 -c \"\nimport json\nunp = []\ntotal = 0\ntrunc_count = 0\ntrunc_unp = 0\nwith open('/home/sonny/exec-sim-repair-verifier/val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-600_predictions.jsonl') as f:\n    for line in f:\n        total += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc_count += 1\n        if d.get('unparseable', False):\n            unp.append(d)\n            if is_trunc: trunc_unp += 1\nprint(f'Total: {total}, Truncated: {trunc_count}, Unparseable: {len(unp)}, Trunc+Unp: {trunc_unp}')\nprint()\nfor d in unp[:5]:\n    print('---')\n    print(f'Truncated: {d.get(\\\"truncated\\\")}, OrigLen: {d.get(\\\"original_length\\\")}, MaxSeq: {d.get(\\\"max_seq_length\\\", \\\"?\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'Generated ({len(gen)} chars): {repr(gen[:300])}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T15:00:52.638196+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T15:00:52.638327+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "python3 -c \"\nimport json\n# Check ckpt-800 val predictions too\nunp800 = 0\ntotal800 = 0\ntrunc800 = 0\ntrunc_unp800 = 0\nwith open('/home/sonny/exec-sim-repair-verifier/val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-800_predictions.jsonl') as f:\n    for line in f:\n        total800 += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc800 += 1\n        if d.get('unparseable', False):\n            unp800 += 1\n            if is_trunc: trunc_unp800 += 1\nprint(f'ckpt-800 val: Total={total800}, Truncated={trunc800}, Unparseable={unp800}, Trunc+Unp={trunc_unp800}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "python3 -c \"\nimport json\n# Check ckpt-800 val predictions too\nunp800 = 0\ntotal800 = 0\ntrunc800 = 0\ntrunc_unp800 = 0\nwith open('/home/sonny/exec-sim-repair-verifier/val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-800_predictions.jsonl') as f:\n    for line in f:\n        total800 += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc800 += 1\n        if d.get('unparseable', False):\n            unp800 += 1\n            if is_trunc: trunc_unp800 += 1\nprint(f'ckpt-800 val: Total={total800}, Truncated={trunc800}, Unparseable={unp800}, Trunc+Unp={trunc_unp800}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:00:52.638456+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T15:00:52.638587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "python3 -c \"\nimport json\n# Check test predictions for comparison\nimport glob\ntest_files = glob.glob('/home/sonny/exec-sim-repair-verifier/eval_results/*seed123*600*predictions*')\nprint('Test pred files:', test_files)\nfor tf in test_files[:1]:\n    unp_t = 0\n    total_t = 0\n    trunc_t = 0\n    trunc_unp_t = 0\n    with open(tf) as f:\n        for line in f:\n            total_t += 1\n            d = json.loads(line)\n            is_trunc = d.get('truncated', False)\n            if is_trunc: trunc_t += 1\n            if d.get('unparseable', False):\n                unp_t += 1\n                if is_trunc: trunc_unp_t += 1\n    print(f'{tf}: Total={total_t}, Truncated={trunc_t}, Unparseable={unp_t}, Trunc+Unp={trunc_unp_t}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "python3 -c \"\nimport json\n# Check test predictions for comparison\nimport glob\ntest_files = glob.glob('/home/sonny/exec-sim-repair-verifier/eval_results/*seed123*600*predictions*')\nprint('Test pred files:', test_files)\nfor tf in test_files[:1]:\n    unp_t = 0\n    total_t = 0\n    trunc_t = 0\n    trunc_unp_t = 0\n    with open(tf) as f:\n        for line in f:\n            total_t += 1\n            d = json.loads(line)\n            is_trunc = d.get('truncated', False)\n            if is_trunc: trunc_t += 1\n            if d.get('unparseable', False):\n                unp_t += 1\n                if is_trunc: trunc_unp_t += 1\n    print(f'{tf}: Total={total_t}, Truncated={trunc_t}, Unparseable={unp_t}, Trunc+Unp={trunc_unp_t}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:00:52.638732+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T15:00:52.638963+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Analyze ckpt-600 val predictions\nunp = []\ntotal = 0\ntrunc_count = 0\ntrunc_unp = 0\ngen_texts_unp = []\nwith open('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-600_predictions.jsonl') as f:\n    for line in f:\n        total += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc_count += 1\n        if d.get('unparseable', False):\n            unp.append(d)\n            if is_trunc: trunc_unp += 1\n            gen_texts_unp.append(d.get('generated_text', ''))\n\nprint(f'=== ckpt-600 VAL ===')\nprint(f'Total: {total}, Truncated: {trunc_count} ({trunc_count/total*100:.1f}%), Unparseable: {len(unp)} ({len(unp)/total*100:.1f}%)')\nprint(f'Truncated AND Unparseable: {trunc_unp}')\nprint(f'Truncated but parseable: {trunc_count - trunc_unp}')\nprint(f'Not truncated but unparseable: {len(unp) - trunc_unp}')\nprint()\n\n# Categorize unparseable outputs\nempty = sum(1 for t in gen_texts_unp if len(t.strip()) == 0)\nhas_think = sum(1 for t in gen_texts_unp if '&lt;/think>' in t)\nno_think = sum(1 for t in gen_texts_unp if '&lt;/think>' not in t)\nboth_pass_fail = sum(1 for t in gen_texts_unp if 'pass' in t.lower() and 'fail' in t.lower())\nneither = sum(1 for t in gen_texts_unp if 'pass' not in t.lower() and 'fail' not in t.lower())\nprint(f'Unparseable breakdown:')\nprint(f'  Empty output: {empty}')\nprint(f'  Has &lt;/think>: {has_think}')\nprint(f'  No &lt;/think>: {no_think}')\nprint(f'  Contains both pass+fail: {both_pass_fail}')\nprint(f'  Contains neither pass nor fail: {neither}')\nprint()\n\n# Show first 5 unparseable samples\nprint('=== First 5 unparseable samples ===')\nfor i, d in enumerate(unp[:5]):\n    print(f'--- Sample {i} ---')\n    print(f'  Truncated: {d.get(\\\"truncated\\\")}, OrigLen: {d.get(\\\"original_length\\\", \\\"?\\\")}, Label: {d.get(\\\"label\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'  Generated ({len(gen)} chars): {repr(gen[:300])}')\nprint()\n\n# Show some non-truncated unparseable\nprint('=== Non-truncated unparseable samples ===')\nnon_trunc_unp = [d for d in unp if not d.get('truncated', False)]\nfor i, d in enumerate(non_trunc_unp[:3]):\n    print(f'--- Sample {i} ---')\n    print(f'  OrigLen: {d.get(\\\"original_length\\\", \\\"?\\\")}, Label: {d.get(\\\"label\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'  Generated ({len(gen)} chars): {repr(gen[:500])}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Analyze ckpt-600 val predictions\nunp = []\ntotal = 0\ntrunc_count = 0\ntrunc_unp = 0\ngen_texts_unp = []\nwith open('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-600_predictions.jsonl') as f:\n    for line in f:\n        total += 1\n        d = json.loads(line)\n        is_trunc = d.get('truncated', False)\n        if is_trunc: trunc_count += 1\n        if d.get('unparseable', False):\n            unp.append(d)\n            if is_trunc: trunc_unp += 1\n            gen_texts_unp.append(d.get('generated_text', ''))\n\nprint(f'=== ckpt-600 VAL ===')\nprint(f'Total: {total}, Truncated: {trunc_count} ({trunc_count/total*100:.1f}%), Unparseable: {len(unp)} ({len(unp)/total*100:.1f}%)')\nprint(f'Truncated AND Unparseable: {trunc_unp}')\nprint(f'Truncated but parseable: {trunc_count - trunc_unp}')\nprint(f'Not truncated but unparseable: {len(unp) - trunc_unp}')\nprint()\n\n# Categorize unparseable outputs\nempty = sum(1 for t in gen_texts_unp if len(t.strip()) == 0)\nhas_think = sum(1 for t in gen_texts_unp if '&lt;/think>' in t)\nno_think = sum(1 for t in gen_texts_unp if '&lt;/think>' not in t)\nboth_pass_fail = sum(1 for t in gen_texts_unp if 'pass' in t.lower() and 'fail' in t.lower())\nneither = sum(1 for t in gen_texts_unp if 'pass' not in t.lower() and 'fail' not in t.lower())\nprint(f'Unparseable breakdown:')\nprint(f'  Empty output: {empty}')\nprint(f'  Has &lt;/think>: {has_think}')\nprint(f'  No &lt;/think>: {no_think}')\nprint(f'  Contains both pass+fail: {both_pass_fail}')\nprint(f'  Contains neither pass nor fail: {neither}')\nprint()\n\n# Show first 5 unparseable samples\nprint('=== First 5 unparseable samples ===')\nfor i, d in enumerate(unp[:5]):\n    print(f'--- Sample {i} ---')\n    print(f'  Truncated: {d.get(\\\"truncated\\\")}, OrigLen: {d.get(\\\"original_length\\\", \\\"?\\\")}, Label: {d.get(\\\"label\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'  Generated ({len(gen)} chars): {repr(gen[:300])}')\nprint()\n\n# Show some non-truncated unparseable\nprint('=== Non-truncated unparseable samples ===')\nnon_trunc_unp = [d for d in unp if not d.get('truncated', False)]\nfor i, d in enumerate(non_trunc_unp[:3]):\n    print(f'--- Sample {i} ---')\n    print(f'  OrigLen: {d.get(\\\"original_length\\\", \\\"?\\\")}, Label: {d.get(\\\"label\\\")}')\n    gen = d.get('generated_text', '')\n    print(f'  Generated ({len(gen)} chars): {repr(gen[:500])}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T15:00:52.639154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== ckpt-600 VAL ===\\nTotal: 9335, Truncated: 1883 (20.2%), Unparseable: 1883 (20.2%)\\nTruncated AND Unparseable: 1883\\nTruncated but parseable: 0\\nNot truncated but unparseable: 0\\n\\nUnparseable breakdown:\\n  Empty output: 1883\\n  Has &lt;/think>: 0\\n  No &lt;/think>: 1883\\n  Contains both pass+fail: 0\\n  Contains neither pass nor fail: 1883\\n\\n=== First 5 unparseable samples ===\\n--- Sample 0 ---\\n  Truncated: True, OrigLen: ?, Label: 1\\n  Generated (0 chars): ''\\n--- Sample 1 ---\\n  Truncated: True, OrigLen: ?, Label: 0\\n  Generated (0 chars): ''\\n--- Sample 2 ---\\n  Truncated: True, OrigLen: ?, Label: 1\\n  Generated (0 chars): ''\\n--- Sample 3 ---\\n  Truncated: True, OrigLen: ?, Label: 0\\n  Generated (0 chars): ''\\n--- Sample 4 ---\\n  Truncated: True, OrigLen: ?, Label: 0\\n  Generated (0 chars): ''\\n\\n=== Non-truncated unparseable samples ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T15:00:52.639314+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\n\n# ckpt-800 val\nunp800 = 0; total800 = 0; trunc800 = 0; trunc_unp800 = 0\nwith open('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-800_predictions.jsonl') as f:\n    for line in f:\n        total800 += 1\n        d = json.loads(line)\n        if d.get('truncated', False): trunc800 += 1\n        if d.get('unparseable', False):\n            unp800 += 1\n            if d.get('truncated', False): trunc_unp800 += 1\nprint(f'ckpt-800 VAL: Total={total800}, Truncated={trunc800} ({trunc800/total800*100:.1f}%), Unparseable={unp800} ({unp800/total800*100:.1f}%), Trunc+Unp={trunc_unp800}')\n\n# test predictions for comparison\nimport glob\ntest_files = glob.glob('eval_results/*seed123*600*predictions*') + glob.glob('eval_results/*seed123*800*predictions*')\nprint(f'\\\\nTest pred files: {test_files}')\nfor tf in sorted(test_files):\n    unp_t = 0; total_t = 0; trunc_t = 0; trunc_unp_t = 0\n    with open(tf) as f:\n        for line in f:\n            total_t += 1\n            d = json.loads(line)\n            if d.get('truncated', False): trunc_t += 1\n            if d.get('unparseable', False):\n                unp_t += 1\n                if d.get('truncated', False): trunc_unp_t += 1\n    print(f'  {tf}: Total={total_t}, Trunc={trunc_t} ({trunc_t/total_t*100:.1f}%), Unp={unp_t} ({unp_t/total_t*100:.1f}%), Trunc+Unp={trunc_unp_t}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\n\n# ckpt-800 val\nunp800 = 0; total800 = 0; trunc800 = 0; trunc_unp800 = 0\nwith open('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-800_predictions.jsonl') as f:\n    for line in f:\n        total800 += 1\n        d = json.loads(line)\n        if d.get('truncated', False): trunc800 += 1\n        if d.get('unparseable', False):\n            unp800 += 1\n            if d.get('truncated', False): trunc_unp800 += 1\nprint(f'ckpt-800 VAL: Total={total800}, Truncated={trunc800} ({trunc800/total800*100:.1f}%), Unparseable={unp800} ({unp800/total800*100:.1f}%), Trunc+Unp={trunc_unp800}')\n\n# test predictions for comparison\nimport glob\ntest_files = glob.glob('eval_results/*seed123*600*predictions*') + glob.glob('eval_results/*seed123*800*predictions*')\nprint(f'\\\\nTest pred files: {test_files}')\nfor tf in sorted(test_files):\n    unp_t = 0; total_t = 0; trunc_t = 0; trunc_unp_t = 0\n    with open(tf) as f:\n        for line in f:\n            total_t += 1\n            d = json.loads(line)\n            if d.get('truncated', False): trunc_t += 1\n            if d.get('unparseable', False):\n                unp_t += 1\n                if d.get('truncated', False): trunc_unp_t += 1\n    print(f'  {tf}: Total={total_t}, Trunc={trunc_t} ({trunc_t/total_t*100:.1f}%), Unp={unp_t} ({unp_t/total_t*100:.1f}%), Trunc+Unp={trunc_unp_t}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T15:00:52.639457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ckpt-800 VAL: Total=9335, Truncated=1883 (20.2%), Unparseable=1883 (20.2%), Trunc+Unp=1883\\n\\nTest pred files: []\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T15:00:52.639628+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nfrom transformers import AutoTokenizer\nimport json\n\ntokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-4B', trust_remote_code=True)\n\nSYSTEM_PROMPT = 'You are a code verifier. Given a code patch (git diff) and a test name, predict whether the test will pass or fail when run against the patched code.'\nUSER_TEMPLATE = '## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?'\n\ndef get_prompt_length(d):\n    user_msg = USER_TEMPLATE.format(code=d['code'], test=d['test'])\n    msgs = [{'role': 'system', 'content': SYSTEM_PROMPT}, {'role': 'user', 'content': user_msg}]\n    try:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, enable_thinking=False)\n    except TypeError:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True)\n    if hasattr(ids, 'input_ids'):\n        ids = ids.input_ids\n    return len(ids)\n\nfor split in ['val', 'test']:\n    with open(f'data/swebench_full/swebench_{split}.jsonl') as f:\n        data = [json.loads(line) for line in f]\n    \n    lengths = [get_prompt_length(d) for d in data]\n    lengths.sort()\n    n = len(lengths)\n    over_2048 = sum(1 for x in lengths if x > 2048)\n    over_4096 = sum(1 for x in lengths if x > 4096)\n    \n    print(f'=== {split} (n={n}) ===')\n    print(f'  Mean: {sum(lengths)/n:.0f}, Median: {lengths[n//2]}, Max: {max(lengths)}')\n    print(f'  >2048: {over_2048} ({over_2048/n*100:.1f}%)')\n    print(f'  >4096: {over_4096} ({over_4096/n*100:.1f}%)')\n    for pct in [50, 75, 90, 95, 99]:\n        idx = min(int(n * pct / 100), n-1)\n        print(f'  P{pct}: {lengths[idx]}')\n\" 2>&1 | tail -20\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nfrom transformers import AutoTokenizer\nimport json\n\ntokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-4B', trust_remote_code=True)\n\nSYSTEM_PROMPT = 'You are a code verifier. Given a code patch (git diff) and a test name, predict whether the test will pass or fail when run against the patched code.'\nUSER_TEMPLATE = '## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?'\n\ndef get_prompt_length(d):\n    user_msg = USER_TEMPLATE.format(code=d['code'], test=d['test'])\n    msgs = [{'role': 'system', 'content': SYSTEM_PROMPT}, {'role': 'user', 'content': user_msg}]\n    try:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, enable_thinking=False)\n    except TypeError:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True)\n    if hasattr(ids, 'input_ids'):\n        ids = ids.input_ids\n    return len(ids)\n\nfor split in ['val', 'test']:\n    with open(f'data/swebench_full/swebench_{split}.jsonl') as f:\n        data = [json.loads(line) for line in f]\n    \n    lengths = [get_prompt_length(d) for d in data]\n    lengths.sort()\n    n = len(lengths)\n    over_2048 = sum(1 for x in lengths if x > 2048)\n    over_4096 = sum(1 for x in lengths if x > 4096)\n    \n    print(f'=== {split} (n={n}) ===')\n    print(f'  Mean: {sum(lengths)/n:.0f}, Median: {lengths[n//2]}, Max: {max(lengths)}')\n    print(f'  >2048: {over_2048} ({over_2048/n*100:.1f}%)')\n    print(f'  >4096: {over_4096} ({over_4096/n*100:.1f}%)')\n    for pct in [50, 75, 90, 95, 99]:\n        idx = min(int(n * pct / 100), n-1)\n        print(f'  P{pct}: {lengths[idx]}')\n\" 2>&1 | tail -20\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T15:00:52.639769+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/eval_results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/eval_results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T15:00:52.639925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== val (n=9335) ===\\n  Mean: 1252, Median: 397, Max: 8768\\n  >2048: 1883 (20.2%)\\n  >4096: 1406 (15.1%)\\n  P50: 397\\n  P75: 1268\\n  P90: 4865\\n  P95: 4957\\n  P99: 5406\\n=== test (n=9784) ===\\n  Mean: 902, Median: 427, Max: 2481\\n  >2048: 484 (4.9%)\\n  >4096: 0 (0.0%)\\n  P50: 427\\n  P75: 2034\\n  P90: 2041\\n  P95: 2048\\n  P99: 2349\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T15:00:52.640133+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T15:00:52.640320+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*eval*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*eval*\" -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T15:00:52.640455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -path \"*4096*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "find /home/sonny/exec-sim-repair-verifier -path \"*4096*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:00:52.640589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/val_eval_results\\n/home/sonny/exec-sim-repair-verifier/logs/run_evaluation\\n/home/sonny/exec-sim-repair-verifier/swe-bench-experiments/evaluation\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_6144\\n/home/sonny/exec-sim-repair-verifier/test_eval_results_4096\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_4096\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T15:00:52.640724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/val_4096_ckpt400.log\\n/home/sonny/exec-sim-repair-verifier/val_4096_ckpt600.log\\n/home/sonny/exec-sim-repair-verifier/test_eval_results_4096/seed123_ckpt600/eval_repo_cls.json\\n/home/sonny/exec-sim-repair-verifier/test_eval_results_4096/seed123_ckpt600/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt400/eval_repo_cls.json\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt400/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt600/eval_repo_cls.json\\n/home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt600/eval_repo_cls_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T15:00:52.640944+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && echo \"=== val@4096 ckpt-600 ===\" && cat val_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\" && echo \"=== val@4096 ckpt-400 ===\" && cat val_eval_results_4096/seed123_ckpt400/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\" && echo \"=== val@2048 (original) summaries ===\" && for f in val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-*.json; do echo \"--- $f ---\"; cat \"$f\" | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\"; done && echo \"=== val_eval_results_6144 ===\" && ls val_eval_results_6144/ && echo \"=== test@4096 ckpt-600 ===\" && cat test_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && echo \"=== val@4096 ckpt-600 ===\" && cat val_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\" && echo \"=== val@4096 ckpt-400 ===\" && cat val_eval_results_4096/seed123_ckpt400/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\" && echo \"=== val@2048 (original) summaries ===\" && for f in val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-*.json; do echo \"--- $f ---\"; cat \"$f\" | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\"; done && echo \"=== val_eval_results_6144 ===\" && ls val_eval_results_6144/ && echo \"=== test@4096 ckpt-600 ===\" && cat test_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(f'n={d[\\\"n_instances\\\"]}, unp={d[\\\"n_cls_unparseable\\\"]}, trunc={d[\\\"n_truncated\\\"]}, acc={d[\\\"metrics\\\"][\\\"accuracy\\\"]:.4f}')\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T15:00:52.641153+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && echo \\\"=== val@4096 ckpt-600 ===\\\" && cat val_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(f\\\\'n={d[\\\\\\\\\\\"n_instances\\\\\\\\\\\"]}, unp={d[\\\\\\\\\\\"n_cls_unparseable\\\\\\\\\\\"]}, trunc={d[\\\\\\\\\\\"n_truncated\\\\\\\\\\\"]}, acc={d[\\\\\\\\\\\"metrics\\\\\\\\\\\"][\\\\\\\\\\\"accuracy\\\\\\\\\\\"]:.4f}\\\\')\\\" && echo \\\"=== val@4096 ckpt-400 ===\\\" && cat val_eval_results_4096/seed123_ckpt400/eval_repo_cls.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(f\\\\'n={d[\\\\\\\\\\\"n_instances\\\\\\\\\\\"]}, unp={d[\\\\\\\\\\\"n_cls_unparseable\\\\\\\\\\\"]}, trunc={d[\\\\\\\\\\\"n_truncated\\\\\\\\\\\"]}, acc={d[\\\\\\\\\\\"metrics\\\\\\\\\\\"][\\\\\\\\\\\"accuracy\\\\\\\\\\\"]:.4f}\\\\')\\\" && echo \\\"=== val@2048 (original) summaries ===\\\" && for f in val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-*.json; do echo \\\"--- $f ---\\\"; cat \\\"$f\\\" | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(f\\\\'n={d[\\\\\\\\\\\"n_instances\\\\\\\\\\\"]}, unp={d[\\\\\\\\\\\"n_cls_unparseable\\\\\\\\\\\"]}, trunc={d[\\\\\\\\\\\"n_truncated\\\\\\\\\\\"]}, acc={d[\\\\\\\\\\\"metrics\\\\\\\\\\\"][\\\\\\\\\\\"accuracy\\\\\\\\\\\"]:.4f}\\\\')\\\"; done && echo \\\"=== val_eval_results_6144 ===\\\" && ls val_eval_results_6144/ && echo \\\"=== test@4096 ckpt-600 ===\\\" && cat test_eval_results_4096/seed123_ckpt600/eval_repo_cls.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(f\\\\'n={d[\\\\\\\\\\\"n_instances\\\\\\\\\\\"]}, unp={d[\\\\\\\\\\\"n_cls_unparseable\\\\\\\\\\\"]}, trunc={d[\\\\\\\\\\\"n_truncated\\\\\\\\\\\"]}, acc={d[\\\\\\\\\\\"metrics\\\\\\\\\\\"][\\\\\\\\\\\"accuracy\\\\\\\\\\\"]:.4f}\\\\')\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n=== val@4096 ck
+…[truncated 998 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T15:00:52.641330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json, glob\n\nprint('=== val@2048 summaries ===')\nfor f in sorted(glob.glob('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-*.json')):\n    d = json.load(open(f))\n    ckpt = f.split('checkpoint-')[1].replace('.json','')\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', d.get('n_unparseable', '?'))\n    trunc = d.get('n_truncated', '?')\n    print(f'  ckpt-{ckpt}: acc={acc:.4f}, unp={unp}, trunc={trunc}, n={d[\\\"n_instances\\\"]}')\n\nprint()\nprint('=== val@4096 summaries ===')\nfor f in sorted(glob.glob('val_eval_results_4096/*/eval_repo_cls.json')):\n    d = json.load(open(f))\n    name = f.split('/')[1]\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', '?')\n    trunc = d.get('n_truncated', '?')\n    print(f'  {name}: acc={acc:.4f}, unp={unp}, trunc={trunc}')\n\nprint()\nprint('=== val_eval_results_6144 ===')\nfor f in sorted(glob.glob('val_eval_results_6144/*')):\n    print(f'  {f}')\n\nprint()\nprint('=== test@4096 ===')\nfor f in sorted(glob.glob('test_eval_results_4096/*/eval_repo_cls.json')):\n    d = json.load(open(f))\n    name = f.split('/')[1]\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', '?')\n    trunc = d.get('n_truncated', '?')\n    print(f'  {name}: acc={acc:.4f}, unp={unp}, trunc={trunc}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json, glob\n\nprint('=== val@2048 summaries ===')\nfor f in sorted(glob.glob('val_eval_results/checkpoints_repo_cls_seed123_home_checkpoint-*.json')):\n    d = json.load(open(f))\n    ckpt = f.split('checkpoint-')[1].replace('.json','')\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', d.get('n_unparseable', '?'))\n    trunc = d.get('n_truncated', '?')\n    print(f'  ckpt-{ckpt}: acc={acc:.4f}, unp={unp}, trunc={trunc}, n={d[\\\"n_instances\\\"]}')\n\nprint()\nprint('=== val@4096 summaries ===')\nfor f in sorted(glob.glob('val_eval_results_4096/*/eval_repo_cls.json')):\n    d = json.load(open(f))\n    name = f.split('/')[1]\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', '?')\n    trunc = d.get('n_truncated', '?')\n    print(f'  {name}: acc={acc:.4f}, unp={unp}, trunc={trunc}')\n\nprint()\nprint('=== val_eval_results_6144 ===')\nfor f in sorted(glob.glob('val_eval_results_6144/*')):\n    print(f'  {f}')\n\nprint()\nprint('=== test@4096 ===')\nfor f in sorted(glob.glob('test_eval_results_4096/*/eval_repo_cls.json')):\n    d = json.load(open(f))\n    name = f.split('/')[1]\n    acc = d['metrics']['accuracy']\n    unp = d.get('n_cls_unparseable', '?')\n    trunc = d.get('n_truncated', '?')\n    print(f'  {name}: acc={acc:.4f}, unp={unp}, trunc={trunc}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T15:00:52.641484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== val@2048 summaries ===\\n  ckpt-1000: acc=82.3000, unp=1883, trunc=?, n=9335\\n  ckpt-200: acc=62.5100, unp=1883, trunc=?, n=9335\\n  ckpt-400: acc=80.7200, unp=1883, trunc=?, n=9335\\n  ckpt-600: acc=76.7800, unp=1883, trunc=?, n=9335\\n  ckpt-800: acc=81.8100, unp=1883, trunc=?, n=9335\\n\\n=== val@4096 summaries ===\\n  seed123_ckpt400: acc=82.5700, unp=1406, trunc=1406\\n  seed123_ckpt600: acc=79.1800, unp=1406, trunc=1406\\n\\n=== val_eval_results_6144 ===\\n  val_eval_results_6144/run.log\\n\\n=== test@4096 ===\\n  seed123_ckpt600: acc=81.2700, unp=0, trunc=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T15:00:52.641654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "tail -20 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "tail -20 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T15:00:52.641811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 05:01:25,739 INFO [CLS] 1280/9335  running_acc=84.8%\\n2026-05-14 05:01:29,967 INFO [CLS] 1320/9335  running_acc=84.8%\\n2026-05-14 05:01:43,564 INFO [CLS] 1360/9335  running_acc=84.5%\\n2026-05-14 05:01:52,913 INFO [CLS] 1400/9335  running_acc=84.4%\\n2026-05-14 05:02:02,830 INFO [CLS] 1440/9335  running_acc=83.9%\\n2026-05-14 05:02:15,334 INFO [CLS] 1480/9335  running_acc=84.1%\\n2026-05-14 05:02:23,311 INFO [CLS] 1520/9335  running_acc=84.2%\\n2026-05-14 05:02:29,659 INFO [CLS] 1560/9335  running_acc=84.3%\\n2026-05-14 05:02:40,827 INFO [CLS] 1600/9335  running_acc=84.2%\\n2026-05-14 05:02:54,166 INFO [CLS] 1640/9335  running_acc=84.2%\\n2026-05-14 05:03:06,365 INFO [CLS] 1680/9335  running_acc=84.1%\\n2026-05-14 05:03:16,342 INFO [CLS] 1720/9335  running_acc=84.1%\\n2026-05-14 05:03:29,702 INFO [CLS] 1760/9335  running_acc=84.0%\\n2026-05-14 05:03:38,505 INFO [CLS] 1800/9335  running_acc=83.6%\\n2026-05-14 05:03:54,166 INFO [CLS] 1840/9335  running_acc=83.5%\\n2026-05-14 05:04:02,601 INFO [CLS] 1880/9335  running_acc=83.8%\\n2026-05-14 05:04:10,136 INFO [CLS] 1920/9335  running_acc=83.9%\\n2026-05-14 05:04:19,158 INFO [CLS] 1960/9335  running_acc=83.8%\\n2026-05-14 05:04:25,705 INFO [CLS] 2000/9335  running_acc=83.8%\\n2026-05-14 05:04:36,638 INFO [CLS] 2040/9335  running_acc=83.7%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T15:00:52.641953+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep -n \"unparseable\\|majority\\|pred.*=.*-1\\|fallback\\|default\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "grep -n \"unparseable\\|majority\\|pred.*=.*-1\\|fallback\\|default\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T15:00:52.642082+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T15:00:52.642205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep -n \"unparseable\\|majority\\|pred.*-1\\|fallback\\|default_pred\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "grep -n \"unparseable\\|majority\\|pred.*-1\\|fallback\\|default_pred\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T15:00:52.642325+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T15:00:52.642441+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -1 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "head -1 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T15:00:52.642560+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Waiting for val_sweep to complete...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T15:00:52.642675+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep -n \"unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "grep -n \"unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T15:00:52.642790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "wc -l /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T15:00:52.642943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"122:    n_unparseable = 0\\n188:                     'gen_text': 'TIMEOUT', 'unparseable': True}\\n192:                n_unparseable += 1\\n213:            was_unparseable = pred == -1\\n215:                n_unparseable += 1\\n228:                \\\"unparseable\\\": was_unparseable,\\n249:    if n_unparseable:\\n250:        log.warning(f\\\"{n_unparseable} unparseable predictions (majority fallback)\\\")\\n280:def print_report(metrics, n_total, n_unparseable):\\n297:    if n_unparseable:\\n298:        print(f\\\"\\\\nUnparseable: {n_unparseable}\\\")\\n375:    n_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n378:    print_report(metrics, len(results), n_unparseable)\\n385:        \\\"n_cls_unparseable\\\": n_unparseable,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T15:00:52.643075+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"140 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T15:00:52.643244+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "sed -n '200,260p' /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "sed -n '200,260p' /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T15:00:52.643374+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T15:00:52.643492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep \"nvidia-smi\\|python\\|RUNNING\" /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "grep \"nvidia-smi\\|python\\|RUNNING\" /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T15:00:52.643609+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T15:00:52.643724+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "sed -n '205,235p' /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "sed -n '205,235p' /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T15:00:52.643879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        log.info(f\\\"Batch {batch_idx} ({i}-{min(i+batch_size,total)-1}/{total}): {batch_elapsed:.1f}s, max_seq={max(seq_lens)}\\\")\\n        if batch_elapsed > 60:\\n            log.warning(f\\\"SLOW batch {batch_idx}: {batch_elapsed:.1f}s, seq_lens={seq_lens}\\\")\\n\\n        for j, ex in enumerate(batch):\\n            gen_ids = out[j][len(padded[j]):]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            r = {\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"original_token_length\\\": batch_orig_lens[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            }\\n            results.append(r)\\n            if pred_file:\\n                pred_file.write(json.dumps(r) + \\\"\\\\n\\\")\\n\\n        if pred_file:\\n            pred_file.flush()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T15:00:52.644021+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader 2>/dev/null; echo \"---\"; ps aux | grep -E \"eval_repo_cls|python.*6144\" | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader 2>/dev/null; echo \"---\"; ps aux | grep -E \"eval_repo_cls|python.*6144\" | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T15:00:52.644146+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader 2>/dev/null; echo \\\"---\\\"; ps aux | grep -E \\\"eval_repo_cls|python.*6144\\\" | grep -v grep'\\n\\nExit code: 1\\n\\nStdout:\\n\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T15:00:52.644310+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T15:00:52.644436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoint-1000\\ncheckpoint-200\\ncheckpoint-400\\ncheckpoint-600\\ncheckpoint-800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T15:00:52.644560+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nfrom transformers import AutoTokenizer\nimport json\ntokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-4B', trust_remote_code=True)\nSYSTEM_PROMPT = 'You are a code verifier. Given a code patch (git diff) and a test name, predict whether the test will pass or fail when run against the patched code.'\nUSER_TEMPLATE = '## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?'\n\nwith open('data/swebench_full/swebench_val.jsonl') as f:\n    data = [json.loads(line) for line in f]\n\nlengths = []\nfor d in data:\n    user_msg = USER_TEMPLATE.format(code=d['code'], test=d['test'])\n    msgs = [{'role': 'system', 'content': SYSTEM_PROMPT}, {'role': 'user', 'content': user_msg}]\n    try:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, enable_thinking=False)\n    except TypeError:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True)\n    if hasattr(ids, 'input_ids'): ids = ids.input_ids\n    lengths.append(len(ids))\n\nfor thresh in [2048, 3072, 4096, 5120, 6144, 8192]:\n    over = sum(1 for x in lengths if x > thresh)\n    print(f'>{thresh}: {over} ({over/len(lengths)*100:.1f}%)')\n\" 2>&1 | tail -10\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nfrom transformers import AutoTokenizer\nimport json\ntokenizer = AutoTokenizer.from_pretrained('Qwen/Qwen3-4B', trust_remote_code=True)\nSYSTEM_PROMPT = 'You are a code verifier. Given a code patch (git diff) and a test name, predict whether the test will pass or fail when run against the patched code.'\nUSER_TEMPLATE = '## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?'\n\nwith open('data/swebench_full/swebench_val.jsonl') as f:\n    data = [json.loads(line) for line in f]\n\nlengths = []\nfor d in data:\n    user_msg = USER_TEMPLATE.format(code=d['code'], test=d['test'])\n    msgs = [{'role': 'system', 'content': SYSTEM_PROMPT}, {'role': 'user', 'content': user_msg}]\n    try:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, enable_thinking=False)\n    except TypeError:\n        ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True)\n    if hasattr(ids, 'input_ids'): ids = ids.input_ids\n    lengths.append(len(ids))\n\nfor thresh in [2048, 3072, 4096, 5120, 6144, 8192]:\n    over = sum(1 for x in lengths if x > thresh)\n    print(f'>{thresh}: {over} ({over/len(lengths)*100:.1f}%)')\n\" 2>&1 | tail -10\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T15:00:52.644697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \">2048: 1883 (20.2%)\\n>3072: 1406 (15.1%)\\n>4096: 1406 (15.1%)\\n>5120: 234 (2.5%)\\n>6144: 36 (0.4%)\\n>8192: 9 (0.1%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T15:00:52.644876+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 nohup python3 eval_repo_cls.py \\\n  --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 \\\n  --output_dir val_eval_results_4096/seed123_ckpt800 \\\n  --split val --max_seq_length 4096 --batch_size 2 \\\n  > val_eval_results_4096/seed123_ckpt800.log 2>&1 &\necho \"PID: $!\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 nohup python3 eval_repo_cls.py \\\n  --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 \\\n  --output_dir val_eval_results_4096/seed123_ckpt800 \\\n  --split val --max_seq_length 4096 --batch_size 2 \\\n  > val_eval_results_4096/seed123_ckpt800.log 2>&1 &\necho \"PID: $!\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T15:00:52.645020+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 nohup python3 eval_repo_cls.py \\\\\\\\\\\\n  --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 \\\\\\\\\\\\n  --output_dir val_eval_results_4096/seed123_ckpt800 \\\\\\\\\\\\n  --split val --max_seq_length 4096 --batch_size 2 \\\\\\\\\\\\n  > val_eval_results_4096/seed123_ckpt800.log 2>&1 &\\\\necho \\\"PID: $!\\\"\\\\n'\\n\\nStdout:\\n\\nPID: 3125543\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T15:00:52.645211+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "tail -5 /home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt800.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "account": "sonny",
+    "command": "tail -5 /home/sonny/exec-sim-repair-verifier/val_eval_results_4096/seed123_ckpt800.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T15:00:52.645352+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 08:00:31,875 INFO [CLS] 160/9335  running_acc=85.0%\\n2026-05-14 08:00:31,957 INFO Batch 80 (160-161/9335): 0.1s, max_seq=389\\n2026-05-14 08:00:32,038 INFO Batch 81 (162-163/9335): 0.1s, max_seq=396\\n2026-05-14 08:00:32,410 INFO Batch 82 (164-165/9335): 0.4s, max_seq=2346\\n2026-05-14 08:00:32,415 INFO TRUNCATED sample 166: 5513 -> 4096 tokens\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-14T15:00:52.645532+00:00_
+
+Job 正在运行，进度正常。
+
+## 诊断结论
+
+### 根因：100% 由输入截断导致
+
+| 指标 | Val (n=9335) | Test (n=9784) |
+|------|-------------|--------------|
+| Mean prompt tokens | 1252 | 902 |
+| Max prompt tokens | **8768** | 2481 |
+| P90 | 4865 | 2041 |
+| >2048 tokens | **1883 (20.2%)** | 484 (4.9%) |
+| >4096 tokens | 1406 (15.1%) | 0 (0%) |
+
+**完全重合**：1883 unparseable = 1883 truncated，0 例外。截断后输入丢失了 generation prompt 和问题结构，模型生成空文本，parse 失败，回退到 majority class。
+
+### Val 长度分布呈双峰
+
+| 截断阈值 | >阈值样本数 | 占比 |
+|---------|-----------|------|
+| 2048 | 1883 | 20.2% |
+| 3072 | 1406 | 15.1% |
+| 4096 | 1406 | 15.1% |
+| 5120 | 234 | 2.5% |
+| 6144 | 36 | 0.4% |
+
+3072-4096 之间无样本，存在明显 gap。**5120 是性价比最优阈值**（unparseable 从 15.1% 降到 2.5%）。
+
+### 已有 val eval 汇总
+
+| Checkpoint | val@2048 (acc) | val@4096 (acc) | unparseable |
+|-----------|---------------|---------------|-------------|
+| ckpt-400 | 80.72% | 82.57% | 1883→1406 |
+| ckpt-600 | 76.78% | 79.18% | 1883→1406 |
+| ckpt-800 | 81.81% | **running** | — |
+| ckpt-1000 | 82.30% | — | — |
+
+### 已启动任务
+
+- **ckpt-800 val@4096** — PID 3125543，正在运行，running_acc=85.0% @ 160/9335
+
+### 建议
+
+1. `build_prompt_ids` 的截断方式有问题：`ids[:max_len]` 从末尾砍，丢失 generation prompt。应改为**截断输入内容而非整个 prompt**（保留 system prompt + 问题结构 + generation prompt，只砍 code/test 内容）。
+2. 长期方案：val eval 统一用 **5120**（2.5% unparseable），或修复截断逻辑后用 4096。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_val-unparseable-diagnose_20260514T145443"
+}
+```
+
+</details>
+
+---

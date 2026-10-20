@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a524f4956a13ce7cd88",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 seetacloud cwm script prep",
+  "task_key": "worker_ssh_d046-seetacloud-cwm-script-prep_20260513T072220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-seetacloud-cwm-script-prep_20260513T072220_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "bb615f5173073e4483491d6ffc11d49078933289b41b07f0ab2fd379d757a234"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**文件路径**: `/home/sonny/exec-sim-repair-verifier/train_repo_cwm.py`\n\n**超参修改前后对比**:\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| learning_rate (`--lr`) | 2e-4 | **5e-5** |\n| weight_decay | 不存在 | **0.01** (新增 argparse + TrainingArguments) |\n| warmup_ratio | 0.1 | **0.05** |\n| save_total_limit | 5 | 5 (无需修改) |\n\n**CWM eval PID 123610**: 仍在运行，已跑 58 分 7 秒。命令为 `eval_repo_cwm.py`，使用 checkpoint-400 在 cuda:0 上执行，进程未被干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-seetacloud-cwm-script-prep.md"
+}

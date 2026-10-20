@@ -1,0 +1,9 @@
+Environment: CPU bfloat16, Qwen3-4B + LoRA, 10 samples
+
+Classification: output_tokens=2.0, latency=9761ms, throughput=0.1024 sps
+CWM Generation: output_tokens=6.2, latency=10612ms, throughput=0.0942 sps
+Ratio (CWM/CLS): tokens=3.1x, latency=1.09x
+
+CWM target token distribution (1890 samples): mean=4.7, median=5.0, p95=7, max=28
+
+Remote file: /home/sonny/exec-sim-repair-verifier/inference_cost_results.json

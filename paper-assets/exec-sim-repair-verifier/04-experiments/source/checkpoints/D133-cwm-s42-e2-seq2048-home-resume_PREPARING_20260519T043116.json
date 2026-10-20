@@ -1,0 +1,28 @@
+{
+  "exp_id": "D133-cwm-s42-e2-seq2048-home-resume",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:48:38.747Z",
+    "updated_at": "2026-05-19T04:31:16.016Z",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && /home/sonny/miniconda3/bin/python eval_repo_cwm.py --checkpoint_dir /home/sonny/exec-sim-repair-verifier/checkpoints/deepseek_cwm_repo_s42_epoch2 --model_name deepseek-ai/deepseek-coder-6.7b-instruct --split test --max_seq_length 2048 --max_new_tokens 512 --batch_size 1 --device cuda:0 --output_dir /home/sonny/exec-sim-repair-verifier/eval_results/deepseek_cwm_repo_s42_e2_seq2048/\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "15872",
+      "log_path": "~/runs/exec-sim-repair-verifier/D133-cwm-s42-e2-seq2048-home-resume.log",
+      "submitted_at": "2026-05-18T23:48:38.132Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T04:31:16.549354+00:00",
+  "trigger": "update_registry"
+}

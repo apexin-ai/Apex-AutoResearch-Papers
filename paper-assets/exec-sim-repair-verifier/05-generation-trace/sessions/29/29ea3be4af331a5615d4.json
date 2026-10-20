@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29ea3be4af331a5615d4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home cuda0 sharding feasibility",
+  "task_key": "worker_check_home-cuda0-sharding-feasibility_20260515T141417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-cuda0-sharding-feasibility_20260515T141417_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "8f6687ffed06560a582421cf724e22bae5ced0246b1cc0d614536415e4baeb0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**home-1x5090 服务器不可达** — 所有 SSH 命令均超时（10s）。\n\n**CWM 8B eval sharding 可行性: NO**\n\n原因：服务器离线或网络不通，无法执行任何操作。\n\n**下一步**：\n1. 确认 home-1x5090 是否开机/网络正常（检查路由器、Wake-on-LAN 等）\n2. 如果短期无法恢复，可考虑在 seetacloud-westd-4x5090 上分片执行 CWM 8B eval（该服务器有 4 张 5090，资源充裕）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-cuda0-sharding-feasibility.md"
+}

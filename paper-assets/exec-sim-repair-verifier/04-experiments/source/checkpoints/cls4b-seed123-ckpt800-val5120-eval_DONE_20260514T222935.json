@@ -1,0 +1,45 @@
+{
+  "exp_id": "cls4b-seed123-ckpt800-val5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:23:23.578Z",
+    "updated_at": "2026-05-14T22:29:34.755Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --device cuda:0",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3172988",
+      "account": "sonny",
+      "data_path": "data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen3-4B",
+      "seed": 123,
+      "checkpoint_source": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+      "eval_data": "val split 9335 samples",
+      "checkpoint_path": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+      "log_path": "~/runs/cls4b-seed123-ckpt800-val5120-eval.log"
+    },
+    "hypothesis": "D063 val@5120: 4B CLS seed123 ckpt-800 在 val set 上评估",
+    "parent": "repo-level-cls-seed123-home",
+    "notes": "诊断结果：PID 3172988 于 14:13 PDT 启动，dtype=bf16（正确），batch_size=16（默认），速率 ~7500 样本/小时，预计 ~15:28 PDT 完成。VRAM 31.7/32.6GB 偏高但未影响性能。无需修复。",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 87.92,
+      "f1_macro": 81.95,
+      "f1_pass": 92.33,
+      "f1_fail": 71.57,
+      "unparseable": 0,
+      "truncated": 234,
+      "total": 9335
+    },
+    "completed_at": "2026-05-14T22:29:34.755Z"
+  },
+  "timestamp": "2026-05-14T22:29:35.285602+00:00",
+  "trigger": "update_registry"
+}

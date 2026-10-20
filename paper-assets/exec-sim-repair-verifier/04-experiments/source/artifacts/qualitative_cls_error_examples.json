@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "purpose": "Dream A5 supplement: CLS error examples",
+    "collected_at": "2026-05-17"
+  },
+  "samples": [
+    {
+      "id": "qwen3-func-cls-false-positive-1",
+      "model": "Qwen3-4B",
+      "level": "func",
+      "task": "CLS",
+      "prediction": 1,
+      "ground_truth": 0,
+      "error_type": "false_positive",
+      "problem_id": "HumanEval/37",
+      "mutation_type": "off_by_one",
+      "input_summary": "sort_even(l) — sorts even-indexed elements while keeping odd-indexed elements in place. Mutation: `l[1::2]` changed to `l[1::1]` (slice step 2→1). Test: `assert tuple(sort_even([1, 2, 3])) == tuple([1, 2, 3])`",
+      "code_snippet": "def sort_even(l: list):\n    evens = l[::2]\n    odds = l[1::1]          # <-- mutated: was l[1::2]\n    evens.sort()\n    ans = []\n    for e, o in zip(evens, odds):\n        ans.extend([e, o])\n    if len(evens) > len(odds):\n        ans.append(evens[-1])\n    return ans",
+      "test_code": "assert tuple(sort_even([1, 2, 3])) == tuple([1, 2, 3])",
+      "error_analysis": "The off-by-one mutation changes the slice step from 2 to 1, making `odds = l[1::1]` capture all elements from index 1 onward instead of only odd-indexed elements. For input [1,2,3], odds becomes [2,3] instead of [2], producing [1,2,3,3] instead of [1,2,3]. The model predicted pass because a single-character change in a slice parameter (::1 vs ::2) requires precise reasoning about Python slice semantics and how the changed length propagates through zip and the conditional append. This represents a class of subtle numeric parameter mutations where the behavioral difference only manifests through downstream length/value mismatches."
+    },
+    {
+      "id": "qwen3-func-cls-false-negative-1",
+      "model": "Qwen3-4B",
+      "level": "func",
+      "task": "CLS",
+      "prediction": 0,
+      "ground_truth": 1,
+      "error_type": "false_negative",
+      "problem_id": "HumanEval/130",
+      "mutation_type": "original",
+      "input_summary": "tri(n) — computes first n+1 numbers of a Tribonacci-like sequence. Original (correct) code. Test: `assert tri(3) == [1, 3, 2.0, 8.0]`",
+      "code_snippet": "def tri(n):\n    if n == 0:\n        return [1]\n    my_tri = [1, 3]\n    for i in range(2, n + 1):\n        if i % 2 == 0:\n            my_tri.append(i / 2 + 1)\n        else:\n            my_tri.append(my_tri[i - 1] + my_tri[i - 2] + (i + 3) / 2)\n    return my_tri",
+      "test_code": "assert tri(3) == [1, 3, 2.0, 8.0]",
+      "error_analysis": "The Tribonacci recurrence is self-referential: tri(n) for odd n depends on tri(n+1), which for even n+1 equals 1+(n+1)/2 = (n+3)/2. The implementation uses this closed-form substitution directly, replacing the forward-reference with `(i+3)/2`. The model predicted fail because verifying this mathematical equivalence requires multi-step algebraic reasoning that goes beyond pattern matching. This is the most error-prone problem in the test set (27 of 160 total FNs come from HumanEval/130), indicating the model systematically struggles with non-trivial mathematical recurrences where correctness depends on algebraic substitution rather than syntactic inspection."
+    },
+    {
+      "id": "qwen3-repo-cls-false-positive-1",
+      "model": "Qwen3-8B",
+      "level": "repo",
+      "task": "CLS",
+      "prediction": 1,
+      "ground_truth": 0,
+      "error_type": "false_positive",
+      "problem_id": "pytest-dev__pytest-7490",
+      "mutation_type": "mutation_boundary_removal",
+      "input_summary": "Diff modifying src/_pytest/skipping.py: boundary removal mutation replaces `if xfailed and not xfailed.run:` with `if True:`, making xfail() execute unconditionally. Test: TestSkip.test_only_skips_marked_test (tests @pytest.mark.skip behavior, not xfail).",
+      "code_snippet_diff": "@@ pytest_runtest_setup @@\n-    if not item.config.option.runxfail:\n-        item._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\n-        if xfailed and not xfailed.run:\n-            xfail(\"[NOTRUN] \" + xfailed.reason)\n+    item._store[xfailed_key] = xfailed = evaluate_xfail_marks(item)\n+    if True:\n+        xfail(\"[NOTRUN] \" + xfailed.reason)",
+      "test_code": "def test_only_skips_marked_test(self, testdir):\n    testdir.makepyfile(\"\"\"\n        import pytest\n        @pytest.mark.skip\n        def test_foo(): pass\n        @pytest.mark.skip(reason=\"nothing in particular\")\n        def test_bar(): pass\n        def test_baz(): assert True\n    \"\"\")\n    result = testdir.runpytest(\"-rs\")\n    result.stdout.fnmatch_lines([\"*nothing in particular*\", \"*1 passed*2 skipped*\"])",
+      "actual_error": "AttributeError: 'NoneType' object has no attribute 'reason' — xfailed is None for tests without xfail marks, but the mutated `if True:` forces unconditional access to xfailed.reason",
+      "error_analysis": "The boundary removal mutation replaces a guarded condition (`if xfailed and not xfailed.run`) with `if True:`, causing `xfail(\"[NOTRUN] \" + xfailed.reason)` to execute even when xfailed is None. The test exercises skip marks (not xfail), so `evaluate_xfail_marks` returns None for all test items. The model predicted pass likely because: (1) the test is about skip behavior and the mutation is in xfail-related code, making the cross-concern interaction non-obvious; (2) the diff is large (two hunks across setup and call phases) and the mutation's effect requires tracing None-propagation through the pytest hook lifecycle. This illustrates a systematic weakness in repo-level CLS: boundary removal mutations that convert guarded attribute access into unconditional access cause NoneType errors, but the model fails to trace the None path when the guard condition involves framework-internal state (xfailed_key store)."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "repo-level-cwm-v7",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:52:44.372Z",
+    "updated_at": "2026-05-12T21:45:43.352Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "89516",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "note": "infra failure: SeetaCloud 平台 SIGTERM kill tmux server。无 metrics，非方法论 negative。",
+      "checkpoint_path": "none",
+      "log_path": "/root/runs/exec-sim-repair-verifier/repo-level-cwm-v6.log"
+    },
+    "hypothesis": "Repo-level CWM v7 (= v6 restart with eval_steps=500 fix). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim).",
+    "conclusion": "failed",
+    "completed_at": "2026-05-12T20:56:30.827Z",
+    "notes": "CWM v7 (v6 restart with eval_steps=500 fix) 完成，结论 negative。无 metrics 记录——上一 session 匆忙标记。v1-v7 零次成功产出 repo-level CWM metrics：v1-v2 代码 bug, v3 磁盘满, v4 CLI 参数+并行 OOM, v5 save_strategy 参数, v6 SIGTERM, v7 待诊断。Framing 调整提案已提交 Director，等待 diagnose Worker 确认 v7 root cause。"
+  },
+  "timestamp": "2026-05-12T21:45:43.497682+00:00",
+  "trigger": "update_registry"
+}

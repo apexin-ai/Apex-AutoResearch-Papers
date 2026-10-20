@@ -1,0 +1,540 @@
+# code 14b table and figure scripts
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_code_14b-table-and-figure-scripts_20260523T052047.jsonl`
+- **Structured JSON:** [`15d27a46cb08363de681.json`](../../sessions/15/15d27a46cb08363de681.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T05:22:46.350126+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T05:22:46.350496+00:00_
+
+1	import matplotlib
+2	matplotlib.use('Agg')
+3	import matplotlib.pyplot as plt
+4	import matplotlib.ticker as mticker
+5	import numpy as np
+6	from pathlib import Path
+7	
+8	sizes = [4, 8, 14]
+9	cls_acc = [88.68, 89.94, 89.21]
+10	cwm_acc = [87.36, 87.33, 89.26]
+11	
+12	fig, ax = plt.subplots(figsize=(5, 3.5))
+13	
+14	ax.axvspan(12.5, 15.5, color='#f0f0f0', zorder=0)
+15	ax.axvline(x=13, color='#cccccc', linestyle=':', linewidth=0.8, zorder=0)
+16	ax.text(14, 90.65, 'exploratory', fontsize=7, color='#888888',
+17	        ha='center', fontstyle='italic')
+18	
+19	ax.fill_between(sizes, cls_acc, cwm_acc, color='#e0e0e0', alpha=0.5, zorder=1)
+20	
+21	ax.plot(sizes[:2], cls_acc[:2], 'o-', color='#2c7fb8', linewidth=1.8,
+22	        markersize=7, markerfacecolor='#2c7fb8', markeredgecolor='#2c7fb8',
+23	        label='CLS', zorder=3)
+24	ax.plot(sizes[:2], cwm_acc[:2], 's-', color='#d95f02', linewidth=1.8,
+25	        markersize=7, markerfacecolor='#d95f02', markeredgecolor='#d95f02',
+26	        label='CWM', zorder=3)
+27	
+28	ax.plot(sizes[2], cls_acc[2], 'o', color='#2c7fb8', markersize=7,
+29	        markerfacecolor='white', markeredgecolor='#2c7fb8', markeredgewidth=1.8, zorder=3)
+30	ax.plot(sizes[2], cwm_acc[2], 's', color='#d95f02', markersize=7,
+31	        markerfacecolor='white', markeredgecolor='#d95f02', markeredgewidth=1.8, zorder=3)
+32	
+33	ax.plot([sizes[1], sizes[2]], [cls_acc[1], cls_acc[2]], '--', color='#2c7fb8',
+34	        linewidth=1.8, zorder=2)
+35	ax.plot([sizes[1], sizes[2]], [cwm_acc[1], cwm_acc[2]], '--', color='#d95f02',
+36	        linewidth=1.8, zorder=2)
+37	
+38	mid_4b = (cls_acc[0] + cwm_acc[0]) / 2
+39	ax.annotate('1.32 pp', xy=(4, mid_4b), fontsize=7.5, fontweight='bold',
+40	            ha='center', va='center',
+41	            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))
+42	
+43	mid_8b = (cls_acc[1] + cwm_acc[1]) / 2
+44	ax.annotate('2.62 pp', xy=(8, mid_8b), fontsize=7.5, fontweight='bold',
+45	            ha='center', va='center',
+46	      
+…[truncated 1334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T05:22:46.350698+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tab:scaling",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+  "output_mode": "content",
+  "-C": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tab:scaling",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+    "output_mode": "content",
+    "-C": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T05:22:46.350919+00:00_
+
+28-\caption{Function-level per-test accuracy on HumanEval+MBPP ($n{=}1{,}890$). Mean $\pm$ std over seeds. Seeds 42/123/456: bfloat16; 789/0: NF4. DeepSeek: $n{=}2$ seeds; std reported for descriptive comparison, not inferential. \traj{} evaluated on 1,032-sample subset (447 matched variants). All prompting baselines use NF4 4-bit quantization for fair cross-scale comparison.}
+29-\label{tab:main_results}
+30-\resizebox{\columnwidth}{!}{%
+31-\setlength{\tabcolsep}{4pt}
+32-\begin{tabular}{llcc}
+33-\toprule
+34-\textbf{Method} & \textbf{Model} & \textbf{Seeds} & \textbf{Accuracy (\%)} \\
+35-\midrule
+36-\multicolumn{4}{l}{\emph{Qwen3 (primary)}} \\
+37-\cls{} (fine-tuned) & 4B & 5 & \textbf{88.43 $\pm$ 0.78} \\
+38-\cwm{} (fine-tuned) & 4B & 5 & \underline{87.19 $\pm$ 0.37} \\
+39-\traj{} (fine-tuned) & 4B & 5 & 86.30 $\pm$ 0.97 \\
+40-\midrule
+41-\multicolumn{4}{l}{\emph{DeepSeek-Coder (cross-model consistency check)}} \\
+42-\cls{} (fine-tuned) & 6.7B & 2 & \textbf{86.85 $\pm$ 0.11} \\
+43-\cwm{} (fine-tuned) & 6.7B & 2 & \underline{86.83 $\pm$ 1.49} \\
+44-\traj{} (fine-tuned) & 6.7B & 2 & 84.16 $\pm$ 1.30 \\
+45-\midrule
+46-\multicolumn{4}{l}{\emph{Prompting baselines}} \\
+47-0-shot & 8B (Qwen3) & 1 & 60.53 \\
+48-0-shot & 14B (Qwen3) & 1 & 66.24 \\
+49-0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\
+50-ZS LLM-as-judge & 8B (Qwen3) & 1 & 64.40 \\
+51-ZS LLM-as-judge & 6.7B (DeepSeek) & 1 & 56.56 \\
+52-ZS LLM-as-judge & 32B (NF4) & 1 & 71.69 \\
+53-3-shot ICL & 8B (Qwen3) & 1 & 60.42 \\
+54-3-shot ICL & 14B (Qwen3) & 1 & 73.12 \\
+55-3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\
+56-\midrule
+57-Majority (pass) & --- & --- & 51.75 \\
+58-\bottomrule
+59-\end{tabular}}
+60-\end{table}
+61-
+62-[Omitted long context line]
+63-
+64-
+65-\subsection{Scaling Behavior}
+66-\label{sec:scaling}
+67-
+68:Beyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\ref{tab:scaling} compares all three formulations at 4B, 8B, and 14B. The 4B and 8B rows use seeds 42 and 123; th
+…[truncated 2882 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T05:22:46.351219+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/update_14b_table.py",
+  "content": "\"\"\"Update Table 2 (tab:scaling) with 14B 3-seed results + TOST equivalence test.\"\"\"\n\nimport numpy as np\nfrom scipy import stats\n\n# ── 14B seed accuracies ──────────────────────────────────────────────\n# Fill in after training completes. s42 already evaluated.\nCLS_SEEDS = {\"s42\": 89.21, \"s123\": None, \"s456\": None}  # placeholder\nCWM_SEEDS = {\"s42\": 89.26, \"s123\": None, \"s456\": None}  # placeholder\n\n# 8B means (for Δ computation)\nCLS_8B_MEAN = 89.94\nCWM_8B_MEAN = 87.33\n\n# TOST parameters\nSESOI = 2.0  # ±2 pp, consistent with paper\n\n\ndef tost_ind(x, y, sesoi):\n    \"\"\"Two One-Sided T-tests for equivalence (independent samples).\"\"\"\n    n1, n2 = len(x), len(y)\n    diff = np.mean(x) - np.mean(y)\n    se = np.sqrt(np.var(x, ddof=1) / n1 + np.var(y, ddof=1) / n2)\n    df = n1 + n2 - 2\n\n    if se == 0:\n        p_lower = 0.0 if diff > -sesoi else 1.0\n        p_upper = 0.0 if diff < sesoi else 1.0\n    else:\n        t_lower = (diff - (-sesoi)) / se\n        t_upper = (diff - sesoi) / se\n        p_lower = 1 - stats.t.cdf(t_lower, df)\n        p_upper = stats.t.cdf(t_upper, df)\n\n    return max(p_lower, p_upper), diff, se\n\n\ndef fmt_delta(val):\n    if val >= 0:\n        return f\"+{val:.2f}\"\n    return f\"$-${abs(val):.2f}\"\n\n\ndef main():\n    # Validate inputs\n    cls_vals = []\n    cwm_vals = []\n    seeds_present = []\n    for seed in [\"s42\", \"s123\", \"s456\"]:\n        c, w = CLS_SEEDS[seed], CWM_SEEDS[seed]\n        if c is not None and w is not None:\n            cls_vals.append(c)\n            cwm_vals.append(w)\n            seeds_present.append(seed)\n\n    n = len(cls_vals)\n    print(f\"Seeds with data: {seeds_present} (n={n})\")\n\n    if n == 0:\n        print(\"ERROR: No seed data available. Fill in CLS_SEEDS and CWM_SEEDS.\")\n        return\n\n    cls_arr = np.array(cls_vals)\n    cwm_arr = np.array(cwm_vals)\n\n    cls_mean, cls_std = cls_arr.mean(), cls_arr.std(ddof=1) if n > 1 else 0.0\n    cwm_mean, cwm_std = cwm_arr.mean(), cwm_arr.std(ddof=1) if n > 1 else 0.0\n\n    print(f\"\\n{'='*60}\")\n    print(\"14B 3-seed results\")\n    print(f\"{'='*60}\")\n    print(f\"CLS: {cls_mean:.2f} ± {cls_std:.2f}  (seeds: {cls_vals})\")\n    print(f\"CWM: {cwm_mean:.2f} ± {cwm_std:.2f}  (seeds: {cwm_vals})\")\n    print(f\"Gap: {abs(cls_mean - cwm_mean):.2f} pp (CLS - CWM = {cls_mean - cwm_mean:+.2f})\")\n\n    # TOST\n    if n >= 2:\n        p_equiv, diff, se = tost_ind(cls_arr, cwm_arr, SESOI)\n        print(f\"\\nTOST equivalence test (SESOI = ±{SESOI} pp):\")\n        print(f\"  Mean diff (CLS-CWM): {diff:+.4f}\")\n        print(f\"  SE: {se:.4f}\")\n        print(f\"  p-value: {p_equiv:.4f}\")\n        if p_equiv < 0.05:\n            print(f\"  → Equivalent at α=0.05\")\n        else:\n            print(f\"  → NOT equivalent at α=0.05 (p={p_equiv:.4f})\")\n    else:\n        print(\"\\nTOST: skipped (need ≥2 seeds)\")\n\n    # Deltas from 8B\n    cls_delta = cls_mean - CLS_8B_MEAN\n    cwm_delta = cwm_mean - CWM_8B_MEAN\n\n    # LaTeX output\n    print(f\"\\n{'='*60}\")\n    print(\"Updated LaTeX rows for tab:scaling\")\n    print(f\"{'='*60}\")\n\n    if n == 3:\n        # Full 3-seed row: need s456 column added to table\n        print(\"% NOTE: Add s456 column to table header\")\n        print(f\"% \\\\textbf{{Method}} & \\\\textbf{{Size}} & \\\\textbf{{s42}} & \\\\textbf{{s123}} & \\\\textbf{{s456}} & \\\\textbf{{Mean}} & \\\\textbf{{$\\\\Delta$}} \\\\\\\\\")\n        print()\n        s42c, s123c, s456c = CLS_SEEDS[\"s42\"], CLS_SEEDS[\"s123\"], CLS_SEEDS[\"s456\"]\n        s42w, s123w, s456w = CWM_SEEDS[\"s42\"], CWM_SEEDS[\"s123\"], CWM_SEEDS[\"s456\"]\n        print(f\" & 14B & {s42c:.2f} & {s123c:.2f} & {s456c:.2f} & \\\\textbf{{{cls_mean:.2f} $\\\\pm$ {cls_std:.2f}}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {s42w:.2f} & {s123w:.2f} & {s456w:.2f} & {cwm_mean:.2f} $\\\\pm$ {cwm_std:.2f} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n    elif n == 2:\n        # 2-seed row (current table format works)\n        available = {s: (CLS_SEEDS[s], CWM_SEEDS[s]) for s in seeds_present}\n        s_names = list(available.keys())\n        print(f\" & 14B & {available[s_names[0]][0]:.2f} & {available[s_names[1]][0]:.2f} & \\\\textbf{{{cls_mean:.2f}}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {available[s_names[0]][1]:.2f} & {available[s_names[1]][1]:.2f} & {cwm_mean:.2f} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n    else:\n        # Single seed (current state)\n        print(f\" & 14B & {cls_vals[0]:.2f} & --- & {cls_vals[0]:.2f}\\\\textsuperscript{{$\\\\dagger$}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {cwm_vals[0]:.2f} & --- & {cwm_vals[0]:.2f}\\\\textsuperscript{{$\\\\dagger$}} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n\n    # Also print caption update suggestion\n    if n == 3:\n        print(f\"\\n% Suggested caption update:\")\n        print(f\"% Seeds 42/123/456 (14B), seeds 42/123 (4B/8B). All bfloat16 inference.\")\n        print(f\"% Remove 'exploratory' qualifier for 14B.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/update_14b_table.py",
+    "content": "\"\"\"Update Table 2 (tab:scaling) with 14B 3-seed results + TOST equivalence test.\"\"\"\n\nimport numpy as np\nfrom scipy import stats\n\n# ── 14B seed accuracies ──────────────────────────────────────────────\n# Fill in after training completes. s42 already evaluated.\nCLS_SEEDS = {\"s42\": 89.21, \"s123\": None, \"s456\": None}  # placeholder\nCWM_SEEDS = {\"s42\": 89.26, \"s123\": None, \"s456\": None}  # placeholder\n\n# 8B means (for Δ computation)\nCLS_8B_MEAN = 89.94\nCWM_8B_MEAN = 87.33\n\n# TOST parameters\nSESOI = 2.0  # ±2 pp, consistent with paper\n\n\ndef tost_ind(x, y, sesoi):\n    \"\"\"Two One-Sided T-tests for equivalence (independent samples).\"\"\"\n    n1, n2 = len(x), len(y)\n    diff = np.mean(x) - np.mean(y)\n    se = np.sqrt(np.var(x, ddof=1) / n1 + np.var(y, ddof=1) / n2)\n    df = n1 + n2 - 2\n\n    if se == 0:\n        p_lower = 0.0 if diff > -sesoi else 1.0\n        p_upper = 0.0 if diff < sesoi else 1.0\n    else:\n        t_lower = (diff - (-sesoi)) / se\n        t_upper = (diff - sesoi) / se\n        p_lower = 1 - stats.t.cdf(t_lower, df)\n        p_upper = stats.t.cdf(t_upper, df)\n\n    return max(p_lower, p_upper), diff, se\n\n\ndef fmt_delta(val):\n    if val >= 0:\n        return f\"+{val:.2f}\"\n    return f\"$-${abs(val):.2f}\"\n\n\ndef main():\n    # Validate inputs\n    cls_vals = []\n    cwm_vals = []\n    seeds_present = []\n    for seed in [\"s42\", \"s123\", \"s456\"]:\n        c, w = CLS_SEEDS[seed], CWM_SEEDS[seed]\n        if c is not None and w is not None:\n            cls_vals.append(c)\n            cwm_vals.append(w)\n            seeds_present.append(seed)\n\n    n = len(cls_vals)\n    print(f\"Seeds with data: {seeds_present} (n={n})\")\n\n    if n == 0:\n        print(\"ERROR: No seed data available. Fill in CLS_SEEDS and CWM_SEEDS.\")\n        return\n\n    cls_arr = np.array(cls_vals)\n    cwm_arr = np.array(cwm_vals)\n\n    cls_mean, cls_std = cls_arr.mean(), cls_arr.std(ddof=1) if n > 1 else 0.0\n    cwm_mean, cwm_std = cwm_arr.mean(), cwm_arr.std(ddof=1) if n > 1 else 0.0\n\n    print(f\"\\n{'='*60}\")\n    print(\"14B 3-seed results\")\n    print(f\"{'='*60}\")\n    print(f\"CLS: {cls_mean:.2f} ± {cls_std:.2f}  (seeds: {cls_vals})\")\n    print(f\"CWM: {cwm_mean:.2f} ± {cwm_std:.2f}  (seeds: {cwm_vals})\")\n    print(f\"Gap: {abs(cls_mean - cwm_mean):.2f} pp (CLS - CWM = {cls_mean - cwm_mean:+.2f})\")\n\n    # TOST\n    if n >= 2:\n        p_equiv, diff, se = tost_ind(cls_arr, cwm_arr, SESOI)\n        print(f\"\\nTOST equivalence test (SESOI = ±{SESOI} pp):\")\n        print(f\"  Mean diff (CLS-CWM): {diff:+.4f}\")\n        print(f\"  SE: {se:.4f}\")\n        print(f\"  p-value: {p_equiv:.4f}\")\n        if p_equiv < 0.05:\n            print(f\"  → Equivalent at α=0.05\")\n        else:\n            print(f\"  → NOT equivalent at α=0.05 (p={p_equiv:.4f})\")\n    else:\n        print(\"\\nTOST: skipped (need ≥2 seeds)\")\n\n    # Deltas from 8B\n    cls_delta = cls_mean - CLS_8B_MEAN\n    cwm_delta = cwm_mean - CWM_8B_MEAN\n\n    # LaTeX output\n    print(f\"\\n{'='*60}\")\n    print(\"Updated LaTeX rows for tab:scaling\")\n    print(f\"{'='*60}\")\n\n    if n == 3:\n        # Full 3-seed row: need s456 column added to table\n        print(\"% NOTE: Add s456 column to table header\")\n        print(f\"% \\\\textbf{{Method}} & \\\\textbf{{Size}} & \\\\textbf{{s42}} & \\\\textbf{{s123}} & \\\\textbf{{s456}} & \\\\textbf{{Mean}} & \\\\textbf{{$\\\\Delta$}} \\\\\\\\\")\n        print()\n        s42c, s123c, s456c = CLS_SEEDS[\"s42\"], CLS_SEEDS[\"s123\"], CLS_SEEDS[\"s456\"]\n        s42w, s123w, s456w = CWM_SEEDS[\"s42\"], CWM_SEEDS[\"s123\"], CWM_SEEDS[\"s456\"]\n        print(f\" & 14B & {s42c:.2f} & {s123c:.2f} & {s456c:.2f} & \\\\textbf{{{cls_mean:.2f} $\\\\pm$ {cls_std:.2f}}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {s42w:.2f} & {s123w:.2f} & {s456w:.2f} & {cwm_mean:.2f} $\\\\pm$ {cwm_std:.2f} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n    elif n == 2:\n        # 2-seed row (current table format works)\n        available = {s: (CLS_SEEDS[s], CWM_SEEDS[s]) for s in seeds_present}\n        s_names = list(available.keys())\n        print(f\" & 14B & {available[s_names[0]][0]:.2f} & {available[s_names[1]][0]:.2f} & \\\\textbf{{{cls_mean:.2f}}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {available[s_names[0]][1]:.2f} & {available[s_names[1]][1]:.2f} & {cwm_mean:.2f} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n    else:\n        # Single seed (current state)\n        print(f\" & 14B & {cls_vals[0]:.2f} & --- & {cls_vals[0]:.2f}\\\\textsuperscript{{$\\\\dagger$}} & {fmt_delta(cls_delta)} \\\\\\\\\")\n        print(f\" & 14B & {cwm_vals[0]:.2f} & --- & {cwm_vals[0]:.2f}\\\\textsuperscript{{$\\\\dagger$}} & {fmt_delta(cwm_delta)} \\\\\\\\\")\n\n    # Also print caption update suggestion\n    if n == 3:\n        print(f\"\\n% Suggested caption update:\")\n        print(f\"% Seeds 42/123/456 (14B), seeds 42/123 (4B/8B). All bfloat16 inference.\")\n        print(f\"% Remove 'exploratory' qualifier for 14B.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T05:22:46.351474+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/update_14b_table.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T05:22:46.351635+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py",
+  "content": "\"\"\"Figure 2 v3: parameterized 14B data with confirmed/exploratory toggle.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport numpy as np\nfrom pathlib import Path\n\n# ── Configuration ────────────────────────────────────────────────────\nCONFIRMED_14B = False  # Set True after 3-seed results confirm\n\n# 4B/8B: established multi-seed means (do not change)\nsizes = [4, 8, 14]\ncls_acc_4b = 88.68\ncls_acc_8b = 89.94\ncwm_acc_4b = 87.36\ncwm_acc_8b = 87.33\n\n# 14B: fill with 3-seed mean after training\ncls_acc_14b = 89.21  # placeholder (s42 only)\ncwm_acc_14b = 89.26  # placeholder (s42 only)\n\ncls_acc = [cls_acc_4b, cls_acc_8b, cls_acc_14b]\ncwm_acc = [cwm_acc_4b, cwm_acc_8b, cwm_acc_14b]\n\n# ── Plot ─────────────────────────────────────────────────────────────\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nif not CONFIRMED_14B:\n    ax.axvspan(12.5, 15.5, color='#f0f0f0', zorder=0)\n    ax.axvline(x=13, color='#cccccc', linestyle=':', linewidth=0.8, zorder=0)\n    ax.text(14, 90.65, 'exploratory', fontsize=7, color='#888888',\n            ha='center', fontstyle='italic')\n\nax.fill_between(sizes, cls_acc, cwm_acc, color='#e0e0e0', alpha=0.5, zorder=1)\n\nCLS_COLOR = '#2c7fb8'\nCWM_COLOR = '#d95f02'\n\nif CONFIRMED_14B:\n    # All 3 points: solid line, filled markers\n    ax.plot(sizes, cls_acc, 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes, cwm_acc, 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\nelse:\n    # 4B-8B: solid line, filled markers\n    ax.plot(sizes[:2], cls_acc[:2], 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes[:2], cwm_acc[:2], 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\n    # 14B: hollow markers\n    ax.plot(sizes[2], cls_acc[2], 'o', color=CLS_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CLS_COLOR, markeredgewidth=1.8, zorder=3)\n    ax.plot(sizes[2], cwm_acc[2], 's', color=CWM_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CWM_COLOR, markeredgewidth=1.8, zorder=3)\n    # 8B-14B: dashed line\n    ax.plot([sizes[1], sizes[2]], [cls_acc[1], cls_acc[2]], '--', color=CLS_COLOR,\n            linewidth=1.8, zorder=2)\n    ax.plot([sizes[1], sizes[2]], [cwm_acc[1], cwm_acc[2]], '--', color=CWM_COLOR,\n            linewidth=1.8, zorder=2)\n\n# Gap annotations\ngap_4b = abs(cls_acc[0] - cwm_acc[0])\nmid_4b = (cls_acc[0] + cwm_acc[0]) / 2\nax.annotate(f'{gap_4b:.2f} pp', xy=(4, mid_4b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_8b = abs(cls_acc[1] - cwm_acc[1])\nmid_8b = (cls_acc[1] + cwm_acc[1]) / 2\nax.annotate(f'{gap_8b:.2f} pp', xy=(8, mid_8b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_14b = abs(cls_acc[2] - cwm_acc[2])\nmid_14b = (cls_acc[2] + cwm_acc[2]) / 2\nif CONFIRMED_14B:\n    ax.annotate(f'{gap_14b:.2f} pp', xy=(14, mid_14b), fontsize=7.5, fontweight='bold',\n                ha='center', va='center',\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\nelse:\n    ax.annotate('$\\\\approx$0 pp', xy=(14, mid_14b), xytext=(13.2, 90.15),\n                fontsize=7.5, fontweight='bold', ha='center', va='center',\n                arrowprops=dict(arrowstyle='->', color='#888888', lw=0.8),\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\nax.set_xlabel('Model Size', fontsize=10)\nax.set_ylabel('Accuracy (%)', fontsize=10)\nax.set_xticks(sizes)\nax.set_xticklabels(['4B', '8B', '14B'], fontsize=9)\nax.set_xlim(2.5, 15.5)\nax.set_ylim(86, 91)\nax.yaxis.set_major_locator(mticker.MultipleLocator(1))\nax.tick_params(axis='y', labelsize=9)\n\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\nax.grid(axis='y', linestyle='--', alpha=0.3, linewidth=0.5)\n\nax.legend(loc='lower right', fontsize=8.5, framealpha=0.9, edgecolor='#cccccc')\n\nfig.tight_layout(pad=0.4)\n\nout_dir = Path('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper')\nfig.savefig(out_dir / 'figure2_v3.pdf', bbox_inches='tight', dpi=300)\nfig.savefig(out_dir / 'figure2_v3.png', bbox_inches='tight', dpi=300)\nplt.close()\nprint('Done.')\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py",
+    "content": "\"\"\"Figure 2 v3: parameterized 14B data with confirmed/exploratory toggle.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport numpy as np\nfrom pathlib import Path\n\n# ── Configuration ────────────────────────────────────────────────────\nCONFIRMED_14B = False  # Set True after 3-seed results confirm\n\n# 4B/8B: established multi-seed means (do not change)\nsizes = [4, 8, 14]\ncls_acc_4b = 88.68\ncls_acc_8b = 89.94\ncwm_acc_4b = 87.36\ncwm_acc_8b = 87.33\n\n# 14B: fill with 3-seed mean after training\ncls_acc_14b = 89.21  # placeholder (s42 only)\ncwm_acc_14b = 89.26  # placeholder (s42 only)\n\ncls_acc = [cls_acc_4b, cls_acc_8b, cls_acc_14b]\ncwm_acc = [cwm_acc_4b, cwm_acc_8b, cwm_acc_14b]\n\n# ── Plot ─────────────────────────────────────────────────────────────\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nif not CONFIRMED_14B:\n    ax.axvspan(12.5, 15.5, color='#f0f0f0', zorder=0)\n    ax.axvline(x=13, color='#cccccc', linestyle=':', linewidth=0.8, zorder=0)\n    ax.text(14, 90.65, 'exploratory', fontsize=7, color='#888888',\n            ha='center', fontstyle='italic')\n\nax.fill_between(sizes, cls_acc, cwm_acc, color='#e0e0e0', alpha=0.5, zorder=1)\n\nCLS_COLOR = '#2c7fb8'\nCWM_COLOR = '#d95f02'\n\nif CONFIRMED_14B:\n    # All 3 points: solid line, filled markers\n    ax.plot(sizes, cls_acc, 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes, cwm_acc, 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\nelse:\n    # 4B-8B: solid line, filled markers\n    ax.plot(sizes[:2], cls_acc[:2], 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes[:2], cwm_acc[:2], 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\n    # 14B: hollow markers\n    ax.plot(sizes[2], cls_acc[2], 'o', color=CLS_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CLS_COLOR, markeredgewidth=1.8, zorder=3)\n    ax.plot(sizes[2], cwm_acc[2], 's', color=CWM_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CWM_COLOR, markeredgewidth=1.8, zorder=3)\n    # 8B-14B: dashed line\n    ax.plot([sizes[1], sizes[2]], [cls_acc[1], cls_acc[2]], '--', color=CLS_COLOR,\n            linewidth=1.8, zorder=2)\n    ax.plot([sizes[1], sizes[2]], [cwm_acc[1], cwm_acc[2]], '--', color=CWM_COLOR,\n            linewidth=1.8, zorder=2)\n\n# Gap annotations\ngap_4b = abs(cls_acc[0] - cwm_acc[0])\nmid_4b = (cls_acc[0] + cwm_acc[0]) / 2\nax.annotate(f'{gap_4b:.2f} pp', xy=(4, mid_4b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_8b = abs(cls_acc[1] - cwm_acc[1])\nmid_8b = (cls_acc[1] + cwm_acc[1]) / 2\nax.annotate(f'{gap_8b:.2f} pp', xy=(8, mid_8b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_14b = abs(cls_acc[2] - cwm_acc[2])\nmid_14b = (cls_acc[2] + cwm_acc[2]) / 2\nif CONFIRMED_14B:\n    ax.annotate(f'{gap_14b:.2f} pp', xy=(14, mid_14b), fontsize=7.5, fontweight='bold',\n                ha='center', va='center',\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\nelse:\n    ax.annotate('$\\\\approx$0 pp', xy=(14, mid_14b), xytext=(13.2, 90.15),\n                fontsize=7.5, fontweight='bold', ha='center', va='center',\n                arrowprops=dict(arrowstyle='->', color='#888888', lw=0.8),\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\nax.set_xlabel('Model Size', fontsize=10)\nax.set_ylabel('Accuracy (%)', fontsize=10)\nax.set_xticks(sizes)\nax.set_xticklabels(['4B', '8B', '14B'], fontsize=9)\nax.set_xlim(2.5, 15.5)\nax.set_ylim(86, 91)\nax.yaxis.set_major_locator(mticker.MultipleLocator(1))\nax.tick_params(axis='y', labelsize=9)\n\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\nax.grid(axis='y', linestyle='--', alpha=0.3, linewidth=0.5)\n\nax.legend(loc='lower right', fontsize=8.5, framealpha=0.9, edgecolor='#cccccc')\n\nfig.tight_layout(pad=0.4)\n\nout_dir = Path('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/figures/paper')\nfig.savefig(out_dir / 'figure2_v3.pdf', bbox_inches='tight', dpi=300)\nfig.savefig(out_dir / 'figure2_v3.png', bbox_inches='tight', dpi=300)\nplt.close()\nprint('Done.')\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T05:22:46.351861+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T05:22:46.352028+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 artifacts/update_14b_table.py",
+  "description": "Run update_14b_table.py with placeholder data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 artifacts/update_14b_table.py",
+    "description": "Run update_14b_table.py with placeholder data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T05:22:46.352159+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 artifacts/plot_figure2_v3.py",
+  "description": "Run plot_figure2_v3.py with placeholder data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 artifacts/plot_figure2_v3.py",
+    "description": "Run plot_figure2_v3.py with placeholder data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T05:22:46.352292+00:00_
+
+Seeds with data: ['s42'] (n=1)
+
+============================================================
+14B 3-seed results
+============================================================
+CLS: 89.21 ± 0.00  (seeds: [89.21])
+CWM: 89.26 ± 0.00  (seeds: [89.26])
+Gap: 0.05 pp (CLS - CWM = -0.05)
+
+TOST: skipped (need ≥2 seeds)
+
+============================================================
+Updated LaTeX rows for tab:scaling
+============================================================
+ & 14B & 89.21 & --- & 89.21\textsuperscript{$\dagger$} & $-$0.73 \\
+ & 14B & 89.26 & --- & 89.26\textsuperscript{$\dagger$} & +1.93 \\
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T05:22:46.352424+00:00_
+
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T05:22:46.352561+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport runpy, sys\n# Patch the module to test confirmed path\ncode = open('artifacts/plot_figure2_v3.py').read()\ncode = code.replace('CONFIRMED_14B = False', 'CONFIRMED_14B = True')\nexec(code)\n\"",
+  "description": "Test plot_figure2_v3.py with CONFIRMED_14B=True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport runpy, sys\n# Patch the module to test confirmed path\ncode = open('artifacts/plot_figure2_v3.py').read()\ncode = code.replace('CONFIRMED_14B = False', 'CONFIRMED_14B = True')\nexec(code)\n\"",
+    "description": "Test plot_figure2_v3.py with CONFIRMED_14B=True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T05:22:46.352682+00:00_
+
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-23T05:22:46.352853+00:00_
+
+两个脚本都通过验证，`CONFIRMED_14B` 的 `True`/`False` 两条路径均正常。
+
+产出：
+- **`artifacts/update_14b_table.py`** — 顶部填入 s123/s456 accuracy 后运行，输出 mean±std、TOST p-value、LaTeX 行。当前仅有 s42 数据时自动跳过 TOST。3-seed 完整时会提示需新增 s456 列。
+- **`artifacts/plot_figure2_v3.py`** — 顶部修改 `cls_acc_14b`/`cwm_acc_14b` 和 `CONFIRMED_14B`。确认后自动切换为实线+实心 marker，移除 exploratory 标注，gap 使用实际数值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_14b-table-and-figure-scripts_20260523T052047"
+}
+```
+
+</details>
+
+---

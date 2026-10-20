@@ -1,0 +1,45 @@
+{
+  "exp_id": "cls8b-s42-ckpt400-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:18:24.242Z",
+    "updated_at": "2026-05-14T21:40:29.170Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --max_new_tokens 512 --batch_size 1 --device cuda:0",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "291891",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt400-test8192-eval.log",
+      "submitted_at": "2026-05-14T21:18:23.942Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B + CLS LoRA s42",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-400",
+      "eval_data": "test split",
+      "hypothesis": "CRITICAL D063: 8B CLS s42 ckpt-400 test@8192, eliminate max_seq_length confound",
+      "max_seq_length": 8192,
+      "parent": "repo-level-cls-8b-conda",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-400",
+      "result_accuracy": 84.79,
+      "result_f1_macro": 81.18,
+      "result_f1_fail": 72.93,
+      "result_f1_pass": 89.43,
+      "wall_clock_seconds": 1325.2,
+      "gpu_hours": 0.37
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T21:40:29.170Z"
+  },
+  "timestamp": "2026-05-14T21:40:29.377730+00:00",
+  "trigger": "update_registry"
+}

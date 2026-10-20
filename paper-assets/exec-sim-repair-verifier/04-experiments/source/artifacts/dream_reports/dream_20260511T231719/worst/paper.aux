@@ -1,0 +1,88 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{chen2024swebench,jimenez2024swebench}
+\citation{zhang2025swerm}
+\citation{ding2024semcoder}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ding2024semcoder}
+\citation{qwen2025qwen3}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Experimental Setup}{2}{section.2}\protected@file@percent }
+\newlabel{sec:method}{{2}{2}{Experimental Setup}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task Formulations}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direct Classification (Cls).}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code World Model Generation (CWM).}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-then-Judge (TtJ).}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Models and Training}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Evaluation Metrics}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}SWE-bench-PerTest Dataset}{2}{subsection.2.4}\protected@file@percent }
+\newlabel{sec:dataset}{{2.4}{2}{SWE-bench-PerTest Dataset}{subsection.2.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Multi-seed function-level results (Qwen3-4B LoRA). $\Delta $ = Cls $-$ CWM. No comparison reaches significance at $p < 0.05$.}}{3}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:multiseed}{{1}{3}{Multi-seed function-level results (Qwen3-4B LoRA). $\Delta $ = Cls $-$ CWM. No comparison reaches significance at $p < 0.05$}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Trace-then-Judge ablation (Qwen3-4B, seed 0).}}{3}{table.caption.6}\protected@file@percent }
+\newlabel{tab:ttj}{{2}{3}{Trace-then-Judge ablation (Qwen3-4B, seed 0)}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Function-Level Equivalence}{3}{section.3}\protected@file@percent }
+\newlabel{sec:func}{{3}{3}{Function-Level Equivalence}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Classification $\approx $ Generation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why is generation not harder?}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Trace-then-Judge Adds No Value}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Scaling Does Not Break Equivalence}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Per-test vs.\ Trajectory-Level Granularity}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scaling behavior: Cls vs.\ CWM at 4B and 8B.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:scaling}{{3}{4}{Scaling behavior: Cls vs.\ CWM at 4B and 8B}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-test vs.\ trajectory-level verification (function-level).}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:traj}{{4}{4}{Per-test vs.\ trajectory-level verification (function-level)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Repo-Level Equivalence}{4}{section.4}\protected@file@percent }
+\newlabel{sec:repo}{{4}{4}{Repo-Level Equivalence}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{CWM ``fails'' literally but succeeds semantically.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge baselines.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Oracle Accuracy--Utility Frontier}{4}{section.5}\protected@file@percent }
+\newlabel{sec:frontier}{{5}{4}{Oracle Accuracy--Utility Frontier}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}F2P-Stratified Analysis}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Repo-level Cls vs.\ CWM on \textsc  {SWE-bench-PerTest}.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:repo}{{5}{5}{Repo-level Cls vs.\ CWM on \textsc {SWE-bench-PerTest}}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LLM-as-Judge zero-shot baselines (function-level).}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:llmjudge}{{6}{5}{LLM-as-Judge zero-shot baselines (function-level)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Error Correlation Structure}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Negative Characterization}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Downstream Diagnostic Utility}{5}{section.6}\protected@file@percent }
+\newlabel{sec:diagnostic}{{6}{5}{Downstream Diagnostic Utility}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Per-test Prediction Quality}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Re-repair Experiment}{5}{subsection.6.2}\protected@file@percent }
+\citation{ding2024semcoder}
+\citation{liu2024codeexecutor}
+\citation{zhang2025swerm}
+\citation{shi2024coderm}
+\citation{lipton2018troubling}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Oracle per-test advantage stratified by F2P test count ($T$). ``Adv'' = advantage over trajectory-level (pp). ``iid'' assumes independent errors; ``Block'' assumes correlated errors ($\rho {=}0.45$).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:oracle}{{7}{6}{Oracle per-test advantage stratified by F2P test count ($T$). ``Adv'' = advantage over trajectory-level (pp). ``iid'' assumes independent errors; ``Block'' assumes correlated errors ($\rho {=}0.45$)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Prediction error correlation structure. The measured correlation ($\rho {=}0.08$) is much closer to i.i.d.\ than to the block model.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:correlation}{{8}{6}{Prediction error correlation structure. The measured correlation ($\rho {=}0.08$) is much closer to i.i.d.\ than to the block model}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Majority Voting}{6}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{6}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code execution simulation.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-free verification.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative results in NLP.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{6}{Conclusion}{section.8}{}}
+\bibcite{chen2024swebench}{{1}{2024}{{Chen et~al.}}{{}}}
+\bibcite{ding2024semcoder}{{2}{2024}{{Ding et~al.}}{{}}}
+\bibcite{jimenez2024swebench}{{3}{2024}{{Jimenez et~al.}}{{}}}
+\bibcite{lipton2018troubling}{{4}{2018}{{Lipton and Steinhardt}}{{}}}
+\bibcite{liu2024codeexecutor}{{5}{2024}{{Liu et~al.}}{{}}}
+\bibcite{qwen2025qwen3}{{6}{2025}{{Qwen Team}}{{}}}
+\bibcite{shi2024coderm}{{7}{2024}{{Shi et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-test failure prediction quality (Qwen3-4B, seed 0).}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:pertest_quality}{{9}{7}{Per-test failure prediction quality (Qwen3-4B, seed 0)}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Diagnostic re-repair experiment (200 instances).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:rerepair}{{10}{7}{Diagnostic re-repair experiment (200 instances)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Resource release.}{7}{section*.21}\protected@file@percent }
+\bibcite{zhang2025swerm}{{8}{2025}{{Zhang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Majority Voting Details}{8}{appendix.A}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Majority voting ablation (function-level, Qwen3-4B).}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:voting}{{11}{8}{Majority voting ablation (function-level, Qwen3-4B)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}SWE-bench-PerTest Construction Details}{8}{appendix.B}\protected@file@percent }
+\gdef \@abspage@last{8}

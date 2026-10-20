@@ -1,0 +1,122 @@
+{
+  "CWM 4B s42": {
+    "model": "CWM 4B s42",
+    "seed": 42,
+    "total_samples": 9784,
+    "parseable_samples": 4529,
+    "unparseable_rate": 53.71,
+    "overall_accuracy": 58.04,
+    "parseable_only_accuracy": 42.88,
+    "unparseable_default_pred": 1,
+    "note": "all unparseable samples default to pred=1 (pass), inflating overall accuracy",
+    "mutation_breakdown": {
+      "gold": {
+        "correct": 473,
+        "total_parseable": 2015,
+        "total_all": 4633,
+        "accuracy_parseable": 23.47,
+        "fail_label": {"correct": 0, "total": 0, "accuracy": null},
+        "pass_label": {"correct": 473, "total": 2015, "accuracy": 23.47}
+      },
+      "mutation_operator_swap": {
+        "correct": 1205,
+        "total_parseable": 1911,
+        "total_all": 3357,
+        "accuracy_parseable": 63.06,
+        "fail_label": {"correct": 843, "total": 861, "accuracy": 97.91},
+        "pass_label": {"correct": 362, "total": 1050, "accuracy": 34.48}
+      },
+      "mutation_off_by_one": {
+        "correct": 0,
+        "total_parseable": 8,
+        "total_all": 183,
+        "accuracy_parseable": 0.0,
+        "fail_label": {"correct": 0, "total": 0, "accuracy": null},
+        "pass_label": {"correct": 0, "total": 8, "accuracy": 0.0}
+      },
+      "mutation_return_value": {
+        "correct": 74,
+        "total_parseable": 274,
+        "total_all": 562,
+        "accuracy_parseable": 27.01,
+        "fail_label": {"correct": 52, "total": 77, "accuracy": 67.53},
+        "pass_label": {"correct": 22, "total": 197, "accuracy": 11.17}
+      },
+      "mutation_boundary_removal": {
+        "correct": 190,
+        "total_parseable": 321,
+        "total_all": 1049,
+        "accuracy_parseable": 59.19,
+        "fail_label": {"correct": 168, "total": 190, "accuracy": 88.42},
+        "pass_label": {"correct": 22, "total": 131, "accuracy": 16.79}
+      }
+    },
+    "unparseable_by_mutation": {
+      "gold": {"unparseable": 2618, "total": 4633, "rate": 56.51},
+      "mutation_operator_swap": {"unparseable": 1446, "total": 3357, "rate": 43.07},
+      "mutation_off_by_one": {"unparseable": 175, "total": 183, "rate": 95.63},
+      "mutation_return_value": {"unparseable": 288, "total": 562, "rate": 51.25},
+      "mutation_boundary_removal": {"unparseable": 728, "total": 1049, "rate": 69.4}
+    }
+  },
+  "CWM 4B seed123": {
+    "model": "CWM 4B seed123",
+    "seed": 123,
+    "total_samples": 9784,
+    "parseable_samples": 3210,
+    "unparseable_rate": 67.19,
+    "overall_accuracy": 59.09,
+    "parseable_only_accuracy": 42.68,
+    "unparseable_default_pred": 1,
+    "note": "all unparseable samples default to pred=1 (pass), inflating overall accuracy",
+    "mutation_breakdown": {
+      "gold": {
+        "correct": 567,
+        "total_parseable": 1525,
+        "total_all": 4633,
+        "accuracy_parseable": 37.18,
+        "fail_label": {"correct": 0, "total": 0, "accuracy": null},
+        "pass_label": {"correct": 567, "total": 1525, "accuracy": 37.18}
+      },
+      "mutation_operator_swap": {
+        "correct": 534,
+        "total_parseable": 1098,
+        "total_all": 3357,
+        "accuracy_parseable": 48.63,
+        "fail_label": {"correct": 204, "total": 263, "accuracy": 77.57},
+        "pass_label": {"correct": 330, "total": 835, "accuracy": 39.52}
+      },
+      "mutation_off_by_one": {
+        "correct": 12,
+        "total_parseable": 22,
+        "total_all": 183,
+        "accuracy_parseable": 54.55,
+        "fail_label": {"correct": 11, "total": 11, "accuracy": 100.0},
+        "pass_label": {"correct": 1, "total": 11, "accuracy": 9.09}
+      },
+      "mutation_return_value": {
+        "correct": 50,
+        "total_parseable": 163,
+        "total_all": 562,
+        "accuracy_parseable": 30.67,
+        "fail_label": {"correct": 29, "total": 73, "accuracy": 39.73},
+        "pass_label": {"correct": 21, "total": 90, "accuracy": 23.33}
+      },
+      "mutation_boundary_removal": {
+        "correct": 207,
+        "total_parseable": 402,
+        "total_all": 1049,
+        "accuracy_parseable": 51.49,
+        "fail_label": {"correct": 73, "total": 136, "accuracy": 53.68},
+        "pass_label": {"correct": 134, "total": 266, "accuracy": 50.38}
+      }
+    },
+    "unparseable_by_mutation": {
+      "gold": {"unparseable": 3108, "total": 4633, "rate": 67.08},
+      "mutation_operator_swap": {"unparseable": 2259, "total": 3357, "rate": 67.29},
+      "mutation_off_by_one": {"unparseable": 161, "total": 183, "rate": 87.98},
+      "mutation_return_value": {"unparseable": 399, "total": 562, "rate": 71.0},
+      "mutation_boundary_removal": {"unparseable": 647, "total": 1049, "rate": 61.68}
+    }
+  }
+}

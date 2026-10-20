@@ -1,0 +1,33 @@
+{
+  "exp_id": "per-test-majority-voting",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:18:14.827Z",
+    "updated_at": "2026-05-12T09:22:54.572Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json --K 3 --temperature 0.7 --gpu 0\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "21710",
+      "log_path": "~/runs/exec-sim-repair-verifier/per-test-majority-voting.log",
+      "submitted_at": "2026-05-12T09:22:45.956Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen/Qwen3-4B + LoRA",
+      "seed": 42,
+      "checkpoint_source": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/"
+    },
+    "hypothesis": "Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy"
+  },
+  "timestamp": "2026-05-12T09:22:54.616448+00:00",
+  "trigger": "update_registry"
+}

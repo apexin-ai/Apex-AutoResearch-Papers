@@ -1,0 +1,244 @@
+{
+  "qwen3_8b_cls": {
+    "n_seeds": 3,
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "stats": {
+      "accuracy": {
+        "mean": 84.83,
+        "std": 0.67,
+        "ci95_half": 1.67,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          84.48,
+          85.6,
+          84.4
+        ]
+      },
+      "f1_macro": {
+        "mean": 77.58,
+        "std": 1.21,
+        "ci95_half": 3.0,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          78.17,
+          78.38,
+          76.19
+        ]
+      },
+      "f1_fail": {
+        "mean": 64.84,
+        "std": 2.3,
+        "ci95_half": 5.71,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          66.43,
+          65.89,
+          62.21
+        ]
+      },
+      "f1_pass": {
+        "mean": 90.32,
+        "std": 0.5,
+        "ci95_half": 1.23,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          89.91,
+          90.87,
+          90.17
+        ]
+      }
+    },
+    "raw": {
+      "s42": {
+        "accuracy": 84.48,
+        "f1_macro": 78.17,
+        "f1_fail": 66.43,
+        "f1_pass": 89.91,
+        "recall_fail": 56.8,
+        "recall_pass": 94.8
+      },
+      "s123": {
+        "accuracy": 85.6,
+        "f1_macro": 78.38,
+        "f1_fail": 65.89,
+        "f1_pass": 90.87,
+        "precision_fail": 91.65,
+        "recall_fail": 51.44,
+        "precision_pass": 84.52,
+        "recall_pass": 98.26
+      },
+      "s456": {
+        "accuracy": 84.4,
+        "f1_macro": 76.19,
+        "f1_fail": 62.21,
+        "f1_pass": 90.17,
+        "precision_fail": 90.23,
+        "recall_fail": 47.47
+      }
+    }
+  },
+  "deepseek_cls": {
+    "n_seeds": 2,
+    "seeds": [
+      42,
+      456
+    ],
+    "stats": {
+      "accuracy": {
+        "mean": 84.38,
+        "std": 2.5,
+        "ci95_half": 22.49,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          82.61,
+          86.15
+        ]
+      },
+      "f1_macro": {
+        "mean": 77.75,
+        "std": 3.79,
+        "ci95_half": 34.05,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          75.07,
+          80.43
+        ]
+      },
+      "f1_fail": {
+        "mean": 65.59,
+        "std": 6.0,
+        "ci95_half": 53.94,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          61.35,
+          69.84
+        ]
+      },
+      "f1_pass": {
+        "mean": 89.9,
+        "std": 1.58,
+        "ci95_half": 14.17,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          88.78,
+          91.01
+        ]
+      }
+    },
+    "raw": {
+      "s42": {
+        "accuracy": 82.61,
+        "f1_macro": 75.07,
+        "f1_fail": 61.35,
+        "f1_pass": 88.78,
+        "precision_fail": 76.92,
+        "recall_fail": 51.02,
+        "precision_pass": 83.86,
+        "recall_pass": 94.33
+      },
+      "s456": {
+        "accuracy": 86.15,
+        "f1_macro": 80.43,
+        "f1_fail": 69.84,
+        "f1_pass": 91.01,
+        "precision_fail": 84.95,
+        "recall_fail": 59.3
+      }
+    },
+    "note": "s123 excluded (config confound)"
+  },
+  "qwen3_8b_traj": {
+    "n_seeds": 3,
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "stats": {
+      "accuracy": {
+        "mean": 73.61,
+        "std": 3.18,
+        "ci95_half": 7.9,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          72.92,
+          77.08,
+          70.83
+        ]
+      },
+      "f1_macro": {
+        "mean": 73.37,
+        "std": 3.01,
+        "ci95_half": 7.47,
+        "n": 3,
+        "t_crit": 4.303,
+        "values": [
+          72.9,
+          76.59,
+          70.63
+        ]
+      },
+      "f1_fail": {
+        "mean": 73.12,
+        "std": 0.06,
+        "ci95_half": 0.57,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          73.17,
+          73.08
+        ],
+        "note": "s42 per-class F1 not in registry; 2-seed stats"
+      },
+      "f1_pass": {
+        "mean": 74.09,
+        "std": 8.36,
+        "ci95_half": 75.09,
+        "n": 2,
+        "t_crit": 12.706,
+        "values": [
+          80.0,
+          68.18
+        ],
+        "note": "s42 per-class F1 not in registry; 2-seed stats"
+      }
+    },
+    "raw": {
+      "s42": {
+        "accuracy": 72.92,
+        "f1_macro": 72.9,
+        "recall_fail": 77.3,
+        "recall_pass": 69.2
+      },
+      "s123": {
+        "accuracy": 77.08,
+        "f1_macro": 76.59,
+        "f1_fail": 73.17,
+        "f1_pass": 80.0
+      },
+      "s456": {
+        "accuracy": 70.83,
+        "f1_macro": 70.63,
+        "f1_fail": 73.08,
+        "f1_pass": 68.18
+      }
+    }
+  },
+  "majority_baseline": {
+    "accuracy": 72.96,
+    "note": "all-pass prediction"
+  }
+}

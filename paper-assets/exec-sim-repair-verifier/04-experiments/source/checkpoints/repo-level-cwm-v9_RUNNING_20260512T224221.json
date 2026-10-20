@@ -1,0 +1,46 @@
+{
+  "exp_id": "repo-level-cwm-v9",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T21:30:11.113Z",
+    "updated_at": "2026-05-12T22:42:21.063Z",
+    "hypothesis": "CWM v9: 修复 eval_steps/save_steps 对齐 (both=100), 修复 compute_loss OOM (pop labels before model forward), nohup 启动防 tmux kill",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v9/ --no_wandb --save_steps 100",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:2",
+      "pid": 95806,
+      "log_path": "/tmp/repo-level-cwm-v9_stdout.log",
+      "submitted_at": "2026-05-12T21:30:54.884Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "save_steps": 100,
+      "eval_steps": 100,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "lr": 0.0002,
+      "epochs": 3,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_v9/"
+    },
+    "notes": "pid=94010 是 Main Agent 误提交的重复进程，已立即 kill。实际训练由 Worker cwm-v9-dryrun-submit 提交（更早），正在 seetacloud cuda:2 预处理中。等 Worker 回调后更新正确的 pid 和 spec。若 cron 报 94010 退出失败，忽略——真实进程由 Worker 管理。",
+    "reproduce": {
+      "finished_at": "2026-05-12T22:42:20.156Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-12T22:42:21.163456+00:00",
+  "trigger": "update_registry"
+}

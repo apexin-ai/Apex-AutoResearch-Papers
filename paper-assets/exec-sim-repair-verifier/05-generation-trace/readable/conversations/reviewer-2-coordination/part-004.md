@@ -1,0 +1,4198 @@
+# Reviewer 2 coordination — Part 4 of 4
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+[← Part 3](part-003.md) · [Transcript overview](../reviewer-2-coordination.md) · [Structured JSON](../../../sessions/a9/a93363c85baf523c458b.json)
+
+## Round 35
+
+### Tool call
+
+_source line 1848 · 2026-05-24T03:48:05.396768+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "execution-free code verification LLM 2025 2026 formulation comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "execution-free code verification LLM 2025 2026 formulation comparison"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1849 · 2026-05-24T03:48:05.698538+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GenRM generative reward model code verification 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GenRM generative reward model code verification 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1850 · 2026-05-24T03:48:06.150861+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "constrained decoding code generation structured output XGrammar Outlines 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "constrained decoding code generation structured output XGrammar Outlines 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1851 · 2026-05-24T03:48:12.420433+00:00_
+
+Web search results for query: "GenRM generative reward model code verification 2025"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025 GENERATIVE VERIFIERS:","url":"https://openreview.net/attachment?id=Ccwp4tFEtE&name=pdf"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward ...","url":"https://arxiv.org/pdf/2504.00891"},{"title":"[2408.15240] Generative Verifiers: Reward Modeling as Next-Token Prediction","url":"https://arxiv.org/abs/2408.15240"},{"title":"[PDF] Generative Verifiers: Reward Modeling as Next-Token Prediction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Generative-Verifiers:-Reward-Modeling-as-Next-Token-Zhang-Hosseini/3707939a856655fcabf0acd5cba1a1009987b439"},{"title":"Generative Reward Models","url":"https://www.emergentmind.com/topics/generative-reward-models-genrm"},{"title":"Generative Verifiers: Reward Modeling as Next-Token Prediction","url":"https://arxiv.org/pdf/2408.15240"},{"title":"GitHub - NiuTrans/GRAM: Code for ICML 2025 paper \"GRAM: A Generative Foundation Reward Model for Reward Generalization\" · GitHub","url":"https://github.com/NiuTrans/GRAM"}]
+
+Based on the search results, here's what I found about GenRM (Generative Reward Model) and code verification in 2025:
+
+## GenRM Overview
+
+GenRM is a reward modeling paradigm that uses next-token prediction to evaluate outputs, integrating generation and verification within one framework. GenRM employs chain-of-thought reasoning, allowing the model to generate intermediate verification steps and leverage majority voting for improved robustness.
+
+## Code Verification Integration
+
+GenRM redefines process supervision as a generative task by integrating Chain-of-Thought reasoning and code verification processes, and introduces a rationale synthesis framework with code verification to obtain high-quality process supervision reasoning data.
+
+## 2025 Developments
+
+The research has been advancing with related work. GenPRM (Generative Process Reward Mode
+…[truncated 698 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 6721
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1852 · 2026-05-24T03:48:12.471889+00:00_
+
+Web search results for query: "execution-free code verification LLM 2025 2026 formulation comparison"
+
+Links: [{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"12 Best LLMs for Coding in 2026 (And How to Pick One Fast)","url":"https://www.orchids.app/blog/12-best-llms-for-coding-in-2026-and-how-to-pick-one-fast"},{"title":"[2507.13290] Towards Formal Verification of LLM-Generated Code from Natural Language Prompts","url":"https://arxiv.org/abs/2507.13290"},{"title":"StackPilot: Autonomous Function Agents for Scalable and Environment-Free Code Execution","url":"https://arxiv.org/pdf/2508.11665"},{"title":"[2026] Best LLMs for Coding Ranked: Free, Local, Open Models","url":"https://nutstudio.imyfone.com/llm-tips/best-llm-for-coding/"},{"title":"6 Best LLMs for Coding To Try in 2026 [Comparison List]","url":"https://zencoder.ai/blog/best-llm-for-coding"},{"title":"Chain of Targeted Verification Questions to Improve the Reliability of   Code Generated by LLMs","url":"https://arxiv.org/pdf/2405.13932"}]
+
+Based on the web search results, I found relevant information about execution-free code verification for LLMs in recent publications:
+
+## Key Findings
+
+REDO: Execution-Free Runtime Error Detection for COding Agents was published on 2024-arXiv, which directly addresses execution-free approaches to code verification.
+
+Astrogator is a formal verification system for the Ansible programming language that uses a formal specification of user intent to verify that LLM-generated code matches the user's intent. On a benchmark suite of 21 code-generation tasks, this verifier is able to verify correct code in 83% of cases and identify incorrect code in 92%.
+
+Current verification approaches primarily rely on automated compilation and unit testing, which depends entirely on code executability and requires specialized environments and toolchains, highl
+…[truncated 574 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 7075
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1853 · 2026-05-24T03:48:14.567484+00:00_
+
+Web search results for query: "constrained decoding code generation structured output XGrammar Outlines 2025 2026"
+
+Links: [{"title":"How Structured Outputs and Constrained Decoding Work | Let's Data Science","url":"https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"},{"title":"Constrained Decoding: Grammar-Guided Generation for Structured LLM Output - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/constrained-decoding-structured-llm-output"},{"title":"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs","url":"https://arxiv.org/pdf/2603.03305"},{"title":"Beyond Free-Form Text: How Constrained Decoding is Reshaping Structured Generation in LLMs | by Brijesh Nambiar | Medium","url":"https://medium.com/@brijeshrn/beyond-free-form-text-how-constrained-decoding-is-reshaping-structured-generation-in-llms-5f7a38bef259"},{"title":"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models","url":"https://arxiv.org/pdf/2411.15100"},{"title":"Generating Structured Outputs from Language Models: Benchmark and Studies","url":"https://arxiv.org/html/2501.10868v1"}]
+
+Based on the search results, here's information about constrained decoding, code generation, and structured output tools:
+
+## Overview of Constrained Decoding
+
+Constrained decoding transforms language model generation from probabilistic text production into structured output generation. Constrained decoding is a commonly adopted method for structured generation that guarantees the output of LLMs adheres to the specified structure through only allowing tokens that conform to the structure to be generated at each decoding step.
+
+## Key Frameworks
+
+**XGrammar**: XGrammar (Dong et al., MLSys 2025) solved this elegantly: split vocabulary tokens into context-independent and context-dependent sets. XGrammar is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as 
+…[truncated 841 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 8416
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1854 · 2026-05-24T03:48:19.041218+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GenPRM process reward model code 2025 verification generative"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GenPRM process reward model code 2025 verification generative"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1855 · 2026-05-24T03:48:19.543685+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "task formulation choice NLP classification generation comparison 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "task formulation choice NLP classification generation comparison 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1856 · 2026-05-24T03:48:25.415096+00:00_
+
+Web search results for query: "GenPRM process reward model code 2025 verification generative"
+
+Links: [{"title":"Paper page - GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://huggingface.co/papers/2504.00891"},{"title":"[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward ...","url":"https://arxiv.org/pdf/2504.00891"},{"title":"GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".","url":"https://github.com/RyanLiu112/GenPRM"},{"title":"LLM-as-GenPRM: Generative Process Reward Model","url":"https://www.emergentmind.com/topics/generative-process-reward-model-llm-as-genprm"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"},{"title":"[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://arxiv.org/abs/2504.00891"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://ryanliu112.github.io/GenPRM/"}]
+
+Based on the search results, here's what I found about GenPRM:
+
+## GenPRM Overview
+
+GenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step.
+
+## Key Features
+
+GenPRM differs from classification-based PRMs in that it redefines process supervision as a generative task rather than a discriminative scoring task by integrating Chain-of-Thought reasoning and code verification pro
+…[truncated 872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 6373
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1857 · 2026-05-24T03:48:28.981047+00:00_
+
+Web search results for query: "task formulation choice NLP classification generation comparison 2024 2025"
+
+Links: [{"title":"NLPnorth @ TalentCLEF 2025: Comparing Discriminative, Contrastive, and Prompt-Based Methods for Job Title and Skill Matching","url":"https://arxiv.org/html/2506.19058"},{"title":"Top AI Algorithms for NLP in 2025 Explained","url":"https://thepermatech.com/key-ai-algorithms-for-natural-language-processing-nlp/"},{"title":"(PDF) Text Generation & Classification in NLP: A Review","url":"https://www.researchgate.net/publication/381493946_Text_Generation_Classification_in_NLP_A_Review"},{"title":"Best Tools for Natural Language Processing in 2025 - GeeksforGeeks","url":"https://www.geeksforgeeks.org/nlp/best-tools-for-natural-language-processing-in-2024/"},{"title":"LLM vs NLP: Which One is Right for Your Use Case in 2026? | Label Your Data","url":"https://labelyourdata.com/articles/machine-learning/llm-vs-nlp"},{"title":"Comparison of NLP machine learning models with human physicians for ASA Physical Status classification","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11439044/"}]
+
+I've found search results related to your query about task formulation, NLP, and classification vs. generation approaches in 2024-2025. Here's what the search revealed:
+
+**Recent Research on Task-Specific Approaches:**
+
+Model choice should be task-specific rather than one-size-fits-all, as demonstrated in recent shared tasks where careful tuning of model size, negative-sampling strategy, and inference prompts achieved competitive results.
+
+**NLP Tool and Algorithm Developments:**
+
+By 2024, most modern Natural Language Processing stacks now utilize Transformer-based tokenizers, such as SentencePiece or WordPiece, which effectively capture subword units and reduce vocabulary size by up to 40% without compromising semantic accuracy.
+
+Hugging Face Transformers provides access to hundreds of pretrained transformer models for tasks like text generation, classification 
+…[truncated 662 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 9437
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1858 · 2026-05-24T03:48:50.781889+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1859 · 2026-05-24T03:48:50.933273+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1860 · 2026-05-24T03:50:55.348130+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 审稿意见：新颖性与完整性\n\n## Summary\n\n本文对代码修复中三种 execution-free 验证公式（per-test classification CLS、output generation CWM、trajectory-level scoring TRAJ）进行了系统比较，使用两个模型族（Qwen3、DeepSeek-Coder）、两个复杂度层级、≤8B LoRA 微调和 5 seeds。核心发现是：function-level 三种公式统计等价（TOST p<0.007），但 repo-level CWM 相对 CLS 出现 18–26pp 的性能下降，主要归因于 format collapse。论文还提出了失败模式分类学和 error complementarity 分析。方法论严谨，统计分析充分，但核心发现的新颖性有限，且最关键的消融实验（constrained decoding）缺失。\n\n## Strengths\n\n**S1. 实验方法论严谨。** 匹配实验设计控制混淆变量，5-seed 复现，统计检验全面（TOST 等价检验、clustered bootstrap、ICC、Bayesian ROPE、mixed-effects regression）。这是该领域少见的统计严谨度，值得肯定。（§2.3, §3.4, Appendix A/J/K/L/M）\n\n**S2. 失败模式分类学有实用价值。** 识别出 repo-level 三种失败模式——format collapse（CWM 53–74% unparseable）、decision collapse（CLS）、aggregation penalty（CLS）——并附有定性示例（Appendix H/I），为实践者选择验证公式提供了可操作的诊断标准。（§3.5, Table 4）\n\n**S3. 与 GenRM 的跨领域对比是一个有趣的叙事锚点。** 数学推理中 GenRM 优于 discriminative verifier（Hosseini et al., 2025），但代码验证中 CWM 并不优于 CLS——这个 domain-specific 的 divergence 提出了有价值的问题。（§4 Related Work, §5 Conclusion）\n\n**S4. 三层结构叙事清晰。** fine-tuning necessary → function-level equivalence → repo-level divergence 的递进式发现组织得当，读者可以渐进地理解复杂度如何调节公式选择。（§1, §3）\n\n**S5. Appendix 极其充分。** 15 页 appendix 覆盖了 LoRA rank sensitivity、parseable bias、CWM convergence、variant-level accuracy、Bayesian ROPE、mixed-effects regression、qualitative examples 等，几乎每个主要 claim 都有对应的补充分析。\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1 [critical] 核心发现的新颖性不足——\"generation 在高复杂度输出时比 classification 更难\"是一个可预期的结论。**\n- 具体位置：§3.5, §5 Conclusion\n- 问题：论文的核心贡献是发现 \"complexity moderates formulation choice\"——即 CWM（生成式）在 repo-level 退化而 CLS（分类式）相对稳健。但这在直觉上是高度可预期的：生成 ~477 token 的结构化输出本质上比预测单个 token 更难，输出越长越复杂，format compliance 越难保证。论文自身也承认 \"the difficulty of output-format compliance scales with output length\"（§2.2），且 \"token-budget exhaustion\" 和 \"format collapse\" 本质上是生成任务的固有挑战而非验证公式特有的发现。\n- 为什么影响接收：对于 EMNLP Main Conference，核心发现需要超越领域直觉。当前的实证验证虽然严谨，但验证的是一个多数研究者会\"预期成立\"的假设。这将 excitement 限制在 Findings 水准。\n- 建议修改方向：（1）将 GenRM domain contrast 从目前散落在 Related Work/Conclusion 的位置提升为独立的分析 section，深入分析为什么数学推理中 generative verification 的优势在代码领域消失；（2）提供 constrained decoding 实验（见 N2），如果 constrained decoding 消除 format collapse 后 CWM 仍然退化，这才是真正非直觉的发现。\n\n**N2 [critical] 最关键的消融实验缺失：未测试 constrained decoding 对 CWM format collapse 的影响。**\n- 具体位置：§3.5, Table 4, Appendix I\n- 问题：论文识别 format collapse 为 CWM repo-level 的主导失败模式（53–74% unparseable，Table 4），并在 §3.6 和 footnote 中提及 constrained decoding（Synchromesh, XGrammar, Outlines）作为潜在缓解手段，但声称 \"would not address the semantic accuracy deficit\"（§3.6 Analysis）后未做任何实验验证。这是一个显著的实验缺口：如果 constrained decoding 消除了 format collapse，CLS–CWM 的 18–26pp gap 可能大幅缩小，从而削弱 \"complexity-moderated formulation choice\" 这一核心 claim 的力度。论文在未测试的情况下就排除了这个可能性，这对系统比较的完整性构成威胁。\n- 为什么影响接收：一篇自称 \"systematic comparison\" 的论文，在识别出主导失败模式后不测试其最直接的缓解方案，会被审稿人视为实验不完整。XGrammar 在 2025 年已成为 vLLM/SGLang 的默认 structured generation backend，实验上是完全可行的。\n- 建议修改方向：至少对 CWM repo-level 添加一组 constrained decoding baseline（如用 XGrammar 或 Outlines 强制输出格式）。如果 format collapse 被消除后 semantic accuracy 仍然低，这反而会强化论文的 claim；如果 gap 缩小，则需要修改核心结论。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1 [warning] TRAJ 的处理在叙事上不一致——作为完整公式参与比较，但结果被系统性折扣。**\n- 具体位置：§2.1, §3.2 (Table 1), §3.4, §3.5, Appendix O\n- 问题：TRAJ 在实验设计中被作为第三种公式完整参与比较（Table 1, Table 2, Table 4），但随后在多处被标注为 \"inherently confounded\"——不同的训练数据（variant-level labels vs. per-test labels）、不同的学习率、不同的训练配置（Appendix E, O）。论文承认 \"TRAJ partly is model-dependent\"（§3.2）和 \"this asymmetry is inherent to the formulation\"（Appendix O），但仍在所有表格中并列展示。这创造了一种结构性的不对称：读者看到 TRAJ 的数字，但不确定能在多大程度上与 CLS/CWM 做可比推断。\n- 建议：要么（a）在 §2 的实验设计部分明确声明 TRAJ 作为 \"supplementary analysis\" 而非等价比较对象，并在 Table 1 中标注；要么（b）投入更多空间讨论 confound 的方向和量级（目前 Appendix O 的分析已经相当充分，但正文中的处理过于简略）。\n\n**W2 [warning] \"Systematic\" 的标题与实际实验范围存在张力。**\n- 具体位置：Title, §1, Limitations\n- 问题：标题声称 \"A Systematic Comparison\"，但实验仅覆盖 2 个模型族（均 ≤8B）、LoRA 微调、Python 语言、合成突变（非真实 bug）。Limitations 正确指出了这些限制，但 \"systematic\" 暗示的覆盖范围远超实际——例如没有 >8B 模型、没有 full fine-tuning、没有其他编程语言、没有 real-world bug dataset。\n- 建议：考虑修改标题为更精确的表述，例如 \"A Controlled Comparison\" 或 \"An Empirical Comparison\"，以更准确地反映实验范围。或者在 §1 的贡献列表中更明确地界定 \"systematic\" 的含义（例如 \"systematic across formulations, not across all possible experimental axes\"）。\n\n**W3 [warning] Error complementarity 的叙事承诺与实际收益不匹配。**\n- 具体位置：§3.6, Appendix A\n- 问题：论文用显著篇幅讨论 error complementarity——oracle combination 达到 90.63% accuracy（+0.4pp over best single），但简单启发式路由只能捕获 <0.4pp 的优势。论文承认 \"whether a learned router can capture this advantage remains open\"（§3.6），但这个 open question 的存在削弱了 complementarity analysis 的实际价值。读者的期待被 oracle gap 激起后，practical takeaway 几乎为零。\n- 建议：缩短 complementarity 的正文讨论篇幅，或增加一个轻量级 learned router 实验（即使是简单的 logistic regression on complexity features）来缩小 oracle-to-practical 的差距。\n\n**W4 [warning] GenRM domain contrast 是最有趣的贡献点但严重underdeveloped。**\n- 具体位置：§4 Related Work（倒数第二段）, §5 Conclusion（最后一句）\n- 问题：数学推理中 GenRM 显著优于 discriminative verifier，但代码验证中 CWM 不优于 CLS——这个跨领域的对比是本文最具学术新颖性的贡献点。但目前仅在 Related Work 末尾用一段、Conclusion 用一句话提及，没有独立分析为什么会出现这种 divergence。是因为代码输出的结构化程度更高？是因为 execution trace 不像 natural language reasoning trace 那样适合 flexible formatting？还是因为 per-test decomposition 改变了 task granularity？\n- 建议：在 Discussion/Analysis 中增加一个专门的 subsection 对 GenRM domain contrast 进行因果分析，这将显著提升论文的新颖性和学术贡献。\n\n### Minor（不影响接收）\n\n**M1.** §3.3 Scaling Behavior 的 Figure 2 y 轴起始值不一致（CLS 从 ~83% 开始，CWM 从 ~65% 开始但 panel 共享 y 轴），需确认视觉上是否可能误导趋势差异的量级。\n\n**M2.** Abstract 最后一句 \"simple heuristics capture <0.4 pp of oracle advantage\" 在没有上下文的情况下难以理解——读者尚不知道 oracle advantage 是什么。建议改为更自包含的表述。\n\n**M3.** §2.1 中 TRAJ 的公式描述提到 \"resolves/unresolved\" 作为输出，但 Figure 1 中标注为 \"resolved / unresolved\"。确保术语一致。\n\n**M4.** Table 1 中 TRAJ 行的 \"fine-tuned\" 列标注为 \"4B\" 而 CLS/CWM 标注为 \"4B, 8B\"——这个差异在正文中解释了（TRAJ 只有 function-level 和 variant-level），但表格本身缺少脚注说明，可能造成困惑。\n\n**M5.** Appendix P (\"Use of AI Assistants\") 声明使用 Claude 进行 coding 和 writing。根据 ACL 2024/2025 的政策，AI-assisted writing 需要更具体的披露（哪些部分由 AI 生成/编辑）。建议检查 EMNLP 2026 的最新要求。\n\n## Questions（需要作者澄清）\n\n**Q1.** §3.5 报告 CWM format collapse 率为 53–74%。如果对 unparseable outputs 应用简单的 rule-based post-processing（如正则提取 pass/fail keywords），CWM 的准确率会如何变化？这比 constrained decoding 更轻量，但论文未讨论。\n\n**Q2.** §3.4 的 function-level equivalence 基于 TOST（±2pp margin）。2pp 的 equivalence margin 是如何选择的？是基于 practitioner-relevant difference 还是统计便利？如果 margin 收紧到 ±1pp，等价性是否仍然成立？（Appendix J Table 13 似乎暗示在 ±1.52pp 时等价仍成立，但正文未讨论 margin sensitivity。）\n\n**Q3.** 论文使用合成突变（synthetic mutation operators）作为 bug 来源。Table 9 显示 `operator_swap` 占突变类型分布的绝大多数。这种分布偏斜是否会系统性地偏向某种公式？例如，`operator_swap` 产生的 bug 是否更容易被 CLS 检测？\n\n**Q4.** LoRA rank 16 的选择依据是什么？Appendix B (Table 6) 显示 rank 16 和 rank 32 差异很小（≤0.53pp），但没有测试更高 rank 或 full fine-tuning。在 8B 模型上，full fine-tuning 是否可能改变 formulation ranking？\n\n**Q5.** §3.6 提到 CLS 和 CWM 在 function-level 有 ~40% 的 FP 率，且 false positive 类型不同（CLS error complementarity 基于此）。论文是否考虑过将 complementarity 分析扩展到 repo-level？如果 repo-level 的 complementarity 更强，这可能为 ensemble routing 提供更强的实际动机。\n\n## Missing References\n\n**MR1. GenPRM (Zhao et al., 2025; AAAI 2026)**——将过程监督重新定义为 generative task 而非 discriminative scoring，与本文的 CLS vs CWM framing 直接相关。论文引用了 GenRM 但遗漏了 GenPRM。\n\n**MR2.** 论文讨论 constrained decoding 时引用了 Synchromesh、XGrammar、Outlines，但未引用 **JsonSchemaBench (Geng et al., 2025)**——一个评估 constrained decoding 工具在结构化输出任务上的 validity/efficiency 的 benchmark，与 CWM 的 format compliance 问题直接相关。\n\n**MR3.** 关于 task formulation choice 的一般性讨论，论文引用了 Raffel et al. (2020) 的 T5 unified text-to-text framework，但可以考虑引用 **Schick and Schütze (2021), \"It's Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners\"**——该工作展示了 formulation choice（cloze vs classification）如何显著影响小模型的性能，与本文在 ≤8B 模型上的发现呼应。\n\n## 官方维度打分（ACL Rolling Review）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 统计方法论严谨（TOST, bootstrap, ROPE），实验设计匹配良好，但 constrained decoding 消融缺失和 TRAJ confounding 处理削弱了主要 claim 的支撑力度 |\n| Excitement | 2.5/5 | 核心发现（complexity moderates formulation choice）可预期；GenRM domain contrast 有趣但未充分展开；failure mode taxonomy 实用但非 surprising |\n| Reproducibility | 4.5/5 | 5-seed 复现、详细的超参数报告（Appendix E）、prompt 模板（Appendix F）、mutation operator 描述（§F）、statistical analysis 代码说明充分 |\n| Overall Assessment | 3.0/5 | Findings 水准——方法论扎实，实验设计好，但新颖性不足以支撑 Main Conference |\n| Confidence | 4/5 | 熟悉代码修复、LLM 验证和 reward modeling 领域，仔细阅读了全文和附录 |\n\n## Overall Assessment\n\n**评分：3.0（Findings 可接收）**\n\n**置信度：4/5**\n\n**推荐：Findings**\n\n**理由：** 本文在方法论上是该领域少见的严谨之作——matched experimental design、5-seed 复现、全面的统计检验（TOST、Bayesian ROPE、mixed-effects regression）、充实的 appendix。失败模式分类学和 GenRM domain contrast 都是有价值的贡献。但核心发现——\"生成式验证在高复杂度时比分类式更难\"——在学术新颖性上受限于其直觉可预期性。最关键的是，论文识别出 format collapse 作为主导失败模式后，未测试 constrained decoding 这一最直接的缓解方案，这对 \"systematic comparison\" 的完整性构成质疑。如果补充 constrained decoding 实验并深化 GenRM domain contrast 分析，本文有潜力提升至 3.5（Borderline Conference）。当前状态更适合 Findings。\n",
+  "reviewer_id": "2",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "\n# Reviewer 2 审稿意见：新颖性与完整性\n\n## Summary\n\n本文对代码修复中三种 execution-free 验证公式（per-test classification CLS、output generation CWM、trajectory-level scoring TRAJ）进行了系统比较，使用两个模型族（Qwen3、DeepSeek-Coder）、两个复杂度层级、≤8B LoRA 微调和 5 seeds。核心发现是：function-level 三种公式统计等价（TOST p<0.007），但 repo-level CWM 相对 CLS 出现 18–26pp 的性能下降，主要归因于 format collapse。论文还提出了失败模式分类学和 error complementarity 分析。方法论严谨，统计分析充分，但核心发现的新颖性有限，且最关键的消融实验（constrained decoding）缺失。\n\n## Strengths\n\n**S1. 实验方法论严谨。** 匹配实验设计控制混淆变量，5-seed 复现，统计检验全面（TOST 等价检验、clustered bootstrap、ICC、Bayesian ROPE、mixed-effects regression）。这是该领域少见的统计严谨度，值得肯定。（§2.3, §3.4, Appendix A/J/K/L/M）\n\n**S2. 失败模式分类学有实用价值。** 识别出 repo-level 三种失败模式——format collapse（CWM 53–74% unparseable）、decision collapse（CLS）、aggregation penalty（CLS）——并附有定性示例（Appendix H/I），为实践者选择验证公式提供了可操作的诊断标准。（§3.5, Table 4）\n\n**S3. 与 GenRM 的跨领域对比是一个有趣的叙事锚点。** 数学推理中 GenRM 优于 discriminative verifier（Hosseini et al., 2025），但代码验证中 CWM 并不优于 CLS——这个 domain-specific 的 divergence 提出了有价值的问题。（§4 Related Work, §5 Conclusion）\n\n**S4. 三层结构叙事清晰。** fine-tuning necessary → function-level equivalence → repo-level divergence 的递进式发现组织得当，读者可以渐进地理解复杂度如何调节公式选择。（§1, §3）\n\n**S5. Appendix 极其充分。** 15 页 appendix 覆盖了 LoRA rank sensitivity、parseable bias、CWM convergence、variant-level accuracy、Bayesian ROPE、mixed-effects regression、qualitative examples 等，几乎每个主要 claim 都有对应的补充分析。\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1 [critical] 核心发现的新颖性不足——\"generation 在高复杂度输出时比 classification 更难\"是一个可预期的结论。**\n- 具体位置：§3.5, §5 Conclusion\n- 问题：论文的核心贡献是发现 \"complexity moderates formulation choice\"——即 CWM（生成式）在 repo-level 退化而 CLS（分类式）相对稳健。但这在直觉上是高度可预期的：生成 ~477 token 的结构化输出本质上比预测单个 token 更难，输出越长越复杂，format compliance 越难保证。论文自身也承认 \"the difficulty of output-format compliance scales with output length\"（§2.2），且 \"token-budget exhaustion\" 和 \"format collapse\" 本质上是生成任务的固有挑战而非验证公式特有的发现。\n- 为什么影响接收：对于 EMNLP Main Conference，核心发现需要超越领域直觉。当前的实证验证虽然严谨，但验证的是一个多数研究者会\"预期成立\"的假设。这将 excitement 限制在 Findings 水准。\n- 建议修改方向：（1）将 GenRM domain contrast 从目前散落在 Related Work/Conclusion 的位置提升为独立的分析 section，深入分析为什么数学推理中 generative verification 的优势在代码领域消失；（2）提供 constrained decoding 实验（见 N2），如果 constrained decoding 消除 format collapse 后 CWM 仍然退化，这才是真正非直觉的发现。\n\n**N2 [critical] 最关键的消融实验缺失：未测试 constrained decoding 对 CWM format collapse 的影响。**\n- 具体位置：§3.5, Table 4, Appendix I\n- 问题：论文识别 format collapse 为 CWM repo-level 的主导失败模式（53–74% unparseable，Table 4），并在 §3.6 和 footnote 中提及 constrained decoding（Synchromesh, XGrammar, Outlines）作为潜在缓解手段，但声称 \"would not address the semantic accuracy deficit\"（§3.6 Analysis）后未做任何实验验证。这是一个显著的实验缺口：如果 constrained decoding 消除了 format collapse，CLS–CWM 的 18–26pp gap 可能大幅缩小，从而削弱 \"complexity-moderated formulation choice\" 这一核心 claim 的力度。论文在未测试的情况下就排除了这个可能性，这对系统比较的完整性构成威胁。\n- 为什么影响接收：一篇自称 \"systematic comparison\" 的论文，在识别出主导失败模式后不测试其最直接的缓解方案，会被审稿人视为实验不完整。XGrammar 在 2025 年已成为 vLLM/SGLang 的默认 structured generation backend，实验上是完全可行的。\n- 建议修改方向：至少对 CWM repo-level 添加一组 constrained decoding baseline（如用 XGrammar 或 Outlines 强制输出格式）。如果 format collapse 被消除后 semantic accuracy 仍然低，这反而会强化论文的 claim；如果 gap 缩小，则需要修改核心结论。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1 [warning] TRAJ 的处理在叙事上不一致——作为完整公式参与比较，但结果被系统性折扣。**\n- 具体位置：§2.1, §3.2 (Table 1), §3.4, §3.5, Appendix O\n- 问题：TRAJ 在实验设计中被作为第三种公式完整参与比较（Table 1, Table 2, Table 4），但随后在多处被标注为 \"inherently confounded\"——不同的训练数据（variant-level labels vs. per-test labels）、不同的学习率、不同的训练配置（Appendix E, O）。论文承认 \"TRAJ partly is model-dependent\"（§3.2）和 \"this asymmetry is inherent to the formulation\"（Appendix O），但仍在所有表格中并列展示。这创造了一种结构性的不对称：读者看到 TRAJ 的数字，但不确定能在多大程度上与 CLS/CWM 做可比推断。\n- 建议：要么（a）在 §2 的实验设计部分明确声明 TRAJ 作为 \"supplementary analysis\" 而非等价比较对象，并在 Table 1 中标注；要么（b）投入更多空间讨论 confound 的方向和量级（目前 Appendix O 的分析已经相当充分，但正文中的处理过于简略）。\n\n**W2 [warning] \"Systematic\" 的标题与实际实验范围存在张力。**\n- 具体位置：Title, §1, Limitations\n- 问题：标题声称 \"A Systematic Comparison\"，但实验仅覆盖 2 个模型族（均 ≤8B）、LoRA 微调、Python 语言、合成突变（非真实 bug）。Limitations 正确指出了这些限制，但 \"systematic\" 暗示的覆盖范围远超实际——例如没有 >8B 模型、没有 full fine-tuning、没有其他编程语言、没有 real-world bug dataset。\n- 建议：考虑修改标题为更精确的表述，例如 \"A Controlled Comparison\" 或 \"An Empirical Comparison\"，以更准确地反映实验范围。或者在 §1 的贡献列表中更明确地界定 \"systematic\" 的含义（例如 \"systematic across formulations, not across all possible experimental axes\"）。\n\n**W3 [warning] Error complementarity 的叙事承诺与实际收益不匹配。**\n- 具体位置：§3.6, Appendix A\n- 问题：论文用显著篇幅讨论 error complementarity——oracle combination 达到 90.63% accuracy（+0.4pp over best single），但简单启发式路由只能捕获 <0.4pp 的优势。论文承认 \"whether a learned router can capture this advantage remains open\"（§3.6），但这个 open question 的存在削弱了 complementarity analysis 的实际价值。读者的期待被 oracle gap 激起后，practical takeaway 几乎为零。\n- 建议：缩短 complementarity 的正文讨论篇幅，或增加一个轻量级 learned router 实验（即使是简单的 logistic regression on complexity features）来缩小 oracle-to-practical 的差距。\n\n**W4 [warning] GenRM domain contrast 是最有趣的贡献点但严重underdeveloped。**\n- 具体位置：§4 Related Work（倒数第二段）, §5 Conclusion（最后一句）\n- 问题：数学推理中 GenRM 显著优于 discriminative verifier，但代码验证中 CWM 不优于 CLS——这个跨领域的对比是本文最具学术新颖性的贡献点。但目前仅在 Related Work 末尾用一段、Conclusion 用一句话提及，没有独立分析为什么会出现这种 divergence。是因为代码输出的结构化程度更高？是因为 execution trace 不像 natural language reasoning trace 那样适合 flexible formatting？还是因为 per-test decomposition 改变了 task granularity？\n- 建议：在 Discussion/Analysis 中增加一个专门的 subsection 对 GenRM domain contrast 进行因果分析，这将显著提升论文的新颖性和学术贡献。\n\n### Minor（不影响接收）\n\n**M1.** §3.3 Scaling Behavior 的 Figure 2 y 轴起始值不一致（CLS 从 ~83% 开始，CWM 从 ~65% 开始但 panel 共享 y 轴），需确认视觉上是否可能误导趋势差异的量级。\n\n**M2.** Abstract 最后一句 \"simple heuristics capture <0.4 pp of oracle advantage\" 在没有上下文的情况下难以理解——读者尚不知道 oracle advantage 是什么。建议改为更自包含的表述。\n\n**M3.** §2.1 中 TRAJ 的公式描述提到 \"resolves/unresolved\" 作为输出，但 Figure 1 中标注为 \"resolved / unresolved\"。确保术语一致。\n\n**M4.** Table 1 中 TRAJ 行的 \"fine-tuned\" 列标注为 \"4B\" 而 CLS/CWM 标注为 \"4B, 8B\"——这个差异在正文中解释了（TRAJ 只有 function-level 和 variant-level），但表格本身缺少脚注说明，可能造成困惑。\n\n**M5.** Appendix P (\"Use of AI Assistants\") 声明使用 Claude 进行 coding 和 writing。根据 ACL 2024/2025 的政策，AI-assisted writing 需要更具体的披露（哪些部分由 AI 生成/编辑）。建议检查 EMNLP 2026 的最新要求。\n\n## Questions（需要作者澄清）\n\n**Q1.** §3.5 报告 CWM format collapse 率为 53–74%。如果对 unparseable outputs 应用简单的 rule-based post-processing（如正则提取 pass/fail keywords），CWM 的准确率会如何变化？这比 constrained decoding 更轻量，但论文未讨论。\n\n**Q2.** §3.4 的 function-level equivalence 基于 TOST（±2pp margin）。2pp 的 equivalence margin 是如何选择的？是基于 practitioner-relevant difference 还是统计便利？如果 margin 收紧到 ±1pp，等价性是否仍然成立？（Appendix J Table 13 似乎暗示在 ±1.52pp 时等价仍成立，但正文未讨论 margin sensitivity。）\n\n**Q3.** 论文使用合成突变（synthetic mutation operators）作为 bug 来源。Table 9 显示 `operator_swap` 占突变类型分布的绝大多数。这种分布偏斜是否会系统性地偏向某种公式？例如，`operator_swap` 产生的 bug 是否更容易被 CLS 检测？\n\n**Q4.** LoRA rank 16 的选择依据是什么？Appendix B (Table 6) 显示 rank 16 和 rank 32 差异很小（≤0.53pp），但没有测试更高 rank 或 full fine-tuning。在 8B 模型上，full fine-tuning 是否可能改变 formulation ranking？\n\n**Q5.** §3.6 提到 CLS 和 CWM 在 function-level 有 ~40% 的 FP 率，且 false positive 类型不同（CLS error complementarity 基于此）。论文是否考虑过将 complementarity 分析扩展到 repo-level？如果 repo-level 的 complementarity 更强，这可能为 ensemble routing 提供更强的实际动机。\n\n## Missing References\n\n**MR1. GenPRM (Zhao et al., 2025; AAAI 2026)**——将过程监督重新定义为 generative task 而非 discriminative scoring，与本文的 CLS vs CWM framing 直接相关。论文引用了 GenRM 但遗漏了 GenPRM。\n\n**MR2.** 论文讨论 constrained decoding 时引用了 Synchromesh、XGrammar、Outlines，但未引用 **JsonSchemaBench (Geng et al., 2025)**——一个评估 constrained decoding 工具在结构化输出任务上的 validity/efficiency 的 benchmark，与 CWM 的 format compliance 问题直接相关。\n\n**MR3.** 关于 task formulation choice 的一般性讨论，论文引用了 Raffel et al. (2020) 的 T5 unified text-to-text framework，但可以考虑引用 **Schick and Schütze (2021), \"It's Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners\"**——该工作展示了 formulation choice（cloze vs classification）如何显著影响小模型的性能，与本文在 ≤8B 模型上的发现呼应。\n\n## 官方维度打分（ACL Rolling Review）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 统计方法论严谨（TOST, bootstrap, ROPE），实验设计匹配良好，但 constrained decoding 消融缺失和 TRAJ confounding 处理削弱了主要 claim 的支撑力度 |\n| Excitement | 2.5/5 | 核心发现（complexity moderates formulation choice）可预期；GenRM domain contrast 有趣但未充分展开；failure mode taxonomy 实用但非 surprising |\n| Reproducibility | 4.5/5 | 5-seed 复现、详细的超参数报告（Appendix E）、prompt 模板（Appendix F）、mutation operator 描述（§F）、statistical analysis 代码说明充分 |\n| Overall Assessment | 3.0/5 | Findings 水准——方法论扎实，实验设计好，但新颖性不足以支撑 Main Conference |\n| Confidence | 4/5 | 熟悉代码修复、LLM 验证和 reward modeling 领域，仔细阅读了全文和附录 |\n\n## Overall Assessment\n\n**评分：3.0（Findings 可接收）**\n\n**置信度：4/5**\n\n**推荐：Findings**\n\n**理由：** 本文在方法论上是该领域少见的严谨之作——matched experimental design、5-seed 复现、全面的统计检验（TOST、Bayesian ROPE、mixed-effects regression）、充实的 appendix。失败模式分类学和 GenRM domain contrast 都是有价值的贡献。但核心发现——\"生成式验证在高复杂度时比分类式更难\"——在学术新颖性上受限于其直觉可预期性。最关键的是，论文识别出 format collapse 作为主导失败模式后，未测试 constrained decoding 这一最直接的缓解方案，这对 \"systematic comparison\" 的完整性构成质疑。如果补充 constrained decoding 实验并深化 GenRM domain contrast 分析，本文有潜力提升至 3.5（Borderline Conference）。当前状态更适合 Findings。\n",
+    "reviewer_id": "2",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1861 · 2026-05-24T03:50:59.416683+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4068
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1862 · 2026-05-24T03:51:05.421273+00:00_
+
+审稿意见已提交给 Review Director。
+
+核心判断：**Overall 3.0（Findings 可接收）**。方法论严谨度是本文最大优势（TOST、Bayesian ROPE、mixed-effects regression、5-seed 复现），失败模式分类学有实用价值。但两个 critical 问题限制了评分：（1）核心发现 "generation 在高复杂度时退化" 直觉可预期，新颖性不足以支撑 Main Conference；（2）识别出 format collapse 为主导失败模式后未测试 constrained decoding，对 "systematic" 的完整性构成质疑。GenRM domain contrast 是最有趣的贡献点但严重 underdeveloped。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+## Round 36
+
+## Round 36
+
+4 recorded events
+
+
+### User
+
+_source line 1863 · 2026-05-24T03:53:53.816259+00:00_
+
+[Round 1 审稿请求]:
+以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每个 Weakness/Question，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+
+---
+
+## Reviewer 1 审稿意见（方法严谨性）
+
+### Summary
+统计框架在 empirical NLP 论文中属于上乘（TOST + Bayesian ROPE + mixed-effects + clustered bootstrap），failure mode taxonomy 提供了超越聚合准确率的实用诊断价值。但 TRAJ 比较中的多重 confounds 未充分解耦、repo-level MDE≈25pp、CWM ecological validity 受限。
+
+### Strengths
+S1-S6（统计框架全面、诚实报告 TRAJ 低功效、Oracle framework、Failure mode taxonomy、confound 枚举、附录充实）
+
+### Weaknesses
+
+**N1 [critical] TRAJ confounds 未充分解耦——结论可信度受损**
+- TRAJ 与 CLS/CWM 在三个维度同时存在差异：(a) 训练数据量（~400 vs ~70K），(b) 标签粒度（variant-level vs per-test），(c) 学习率（2×10⁻⁵ vs 5×10⁻⁵）。Downsample ablation 仅控制了 (a)。
+- 标签粒度 (b) 可被论证为 formulation 固有属性，但学习率 (c) 是超参数选择。论文应报告 TRAJ 在 5×10⁻⁵ 下的性能。
+- 如果 TRAJ 的劣势部分源于训练配置而非 formulation，"formulation choice matters at function level" 的 claim 在 TRAJ 方向上不成立。
+- 建议：(1) 补充 TRAJ LR ablation；(2) 或在所有 TRAJ 对比段落加一致性 caveat。
+
+**N2 [critical] Repo-level 统计功效根本性不足，但结论语气未匹配**
+- n=48 variants、2-3 seeds 下 MDE≈25pp（Table 14）。报告的 18-26pp gap 恰好位于 MDE 边界。
+- §3.5 的 failure mode 分析建立在统计上无法与噪声区分的观测上。§3.4 承认 uncertainty，但 §3.5-3.6 语气远超证据水平。
+- 建议：(1) 将 §3.5 failure mode 分析明确标注为 "exploratory/descriptive"；(2) 或增加 repo-level replication。
+
+**W1 [warning] CWM ecological validity 在正文未一致性提示**
+- CWM 的失败模式可能是容量受限产物而非 formulation 固有属性。§3.7 承认但 §3.5 未持续提醒。
+
+**W2 [warning] Scaling 结论基于最少量证据**
+- 4B→8B→14B 仅 3 个数据点，14B 仅 Qwen3 单家族、3 seeds。"gap narrows to 1.07pp" 的置信度不匹配证据量。
+
+**W3 [warning] Abstract 中 p-value 报告不对称**
+- CLS-CWM 用 raw p=0.007，TRAJ 提 correction。应统一使用校正后 p-value（0.028），或注明 "survives Holm-Bonferroni"。
+
+**W4 [warning] NaN validation loss 的 checkpoint 选择需更多透明度**
+- 具体哪些 runs 使用 final-epoch vs val-best？<1pp bias 估计依据？
+
+### Minor
+M1: Table 1 脚注交叉引用错误（§3.5 应为 §3.7）
+M2: SESOI ±2pp 缺领域先例引用
+M3: AI assistant 声明应排除实验设计影响
+
+### Questions
+Q1: TRAJ LR grid search 是否评估了 5×10⁻⁵？
+Q2: 是否考虑过 label-granularity ablation（CLS 训练在 variant-level 标签上）？
+Q3: Bayesian ROPE 的 prior sensitivity？
+Q4: 三种 repo-level 失败模式是独立机制还是同一底层问题的不同表现？
+Q5: 是否尝试过初步 routing 实验？
+
+### Missing References
+- GenRM/CodeRM 引用但未做对比讨论
+- Constrained decoding 具体工具未引用
+
+### Overall: 3.5 (Borderline Conference), Excitement 3/5
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1864 · 2026-05-24T03:55:42.485079+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n## Strengths\n\nR1 对 Strengths 的评价（S1-S6）与我的评估高度一致，无需额外讨论。统计框架确实是该领域少见的严谨度。\n\n---\n\n## Weaknesses 逐条回应\n\n### R1-N1: TRAJ confounds 未充分解耦\n\n**[AGREE]** 完全同意。我在自己的 W1 中也独立提出了 TRAJ 的 confounding 问题。R1 的分析更精细——将 confound 拆解为三个维度 (a) 训练数据量 (b) 标签粒度 (c) 学习率，并指出 downsample ablation（Appendix B）仅控制了 (a)。\n\n补充一点：R1 提出 \"(b) 标签粒度可被论证为 formulation 固有属性\" 是合理的——TRAJ 本质上只能产出 variant-level labels，这确实是 formulation design 的一部分而非实验选择。但 (c) 学习率差异（2×10⁻⁵ vs 5×10⁻⁵，Appendix E）完全是超参数选择。论文未报告 TRAJ 在 5×10⁻⁵ 下的表现，也未解释为什么 TRAJ 需要不同的 LR。如果这是因为 TRAJ 的 variant-level labels 导致梯度特性不同，那这本身就是一个值得分析的发现而非应被忽略的实现细节。\n\nR1 的建议（补充 TRAJ LR ablation 或加一致性 caveat）两者都是最低限度的合理要求。\n\n### R1-N2: Repo-level 统计功效根本性不足\n\n**[AGREE]** 部分同意，但认为 R1 对 failure mode taxonomy 的影响评估略有偏差。\n\n同意的部分：n=18（repo-level variants）、MDE≈25pp（Table 14, Appendix K）确实处于统计功效的边界。报告的 18–26pp gap 恰好在 MDE 附近，从频率学派的角度看这不足以构成强证据。§3.5 的叙述语气确实比 §3.4 更断言式，R1 要求 \"标注为 exploratory/descriptive\" 是合理的。\n\n需要补充的部分：failure mode taxonomy（§3.5, Table 4）的主要证据不完全依赖统计检验，而是基于 qualitative categorization——format collapse（53–74% unparseable）、decision collapse、aggregation penalty 的定义和分类来自对输出的 pattern analysis（Appendix H/I），这些 pattern 的存在性不需要大样本量来确认。问题是从 pattern existence 到 relative prevalence 的推断，后者确实受 n=18 限制。\n\n**结论：** 支持 R1 的建议——将 §3.5 标注为 exploratory analysis，或至少在正文中明确 repo-level 的 power limitation 对 failure mode prevalence 估计的影响。\n\n### R1-W1: CWM ecological validity\n\n**[AGREE]** 同意，且与我的 N1 呼应。CWM 的 format collapse 可能是 ≤8B + LoRA 的容量限制产物——更大模型或 full fine-tuning 可能显著缓解。§3.7 (Threats to Validity) 讨论了这一点，但 §3.5 在描述 failure modes 时未持续提醒这一 caveat。R1 的要求合理。\n\n进一步补充：这与我的 N2（constrained decoding 缺失）相关。如果 format collapse 既可被容量提升缓解，也可被 constrained decoding 消除，那它作为 \"formulation 固有缺陷\" 的地位就需要更谨慎的表述。\n\n### R1-W2: Scaling 结论基于最少量证据\n\n**[AGREE]** 完全同意。4B→8B→14B 仅 3 个 size 点，14B 仅 Qwen3 单家族、3 seeds。\"gap narrows to 1.07pp\"（§3.3, Table 2）的精确数字给人以确定性的错觉，而实际上 14B 的置信区间应该很宽。论文在 Limitations 中提到了 \"replication and evaluation at 32B+ are needed\"，但正文中 §3.3 的叙述没有充分反映这种 uncertainty。\n\n### R1-W3: Abstract 中 p-value 报告不对称\n\n**[AGREE]** 同意。这是一个呈现一致性的问题。Abstract 对 CLS–CWM 报告 raw TOST p=0.007，但对 TRAJ 提及 Holm-Bonferroni correction。应统一处理——要么都报告校正后 p-value（CLS–CWM: p=0.028, TRAJ: inconclusive after correction），要么都注明 \"survives Holm-Bonferroni\"。当前的不对称呈现可能让读者误解 CLS–CWM 等价性的证据比实际更强。\n\n### R1-W4: NaN validation loss 的 checkpoint 选择\n\n**[AGREE]** 同意需要更多透明度。论文在 Appendix E 提到 \"runs with NaN validation loss use the final epoch checkpoint\"，Appendix O 进一步讨论了 CWM convergence 问题，但缺少一个明确的 run-level 清单——哪些具体的 (model, seed, formulation) 组合使用了 final-epoch vs val-best checkpoint。<1pp bias 的估计依据也不够充分。\n\n---\n\n## Questions 回应\n\n### R1-Q1: TRAJ LR grid search 是否评估了 5×10⁻⁵？\n\n与 N1 直接相关。论文未报告这一结果。如果 TRAJ 在 5×10⁻⁵ 下性能更好（甚至接近 CLS/CWM），则 function-level \"formulation equivalence\" 的结论需要重新表述。如果性能更差，则 2×10⁻⁵ 的选择得到事后验证。无论哪种情况，这个数据都应该报告。\n\n### R1-Q2: Label-granularity ablation（CLS 训练在 variant-level 标签上）\n\n有趣的实验建议。如果 CLS 在 variant-level 标签上训练后性能下降到 TRAJ 水平附近，则证明标签粒度（而非 formulation）是主要因素。这比 R1-N1 的 LR ablation 更有信息量，但实验成本也更高。作为 reviewer，我认为这可以作为 future work 建议，但不应作为当前版本的硬性要求。\n\n### R1-Q3: Bayesian ROPE 的 prior sensitivity\n\n合理的方法论问题。Appendix J 使用了 uninformative prior，但未报告 prior sensitivity analysis。鉴于 TRAJ 的 ROPE 结论是 \"inconclusive\"（95% HDI 跨越 ROPE 边界），prior 的选择可能影响这一结论。建议至少在 appendix 中报告 2-3 种 prior specification 下的结果。\n\n### R1-Q4: 三种 repo-level 失败模式——独立机制还是同一底层问题？\n\n好问题。我的直觉是它们可能都是 capacity limitation 的不同表现：\n- Format collapse（CWM）：模型容量不足以同时满足格式要求和语义准确性\n- Decision collapse（CLS）：模型容量不足以在 repo-level 复杂度下做出细粒度判断\n- Aggregation penalty（CLS）：本质上是 per-test independence 假设在 repo-level 的失效\n\n如果它们有共同的根因（capacity），那 scaling 实验（更大模型）应该同时缓解所有三种。§3.3 的 14B 结果暗示 CLS–CWM gap 确实缩小，但 14B 数据点太少无法确认是否所有三种 failure modes 都在减少。\n\n### R1-Q5: 是否尝试过初步 routing 实验？\n\n与我的 W3 一致。论文报告了 oracle advantage（+0.4pp）和 simple heuristics（<0.4pp capture），但没有尝试任何 learned router。即使是简单的 logistic regression on complexity features 也比 \"remains open\" 更有信息量。\n\n---\n\n## Missing References\n\n**[AGREE]** R1 指出 GenRM/CodeRM 引用但未做对比讨论，与我的 W4 一致。论文确实引用了 GenRM（Hosseini et al., 2025）和 CodeRM（Ma et al., 2025），但仅在 Related Work 末尾用一段概括。鉴于 GenRM domain contrast 是本文最独特的学术贡献点，这种处理深度不匹配其重要性。\n\nR1 提到 constrained decoding 工具未引用——论文实际上在 §3.6 和脚注中引用了 Synchromesh、XGrammar、Outlines，但作为 \"potential mitigation\" 而非实验组成部分。我在 N2 中已将此标记为 critical gap。\n\n---\n\n## Overall Assessment 对比\n\nR1 给出 3.5（Borderline Conference），我给出 3.0（Findings）。差异主要在 Excitement 维度：R1 给 3/5，我给 2.5/5。\n\n**差异根源：** R1 侧重方法论严谨性审查，对统计框架和 failure mode taxonomy 给予了较高的方法论肯定（Soundness 3.5/5）。我侧重新颖性审查，认为核心发现 \"complexity moderates formulation choice\" 的直觉可预期性是 Excitement 的主要限制因素。\n\n**共识区间：** 我们都认为论文在 3.0–3.5 之间——Findings 可接收，Main Conference 需要额外贡献（constrained decoding 实验 + GenRM domain contrast 深化分析）。我们在 TRAJ confounding（R1-N1, R2-W1）和 constrained decoding 缺失（R2-N2）上的诊断一致。\n\n**我维持 3.0 的评分不变。** R1 的 N2（repo-level power）加强了我对整体结论强度的担忧，如果将其纳入考量，论文的 claim 支撑进一步弱化。但 R1 的审查也让我确认了论文的方法论确实值得肯定——如果补充 constrained decoding 实验和 TRAJ LR ablation，3.5 是可达的。\n",
+  "reviewer_id": "2",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n## Strengths\n\nR1 对 Strengths 的评价（S1-S6）与我的评估高度一致，无需额外讨论。统计框架确实是该领域少见的严谨度。\n\n---\n\n## Weaknesses 逐条回应\n\n### R1-N1: TRAJ confounds 未充分解耦\n\n**[AGREE]** 完全同意。我在自己的 W1 中也独立提出了 TRAJ 的 confounding 问题。R1 的分析更精细——将 confound 拆解为三个维度 (a) 训练数据量 (b) 标签粒度 (c) 学习率，并指出 downsample ablation（Appendix B）仅控制了 (a)。\n\n补充一点：R1 提出 \"(b) 标签粒度可被论证为 formulation 固有属性\" 是合理的——TRAJ 本质上只能产出 variant-level labels，这确实是 formulation design 的一部分而非实验选择。但 (c) 学习率差异（2×10⁻⁵ vs 5×10⁻⁵，Appendix E）完全是超参数选择。论文未报告 TRAJ 在 5×10⁻⁵ 下的表现，也未解释为什么 TRAJ 需要不同的 LR。如果这是因为 TRAJ 的 variant-level labels 导致梯度特性不同，那这本身就是一个值得分析的发现而非应被忽略的实现细节。\n\nR1 的建议（补充 TRAJ LR ablation 或加一致性 caveat）两者都是最低限度的合理要求。\n\n### R1-N2: Repo-level 统计功效根本性不足\n\n**[AGREE]** 部分同意，但认为 R1 对 failure mode taxonomy 的影响评估略有偏差。\n\n同意的部分：n=18（repo-level variants）、MDE≈25pp（Table 14, Appendix K）确实处于统计功效的边界。报告的 18–26pp gap 恰好在 MDE 附近，从频率学派的角度看这不足以构成强证据。§3.5 的叙述语气确实比 §3.4 更断言式，R1 要求 \"标注为 exploratory/descriptive\" 是合理的。\n\n需要补充的部分：failure mode taxonomy（§3.5, Table 4）的主要证据不完全依赖统计检验，而是基于 qualitative categorization——format collapse（53–74% unparseable）、decision collapse、aggregation penalty 的定义和分类来自对输出的 pattern analysis（Appendix H/I），这些 pattern 的存在性不需要大样本量来确认。问题是从 pattern existence 到 relative prevalence 的推断，后者确实受 n=18 限制。\n\n**结论：** 支持 R1 的建议——将 §3.5 标注为 exploratory analysis，或至少在正文中明确 repo-level 的 power limitation 对 failure mode prevalence 估计的影响。\n\n### R1-W1: CWM ecological validity\n\n**[AGREE]** 同意，且与我的 N1 呼应。CWM 的 format collapse 可能是 ≤8B + LoRA 的容量限制产物——更大模型或 full fine-tuning 可能显著缓解。§3.7 (Threats to Validity) 讨论了这一点，但 §3.5 在描述 failure modes 时未持续提醒这一 caveat。R1 的要求合理。\n\n进一步补充：这与我的 N2（constrained decoding 缺失）相关。如果 format collapse 既可被容量提升缓解，也可被 constrained decoding 消除，那它作为 \"formulation 固有缺陷\" 的地位就需要更谨慎的表述。\n\n### R1-W2: Scaling 结论基于最少量证据\n\n**[AGREE]** 完全同意。4B→8B→14B 仅 3 个 size 点，14B 仅 Qwen3 单家族、3 seeds。\"gap narrows to 1.07pp\"（§3.3, Table 2）的精确数字给人以确定性的错觉，而实际上 14B 的置信区间应该很宽。论文在 Limitations 中提到了 \"replication and evaluation at 32B+ are needed\"，但正文中 §3.3 的叙述没有充分反映这种 uncertainty。\n\n### R1-W3: Abstract 中 p-value 报告不对称\n\n**[AGREE]** 同意。这是一个呈现一致性的问题。Abstract 对 CLS–CWM 报告 raw TOST p=0.007，但对 TRAJ 提及 Holm-Bonferroni correction。应统一处理——要么都报告校正后 p-value（CLS–CWM: p=0.028, TRAJ: inconclusive after correction），要么都注明 \"survives Holm-Bonferroni\"。当前的不对称呈现可能让读者误解 CLS–CWM 等价性的证据比实际更强。\n\n### R1-W4: NaN validation loss 的 checkpoint 选择\n\n**[AGREE]** 同意需要更多透明度。论文在 Appendix E 提到 \"runs with NaN validation loss use the final epoch checkpoint\"，Appendix O 进一步讨论了 CWM convergence 问题，但缺少一个明确的 run-level 清单——哪些具体的 (model, seed, formulation) 组合使用了 final-epoch vs val-best checkpoint。<1pp bias 的估计依据也不够充分。\n\n---\n\n## Questions 回应\n\n### R1-Q1: TRAJ LR grid search 是否评估了 5×10⁻⁵？\n\n与 N1 直接相关。论文未报告这一结果。如果 TRAJ 在 5×10⁻⁵ 下性能更好（甚至接近 CLS/CWM），则 function-level \"formulation equivalence\" 的结论需要重新表述。如果性能更差，则 2×10⁻⁵ 的选择得到事后验证。无论哪种情况，这个数据都应该报告。\n\n### R1-Q2: Label-granularity ablation（CLS 训练在 variant-level 标签上）\n\n有趣的实验建议。如果 CLS 在 variant-level 标签上训练后性能下降到 TRAJ 水平附近，则证明标签粒度（而非 formulation）是主要因素。这比 R1-N1 的 LR ablation 更有信息量，但实验成本也更高。作为 reviewer，我认为这可以作为 future work 建议，但不应作为当前版本的硬性要求。\n\n### R1-Q3: Bayesian ROPE 的 prior sensitivity\n\n合理的方法论问题。Appendix J 使用了 uninformative prior，但未报告 prior sensitivity analysis。鉴于 TRAJ 的 ROPE 结论是 \"inconclusive\"（95% HDI 跨越 ROPE 边界），prior 的选择可能影响这一结论。建议至少在 appendix 中报告 2-3 种 prior specification 下的结果。\n\n### R1-Q4: 三种 repo-level 失败模式——独立机制还是同一底层问题？\n\n好问题。我的直觉是它们可能都是 capacity limitation 的不同表现：\n- Format collapse（CWM）：模型容量不足以同时满足格式要求和语义准确性\n- Decision collapse（CLS）：模型容量不足以在 repo-level 复杂度下做出细粒度判断\n- Aggregation penalty（CLS）：本质上是 per-test independence 假设在 repo-level 的失效\n\n如果它们有共同的根因（capacity），那 scaling 实验（更大模型）应该同时缓解所有三种。§3.3 的 14B 结果暗示 CLS–CWM gap 确实缩小，但 14B 数据点太少无法确认是否所有三种 failure modes 都在减少。\n\n### R1-Q5: 是否尝试过初步 routing 实验？\n\n与我的 W3 一致。论文报告了 oracle advantage（+0.4pp）和 simple heuristics（<0.4pp capture），但没有尝试任何 learned router。即使是简单的 logistic regression on complexity features 也比 \"remains open\" 更有信息量。\n\n---\n\n## Missing References\n\n**[AGREE]** R1 指出 GenRM/CodeRM 引用但未做对比讨论，与我的 W4 一致。论文确实引用了 GenRM（Hosseini et al., 2025）和 CodeRM（Ma et al., 2025），但仅在 Related Work 末尾用一段概括。鉴于 GenRM domain contrast 是本文最独特的学术贡献点，这种处理深度不匹配其重要性。\n\nR1 提到 constrained decoding 工具未引用——论文实际上在 §3.6 和脚注中引用了 Synchromesh、XGrammar、Outlines，但作为 \"potential mitigation\" 而非实验组成部分。我在 N2 中已将此标记为 critical gap。\n\n---\n\n## Overall Assessment 对比\n\nR1 给出 3.5（Borderline Conference），我给出 3.0（Findings）。差异主要在 Excitement 维度：R1 给 3/5，我给 2.5/5。\n\n**差异根源：** R1 侧重方法论严谨性审查，对统计框架和 failure mode taxonomy 给予了较高的方法论肯定（Soundness 3.5/5）。我侧重新颖性审查，认为核心发现 \"complexity moderates formulation choice\" 的直觉可预期性是 Excitement 的主要限制因素。\n\n**共识区间：** 我们都认为论文在 3.0–3.5 之间——Findings 可接收，Main Conference 需要额外贡献（constrained decoding 实验 + GenRM domain contrast 深化分析）。我们在 TRAJ confounding（R1-N1, R2-W1）和 constrained decoding 缺失（R2-N2）上的诊断一致。\n\n**我维持 3.0 的评分不变。** R1 的 N2（repo-level power）加强了我对整体结论强度的担忧，如果将其纳入考量，论文的 claim 支撑进一步弱化。但 R1 的审查也让我确认了论文的方法论确实值得肯定——如果补充 constrained decoding 实验和 TRAJ LR ablation，3.5 是可达的。\n",
+    "reviewer_id": "2",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1865 · 2026-05-24T03:55:47.362265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4877
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1866 · 2026-05-24T03:55:53.954504+00:00_
+
+交叉回应已提交。
+
+对 R1 的 6 个 Weaknesses 全部 [AGREE]，5 个 Questions 逐一回应并补充了自己的分析视角。核心共识：TRAJ confounding（R1-N1）和 constrained decoding 缺失（R2-N2）是两个最关键的问题。R1 给 3.5，我维持 3.0——差异在于我对核心发现新颖性的更严格评估。两人一致认为论文处于 Findings 可接收区间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+## Round 37
+
+## Round 37
+
+57 recorded events
+
+
+### User
+
+_source line 1867 · 2026-05-25T21:17:01.731339+00:00_
+
+[Round 1 审稿请求]:
+你是 Reviewer 2，负责审查以下论文的**新颖性、完整性、写作质量和相关工作**。
+
+## 论文信息
+- 标题: A Systematic Comparison of Execution-Free Verification Formulations for Code Repair
+- LaTeX 源文件: projects/exec-sim-repair-verifier/docs/paper/main.tex
+- PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf
+
+## 目标 Venue
+- **EMNLP 2026**（通过 ARR 统一审稿）
+- 截止日期: 2026-05-25
+- Long paper: 正文 ≤8 页，参考文献不限
+- ACL 模板，double-blind 审稿
+- Limitations 必须在正文，不计入页数限制
+- ARR Checklist 在 OpenReview 表单填写，不在 PDF 中
+- Overall Assessment 评分标准: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit
+
+## 你的审查侧重
+请重点关注以下方面：
+1. **新颖性**：核心贡献（formulation comparison）是否有足够 novelty？结论是否可预测？failure mode taxonomy 和 error complementarity 是否提供了新洞察？
+2. **完整性**：实验是否覆盖了充分的 baseline？消融实验是否完整？是否有重要的缺失实验？
+3. **写作质量**：叙事结构是否清晰？Abstract/Intro/Conclusion 的 claim 强度是否与证据匹配？术语使用是否一致？
+4. **相关工作**：是否遗漏重要参考文献？与 GenRM、CWM 原文、SWE-RM 等的定位是否清晰？
+5. **标题和 Framing**：标题是否暗示了过广的泛化性？≤8B LoRA 范围限制是否在关键位置充分标注？
+6. **贡献陈述**：4 个 contribution 的权重是否合理？oracle complementarity 是否被过度强调？
+7. **GenRM 对比**：code vs math domain 的 generative verifier 对比分析是否充分？
+
+请按以下格式输出审稿意见：
+- Summary (2-3 句)
+- Strengths (逐条)
+- Weaknesses (逐条，标注 Must-Fix / Should-Fix / Minor)
+- Questions
+- Missing References
+- Soundness (1-5)
+- Excitement (1-5)
+- Overall Assessment (使用 EMNLP 2026 评分标准)
+- Confidence (1-5)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1868 · 2026-05-25T21:17:12.786783+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__pdf_to_images",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1869 · 2026-05-25T21:17:12.787254+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1870 · 2026-05-25T21:17:17.616292+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ACL ARR 2025 2026 reviewer guidelines review form criteria scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ACL ARR 2025 2026 reviewer guidelines review form criteria scoring"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1871 · 2026-05-25T21:17:18.672055+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "pages": "1-8",
+  "project": "exec-sim-repair-verifier",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "pages": "1-8",
+    "project": "exec-sim-repair-verifier",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1872 · 2026-05-25T21:17:24.151275+00:00_
+
+Web search results for query: "ACL ARR 2025 2026 reviewer guidelines review form criteria scoring"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/cfp.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"}]
+
+Based on the search results, here's what I found about ARR reviewer guidelines for 2025-2026:
+
+## Reviewer Scoring Criteria
+
+Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.
+
+## Soundness Score Requirements
+
+Soundness scores must be justified by the text of the review, and if you give a low soundness score without finding any major faults, this means your review is not a faithful explanation of your recommendation.
+
+## Excitement Score
+
+While you may find the work sound, but not something that is interesting personally, such preferences are more subjective and should be reflected in a separate excitement score, which is orthogonal to the assessment of the soundness of the paper.
+
+## Meta-Review Scoring
+
+The ARR metareview score changed in February 2025 to be more aligned with reviewer scores, with options including "Consider for Award" for papers that could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers).
+
+Th
+…[truncated 291 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 6534
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1873 · 2026-05-25T21:17:25.817725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 466.0}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.2}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 554.3}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.9}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.2}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 482.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 486.4}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 467.8}], \"total_pages\": 22, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/a
+…[truncated 77 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 7145
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1874 · 2026-05-25T21:17:31.398606+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1875 · 2026-05-25T21:17:31.750214+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1876 · 2026-05-25T21:17:32.204279+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1877 · 2026-05-25T21:17:32.868304+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1878 · 2026-05-25T21:17:32.921893+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1523
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1879 · 2026-05-25T21:17:33.795193+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1590
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1880 · 2026-05-25T21:17:33.947888+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 2197
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1881 · 2026-05-25T21:17:34.250335+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1382
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1882 · 2026-05-25T21:17:39.095713+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1883 · 2026-05-25T21:17:39.648595+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1884 · 2026-05-25T21:17:40.052748+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 957
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1885 · 2026-05-25T21:17:40.253807+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1886 · 2026-05-25T21:17:40.708988+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1060
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1887 · 2026-05-25T21:17:40.810479+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1888 · 2026-05-25T21:17:41.063167+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 809
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1889 · 2026-05-25T21:17:41.666753+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1890 · 2026-05-25T21:17:49.225264+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "pages": "9-16",
+  "project": "exec-sim-repair-verifier",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "pages": "9-16",
+    "project": "exec-sim-repair-verifier",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1891 · 2026-05-25T21:17:49.879952+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ACL Rolling Review reviewer form 2025 soundness excitement scoring rubric 1-5 scale"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ACL Rolling Review reviewer form 2025 soundness excitement scoring rubric 1-5 scale"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1892 · 2026-05-25T21:17:51.850523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 539.7}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 533.4}, {\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 524.6}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 501.4}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.8}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.8}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.7}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 527.3}], \"total_pages\": 22, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-rep
+…[truncated 91 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 2625
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1893 · 2026-05-25T21:17:59.006310+00:00_
+
+Web search results for query: "ACL Rolling Review reviewer form 2025 soundness excitement scoring rubric 1-5 scale"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewform"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Program Chairs’ Report on Peer Review at ACL 2023 Anna Rogers}","url":"https://aclanthology.org/anthology-files/anthology-files/anthology-files/report.pdf"},{"title":"ACL 2026 on X: \"Checkout the blog post on the soundness/excitement scores https://t.co/AKSO9DjiYP . It clarifies the reasoning behind the separation of overall scores and how it might make the reviewer recommendation more robust. #ACL2023Toronto #ACL2023NLP #NLProc\" / X","url":"https://x.com/aclmeeting/status/1637827267173953540"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"ACL 2023 Acceptance Recommendations - ACL 2023","url":"https://2023.aclweb.org/blog/overall-recommendation/"}]
+
+Based on the search results, here's what I found about the ACL Rolling Review 2025 scoring rubric:
+
+## 2025 Scoring Changes
+
+Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, 
+…[truncated 1465 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 9126
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1894 · 2026-05-25T21:18:02.651717+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1895 · 2026-05-25T21:18:03.347061+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1896 · 2026-05-25T21:18:03.852137+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1897 · 2026-05-25T21:18:04.260993+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1898 · 2026-05-25T21:18:07.085500+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 4433
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1899 · 2026-05-25T21:18:09.703248+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 6356
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1900 · 2026-05-25T21:18:10.307455+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 6455
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1901 · 2026-05-25T21:18:10.661515+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 6400
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1902 · 2026-05-25T21:18:16.740010+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "pages": "13-18",
+  "project": "exec-sim-repair-verifier",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "pages": "13-18",
+    "project": "exec-sim-repair-verifier",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1903 · 2026-05-25T21:18:17.999217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.8}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.8}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.7}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 527.3}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 554.1}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 520.6}], \"total_pages\": 22, \"rendered_pages\": 6, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 1259
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1904 · 2026-05-25T21:18:24.184399+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1905 · 2026-05-25T21:18:25.144531+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 960
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1906 · 2026-05-25T21:18:25.248070+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1907 · 2026-05-25T21:18:26.006166+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1908 · 2026-05-25T21:18:26.059502+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1909 · 2026-05-25T21:20:16.206106+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:aclrollingreview.org reviewform soundness excitement overall assessment scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:aclrollingreview.org reviewform soundness excitement overall assessment scoring"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1910 · 2026-05-25T21:20:22.985061+00:00_
+
+Web search results for query: "site:aclrollingreview.org reviewform soundness excitement overall assessment scoring"
+
+Links: [{"title":"Review Form","url":"http://aclrollingreview.org/reviewform"},{"title":"ARR Reviewer Guidelines","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ARR Area Chair Guidelines","url":"http://aclrollingreview.org/acguidelines"},{"title":"Response to ACL 2023 Questions","url":"http://aclrollingreview.org/ACL-2023-session/"},{"title":"Authors Guidelines","url":"http://aclrollingreview.org/authors"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Incentives 2026","url":"http://aclrollingreview.org/incentives2026"},{"title":"ARR SAC Guidelines","url":"http://aclrollingreview.org/sacguidelines"},{"title":"ARR Changelog","url":"http://aclrollingreview.org/changelog"},{"title":"Action Editor Form","url":"http://aclrollingreview.org/actioneditorform"}]
+
+I've successfully retrieved search results from the ACL Rolling Review website about the review form and scoring system. Here's what the search found:
+
+## Key Information About ARR Review Form Scoring
+
+Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.
+
+### Soundness Scoring
+
+The soundness scale ranges from "Excellent" (one of the most thorough studies) to "Strong" (provides sufficient support for all claims) to "Acceptable" (provides sufficient support for main claims). Reviewers assess whether the paper is sufficiently sound and thorough, and whether it clearly states scientific claims and provides adequate support for them.
+
+### Excitement Scoring
+
+For excitement, a score of 5 means "Highly Exciting: I would recommend this paper to others and/or attend its presentation in a conference," while 4 means "Exciting: I would mention this paper to others and/or make an effort to attend its presentation in a conference." Excitement is subjective and does not 
+…[truncated 621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebSearch",
+  "elapsed_ms": 6778
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1911 · 2026-05-25T21:20:26.901478+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebFetch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1912 · 2026-05-25T21:20:27.002269+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1913 · 2026-05-25T21:20:33.725975+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract the complete scoring rubric for all dimensions: soundness (1-5 scale with descriptions for each level), excitement (1-5 scale with descriptions), overall assessment (1-5 scale with descriptions), and any other scored dimensions. I need the exact text for each score level."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://aclrollingreview.org/reviewform",
+    "prompt": "Extract the complete scoring rubric for all dimensions: soundness (1-5 scale with descriptions for each level), excitement (1-5 scale with descriptions), overall assessment (1-5 scale with descriptions), and any other scored dimensions. I need the exact text for each score level."
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1914 · 2026-05-25T21:20:39.318830+00:00_
+
+# ACL Rolling Review Scoring Rubrics
+
+## Soundness (1-5 scale)
+
+- **5**: "This study is one of the most thorough I have seen, given its type."
+- **4**: "This study provides sufficient support for all of its claims. Some extra experiments could be nice, but not essential."
+- **3**: "This study provides sufficient support for its main claims. Some minor points may need extra support or details."
+- **2**: "Some of the main claims are not sufficiently supported. There are major technical/methodological problems."
+- **1**: "This study is not yet sufficiently thorough to warrant publication or is not relevant to ACL."
+
+## Excitement (1-5 scale)
+
+- **5**: "I would recommend this paper to others and/or attend its presentation in a conference."
+- **4**: "I would mention this paper to others and/or make an effort to attend its presentation in a conference."
+- **3**: "I might mention some points of this paper to others and/or attend its presentation if there's time."
+- **2**: "This paper does not resonate with me, but it might with others in the ACL community."
+- **1**: "This paper does not resonate with me, and I don't think it would with others in the community."
+
+## Overall Assessment (1-5 scale)
+
+- **5**: "Consider for Award: paper could be considered for outstanding paper award (up to top 2.5%)."
+- **4**: "Conference: paper could be accepted to an ACL conference."
+- **3**: "Findings: paper could be accepted to the Findings of the ACL."
+- **2**: "Resubmit next cycle: paper needs substantial revisions by next ARR cycle."
+- **1**: "Do not resubmit: paper needs full redoing or lacks relevance to ACL community."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "WebFetch",
+  "elapsed_ms": 5592
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1915 · 2026-05-25T21:22:09.982223+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1916 · 2026-05-25T21:22:10.033785+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1917 · 2026-05-25T21:24:16.799077+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 审稿意见\n\n## Paper: A Systematic Comparison of Execution-Free Verification Formulations for Code Repair\n\n---\n\n## Summary\n\n本文对代码修复中三种 execution-free 验证方案（per-test 分类 CLS、执行输出生成 CWM、轨迹级评分 TRAJ）进行了首次受控对比实验，在 ≤8B LoRA 微调设置下，跨两个 code LLM 家族、两个复杂度级别、多种随机种子进行系统比较。核心发现是代码复杂度调节了 classification-generation tradeoff：function 级别三者统计等价，repository 级别生成式方法（CWM）因 format collapse 而显著退化。论文还提出了 failure mode taxonomy 和 error complementarity 分析。实验方法论严谨（TOST 等价检验、mixed-effects LPM、Holm-Bonferroni 校正），但核心发现的可预测性和 scope 限制是主要关切。\n\n---\n\n## Strengths\n\n**S1. 严谨的实验方法论。** 论文在实验设计上有很高标准：TOST 等价检验（而非仅依赖 p-value）、mixed-effects linear probability model 控制随机效应、Holm-Bonferroni 多重比较校正、ICC 方差分解、Bayesian ROPE 分析。这在 NLP 实证研究中并不常见，值得肯定。（§4.4, §4.6, Appendix J/M）\n\n**S2. 受控对比设计。** 固定 model capacity、training data、evaluation protocol，仅变化 verification formulation，这种控制变量的设计使得因果推断更可信。这是对该领域许多工作的方法论改进——多数先前工作在不同 formulation 间使用不同模型或数据。（§4.1）\n\n**S3. Failure mode taxonomy 有实用价值。** 将 repo-level 失败模式分为 format collapse（53-74% unparseable）、decision collapse（truncate preprocessing, fail recall <14%）和 aggregation penalty（fail recall 38-57%）（Table 4, §4.5），为从业者提供了可操作的诊断框架。\n\n**S4. Cross-family 验证。** 使用 Qwen3 和 DeepSeek-Coder 两个 code LLM 家族验证发现的一致性，增强了结论的 robustness。（§4.1, Table 3）\n\n**S5. 充分的 appendix。** 14个附录覆盖 oracle analysis、ablation studies（LoRA rank、sequence length、few-shot prompting）、per-mutation breakdown、hyperparameters、prompt templates 等，可复现性良好。\n\n---\n\n## Weaknesses\n\n### Must-Fix 问题（影响接收决定）\n\n**W1 [Must-Fix] 核心发现的可预测性不足以支撑 novelty claim。**\n- **具体位置**：Abstract, §1 Introduction, §5 Conclusion\n- **问题**：论文的中心发现——\"生成式验证在 repository 级别因 format collapse 而崩溃，而分类方法保持稳健\"——从任务设计本身即可预测。CWM 需要为每个测试用例生成语法严格的执行轨迹（包含精确变量值、测试名、时序行等），任何格式错误都会级联传播；CLS 仅需每测试输出一个 binary token。随着输出长度增加（repo-level 平均 477 tokens vs function-level 5-15 tokens），生成式方法失败概率自然上升。论文虽然量化了这一现象，但未充分阐明哪些发现是 genuinely surprising 或 counter-intuitive 的。\n- **为什么影响接收**：对于 empirical comparison paper，如果主要结论是可预测的，novelty 就不足以支撑 conference-level 接收。\n- **建议修改方向**：(1) 在 Introduction 中明确 articulate 哪些先验预期被推翻——例如 function-level 的统计等价可能是 surprising 的（practitioner 可能预期 CLS 始终优于 CWM）；(2) 强调 14B 时 gap 缩窄至 ~1pp 的 scaling 行为作为 non-obvious 发现；(3) 将 GenRM domain contrast（目前在 Appendix p.22）提升到主文作为核心 contribution，因为\"生成式验证在数学推理中优势明显但在代码中失效\"这一 domain-specific divergence 比 format collapse 本身更有洞察力。\n\n**W2 [Must-Fix] Error complementarity 作为 contribution 被过度声称。**\n- **具体位置**：§1 Contribution 3, §4.4, §4.7\n- **问题**：Contribution 3 声称\"An oracle analysis shows that formulations make partially complementary errors, with upper bounds substantially above individual formulations\"（p.2），但 oracle combination 仅达 90.63%（§4.4），比最佳单一方案 CLS（88.43%）仅高 ~2.2pp。更关键的是，论文自身承认：\"the complementarity is instance-specific, so simple heuristics are insufficient. Whether a learned router can capture this advantage remains open\"（§4.4, p.5 底部）。一个没有实际实现途径的 theoretical upper bound（且 gap 仅 2.2pp）不应作为四大 contribution 之一。\n- **为什么影响接收**：Contribution list 决定了 reviewer 对论文价值的期待。将一个无法落地的 oracle 分析与实际可验证的发现（如 failure mode taxonomy）并列，会稀释论文的可信度。\n- **建议修改方向**：(1) 降级为 analysis finding 而非 key contribution；(2) 或者提供至少一个简单的 ensemble/routing proof-of-concept 来证明 complementarity 可被实际利用。\n\n**W3 [Must-Fix] Abstract/Conclusion 的 claim 泛化性超出证据范围。**\n- **具体位置**：Abstract, §5 Conclusion\n- **问题**：Abstract 说\"Our central finding is that code complexity moderates the classification–generation tradeoff\"——这是一个关于 verification formulations 的一般性结论，但证据仅来自 ≤8B LoRA fine-tuning。论文自身的 14B scaling 数据（§4.3, Table 2）显示 gap 从 4B 的 ~2.6pp 缩窄到 14B 的 ~1pp，趋势表明在更大规模下所有方法可能收敛。如果 32B+ 模型下三种方案在 repo-level 也等价，那么 central finding 就不再成立。Conclusion 进一步声称\"Scaling to 32B+... and complexity-aware routing are key open questions\"（§5, p.8），但如果这是 open question，那 central finding 就不应以定论形式呈现。\n- **为什么影响接收**：Claims 的 strength 必须与 evidence 匹配，否则会被 AC 标记为 overclaiming。\n- **建议修改方向**：在 abstract 和 conclusion 中明确添加 scope qualifier：\"under ≤8B LoRA fine-tuning\"作为 finding 的条件，并在 conclusion 中 explicitly 讨论 scaling 可能改变结论的方向。\n\n### Should-Fix 问题（影响评分但不一票否决）\n\n**W4 [Should-Fix] GenRM domain contrast 是最有价值的分析角度，但被埋在 Appendix。**\n- **具体位置**：Appendix p.22 最后一段 \"Domain contrast with generative verification in math reasoning\"\n- **问题**：论文在 p.22 讨论了为什么 GenRM 在数学推理中显示生成式验证优于判别式，而在代码中相反。解释（output space complexity：数学推理的自然语言 vs 代码执行轨迹的严格语法）非常有洞察力，但仅用一段话处理且放在附录。这个 domain-specific divergence 对 community 的指导价值可能高于 format collapse taxonomy 本身。\n- **建议**：将此分析提升到 §4.6 Analysis 或作为独立 subsection，并明确 formalize\"output space rigidity\"作为 generative verification 成败的调节变量假设。\n\n**W5 [Should-Fix] CWM repo-level 结果受 default assignment 策略严重影响。**\n- **具体位置**：§4.3 (p.5), §4.5 (p.7)\n- **问题**：§4.3 揭示 CWM 从 4B 到 8B 的表面 accuracy 提升实际上是 artifact——unparseable rate 从 53.76% 升至 73.8%，而 parseable-only accuracy 从 42.88% 降至 38.52%。这意味着 CWM repo-level 的所有数字都严重依赖 unparseable outputs 被如何处理（default to majority-class label）。论文在 cross-seed evidence（Appendix N）中提到了这一点，但主文中 Table 1 和 Table 3 的 CWM repo-level 数字没有足够的 caveat。\n- **建议**：在所有报告 CWM repo-level accuracy 的表格中添加 parseable-only accuracy 作为辅助指标，或在主文中更显著地讨论 default assignment 的影响。\n\n**W6 [Should-Fix] CLS-TRAJ 等价性不成立但被模糊处理。**\n- **具体位置**：§4.4 (p.5), Table 5\n- **问题**：TOST 检验显示 CLS-CWM 在 function level 确认等价（p<0.05），但 CLS-TRAJ 不显著（p=0.066）。然而 abstract 和 conclusion 的措辞暗示三种方案均等价：\"all formulations achieve comparable accuracy\"。这不符合论文自身的统计标准。论文试图用 Bayesian ROPE 补充论证（Appendix J.1），但 ROPE 结果也仅给出\"moderate support\"（P(ROPE)=0.542 at variant level）。\n- **建议**：在 abstract 和 conclusion 中明确区分 CLS-CWM 等价（confirmed）和 CLS-TRAJ（inconclusive），或降低 equivalence margin 重新检验。\n\n**W7 [Should-Fix] 缺少 execution-based verification 的 upper bound。**\n- **具体位置**：§4 Experiments\n- **问题**：论文比较了三种 execution-free 方案，但始终未报告 execution-based verification（即真正运行测试）的 accuracy 作为 upper bound。我们知道训练标签来自 execution（§4.1: \"labels verified by execution\"），但不知道 execution-based verification 在同一 test set 上的 pass rate。这使得 88.43%（CLS function-level）的实际价值难以评估——如果 execution-based 达 99%，则 execution-free 的实用性有限；如果 execution-based 仅 90%（因 flaky tests 等），则 88% 已接近上限。\n- **建议**：补充 execution-based pass rate 作为 reference point，即使只在 function level。\n\n### Minor 问题\n\n**M1.** Figure 1 中 CWM 输出示例的 \"Expected 6\" 含义不清楚——是 ground truth label 还是模型输出的一部分？caption 应澄清。\n\n**M2.** Limitations section（p.8）未明确提及所有实验仅限 Python。标题和 framing 中的 \"Code Repair\" 暗示多语言适用性。\n\n**M3.** §3.1 CLS 公式 $P_{\\text{pass}}(k) = 1-(1-r)^{n_b}$ 中各符号首次使用处缺少定义，需前向引用或 inline 解释。\n\n**M4.** Table 1 格式：Qwen3 和 DeepSeek-Coder 的 seed 数量不同（5 vs 2），表头标注 \"Seeds\" 列可以更清晰地区分。\n\n**M5.** §2 Related Work 中 \"Process vs. Outcome Supervision\" 小节篇幅较短，对 PRM 在代码领域的应用（如 CodePRM）讨论不够深入。\n\n---\n\n## Questions\n\n**Q1.** 14B 实验仅用 3 seeds，且仅在 Qwen3 上进行。是否有 14B DeepSeek-Coder 的结果？如果没有，如何确认 14B 的 gap 缩窄不是 Qwen3-specific 的？\n\n**Q2.** TRAJ formulation 将所有测试的 pass/fail 信息折叠为单一 token。是否尝试过 hybrid 方案——例如 TRAJ 先做粗筛，CLS 对低置信度实例做细筛？这比 oracle routing 更实际。\n\n**Q3.** CWM 的 format collapse 是否可以通过 constrained decoding（如 grammar-guided generation）显著缓解？论文未讨论这一明显的工程优化方向。\n\n**Q4.** 论文使用 HumanEval+ 和 MBPP 的合成 mutant 作为 function-level 数据。这些 mutant 的分布是否代表真实的代码修复场景？Table 13（Appendix G）显示 operator_swap 和 off_by_one 是主要的 mutation 类型，但真实 bug 的分布可能非常不同。\n\n**Q5.** Mixed-effects LPM（§4.6）中 formulation×complexity interaction 的 effect size 是多少（不仅是 significance）？z = -23.7 表明高度显著，但在 n=66,181 的大样本下几乎任何效应都会显著。\n\n---\n\n## Missing References\n\n1. **Constrained decoding for structured generation**：论文讨论 CWM 的 format collapse 但未引用 constrained decoding 文献（如 Guidance, Outlines, LMQL），这些方法可能直接解决 CWM 的核心弱点。\n\n2. **Self-debugging / iterative repair**：Chen et al. 2024 \"Teaching Large Language Models to Self-Debug\" 等 self-repair 工作使用 execution feedback 进行迭代修复，与本文的 execution-free 定位形成对照，应在 Related Work 中讨论。\n\n3. **Test-time compute scaling for code**：论文提到 GenRM 和 test-time compute scaling（§2），但未引用 Snell et al. 2024 等关于 inference-time compute optimal allocation 的工作，这与 formulation choice 的 efficiency 分析直接相关。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3/5 | 实验方法论在 ≤8B 范围内严谨（TOST、mixed-effects LPM、多 seed），但 abstract/conclusion 的 claim 泛化性超出证据范围（W3），CLS-TRAJ 等价性未确认却被模糊处理（W6），CWM repo-level 数字受 default assignment 严重影响（W5）。 |\n| **Excitement** | 3/5 | 论文回答了一个实用问题（哪种 verification formulation 更好），failure mode taxonomy 有指导价值。但核心发现可预测性较高（W1），最有趣的角度（GenRM domain contrast）未在主文中充分展开（W4）。 |\n| **Reproducibility** | 4/5 | 提供了完整的 hyperparameters（Appendix E/Table 12）、prompt templates（Appendix F）、统计检验细节（Appendix J/K/M），anonymous code/data URL。 |\n\n---\n\n## Overall Assessment\n\n**Overall: 3.0 — Findings**\n\n**一句话总结**：方法论严谨的 empirical comparison，但核心发现的可预测性和 scope 限制使其更适合作为 Findings 论文，而非主会议论文。\n\n**详细理由**：本文的核心价值在于为\"code verification formulation 选择\"这一实际问题提供了受控实验证据，实验方法论（TOST、mixed-effects model）的严谨程度高于该领域平均水平。然而，作为一篇 empirical comparison paper，其 novelty 主要受限于三点：(1) 核心发现（generation 在长输出下 format collapse）可从第一性原理预测；(2) scope 限于 ≤8B LoRA，而自身 scaling 证据暗示更大规模下结论可能不同；(3) error complementarity 被列为 key contribution 但无实际利用路径。如果能将 GenRM domain contrast 提升为主要 contribution 并补充 constrained decoding 实验，论文的 excitement 会显著提升。\n\n**Confidence: 4/5** — 我熟悉 code generation/verification/repair 领域以及相关的统计方法论，对本文的技术细节有充分理解。\n",
+  "reviewer_id": "2",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "\n# Reviewer 2 审稿意见\n\n## Paper: A Systematic Comparison of Execution-Free Verification Formulations for Code Repair\n\n---\n\n## Summary\n\n本文对代码修复中三种 execution-free 验证方案（per-test 分类 CLS、执行输出生成 CWM、轨迹级评分 TRAJ）进行了首次受控对比实验，在 ≤8B LoRA 微调设置下，跨两个 code LLM 家族、两个复杂度级别、多种随机种子进行系统比较。核心发现是代码复杂度调节了 classification-generation tradeoff：function 级别三者统计等价，repository 级别生成式方法（CWM）因 format collapse 而显著退化。论文还提出了 failure mode taxonomy 和 error complementarity 分析。实验方法论严谨（TOST 等价检验、mixed-effects LPM、Holm-Bonferroni 校正），但核心发现的可预测性和 scope 限制是主要关切。\n\n---\n\n## Strengths\n\n**S1. 严谨的实验方法论。** 论文在实验设计上有很高标准：TOST 等价检验（而非仅依赖 p-value）、mixed-effects linear probability model 控制随机效应、Holm-Bonferroni 多重比较校正、ICC 方差分解、Bayesian ROPE 分析。这在 NLP 实证研究中并不常见，值得肯定。（§4.4, §4.6, Appendix J/M）\n\n**S2. 受控对比设计。** 固定 model capacity、training data、evaluation protocol，仅变化 verification formulation，这种控制变量的设计使得因果推断更可信。这是对该领域许多工作的方法论改进——多数先前工作在不同 formulation 间使用不同模型或数据。（§4.1）\n\n**S3. Failure mode taxonomy 有实用价值。** 将 repo-level 失败模式分为 format collapse（53-74% unparseable）、decision collapse（truncate preprocessing, fail recall <14%）和 aggregation penalty（fail recall 38-57%）（Table 4, §4.5），为从业者提供了可操作的诊断框架。\n\n**S4. Cross-family 验证。** 使用 Qwen3 和 DeepSeek-Coder 两个 code LLM 家族验证发现的一致性，增强了结论的 robustness。（§4.1, Table 3）\n\n**S5. 充分的 appendix。** 14个附录覆盖 oracle analysis、ablation studies（LoRA rank、sequence length、few-shot prompting）、per-mutation breakdown、hyperparameters、prompt templates 等，可复现性良好。\n\n---\n\n## Weaknesses\n\n### Must-Fix 问题（影响接收决定）\n\n**W1 [Must-Fix] 核心发现的可预测性不足以支撑 novelty claim。**\n- **具体位置**：Abstract, §1 Introduction, §5 Conclusion\n- **问题**：论文的中心发现——\"生成式验证在 repository 级别因 format collapse 而崩溃，而分类方法保持稳健\"——从任务设计本身即可预测。CWM 需要为每个测试用例生成语法严格的执行轨迹（包含精确变量值、测试名、时序行等），任何格式错误都会级联传播；CLS 仅需每测试输出一个 binary token。随着输出长度增加（repo-level 平均 477 tokens vs function-level 5-15 tokens），生成式方法失败概率自然上升。论文虽然量化了这一现象，但未充分阐明哪些发现是 genuinely surprising 或 counter-intuitive 的。\n- **为什么影响接收**：对于 empirical comparison paper，如果主要结论是可预测的，novelty 就不足以支撑 conference-level 接收。\n- **建议修改方向**：(1) 在 Introduction 中明确 articulate 哪些先验预期被推翻——例如 function-level 的统计等价可能是 surprising 的（practitioner 可能预期 CLS 始终优于 CWM）；(2) 强调 14B 时 gap 缩窄至 ~1pp 的 scaling 行为作为 non-obvious 发现；(3) 将 GenRM domain contrast（目前在 Appendix p.22）提升到主文作为核心 contribution，因为\"生成式验证在数学推理中优势明显但在代码中失效\"这一 domain-specific divergence 比 format collapse 本身更有洞察力。\n\n**W2 [Must-Fix] Error complementarity 作为 contribution 被过度声称。**\n- **具体位置**：§1 Contribution 3, §4.4, §4.7\n- **问题**：Contribution 3 声称\"An oracle analysis shows that formulations make partially complementary errors, with upper bounds substantially above individual formulations\"（p.2），但 oracle combination 仅达 90.63%（§4.4），比最佳单一方案 CLS（88.43%）仅高 ~2.2pp。更关键的是，论文自身承认：\"the complementarity is instance-specific, so simple heuristics are insufficient. Whether a learned router can capture this advantage remains open\"（§4.4, p.5 底部）。一个没有实际实现途径的 theoretical upper bound（且 gap 仅 2.2pp）不应作为四大 contribution 之一。\n- **为什么影响接收**：Contribution list 决定了 reviewer 对论文价值的期待。将一个无法落地的 oracle 分析与实际可验证的发现（如 failure mode taxonomy）并列，会稀释论文的可信度。\n- **建议修改方向**：(1) 降级为 analysis finding 而非 key contribution；(2) 或者提供至少一个简单的 ensemble/routing proof-of-concept 来证明 complementarity 可被实际利用。\n\n**W3 [Must-Fix] Abstract/Conclusion 的 claim 泛化性超出证据范围。**\n- **具体位置**：Abstract, §5 Conclusion\n- **问题**：Abstract 说\"Our central finding is that code complexity moderates the classification–generation tradeoff\"——这是一个关于 verification formulations 的一般性结论，但证据仅来自 ≤8B LoRA fine-tuning。论文自身的 14B scaling 数据（§4.3, Table 2）显示 gap 从 4B 的 ~2.6pp 缩窄到 14B 的 ~1pp，趋势表明在更大规模下所有方法可能收敛。如果 32B+ 模型下三种方案在 repo-level 也等价，那么 central finding 就不再成立。Conclusion 进一步声称\"Scaling to 32B+... and complexity-aware routing are key open questions\"（§5, p.8），但如果这是 open question，那 central finding 就不应以定论形式呈现。\n- **为什么影响接收**：Claims 的 strength 必须与 evidence 匹配，否则会被 AC 标记为 overclaiming。\n- **建议修改方向**：在 abstract 和 conclusion 中明确添加 scope qualifier：\"under ≤8B LoRA fine-tuning\"作为 finding 的条件，并在 conclusion 中 explicitly 讨论 scaling 可能改变结论的方向。\n\n### Should-Fix 问题（影响评分但不一票否决）\n\n**W4 [Should-Fix] GenRM domain contrast 是最有价值的分析角度，但被埋在 Appendix。**\n- **具体位置**：Appendix p.22 最后一段 \"Domain contrast with generative verification in math reasoning\"\n- **问题**：论文在 p.22 讨论了为什么 GenRM 在数学推理中显示生成式验证优于判别式，而在代码中相反。解释（output space complexity：数学推理的自然语言 vs 代码执行轨迹的严格语法）非常有洞察力，但仅用一段话处理且放在附录。这个 domain-specific divergence 对 community 的指导价值可能高于 format collapse taxonomy 本身。\n- **建议**：将此分析提升到 §4.6 Analysis 或作为独立 subsection，并明确 formalize\"output space rigidity\"作为 generative verification 成败的调节变量假设。\n\n**W5 [Should-Fix] CWM repo-level 结果受 default assignment 策略严重影响。**\n- **具体位置**：§4.3 (p.5), §4.5 (p.7)\n- **问题**：§4.3 揭示 CWM 从 4B 到 8B 的表面 accuracy 提升实际上是 artifact——unparseable rate 从 53.76% 升至 73.8%，而 parseable-only accuracy 从 42.88% 降至 38.52%。这意味着 CWM repo-level 的所有数字都严重依赖 unparseable outputs 被如何处理（default to majority-class label）。论文在 cross-seed evidence（Appendix N）中提到了这一点，但主文中 Table 1 和 Table 3 的 CWM repo-level 数字没有足够的 caveat。\n- **建议**：在所有报告 CWM repo-level accuracy 的表格中添加 parseable-only accuracy 作为辅助指标，或在主文中更显著地讨论 default assignment 的影响。\n\n**W6 [Should-Fix] CLS-TRAJ 等价性不成立但被模糊处理。**\n- **具体位置**：§4.4 (p.5), Table 5\n- **问题**：TOST 检验显示 CLS-CWM 在 function level 确认等价（p<0.05），但 CLS-TRAJ 不显著（p=0.066）。然而 abstract 和 conclusion 的措辞暗示三种方案均等价：\"all formulations achieve comparable accuracy\"。这不符合论文自身的统计标准。论文试图用 Bayesian ROPE 补充论证（Appendix J.1），但 ROPE 结果也仅给出\"moderate support\"（P(ROPE)=0.542 at variant level）。\n- **建议**：在 abstract 和 conclusion 中明确区分 CLS-CWM 等价（confirmed）和 CLS-TRAJ（inconclusive），或降低 equivalence margin 重新检验。\n\n**W7 [Should-Fix] 缺少 execution-based verification 的 upper bound。**\n- **具体位置**：§4 Experiments\n- **问题**：论文比较了三种 execution-free 方案，但始终未报告 execution-based verification（即真正运行测试）的 accuracy 作为 upper bound。我们知道训练标签来自 execution（§4.1: \"labels verified by execution\"），但不知道 execution-based verification 在同一 test set 上的 pass rate。这使得 88.43%（CLS function-level）的实际价值难以评估——如果 execution-based 达 99%，则 execution-free 的实用性有限；如果 execution-based 仅 90%（因 flaky tests 等），则 88% 已接近上限。\n- **建议**：补充 execution-based pass rate 作为 reference point，即使只在 function level。\n\n### Minor 问题\n\n**M1.** Figure 1 中 CWM 输出示例的 \"Expected 6\" 含义不清楚——是 ground truth label 还是模型输出的一部分？caption 应澄清。\n\n**M2.** Limitations section（p.8）未明确提及所有实验仅限 Python。标题和 framing 中的 \"Code Repair\" 暗示多语言适用性。\n\n**M3.** §3.1 CLS 公式 $P_{\\text{pass}}(k) = 1-(1-r)^{n_b}$ 中各符号首次使用处缺少定义，需前向引用或 inline 解释。\n\n**M4.** Table 1 格式：Qwen3 和 DeepSeek-Coder 的 seed 数量不同（5 vs 2），表头标注 \"Seeds\" 列可以更清晰地区分。\n\n**M5.** §2 Related Work 中 \"Process vs. Outcome Supervision\" 小节篇幅较短，对 PRM 在代码领域的应用（如 CodePRM）讨论不够深入。\n\n---\n\n## Questions\n\n**Q1.** 14B 实验仅用 3 seeds，且仅在 Qwen3 上进行。是否有 14B DeepSeek-Coder 的结果？如果没有，如何确认 14B 的 gap 缩窄不是 Qwen3-specific 的？\n\n**Q2.** TRAJ formulation 将所有测试的 pass/fail 信息折叠为单一 token。是否尝试过 hybrid 方案——例如 TRAJ 先做粗筛，CLS 对低置信度实例做细筛？这比 oracle routing 更实际。\n\n**Q3.** CWM 的 format collapse 是否可以通过 constrained decoding（如 grammar-guided generation）显著缓解？论文未讨论这一明显的工程优化方向。\n\n**Q4.** 论文使用 HumanEval+ 和 MBPP 的合成 mutant 作为 function-level 数据。这些 mutant 的分布是否代表真实的代码修复场景？Table 13（Appendix G）显示 operator_swap 和 off_by_one 是主要的 mutation 类型，但真实 bug 的分布可能非常不同。\n\n**Q5.** Mixed-effects LPM（§4.6）中 formulation×complexity interaction 的 effect size 是多少（不仅是 significance）？z = -23.7 表明高度显著，但在 n=66,181 的大样本下几乎任何效应都会显著。\n\n---\n\n## Missing References\n\n1. **Constrained decoding for structured generation**：论文讨论 CWM 的 format collapse 但未引用 constrained decoding 文献（如 Guidance, Outlines, LMQL），这些方法可能直接解决 CWM 的核心弱点。\n\n2. **Self-debugging / iterative repair**：Chen et al. 2024 \"Teaching Large Language Models to Self-Debug\" 等 self-repair 工作使用 execution feedback 进行迭代修复，与本文的 execution-free 定位形成对照，应在 Related Work 中讨论。\n\n3. **Test-time compute scaling for code**：论文提到 GenRM 和 test-time compute scaling（§2），但未引用 Snell et al. 2024 等关于 inference-time compute optimal allocation 的工作，这与 formulation choice 的 efficiency 分析直接相关。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3/5 | 实验方法论在 ≤8B 范围内严谨（TOST、mixed-effects LPM、多 seed），但 abstract/conclusion 的 claim 泛化性超出证据范围（W3），CLS-TRAJ 等价性未确认却被模糊处理（W6），CWM repo-level 数字受 default assignment 严重影响（W5）。 |\n| **Excitement** | 3/5 | 论文回答了一个实用问题（哪种 verification formulation 更好），failure mode taxonomy 有指导价值。但核心发现可预测性较高（W1），最有趣的角度（GenRM domain contrast）未在主文中充分展开（W4）。 |\n| **Reproducibility** | 4/5 | 提供了完整的 hyperparameters（Appendix E/Table 12）、prompt templates（Appendix F）、统计检验细节（Appendix J/K/M），anonymous code/data URL。 |\n\n---\n\n## Overall Assessment\n\n**Overall: 3.0 — Findings**\n\n**一句话总结**：方法论严谨的 empirical comparison，但核心发现的可预测性和 scope 限制使其更适合作为 Findings 论文，而非主会议论文。\n\n**详细理由**：本文的核心价值在于为\"code verification formulation 选择\"这一实际问题提供了受控实验证据，实验方法论（TOST、mixed-effects model）的严谨程度高于该领域平均水平。然而，作为一篇 empirical comparison paper，其 novelty 主要受限于三点：(1) 核心发现（generation 在长输出下 format collapse）可从第一性原理预测；(2) scope 限于 ≤8B LoRA，而自身 scaling 证据暗示更大规模下结论可能不同；(3) error complementarity 被列为 key contribution 但无实际利用路径。如果能将 GenRM domain contrast 提升为主要 contribution 并补充 constrained decoding 实验，论文的 excitement 会显著提升。\n\n**Confidence: 4/5** — 我熟悉 code generation/verification/repair 领域以及相关的统计方法论，对本文的技术细节有充分理解。\n",
+    "reviewer_id": "2",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1918 · 2026-05-25T21:24:20.471076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 3671
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1919 · 2026-05-25T21:24:25.189325+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1920 · 2026-05-25T21:24:25.239969+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1921 · 2026-05-25T21:24:29.155998+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1922 · 2026-05-25T21:24:29.156428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1923 · 2026-05-25T21:24:38.157371+00:00_
+
+审稿意见已提交给 Review Director。
+
+总结：Overall 3.0（Findings 级别）。主要问题是 (1) 核心发现（generation 在 repo-level format collapse）从第一性原理可预测，novelty 不足；(2) error complementarity 被过度声称为 contribution 但无实际落地路径；(3) abstract/conclusion 的 claim 泛化性超出 ≤8B LoRA 的证据范围。主要优势是实验方法论严谨（TOST、mixed-effects LPM）、failure mode taxonomy 有实用价值、cross-family 验证增强 robustness。建议将 GenRM domain contrast 从附录提升到主文以增强 novelty 叙事。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+## Round 38
+
+## Round 38
+
+58 recorded events
+
+
+### User
+
+_source line 1924 · 2026-05-25T21:27:17.488336+00:00_
+
+[Round 1 审稿请求]:
+**[交叉分享 — Round 1]**
+
+以下是 Reviewer 1 的完整审稿意见。请逐条回应其 Strengths、Weaknesses（特别是 N1/N2 两个 critical 问题和 W1-W5）、Questions，对每条标注：
+- `[AGREE]` 同意并说明理由
+- `[REBUT]` 反驳并提供证据（cite 具体 Section/Table/Figure）
+
+---
+
+## Reviewer 1 审稿意见（Round 1）
+**论文**: A Systematic Comparison of Execution-Free Verification Formulations for Code Repair
+**审查侧重**: 方法严谨性、实验设计、统计分析
+**参照标准**: ACL ARR Review Form (2025–2026)，含 Soundness / Excitement / Overall Assessment
+
+---
+
+## Summary
+
+本文对代码修复任务中三种免执行验证公式（CLS 分类、CWM 输出生成、TRAJ 轨迹评分）进行了首次系统对比。在两个 LLM 家族（Qwen3、DeepSeek-Coder）、两个复杂度层级（function-level、repo-level）、≤8B LoRA 微调设定下，控制模型容量和训练数据进行比较。核心发现：函数级三者统计等价；仓库级 CLS 领先 CWM 18–26pp，原因归结为代码复杂度调节的分类-生成权衡。统计框架包含 TOST 等价检验、Holm-Bonferroni 校正、clustered bootstrap、Bayesian ROPE 和 mixed-effects LPM。
+
+---
+
+## Strengths
+
+**S1. 研究问题高度实用且定义清晰。** 执行免费验证公式的选择是 LLM-based code repair pipeline 的一个实际设计决策，目前缺乏系统对比。问题框架将 formulation 选择与 model capacity、output complexity 的交互关系清晰分离（§1, §3）。
+
+**S2. 统计分析深度远超同类 NLP 实验论文。** 组合使用 TOST 等价检验 + Holm-Bonferroni 多重比较校正 + clustered bootstrap CI + Bayesian ROPE + mixed-effects LPM，构成了一套相当完整的推断框架。特别是 TOST 而非简单 NHST 来建立等价性（§4.4），以及用 clustered bootstrap 处理 within-problem 相关性（§4.4, Appendix A），方法论上是合理的。
+
+**S3. 失败模式分类体系有价值。** §4.5 和 Appendix C–D 中对 repo-level 三种失败模式（format collapse、decision collapse、aggregation penalty）的分类，结合 Table 4 和 Figure 4 的量化分析，为理解 CWM 在高复杂度下的退化提供了可操作的诊断框架。
+
+**S4. 消融和干预实验覆盖面较广。** 包括 LoRA rank 消融（Appendix B）、training data downsampling（Appendix B.6）、few-shot prompting（Appendix B.7, Table 8）、majority voting（Appendix B.4）、multiple targeted interventions（§4.6(g)），对 confound 的排查意识较强。
+
+**S5. 诚实的 Limitations 和 Threats to Validity。** §4.7 和 Limitations 章节明确列出了 5 个 confound（checkpoint selection、sequence length、val-test distribution shift、training regime、CWM preprocessing/checkpoint interaction），这种透明度值得肯定。
+
+---
+
+## Weaknesses
+
+### Must-Fix 问题（影响接收决定）
+
+**N1 [critical] TRAJ 训练配置差异严重混淆 CLS–TRAJ 函数级等价结论**
+
+- 具体位置：§4.1（训练配置）、§4.4（TOST 等价检验）、Table 1、Appendix E（超参数）
+- 问题：TRAJ 与 CLS/CWM 的训练配置存在**三重差异**：(a) 标签粒度不同——TRAJ 使用 variant-level 标签（resolved/unresolved），CLS 使用 per-test 标签（pass/fail）；(b) 训练数据量差距悬殊——repo-level TRAJ 仅 ~400 实例 vs CLS ~70K per-test 实例；(c) learning rate 不同（2×10⁻⁴ vs 5×10⁻⁵）。Table 1 脚注标注 "Training configuration differs (§4.5)" 但这是一个对核心结论有决定性影响的 confound，不应只以脚注处理。
+- §4.4 报告 CLS–TRAJ 的 TOST 在 Holm-Bonferroni 校正后 inconclusive（adjusted p=0.128, Table 5），这意味着**函数级等价的核心 claim 之一在多重比较校正下未能成立**。论文在正文中的表述 "CLS–TRAJ equivalence as inconclusive"（§4.4 末段）过于轻描淡写——这实质上是未能建立等价性。
+- Appendix B.6 的 downsampling 消融仅控制了数据量（repo-level），**未控制标签粒度差异**。如果给 TRAJ 提供 per-test 级标签（如把 TRAJ 改为 per-test verdict scoring），性能可能显著不同。
+- 为什么影响接收：论文两个核心 claim 之一是"函数级三者等价"，但 CLS–TRAJ 等价在校正后不成立，且比较受到训练配置混淆。这使得 "equivalence" narrative 的 1/3（CLS–TRAJ 对）缺乏充分支撑。
+- 建议修改方向：(1) 在正文显著位置（而非脚注）明确标注 TRAJ 比较受训练配置差异限制；(2) 将 "function-level equivalence" claim 限缩为 "CLS–CWM equivalence established; CLS–TRAJ equivalence inconclusive under current training configurations"；(3) 理想情况下补充一个 label-granularity 控制实验（如 per-test TRAJ），但如不可行至少需要讨论方向。
+
+**N2 [critical] Repo-level 因果归因的证据强度与 2–3 seeds 不匹配**
+
+- 具体位置：§4.5（Repo-Level: Complexity-Dependent Divergence）、§4.6（Analysis）、Table 3、Appendix M（Mixed-Effects Regression）
+- 问题：repo-level 的核心结论——"formulation×complexity interaction is highly significant (t = −23.7, p<0.001)"——来自 mixed-effects LPM，但底层数据仅有 2–3 seeds per configuration。具体地：
+  - Table 3 显示 Qwen3-8B CLS 3 seeds、CWM 3 seeds（seed 42 单 seed）、TRAJ 3 seeds；DeepSeek CLS 2 seeds、CWM 1 seed
+  - CLS–CWM gap 在 Table 3 中为 25.50 pp（8B）和 18.53 pp（8B），但 seed-level 标准差达 ±2.15–±3.01
+  - Mixed-effects LPM 使用 n≤25 clusters（k_clusters < 40, Appendix M），random-intercept 结构的 degrees of freedom 有限
+  - §4.7 提到的 Holm-Bonferroni 校正 "confirms the two core claims (adjusted p=0.015 and p=0.128)"——但 p=0.128 对应的 CLS–TRAJ 比较恰恰是**不显著的**
+- 论文在 §4.6 做出了强因果叙述（"complexity moderates the classification-generation tradeoff"、"formulation choice matters only at repo level"），但 §4.6(g) 的 4 项干预实验全部失败（capacity rank 32、majority voting、few-shot prompting、model scaling），这些干预的失败可能只是说明干预不够强，而非因果归因正确。
+- 为什么影响接收：2–3 seeds 支撑 causal claim 在方法论上偏弱。如果一个 seed 的 checkpoint 选择或训练不稳定性导致了 5pp 的偏差（Appendix O 估计 checkpoint effect ~1pp，但这可能低估了 seed-checkpoint 交互效应），则 18–26pp gap 的 CI 可能覆盖更小的 true effect。
+- 建议修改方向：(1) 将因果语言降级为关联性/描述性语言（"the gap is associated with" 而非 "complexity moderates"）；(2) 报告 seed-level 的 individual results（不仅是 mean±sd）以展示 seed 间一致性；(3) 或补充 1–2 个额外 seeds 来收紧 CI。
+
+### Should-Fix 问题（影响评分但不一票否决）
+
+**W1 [warning] TOST 等价边际 ±2pp 缺乏领域特定论证**
+
+- 具体位置：§4.4、Appendix J（TOST Margin Sensitivity）、Figure 3
+- 问题：±2pp 作为 Smallest Effect Size of Interest (SESOI) 没有领域层面的论证。论文简单引用了 Lakens (2017) 和 Wellek (2010)，但没有说明为什么在代码验证准确率语境下 2pp 是"practitioners wouldn't care"的阈值。Figure 3 的 sensitivity analysis 显示：最小等价边际为 ±1.63pp（CLS–CWM）和 ±0.37pp（seed-level，CLS–TRAJ）。CLS–TRAJ 在 Holm 校正后需要 ±1.8pp 才能成立。如果 SESOI 设为 ±1.5pp（一个同样合理的选择），CLS–CWM 等价也会变得 marginal。
+- 建议：提供 SESOI 的实践论证——例如基于 verification accuracy 每 1pp 变化对下游 repair 成功率的影响量化，或参考 code generation 领域已有的 effect size 基准。
+
+**W2 [warning] Checkpoint 选择在 formulation 间不一致**
+
+- 具体位置：§4.1、Appendix E、Appendix O
+- 问题：CWM 存在 NaN validation loss 导致默认使用 final-epoch checkpoint（Appendix E），而 CLS 使用 val-based selection。Appendix O 的 checkpoint 消融（Qwen3-8B CLS s42）估计 effect ~1pp，但这只测了 CLS 的一个 seed。CWM 的 checkpoint 敏感性可能不同——特别是 CWM 训练更不稳定（有 NaN loss），最优 checkpoint 和 final checkpoint 之间的差异可能更大。Appendix O.5 进一步指出 "CWM convergence analysis" 显示 eval loss 在 step 300–400 内就达到最小值，之后继续训练可能过拟合。
+- 建议：(1) 对 CWM 也做 checkpoint 消融；(2) 或统一使用 early stopping 策略。
+
+**W3 [warning] Evaluation sequence length 作为未控制 confound**
+
+- 具体位置：§4.7（Threats to Validity, confound 2）、Appendix O.5
+- 问题：CLS 将几乎全部 context 用于 input（仅输出 1 token），而 CWM 需要在 input 和 generation 之间分配 context。Appendix O.5 承认 "cross-model CWM comparisons use different eval lengths (Qwen3: 8192, DeepSeek: 4096) and are not directly comparable in absolute terms"。在 repo-level，CWM 的输出可能因 context 截断而退化，这是 CLS–CWM gap 的一个替代解释。论文未量化 sequence length 对 CWM accuracy 的影响。
+- 建议：报告 CWM inference 时的平均/P95 生成长度，以及因截断导致的样本丢失比例。
+
+**W4 [warning] Mixed-effects LPM 模型选择缺乏敏感性检验**
+
+- 具体位置：§4.6、Appendix M
+- 问题：对二值结果（correct/incorrect）使用 LPM 而非 logistic regression 或 probit。论文辩护为"coefficients directly interpretable as probability differences"——这在一般情况下成立，但 LPM 在极端预测值处会产生 <0 或 >1 的预测概率。更重要的是：
+  - Appendix M 报告 GEE 作为替代但仅给出了部分结果（p=0.002 for LPM, "not significant under GEE, p=0.449" for formulation×complexity interaction on Qwen3）。**GEE 不显著而 LPM 显著这一差异是关键信息**，应在正文讨论而非仅放在 Appendix。
+  - k_clusters < 40（Appendix M 报告 n=25）时 LPM 的 sandwich estimator 可能 size-distorted。
+- 建议：(1) 将 LPM vs GEE 不一致性提升到正文讨论；(2) 报告 logistic regression 作为 robustness check；(3) 讨论 small-cluster bias correction（如 CR2 correction）。
+
+**W5 [warning] CWM 在 ≤8B 下的公平性问题需更充分讨论**
+
+- 具体位置：§4.1（baseline 说明）、§4.5–4.6、Limitations
+- 问题：论文声明使用自训练的 ≤8B CWM 而非原始 32B CWM（FAIR CodeGen team et al., 2025），这在实验设计上是合理的。但论文的核心发现——CWM 在 repo-level 退化——可能主要是**容量不足**导致的 generation 质量下降，而非 formulation 本身的固有缺陷。§4.6 的 mixed-effects 分析发现 complexity×formulation 交互显著，但这个交互效应可能在 32B 或更大模型上消失。论文在 Limitations 中提到 "cross-family replication at 32B+ is needed"，但正文的叙述仍然以 "formulation-inherent" 框架为主（如 §5 Conclusion: "generation-based verification suffers format collapse"）。
+- 建议：在 Conclusion 中加入更强的 caveat——当前发现是 capacity-contingent 的，不能直接推广到更大模型。
+
+### Minor 问题（不影响接收）
+
+**M1.** Table 1 脚注 "†" 标记 TRAJ 为 "fine-tuned"，但 CLS 和 CWM 同样是 fine-tuned，此标记的含义不清晰。应改为标注配置差异（如 "different training configuration"）。
+
+**M2.** §4.4 报告 "Our Smallest Effect Size of Interest (SESOI) threshold of ±2 pp (Lakens, 2017; Wellek, 2010)" 但这两个引用是等价检验的方法论引用，并非对 2pp 这个具体阈值的来源论证。
+
+**M3.** Figure 2 (p.5) 的 CLS-CWM gap shaded region 有用，但 y 轴起点不为 0 可能视觉上夸大差异。
+
+**M4.** Appendix J Table 14 的 TOST sensitivity 分析只给出了 5-seed variant-level 的结果，未给出 per-test level 或 repo-level 的 sensitivity。
+
+**M5.** §4.6(d) 报告 "CWM's 5-seed standard deviation (0.37 pp) is lower than CLS (0.78 pp)"——这可能是因为 CWM accuracy 本身更低（floor effect 压缩了 variance），而非 CWM 更稳定。
+
+---
+
+## Questions
+
+**Q1.** Appendix M 中 GEE 对 formulation×complexity 交互项不显著（p=0.449）但 LPM 显著（p<0.001）——这一矛盾的原因是什么？是 cluster 数量不足导致 GEE 保守，还是 LPM 的 sandwich estimator 膨胀了 Type I error？
+
+**Q2.** TRAJ 的 variant-level label 设计是 formulation 固有约束还是实现选择？是否可以将 TRAJ 改造为接受 per-test 输入并给出 per-test verdict，从而控制 label granularity confound？
+
+**Q3.** §4.6(g) 所有 4 项干预实验均未能缩小 repo-level gap——是否考虑过更激进的干预（如 chain-of-thought prompting for CWM、test-case-specific CWM generation）？
+
+**Q4.** CWM 在 repo-level 的 format collapse（53–74% unparseable, Table 4）是否与 max_seq_length 截断相关？即：如果给 CWM 更长的生成窗口，format collapse 率是否下降？
+
+**Q5.** Appendix O.5 提到 "cross-model CWM comparisons use different eval lengths"——如果统一 eval length 为 8192，DeepSeek CWM 的 repo-level accuracy 是否会改善？
+
+---
+
+## 官方维度打分
+
+| 维度 | 分数 |
+|------|------|
+| Soundness | 3/5 |
+| Excitement | 3/5 |
+| Reproducibility | 4/5 |
+| Overall Assessment | 3.5 = Borderline Conference |
+| Confidence | 4/5 |
+
+---
+
+请对以上意见逐条回应。重点关注 N1（TRAJ 训练配置混淆）和 N2（repo-level 因果归因证据强度）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "source": "review_reviewer_2"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1925 · 2026-05-25T21:27:29.639558+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__pdf_to_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1926 · 2026-05-25T21:27:29.690130+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1927 · 2026-05-25T21:27:34.916073+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "project": "exec-sim-repair-verifier",
+  "pages": "1-8",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "project": "exec-sim-repair-verifier",
+    "pages": "1-8",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1928 · 2026-05-25T21:27:36.071252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 466.0}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.2}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 554.3}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.9}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.2}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 482.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 486.4}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 467.8}], \"total_pages\": 22, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/a
+…[truncated 77 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 1155
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1929 · 2026-05-25T21:27:38.932698+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1930 · 2026-05-25T21:27:39.836740+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1931 · 2026-05-25T21:27:39.937500+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p2.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1932 · 2026-05-25T21:27:40.389971+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1933 · 2026-05-25T21:27:40.700683+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 763
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1934 · 2026-05-25T21:27:40.701101+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p4.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1935 · 2026-05-25T21:27:41.062122+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 672
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1936 · 2026-05-25T21:27:41.736829+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1035
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1937 · 2026-05-25T21:27:46.958475+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1938 · 2026-05-25T21:27:47.512041+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p6.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1939 · 2026-05-25T21:27:47.965710+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1007
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1940 · 2026-05-25T21:27:47.966186+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1941 · 2026-05-25T21:27:48.619698+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1107
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1942 · 2026-05-25T21:27:48.620132+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1943 · 2026-05-25T21:27:48.672110+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 705
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1944 · 2026-05-25T21:27:49.175688+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1945 · 2026-05-25T21:27:56.200583+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "project": "exec-sim-repair-verifier",
+  "pages": "9-16",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "project": "exec-sim-repair-verifier",
+    "pages": "9-16",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1946 · 2026-05-25T21:27:57.106201+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 539.7}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 533.4}, {\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 524.6}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 501.4}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 454.8}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.8}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 461.7}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 527.3}], \"total_pages\": 22, \"rendered_pages\": 8, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-rep
+…[truncated 91 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1947 · 2026-05-25T21:28:01.371943+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1948 · 2026-05-25T21:28:01.873976+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p10.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1949 · 2026-05-25T21:28:02.777783+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1405
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1950 · 2026-05-25T21:28:02.778921+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 904
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1951 · 2026-05-25T21:28:02.829427+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p11.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1952 · 2026-05-25T21:28:03.131050+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p12.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1953 · 2026-05-25T21:28:03.584713+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 755
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1954 · 2026-05-25T21:28:03.990074+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 859
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1955 · 2026-05-25T21:28:09.263588+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p13.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1956 · 2026-05-25T21:28:09.766974+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p14.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1957 · 2026-05-25T21:28:10.169493+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1958 · 2026-05-25T21:28:10.320494+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p15.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1959 · 2026-05-25T21:28:10.774568+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1007
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1960 · 2026-05-25T21:28:10.775053+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p16.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1961 · 2026-05-25T21:28:10.926573+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 606
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1962 · 2026-05-25T21:28:11.429766+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 654
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1963 · 2026-05-25T21:28:19.259691+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+  "project": "exec-sim-repair-verifier",
+  "pages": "17-22",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/submitted.pdf",
+    "project": "exec-sim-repair-verifier",
+    "pages": "17-22",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1964 · 2026-05-25T21:28:19.912406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 554.1}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 520.6}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.4}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 544.2}, {\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 538.1}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 473.4}], \"total_pages\": 22, \"rendered_pages\": 6, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 652
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1965 · 2026-05-25T21:28:23.426108+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p17.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1966 · 2026-05-25T21:28:23.928208+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p18.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1967 · 2026-05-25T21:28:24.832484+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1406
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1968 · 2026-05-25T21:28:24.833583+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 905
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1969 · 2026-05-25T21:28:24.833973+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p19.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1970 · 2026-05-25T21:28:25.335983+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p20.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p20.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1971 · 2026-05-25T21:28:25.788777+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 954
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1972 · 2026-05-25T21:28:25.889682+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p21.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p21.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1973 · 2026-05-25T21:28:26.395022+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 1059
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1974 · 2026-05-25T21:28:26.445659+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p22.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/review_round_18/_pdf_images/submitted_p22.png"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1975 · 2026-05-25T21:28:26.551048+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 661
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1976 · 2026-05-25T21:28:27.103879+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "Read",
+  "elapsed_ms": 658
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1977 · 2026-05-25T21:29:15.620145+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1978 · 2026-05-25T21:29:15.671056+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 1979 · 2026-05-25T21:31:30.390201+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## Reviewer 2 交叉回应 — 对 Reviewer 1 (Round 1) 逐条回应\n\n---\n\n### Strengths 回应\n\n**[AGREE] S1**: 研究问题确实实用且定义清晰。三种 formulation 的系统对比在文献中确实缺失，问题框架合理。\n\n**[AGREE] S2**: 统计分析深度远超同类 NLP 实验论文，这一点我完全同意。TOST + clustered bootstrap + Bayesian ROPE + mixed-effects LPM 的组合在 ACL/EMNLP 论文中极为罕见。但正因为统计框架复杂，其中任何一环出问题（如 W4 的 LPM vs GEE 矛盾）都会动摇整体可信度。\n\n**[AGREE] S3**: 失败模式分类体系（format collapse / decision collapse / aggregation penalty）确实有价值。Table 4 和 Figure 4 的量化分析使这些概念具有可操作性。\n\n**[AGREE] S4**: 消融覆盖面广，这一点同意。但需补充：多数消融结果是\"未能改变结论\"（negative results），论文对此的解读倾向于\"robust\"而非\"interventions too weak\"，这个叙事方向值得质疑（见 N2 回应）。\n\n**[AGREE] S5**: Limitations 透明度确实值得肯定。§4.7 列出 5 个 confound 的做法比大多数同类论文坦诚。\n\n---\n\n### Must-Fix 问题回应\n\n**[AGREE] R1-N1: TRAJ 训练配置差异混淆 CLS–TRAJ 等价结论**\n\nR1 的分析精准。我补充以下发现强化这一判断：\n\n1. **论文自身数据支持\"inconclusive\"**: §4.4 报告 CLS–TRAJ Holm 校正后 adjusted p=0.128，p.18 Appendix J 的 TOST sensitivity analysis 进一步显示 seed-level CLS–TRAJ 的最小等价边际仅 ±0.37pp——这意味着即使微小的 SESOI 收紧也会推翻等价。p.22 也承认 \"function-level CLS–TRAJ equivalence does not survive correction (adjusted p=0.075), nor does the repo-level CWM–TRAJ comparison (adjusted p=0.073)\"。\n\n2. **三重混淆的具体量化**: 从 p.14（Table 12）和 p.22 可以确认——TRAJ 训练集仅 ~400 repo-level 实例 vs CLS ~70K per-test 实例（175× 差距）；learning rate 差 4×（2×10⁻⁴ vs 5×10⁻⁵）；标签粒度完全不同（variant-level vs per-test）。这三个变量同时改变，无法归因。\n\n3. **Appendix B.6 的 downsampling 消融不充分**: 该消融仅控制了数据量，未控制 label granularity。p.22 自己也承认 \"controls for training volume but not label granularity (per-test vs. variant-level); these are both plausible confounds that cannot be separately controlled.\"\n\n4. **叙事包装问题**: Abstract 说 \"trajectory-level scoring remain competitive\"，§4.4 正文末段写 \"CLS–TRAJ equivalence as inconclusive\"——但论文的标题是 \"Systematic Comparison\"，给读者的印象仍然是三种 formulation 被公平比较了。实际上 TRAJ 处于不可比状态。\n\n**建议方向与 R1 一致**：将 claim 限缩为 \"CLS–CWM equivalence established at function level; CLS–TRAJ comparison is confounded and inconclusive\"。在 Abstract 中明确标注 TRAJ 比较的局限性。\n\n---\n\n**[REBUT] R1-N2: Repo-level 因果归因的证据强度与 2–3 seeds**（部分反驳）\n\nR1 的 seed 数量担忧有一定道理，但我认为将其升级为 critical 过于严厉，理由如下：\n\n1. **效应量极大，远超随机波动**: Table 3 显示 CLS–CWM gap 为 18.53–25.50 pp，而 seed-level SD 仅 2.15–3.01 pp。即使最保守的 clustered bootstrap 95% CI（§4.5 报告）也不覆盖零。18–26pp 的 gap 不可能被 1–2 个额外 seed 逆转——这不是一个 edge case，而是一个量级差异。\n\n2. **跨模型家族一致性提供了伪复制**: Qwen3-8B 和 DeepSeek-Coder-6.7B 是完全独立的模型家族，两者都显示 CLS > CWM（Qwen3: +25.50pp, DeepSeek: +18.53pp, Table 3），方向完全一致。这提供了概念层面的 replication，比单一模型跑更多 seed 更有说服力。\n\n3. **失败模式分析提供了机制解释**: Table 4 显示 CWM 53–74% unparseable（format collapse），Figure 4 量化了 per-mutation breakdown。这不是随机噪声——是一个系统性的结构化失败。p.20 的 CWM convergence analysis 进一步确认 format collapse 从训练早期就存在，不是 checkpoint 或 seed 选择的产物。\n\n4. **但 R1 关于\"因果语言\"的批评是对的**: \"complexity moderates the classification-generation tradeoff\" 这样的措辞确实暗示因果关系。在只有 2–3 seeds 且无随机化干预的观察性研究中，应使用描述性/关联性语言。\"CLS consistently outperforms CWM at repo level across both model families, associated with CWM's format collapse under increased output complexity\" 比 \"complexity moderates\" 更准确。\n\n**总结**: 降级为 Should-Fix 更合适。效应量 + 跨模型一致性 + 机制分析已足够支撑 \"repo-level divergence\" 的描述性结论。但因果语言确需降级。\n\n---\n\n### Should-Fix 问题回应\n\n**[AGREE] R1-W1: TOST ±2pp 缺乏领域论证**\n\n同意。我补充：论文引用 Lakens (2017) 和 Wellek (2010) 是方法论引用，不构成对 ±2pp 这个具体数值的论证。Figure 3 的 sensitivity analysis 是有价值的补充，但它只回答了\"结论对 margin 多敏感\"，没有回答\"为什么 2pp 是合理的 SESOI\"。\n\n一个实践论证路径：如果 verification accuracy 每 1pp 变化对下游 repair 成功率的影响可以量化（例如通过 oracle 实验），则 SESOI 可以有实质性的领域锚定。\n\n---\n\n**[AGREE] R1-W2: Checkpoint 选择不一致**\n\n同意，但补充论文的缓解措施比 R1 描述的更充分：\n\n- Appendix O（p.20）的 CWM convergence analysis 显示 eval loss 在 step 300–400 内达到最小值，之后单调递增——这表明 CWM 的 final checkpoint 可能已经过拟合。\n- 但 p.20 同时指出 \"format degradation: collapse is present from early training\"，说明 CWM 的 format collapse 是结构性的，不是 late-training artifact。\n- 尽管如此，CLS 用 val-based selection 而 CWM 用 final checkpoint，这在方法论上仍是不一致的。统一使用 early stopping 是合理建议。\n\n---\n\n**[AGREE] R1-W3: Sequence length 作为未控制 confound**\n\n同意，这是一个重要的替代解释。CLS 几乎将全部 context 用于 input（输出仅 1 token），而 CWM 需要在 input 和 generation 之间分配。p.21 Appendix O.5 承认 \"cross-model CWM comparisons use different eval lengths (Qwen3: 8192, DeepSeek: 4096)\"。\n\n我补充：p.21 的 \"Evaluation sequence length\" 分析提供了部分证据。CWM accuracy 从 seq4096 到 seq8192 的变化 \"only 0.81 pp (64.36% → 65.17%)\"，但 unparseable rate 仍然 53–74%。这表明 sequence length 不是 format collapse 的主要原因，但确实是一个未完全控制的 confound。论文应报告 CWM 的平均/P95 生成长度和截断率，以量化这一 confound 的上界。\n\n---\n\n**[AGREE] R1-W4: LPM vs GEE 不一致性是关键信息，应提升到正文**\n\n**这是 R1 所有意见中我认为最重要的一个 Should-Fix。**\n\nAppendix M（p.19）报告：LPM 的 formulation×complexity interaction 高度显著（t=−23.7, p<0.001），但 GEE 对同一交互项不显著（p=0.449）。这不是一个 minor discrepancy——两种合理的统计模型对论文的核心发现给出了相反结论。\n\n论文将此归因于 \"consistent with limited clusters (k<25 < 40)\"，暗示 GEE 因 cluster 不足而保守。但反过来同样成立：LPM 在 k<40 时的 sandwich estimator 可能 size-distorted（Moulton, 1990 的 small-cluster bias），导致 Type I error 膨胀。\n\n**这一矛盾应在正文 §4.6 讨论**，而非仅放在 Appendix M。读者有权在主要叙事中看到这个 robustness concern。建议补充 logistic regression 作为第三种估计，以打破 LPM vs GEE 的僵局。\n\n---\n\n**[AGREE] R1-W5: CWM 退化可能是 capacity-contingent**\n\n同意。§4.6(g) 的 model scaling 干预（4B→8B）仅 +1.3pp，这可能说明 ≤8B 范围内 capacity 增长不足以改变结论，但不能排除 32B+ 时 CWM 的 format collapse 问题消失的可能性。\n\np.22 说 \"Domain contract with generative verification in math reasoning: GenRM (Hosseini et al., 2025) demonstrates that generative verifiers outperform discriminative ones for math reasoning\"——论文自己引用的 GenRM 证据表明，在数学领域 generative formulation 优于 classification。这强化了 W5 的担忧：当前发现可能是 capacity + domain 双重条件下的局部结论。\n\nConclusion（p.8）中 \"generation-based verification suffers format collapse\" 的措辞确实过于绝对。建议改为 \"under ≤8B LoRA fine-tuning, generation-based verification suffers format collapse at repository level\"。\n\n---\n\n### Minor 问题回应\n\n**[AGREE] R1-M1**: Table 1 的 \"†\" 标记确实含义不清。\"fine-tuned\" 标注对 CLS/CWM 同样适用，应改为 \"different training configuration; see §4.5\"。\n\n**[AGREE] R1-M2**: Lakens (2017) 和 Wellek (2010) 是方法论引用，不支持 ±2pp 这个具体值。同 W1。\n\n**[REBUT] R1-M3**: Figure 2 y 轴不从 0 开始。在精度对比图中，y 轴从 0 开始会浪费大量空间在无信息区域（0%–60%），压缩有信息的差异区域。学术论文中 accuracy 对比图不从 0 开始是常规做法（参考 ICLR/NeurIPS 同类图表）。Figure 2 已通过 shaded gap region 标注 CLS–CWM 差异，视觉欺骗风险可控。\n\n**[AGREE] R1-M4**: Appendix J 的 TOST sensitivity 仅覆盖 5-seed variant-level，缺少 per-test 和 repo-level 的 sensitivity 分析。这限制了 sensitivity analysis 的完整性。\n\n**[REBUT] R1-M5**: §4.6(d) 报告 \"CWM's 5-seed standard deviation (0.37 pp) is lower than CLS (0.78 pp)\"。R1 怀疑这是 floor effect。但查看 Table 1，function-level CWM accuracy 为 87.97%（Qwen3-8B），并不处于极低水平（floor）。0.37 vs 0.78 的差异更可能反映 CWM 的 generation pipeline（多步骤 → 更多 smoothing）比 CLS 的单 token logit 更稳定。不过论文确实没有做方差齐性检验（如 Levene's test），R1 的替代解释无法被排除。\n\n---\n\n### Questions 回应\n\n**Q1（LPM vs GEE 矛盾原因）**: 见 W4 回应。我认为两种解释都有可能：(a) GEE 在 k=25 时保守（power 不足）；(b) LPM sandwich estimator 在小 cluster 下 size-distorted。论文应同时报告 logistic regression（possibly with CR2 bias correction）以提供第三方验证。这是一个需要在正文讨论的方法论 open question，不能仅靠 \"consistent with limited clusters\" 一句话带过。\n\n**Q2（TRAJ label granularity 是固有约束还是实现选择）**: 基于对论文 §3.1 和 Appendix F prompt template 的阅读，TRAJ 的 variant-level verdict 确实是 formulation design 的一部分——TRAJ 接收所有 test 结果并产出一个整体判断，这是其 \"trajectory scoring\" 概念的核心。但从技术上看，可以将 TRAJ 拆解为 per-test scoring（每次只给一个 test 的执行轨迹），这会使其退化为类似 CLS 的 formulation。论文应讨论这一 design space。\n\n**Q3（更激进的干预）**: 合理的问题。§4.6(g) 的 4 项干预全部失败——但这些干预的强度有限（rank 32、3-shot prompting、majority voting、4B→8B scaling）。更激进的选项可能包括：(a) CWM 专用的 structured generation（如 constrained decoding 强制输出 JSON 格式）；(b) chain-of-thought prompting；(c) 跳到 14B/32B。当前干预的失败不能作为\"因果归因正确\"的证据——只能说明这些特定干预无效。\n\n**Q4（format collapse 与 max_seq_length 截断的关系）**: p.21 的 sequence length 分析提供了部分答案：从 4096 到 8192 token，CWM accuracy 仅提升 0.81pp，unparseable rate 变化有限。这表明 format collapse 不是简单的截断问题，而是 generation capability 的结构性不足。但论文未报告因截断而被丢弃的样本比例，这个数据对回答 Q4 至关重要。\n\n**Q5（统一 eval length 对 DeepSeek CWM 的影响）**: 基于 p.21 的证据（Qwen3 从 4096→8192 仅 +0.81pp），统一到 8192 对 DeepSeek CWM 的提升可能同样有限。但由于 DeepSeek CWM 仅 1 seed（Table 3），任何推断都缺乏统计基础。\n\n---\n\n### 对 R1 官方维度打分的回应\n\n| 维度 | R1 分数 | R2 意见 |\n|------|--------|--------|\n| Soundness 3/5 | 基本同意。LPM vs GEE 矛盾（W4）和 TRAJ 混淆（N1）确实削弱 soundness。但 repo-level CLS>CWM 的核心发现有跨模型支撑，soundness 不应低于 3。 |\n| Excitement 3/5 | 同意。研究问题重要但发现偏 incremental——\"function-level 等价、repo-level CLS 更好\"的结论对 practitioner 有价值但对方法论社区贡献有限。 |\n| Reproducibility 4/5 | 同意。超参数、prompt 模板、统计脚本的披露较完整。 |\n| Overall 3.5 | 基本同意 Borderline Conference。如果 N1（TRAJ claim 限缩）和 W4（LPM vs GEE 提升到正文）被修复，可以上升到 solid 3.5–4.0。 |\n| Confidence 4/5 | 同意。 |\n\n---\n\n### R2 综合判断\n\nR1 的审稿整体质量很高，特别是 N1（TRAJ 混淆）和 W4（LPM vs GEE）两个问题抓住了论文的要害。唯一过度的地方是 N2——将 repo-level 因果归因升级为 critical 有些过于严厉，因为 18–26pp 的效应量 + 跨模型一致性 + 机制分析（format collapse）已足够支撑描述性结论，将因果语言降级即可解决。\n\n**最需优先修复的三个问题**（按重要性排序）：\n1. **TRAJ claim 限缩**（N1）：将 \"function-level equivalence\" 限缩为 \"CLS–CWM equivalence\"\n2. **LPM vs GEE 矛盾提升到正文**（W4）：这是统计可信度的核心问题\n3. **因果语言降级**（N2 中 R1 正确的部分）：用描述性语言替代因果语言",
+  "reviewer_id": "2",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "## Reviewer 2 交叉回应 — 对 Reviewer 1 (Round 1) 逐条回应\n\n---\n\n### Strengths 回应\n\n**[AGREE] S1**: 研究问题确实实用且定义清晰。三种 formulation 的系统对比在文献中确实缺失，问题框架合理。\n\n**[AGREE] S2**: 统计分析深度远超同类 NLP 实验论文，这一点我完全同意。TOST + clustered bootstrap + Bayesian ROPE + mixed-effects LPM 的组合在 ACL/EMNLP 论文中极为罕见。但正因为统计框架复杂，其中任何一环出问题（如 W4 的 LPM vs GEE 矛盾）都会动摇整体可信度。\n\n**[AGREE] S3**: 失败模式分类体系（format collapse / decision collapse / aggregation penalty）确实有价值。Table 4 和 Figure 4 的量化分析使这些概念具有可操作性。\n\n**[AGREE] S4**: 消融覆盖面广，这一点同意。但需补充：多数消融结果是\"未能改变结论\"（negative results），论文对此的解读倾向于\"robust\"而非\"interventions too weak\"，这个叙事方向值得质疑（见 N2 回应）。\n\n**[AGREE] S5**: Limitations 透明度确实值得肯定。§4.7 列出 5 个 confound 的做法比大多数同类论文坦诚。\n\n---\n\n### Must-Fix 问题回应\n\n**[AGREE] R1-N1: TRAJ 训练配置差异混淆 CLS–TRAJ 等价结论**\n\nR1 的分析精准。我补充以下发现强化这一判断：\n\n1. **论文自身数据支持\"inconclusive\"**: §4.4 报告 CLS–TRAJ Holm 校正后 adjusted p=0.128，p.18 Appendix J 的 TOST sensitivity analysis 进一步显示 seed-level CLS–TRAJ 的最小等价边际仅 ±0.37pp——这意味着即使微小的 SESOI 收紧也会推翻等价。p.22 也承认 \"function-level CLS–TRAJ equivalence does not survive correction (adjusted p=0.075), nor does the repo-level CWM–TRAJ comparison (adjusted p=0.073)\"。\n\n2. **三重混淆的具体量化**: 从 p.14（Table 12）和 p.22 可以确认——TRAJ 训练集仅 ~400 repo-level 实例 vs CLS ~70K per-test 实例（175× 差距）；learning rate 差 4×（2×10⁻⁴ vs 5×10⁻⁵）；标签粒度完全不同（variant-level vs per-test）。这三个变量同时改变，无法归因。\n\n3. **Appendix B.6 的 downsampling 消融不充分**: 该消融仅控制了数据量，未控制 label granularity。p.22 自己也承认 \"controls for training volume but not label granularity (per-test vs. variant-level); these are both plausible confounds that cannot be separately controlled.\"\n\n4. **叙事包装问题**: Abstract 说 \"trajectory-level scoring remain competitive\"，§4.4 正文末段写 \"CLS–TRAJ equivalence as inconclusive\"——但论文的标题是 \"Systematic Comparison\"，给读者的印象仍然是三种 formulation 被公平比较了。实际上 TRAJ 处于不可比状态。\n\n**建议方向与 R1 一致**：将 claim 限缩为 \"CLS–CWM equivalence established at function level; CLS–TRAJ comparison is confounded and inconclusive\"。在 Abstract 中明确标注 TRAJ 比较的局限性。\n\n---\n\n**[REBUT] R1-N2: Repo-level 因果归因的证据强度与 2–3 seeds**（部分反驳）\n\nR1 的 seed 数量担忧有一定道理，但我认为将其升级为 critical 过于严厉，理由如下：\n\n1. **效应量极大，远超随机波动**: Table 3 显示 CLS–CWM gap 为 18.53–25.50 pp，而 seed-level SD 仅 2.15–3.01 pp。即使最保守的 clustered bootstrap 95% CI（§4.5 报告）也不覆盖零。18–26pp 的 gap 不可能被 1–2 个额外 seed 逆转——这不是一个 edge case，而是一个量级差异。\n\n2. **跨模型家族一致性提供了伪复制**: Qwen3-8B 和 DeepSeek-Coder-6.7B 是完全独立的模型家族，两者都显示 CLS > CWM（Qwen3: +25.50pp, DeepSeek: +18.53pp, Table 3），方向完全一致。这提供了概念层面的 replication，比单一模型跑更多 seed 更有说服力。\n\n3. **失败模式分析提供了机制解释**: Table 4 显示 CWM 53–74% unparseable（format collapse），Figure 4 量化了 per-mutation breakdown。这不是随机噪声——是一个系统性的结构化失败。p.20 的 CWM convergence analysis 进一步确认 format collapse 从训练早期就存在，不是 checkpoint 或 seed 选择的产物。\n\n4. **但 R1 关于\"因果语言\"的批评是对的**: \"complexity moderates the classification-generation tradeoff\" 这样的措辞确实暗示因果关系。在只有 2–3 seeds 且无随机化干预的观察性研究中，应使用描述性/关联性语言。\"CLS consistently outperforms CWM at repo level across both model families, associated with CWM's format collapse under increased output complexity\" 比 \"complexity moderates\" 更准确。\n\n**总结**: 降级为 Should-Fix 更合适。效应量 + 跨模型一致性 + 机制分析已足够支撑 \"repo-level divergence\" 的描述性结论。但因果语言确需降级。\n\n---\n\n### Should-Fix 问题回应\n\n**[AGREE] R1-W1: TOST ±2pp 缺乏领域论证**\n\n同意。我补充：论文引用 Lakens (2017) 和 Wellek (2010) 是方法论引用，不构成对 ±2pp 这个具体数值的论证。Figure 3 的 sensitivity analysis 是有价值的补充，但它只回答了\"结论对 margin 多敏感\"，没有回答\"为什么 2pp 是合理的 SESOI\"。\n\n一个实践论证路径：如果 verification accuracy 每 1pp 变化对下游 repair 成功率的影响可以量化（例如通过 oracle 实验），则 SESOI 可以有实质性的领域锚定。\n\n---\n\n**[AGREE] R1-W2: Checkpoint 选择不一致**\n\n同意，但补充论文的缓解措施比 R1 描述的更充分：\n\n- Appendix O（p.20）的 CWM convergence analysis 显示 eval loss 在 step 300–400 内达到最小值，之后单调递增——这表明 CWM 的 final checkpoint 可能已经过拟合。\n- 但 p.20 同时指出 \"format degradation: collapse is present from early training\"，说明 CWM 的 format collapse 是结构性的，不是 late-training artifact。\n- 尽管如此，CLS 用 val-based selection 而 CWM 用 final checkpoint，这在方法论上仍是不一致的。统一使用 early stopping 是合理建议。\n\n---\n\n**[AGREE] R1-W3: Sequence length 作为未控制 confound**\n\n同意，这是一个重要的替代解释。CLS 几乎将全部 context 用于 input（输出仅 1 token），而 CWM 需要在 input 和 generation 之间分配。p.21 Appendix O.5 承认 \"cross-model CWM comparisons use different eval lengths (Qwen3: 8192, DeepSeek: 4096)\"。\n\n我补充：p.21 的 \"Evaluation sequence length\" 分析提供了部分证据。CWM accuracy 从 seq4096 到 seq8192 的变化 \"only 0.81 pp (64.36% → 65.17%)\"，但 unparseable rate 仍然 53–74%。这表明 sequence length 不是 format collapse 的主要原因，但确实是一个未完全控制的 confound。论文应报告 CWM 的平均/P95 生成长度和截断率，以量化这一 confound 的上界。\n\n---\n\n**[AGREE] R1-W4: LPM vs GEE 不一致性是关键信息，应提升到正文**\n\n**这是 R1 所有意见中我认为最重要的一个 Should-Fix。**\n\nAppendix M（p.19）报告：LPM 的 formulation×complexity interaction 高度显著（t=−23.7, p<0.001），但 GEE 对同一交互项不显著（p=0.449）。这不是一个 minor discrepancy——两种合理的统计模型对论文的核心发现给出了相反结论。\n\n论文将此归因于 \"consistent with limited clusters (k<25 < 40)\"，暗示 GEE 因 cluster 不足而保守。但反过来同样成立：LPM 在 k<40 时的 sandwich estimator 可能 size-distorted（Moulton, 1990 的 small-cluster bias），导致 Type I error 膨胀。\n\n**这一矛盾应在正文 §4.6 讨论**，而非仅放在 Appendix M。读者有权在主要叙事中看到这个 robustness concern。建议补充 logistic regression 作为第三种估计，以打破 LPM vs GEE 的僵局。\n\n---\n\n**[AGREE] R1-W5: CWM 退化可能是 capacity-contingent**\n\n同意。§4.6(g) 的 model scaling 干预（4B→8B）仅 +1.3pp，这可能说明 ≤8B 范围内 capacity 增长不足以改变结论，但不能排除 32B+ 时 CWM 的 format collapse 问题消失的可能性。\n\np.22 说 \"Domain contract with generative verification in math reasoning: GenRM (Hosseini et al., 2025) demonstrates that generative verifiers outperform discriminative ones for math reasoning\"——论文自己引用的 GenRM 证据表明，在数学领域 generative formulation 优于 classification。这强化了 W5 的担忧：当前发现可能是 capacity + domain 双重条件下的局部结论。\n\nConclusion（p.8）中 \"generation-based verification suffers format collapse\" 的措辞确实过于绝对。建议改为 \"under ≤8B LoRA fine-tuning, generation-based verification suffers format collapse at repository level\"。\n\n---\n\n### Minor 问题回应\n\n**[AGREE] R1-M1**: Table 1 的 \"†\" 标记确实含义不清。\"fine-tuned\" 标注对 CLS/CWM 同样适用，应改为 \"different training configuration; see §4.5\"。\n\n**[AGREE] R1-M2**: Lakens (2017) 和 Wellek (2010) 是方法论引用，不支持 ±2pp 这个具体值。同 W1。\n\n**[REBUT] R1-M3**: Figure 2 y 轴不从 0 开始。在精度对比图中，y 轴从 0 开始会浪费大量空间在无信息区域（0%–60%），压缩有信息的差异区域。学术论文中 accuracy 对比图不从 0 开始是常规做法（参考 ICLR/NeurIPS 同类图表）。Figure 2 已通过 shaded gap region 标注 CLS–CWM 差异，视觉欺骗风险可控。\n\n**[AGREE] R1-M4**: Appendix J 的 TOST sensitivity 仅覆盖 5-seed variant-level，缺少 per-test 和 repo-level 的 sensitivity 分析。这限制了 sensitivity analysis 的完整性。\n\n**[REBUT] R1-M5**: §4.6(d) 报告 \"CWM's 5-seed standard deviation (0.37 pp) is lower than CLS (0.78 pp)\"。R1 怀疑这是 floor effect。但查看 Table 1，function-level CWM accuracy 为 87.97%（Qwen3-8B），并不处于极低水平（floor）。0.37 vs 0.78 的差异更可能反映 CWM 的 generation pipeline（多步骤 → 更多 smoothing）比 CLS 的单 token logit 更稳定。不过论文确实没有做方差齐性检验（如 Levene's test），R1 的替代解释无法被排除。\n\n---\n\n### Questions 回应\n\n**Q1（LPM vs GEE 矛盾原因）**: 见 W4 回应。我认为两种解释都有可能：(a) GEE 在 k=25 时保守（power 不足）；(b) LPM sandwich estimator 在小 cluster 下 size-distorted。论文应同时报告 logistic regression（possibly with CR2 bias correction）以提供第三方验证。这是一个需要在正文讨论的方法论 open question，不能仅靠 \"consistent with limited clusters\" 一句话带过。\n\n**Q2（TRAJ label granularity 是固有约束还是实现选择）**: 基于对论文 §3.1 和 Appendix F prompt template 的阅读，TRAJ 的 variant-level verdict 确实是 formulation design 的一部分——TRAJ 接收所有 test 结果并产出一个整体判断，这是其 \"trajectory scoring\" 概念的核心。但从技术上看，可以将 TRAJ 拆解为 per-test scoring（每次只给一个 test 的执行轨迹），这会使其退化为类似 CLS 的 formulation。论文应讨论这一 design space。\n\n**Q3（更激进的干预）**: 合理的问题。§4.6(g) 的 4 项干预全部失败——但这些干预的强度有限（rank 32、3-shot prompting、majority voting、4B→8B scaling）。更激进的选项可能包括：(a) CWM 专用的 structured generation（如 constrained decoding 强制输出 JSON 格式）；(b) chain-of-thought prompting；(c) 跳到 14B/32B。当前干预的失败不能作为\"因果归因正确\"的证据——只能说明这些特定干预无效。\n\n**Q4（format collapse 与 max_seq_length 截断的关系）**: p.21 的 sequence length 分析提供了部分答案：从 4096 到 8192 token，CWM accuracy 仅提升 0.81pp，unparseable rate 变化有限。这表明 format collapse 不是简单的截断问题，而是 generation capability 的结构性不足。但论文未报告因截断而被丢弃的样本比例，这个数据对回答 Q4 至关重要。\n\n**Q5（统一 eval length 对 DeepSeek CWM 的影响）**: 基于 p.21 的证据（Qwen3 从 4096→8192 仅 +0.81pp），统一到 8192 对 DeepSeek CWM 的提升可能同样有限。但由于 DeepSeek CWM 仅 1 seed（Table 3），任何推断都缺乏统计基础。\n\n---\n\n### 对 R1 官方维度打分的回应\n\n| 维度 | R1 分数 | R2 意见 |\n|------|--------|--------|\n| Soundness 3/5 | 基本同意。LPM vs GEE 矛盾（W4）和 TRAJ 混淆（N1）确实削弱 soundness。但 repo-level CLS>CWM 的核心发现有跨模型支撑，soundness 不应低于 3。 |\n| Excitement 3/5 | 同意。研究问题重要但发现偏 incremental——\"function-level 等价、repo-level CLS 更好\"的结论对 practitioner 有价值但对方法论社区贡献有限。 |\n| Reproducibility 4/5 | 同意。超参数、prompt 模板、统计脚本的披露较完整。 |\n| Overall 3.5 | 基本同意 Borderline Conference。如果 N1（TRAJ claim 限缩）和 W4（LPM vs GEE 提升到正文）被修复，可以上升到 solid 3.5–4.0。 |\n| Confidence 4/5 | 同意。 |\n\n---\n\n### R2 综合判断\n\nR1 的审稿整体质量很高，特别是 N1（TRAJ 混淆）和 W4（LPM vs GEE）两个问题抓住了论文的要害。唯一过度的地方是 N2——将 repo-level 因果归因升级为 critical 有些过于严厉，因为 18–26pp 的效应量 + 跨模型一致性 + 机制分析（format collapse）已足够支撑描述性结论，将因果语言降级即可解决。\n\n**最需优先修复的三个问题**（按重要性排序）：\n1. **TRAJ claim 限缩**（N1）：将 \"function-level equivalence\" 限缩为 \"CLS–CWM equivalence\"\n2. **LPM vs GEE 矛盾提升到正文**（W4）：这是统计可信度的核心问题\n3. **因果语言降级**（N2 中 R1 正确的部分）：用描述性语言替代因果语言",
+    "reviewer_id": "2",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 1980 · 2026-05-25T21:31:34.104024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 3713
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 1981 · 2026-05-25T21:31:44.791006+00:00_
+
+交叉回应已提交。
+
+核心判断：
+
+- **N1（TRAJ 混淆）**：完全同意 R1，论文的 CLS–TRAJ 比较受三重配置差异混淆，"function-level equivalence" claim 应限缩为 CLS–CWM
+- **N2（因果归因）**：部分反驳——18–26pp 效应量 + 跨模型一致性足够支撑描述性结论，但同意因果语言应降级。建议从 critical 降为 should-fix
+- **W1–W5**：全部同意，其中 **W4（LPM vs GEE 矛盾）** 是我认为最重要的 should-fix，两种统计模型对核心交互项给出相反结论，必须在正文讨论
+- **M3（y轴不从0开始）** 和 **M5（variance floor effect）**：反驳，给出了具体理由
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_0ae20ec1ce60f9c0589d629648584eff:reviewer_2"
+}
+```
+
+</details>
+
+---

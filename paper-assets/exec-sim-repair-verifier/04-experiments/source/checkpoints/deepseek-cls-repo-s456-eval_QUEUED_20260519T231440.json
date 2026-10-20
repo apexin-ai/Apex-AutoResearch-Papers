@@ -1,0 +1,27 @@
+{
+  "exp_id": "deepseek-cls-repo-s456-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:55:23.697Z",
+    "updated_at": "2026-05-19T23:14:40.344Z",
+    "spec": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "checkpoint_source": "checkpoints_deepseek_cls_repo_s456_v2/checkpoint-2163",
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 456,
+      "eval_data": "swebench_test",
+      "data_count": 9784
+    },
+    "hypothesis": "DeepSeek CLS repo-level s456 eval: epoch 1 checkpoint-2163 test accuracy。与 s42(82.61%) 对比提供 multi-seed evidence。参考 s42 ablation 显示 epoch 1 可能优于 final epoch。",
+    "parent": "deepseek-cls-repo-s456-train-v3"
+  },
+  "timestamp": "2026-05-19T23:14:40.739779+00:00",
+  "trigger": "update_registry"
+}

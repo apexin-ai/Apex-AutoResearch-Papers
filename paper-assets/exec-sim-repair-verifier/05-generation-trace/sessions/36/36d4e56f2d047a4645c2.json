@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d4e56f2d047a4645c2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis per test majority voting",
+  "task_key": "worker_analysis_per-test-majority-voting_20260512T092605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per-test-majority-voting_20260512T092605_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "fd5137be78b6b9ad84aebcb9464a23a862bd462fa53d763efdd06092b1bd37ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（之前的 hook 已自动填充了大部分字段）。汇总：\n\n**Per-test Majority Voting (K=3, temp=0.7) 结果**\n\n| 指标 | Single-pass (greedy) | Majority Vote (K=3) | Delta |\n|------|---------------------|---------------------|-------|\n| Accuracy | 87.51% | 86.83% | **-0.69pp** |\n| PASS F1 | 87.15% | 86.33% | -0.82pp |\n| FAIL F1 | 87.86% | 87.29% | -0.57pp |\n| PASS Precision | 93.24% | 93.24% | 0 |\n| PASS Recall | 81.80% | 80.37% | -1.43pp |\n| FAIL Precision | 82.75% | 81.66% | -1.09pp |\n| FAIL Recall | 93.64% | 93.75% | +0.11pp |\n\n**Majority Voting 特有指标：**\n- Agreement: 93.3% unanimous (1763/1890), 6.7% split (127/1890)\n- Flips: 15 correct→wrong, 28 wrong→correct → net -13\n- Per-pass accuracies: 86.72%, 86.83%, 87.62%\n- 推理时间: 30s → 120s (4x)\n\n**结论: negative。** 模型错误是系统性偏差（precision/recall 不对称），不是随机噪声，majority voting 无法修复。93.3% 样本三次预测完全一致，仅在 127 个分歧样本中 voting 反而引入更多错误（28 wrong flips > 15 correct flips）。Single-pass greedy 仍是最优推理策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-test-majority-voting.md"
+}

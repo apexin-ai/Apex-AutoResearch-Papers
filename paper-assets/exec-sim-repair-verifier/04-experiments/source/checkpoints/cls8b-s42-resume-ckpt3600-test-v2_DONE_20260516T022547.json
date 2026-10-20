@@ -1,0 +1,46 @@
+{
+  "exp_id": "cls8b-s42-resume-ckpt3600-test-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:18:39.982Z",
+    "updated_at": "2026-05-16T02:25:47.677Z",
+    "spec": {
+      "command": "eval_repo_cls.py --checkpoint_dir checkpoint-3600 --split test --batch_size 1 --max_seq_length 8192",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 446868,
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-resume-ckpt3600-test-v2.log",
+      "submitted_at": "2026-05-16T01:19:03.561Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/",
+      "eval_data": "test split n=9784",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/",
+      "wall_clock_seconds": 4004.1,
+      "gpu_hours": 1.11
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 84.48,
+      "f1_macro": 78.17,
+      "fail_recall": 56.8,
+      "pass_recall": 94.8,
+      "n_samples": 9784,
+      "note": "reproduces v1 exactly"
+    },
+    "completed_at": "2026-05-16T02:25:47.677Z"
+  },
+  "timestamp": "2026-05-16T02:25:47.972317+00:00",
+  "trigger": "update_registry"
+}

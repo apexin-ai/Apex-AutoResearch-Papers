@@ -1,0 +1,15 @@
+{
+  "exp_id": "repo-level-cls-8b",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T09:28:28.486Z",
+    "updated_at": "2026-05-13T09:59:49.652Z",
+    "hypothesis": "Plan B: Qwen3-8B CLS verifier, D046 超参, seed=42。提前开跑，不等 D008。如果 4B 实验 eval 低于 baseline，零延迟切换到 8B 结果。"
+  },
+  "timestamp": "2026-05-13T09:59:49.926766+00:00",
+  "trigger": "update_registry"
+}

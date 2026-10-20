@@ -1,0 +1,56 @@
+{
+  "exp_id": "cls8b-seed123-ckpt3000-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:11:09.823Z",
+    "updated_at": "2026-05-14T21:41:38.471Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --max_seq_length 8192 --device cuda:0",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "291117",
+      "log_path": "/root/runs/cls8b-seed123-ckpt3000-val8192-eval.log",
+      "submitted_at": "2026-05-14T21:11:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "val split",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B + CLS LoRA seed123",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000",
+      "eval_data": "val split 9335 samples",
+      "max_seq_length": 8192,
+      "wall_clock_seconds": 1838.5,
+      "gpu_hours": 0.51
+    },
+    "hypothesis": "D063 val@8192 checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估。修复缺失 max_seq_length 问题。",
+    "parent": "repo-level-cls-8b-seed123-conda",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000",
+    "log_path": "/root/runs/cls8b-seed123-ckpt3000-val8192-eval.log",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 88.69,
+      "f1_macro": 81.73,
+      "f1_fail": 70.5,
+      "f1_pass": 93,
+      "precision_fail": 95.2,
+      "precision_pass": 87.6,
+      "recall_fail": 55.9,
+      "recall_pass": 99.1,
+      "majority_baseline": 75.9,
+      "gap_vs_majority_pp": 12.8,
+      "unparseable": 9,
+      "total": 9335
+    },
+    "completed_at": "2026-05-14T21:41:38.471Z"
+  },
+  "timestamp": "2026-05-14T21:41:38.665512+00:00",
+  "trigger": "update_registry"
+}

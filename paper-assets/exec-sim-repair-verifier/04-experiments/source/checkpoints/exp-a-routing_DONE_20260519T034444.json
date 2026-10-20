@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-a-routing",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:20:05.183Z",
+    "updated_at": "2026-05-19T03:44:43.981Z",
+    "hypothesis": "Complexity-aware routing（按 test count/confidence/learned features 选 formulation）在 repo-level 可以超越任何单一 formulation 的 accuracy，证明 formulation 具有互补性",
+    "metrics": {
+      "oracle_routing_7cls": 100,
+      "oracle_best_pair": 95.83,
+      "test_count_heuristic": 85.42,
+      "agreement_confidence": 83.33,
+      "majority_vote": "75-79%",
+      "best_single_cls": 81.25,
+      "test_count_heuristic_delta": "+4.17pp",
+      "oracle_delta": "+18.75pp",
+      "traj_per_variant": "unavailable",
+      "cwm_repo_level": "45-52%",
+      "n_variants": 48
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "CPU analysis — worker_analysis_exp-a-routing_20260519T030014",
+      "server": "local",
+      "data_path": "artifacts/per-variant predictions",
+      "data_count": 48,
+      "model_name": "N/A (analysis)",
+      "seed": "N/A"
+    },
+    "checkpoint_path": "N/A (CPU analysis)",
+    "log_path": "worker_analysis_exp-a-routing_20260519T030014",
+    "completed_at": "2026-05-19T03:44:43.981Z"
+  },
+  "timestamp": "2026-05-19T03:44:44.368680+00:00",
+  "trigger": "update_registry"
+}

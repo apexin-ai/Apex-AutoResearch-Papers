@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19e61b68e748ab364636",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check deepseek training progress",
+  "task_key": "worker_check_deepseek-training-progress_20260517T143454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_deepseek-training-progress_20260517T143454_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "a8f34a4a09ec05fa86379f0515101aaf48ddc406951fb6e92bc6c19f29218439"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n| # | 实验 | GPU | Step | Max | Epoch | 进度 | ETA | Status |\n|---|------|-----|------|-----|-------|------|-----|--------|\n| 1 | deepseek-cls-repo-v4 | cuda:0 | 6210 | 6633 | 2.81/3 | 94% | ~1h10m | running |\n| 2 | deepseek-cwm-repo | cuda:1 | 13012 | 13266 | 2.94/3 | 98% | ~34m | running |\n| 3 | deepseek-cls-repo-s123 | cuda:2 | 6575 | 6633 | 2.97/3 | 99% | ~10m | running |\n| 4 | deepseek-cwm-repo-s123 | cuda:3 | ~8844 | 13266 | 2.0/3 | 67% | ~10.5h | running (eval中) |\n\n**关键信息:**\n\n- **所有 4 个进程均存活**，PID 与预期一致，GPU 利用率 90-100%\n- **Exp 3 (cls-repo-s123)** 没有 crash，正常运行，即将完成（~10 分钟）\n- **Exp 4 (cwm-repo-s123)** 正在做 epoch 2 的 eval（71%, 3332/4668），eval 完成后还需训练 epoch 3（4422 steps），预计还需 ~10.5h\n- **Exp 2 和 3** 将在 1 小时内完成\n- **Exp 1** 约 1 小时 10 分钟完成\n- 所有 cls 实验的 eval_loss 为 nan（可能需要关注）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-deepseek-training-progress.md"
+}

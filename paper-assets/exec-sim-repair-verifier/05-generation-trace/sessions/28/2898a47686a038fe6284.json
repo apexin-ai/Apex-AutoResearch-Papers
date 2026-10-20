@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2898a47686a038fe6284",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze ckpt1200 val8192 v2 result",
+  "task_key": "worker_analyze_ckpt1200-val8192-v2-result_20260515T021211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_ckpt1200-val8192-v2-result_20260515T021211_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "b323f02ddb460ebcb6382aa7383d09c17bfed894b639851668f259a4a4a2d46a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程**仍在运行**（PID 316940），并未退出。当前进度 740/9335（~7.9%）。\n\n现有的 `eval_repo_cls.json` 是**上一次运行**的结果（checkpoint-1000, test split），不是当前 v2 eval 的。\n\n当前运行详情：\n- 命令：`eval_repo_cls.py --checkpoint_dir checkpoint-1200 --split val --max_seq_length 8192`\n- 速率：~5 samples/sec（730 samples in ~145s）\n- 剩余：~8595 samples，预估还需 **~29 分钟**（约 10:40 完成）\n\n不需要更新 registry 或删除 cron，eval 还在正常跑，没有错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-ckpt1200-val8192-v2-result.md"
+}

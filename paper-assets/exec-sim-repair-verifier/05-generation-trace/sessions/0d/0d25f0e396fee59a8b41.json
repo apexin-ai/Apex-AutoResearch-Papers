@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d25f0e396fee59a8b41",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra westd status check loop20",
+  "task_key": "worker_infra_westd-status-check-loop20_20260516T010855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-status-check-loop20_20260516T010855_result.json",
+    "occurrence": 1,
+    "bytes": 1605,
+    "sha256": "62193416f72d46c111c662a07f81eb4e05813d1e5f848101bf6c81700eb72604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 进程状态\n\n| 实验 | PID | 状态 | GPU | 进度 |\n|------|-----|------|-----|------|\n| **CWM 8B ckpt400 test eval v3** | 443221 | **ALIVE** | cuda:3 | 5472/9784 (55.9%) |\n| **CLS 8B s42-resume ckpt1000 test mutation** | 444130 | **ALIVE** | cuda:1 | 7210/9784 (73.7%) |\n| **CLS 8B s42 ckpt1000 test mutation** | 444502 | **ALIVE** | cuda:0 (CUDA_VISIBLE_DEVICES=0) | 6950/9784 (71.0%) |\n| **CWM 8B training (resume from ckpt-6100)** | 442200 | **ALIVE** | cuda:2 | 已保存到 ckpt-6100，正在继续训练 |\n\n### GPU 利用率\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| cuda:0 | 17.6/32.6 GB (54%) | 78% | cls8b_s42_ckpt1000_test_mutation |\n| cuda:1 | 17.6/32.6 GB (54%) | 99% | cls8b_s42_resume_ckpt1000_test_mutation |\n| cuda:2 | 29.3/32.6 GB (90%) | 99% | CWM 8B training (resume ckpt-6100) |\n| cuda:3 | 21.1/32.6 GB (65%) | 88% | CWM 8B ckpt400 test eval |\n\n**所有 4 张 GPU 都在使用中，无空闲 GPU。**\n\n### 关键指标\n\n- **CWM 8B eval**: running_acc=61.1% (新处理 185 samples)，每 batch 约 57 秒，预计剩余 ~4.7 小时完成\n- **CLS 8B resume mutation eval**: running_acc=83.1%，速度 ~10 samples/1.4s，预计 ~36 分钟完成\n- **CLS 8B s42 mutation eval**: running_acc=83.2%，预计 ~40 分钟完成\n- **CWM 8B training**: checkpoints 5800→5900→6000→6100 每隔约 40 分钟保存，save_total_limit=5\n\n### Tmux Sessions\n\n- `ckpt_backup` (May 14)\n- `cwm8b-ckpt400-test-eval-v3` (May 16 08:46)\n\n无错误或异常，所有进程正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-status-check-loop20.md"
+}

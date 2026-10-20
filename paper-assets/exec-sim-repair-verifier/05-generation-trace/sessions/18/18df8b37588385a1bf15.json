@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "18df8b37588385a1bf15",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check qwen thinking mode",
+  "task_key": "worker_ssh_check-qwen-thinking-mode_20260521T143720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-qwen-thinking-mode_20260521T143720_result.json",
+    "occurrence": 1,
+    "bytes": 2641,
+    "sha256": "0f834899365c81847c1999f1e8e7fc84e3b2fab6c812493668f8cf81f203ae13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### 1. `enable_thinking=False` 代码实现（eval_repo_cwm.py）\n\n**正确实现，但不是根因。**\n\n- **L53-58**: `get_chat_template_kwargs()` 正确检测 Qwen tokenizer 是否支持 `enable_thinking` 参数，返回 `{\"enable_thinking\": False}`。该 dict 传递给所有 `apply_chat_template()` 调用。\n- **L128-129**: `parse_cwm_prediction()` 有 `</think>` 兜底 strip：\n  ```python\n  if \"</think>\" in text:\n      text = text.split(\"</think>\")[-1]\n  ```\n- **L235-240**: `model.generate()` 不传 `enable_thinking`（正确——这是 chat template 参数，不是 generate 参数）。\n\n### 2. generation_config.json\n\nQwen3-8B base model 配置：\n```json\n{\"do_sample\": true, \"temperature\": 0.6, \"top_k\": 20, \"top_p\": 0.95}\n```\n**无任何 thinking 相关字段。** LoRA checkpoints 也没有自己的 `generation_config.json`。\n\n### 3. 实际输出验证（s42 full test: 9784 样本）\n\n| 指标 | 值 |\n|------|-----|\n| 总样本 | 9784 |\n| unparseable | **6236 (63.7%)** |\n| 含 `</think>` 标签的输出 | **仅 30 (0.3%)** |\n| 空 gen_text | 0 |\n| 输入截断 | 0 |\n| gen_text 平均长度 | 149.8 tokens (median 125) |\n\n### 4. `</think>` 泄露的具体样式\n\n30 个含 `</think>` 的样本中，模型先生成一段 pytest 进度条输出（如 `[ 28%]`），然后在中间突然插入 `</think>`，之后输出 code diff 或另一段测试 trace。例如 (line 198):\n```\n...xarray/tests/test_indexes.py [ 39%\\n</think>\\n\\n## Code\\ndiff --git a/xarray/core/dataset.py ...\n```\nparser 的 strip 逻辑正确处理了这些（取 `</think>` 之后的内容），但剩余内容通常也不含 PASS/FAIL 判定词。\n\n### 5. 根因判定\n\n**Thinking mode 不是 53% unparseable 的根因。** `enable_thinking=False` 对 99.7% 的输出生效。\n\n**真正的根因：模型生成冗长的 pytest 执行 trace（进度条 `[  1%]`、`[  3%]`…），在到达 PASS/FAIL 判定前就触发了 eos token 停止生成。** mean gen length 只有 149.8 tokens，模型在输出完整 test summary 之前就停了。这是 CWM 模型的输出质量问题，不是 thinking mode 问题。\n\n### 6. 建议\n\n- **不需要额外修改 thinking mode 配置**——当前实现已经正确\n- unparseable 的真正修复方向：改进 `parse_cwm_prediction()` 的 keyword matching 逻辑（如从 progress bar 中的 `F` 提取 fail 信号），或增大 `max_new_tokens`，或调整训练数据让模型生成更简洁的输出"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "do_sample": true,
+              "temperature": 0.6,
+              "top_k": 20,
+              "top_p": 0.95
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-qwen-thinking-mode.md"
+}

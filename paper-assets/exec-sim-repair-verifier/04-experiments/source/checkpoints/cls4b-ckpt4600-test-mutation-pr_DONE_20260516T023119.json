@@ -1,0 +1,38 @@
+{
+  "exp_id": "cls4b-ckpt4600-test-mutation-pr",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:30:55.662Z",
+    "updated_at": "2026-05-16T02:31:18.691Z",
+    "spec": {
+      "command": "eval_repo_cls.py + per-mutation P/R breakdown on home server",
+      "server": "home-1x5090",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints_repo_cls_v5/checkpoint-4600",
+      "eval_data": "swebench_test",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4600/",
+      "log_path": "/home/sonny/exec-sim-repair-verifier/results/cls4b_ckpt4600_test_mutation_breakdown.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 83.63,
+      "gold_acc": 98.25,
+      "operator_swap_acc": 78.91,
+      "return_value_acc": 67.97,
+      "off_by_one_acc": 58.47,
+      "boundary_removal_acc": 46.9,
+      "n_instances": 9784,
+      "note": "off_by_one recall_fail=0 (all predicted pass); boundary_removal identical to 8B"
+    },
+    "completed_at": "2026-05-16T02:31:18.691Z"
+  },
+  "timestamp": "2026-05-16T02:31:19.217179+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "purpose": "Dream reviewer A5: qualitative CWM error analysis",
+    "collected_at": "2026-05-17",
+    "source_files": {
+      "qwen3_4b_repo": "/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm_predictions.jsonl",
+      "deepseek_func": "/root/autodl-tmp/eval_results/deepseek_cwm_func_s123_test/eval_repo_cwm_predictions.jsonl"
+    },
+    "unparseable_rates": {
+      "qwen3_4b_repo": "376/500 = 75.2%",
+      "qwen3_8b_repo": "504/688 = 73.3%",
+      "deepseek_func": "0/1890 = 0%"
+    }
+  },
+  "samples": [
+    {
+      "id": "qwen3-repo-cwm-unparseable-1",
+      "model": "Qwen3-4B (LoRA ckpt-600, base: Qwen3-4B)",
+      "level": "repo",
+      "task": "CWM",
+      "parseable": false,
+      "truncated": false,
+      "problem_id": "django__django-14315",
+      "mutation_type": "gold",
+      "label": 1,
+      "input_summary": "Patch: django/db/backends/base/client.py (gold fix for dbshell password handling). Test: test_nopass (dbshell.test_postgresql.PostgreSqlDbshellCommandTestCase). Task: predict pass/fail for this patch+test pair.",
+      "expected_output": "pass or fail (single token verdict)",
+      "actual_output": "+ ./tests/runtests.py --verbosity 2 --settings=test_sqlite --parallel 1 dbshell.test_postgresql\nCreating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...\ntest_create_engine (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_postgresql (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... FAIL\ntest_sqlite (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_support (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_transition (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_transition_to_postgresql (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_transition_to_sqlite (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\ntest_unsupported_dialect (dbshell.test_postgresql.PostgreSQLDbshellCommandTestCase) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.004s\n\nFAILED (errors=1)\nTesting against Django installed in '/testbed/django'\nImporting application dbshell\nSkipping setup of unused database(s): other.\nSystem check identified no issues (0 silenced).\n+ ./testbed/exit.py\nTesting complete. Django test client exited successfully.",
+      "output_length_tokens": 1248,
+      "unparseable_reason": "Hallucinated full test execution trace. Instead of outputting a pass/fail verdict, the model generated a complete simulated Django test runner log with test names, ok/FAIL markers, timing, and summary lines. The output mimics real pytest/Django output format but is entirely fabricated (e.g., hallucinated test names like 'test_create_engine' that don't exist in the real test file). No structured pass/fail label can be extracted."
+    },
+    {
+      "id": "qwen3-repo-cwm-unparseable-2",
+      "model": "Qwen3-4B (LoRA ckpt-600, base: Qwen3-4B)",
+      "level": "repo",
+      "task": "CWM",
+      "parseable": false,
+      "truncated": true,
+      "problem_id": "pytest-dev__pytest-7490",
+      "mutation_type": "unknown (label=0, likely mutation)",
+      "label": 0,
+      "input_summary": "Patch: src/_pytest/skipping.py (pytest xfail handling). Task: predict pass/fail for this patch+test pair.",
+      "expected_output": "pass or fail (single token verdict)",
+      "actual_output_first500": "--- Modified File: src/_pytest/skipping.py (lines 299-399) ---\n        if call.excinfo:\n            if xfailed.strict:\n                expected_result = item.config.getini(\"expected_result\")\n                if expected_result == \"fail\":\n                    expected_result = \"fail\"\n                elif expected_result == \"error\":\n                    expected_result = \"error\"\n                else:\n                    expected_result = \"pass\"\n                if call.excinfo.typename not in expected",
+      "actual_output_last300": "from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest_args\n from _pytest.config import _parse_pytest",
+      "output_length_tokens": 4542,
+      "unparseable_reason": "Hallucinated source code with repetitive degeneration. Instead of predicting execution outcome, the model generated fabricated source code modifications (\"--- Modified File: ...\" blocks). The output then degenerates into an infinite repetition of 'from _pytest.config import _parse_pytest_args' until hitting the max_new_tokens limit (truncated=true). This is a classic autoregressive degeneration pattern exacerbated by the long repo-level context confusing the model about its task."
+    },
+    {
+      "id": "deepseek-func-cwm-parseable-1",
+      "model": "DeepSeek-Coder-6.7B-Instruct (LoRA fine-tuned, seed=123)",
+      "level": "func",
+      "task": "CWM",
+      "parseable": true,
+      "truncated": false,
+      "problem_id": "HumanEval/0",
+      "mutation_type": "operator_swap",
+      "label": 0,
+      "pred": 0,
+      "correct": true,
+      "input_summary": "Function: has_close_elements(numbers, threshold) with operator_swap mutation (-> changed to ->=). Test: assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True. Task: predict pass/fail.",
+      "expected_output": "PASS: ... or FAIL: ...",
+      "actual_output": "FAIL: SyntaxError: expected ':'",
+      "output_length_tokens": 31,
+      "unparseable_reason": "N/A (parseable). Output follows the expected 'FAIL: <reason>' format exactly. The model correctly identifies that the operator_swap mutation introduces a syntax error and predicts failure with a precise error message."
+    }
+  ]
+}

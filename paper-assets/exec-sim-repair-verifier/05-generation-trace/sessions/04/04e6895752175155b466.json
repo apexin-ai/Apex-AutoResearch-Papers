@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04e6895752175155b466",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis tost multi margin",
+  "task_key": "worker_analysis_tost-multi-margin_20260515T122851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-multi-margin_20260515T122851_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "10152058b90606f7aeabf9f6c526d3f045e06e901d63047824c649097e24ae38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| Margin | 90% CI | p-value | Equivalent? |\n|--------|--------|---------|-------------|\n| ±1pp | [−0.275, +1.620] | 0.2854 | **NO** |\n| ±2pp | [−0.275, +1.620] | 0.0104 | **YES** |\n| ±3pp | [−0.275, +1.620] | 0.0000 | **YES** |\n\n**关键数字：**\n- 4 对 CLS-CWM 配对（2 CLS seeds × 2 CWM seeds），7560 obs，114 problem clusters，10K bootstrap resamples\n- 池化均差 +0.661pp，95% CI [−0.479, +1.792]pp\n- 最小等价 margin = **1.620pp**\n\n**结论：**\n- ±2pp TOST p=0.010，确认 C2 claim（与先前报告 p=0.007 一致量级）\n- ±1pp 不能拒绝非等价（p=0.285），90% CI 上界 1.62pp 超出 1pp\n- ±3pp 轻松等价\n- 回复 W2：即使收紧至 ±1.62pp 仍可建立等价性，但 ±1pp 确实不够——差异的上界可达 1.6pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-multi-margin.md"
+}

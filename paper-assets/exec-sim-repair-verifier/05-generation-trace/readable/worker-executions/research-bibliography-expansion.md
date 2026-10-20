@@ -1,0 +1,5565 @@
+# research bibliography expansion
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_research_bibliography-expansion_20260517T094035.log`
+- **Structured JSON:** [`5817dce3764d62e4436b.json`](../../sessions/58/5817dce3764d62e4436b.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ba2c1594-877d-4ece-b68f-80b51620f522",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779026400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "06d0de8c-0723-4f6e-9bc6-3d13502ec0dd",
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to collect bibliography candidates for their paper by searching for specific papers. I need to use WebSearch to verify each paper's details. Let me start by searching for these papers in batches.
+
+Let me first load the WebSearch tool, then search for each paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "e5bfd3d7-d2fa-48da-bd12-d9956a057159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vak59KRAMeiKzjE74vaxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13995,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13995
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015xs9Kd14AsbGujoxJX6tUj`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "24a61d01-8c6a-41de-b746-23c17cafdab6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vak59KRAMeiKzjE74vaxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13995,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13995
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T09:40:47.048Z_
+
+<details><summary>↩ Tool result · `toolu_015xs9Kd14AsbGujoxJX6tUj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "ea757b66-9f0c-4135-b069-f25b488c0b18",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to search for each paper. Let me start with multiple searches in parallel to be efficient. I'll batch them into groups.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "7db15d45-09fc-438f-8e4f-e3fa6475d9c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+开始搜索论文信息，分批进行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "8067c5a7-02dd-42cd-bf33-7444e0ff618d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RxR3Lh5b8UnefvSkKoDUdW`</summary>
+
+```json
+{
+  "query": "LoRA Low-Rank Adaptation Large Language Models Hu et al. ICLR 2022 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "2aa47d60-3ff3-4455-a29b-145cb7fdedfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ta3wcMx6h1aW2FWidSE56`</summary>
+
+```json
+{
+  "query": "QLoRA Efficient Finetuning Quantized Language Models Dettmers NeurIPS 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "03067e48-d5a5-492c-b0a8-eaed210b39b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FaeKAAhh6Avqf9wHY2kWDd`</summary>
+
+```json
+{
+  "query": "SWE-bench Can Language Models Resolve Real-World GitHub Issues Jimenez ICLR 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "23ae8dea-dcac-4b36-8020-f2652a515ce6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014532yvBNc4bymQj5r5WhCG`</summary>
+
+```json
+{
+  "query": "SWE-agent Agent-Computer Interfaces Enable Automated Software Engineering Yang 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "a6b0690a-4261-493f-88ec-aab835e23c55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y1Qcn1ji7ZR9ywDyJbb6kq`</summary>
+
+```json
+{
+  "query": "ICE-Score execution-free code evaluation Zhuo EACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "10fd3379-8542-4d21-bbd8-e0fec622a262",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfTPmiosJLpRzbRD8X1mYj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 25696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 677
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:40:57.752Z_
+
+<details><summary>↩ Tool result · `toolu_016ta3wcMx6h1aW2FWidSE56`</summary>
+
+```text
+Web search results for query: "QLoRA Efficient Finetuning Quantized Language Models Dettmers NeurIPS 2023 arxiv"
+
+Links: [{"title":"[2305.14314] QLoRA: Efficient Finetuning of Quantized LLMs","url":"https://arxiv.org/abs/2305.14314"},{"title":"QLORA: Efficient Finetuning of Quantized LLMs Tim Dettmers∗ Artidoro Pagnoni∗","url":"https://arxiv.org/pdf/2305.14314"},{"title":"QLORA: Efficient Finetuning of Quantized LLMs Tim Dettmers∗ Artidoro Pagnoni∗","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/1feb87871436031bdc0f2beaa62a049b-Paper-Conference.pdf"},{"title":"[PDF] QLoRA: Efficient Finetuning of Quantized LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/QLoRA:-Efficient-Finetuning-of-Quantized-LLMs-Dettmers-Pagnoni/32ac52069e562d4f900afee70bdca63f53461481"},{"title":"QLORA: efficient finetuning of quantized LLMs","url":"https://dl.acm.org/doi/10.5555/3666122.3666563"},{"title":"Paper page - QLoRA: Efficient Finetuning of Quantized LLMs","url":"https://huggingface.co/papers/2305.14314"},{"title":"GitHub - artidoro/qlora: QLoRA: Efficient Finetuning of Quantized LLMs · GitHub","url":"https://github.com/artidoro/qlora"},{"title":"QLoRA: Efficient Finetuning of Quantized LLMs | OpenReview","url":"https://openreview.net/forum?id=OUIFPHEgJU"},{"title":"QLoRA: Efficient Finetuning of Quantized LLMs","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/1feb87871436031bdc0f2beaa62a049b-Abstract-Conference.html"},{"title":"Dettmers, T., Pagnoni, A., Holtzman, A. and Zettlemoyer, L. (2023) QLoRA Efficient Finetuning of Quantized LLMs. arXiv 2305.14314. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=4079788"}]
+
+I found the paper you were looking for. Here are the key details:
+
+## QLoRA: Efficient Finetuning of Quantized LLMs
+
+The paper was published at NeurIPS 2023 by Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer.
+
+**arXiv ID:** 2305.14314
+
+**Key Contribution:**
+QLoRA is an efficient finetuning approach that reduces memory usage enough to finetune a 65B parameter model on a single 48GB GPU while preserving full 16-bit finetuning task performance.
+
+**Technical Approach:**
+QLoRA backpropagates gradients through a frozen, 4-bit quantized pretrained language model into Low Rank Adapters (LoRA).
+
+**Major Innovations:**
+QLoRA introduces: (a) 4-bit NormalFloat (NF4), a new data type that is information theoretically optimal for normally distributed weights (b) Double Quantization to reduce the average memory footprint by quantizing the quantization constants, and (c) Paged Optimizers to manage memory spikes.
+
+**Results:**
+Their best model family, Guanaco, outperforms all previous openly released models on the Vicuna benchmark, reaching 99.3% of the performance level of ChatGPT while only requiring 24 hours of finetuning on a single GPU.
+
+The paper is available on arXiv, the NeurIPS proceedings, and has an official GitHub repository with implementation and models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "18aaf0cf-25c1-4ca8-a85d-a3e7773fd898",
+  "tool_use_result": {
+    "query": "QLoRA Efficient Finetuning Quantized Language Models Dettmers NeurIPS 2023 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TvGuxkV4SHTzvEd2r8DGfQ",
+        "content": [
+          {
+            "title": "[2305.14314] QLoRA: Efficient Finetuning of Quantized LLMs",
+            "url": "https://arxiv.org/abs/2305.14314"
+          },
+          {
+            "title": "QLORA: Efficient Finetuning of Quantized LLMs Tim Dettmers∗ Artidoro Pagnoni∗",
+            "url": "https://arxiv.org/pdf/2305.14314"
+          },
+          {
+            "title": "QLORA: Efficient Finetuning of Quantized LLMs Tim Dettmers∗ Artidoro Pagnoni∗",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/1feb87871436031bdc0f2beaa62a049b-Paper-Conference.pdf"
+          },
+          {
+            "title": "[PDF] QLoRA: Efficient Finetuning of Quantized LLMs | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/QLoRA:-Efficient-Finetuning-of-Quantized-LLMs-Dettmers-Pagnoni/32ac52069e562d4f900afee70bdca63f53461481"
+          },
+          {
+            "title": "QLORA: efficient finetuning of quantized LLMs",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3666563"
+          },
+          {
+            "title": "Paper page - QLoRA: Efficient Finetuning of Quantized LLMs",
+            "url": "https://huggingface.co/papers/2305.14314"
+          },
+          {
+            "title": "GitHub - artidoro/qlora: QLoRA: Efficient Finetuning of Quantized LLMs · GitHub",
+            "url": "https://github.com/artidoro/qlora"
+          },
+          {
+            "title": "QLoRA: Efficient Finetuning of Quantized LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=OUIFPHEgJU"
+          },
+          {
+            "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/1feb87871436031bdc0f2beaa62a049b-Abstract-Conference.html"
+          },
+          {
+            "title": "Dettmers, T., Pagnoni, A., Holtzman, A. and Zettlemoyer, L. (2023) QLoRA Efficient Finetuning of Quantized LLMs. arXiv 2305.14314. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=4079788"
+          }
+        ]
+      },
+      "I found the paper you were looking for. Here are the key details:\n\n## QLoRA: Efficient Finetuning of Quantized LLMs\n\nThe paper was published at NeurIPS 2023 by Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer.\n\n**arXiv ID:** 2305.14314\n\n**Key Contribution:**\nQLoRA is an efficient finetuning approach that reduces memory usage enough to finetune a 65B parameter model on a single 48GB GPU while preserving full 16-bit finetuning task performance.\n\n**Technical Approach:**\nQLoRA backpropagates gradients through a frozen, 4-bit quantized pretrained language model into Low Rank Adapters (LoRA).\n\n**Major Innovations:**\nQLoRA introduces: (a) 4-bit NormalFloat (NF4), a new data type that is information theoretically optimal for normally distributed weights (b) Double Quantization to reduce the average memory footprint by quantizing the quantization constants, and (c) Paged Optimizers to manage memory spikes.\n\n**Results:**\nTheir best model family, Guanaco, outperforms all previous openly released models on the Vicuna benchmark, reaching 99.3% of the performance level of ChatGPT while only requiring 24 hours of finetuning on a single GPU.\n\nThe paper is available on arXiv, the NeurIPS proceedings, and has an official GitHub repository with implementation and models."
+    ],
+    "durationSeconds": 5.647576246000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T09:40:57.774Z_
+
+<details><summary>↩ Tool result · `toolu_01RxR3Lh5b8UnefvSkKoDUdW`</summary>
+
+```text
+Web search results for query: "LoRA Low-Rank Adaptation Large Language Models Hu et al. ICLR 2022 arxiv"
+
+Links: [{"title":"[2106.09685] LoRA: Low-Rank Adaptation of Large Language Models","url":"https://arxiv.org/abs/2106.09685"},{"title":"LORA: LOW-RANK ADAPTATION OF LARGE LAN- GUAGE MODELS Edward Hu∗ Yelong Shen∗","url":"https://arxiv.org/pdf/2106.09685"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models","url":"https://arxiv.org/html/2106.09685v2"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models Edward Hu∗ Yelong Shen∗","url":"https://arxiv.org/pdf/2106.09685v1/1000"},{"title":"LoRA-Null: Low-Rank Adaptation via Null Space for Large Language Models","url":"https://arxiv.org/html/2503.02659v1"},{"title":"LoRA: Low-Rank Adaptation of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=nZeVKeeFYf9"},{"title":"ICLR Poster LoRA: Low-Rank Adaptation of Large Language Models","url":"https://iclr.cc/virtual/2022/poster/6319"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=LoRA:+Low-rank+adaptation+of+large+language+models&publication_year=2022"},{"title":"LORA: LOW-RANK ADAPTATION OF LARGE LAN","url":"https://openreview.net/pdf?id=nZeVKeeFYf9"},{"title":"Bayesian-LoRA: Probabilistic Low-Rank Adaptation of Large Language Models","url":"https://www.arxiv.org/pdf/2601.21003"}]
+
+I found comprehensive information about the LoRA paper. Here's what I found:
+
+## LoRA: Low-Rank Adaptation of Large Language Models
+
+The paper was authored by Edward J. Hu and 7 other co-authors, with the full author list including Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen.
+
+The paper was published in 2022 in the International Conference on Learning Representations (ICLR). The arxiv version is available at https://arxiv.org/abs/2106.09685.
+
+### Key Contribution
+
+The paper proposes Low-Rank Adaptation (LoRA), which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.
+
+### Performance Benefits
+
+Compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and no additional inference latency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "8abbb07e-1ac2-4550-b128-f1a0cd45c948",
+  "tool_use_result": {
+    "query": "LoRA Low-Rank Adaptation Large Language Models Hu et al. ICLR 2022 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014q5YirwQuYhPrtwpCqshFB",
+        "content": [
+          {
+            "title": "[2106.09685] LoRA: Low-Rank Adaptation of Large Language Models",
+            "url": "https://arxiv.org/abs/2106.09685"
+          },
+          {
+            "title": "LORA: LOW-RANK ADAPTATION OF LARGE LAN- GUAGE MODELS Edward Hu∗ Yelong Shen∗",
+            "url": "https://arxiv.org/pdf/2106.09685"
+          },
+          {
+            "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+            "url": "https://arxiv.org/html/2106.09685v2"
+          },
+          {
+            "title": "LoRA: Low-Rank Adaptation of Large Language Models Edward Hu∗ Yelong Shen∗",
+            "url": "https://arxiv.org/pdf/2106.09685v1/1000"
+          },
+          {
+            "title": "LoRA-Null: Low-Rank Adaptation via Null Space for Large Language Models",
+            "url": "https://arxiv.org/html/2503.02659v1"
+          },
+          {
+            "title": "LoRA: Low-Rank Adaptation of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=nZeVKeeFYf9"
+          },
+          {
+            "title": "ICLR Poster LoRA: Low-Rank Adaptation of Large Language Models",
+            "url": "https://iclr.cc/virtual/2022/poster/6319"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar_lookup?title=LoRA:+Low-rank+adaptation+of+large+language+models&publication_year=2022"
+          },
+          {
+            "title": "LORA: LOW-RANK ADAPTATION OF LARGE LAN",
+            "url": "https://openreview.net/pdf?id=nZeVKeeFYf9"
+          },
+          {
+            "title": "Bayesian-LoRA: Probabilistic Low-Rank Adaptation of Large Language Models",
+            "url": "https://www.arxiv.org/pdf/2601.21003"
+          }
+        ]
+      },
+      "I found comprehensive information about the LoRA paper. Here's what I found:\n\n## LoRA: Low-Rank Adaptation of Large Language Models\n\nThe paper was authored by Edward J. Hu and 7 other co-authors, with the full author list including Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen.\n\nThe paper was published in 2022 in the International Conference on Learning Representations (ICLR). The arxiv version is available at https://arxiv.org/abs/2106.09685.\n\n### Key Contribution\n\nThe paper proposes Low-Rank Adaptation (LoRA), which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.\n\n### Performance Benefits\n\nCompared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and no additional inference latency."
+    ],
+    "durationSeconds": 6.058440949000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T09:40:58.579Z_
+
+<details><summary>↩ Tool result · `toolu_01FaeKAAhh6Avqf9wHY2kWDd`</summary>
+
+```text
+Web search results for query: "SWE-bench Can Language Models Resolve Real-World GitHub Issues Jimenez ICLR 2024"
+
+Links: [{"title":"[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://arxiv.org/abs/2310.06770"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"},{"title":"Can Language Models Resolve Real-world Github Issues","url":"https://www.swebench.com/original.html"},{"title":"SWE-BENCH: CAN LANGUAGE MODELS RESOLVE REAL-WORLD GITHUB ISSUES? - Princeton University","url":"https://collaborate.princeton.edu/en/publications/swe-bench-can-language-models-resolve-real-world-github-issues/"},{"title":"SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview","url":"https://openreview.net/forum?id=VTF8yNQM66"},{"title":"SWE-BENCH: CAN LANGUAGE MODELS RESOLVE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/edac78c3e300629acfe6cbe9ca88fb84-Paper-Conference.pdf"},{"title":"ICLR Oral SWE-bench: Can Language Models Resolve Real-world Github Issues?","url":"https://iclr.cc/virtual/2024/oral/19757"},{"title":"GitHub - METR/SWE-bench-fork: [ICLR 2024] SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/METR/SWE-bench-fork"},{"title":"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? | Princeton Language and Intelligence","url":"https://pli.princeton.edu/blog/2023/swe-bench-can-language-models-resolve-real-world-github-issues"},{"title":"Paper page - SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://huggingface.co/papers/2310.06770"}]
+
+Based on the search results, here's information about the SWE-bench paper by Jimenez et al. presented at ICLR 2024:
+
+## Overview
+SWE-bench is an evaluation framework consisting of 2,294 software engineering problems drawn from real GitHub issues and corresponding pull requests across 12 popular Python repositories.
+
+## Task Definition
+Given a codebase along with a description of an issue to be resolved, a language model is tasked with editing the codebase to address the issue.
+
+## Complexity Requirements
+Resolving issues in SWE-bench frequently requires understanding and coordinating changes across multiple functions, classes, and even files simultaneously, calling for models to interact with execution environments, process extremely long contexts and perform complex reasoning that goes far beyond traditional code generation tasks.
+
+## Key Findings
+Both state-of-the-art proprietary models and a fine-tuned model called SWE-Llama can resolve only the simplest issues, with the best-performing model, Claude 2, able to solve a mere 1.96% of the issues.
+
+## Conference Presentation
+SWE-bench was accepted to ICLR 2024 as an oral presentation. The paper was authored by Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik R. Narasimhan.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "da83f138-b9fb-4433-82f6-caf146dcbdd8",
+  "tool_use_result": {
+    "query": "SWE-bench Can Language Models Resolve Real-World GitHub Issues Jimenez ICLR 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N6SGHgX5d8owp4wRLohNtx",
+        "content": [
+          {
+            "title": "[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+            "url": "https://arxiv.org/abs/2310.06770"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          },
+          {
+            "title": "Can Language Models Resolve Real-world Github Issues",
+            "url": "https://www.swebench.com/original.html"
+          },
+          {
+            "title": "SWE-BENCH: CAN LANGUAGE MODELS RESOLVE REAL-WORLD GITHUB ISSUES? - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/swe-bench-can-language-models-resolve-real-world-github-issues/"
+          },
+          {
+            "title": "SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview",
+            "url": "https://openreview.net/forum?id=VTF8yNQM66"
+          },
+          {
+            "title": "SWE-BENCH: CAN LANGUAGE MODELS RESOLVE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/edac78c3e300629acfe6cbe9ca88fb84-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR Oral SWE-bench: Can Language Models Resolve Real-world Github Issues?",
+            "url": "https://iclr.cc/virtual/2024/oral/19757"
+          },
+          {
+            "title": "GitHub - METR/SWE-bench-fork: [ICLR 2024] SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/METR/SWE-bench-fork"
+          },
+          {
+            "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? | Princeton Language and Intelligence",
+            "url": "https://pli.princeton.edu/blog/2023/swe-bench-can-language-models-resolve-real-world-github-issues"
+          },
+          {
+            "title": "Paper page - SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+            "url": "https://huggingface.co/papers/2310.06770"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the SWE-bench paper by Jimenez et al. presented at ICLR 2024:\n\n## Overview\nSWE-bench is an evaluation framework consisting of 2,294 software engineering problems drawn from real GitHub issues and corresponding pull requests across 12 popular Python repositories.\n\n## Task Definition\nGiven a codebase along with a description of an issue to be resolved, a language model is tasked with editing the codebase to address the issue.\n\n## Complexity Requirements\nResolving issues in SWE-bench frequently requires understanding and coordinating changes across multiple functions, classes, and even files simultaneously, calling for models to interact with execution environments, process extremely long contexts and perform complex reasoning that goes far beyond traditional code generation tasks.\n\n## Key Findings\nBoth state-of-the-art proprietary models and a fine-tuned model called SWE-Llama can resolve only the simplest issues, with the best-performing model, Claude 2, able to solve a mere 1.96% of the issues.\n\n## Conference Presentation\nSWE-bench was accepted to ICLR 2024 as an oral presentation. The paper was authored by Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik R. Narasimhan."
+    ],
+    "durationSeconds": 5.4831908270000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T09:40:59.292Z_
+
+<details><summary>↩ Tool result · `toolu_014532yvBNc4bymQj5r5WhCG`</summary>
+
+```text
+Web search results for query: "SWE-agent Agent-Computer Interfaces Enable Automated Software Engineering Yang 2024 arxiv"
+
+Links: [{"title":"[2405.15793] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://arxiv.org/abs/2405.15793"},{"title":"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://arxiv.org/pdf/2405.15793"},{"title":"GitHub - SWE-agent/SWE-agent: SWE-agent takes a GitHub issue and tries to automatically fix it, using your LM of choice. It can also be employed for offensive cybersecurity or competitive coding challenges. [NeurIPS 2024] · GitHub","url":"https://github.com/SWE-agent/SWE-agent"},{"title":"[2405.15793v3] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://arxiv.org/abs/2405.15793v3"},{"title":"Paper page - SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://huggingface.co/papers/2405.15793"},{"title":"[PDF] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SWE-agent:-Agent-Computer-Interfaces-Enable-Yang-Jimenez/1c3c531fc0fbe79f97f367ed3648de8467caeeaa"},{"title":"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/5a7c947568c1b1328ccc5230172e1e7c-Abstract-Conference.html"},{"title":"NeurIPS Poster SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://neurips.cc/virtual/2024/poster/93753"},{"title":"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/swe-agent-agent-computer-interfaces-enable-automated"},{"title":"[2405.15793v1] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering","url":"https://arxiv.org/abs/2405.15793v1"}]
+
+## Search Results
+
+I found the paper you're looking for. Here's what I found:
+
+**Title:** SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering
+
+**Authors:** John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press
+
+**Publication:** arXiv paper 2405.15793, with versions released on May 6, 2024, May 30, 2024, and November 11, 2024. The paper was also presented at NeurIPS 2024.
+
+**Key Overview:** SWE-agent is a system that facilitates LM agents to autonomously use computers to solve software engineering tasks. SWE-agent's custom agent-computer interface (ACI) significantly enhances an agent's ability to create and edit code files, navigate entire repositories, and execute tests and other programs.
+
+**Performance Results:** SWE-agent achieves state-of-the-art performance on SWE-bench and HumanEvalFix, with a pass@1 rate of 12.5% and 87.7%, respectively, far exceeding the previous state-of-the-art achieved with non-interactive LMs.
+
+**Resources:**
+- arXiv Abstract: https://arxiv.org/abs/2405.15793
+- GitHub Repository: https://github.com/SWE-agent/SWE-agent
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "fea942ba-cd81-4b88-bf2b-48ffbee1b547",
+  "tool_use_result": {
+    "query": "SWE-agent Agent-Computer Interfaces Enable Automated Software Engineering Yang 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UY7ydbVJApApBwm4xGCCuv",
+        "content": [
+          {
+            "title": "[2405.15793] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://arxiv.org/abs/2405.15793"
+          },
+          {
+            "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://arxiv.org/pdf/2405.15793"
+          },
+          {
+            "title": "GitHub - SWE-agent/SWE-agent: SWE-agent takes a GitHub issue and tries to automatically fix it, using your LM of choice. It can also be employed for offensive cybersecurity or competitive coding challenges. [NeurIPS 2024] · GitHub",
+            "url": "https://github.com/SWE-agent/SWE-agent"
+          },
+          {
+            "title": "[2405.15793v3] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://arxiv.org/abs/2405.15793v3"
+          },
+          {
+            "title": "Paper page - SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://huggingface.co/papers/2405.15793"
+          },
+          {
+            "title": "[PDF] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/SWE-agent:-Agent-Computer-Interfaces-Enable-Yang-Jimenez/1c3c531fc0fbe79f97f367ed3648de8467caeeaa"
+          },
+          {
+            "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/5a7c947568c1b1328ccc5230172e1e7c-Abstract-Conference.html"
+          },
+          {
+            "title": "NeurIPS Poster SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://neurips.cc/virtual/2024/poster/93753"
+          },
+          {
+            "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/swe-agent-agent-computer-interfaces-enable-automated"
+          },
+          {
+            "title": "[2405.15793v1] SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+            "url": "https://arxiv.org/abs/2405.15793v1"
+          }
+        ]
+      },
+      "## Search Results\n\nI found the paper you're looking for. Here's what I found:\n\n**Title:** SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\n\n**Authors:** John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\n\n**Publication:** arXiv paper 2405.15793, with versions released on May 6, 2024, May 30, 2024, and November 11, 2024. The paper was also presented at NeurIPS 2024.\n\n**Key Overview:** SWE-agent is a system that facilitates LM agents to autonomously use computers to solve software engineering tasks. SWE-agent's custom agent-computer interface (ACI) significantly enhances an agent's ability to create and edit code files, navigate entire repositories, and execute tests and other programs.\n\n**Performance Results:** SWE-agent achieves state-of-the-art performance on SWE-bench and HumanEvalFix, with a pass@1 rate of 12.5% and 87.7%, respectively, far exceeding the previous state-of-the-art achieved with non-interactive LMs.\n\n**Resources:**\n- arXiv Abstract: https://arxiv.org/abs/2405.15793\n- GitHub Repository: https://github.com/SWE-agent/SWE-agent"
+    ],
+    "durationSeconds": 5.730334971
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T09:40:59.474Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1Qcn1ji7ZR9ywDyJbb6kq`</summary>
+
+```text
+Web search results for query: "ICE-Score execution-free code evaluation Zhuo EACL 2024"
+
+Links: [{"title":"ICE-Score: Instructing Large Language Models to Evaluate Code - ACL Anthology","url":"https://aclanthology.org/2024.findings-eacl.148/"},{"title":"GitHub - terryyz/ice-score: [EACL 2024] ICE-Score: Instructing Large Language Models to Evaluate Code · GitHub","url":"https://github.com/terryyz/ice-score"},{"title":"ICE-Score: Instructing Large Language Models to Evaluate ...","url":"https://aclanthology.org/anthology-files/pdf/findings/2024.findings-eacl.148.pdf"},{"title":"[2304.14317] ICE-Score: Instructing Large Language Models to Evaluate Code","url":"https://arxiv.org/abs/2304.14317"},{"title":"An Agent-based Evaluation Framework for Complex Code Generation","url":"https://arxiv.org/pdf/2504.13472"},{"title":"LARGE LANGUAGE MODEL CRITICS FOR EXECUTION- ...","url":"https://openreview.net/pdf?id=gDWkImLIKd"},{"title":"1 Can Large Language Models Serve as Evaluators for Code Summarization?","url":"https://zhaoyang-chu.github.io/assets/CodeRPE.pdf"},{"title":"Evaluating Code Generation with Large Language Models","url":"https://aclanthology.org/2024.emnlp-main.1118.pdf"},{"title":"MATCH: Task-Driven Code Evaluation through Contrastive Learning","url":"https://arxiv.org/html/2510.23169"},{"title":"Assessing Code Reasoning in Large Language Models","url":"https://www.preprints.org/manuscript/202411.1147/v1/download"}]
+
+I found information about ICE-Score. Here are the search results:
+
+## Overview
+
+ICE-Score is a new evaluation metric via instructing large language models (LLMs) for code assessments. The paper was published in the Findings of the Association for Computational Linguistics: EACL 2024 by Terry Yue Zhuo, pages 2232–2242, in St. Julian's, Malta.
+
+## Key Features
+
+The metric addresses the limitations of existing approaches by achieving superior correlations with functional correctness and human preferences, without the need for test oracles or references. ICE-Score prompts a large language model (LLM) like GPT to evaluate generated code quality directly, without relying on test cases or reference solutions, assessing various aspects such as correctness and usefulness, making it a flexible, reference-free metric.
+
+## Evaluation
+
+The metric was evaluated on two different aspects (human preference and execution success) and four programming languages. Results demonstrate that the metric surpasses state-of-the-art metrics for code generation, delivering high levels of accuracy and consistency across various programming languages and tasks.
+
+The paper and code are publicly available on the ACL Anthology and GitHub respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "7947c820-fe41-4b0d-9e40-db1b2d795cf0",
+  "tool_use_result": {
+    "query": "ICE-Score execution-free code evaluation Zhuo EACL 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018jHZzM3qpKRzs1FHkMPzW7",
+        "content": [
+          {
+            "title": "ICE-Score: Instructing Large Language Models to Evaluate Code - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-eacl.148/"
+          },
+          {
+            "title": "GitHub - terryyz/ice-score: [EACL 2024] ICE-Score: Instructing Large Language Models to Evaluate Code · GitHub",
+            "url": "https://github.com/terryyz/ice-score"
+          },
+          {
+            "title": "ICE-Score: Instructing Large Language Models to Evaluate ...",
+            "url": "https://aclanthology.org/anthology-files/pdf/findings/2024.findings-eacl.148.pdf"
+          },
+          {
+            "title": "[2304.14317] ICE-Score: Instructing Large Language Models to Evaluate Code",
+            "url": "https://arxiv.org/abs/2304.14317"
+          },
+          {
+            "title": "An Agent-based Evaluation Framework for Complex Code Generation",
+            "url": "https://arxiv.org/pdf/2504.13472"
+          },
+          {
+            "title": "LARGE LANGUAGE MODEL CRITICS FOR EXECUTION- ...",
+            "url": "https://openreview.net/pdf?id=gDWkImLIKd"
+          },
+          {
+            "title": "1 Can Large Language Models Serve as Evaluators for Code Summarization?",
+            "url": "https://zhaoyang-chu.github.io/assets/CodeRPE.pdf"
+          },
+          {
+            "title": "Evaluating Code Generation with Large Language Models",
+            "url": "https://aclanthology.org/2024.emnlp-main.1118.pdf"
+          },
+          {
+            "title": "MATCH: Task-Driven Code Evaluation through Contrastive Learning",
+            "url": "https://arxiv.org/html/2510.23169"
+          },
+          {
+            "title": "Assessing Code Reasoning in Large Language Models",
+            "url": "https://www.preprints.org/manuscript/202411.1147/v1/download"
+          }
+        ]
+      },
+      "I found information about ICE-Score. Here are the search results:\n\n## Overview\n\nICE-Score is a new evaluation metric via instructing large language models (LLMs) for code assessments. The paper was published in the Findings of the Association for Computational Linguistics: EACL 2024 by Terry Yue Zhuo, pages 2232–2242, in St. Julian's, Malta.\n\n## Key Features\n\nThe metric addresses the limitations of existing approaches by achieving superior correlations with functional correctness and human preferences, without the need for test oracles or references. ICE-Score prompts a large language model (LLM) like GPT to evaluate generated code quality directly, without relying on test cases or reference solutions, assessing various aspects such as correctness and usefulness, making it a flexible, reference-free metric.\n\n## Evaluation\n\nThe metric was evaluated on two different aspects (human preference and execution success) and four programming languages. Results demonstrate that the metric surpasses state-of-the-art metrics for code generation, delivering high levels of accuracy and consistency across various programming languages and tasks.\n\nThe paper and code are publicly available on the ACL Anthology and GitHub respectively."
+    ],
+    "durationSeconds": 5.891564828999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X4XszKXRxpt4BDWxi2392Z`</summary>
+
+```json
+{
+  "query": "CodeScore embedding-based code evaluation Dong 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "a4874446-473f-459a-9bec-e0a09e6689d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRSrzsmqrppRWmijE9MP5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5052,
+      "cache_read_input_tokens": 26373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5052
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G11fPmpa44iM4pqhZ65YhL`</summary>
+
+```json
+{
+  "query": "CodeBERTScore code generation evaluation metric Zhou 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "9a16ce75-dfb9-4398-a3c2-ee0d13fc3b6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRSrzsmqrppRWmijE9MP5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5052,
+      "cache_read_input_tokens": 26373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5052
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K8ZrEqiUTiXvkT9oTKpz7z`</summary>
+
+```json
+{
+  "query": "\"Self-Consistency Improves Chain of Thought Reasoning\" Wang et al ICLR 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "c1070293-5a17-4e04-9fe9-38b06e95a879",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRSrzsmqrppRWmijE9MP5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5052,
+      "cache_read_input_tokens": 26373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5052
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TD5o3a9BYxhQu71GnEKGUw`</summary>
+
+```json
+{
+  "query": "\"Let's Verify Step by Step\" Lightman 2023 process reward model arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "05e1f361-53c4-4d11-9808-5a0d234d8eb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRSrzsmqrppRWmijE9MP5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5052,
+      "cache_read_input_tokens": 26373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5052
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SpSPVFfRVDYCnJyFw7jKc6`</summary>
+
+```json
+{
+  "query": "code reward model code verifier arxiv 2024 2025",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "e21c60ae-0392-434e-a8be-20a1f0cc2057",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRSrzsmqrppRWmijE9MP5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5052,
+      "cache_read_input_tokens": 26373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5052
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T09:41:08.795Z_
+
+<details><summary>↩ Tool result · `toolu_01K8ZrEqiUTiXvkT9oTKpz7z`</summary>
+
+```text
+Web search results for query: ""Self-Consistency Improves Chain of Thought Reasoning" Wang et al ICLR 2023"
+
+Links: [{"title":"[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://arxiv.org/abs/2203.11171"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://iclr.cc/media/iclr-2023/Slides/11718.pdf"},{"title":"dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.","url":"https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview","url":"https://openreview.net/forum?id=1PL1NIMMrw"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://www.cs.toronto.edu/~cmaddis/courses/csc2541_w25/presentations/self-consistency.pdf"},{"title":"[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"},{"title":"ICLR Poster Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://iclr.cc/virtual/2023/poster/11718"},{"title":"SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT ...","url":"http://webdocs.cs.ualberta.ca/~dale/papers/iclr23b.pdf"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://research.google/pubs/self-consistency-improves-chain-of-thought-reasoning-in-language-models/"},{"title":"Awesome-LLM-papers/00_Organizations/1_Google/2023 (Google) (ICLR) Self-Consistency Improves Chain of Thought Reasoning in Language Models.pdf at main · guyulongcs/Awesome-LLM-papers","url":"https://github.com/guyulongcs/Awesome-LLM-papers/blob/main/00_Organizations/1_Google/2023%20(Google)%20(ICLR)%20Self-Consistency%20Improves%20Chain%20of%20Thought%20Reasoning%20in%20Language%20Models.pdf"}]
+
+I found the paper you were looking for! Here's what I can tell you about it:
+
+## Paper Overview
+
+"Self-Consistency Improves Chain of Thought Reasoning in Language Models" by Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc V. Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou was published at ICLR 2023.
+
+## Key Contribution
+
+The paper proposes a new decoding strategy called self-consistency to replace naive greedy decoding used in chain-of-thought prompting, which first samples a diverse set of reasoning paths instead of only taking the greedy one, and then selects the most consistent answer by marginalizing out the sampled reasoning paths.
+
+## Core Intuition
+
+Self-consistency leverages the intuition that a complex reasoning problem typically admits multiple different ways of thinking leading to its unique correct answer.
+
+## Empirical Results
+
+The paper shows that self-consistency boosts the performance of chain-of-thought prompting on a range of popular arithmetic and commonsense reasoning benchmarks, including GSM8K (+17.9%), SVAMP (+11.0%), AQuA (+12.2%), StrategyQA (+6.4%) and ARC-challenge (+3.9%).
+
+The paper is available on arXiv (arxiv.org/abs/2203.11171) and OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "b7237e46-0e9d-4647-abc3-dd466f5d9b69",
+  "tool_use_result": {
+    "query": "\"Self-Consistency Improves Chain of Thought Reasoning\" Wang et al ICLR 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C6cyQmG4ZWPdb6He6Siu1U",
+        "content": [
+          {
+            "title": "[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://arxiv.org/abs/2203.11171"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://iclr.cc/media/iclr-2023/Slides/11718.pdf"
+          },
+          {
+            "title": "dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.",
+            "url": "https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=1PL1NIMMrw"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://www.cs.toronto.edu/~cmaddis/courses/csc2541_w25/presentations/self-consistency.pdf"
+          },
+          {
+            "title": "[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"
+          },
+          {
+            "title": "ICLR Poster Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://iclr.cc/virtual/2023/poster/11718"
+          },
+          {
+            "title": "SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT ...",
+            "url": "http://webdocs.cs.ualberta.ca/~dale/papers/iclr23b.pdf"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://research.google/pubs/self-consistency-improves-chain-of-thought-reasoning-in-language-models/"
+          },
+          {
+            "title": "Awesome-LLM-papers/00_Organizations/1_Google/2023 (Google) (ICLR) Self-Consistency Improves Chain of Thought Reasoning in Language Models.pdf at main · guyulongcs/Awesome-LLM-papers",
+            "url": "https://github.com/guyulongcs/Awesome-LLM-papers/blob/main/00_Organizations/1_Google/2023%20(Google)%20(ICLR)%20Self-Consistency%20Improves%20Chain%20of%20Thought%20Reasoning%20in%20Language%20Models.pdf"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's what I can tell you about it:\n\n## Paper Overview\n\n\"Self-Consistency Improves Chain of Thought Reasoning in Language Models\" by Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc V. Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou was published at ICLR 2023.\n\n## Key Contribution\n\nThe paper proposes a new decoding strategy called self-consistency to replace naive greedy decoding used in chain-of-thought prompting, which first samples a diverse set of reasoning paths instead of only taking the greedy one, and then selects the most consistent answer by marginalizing out the sampled reasoning paths.\n\n## Core Intuition\n\nSelf-consistency leverages the intuition that a complex reasoning problem typically admits multiple different ways of thinking leading to its unique correct answer.\n\n## Empirical Results\n\nThe paper shows that self-consistency boosts the performance of chain-of-thought prompting on a range of popular arithmetic and commonsense reasoning benchmarks, including GSM8K (+17.9%), SVAMP (+11.0%), AQuA (+12.2%), StrategyQA (+6.4%) and ARC-challenge (+3.9%).\n\nThe paper is available on arXiv (arxiv.org/abs/2203.11171) and OpenReview."
+    ],
+    "durationSeconds": 4.339397054999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T09:41:09.066Z_
+
+<details><summary>↩ Tool result · `toolu_01G11fPmpa44iM4pqhZ65YhL`</summary>
+
+```text
+Web search results for query: "CodeBERTScore code generation evaluation metric Zhou 2023"
+
+Links: [{"title":"CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.859/"},{"title":"GitHub - neulab/code-bert-score: CodeBERTScore: an automatic metric for code generation, based on BERTScore","url":"https://github.com/neulab/code-bert-score"},{"title":"[2302.05527] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code","url":"https://arxiv.org/abs/2302.05527"},{"title":"GitHub - Katherine0214/code-bert-score: It is an automatic evaluation metric for code generation (for LLM)","url":"https://github.com/Katherine0214/code-bert-score"},{"title":"CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code | Request PDF","url":"https://www.researchgate.net/publication/376404272_CodeBERTScore_Evaluating_Code_Generation_with_Pretrained_Models_of_Code"},{"title":"[PDF] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CodeBERTScore:-Evaluating-Code-Generation-with-of-Zhou-Alon/31366ff634fc905affd78dbd8ddc9a872c006a87"},{"title":"CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code","url":"https://arxiv.org/pdf/2302.05527"},{"title":"Evaluating Code Generation with Pretrained Models of Code","url":"https://aclanthology.org/2023.emnlp-main.859.pdf"},{"title":"code-bert-score/README.md at main · neulab/code-bert-score","url":"https://github.com/neulab/code-bert-score/blob/main/README.md"},{"title":"[2302.05527] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code","url":"https://ar5iv.labs.arxiv.org/html/2302.05527"}]
+
+Here are the key findings from the search for CodeBERTScore:
+
+## Overview
+
+CodeBERTScore is an evaluation metric for code generation that builds on BERTScore. The paper was authored by Shuyan Zhou, Uri Alon, Sumit Agarwal, and Graham Neubig, and was published in the Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing.
+
+## Key Features
+
+Instead of encoding only the generated tokens as in BERTScore, CodeBERTScore also encodes the natural language input preceding the generated code, thus modeling the consistency between the generated code and its given natural language context.
+
+## Evaluation Results
+
+CodeBERTScore achieves a higher correlation with human preference and with functional correctness than all existing metrics, meaning generated code that receives a higher score by CodeBERTScore is more likely to be preferred by humans, as well as to function correctly when executed.
+
+## Implementation Details
+
+The authors released five language-specific pretrained models to use with their publicly available code, and their language-specific models have been downloaded more than 1,000,000 times from the Huggingface Hub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "7a217c45-8922-4d7f-9167-a66637c14d34",
+  "tool_use_result": {
+    "query": "CodeBERTScore code generation evaluation metric Zhou 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0124VcgsrzvFS7aUWJCgHdc9",
+        "content": [
+          {
+            "title": "CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code - ACL Anthology",
+            "url": "https://aclanthology.org/2023.emnlp-main.859/"
+          },
+          {
+            "title": "GitHub - neulab/code-bert-score: CodeBERTScore: an automatic metric for code generation, based on BERTScore",
+            "url": "https://github.com/neulab/code-bert-score"
+          },
+          {
+            "title": "[2302.05527] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code",
+            "url": "https://arxiv.org/abs/2302.05527"
+          },
+          {
+            "title": "GitHub - Katherine0214/code-bert-score: It is an automatic evaluation metric for code generation (for LLM)",
+            "url": "https://github.com/Katherine0214/code-bert-score"
+          },
+          {
+            "title": "CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code | Request PDF",
+            "url": "https://www.researchgate.net/publication/376404272_CodeBERTScore_Evaluating_Code_Generation_with_Pretrained_Models_of_Code"
+          },
+          {
+            "title": "[PDF] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CodeBERTScore:-Evaluating-Code-Generation-with-of-Zhou-Alon/31366ff634fc905affd78dbd8ddc9a872c006a87"
+          },
+          {
+            "title": "CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code",
+            "url": "https://arxiv.org/pdf/2302.05527"
+          },
+          {
+            "title": "Evaluating Code Generation with Pretrained Models of Code",
+            "url": "https://aclanthology.org/2023.emnlp-main.859.pdf"
+          },
+          {
+            "title": "code-bert-score/README.md at main · neulab/code-bert-score",
+            "url": "https://github.com/neulab/code-bert-score/blob/main/README.md"
+          },
+          {
+            "title": "[2302.05527] CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code",
+            "url": "https://ar5iv.labs.arxiv.org/html/2302.05527"
+          }
+        ]
+      },
+      "Here are the key findings from the search for CodeBERTScore:\n\n## Overview\n\nCodeBERTScore is an evaluation metric for code generation that builds on BERTScore. The paper was authored by Shuyan Zhou, Uri Alon, Sumit Agarwal, and Graham Neubig, and was published in the Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing.\n\n## Key Features\n\nInstead of encoding only the generated tokens as in BERTScore, CodeBERTScore also encodes the natural language input preceding the generated code, thus modeling the consistency between the generated code and its given natural language context.\n\n## Evaluation Results\n\nCodeBERTScore achieves a higher correlation with human preference and with functional correctness than all existing metrics, meaning generated code that receives a higher score by CodeBERTScore is more likely to be preferred by humans, as well as to function correctly when executed.\n\n## Implementation Details\n\nThe authors released five language-specific pretrained models to use with their publicly available code, and their language-specific models have been downloaded more than 1,000,000 times from the Huggingface Hub."
+    ],
+    "durationSeconds": 5.083565461000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T09:41:09.715Z_
+
+<details><summary>↩ Tool result · `toolu_01X4XszKXRxpt4BDWxi2392Z`</summary>
+
+```text
+Web search results for query: "CodeScore embedding-based code evaluation Dong 2023 arxiv"
+
+Links: [{"title":"CodeScore: Evaluating Code Generation by Learning Code Execution","url":"https://arxiv.org/html/2301.09043v3"},{"title":"[2301.09043] CodeScore: Evaluating Code Generation by Learning Code Execution","url":"https://arxiv.org/abs/2301.09043"},{"title":"[PDF] CodeScore: Evaluating Code Generation by Learning Code Execution | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CodeScore:-Evaluating-Code-Generation-by-Learning-Dong-Ding/a95817df43516f5ff9cfc447209def1fcd569afc"},{"title":"MATCH: Task-Driven Code Evaluation through Contrastive Learning","url":"https://arxiv.org/html/2510.23169"},{"title":"On the Limitations of Embedding Based Methods for Measuring Functional Correctness for Code Generation","url":"https://arxiv.org/html/2405.01580"},{"title":"CODESCORE: EVALUATING CODE GENERATION BY ...","url":"https://openreview.net/pdf/e6e11b18ee748e3bdbad68e8b1a200fa1721c8ca.pdf"},{"title":"On the Limitations of Embedding Based Methods for Measuring","url":"https://arxiv.org/pdf/2405.01580"},{"title":"CodeScore: Evaluating Code Generation by Learning Code Execution | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/full/10.1145/3695991"},{"title":"DOCE: Finding the Sweet Spot for Execution-Based Code Generation","url":"https://arxiv.org/html/2408.13745v4"},{"title":"CodeScore: Evaluating Code Generation by Learning Code Execution · Machine Learning for Big Code and Naturalness","url":"https://ml4code.github.io/publications/dong2023codescore/"}]
+
+I found comprehensive information about CodeScore. Here's what the search revealed:
+
+## CodeScore: Overview
+
+CodeScore is a large language model (LLM)-based code evaluation metric (CEM) that estimates the functional correctness of generated code on three input types.
+
+## Key Contribution
+
+The paper presents UniCE, a unified code generation learning framework for LLMs to learn code execution (i.e., learning PassRatio and Executability of generated code) with unified input.
+
+## Performance
+
+Extensive experimental results on multiple code evaluation datasets demonstrate that CodeScore improves up to 58.87% correlation with functional correctness compared to other CEMs, achieves state-of-the-art performance, and effectively handles three input formats.
+
+## Problem It Addresses
+
+In response to the imprecise evaluations provided by existing match-based CEMs that primarily measure the surface differences between codes without considering their functional equivalence, CodeScore was developed (noting that functional equivalence is pivotal in evaluating code generation effectiveness, as different codes can perform identical operations).
+
+## Publication Details
+
+The paper was authored by Yihong Dong and colleagues and published in ACM Transactions on Software Engineering and Methodology in 2023. The original arXiv submission was January 22, 2023 (arxiv ID: 2301.09043).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "92d3da62-96dc-4e80-a212-d82277089d45",
+  "tool_use_result": {
+    "query": "CodeScore embedding-based code evaluation Dong 2023 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TrUF3LxjshhwPUYhZgWCaK",
+        "content": [
+          {
+            "title": "CodeScore: Evaluating Code Generation by Learning Code Execution",
+            "url": "https://arxiv.org/html/2301.09043v3"
+          },
+          {
+            "title": "[2301.09043] CodeScore: Evaluating Code Generation by Learning Code Execution",
+            "url": "https://arxiv.org/abs/2301.09043"
+          },
+          {
+            "title": "[PDF] CodeScore: Evaluating Code Generation by Learning Code Execution | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CodeScore:-Evaluating-Code-Generation-by-Learning-Dong-Ding/a95817df43516f5ff9cfc447209def1fcd569afc"
+          },
+          {
+            "title": "MATCH: Task-Driven Code Evaluation through Contrastive Learning",
+            "url": "https://arxiv.org/html/2510.23169"
+          },
+          {
+            "title": "On the Limitations of Embedding Based Methods for Measuring Functional Correctness for Code Generation",
+            "url": "https://arxiv.org/html/2405.01580"
+          },
+          {
+            "title": "CODESCORE: EVALUATING CODE GENERATION BY ...",
+            "url": "https://openreview.net/pdf/e6e11b18ee748e3bdbad68e8b1a200fa1721c8ca.pdf"
+          },
+          {
+            "title": "On the Limitations of Embedding Based Methods for Measuring",
+            "url": "https://arxiv.org/pdf/2405.01580"
+          },
+          {
+            "title": "CodeScore: Evaluating Code Generation by Learning Code Execution | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/full/10.1145/3695991"
+          },
+          {
+            "title": "DOCE: Finding the Sweet Spot for Execution-Based Code Generation",
+            "url": "https://arxiv.org/html/2408.13745v4"
+          },
+          {
+            "title": "CodeScore: Evaluating Code Generation by Learning Code Execution · Machine Learning for Big Code and Naturalness",
+            "url": "https://ml4code.github.io/publications/dong2023codescore/"
+          }
+        ]
+      },
+      "I found comprehensive information about CodeScore. Here's what the search revealed:\n\n## CodeScore: Overview\n\nCodeScore is a large language model (LLM)-based code evaluation metric (CEM) that estimates the functional correctness of generated code on three input types.\n\n## Key Contribution\n\nThe paper presents UniCE, a unified code generation learning framework for LLMs to learn code execution (i.e., learning PassRatio and Executability of generated code) with unified input.\n\n## Performance\n\nExtensive experimental results on multiple code evaluation datasets demonstrate that CodeScore improves up to 58.87% correlation with functional correctness compared to other CEMs, achieves state-of-the-art performance, and effectively handles three input formats.\n\n## Problem It Addresses\n\nIn response to the imprecise evaluations provided by existing match-based CEMs that primarily measure the surface differences between codes without considering their functional equivalence, CodeScore was developed (noting that functional equivalence is pivotal in evaluating code generation effectiveness, as different codes can perform identical operations).\n\n## Publication Details\n\nThe paper was authored by Yihong Dong and colleagues and published in ACM Transactions on Software Engineering and Methodology in 2023. The original arXiv submission was January 22, 2023 (arxiv ID: 2301.09043)."
+    ],
+    "durationSeconds": 6.5259408049999985
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T09:41:10.631Z_
+
+<details><summary>↩ Tool result · `toolu_01TD5o3a9BYxhQu71GnEKGUw`</summary>
+
+```text
+Web search results for query: ""Let's Verify Step by Step" Lightman 2023 process reward model arxiv"
+
+Links: [{"title":"[2305.20050] Let's Verify Step by Step","url":"https://arxiv.org/abs/2305.20050"},{"title":"[PDF] Let's Verify Step by Step | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc"},{"title":"Figure 2 from Let's Verify Step by Step | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc/figure/2"},{"title":"GitHub - kyegomez/Lets-Verify-Step-by-Step: \"Improving Mathematical Reasoning with Process Supervision\" by OPENAI · GitHub","url":"https://github.com/kyegomez/Lets-Verify-Step-by-Step"},{"title":"Let's Verify Step by Step","url":"https://www.researchgate.net/publication/371175770_Let's_Verify_Step_by_Step"},{"title":"[2305.20050] Let's Verify Step by Step - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2305.20050"},{"title":"2023 LetsVerifyStepbyStep - GM-RKB","url":"https://www.gabormelli.com/RKB/Lightman_et_al.,_2023"},{"title":"Paper page - Let's Verify Step by Step","url":"https://huggingface.co/papers/2305.20050"},{"title":"Let's Verify Step by Step (OpenAI, May 2023)","url":"https://www.facebook.com/groups/3670562573177653/posts/3747854062115170/"},{"title":"Let's Verify Step by Step","url":"https://www.connectedpapers.com/main/be8db99310602d66bba64bcf41a572c45816fbfc/Let's-Verify-Step-by-Step/graph"}]
+
+I found the paper you're searching for. Here are the key details:
+
+**Paper Title:** Let's Verify Step by Step
+
+**Authors:** Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, Karl Cobbe
+
+**Publication Date:** May 31, 2023
+
+**arXiv ID:** 2305.20050
+
+**Overview:**
+The research finds that process supervision significantly outperforms outcome supervision for training models to solve problems from the challenging MATH dataset. Their process-supervised model solves 78% of problems from a representative subset of the MATH test set.
+
+**Key Contributions:**
+- The paper compares outcome supervision, which provides feedback for a final result, with process supervision, which provides feedback for each intermediate reasoning step.
+- Active learning significantly improves the efficacy of process supervision.
+- The authors release PRM800K, the complete dataset of 800,000 step-level human feedback labels used to train their best reward model.
+
+You can access the full paper at: https://arxiv.org/abs/2305.20050
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "be12ad75-ad03-4eb3-b6a7-a2d498f44d29",
+  "tool_use_result": {
+    "query": "\"Let's Verify Step by Step\" Lightman 2023 process reward model arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019AeiNvwyw3Nt6qYADi5qTH",
+        "content": [
+          {
+            "title": "[2305.20050] Let's Verify Step by Step",
+            "url": "https://arxiv.org/abs/2305.20050"
+          },
+          {
+            "title": "[PDF] Let's Verify Step by Step | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc"
+          },
+          {
+            "title": "Figure 2 from Let's Verify Step by Step | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc/figure/2"
+          },
+          {
+            "title": "GitHub - kyegomez/Lets-Verify-Step-by-Step: \"Improving Mathematical Reasoning with Process Supervision\" by OPENAI · GitHub",
+            "url": "https://github.com/kyegomez/Lets-Verify-Step-by-Step"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://www.researchgate.net/publication/371175770_Let's_Verify_Step_by_Step"
+          },
+          {
+            "title": "[2305.20050] Let's Verify Step by Step - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2305.20050"
+          },
+          {
+            "title": "2023 LetsVerifyStepbyStep - GM-RKB",
+            "url": "https://www.gabormelli.com/RKB/Lightman_et_al.,_2023"
+          },
+          {
+            "title": "Paper page - Let's Verify Step by Step",
+            "url": "https://huggingface.co/papers/2305.20050"
+          },
+          {
+            "title": "Let's Verify Step by Step (OpenAI, May 2023)",
+            "url": "https://www.facebook.com/groups/3670562573177653/posts/3747854062115170/"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://www.connectedpapers.com/main/be8db99310602d66bba64bcf41a572c45816fbfc/Let's-Verify-Step-by-Step/graph"
+          }
+        ]
+      },
+      "I found the paper you're searching for. Here are the key details:\n\n**Paper Title:** Let's Verify Step by Step\n\n**Authors:** Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, Karl Cobbe\n\n**Publication Date:** May 31, 2023\n\n**arXiv ID:** 2305.20050\n\n**Overview:**\nThe research finds that process supervision significantly outperforms outcome supervision for training models to solve problems from the challenging MATH dataset. Their process-supervised model solves 78% of problems from a representative subset of the MATH test set.\n\n**Key Contributions:**\n- The paper compares outcome supervision, which provides feedback for a final result, with process supervision, which provides feedback for each intermediate reasoning step.\n- Active learning significantly improves the efficacy of process supervision.\n- The authors release PRM800K, the complete dataset of 800,000 step-level human feedback labels used to train their best reward model.\n\nYou can access the full paper at: https://arxiv.org/abs/2305.20050"
+    ],
+    "durationSeconds": 5.120546158999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T09:41:13.470Z_
+
+<details><summary>↩ Tool result · `toolu_01SpSPVFfRVDYCnJyFw7jKc6`</summary>
+
+```text
+Web search results for query: "code reward model code verifier arxiv 2024 2025"
+
+Links: [{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://arxiv.org/html/2506.11442v1"},{"title":"CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment","url":"https://arxiv.org/html/2510.18471v1"},{"title":"Reward Models Enable Scalable Code Verification by Trading Accuracy for Throughput","url":"https://arxiv.org/html/2506.10056v1"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly ...","url":"https://arxiv.org/pdf/2506.14245"},{"title":"Process-Supervised Reinforcement Learning for Code Generation","url":"https://arxiv.org/html/2502.01715v1"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"},{"title":"DreamPRM-Code: Function-as-Step Process Reward Model with Label","url":"https://arxiv.org/pdf/2512.15000"},{"title":"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation","url":"https://arxiv.org/html/2601.22249v1"},{"title":"from verifiable dot to reward chain: har","url":"https://arxiv.org/pdf/2601.18533"},{"title":"A Large Language Model-Driven Reward Design Framework via Dynamic Feedback for Reinforcement Learning","url":"https://arxiv.org/html/2410.14660v1"}]
+
+Here are the search results for "code reward model code verifier arxiv 2024 2025":
+
+The search returned several recent papers on code generation with reward models and verification systems:
+
+1. **ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification** (June 2025)
+   - ReVeal decomposes long-horizon reasoning into alternating generation and verification turns, introducing dense, verifiable rewards at each turn to enable fine-grained optimization of both code quality and verification accuracy.
+
+2. **CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment** (October 2025)
+   - Uses Reinforcement Learning with Verifiable Rewards (RLVR) to bridge the semantic gap between textual code representations and execution semantics.
+
+3. **Reward Models Enable Scalable Code Verification by Trading Accuracy for Throughput** (June 2025)
+   - This paper focuses on using reward models for efficient code verification with trade-offs between speed and accuracy.
+
+4. **Process-Supervised Reinforcement Learning for Code Generation** (February 2025)
+   - Introduces a "mutation/refactoring-verification" strategy to automatically generate high-quality process-supervised data for training reward models.
+
+5. **FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation** (January 2026)
+   - Uses Process Reward Model (PRM)-based selection to assess whether intermediate reasoning steps of LLMs make progress toward a correct solution.
+
+6. **DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction** (December 2025)
+   - Develops process reward models specifically tailored for code generation with label correction mechanisms.
+
+These papers represent recent advances in combining reward models and code verification for improving LLM-based code generation through reinforcement learning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "b5c39199-dbed-4ad4-a7c4-aa0b22e490c2",
+  "tool_use_result": {
+    "query": "code reward model code verifier arxiv 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XeTHvKESBgzkXZBj2CP2Ky",
+        "content": [
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://arxiv.org/html/2506.11442v1"
+          },
+          {
+            "title": "CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment",
+            "url": "https://arxiv.org/html/2510.18471v1"
+          },
+          {
+            "title": "Reward Models Enable Scalable Code Verification by Trading Accuracy for Throughput",
+            "url": "https://arxiv.org/html/2506.10056v1"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly ...",
+            "url": "https://arxiv.org/pdf/2506.14245"
+          },
+          {
+            "title": "Process-Supervised Reinforcement Learning for Code Generation",
+            "url": "https://arxiv.org/html/2502.01715v1"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          },
+          {
+            "title": "DreamPRM-Code: Function-as-Step Process Reward Model with Label",
+            "url": "https://arxiv.org/pdf/2512.15000"
+          },
+          {
+            "title": "FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+            "url": "https://arxiv.org/html/2601.22249v1"
+          },
+          {
+            "title": "from verifiable dot to reward chain: har",
+            "url": "https://arxiv.org/pdf/2601.18533"
+          },
+          {
+            "title": "A Large Language Model-Driven Reward Design Framework via Dynamic Feedback for Reinforcement Learning",
+            "url": "https://arxiv.org/html/2410.14660v1"
+          }
+        ]
+      },
+      "Here are the search results for \"code reward model code verifier arxiv 2024 2025\":\n\nThe search returned several recent papers on code generation with reward models and verification systems:\n\n1. **ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification** (June 2025)\n   - ReVeal decomposes long-horizon reasoning into alternating generation and verification turns, introducing dense, verifiable rewards at each turn to enable fine-grained optimization of both code quality and verification accuracy.\n\n2. **CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment** (October 2025)\n   - Uses Reinforcement Learning with Verifiable Rewards (RLVR) to bridge the semantic gap between textual code representations and execution semantics.\n\n3. **Reward Models Enable Scalable Code Verification by Trading Accuracy for Throughput** (June 2025)\n   - This paper focuses on using reward models for efficient code verification with trade-offs between speed and accuracy.\n\n4. **Process-Supervised Reinforcement Learning for Code Generation** (February 2025)\n   - Introduces a \"mutation/refactoring-verification\" strategy to automatically generate high-quality process-supervised data for training reward models.\n\n5. **FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation** (January 2026)\n   - Uses Process Reward Model (PRM)-based selection to assess whether intermediate reasoning steps of LLMs make progress toward a correct solution.\n\n6. **DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction** (December 2025)\n   - Develops process reward models specifically tailored for code generation with label correction mechanisms.\n\nThese papers represent recent advances in combining reward models and code verification for improving LLM-based code generation through reinforcement learning approaches."
+    ],
+    "durationSeconds": 7.5441430200000035
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HCpaZGJKbWRzPGpuKRJw3g`</summary>
+
+```json
+{
+  "query": "SWE-RM Zhang 2025 reward model software engineering arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "88b9af8b-8e6d-4a02-a653-2b1de94a1499",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xygv6hdRMX1qiXeTHNuBpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4937,
+      "cache_read_input_tokens": 31425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4937
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QYVZc2oofUcMgp5j9t2fyS`</summary>
+
+```json
+{
+  "query": "\"predictive mutation testing\" OR \"mutation testing neural\" 2022 2023 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "0695a34c-a979-4334-985b-229f38d393ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xygv6hdRMX1qiXeTHNuBpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4937,
+      "cache_read_input_tokens": 31425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4937
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kp9kVDzzKQbPr69F8eD69p`</summary>
+
+```json
+{
+  "query": "Qwen3 technical report 2025 arxiv Yang et al"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "140cbcf7-8815-4d80-8e16-583fb197617d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xygv6hdRMX1qiXeTHNuBpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4937,
+      "cache_read_input_tokens": 31425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4937
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ovgx4P5ErXcHngAgscoc3`</summary>
+
+```json
+{
+  "query": "DeepSeek-Coder \"When the Large Language Model Meets Programming\" Guo 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "35139457-383a-4f77-b03a-fda026ff4e4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xygv6hdRMX1qiXeTHNuBpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4937,
+      "cache_read_input_tokens": 31425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4937
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016rp79uyq3CJnSi1cZ55km8`</summary>
+
+```json
+{
+  "query": "HumanEval \"Evaluating Large Language Models Trained on Code\" Chen 2021 Codex arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "26a7465c-a35e-432f-805f-c9b0a95b7122",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xygv6hdRMX1qiXeTHNuBpi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4937,
+      "cache_read_input_tokens": 31425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4937
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T09:41:23.514Z_
+
+<details><summary>↩ Tool result · `toolu_01HCpaZGJKbWRzPGpuKRJw3g`</summary>
+
+```text
+Web search results for query: "SWE-RM Zhang 2025 reward model software engineering arxiv"
+
+Links: [{"title":"2025-12-29 SWE-RM: EXECUTION-FREE FEEDBACK FOR SOFT- WARE ENGINEERING AGENTS","url":"https://www.arxiv.org/pdf/2512.21919"},{"title":"[2512.21919] SWE-RM: Execution-free Feedback For Software Engineering Agents","url":"https://arxiv.org/abs/2512.21919"},{"title":"SWE-RM: Execution-Free Feedback for Software Engineering Agents","url":"https://arxiv.org/html/2512.21919v1"},{"title":"SWE-RM: Execution-free Feedback For Software Engineering Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2512.21919v1"},{"title":"RM-R1: Reward Modeling as Reasoning","url":"https://arxiv.org/pdf/2505.02387"},{"title":"Paper page - SWE-RM: Execution-free Feedback For Software Engineering Agents","url":"https://huggingface.co/papers/2512.21919"},{"title":"2025-12-29 - by Kim Seonghyeon - arXiv Daily","url":"https://rosinality.substack.com/p/2025-12-29"},{"title":"Reward Engineering for Reinforcement Learning in Software Tasks","url":"https://arxiv.org/pdf/2601.19100"},{"title":"Execution-Free Feedback in SWE-RM Verifiers","url":"https://www.emergentmind.com/topics/execution-free-feedback"},{"title":"SWE-RM: Execution-free Feedback for Software Engineering Agents | OpenReview","url":"https://openreview.net/forum?id=H9wMe1G76j"}]
+
+I found the research paper you're looking for. Here's what I found:
+
+## SWE-RM: Execution-free Feedback For Software Engineering Agents
+
+The paper is available on arXiv as 2512.21919: SWE-RM: Execution-free Feedback For Software Engineering Agents, published on December 26, 2025.
+
+### Key Details:
+
+**Authors:** KaShun Shum, Binyuan Hui, Jiawei Chen, Lei Zhang, X. W., Jiaxi Yang, Yuzhen Huang, Junyang Lin, and Junxian He
+
+**Main Contribution:** SWE-RM is an accurate and robust reward model adopting a mixture-of-experts architecture with 30B total parameters and 3B activated during inference.
+
+**Problem Addressed:** Execution-based feedback like unit testing is widely used in the development of coding agents through test-time scaling (TTS) and reinforcement learning (RL). This paradigm requires scalable and reliable collection of unit test cases to provide accurate feedback, and the resulting feedback is often sparse and cannot effectively distinguish between trajectories that are both successful or both unsuccessful.
+
+**Performance Results:** SWE-RM increases the accuracy of Qwen3-Coder-Flash from 51.6% to 62.0%, and Qwen3-Coder-Max from 67.0% to 74.6% on SWE-Bench Verified using TTS, achieving new state-of-the-art performance among open-source models.
+
+You can access the paper directly at https://arxiv.org/abs/2512.21919.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "db4d4a94-0930-45dd-9e82-84e484b8fe14",
+  "tool_use_result": {
+    "query": "SWE-RM Zhang 2025 reward model software engineering arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TSmH7dEiAfuUHWLNjkbszJ",
+        "content": [
+          {
+            "title": "2025-12-29 SWE-RM: EXECUTION-FREE FEEDBACK FOR SOFT- WARE ENGINEERING AGENTS",
+            "url": "https://www.arxiv.org/pdf/2512.21919"
+          },
+          {
+            "title": "[2512.21919] SWE-RM: Execution-free Feedback For Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2512.21919"
+          },
+          {
+            "title": "SWE-RM: Execution-Free Feedback for Software Engineering Agents",
+            "url": "https://arxiv.org/html/2512.21919v1"
+          },
+          {
+            "title": "SWE-RM: Execution-free Feedback For Software Engineering Agents | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2512.21919v1"
+          },
+          {
+            "title": "RM-R1: Reward Modeling as Reasoning",
+            "url": "https://arxiv.org/pdf/2505.02387"
+          },
+          {
+            "title": "Paper page - SWE-RM: Execution-free Feedback For Software Engineering Agents",
+            "url": "https://huggingface.co/papers/2512.21919"
+          },
+          {
+            "title": "2025-12-29 - by Kim Seonghyeon - arXiv Daily",
+            "url": "https://rosinality.substack.com/p/2025-12-29"
+          },
+          {
+            "title": "Reward Engineering for Reinforcement Learning in Software Tasks",
+            "url": "https://arxiv.org/pdf/2601.19100"
+          },
+          {
+            "title": "Execution-Free Feedback in SWE-RM Verifiers",
+            "url": "https://www.emergentmind.com/topics/execution-free-feedback"
+          },
+          {
+            "title": "SWE-RM: Execution-free Feedback for Software Engineering Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=H9wMe1G76j"
+          }
+        ]
+      },
+      "I found the research paper you're looking for. Here's what I found:\n\n## SWE-RM: Execution-free Feedback For Software Engineering Agents\n\nThe paper is available on arXiv as 2512.21919: SWE-RM: Execution-free Feedback For Software Engineering Agents, published on December 26, 2025.\n\n### Key Details:\n\n**Authors:** KaShun Shum, Binyuan Hui, Jiawei Chen, Lei Zhang, X. W., Jiaxi Yang, Yuzhen Huang, Junyang Lin, and Junxian He\n\n**Main Contribution:** SWE-RM is an accurate and robust reward model adopting a mixture-of-experts architecture with 30B total parameters and 3B activated during inference.\n\n**Problem Addressed:** Execution-based feedback like unit testing is widely used in the development of coding agents through test-time scaling (TTS) and reinforcement learning (RL). This paradigm requires scalable and reliable collection of unit test cases to provide accurate feedback, and the resulting feedback is often sparse and cannot effectively distinguish between trajectories that are both successful or both unsuccessful.\n\n**Performance Results:** SWE-RM increases the accuracy of Qwen3-Coder-Flash from 51.6% to 62.0%, and Qwen3-Coder-Max from 67.0% to 74.6% on SWE-Bench Verified using TTS, achieving new state-of-the-art performance among open-source models.\n\nYou can access the paper directly at https://arxiv.org/abs/2512.21919."
+    ],
+    "durationSeconds": 6.594957657999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T09:41:24.476Z_
+
+<details><summary>↩ Tool result · `toolu_01Kp9kVDzzKQbPr69F8eD69p`</summary>
+
+```text
+Web search results for query: "Qwen3 technical report 2025 arxiv Yang et al"
+
+Links: [{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"2026-03-03 Qwen3-Coder-Next Technical Report Qwen Team","url":"https://arxiv.org/pdf/2603.00729"},{"title":"2025-10-17 Qwen3Guard Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2510.14276"},{"title":"2025-09-23 Qwen3-Omni Technical Report Qwen Team","url":"https://arxiv.org/pdf/2509.17765"},{"title":"December 1, 2025 Qwen3-VL Technical Report Qwen Team https://chat.qwen.ai","url":"https://arxiv.org/pdf/2511.21631"},{"title":"[2505.09388] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388"},{"title":"Qwen3 Technical Report | Request PDF","url":"https://www.researchgate.net/publication/391741196_Qwen3_Technical_Report"},{"title":"Qwen3 Technical Report | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.09388v1"},{"title":"Qwen3Guard Technical Report","url":"https://arxiv.org/html/2510.14276v1"},{"title":"Qwen3 Technical Report | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2505.09388"}]
+
+I found the Qwen3 Technical Report from 2025 on arXiv. Here are the key findings:
+
+## Overview
+
+Qwen3 is the latest version of the Qwen model family, comprising a series of large language models (LLMs) designed to advance performance, efficiency, and multilingual capabilities. The Qwen3 series includes models of both dense and Mixture-of-Expert (MoE) architectures, with parameter scales ranging from 0.6 to 235 billion.
+
+## Key Innovations
+
+A key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework. This eliminates the need to switch between different models and enables dynamic mode switching based on user queries or chat templates, while introducing a thinking budget mechanism allowing users to allocate computational resources adaptively during inference.
+
+## Training Data
+
+The pre-training process for Qwen3 utilizes a large-scale dataset consisting of approximately 36 trillion tokens, curated to ensure linguistic and domain diversity. Compared with Qwen2.5, they collected twice as many pre-training tokens—covering three times more languages, with all Qwen3 models trained on a dataset consisting of 119 languages and dialects.
+
+## Performance and Multilingual Support
+
+Empirical evaluations demonstrate that Qwen3 achieves state-of-the-art results across diverse benchmarks, including tasks in code generation, mathematical reasoning, agent tasks, etc., competitive against larger MoE models and proprietary models. Compared to its predecessor Qwen2.5, Qwen3 expands multilingual support from 29 to 119 languages and dialects.
+
+The paper was published on arXiv on May 14, 2025 (arxiv ID: 2505.09388) with An Yang as the lead author.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "c178b23e-cf7d-4dee-b6b2-b7b51b8854ab",
+  "tool_use_result": {
+    "query": "Qwen3 technical report 2025 arxiv Yang et al",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QQEch9kNGpQ3Sxj8Y32396",
+        "content": [
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "2026-03-03 Qwen3-Coder-Next Technical Report Qwen Team",
+            "url": "https://arxiv.org/pdf/2603.00729"
+          },
+          {
+            "title": "2025-10-17 Qwen3Guard Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2510.14276"
+          },
+          {
+            "title": "2025-09-23 Qwen3-Omni Technical Report Qwen Team",
+            "url": "https://arxiv.org/pdf/2509.17765"
+          },
+          {
+            "title": "December 1, 2025 Qwen3-VL Technical Report Qwen Team https://chat.qwen.ai",
+            "url": "https://arxiv.org/pdf/2511.21631"
+          },
+          {
+            "title": "[2505.09388] Qwen3 Technical Report",
+            "url": "https://arxiv.org/abs/2505.09388"
+          },
+          {
+            "title": "Qwen3 Technical Report | Request PDF",
+            "url": "https://www.researchgate.net/publication/391741196_Qwen3_Technical_Report"
+          },
+          {
+            "title": "Qwen3 Technical Report | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2505.09388v1"
+          },
+          {
+            "title": "Qwen3Guard Technical Report",
+            "url": "https://arxiv.org/html/2510.14276v1"
+          },
+          {
+            "title": "Qwen3 Technical Report | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2505.09388"
+          }
+        ]
+      },
+      "I found the Qwen3 Technical Report from 2025 on arXiv. Here are the key findings:\n\n## Overview\n\nQwen3 is the latest version of the Qwen model family, comprising a series of large language models (LLMs) designed to advance performance, efficiency, and multilingual capabilities. The Qwen3 series includes models of both dense and Mixture-of-Expert (MoE) architectures, with parameter scales ranging from 0.6 to 235 billion.\n\n## Key Innovations\n\nA key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework. This eliminates the need to switch between different models and enables dynamic mode switching based on user queries or chat templates, while introducing a thinking budget mechanism allowing users to allocate computational resources adaptively during inference.\n\n## Training Data\n\nThe pre-training process for Qwen3 utilizes a large-scale dataset consisting of approximately 36 trillion tokens, curated to ensure linguistic and domain diversity. Compared with Qwen2.5, they collected twice as many pre-training tokens—covering three times more languages, with all Qwen3 models trained on a dataset consisting of 119 languages and dialects.\n\n## Performance and Multilingual Support\n\nEmpirical evaluations demonstrate that Qwen3 achieves state-of-the-art results across diverse benchmarks, including tasks in code generation, mathematical reasoning, agent tasks, etc., competitive against larger MoE models and proprietary models. Compared to its predecessor Qwen2.5, Qwen3 expands multilingual support from 29 to 119 languages and dialects.\n\nThe paper was published on arXiv on May 14, 2025 (arxiv ID: 2505.09388) with An Yang as the lead author."
+    ],
+    "durationSeconds": 6.141918266
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T09:41:24.960Z_
+
+<details><summary>↩ Tool result · `toolu_016rp79uyq3CJnSi1cZ55km8`</summary>
+
+```text
+Web search results for query: "HumanEval "Evaluating Large Language Models Trained on Code" Chen 2021 Codex arxiv"
+
+Links: [{"title":"[2107.03374] Evaluating Large Language Models Trained on Code","url":"https://arxiv.org/abs/2107.03374"},{"title":"Evaluating Large Language Models Trained on Code","url":"https://arxiv.org/pdf/2107.03374"},{"title":"Notes on \"Evaluating Large Language Models Trained on Code\"","url":"https://www.andrelizardo.com/p/notes-on-evaluating-large-language"},{"title":"Paper page - Evaluating Large Language Models Trained on Code","url":"https://huggingface.co/papers/2107.03374"},{"title":"GitHub - openai/human-eval: Code for the paper \"Evaluating Large Language Models Trained on Code\" · GitHub","url":"https://github.com/openai/human-eval"},{"title":"Evaluating Large Language Models Trained on Code - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210703374C/abstract"},{"title":"[2107.03374v2] Evaluating Large Language Models Trained on Code","url":"https://arxiv.org/abs/2107.03374v2"},{"title":"Mark Chen Evaluating Large Language Models Trained on Code 2021 | Sukai Huang","url":"https://sino-huang.github.io/posts/mark-chen-evaluating-large-language-models-trained-on-code-2021/"},{"title":"Evaluating Large Language Models Trained on Code","url":"https://bibbase.org/network/publication/chen-tworek-jun-yuan-pinto-kaplan-edwards-burda-etal-evaluatinglargelanguagemodelstrainedoncode-2021"},{"title":"[2107.03374v1] Evaluating Large Language Models Trained on Code","url":"https://arxiv.org/abs/2107.03374v1"}]
+
+I found the paper! Here are the search results for "Evaluating Large Language Models Trained on Code":
+
+**Paper Details:**
+
+The paper "Evaluating Large Language Models Trained on Code" was authored by Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, and many other researchers from OpenAI, published in July 2021 on arXiv with the ID 2107.03374.
+
+**Key Contributions:**
+
+The paper introduces Codex, a GPT language model fine-tuned on publicly available code from GitHub, and studies its Python code-writing capabilities. A distinct production version of Codex powers GitHub Copilot.
+
+**HumanEval Dataset:**
+
+On HumanEval, a new evaluation set released to measure functional correctness for synthesizing programs from docstrings, Codex solves 28.8% of the problems, while GPT-3 solves 0% and GPT-J solves 11.4%. The researchers find that repeated sampling from the model is a surprisingly effective strategy for producing working solutions to difficult prompts, solving 70.2% of problems with 100 samples per problem.
+
+**Paper Resources:**
+
+- **arXiv link:** https://arxiv.org/abs/2107.03374
+- **GitHub repository:** https://github.com/openai/human-eval (contains the HumanEval evaluation harness and dataset)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "f3b4a517-d481-4a61-a3a2-8c586468bafe",
+  "tool_use_result": {
+    "query": "HumanEval \"Evaluating Large Language Models Trained on Code\" Chen 2021 Codex arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E4sftUWA6Yovndp9hYiDSN",
+        "content": [
+          {
+            "title": "[2107.03374] Evaluating Large Language Models Trained on Code",
+            "url": "https://arxiv.org/abs/2107.03374"
+          },
+          {
+            "title": "Evaluating Large Language Models Trained on Code",
+            "url": "https://arxiv.org/pdf/2107.03374"
+          },
+          {
+            "title": "Notes on \"Evaluating Large Language Models Trained on Code\"",
+            "url": "https://www.andrelizardo.com/p/notes-on-evaluating-large-language"
+          },
+          {
+            "title": "Paper page - Evaluating Large Language Models Trained on Code",
+            "url": "https://huggingface.co/papers/2107.03374"
+          },
+          {
+            "title": "GitHub - openai/human-eval: Code for the paper \"Evaluating Large Language Models Trained on Code\" · GitHub",
+            "url": "https://github.com/openai/human-eval"
+          },
+          {
+            "title": "Evaluating Large Language Models Trained on Code - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv210703374C/abstract"
+          },
+          {
+            "title": "[2107.03374v2] Evaluating Large Language Models Trained on Code",
+            "url": "https://arxiv.org/abs/2107.03374v2"
+          },
+          {
+            "title": "Mark Chen Evaluating Large Language Models Trained on Code 2021 | Sukai Huang",
+            "url": "https://sino-huang.github.io/posts/mark-chen-evaluating-large-language-models-trained-on-code-2021/"
+          },
+          {
+            "title": "Evaluating Large Language Models Trained on Code",
+            "url": "https://bibbase.org/network/publication/chen-tworek-jun-yuan-pinto-kaplan-edwards-burda-etal-evaluatinglargelanguagemodelstrainedoncode-2021"
+          },
+          {
+            "title": "[2107.03374v1] Evaluating Large Language Models Trained on Code",
+            "url": "https://arxiv.org/abs/2107.03374v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for \"Evaluating Large Language Models Trained on Code\":\n\n**Paper Details:**\n\nThe paper \"Evaluating Large Language Models Trained on Code\" was authored by Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, and many other researchers from OpenAI, published in July 2021 on arXiv with the ID 2107.03374.\n\n**Key Contributions:**\n\nThe paper introduces Codex, a GPT language model fine-tuned on publicly available code from GitHub, and studies its Python code-writing capabilities. A distinct production version of Codex powers GitHub Copilot.\n\n**HumanEval Dataset:**\n\nOn HumanEval, a new evaluation set released to measure functional correctness for synthesizing programs from docstrings, Codex solves 28.8% of the problems, while GPT-3 solves 0% and GPT-J solves 11.4%. The researchers find that repeated sampling from the model is a surprisingly effective strategy for producing working solutions to difficult prompts, solving 70.2% of problems with 100 samples per problem.\n\n**Paper Resources:**\n\n- **arXiv link:** https://arxiv.org/abs/2107.03374\n- **GitHub repository:** https://github.com/openai/human-eval (contains the HumanEval evaluation harness and dataset)"
+    ],
+    "durationSeconds": 4.645238420000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T09:41:26.148Z_
+
+<details><summary>↩ Tool result · `toolu_016ovgx4P5ErXcHngAgscoc3`</summary>
+
+```text
+Web search results for query: "DeepSeek-Coder "When the Large Language Model Meets Programming" Guo 2024 arxiv"
+
+Links: [{"title":"[2401.14196] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence","url":"https://arxiv.org/abs/2401.14196"},{"title":"Paper page - DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence","url":"https://huggingface.co/papers/2401.14196"},{"title":"DeepSeek-Coder: When the Large Language Model Meets Programming - The Rise of Code Intelligence","url":"https://arxiv.org/html/2401.14196v1"},{"title":"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240114196G/abstract"},{"title":"[PDF] DeepSeek-Coder: When the Large Language Model Meets Programming - The Rise of Code Intelligence | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeepSeek-Coder:-When-the-Large-Language-Model-Meets-Guo-Zhu/1f2a20a6efaf83214861dddae4a38a83ae18fe32"},{"title":"[2401.14196] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence","url":"http://export.arxiv.org/abs/2401.14196"},{"title":"[2401.14196v2] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence","url":"https://arxiv.org/abs/2401.14196v2"},{"title":"DeepSeek-Coder: When the Large Language Model Meets Programming–The Rise of Code Intelligence","url":"https://bibbase.org/network/publication/guo-zhu-yang-xie-dong-zhang-chen-bi-etal-deepseekcoderwhenthelargelanguagemodelmeetsprogrammingtheriseofcodeintelligence-2024"},{"title":"DeepSeek-Coder-V2: Breaking the Barrier of Closed-Source Models in Code Intelligence","url":"https://arxiv.org/html/2406.11931v1"},{"title":"(PDF) Evaluating the Generalization Capabilities of Large ...","url":"https://arxiv.org/pdf/2504.05518"}]
+
+I found the paper you're looking for. Here's the information about the DeepSeek-Coder paper:
+
+**Paper Details:**
+- **Title:** DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence
+- **Authors:** Daya Guo, Qihao Zhu, Dejian Yang, Zhenda Xie, Kai Dong, Wentao Zhang, Guanting Chen, Xiao Bi, Y. Wu, Y.K. Li, Fuli Luo, Yingfei Xiong, Wenfeng Liang
+- **ArXiv ID:** 2401.14196
+- **Publication Date:** January 25, 2024
+
+**Key Contribution:**
+The paper introduces the DeepSeek-Coder series, a range of open-source code models with sizes from 1.3B to 33B, trained from scratch on 2 trillion tokens. These models are pre-trained on a high-quality project-level code corpus and employ a fill-in-the-blank task with a 16K window to enhance code generation and infilling.
+
+**Results:**
+DeepSeek-Coder achieves state-of-the-art performance among open-source code models across multiple benchmarks and surpasses existing closed-source models like Codex and GPT-3.5. Additionally, DeepSeek-Coder models are under a permissive license that allows for both research and unrestricted commercial use.
+
+The paper is available at: https://arxiv.org/abs/2401.14196
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "37f0e134-a3c4-44f4-b531-32f7258c91eb",
+  "tool_use_result": {
+    "query": "DeepSeek-Coder \"When the Large Language Model Meets Programming\" Guo 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012SE1XPXDcPeXvzVjf7XNzH",
+        "content": [
+          {
+            "title": "[2401.14196] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence",
+            "url": "https://arxiv.org/abs/2401.14196"
+          },
+          {
+            "title": "Paper page - DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence",
+            "url": "https://huggingface.co/papers/2401.14196"
+          },
+          {
+            "title": "DeepSeek-Coder: When the Large Language Model Meets Programming - The Rise of Code Intelligence",
+            "url": "https://arxiv.org/html/2401.14196v1"
+          },
+          {
+            "title": "DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240114196G/abstract"
+          },
+          {
+            "title": "[PDF] DeepSeek-Coder: When the Large Language Model Meets Programming - The Rise of Code Intelligence | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DeepSeek-Coder:-When-the-Large-Language-Model-Meets-Guo-Zhu/1f2a20a6efaf83214861dddae4a38a83ae18fe32"
+          },
+          {
+            "title": "[2401.14196] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence",
+            "url": "http://export.arxiv.org/abs/2401.14196"
+          },
+          {
+            "title": "[2401.14196v2] DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence",
+            "url": "https://arxiv.org/abs/2401.14196v2"
+          },
+          {
+            "title": "DeepSeek-Coder: When the Large Language Model Meets Programming–The Rise of Code Intelligence",
+            "url": "https://bibbase.org/network/publication/guo-zhu-yang-xie-dong-zhang-chen-bi-etal-deepseekcoderwhenthelargelanguagemodelmeetsprogrammingtheriseofcodeintelligence-2024"
+          },
+          {
+            "title": "DeepSeek-Coder-V2: Breaking the Barrier of Closed-Source Models in Code Intelligence",
+            "url": "https://arxiv.org/html/2406.11931v1"
+          },
+          {
+            "title": "(PDF) Evaluating the Generalization Capabilities of Large ...",
+            "url": "https://arxiv.org/pdf/2504.05518"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information about the DeepSeek-Coder paper:\n\n**Paper Details:**\n- **Title:** DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\n- **Authors:** Daya Guo, Qihao Zhu, Dejian Yang, Zhenda Xie, Kai Dong, Wentao Zhang, Guanting Chen, Xiao Bi, Y. Wu, Y.K. Li, Fuli Luo, Yingfei Xiong, Wenfeng Liang\n- **ArXiv ID:** 2401.14196\n- **Publication Date:** January 25, 2024\n\n**Key Contribution:**\nThe paper introduces the DeepSeek-Coder series, a range of open-source code models with sizes from 1.3B to 33B, trained from scratch on 2 trillion tokens. These models are pre-trained on a high-quality project-level code corpus and employ a fill-in-the-blank task with a 16K window to enhance code generation and infilling.\n\n**Results:**\nDeepSeek-Coder achieves state-of-the-art performance among open-source code models across multiple benchmarks and surpasses existing closed-source models like Codex and GPT-3.5. Additionally, DeepSeek-Coder models are under a permissive license that allows for both research and unrestricted commercial use.\n\nThe paper is available at: https://arxiv.org/abs/2401.14196"
+    ],
+    "durationSeconds": 6.758635912999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T09:41:27.099Z_
+
+<details><summary>↩ Tool result · `toolu_01QYVZc2oofUcMgp5j9t2fyS`</summary>
+
+```text
+Web search results for query: ""predictive mutation testing" OR "mutation testing neural" 2022 2023 2024 arxiv"
+
+Links: [{"title":"An Empirical Study of the Realism of Mutants in Deep ...","url":"https://arxiv.org/pdf/2512.16741"},{"title":"Enhancing Protein Mutation Effect Prediction through a ... - NIPS","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/5828b7516d6f117e8301120519366cdb-Paper-Conference.pdf"},{"title":"Deep Learning Predicts EGFR Mutation Status from Histology Images in Non–Small Cell Lung Cancer | Cancer Research Communications | American Association for Cancer Research","url":"https://aacrjournals.org/cancerrescommun/article/5/12/2127/770531/Deep-Learning-Predicts-EGFR-Mutation-Status-from"},{"title":"MutateNN: Mutation Testing of Image Recognition Models Deployed on Hardware Accelerators","url":"https://arxiv.org/html/2306.01697v3"},{"title":"A probabilistic framework for mutation testing in deep neural networks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950584922002385"},{"title":"[2306.01697] Exploring Robustness of Image Recognition Models on Hardware Accelerators","url":"https://arxiv.org/abs/2306.01697"},{"title":"DeepMutation: Mutation Testing of Deep Learning Systems","url":"https://arxiv.org/pdf/1805.05206"},{"title":"NeurIPS Poster Enhancing Protein Mutation Effect Prediction through a Retrieval-Augmented Framework","url":"https://neurips.cc/virtual/2024/poster/95577"},{"title":"On the Use of Large Language Models in Mutation Testing","url":"https://arxiv.org/html/2406.09843v2"},{"title":"Prediction of Recurrent Mutations in SARS-CoV-2 Using Artificial Neural Networks","url":"https://www.mdpi.com/1422-0067/23/23/14683"}]
+
+I found several relevant research papers from arXiv and other sources related to mutation testing and neural networks. Here are the key findings:
+
+## Mutation Testing of Neural Networks/Deep Learning
+
+Mutation testing has become a common substitute for generating faulty program versions by injecting small syntactical changes, with these modified versions called mutants often used as proxies for real faults.
+
+Several relevant papers include:
+
+1. **MutateNN (2023-2024)**: This tool utilizes elements of both differential and mutation testing to examine the robustness of image recognition models when deployed on hardware accelerators with different capabilities, in the presence of faults in their target device code. The study found that DNN models presented discrepancies of up to 90.3% in mutants related to conditional operators across devices, and mutations related to layer modification, arithmetic types and input affected severely the overall model performance.
+
+2. **Predictive Approaches**: Research has proposed tree-based models to predict the error probability of neural network models for each input, achieving an area under the curve (AUC) exceeding 80% on the MNIST and Mini Speech Commands datasets.
+
+3. **LLMs for Mutation Testing (2024)**: Several recent studies have explored the use of Large Language Models for mutation generation.
+
+4. **DeepMutation Framework**: This is a foundational work in applying mutation testing to deep learning systems.
+
+These papers address both traditional mutation testing adapted for neural networks and more recent approaches using neural/learning-based methods to predict or generate mutations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "fd5c4f72-c8c9-4b9c-87bc-e7e2a627ddda",
+  "tool_use_result": {
+    "query": "\"predictive mutation testing\" OR \"mutation testing neural\" 2022 2023 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JtkKj3VXkziMYeDCDYhGB1",
+        "content": [
+          {
+            "title": "An Empirical Study of the Realism of Mutants in Deep ...",
+            "url": "https://arxiv.org/pdf/2512.16741"
+          },
+          {
+            "title": "Enhancing Protein Mutation Effect Prediction through a ... - NIPS",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/5828b7516d6f117e8301120519366cdb-Paper-Conference.pdf"
+          },
+          {
+            "title": "Deep Learning Predicts EGFR Mutation Status from Histology Images in Non–Small Cell Lung Cancer | Cancer Research Communications | American Association for Cancer Research",
+            "url": "https://aacrjournals.org/cancerrescommun/article/5/12/2127/770531/Deep-Learning-Predicts-EGFR-Mutation-Status-from"
+          },
+          {
+            "title": "MutateNN: Mutation Testing of Image Recognition Models Deployed on Hardware Accelerators",
+            "url": "https://arxiv.org/html/2306.01697v3"
+          },
+          {
+            "title": "A probabilistic framework for mutation testing in deep neural networks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950584922002385"
+          },
+          {
+            "title": "[2306.01697] Exploring Robustness of Image Recognition Models on Hardware Accelerators",
+            "url": "https://arxiv.org/abs/2306.01697"
+          },
+          {
+            "title": "DeepMutation: Mutation Testing of Deep Learning Systems",
+            "url": "https://arxiv.org/pdf/1805.05206"
+          },
+          {
+            "title": "NeurIPS Poster Enhancing Protein Mutation Effect Prediction through a Retrieval-Augmented Framework",
+            "url": "https://neurips.cc/virtual/2024/poster/95577"
+          },
+          {
+            "title": "On the Use of Large Language Models in Mutation Testing",
+            "url": "https://arxiv.org/html/2406.09843v2"
+          },
+          {
+            "title": "Prediction of Recurrent Mutations in SARS-CoV-2 Using Artificial Neural Networks",
+            "url": "https://www.mdpi.com/1422-0067/23/23/14683"
+          }
+        ]
+      },
+      "I found several relevant research papers from arXiv and other sources related to mutation testing and neural networks. Here are the key findings:\n\n## Mutation Testing of Neural Networks/Deep Learning\n\nMutation testing has become a common substitute for generating faulty program versions by injecting small syntactical changes, with these modified versions called mutants often used as proxies for real faults.\n\nSeveral relevant papers include:\n\n1. **MutateNN (2023-2024)**: This tool utilizes elements of both differential and mutation testing to examine the robustness of image recognition models when deployed on hardware accelerators with different capabilities, in the presence of faults in their target device code. The study found that DNN models presented discrepancies of up to 90.3% in mutants related to conditional operators across devices, and mutations related to layer modification, arithmetic types and input affected severely the overall model performance.\n\n2. **Predictive Approaches**: Research has proposed tree-based models to predict the error probability of neural network models for each input, achieving an area under the curve (AUC) exceeding 80% on the MNIST and Mini Speech Commands datasets.\n\n3. **LLMs for Mutation Testing (2024)**: Several recent studies have explored the use of Large Language Models for mutation generation.\n\n4. **DeepMutation Framework**: This is a foundational work in applying mutation testing to deep learning systems.\n\nThese papers address both traditional mutation testing adapted for neural networks and more recent approaches using neural/learning-based methods to predict or generate mutations."
+    ],
+    "durationSeconds": 9.212124927999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BNEMatJxgTSQjwB3mYwTiw`</summary>
+
+```json
+{
+  "query": "MBPP \"Program Synthesis with Large Language Models\" Austin et al 2021 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "26569bdc-49fe-4d12-ab3c-307b92f28a5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mn1UfRyEKEVpiEDzNezUS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2839,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 36362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FHw79FBJHEvkTkd3Ce2EJe`</summary>
+
+```json
+{
+  "query": "CodeT \"Code Generation with Generated Tests\" Chen et al 2023 ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "28882c60-37a2-4bb0-98c5-e26b0a316705",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mn1UfRyEKEVpiEDzNezUS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2839,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 36362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011mD1hQ4M6yx6Wuwukpx8Ph`</summary>
+
+```json
+{
+  "query": "AlphaCode competitive programming DeepMind Li et al 2022 Science"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "e0ab3a9c-2d33-45c5-9be9-f5096d61b234",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mn1UfRyEKEVpiEDzNezUS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2839,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 36362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qn62UhiagkT5HAgfRReEYM`</summary>
+
+```json
+{
+  "query": "\"predictive mutation testing\" machine learning software 2023 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "ddde1bca-488b-47aa-b6a4-220e152c4fc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mn1UfRyEKEVpiEDzNezUS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2839,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 36362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HF5zgFQe6apVxLqUMJAH5e`</summary>
+
+```json
+{
+  "query": "\"Process-Supervised Reinforcement Learning for Code Generation\" 2025 arxiv",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "bc34a763-94c5-4029-a57c-e0d9209c8316",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mn1UfRyEKEVpiEDzNezUS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2839,
+      "cache_creation_input_tokens": 2107,
+      "cache_read_input_tokens": 36362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2107
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T09:41:38.208Z_
+
+<details><summary>↩ Tool result · `toolu_01BNEMatJxgTSQjwB3mYwTiw`</summary>
+
+```text
+Web search results for query: "MBPP "Program Synthesis with Large Language Models" Austin et al 2021 arxiv"
+
+Links: [{"title":"[2108.07732] Program Synthesis with Large Language Models","url":"https://arxiv.org/abs/2108.07732"},{"title":"Program Synthesis with Large Language Models Jacob Austin* Augustus Odena*","url":"https://arxiv.org/pdf/2108.07732"},{"title":"[2108.07732v1] Program Synthesis with Large Language Models","url":"https://arxiv.org/abs/2108.07732v1"},{"title":"[PDF] Program Synthesis with Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Program-Synthesis-with-Large-Language-Models-Austin-Odena/a38e0f993e4805ba8a9beae4c275c91ffcec01df"},{"title":"Paper page - Program Synthesis with Large Language Models","url":"https://huggingface.co/papers/2108.07732"},{"title":"Program Synthesis with Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210807732A/abstract"},{"title":"Program Synthesis with Large Language Models","url":"https://research.google/pubs/program-synthesis-with-large-language-models/"},{"title":"Program Synthesis with Large Language Models","url":"https://www.summarizepaper.com/en/arxiv-id/2108.07732v1/"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Program+synthesis+with+large+language+models&amp=&author=Jacob+Austin&amp=&author=Augustus+Odena&amp=&author=Maxwell+Nye&amp=&author=Maarten+Bosma&amp=&author=Henryk+Michalewski&amp=&author=David+Dohan&amp=&author=Ellen+Jiang&amp=&author=Carrie+Cai&amp=&author=Michael+Terry&amp=&author=Quoc+Le&amp=&publication_year=2021"},{"title":"Contents","url":"https://arxiv.org/html/2507.15889v1"}]
+
+I found the paper you're looking for. Here's the information about it:
+
+**Title:** Program Synthesis with Large Language Models
+
+**Authors:** Jacob Austin and 10 other authors (specifically: Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski, David Dohan, Ellen Jiang, Carrie J. Cai, Michael Terry, Quoc V. Le, and Charles Sutton)
+
+**Publication:** Published on August 16, 2021
+
+**ArXiv ID:** 2108.07732
+
+**Key Details:**
+- The paper evaluates a collection of models (with between 244M and 137B parameters) on two new benchmarks, MBPP and MathQA-Python, in both the few-shot and fine-tuning regimes.
+- The Mostly Basic Programming Problems (MBPP) dataset contains 974 programming tasks, designed to be solvable by entry-level programmers.
+- The largest models, even without finetuning on a code dataset, can synthesize solutions to 59.6 percent of the problems from MBPP using few-shot learning with a well-designed prompt.
+
+The paper is available at https://arxiv.org/abs/2108.07732
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "c321aacb-2c7b-4acf-b9c0-79b2a7c1e14a",
+  "tool_use_result": {
+    "query": "MBPP \"Program Synthesis with Large Language Models\" Austin et al 2021 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FLGCsejQgijRMpqW9KFwqq",
+        "content": [
+          {
+            "title": "[2108.07732] Program Synthesis with Large Language Models",
+            "url": "https://arxiv.org/abs/2108.07732"
+          },
+          {
+            "title": "Program Synthesis with Large Language Models Jacob Austin* Augustus Odena*",
+            "url": "https://arxiv.org/pdf/2108.07732"
+          },
+          {
+            "title": "[2108.07732v1] Program Synthesis with Large Language Models",
+            "url": "https://arxiv.org/abs/2108.07732v1"
+          },
+          {
+            "title": "[PDF] Program Synthesis with Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Program-Synthesis-with-Large-Language-Models-Austin-Odena/a38e0f993e4805ba8a9beae4c275c91ffcec01df"
+          },
+          {
+            "title": "Paper page - Program Synthesis with Large Language Models",
+            "url": "https://huggingface.co/papers/2108.07732"
+          },
+          {
+            "title": "Program Synthesis with Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv210807732A/abstract"
+          },
+          {
+            "title": "Program Synthesis with Large Language Models",
+            "url": "https://research.google/pubs/program-synthesis-with-large-language-models/"
+          },
+          {
+            "title": "Program Synthesis with Large Language Models",
+            "url": "https://www.summarizepaper.com/en/arxiv-id/2108.07732v1/"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar_lookup?title=Program+synthesis+with+large+language+models&amp=&author=Jacob+Austin&amp=&author=Augustus+Odena&amp=&author=Maxwell+Nye&amp=&author=Maarten+Bosma&amp=&author=Henryk+Michalewski&amp=&author=David+Dohan&amp=&author=Ellen+Jiang&amp=&author=Carrie+Cai&amp=&author=Michael+Terry&amp=&author=Quoc+Le&amp=&publication_year=2021"
+          },
+          {
+            "title": "Contents",
+            "url": "https://arxiv.org/html/2507.15889v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information about it:\n\n**Title:** Program Synthesis with Large Language Models\n\n**Authors:** Jacob Austin and 10 other authors (specifically: Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski, David Dohan, Ellen Jiang, Carrie J. Cai, Michael Terry, Quoc V. Le, and Charles Sutton)\n\n**Publication:** Published on August 16, 2021\n\n**ArXiv ID:** 2108.07732\n\n**Key Details:**\n- The paper evaluates a collection of models (with between 244M and 137B parameters) on two new benchmarks, MBPP and MathQA-Python, in both the few-shot and fine-tuning regimes.\n- The Mostly Basic Programming Problems (MBPP) dataset contains 974 programming tasks, designed to be solvable by entry-level programmers.\n- The largest models, even without finetuning on a code dataset, can synthesize solutions to 59.6 percent of the problems from MBPP using few-shot learning with a well-designed prompt.\n\nThe paper is available at https://arxiv.org/abs/2108.07732"
+    ],
+    "durationSeconds": 6.488539943000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T09:41:38.651Z_
+
+<details><summary>↩ Tool result · `toolu_01FHw79FBJHEvkTkd3Ce2EJe`</summary>
+
+```text
+Web search results for query: "CodeT "Code Generation with Generated Tests" Chen et al 2023 ICLR"
+
+Links: [{"title":"[2207.10397] CodeT: Code Generation with Generated Tests","url":"https://arxiv.org/abs/2207.10397"},{"title":"CodeT: Code Generation with Generated Tests. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/1cd39ba64167b95c2c2f6057325314664"},{"title":"ICLR Poster CodeT: Code Generation with Generated Tests","url":"https://iclr.cc/virtual/2023/poster/12011"},{"title":"CodeT: Code Generation with Generated Tests | OpenReview","url":"https://openreview.net/forum?id=ktrw68Cmu9c"},{"title":"CODET: CODE GENERATION WITH GENERATED TESTS","url":"https://openreview.net/pdf?id=ktrw68Cmu9c"},{"title":"(PDF) CodeT: Code Generation with Generated Tests","url":"https://www.researchgate.net/publication/362173423_CodeT_Code_Generation_with_Generated_Tests"},{"title":"CodeT: Code Generation with Generated Tests · Machine Learning for Big Code and Naturalness","url":"https://ml4code.github.io/publications/chen2022codet/"},{"title":"CodeT: Code Generation with Generated Tests [Quick Review]","url":"https://liner.com/review/codet-code-generation-with-generated-tests"},{"title":"[PDF] Interactive Code Generation via Test-Driven User-Intent Formalization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Interactive-Code-Generation-via-Test-Driven-Lahiri-Naik/e53a61259035769e9822796b51f48a0f067eb071"},{"title":"1. CodeT: Code Generation with Generated Tests - Presented by Sang-Ki Ko (23/1/4) - YouTube","url":"https://www.youtube.com/watch?v=0peY5Mds3c8"}]
+
+I found comprehensive information about the CodeT paper. Here's what I found:
+
+## CodeT: Code Generation with Generated Tests
+
+**Authors:** Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and Weizhu Chen
+
+**Published:** ICLR 2023
+
+**Core Contribution:** CodeT leverages pre-trained language models to automatically generate test cases for code samples, thus reducing human effort and increasing test scenario coverage. The method executes code samples using generated test cases and performs a dual execution agreement, which considers both the consistency of outputs against the generated test cases and the agreement of outputs with other code samples.
+
+**Experimental Results:** The researchers conducted comprehensive experiments on four benchmarks: HumanEval, MBPP, APPS, and CodeContests, using five different pre-trained language models. CodeT improves the pass@1 metric on HumanEval to 65.8%, which represents an absolute improvement of 18.8% over the code-davinci-002 model, and an absolute improvement of more than 20% over previous state-of-the-art results.
+
+**Available Resources:** The paper is available on OpenReview and arXiv (2207.10397).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "e31af89f-f506-4677-8569-af0cde0eeede",
+  "tool_use_result": {
+    "query": "CodeT \"Code Generation with Generated Tests\" Chen et al 2023 ICLR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016FjcdgCP6ek5tsaD1PAhHj",
+        "content": [
+          {
+            "title": "[2207.10397] CodeT: Code Generation with Generated Tests",
+            "url": "https://arxiv.org/abs/2207.10397"
+          },
+          {
+            "title": "CodeT: Code Generation with Generated Tests. | BibSonomy",
+            "url": "https://www.bibsonomy.org/bibtex/1cd39ba64167b95c2c2f6057325314664"
+          },
+          {
+            "title": "ICLR Poster CodeT: Code Generation with Generated Tests",
+            "url": "https://iclr.cc/virtual/2023/poster/12011"
+          },
+          {
+            "title": "CodeT: Code Generation with Generated Tests | OpenReview",
+            "url": "https://openreview.net/forum?id=ktrw68Cmu9c"
+          },
+          {
+            "title": "CODET: CODE GENERATION WITH GENERATED TESTS",
+            "url": "https://openreview.net/pdf?id=ktrw68Cmu9c"
+          },
+          {
+            "title": "(PDF) CodeT: Code Generation with Generated Tests",
+            "url": "https://www.researchgate.net/publication/362173423_CodeT_Code_Generation_with_Generated_Tests"
+          },
+          {
+            "title": "CodeT: Code Generation with Generated Tests · Machine Learning for Big Code and Naturalness",
+            "url": "https://ml4code.github.io/publications/chen2022codet/"
+          },
+          {
+            "title": "CodeT: Code Generation with Generated Tests [Quick Review]",
+            "url": "https://liner.com/review/codet-code-generation-with-generated-tests"
+          },
+          {
+            "title": "[PDF] Interactive Code Generation via Test-Driven User-Intent Formalization | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Interactive-Code-Generation-via-Test-Driven-Lahiri-Naik/e53a61259035769e9822796b51f48a0f067eb071"
+          },
+          {
+            "title": "1. CodeT: Code Generation with Generated Tests - Presented by Sang-Ki Ko (23/1/4) - YouTube",
+            "url": "https://www.youtube.com/watch?v=0peY5Mds3c8"
+          }
+        ]
+      },
+      "I found comprehensive information about the CodeT paper. Here's what I found:\n\n## CodeT: Code Generation with Generated Tests\n\n**Authors:** Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and Weizhu Chen\n\n**Published:** ICLR 2023\n\n**Core Contribution:** CodeT leverages pre-trained language models to automatically generate test cases for code samples, thus reducing human effort and increasing test scenario coverage. The method executes code samples using generated test cases and performs a dual execution agreement, which considers both the consistency of outputs against the generated test cases and the agreement of outputs with other code samples.\n\n**Experimental Results:** The researchers conducted comprehensive experiments on four benchmarks: HumanEval, MBPP, APPS, and CodeContests, using five different pre-trained language models. CodeT improves the pass@1 metric on HumanEval to 65.8%, which represents an absolute improvement of 18.8% over the code-davinci-002 model, and an absolute improvement of more than 20% over previous state-of-the-art results.\n\n**Available Resources:** The paper is available on OpenReview and arXiv (2207.10397)."
+    ],
+    "durationSeconds": 6.5979229360000025
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T09:41:39.648Z_
+
+<details><summary>↩ Tool result · `toolu_011mD1hQ4M6yx6Wuwukpx8Ph`</summary>
+
+```text
+Web search results for query: "AlphaCode competitive programming DeepMind Li et al 2022 Science"
+
+Links: [{"title":"Competition-level code generation with AlphaCode | Science","url":"https://www.science.org/doi/10.1126/science.abq1158"},{"title":"Competition-level code generation with AlphaCode - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/36480631/"},{"title":"Competitive programming with AlphaCode — Google DeepMind","url":"https://deepmind.google/blog/competitive-programming-with-alphacode/"},{"title":"GitHub - google-deepmind/code_contests · GitHub","url":"https://github.com/google-deepmind/code_contests"},{"title":"[2203.07814] Competition-Level Code Generation with AlphaCode","url":"https://arxiv.org/abs/2203.07814"},{"title":"Competition-level code generation with AlphaCode : Science","url":"https://www.ovid.com/journals/scie/pdf/10.1126/science.abq1158~competition-level-code-generation-with-alphacode"},{"title":"A short comment on AlphaCode","url":"https://cs.nyu.edu/~davise/papers/AlphaCode.html"},{"title":"2022-3-16 Competition-Level Code Generation with AlphaCode","url":"https://storage.prod.researchhub.com/uploads/papers/2022/12/09/2203.07814.pdf"},{"title":"(PDF) Competition-Level Code Generation with AlphaCode","url":"https://www.researchgate.net/publication/359254438_Competition-Level_Code_Generation_with_AlphaCode"},{"title":"AI’s next frontier: AlphaCode can match programming prowess of average coders","url":"https://www.geekwire.com/2022/ai-deepmind-alphacode-average-programming/"}]
+
+I've completed the web search for "AlphaCode competitive programming DeepMind Li et al 2022 Science." Here's a summary of the key findings:
+
+## Overview
+
+AlphaCode is a system for code generation that achieved an average ranking in the top 54.3% in simulated evaluations on recent programming competitions on the Codeforces platform. This result marks the first time an artificial intelligence system has performed competitively in programming competitions.
+
+## Publication Details
+
+The paper was published in Science on December 9, 2022, volume 378, number 6624, pages 1092-1097. The lead author is Yujia Li at DeepMind, with principal co-authors including David Choi, Junyoung Chung, Nate Kushman, Julian Schrittwieser, Rémi Leblond, and others from DeepMind.
+
+## Technical Approach
+
+AlphaCode solves problems by generating millions of diverse programs using specially trained transformer-based networks and then filtering and clustering those programs to a maximum of just 10 submissions. Using self-supervised learning and an encoder-decoder transformer architecture, the system can achieve approximately human-level performance on the Codeforces platform.
+
+## Resources
+
+AlphaCode examples, explanations, and visualizations can be found at https://alphacode.deepmind.com. The datasets used in the experiments as well as evaluation code have been made available on GitHub at https://github.com/deepmind/code_contests.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "e10ea30f-aca3-48b4-ad57-c6faaebf7841",
+  "tool_use_result": {
+    "query": "AlphaCode competitive programming DeepMind Li et al 2022 Science",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0154VeeFUsLmBnCFoi42j8wj",
+        "content": [
+          {
+            "title": "Competition-level code generation with AlphaCode | Science",
+            "url": "https://www.science.org/doi/10.1126/science.abq1158"
+          },
+          {
+            "title": "Competition-level code generation with AlphaCode - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/36480631/"
+          },
+          {
+            "title": "Competitive programming with AlphaCode — Google DeepMind",
+            "url": "https://deepmind.google/blog/competitive-programming-with-alphacode/"
+          },
+          {
+            "title": "GitHub - google-deepmind/code_contests · GitHub",
+            "url": "https://github.com/google-deepmind/code_contests"
+          },
+          {
+            "title": "[2203.07814] Competition-Level Code Generation with AlphaCode",
+            "url": "https://arxiv.org/abs/2203.07814"
+          },
+          {
+            "title": "Competition-level code generation with AlphaCode : Science",
+            "url": "https://www.ovid.com/journals/scie/pdf/10.1126/science.abq1158~competition-level-code-generation-with-alphacode"
+          },
+          {
+            "title": "A short comment on AlphaCode",
+            "url": "https://cs.nyu.edu/~davise/papers/AlphaCode.html"
+          },
+          {
+            "title": "2022-3-16 Competition-Level Code Generation with AlphaCode",
+            "url": "https://storage.prod.researchhub.com/uploads/papers/2022/12/09/2203.07814.pdf"
+          },
+          {
+            "title": "(PDF) Competition-Level Code Generation with AlphaCode",
+            "url": "https://www.researchgate.net/publication/359254438_Competition-Level_Code_Generation_with_AlphaCode"
+          },
+          {
+            "title": "AI’s next frontier: AlphaCode can match programming prowess of average coders",
+            "url": "https://www.geekwire.com/2022/ai-deepmind-alphacode-average-programming/"
+          }
+        ]
+      },
+      "I've completed the web search for \"AlphaCode competitive programming DeepMind Li et al 2022 Science.\" Here's a summary of the key findings:\n\n## Overview\n\nAlphaCode is a system for code generation that achieved an average ranking in the top 54.3% in simulated evaluations on recent programming competitions on the Codeforces platform. This result marks the first time an artificial intelligence system has performed competitively in programming competitions.\n\n## Publication Details\n\nThe paper was published in Science on December 9, 2022, volume 378, number 6624, pages 1092-1097. The lead author is Yujia Li at DeepMind, with principal co-authors including David Choi, Junyoung Chung, Nate Kushman, Julian Schrittwieser, Rémi Leblond, and others from DeepMind.\n\n## Technical Approach\n\nAlphaCode solves problems by generating millions of diverse programs using specially trained transformer-based networks and then filtering and clustering those programs to a maximum of just 10 submissions. Using self-supervised learning and an encoder-decoder transformer architecture, the system can achieve approximately human-level performance on the Codeforces platform.\n\n## Resources\n\nAlphaCode examples, explanations, and visualizations can be found at https://alphacode.deepmind.com. The datasets used in the experiments as well as evaluation code have been made available on GitHub at https://github.com/deepmind/code_contests."
+    ],
+    "durationSeconds": 6.649567049000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T09:41:41.689Z_
+
+<details><summary>↩ Tool result · `toolu_01HF5zgFQe6apVxLqUMJAH5e`</summary>
+
+```text
+Web search results for query: ""Process-Supervised Reinforcement Learning for Code Generation" 2025 arxiv"
+
+Links: [{"title":"[2502.01715] Process-Supervised Reinforcement Learning for Code Generation","url":"https://arxiv.org/abs/2502.01715"},{"title":"Process-Supervised Reinforcement Learning for Code Generation","url":"https://arxiv.org/html/2502.01715v1"},{"title":"[2412.20367] Enhancing Code LLMs with Reinforcement Learning in Code Generation: A Survey","url":"https://arxiv.org/abs/2412.20367"},{"title":"ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification","url":"https://arxiv.org/html/2506.11442v1"},{"title":"CodeReasoner: Enhancing the Code Reasoning Ability with Reinforcement Learning","url":"https://arxiv.org/html/2507.17548v1"},{"title":"Improving LLM Code Generation via Requirement-Aware Curriculum Reinforcement Learning","url":"https://arxiv.org/html/2605.00433v1"},{"title":"CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment","url":"https://arxiv.org/html/2510.18471v2"},{"title":"Preprint, September 2025 CODERL+: Improving Code Generation via Reinforce-","url":"https://www.arxiv.org/pdf/2510.18471"},{"title":"ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2601.21912"},{"title":"[2509.14480] Process-Supervised Reinforcement Learning for Interactive Multimodal Tool-Use Agents","url":"https://arxiv.org/abs/2509.14480"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Process-Supervised Reinforcement Learning for Code Generation
+
+The paper, authored by Yufan Ye and 3 other authors, addresses reinforcement learning strategies for code generation, noting that outcome-supervised reinforcement learning has proven effective but process-supervised approaches remain largely underexplored.
+
+**Key contributions:**
+
+The authors propose a "statement mutation/refactoring-compile and execution verification" strategy that mutates and refactors code line-by-line through a teacher model and utilizes compiler execution results to automatically label each line.
+
+**Main findings:**
+
+Experimental results demonstrate that process-supervised reinforcement learning significantly surpasses methods relying solely on outcome supervision, with particular advantages in tackling complex code generation tasks by ensuring both the integrity of the code generation process and the correctness of the generation results.
+
+**Framework:**
+
+The paper introduces PRLCoder, an innovative framework leveraging process-supervised reinforcement learning to enhance code generation with a three-phase structure: supervised training, reward model training, and reinforcement learning employing the trained reward model.
+
+**Performance:**
+
+Experimental results indicate that PRLCoder improved the pass rate by 10.5% compared to the base model and by 5.1% compared to outcome-supervised reinforcement learning.
+
+The paper was submitted to arXiv on February 3, 2025 (arxiv ID: 2502.01715).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "607646d2-09fb-4157-9453-b0bf3404a5b6",
+  "tool_use_result": {
+    "query": "\"Process-Supervised Reinforcement Learning for Code Generation\" 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XoFZpzqAavw2SxwL2ws8Q2",
+        "content": [
+          {
+            "title": "[2502.01715] Process-Supervised Reinforcement Learning for Code Generation",
+            "url": "https://arxiv.org/abs/2502.01715"
+          },
+          {
+            "title": "Process-Supervised Reinforcement Learning for Code Generation",
+            "url": "https://arxiv.org/html/2502.01715v1"
+          },
+          {
+            "title": "[2412.20367] Enhancing Code LLMs with Reinforcement Learning in Code Generation: A Survey",
+            "url": "https://arxiv.org/abs/2412.20367"
+          },
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Iterative Generation-Verification",
+            "url": "https://arxiv.org/html/2506.11442v1"
+          },
+          {
+            "title": "CodeReasoner: Enhancing the Code Reasoning Ability with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2507.17548v1"
+          },
+          {
+            "title": "Improving LLM Code Generation via Requirement-Aware Curriculum Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.00433v1"
+          },
+          {
+            "title": "CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment",
+            "url": "https://arxiv.org/html/2510.18471v2"
+          },
+          {
+            "title": "Preprint, September 2025 CODERL+: Improving Code Generation via Reinforce-",
+            "url": "https://www.arxiv.org/pdf/2510.18471"
+          },
+          {
+            "title": "ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2601.21912"
+          },
+          {
+            "title": "[2509.14480] Process-Supervised Reinforcement Learning for Interactive Multimodal Tool-Use Agents",
+            "url": "https://arxiv.org/abs/2509.14480"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Process-Supervised Reinforcement Learning for Code Generation\n\nThe paper, authored by Yufan Ye and 3 other authors, addresses reinforcement learning strategies for code generation, noting that outcome-supervised reinforcement learning has proven effective but process-supervised approaches remain largely underexplored.\n\n**Key contributions:**\n\nThe authors propose a \"statement mutation/refactoring-compile and execution verification\" strategy that mutates and refactors code line-by-line through a teacher model and utilizes compiler execution results to automatically label each line.\n\n**Main findings:**\n\nExperimental results demonstrate that process-supervised reinforcement learning significantly surpasses methods relying solely on outcome supervision, with particular advantages in tackling complex code generation tasks by ensuring both the integrity of the code generation process and the correctness of the generation results.\n\n**Framework:**\n\nThe paper introduces PRLCoder, an innovative framework leveraging process-supervised reinforcement learning to enhance code generation with a three-phase structure: supervised training, reward model training, and reinforcement learning employing the trained reward model.\n\n**Performance:**\n\nExperimental results indicate that PRLCoder improved the pass rate by 10.5% compared to the base model and by 5.1% compared to outcome-supervised reinforcement learning.\n\nThe paper was submitted to arXiv on February 3, 2025 (arxiv ID: 2502.01715)."
+    ],
+    "durationSeconds": 7.319545839999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T09:41:42.254Z_
+
+<details><summary>↩ Tool result · `toolu_01Qn62UhiagkT5HAgfRReEYM`</summary>
+
+```text
+Web search results for query: ""predictive mutation testing" machine learning software 2023 2024"
+
+Links: [{"title":"Full article: Predicting higher order mutation score based on machine learning","url":"https://www.tandfonline.com/doi/full/10.1080/24751839.2023.2252186"},{"title":"Contextual Predictive Mutation Testing | Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering","url":"https://dl.acm.org/doi/10.1145/3611643.3616289"},{"title":"Contextual Predictive Mutation Testing - ACM Digital Library","url":"https://dl.acm.org/doi/pdf/10.1145/3611643.3616289"},{"title":"Contextual Predictive Mutation Testing (ESEC/FSE 2023 - Research Papers) - ESEC/FSE 2023","url":"https://2023.esec-fse.org/details/fse-2023-research-papers/48/Contextual-Predictive-Mutation-Testing"},{"title":"Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/10.1145/3510417"},{"title":"Predictive mutation testing | Request PDF","url":"https://www.researchgate.net/publication/305026870_Predictive_mutation_testing"},{"title":"Explainable Artificial Intelligence to Improve Interpretability in Predictive Mutation Testing | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-96-6005-6_22"},{"title":"Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University","url":"https://arxiv.org/pdf/2309.02389"},{"title":"Mutation 2024 - ICST 2024 - Conferences - Researchr","url":"https://conf.researchr.org/home/icst-2024/mutation-2024"},{"title":"Empirical Study on Machine Learning Testing Based on Mutation Testing | Proceedings of the 2025 International Conference on Artificial Intelligence and Computational Intelligence","url":"https://dl.acm.org/doi/10.1145/3730436.3730535"}]
+
+Based on the search results, here's what I found about predictive mutation testing with machine learning in 2023-2024:
+
+## Overview
+
+Mutation testing is a powerful technique for assessing and improving test suite quality by artificially introducing bugs and checking if test suites catch them. However, it is computationally expensive and doesn't scale to large systems. One promising approach uses machine learning to predict whether tests will detect synthetic bugs without actually running those tests.
+
+## Recent Developments (2023)
+
+A novel machine learning approach called MutationBERT was proposed that simultaneously encodes the source method mutation and test method, capturing key context in the input representation. This approach leverages recent advances in transformers for machine learning for source code tasks.
+
+Seshat, a Predictive Mutation Analysis (PMA) technique, was developed to predict the entire kill matrix by exploiting the natural language channel in code and learning the relationship between the syntactic and semantic concepts of test cases and the mutants they can kill.
+
+## Key Challenges and Improvements
+
+Existing predictive mutation testing approaches still misclassify about 33% of detection outcomes on a randomly sampled set of mutant-test suite pairs. MutationBERT saves 33% of the time spent by prior approaches on checking/verifying live mutants.
+
+## 2024+ Research Directions
+
+Recent work has focused on employing machine learning models to predict whether test suites can detect artificially introduced code changes, with investigations into explainability methods like SHAP and LIME to enhance interpretability of PMT models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "9899ba61-ec66-4f84-994b-44eabbffc7cd",
+  "tool_use_result": {
+    "query": "\"predictive mutation testing\" machine learning software 2023 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017TS2kAwDHtpjUamm5d7z7R",
+        "content": [
+          {
+            "title": "Full article: Predicting higher order mutation score based on machine learning",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/24751839.2023.2252186"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing | Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3611643.3616289"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing - ACM Digital Library",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3611643.3616289"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing (ESEC/FSE 2023 - Research Papers) - ESEC/FSE 2023",
+            "url": "https://2023.esec-fse.org/details/fse-2023-research-papers/48/Contextual-Predictive-Mutation-Testing"
+          },
+          {
+            "title": "Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/10.1145/3510417"
+          },
+          {
+            "title": "Predictive mutation testing | Request PDF",
+            "url": "https://www.researchgate.net/publication/305026870_Predictive_mutation_testing"
+          },
+          {
+            "title": "Explainable Artificial Intelligence to Improve Interpretability in Predictive Mutation Testing | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-96-6005-6_22"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University",
+            "url": "https://arxiv.org/pdf/2309.02389"
+          },
+          {
+            "title": "Mutation 2024 - ICST 2024 - Conferences - Researchr",
+            "url": "https://conf.researchr.org/home/icst-2024/mutation-2024"
+          },
+          {
+            "title": "Empirical Study on Machine Learning Testing Based on Mutation Testing | Proceedings of the 2025 International Conference on Artificial Intelligence and Computational Intelligence",
+            "url": "https://dl.acm.org/doi/10.1145/3730436.3730535"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about predictive mutation testing with machine learning in 2023-2024:\n\n## Overview\n\nMutation testing is a powerful technique for assessing and improving test suite quality by artificially introducing bugs and checking if test suites catch them. However, it is computationally expensive and doesn't scale to large systems. One promising approach uses machine learning to predict whether tests will detect synthetic bugs without actually running those tests.\n\n## Recent Developments (2023)\n\nA novel machine learning approach called MutationBERT was proposed that simultaneously encodes the source method mutation and test method, capturing key context in the input representation. This approach leverages recent advances in transformers for machine learning for source code tasks.\n\nSeshat, a Predictive Mutation Analysis (PMA) technique, was developed to predict the entire kill matrix by exploiting the natural language channel in code and learning the relationship between the syntactic and semantic concepts of test cases and the mutants they can kill.\n\n## Key Challenges and Improvements\n\nExisting predictive mutation testing approaches still misclassify about 33% of detection outcomes on a randomly sampled set of mutant-test suite pairs. MutationBERT saves 33% of the time spent by prior approaches on checking/verifying live mutants.\n\n## 2024+ Research Directions\n\nRecent work has focused on employing machine learning models to predict whether test suites can detect artificially introduced code changes, with investigations into explainability methods like SHAP and LIME to enhance interpretability of PMT models."
+    ],
+    "durationSeconds": 7.8888730250000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012c6jMBryxPHewwUvTC2afm`</summary>
+
+```json
+{
+  "query": "AlphaCode 2 technical report DeepMind 2023 Gemini arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "9370b251-6acd-4d9f-948e-407269fdc2b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Zn29GPBsfBKBVe1Ao4kmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 827,
+      "cache_creation_input_tokens": 6809,
+      "cache_read_input_tokens": 38469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6809
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011mgkvJ95THVmj68Zi6zzpt`</summary>
+
+```json
+{
+  "query": "\"Contextual Predictive Mutation Testing\" Jain 2023 FSE authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "55de475b-5b25-4b83-8ded-e203063dcb1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Zn29GPBsfBKBVe1Ao4kmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 827,
+      "cache_creation_input_tokens": 6809,
+      "cache_read_input_tokens": 38469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6809
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01667o2vWCFirB6tVJJPTsb1`</summary>
+
+```json
+{
+  "query": "SWE-RM arxiv 2512.21919 authors full list",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "701e4020-19d7-4c7f-bc87-6d7a100eec32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Zn29GPBsfBKBVe1Ao4kmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 827,
+      "cache_creation_input_tokens": 6809,
+      "cache_read_input_tokens": 38469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6809
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DzZYhY4q95JgXXp91saz8c`</summary>
+
+```json
+{
+  "query": "\"CodeRL\" code generation reinforcement learning Le et al NeurIPS 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "54ea7e06-0003-45b3-90bf-d64073dcbeb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Zn29GPBsfBKBVe1Ao4kmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 827,
+      "cache_creation_input_tokens": 6809,
+      "cache_read_input_tokens": 38469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6809
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VoFURsEezJ2N27cL1aVqAE`</summary>
+
+```json
+{
+  "query": "\"On the Use of Large Language Models in Mutation Testing\" 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "212b411d-edd0-4440-bcd9-d79744f050f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Zn29GPBsfBKBVe1Ao4kmH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 827,
+      "cache_creation_input_tokens": 6809,
+      "cache_read_input_tokens": 38469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6809
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T09:41:50.725Z_
+
+<details><summary>↩ Tool result · `toolu_01667o2vWCFirB6tVJJPTsb1`</summary>
+
+```text
+Web search results for query: "SWE-RM arxiv 2512.21919 authors full list"
+
+Links: [{"title":"[2512.21919] SWE-RM: Execution-free Feedback For Software Engineering Agents","url":"https://arxiv.org/abs/2512.21919"},{"title":"2025-12-29 SWE-RM: EXECUTION-FREE FEEDBACK FOR SOFT- WARE ENGINEERING AGENTS","url":"https://www.arxiv.org/pdf/2512.21919"},{"title":"SWE-RM: Execution-Free Feedback for Software Engineering Agents","url":"https://arxiv.org/html/2512.21919"},{"title":"Nanbeige SWE-World: Building Software Engineering Agents in","url":"https://arxiv.org/pdf/2602.03419"},{"title":"SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution","url":"https://arxiv.org/html/2502.18449v1"},{"title":"[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://arxiv.org/abs/2310.06770"},{"title":"[2512.18552] Toward Training Superintelligent Software Agents through Self-Play SWE-RL","url":"https://arxiv.org/abs/2512.18552"},{"title":"[2512.17419] SWE-Bench++: A Framework for the Scalable Generation of Software Engineering Benchmarks from Open-Source Repositories","url":"https://arxiv.org/abs/2512.17419"},{"title":"Software Engineering","url":"https://arxiv.org/list/cs.SE/recent"},{"title":"SWE-BENCH++: A FRAMEWORK FOR THE SCALABLE GENERATION OF SOFTWARE ENGINEERING","url":"https://arxiv.org/pdf/2512.17419"}]
+
+Based on the search results, the authors of arXiv paper 2512.21919 (SWE-RM: Execution-free Feedback For Software Engineering Agents) are: KaShun Shum, Binyuan Hui, Jiawei Chen, Lei Zhang, X. W., Jiaxi Yang, Yuzhen Huang, Junyang Lin, and Junxian He.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "65744b88-7044-42eb-83cc-02bd2191f799",
+  "tool_use_result": {
+    "query": "SWE-RM arxiv 2512.21919 authors full list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L6RMorGM7YyuorgqLF73LJ",
+        "content": [
+          {
+            "title": "[2512.21919] SWE-RM: Execution-free Feedback For Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2512.21919"
+          },
+          {
+            "title": "2025-12-29 SWE-RM: EXECUTION-FREE FEEDBACK FOR SOFT- WARE ENGINEERING AGENTS",
+            "url": "https://www.arxiv.org/pdf/2512.21919"
+          },
+          {
+            "title": "SWE-RM: Execution-Free Feedback for Software Engineering Agents",
+            "url": "https://arxiv.org/html/2512.21919"
+          },
+          {
+            "title": "Nanbeige SWE-World: Building Software Engineering Agents in",
+            "url": "https://arxiv.org/pdf/2602.03419"
+          },
+          {
+            "title": "SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution",
+            "url": "https://arxiv.org/html/2502.18449v1"
+          },
+          {
+            "title": "[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+            "url": "https://arxiv.org/abs/2310.06770"
+          },
+          {
+            "title": "[2512.18552] Toward Training Superintelligent Software Agents through Self-Play SWE-RL",
+            "url": "https://arxiv.org/abs/2512.18552"
+          },
+          {
+            "title": "[2512.17419] SWE-Bench++: A Framework for the Scalable Generation of Software Engineering Benchmarks from Open-Source Repositories",
+            "url": "https://arxiv.org/abs/2512.17419"
+          },
+          {
+            "title": "Software Engineering",
+            "url": "https://arxiv.org/list/cs.SE/recent"
+          },
+          {
+            "title": "SWE-BENCH++: A FRAMEWORK FOR THE SCALABLE GENERATION OF SOFTWARE ENGINEERING",
+            "url": "https://arxiv.org/pdf/2512.17419"
+          }
+        ]
+      },
+      "Based on the search results, the authors of arXiv paper 2512.21919 (SWE-RM: Execution-free Feedback For Software Engineering Agents) are: KaShun Shum, Binyuan Hui, Jiawei Chen, Lei Zhang, X. W., Jiaxi Yang, Yuzhen Huang, Junyang Lin, and Junxian He."
+    ],
+    "durationSeconds": 3.7448584529999933
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T09:41:51.183Z_
+
+<details><summary>↩ Tool result · `toolu_012c6jMBryxPHewwUvTC2afm`</summary>
+
+```text
+Web search results for query: "AlphaCode 2 technical report DeepMind 2023 Gemini arxiv"
+
+Links: [{"title":"2023-12-06 AlphaCode 2 Technical Report AlphaCode Team, Google DeepMind","url":"https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf"},{"title":"Brief Review — AlphaCode 2 Technical Report | by Sik-Ho Tsang | Medium","url":"https://sh-tsang.medium.com/brief-review-alphacode-2-technical-report-b460dcbca202"},{"title":"Google unveils AlphaCode 2, powered by Gemini | TechCrunch","url":"https://techcrunch.com/2023/12/06/deepmind-unveils-alphacode-2-powered-by-gemini/"},{"title":"AlphaCode 2, a code-generating AI revamped with Gemini kit • The Register","url":"https://www.theregister.com/2023/12/07/alphacode_2_software"},{"title":"2023: A Year of Groundbreaking Advances in AI and Computing — Google DeepMind","url":"https://deepmind.google/blog/2023-a-year-of-groundbreaking-advances-in-ai-and-computing/"},{"title":"[PDF] AlphaCode 2 Technical Report | Semantic Scholar","url":"https://www.semanticscholar.org/paper/AlphaCode-2-Technical-Report/67be4a0c75c2b2da3e834eb12b8305050a64a525"},{"title":"Google DeepMind Introduces AlphaCode 2: An Artificial Intelligence (AI) System that Uses the Power of the Gemini Model for a Remarkable Advance in Competitive Programming Excellence - MarkTechPost","url":"https://www.marktechpost.com/2023/12/10/google-deepmind-introduces-alphacode-2-an-artificial-intelligence-ai-system-that-uses-the-power-of-the-gemini-model-for-a-remarkable-advance-in-competitive-programming-excellence/"},{"title":"Google's DeepMind Introduces AlphaCode 2, an AI That Outperforms Human Coders - WinBuzzer","url":"https://winbuzzer.com/2023/12/07/googles-deepmind-introduces-alphacode-2-an-ai-that-outperforms-human-coders-xcxwbn/"},{"title":"Programming with AI: Evaluating ChatGPT, Gemini, AlphaCode,","url":"https://arxiv.org/pdf/2411.09224"},{"title":"🚀 Breaking News in AI: Google DeepMind Unveils AlphaCode 2 and Gemini for Competitive Programming! 🧠✨","url":"https://www.linkedin.com/pulse/breaking-news-ai-google-deepmind-unveils-alphacode-2-gemini-kannan-uflyc"}]
+
+Based on the web search results, I found comprehensive information about the AlphaCode 2 technical report. Here's what I found:
+
+## AlphaCode 2 Technical Report Overview
+
+AlphaCode 2 is a new and enhanced system with massively improved performance, powered by Gemini. The technical report was published in 2023.
+
+### Key Performance Metrics
+
+AlphaCode 2 solved 1.7× more problems than the original AlphaCode, and performed better than 85% of competition participants.
+
+### Technical Architecture
+
+AlphaCode 2 relies on the combination of powerful language models and a bespoke search and reranking mechanism. The starting point is the Gemini Pro model, on which two consecutive rounds of fine-tuning are applied using GOLD.
+
+### Code Generation Process
+
+Each code sample is executed on the corresponding test input, filtering out all which do not produce the expected output and those that do not compile, which removes approximately 95% of the samples. The clusters are ordered according to their cardinality, and only the 10 largest are kept, with a single one per cluster submitted to the online judge to obtain the best result.
+
+### Direct Access
+
+The technical report is freely available at: https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "1496bb2a-2d31-4385-afb9-48110caae715",
+  "tool_use_result": {
+    "query": "AlphaCode 2 technical report DeepMind 2023 Gemini arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017PXjLW42uA69ZDUfr1ctvX",
+        "content": [
+          {
+            "title": "2023-12-06 AlphaCode 2 Technical Report AlphaCode Team, Google DeepMind",
+            "url": "https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf"
+          },
+          {
+            "title": "Brief Review — AlphaCode 2 Technical Report | by Sik-Ho Tsang | Medium",
+            "url": "https://sh-tsang.medium.com/brief-review-alphacode-2-technical-report-b460dcbca202"
+          },
+          {
+            "title": "Google unveils AlphaCode 2, powered by Gemini | TechCrunch",
+            "url": "https://techcrunch.com/2023/12/06/deepmind-unveils-alphacode-2-powered-by-gemini/"
+          },
+          {
+            "title": "AlphaCode 2, a code-generating AI revamped with Gemini kit • The Register",
+            "url": "https://www.theregister.com/2023/12/07/alphacode_2_software"
+          },
+          {
+            "title": "2023: A Year of Groundbreaking Advances in AI and Computing — Google DeepMind",
+            "url": "https://deepmind.google/blog/2023-a-year-of-groundbreaking-advances-in-ai-and-computing/"
+          },
+          {
+            "title": "[PDF] AlphaCode 2 Technical Report | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/AlphaCode-2-Technical-Report/67be4a0c75c2b2da3e834eb12b8305050a64a525"
+          },
+          {
+            "title": "Google DeepMind Introduces AlphaCode 2: An Artificial Intelligence (AI) System that Uses the Power of the Gemini Model for a Remarkable Advance in Competitive Programming Excellence - MarkTechPost",
+            "url": "https://www.marktechpost.com/2023/12/10/google-deepmind-introduces-alphacode-2-an-artificial-intelligence-ai-system-that-uses-the-power-of-the-gemini-model-for-a-remarkable-advance-in-competitive-programming-excellence/"
+          },
+          {
+            "title": "Google's DeepMind Introduces AlphaCode 2, an AI That Outperforms Human Coders - WinBuzzer",
+            "url": "https://winbuzzer.com/2023/12/07/googles-deepmind-introduces-alphacode-2-an-ai-that-outperforms-human-coders-xcxwbn/"
+          },
+          {
+            "title": "Programming with AI: Evaluating ChatGPT, Gemini, AlphaCode,",
+            "url": "https://arxiv.org/pdf/2411.09224"
+          },
+          {
+            "title": "🚀 Breaking News in AI: Google DeepMind Unveils AlphaCode 2 and Gemini for Competitive Programming! 🧠✨",
+            "url": "https://www.linkedin.com/pulse/breaking-news-ai-google-deepmind-unveils-alphacode-2-gemini-kannan-uflyc"
+          }
+        ]
+      },
+      "Based on the web search results, I found comprehensive information about the AlphaCode 2 technical report. Here's what I found:\n\n## AlphaCode 2 Technical Report Overview\n\nAlphaCode 2 is a new and enhanced system with massively improved performance, powered by Gemini. The technical report was published in 2023.\n\n### Key Performance Metrics\n\nAlphaCode 2 solved 1.7× more problems than the original AlphaCode, and performed better than 85% of competition participants.\n\n### Technical Architecture\n\nAlphaCode 2 relies on the combination of powerful language models and a bespoke search and reranking mechanism. The starting point is the Gemini Pro model, on which two consecutive rounds of fine-tuning are applied using GOLD.\n\n### Code Generation Process\n\nEach code sample is executed on the corresponding test input, filtering out all which do not produce the expected output and those that do not compile, which removes approximately 95% of the samples. The clusters are ordered according to their cardinality, and only the 10 largest are kept, with a single one per cluster submitted to the online judge to obtain the best result.\n\n### Direct Access\n\nThe technical report is freely available at: https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf"
+    ],
+    "durationSeconds": 6.169092497999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T09:41:51.832Z_
+
+<details><summary>↩ Tool result · `toolu_011mgkvJ95THVmj68Zi6zzpt`</summary>
+
+```text
+Web search results for query: ""Contextual Predictive Mutation Testing" Jain 2023 FSE authors"
+
+Links: [{"title":"Contextual Predictive Mutation Testing (ESEC/FSE 2023 - Research Papers) - ESEC/FSE 2023","url":"https://2023.esec-fse.org/details/fse-2023-research-papers/48/Contextual-Predictive-Mutation-Testing"},{"title":"Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University","url":"https://arxiv.org/pdf/2309.02389"},{"title":"Contextual Predictive Mutation Testing - ACM Digital Library","url":"https://dl.acm.org/doi/pdf/10.1145/3611643.3616289"},{"title":"Contextual Predictive Mutation Testing | Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering","url":"https://dl.acm.org/doi/10.1145/3611643.3616289"},{"title":"[2309.02389] Contextual Predictive Mutation Testing","url":"https://arxiv.org/abs/2309.02389"},{"title":"Publications - Kush Jain","url":"https://www.kushjain.com/publications/"},{"title":"Contextual Predictive Mutation Testing | DeepAI","url":"https://deepai.org/publication/contextual-predictive-mutation-testing"},{"title":"Explainable Artificial Intelligence to Improve Interpretability in Predictive Mutation Testing | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-96-6005-6_22"},{"title":"Predictive mutation testing | Request PDF","url":"https://www.researchgate.net/publication/305026870_Predictive_mutation_testing"},{"title":"Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/10.1145/3510417"}]
+
+Based on the search results, I found information about the "Contextual Predictive Mutation Testing" paper published at FSE 2023:
+
+The authors are Kush Jain, Uri Alon, Alex Groce, and Claire Le Goues. The paper was presented at ESEC/FSE 2023.
+
+The paper proposes a novel machine learning approach for predictive mutation testing that simultaneously encodes the source method mutation and test method, capturing key context in the input representation, and leverages recent advances in transformers for machine learning for source code tasks. Their approach, called MutationBERT, outperforms the state-of-the-art in both same project and cross project settings, with meaningful improvements in precision, recall and F1 score.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "745f77aa-5cb7-4514-9cd8-b80211a16bc6",
+  "tool_use_result": {
+    "query": "\"Contextual Predictive Mutation Testing\" Jain 2023 FSE authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QTcMspmyV7wySBEs2vYjxK",
+        "content": [
+          {
+            "title": "Contextual Predictive Mutation Testing (ESEC/FSE 2023 - Research Papers) - ESEC/FSE 2023",
+            "url": "https://2023.esec-fse.org/details/fse-2023-research-papers/48/Contextual-Predictive-Mutation-Testing"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University",
+            "url": "https://arxiv.org/pdf/2309.02389"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing - ACM Digital Library",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3611643.3616289"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing | Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3611643.3616289"
+          },
+          {
+            "title": "[2309.02389] Contextual Predictive Mutation Testing",
+            "url": "https://arxiv.org/abs/2309.02389"
+          },
+          {
+            "title": "Publications - Kush Jain",
+            "url": "https://www.kushjain.com/publications/"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing | DeepAI",
+            "url": "https://deepai.org/publication/contextual-predictive-mutation-testing"
+          },
+          {
+            "title": "Explainable Artificial Intelligence to Improve Interpretability in Predictive Mutation Testing | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-96-6005-6_22"
+          },
+          {
+            "title": "Predictive mutation testing | Request PDF",
+            "url": "https://www.researchgate.net/publication/305026870_Predictive_mutation_testing"
+          },
+          {
+            "title": "Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/10.1145/3510417"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the \"Contextual Predictive Mutation Testing\" paper published at FSE 2023:\n\nThe authors are Kush Jain, Uri Alon, Alex Groce, and Claire Le Goues. The paper was presented at ESEC/FSE 2023.\n\nThe paper proposes a novel machine learning approach for predictive mutation testing that simultaneously encodes the source method mutation and test method, capturing key context in the input representation, and leverages recent advances in transformers for machine learning for source code tasks. Their approach, called MutationBERT, outperforms the state-of-the-art in both same project and cross project settings, with meaningful improvements in precision, recall and F1 score."
+    ],
+    "durationSeconds": 5.701220781000011
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T09:41:54.501Z_
+
+<details><summary>↩ Tool result · `toolu_01VoFURsEezJ2N27cL1aVqAE`</summary>
+
+```text
+Web search results for query: ""On the Use of Large Language Models in Mutation Testing" 2024 arxiv"
+
+Links: [{"title":"On the Use of Large Language Models in Mutation Testing","url":"https://arxiv.org/html/2406.09843v2"},{"title":"An Exploratory Study on Using Large Language Models for Mutation Testing","url":"https://arxiv.org/html/2406.09843v1"},{"title":"A Comprehensive Study on Large Language Models for Mutation Testing","url":"https://arxiv.org/html/2406.09843v4"},{"title":"[2406.09843] A Comprehensive Study on Large Language Models for Mutation Testing","url":"https://arxiv.org/abs/2406.09843"},{"title":"Large Language Models for Equivalent Mutant Detection: How Far Are We?","url":"https://arxiv.org/html/2408.01760v1"},{"title":"A Comprehensive Study on Large Language Models for Mutation Testing - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240609843W/abstract"},{"title":"Exploring the Potential of Large Language Models in","url":"https://arxiv.org/pdf/2602.04066"},{"title":"Mutation Testing via Iterative Large Language Model-Driven Scientific Debugging","url":"https://arxiv.org/html/2503.08182v1"},{"title":"[2404.09952] LLMorpheus: Mutation Testing using Large Language Models","url":"https://arxiv.org/abs/2404.09952"},{"title":"Mutation-Guided Unit Test Generation with a Large Language Model","url":"https://arxiv.org/html/2506.02954v4"}]
+
+I found the research paper you're looking for. Here's information about it:
+
+**Paper Title:** A Comprehensive Study on Large Language Models for Mutation Testing
+
+**ArXiv ID:** 2406.09843
+
+**Key Details:**
+
+The paper evaluates BugFarm and LLMorpheus (the two state-of-the-art LLM-based approaches), alongside seven LLMs using a newly designed prompt, including both leading open- and closed-source models, on 851 real bugs from two Java real-world bug benchmarks.
+
+**Main Findings:**
+
+Compared to existing rule-based approaches, LLMs generate more diverse mutants, that are behaviorally closer to real bugs and, most importantly, with 111.29% higher fault detection. However, the LLM-generated mutants have worse non-compilability, duplication, and equivalent mutant rates by 26.60, 10.14, and 3.51 percentage points, respectively.
+
+**LLM Models Evaluated:** GPT-3.5-Turbo, GPT-4o, and GPT-4o-Mini are closed-source LLMs released by OpenAI, while DeepSeek-Coder, StarChat, and CodeLlama are open-source.
+
+The paper was published in June 2024 and has been updated through September 2025 on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "dec0455c-660d-49df-83c7-4fad97434a22",
+  "tool_use_result": {
+    "query": "\"On the Use of Large Language Models in Mutation Testing\" 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TfYYo8f2pC2DacVSvZCxC8",
+        "content": [
+          {
+            "title": "On the Use of Large Language Models in Mutation Testing",
+            "url": "https://arxiv.org/html/2406.09843v2"
+          },
+          {
+            "title": "An Exploratory Study on Using Large Language Models for Mutation Testing",
+            "url": "https://arxiv.org/html/2406.09843v1"
+          },
+          {
+            "title": "A Comprehensive Study on Large Language Models for Mutation Testing",
+            "url": "https://arxiv.org/html/2406.09843v4"
+          },
+          {
+            "title": "[2406.09843] A Comprehensive Study on Large Language Models for Mutation Testing",
+            "url": "https://arxiv.org/abs/2406.09843"
+          },
+          {
+            "title": "Large Language Models for Equivalent Mutant Detection: How Far Are We?",
+            "url": "https://arxiv.org/html/2408.01760v1"
+          },
+          {
+            "title": "A Comprehensive Study on Large Language Models for Mutation Testing - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240609843W/abstract"
+          },
+          {
+            "title": "Exploring the Potential of Large Language Models in",
+            "url": "https://arxiv.org/pdf/2602.04066"
+          },
+          {
+            "title": "Mutation Testing via Iterative Large Language Model-Driven Scientific Debugging",
+            "url": "https://arxiv.org/html/2503.08182v1"
+          },
+          {
+            "title": "[2404.09952] LLMorpheus: Mutation Testing using Large Language Models",
+            "url": "https://arxiv.org/abs/2404.09952"
+          },
+          {
+            "title": "Mutation-Guided Unit Test Generation with a Large Language Model",
+            "url": "https://arxiv.org/html/2506.02954v4"
+          }
+        ]
+      },
+      "I found the research paper you're looking for. Here's information about it:\n\n**Paper Title:** A Comprehensive Study on Large Language Models for Mutation Testing\n\n**ArXiv ID:** 2406.09843\n\n**Key Details:**\n\nThe paper evaluates BugFarm and LLMorpheus (the two state-of-the-art LLM-based approaches), alongside seven LLMs using a newly designed prompt, including both leading open- and closed-source models, on 851 real bugs from two Java real-world bug benchmarks.\n\n**Main Findings:**\n\nCompared to existing rule-based approaches, LLMs generate more diverse mutants, that are behaviorally closer to real bugs and, most importantly, with 111.29% higher fault detection. However, the LLM-generated mutants have worse non-compilability, duplication, and equivalent mutant rates by 26.60, 10.14, and 3.51 percentage points, respectively.\n\n**LLM Models Evaluated:** GPT-3.5-Turbo, GPT-4o, and GPT-4o-Mini are closed-source LLMs released by OpenAI, while DeepSeek-Coder, StarChat, and CodeLlama are open-source.\n\nThe paper was published in June 2024 and has been updated through September 2025 on arXiv."
+    ],
+    "durationSeconds": 6.282652725000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T09:41:55.001Z_
+
+<details><summary>↩ Tool result · `toolu_01DzZYhY4q95JgXXp91saz8c`</summary>
+
+```text
+Web search results for query: ""CodeRL" code generation reinforcement learning Le et al NeurIPS 2022"
+
+Links: [{"title":"GitHub - salesforce/CodeRL: This is the official code for the paper CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning (NeurIPS22). · GitHub","url":"https://github.com/salesforce/CodeRL"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2022/hash/8636419dea1aa9fbd25fc4248e702da4-Abstract-Conference.html"},{"title":"[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://arxiv.org/abs/2207.01780"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://papers.nips.cc/paper_files/paper/2022/hash/8636419dea1aa9fbd25fc4248e702da4-Abstract-Conference.html"},{"title":"CodeRL: Mastering Code Generation through Pretrained ...","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/8636419dea1aa9fbd25fc4248e702da4-Supplemental-Conference.pdf"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep","url":"https://nips.cc/media/neurips-2022/Slides/53512.pdf"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep","url":"https://neurips.cc/media/neurips-2022/Slides/53512.pdf"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=WaGvb7OzySA"},{"title":"CodeRL/README.md at main · salesforce/CodeRL","url":"https://github.com/salesforce/CodeRL/blob/main/README.md"},{"title":"CodeRL: Mastering Code Generation through","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/8636419dea1aa9fbd25fc4248e702da4-Paper-Conference.pdf"}]
+
+I found comprehensive information about CodeRL. Here are the key findings:
+
+## Overview
+
+CodeRL is a paper accepted to NeurIPS 2022 titled "Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning", and the authors are Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C.H. Hoi.
+
+## Problem and Approach
+
+The paper addresses code generation, which aims to generate a program satisfying a problem specification. While recent approaches using large-scale pretrained language models have shown promising results, they have critical limitations—particularly, they follow a standard supervised fine-tuning procedure using only natural-language problem descriptions and ground-truth programs, largely ignoring important signals like unit tests.
+
+The solution treats the code-generating language model as an actor network and introduces a critic network trained to predict the functional correctness of generated programs and provide dense feedback signals to the actor.
+
+## Results
+
+CodeRL with CodeT5 achieves significant performance gains, outperforming many pretrained language models of much larger sizes, with new SOTA results of 2.57% pass@1, 6.21% pass@5, and 19.36% pass@1000. On the MBPP benchmark, it achieves a new SOTA result of 63.0% pass@80.
+
+## Resources
+
+The official code is available, and the paper can be found on arXiv and the NeurIPS proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "60b97721-c022-4eed-bf8d-7bcc89210432",
+  "tool_use_result": {
+    "query": "\"CodeRL\" code generation reinforcement learning Le et al NeurIPS 2022",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LXsrTEq9kPCSzfFzSGgyD6",
+        "content": [
+          {
+            "title": "GitHub - salesforce/CodeRL: This is the official code for the paper CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning (NeurIPS22). · GitHub",
+            "url": "https://github.com/salesforce/CodeRL"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/8636419dea1aa9fbd25fc4248e702da4-Abstract-Conference.html"
+          },
+          {
+            "title": "[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2207.01780"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://papers.nips.cc/paper_files/paper/2022/hash/8636419dea1aa9fbd25fc4248e702da4-Abstract-Conference.html"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/8636419dea1aa9fbd25fc4248e702da4-Supplemental-Conference.pdf"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep",
+            "url": "https://nips.cc/media/neurips-2022/Slides/53512.pdf"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep",
+            "url": "https://neurips.cc/media/neurips-2022/Slides/53512.pdf"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=WaGvb7OzySA"
+          },
+          {
+            "title": "CodeRL/README.md at main · salesforce/CodeRL",
+            "url": "https://github.com/salesforce/CodeRL/blob/main/README.md"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/8636419dea1aa9fbd25fc4248e702da4-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found comprehensive information about CodeRL. Here are the key findings:\n\n## Overview\n\nCodeRL is a paper accepted to NeurIPS 2022 titled \"Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning\", and the authors are Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C.H. Hoi.\n\n## Problem and Approach\n\nThe paper addresses code generation, which aims to generate a program satisfying a problem specification. While recent approaches using large-scale pretrained language models have shown promising results, they have critical limitations—particularly, they follow a standard supervised fine-tuning procedure using only natural-language problem descriptions and ground-truth programs, largely ignoring important signals like unit tests.\n\nThe solution treats the code-generating language model as an actor network and introduces a critic network trained to predict the functional correctness of generated programs and provide dense feedback signals to the actor.\n\n## Results\n\nCodeRL with CodeT5 achieves significant performance gains, outperforming many pretrained language models of much larger sizes, with new SOTA results of 2.57% pass@1, 6.21% pass@5, and 19.36% pass@1000. On the MBPP benchmark, it achieves a new SOTA result of 63.0% pass@80.\n\n## Resources\n\nThe official code is available, and the paper can be found on arXiv and the NeurIPS proceedings."
+    ],
+    "durationSeconds": 6.976531904000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018JuacQHbs8ZpqqMkKMbfEj`</summary>
+
+```json
+{
+  "query": "\"DreamPRM-Code\" OR \"FunPRM\" function-as-step process reward model code 2025 arxiv ID",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "b53c2140-a8f6-4eca-8b4a-86d32acce675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeXTVcWMR3kzqHJ5GyjDMh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 4560,
+      "cache_read_input_tokens": 45278,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4560
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014GRK9YDKAkrCo6PHuETx6z`</summary>
+
+```json
+{
+  "query": "CodeRL arxiv 2207.01780 Hung Le authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "5cd4a47e-db30-411c-a7da-0366fea1cd02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeXTVcWMR3kzqHJ5GyjDMh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 4560,
+      "cache_read_input_tokens": 45278,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4560
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M6wr9nsgW8bQf399FADdb3`</summary>
+
+```json
+{
+  "query": "PRLCoder process-supervised reinforcement learning code generation arxiv 2502.01715 authors",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "c5098eb9-4b71-40e9-9f90-5e6d743da88c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeXTVcWMR3kzqHJ5GyjDMh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 4560,
+      "cache_read_input_tokens": 45278,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4560
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T09:42:04.994Z_
+
+<details><summary>↩ Tool result · `toolu_014GRK9YDKAkrCo6PHuETx6z`</summary>
+
+```text
+Web search results for query: "CodeRL arxiv 2207.01780 Hung Le authors"
+
+Links: [{"title":"[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://arxiv.org/abs/2207.01780"},{"title":"[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"http://export.arxiv.org/abs/2207.01780"},{"title":"CodeRL: Mastering Code Generation through Pretrained ...","url":"https://arxiv.org/pdf/2207.01780"},{"title":"[2207.01780v1] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://arxiv.org/abs/2207.01780v1"},{"title":"[2207.01780v3] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://arxiv.org/abs/2207.01780v3"},{"title":"[PDF] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31"},{"title":"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://www.catalyzex.com/paper/arxiv:2207.01780"},{"title":"Figure 10 from CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31/figure/16"},{"title":"Table 8 from CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31/figure/12"},{"title":"CodeRL/README.md at main · yuewang-cuhk/CodeRL","url":"https://github.com/yuewang-cuhk/CodeRL/blob/main/README.md"}]
+
+Based on the search results, I found the information about the CodeRL paper (arxiv 2207.01780). The authors are Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C.H. Hoi.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "ce60203a-bc7b-4638-94f3-7d00cdbef8fc",
+  "tool_use_result": {
+    "query": "CodeRL arxiv 2207.01780 Hung Le authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xn95wp7vfY6ebUbSxcxaAE",
+        "content": [
+          {
+            "title": "[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2207.01780"
+          },
+          {
+            "title": "[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "http://export.arxiv.org/abs/2207.01780"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained ...",
+            "url": "https://arxiv.org/pdf/2207.01780"
+          },
+          {
+            "title": "[2207.01780v1] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2207.01780v1"
+          },
+          {
+            "title": "[2207.01780v3] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2207.01780v3"
+          },
+          {
+            "title": "[PDF] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31"
+          },
+          {
+            "title": "CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://www.catalyzex.com/paper/arxiv:2207.01780"
+          },
+          {
+            "title": "Figure 10 from CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31/figure/16"
+          },
+          {
+            "title": "Table 8 from CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CodeRL:-Mastering-Code-Generation-through-Models-Le-Wang/6d994b4f5a46cd14e8f09f1e9e49120546b15e31/figure/12"
+          },
+          {
+            "title": "CodeRL/README.md at main · yuewang-cuhk/CodeRL",
+            "url": "https://github.com/yuewang-cuhk/CodeRL/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the search results, I found the information about the CodeRL paper (arxiv 2207.01780). The authors are Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C.H. Hoi."
+    ],
+    "durationSeconds": 3.0092245790000014
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T09:42:08.309Z_
+
+<details><summary>↩ Tool result · `toolu_01M6wr9nsgW8bQf399FADdb3`</summary>
+
+```text
+Web search results for query: "PRLCoder process-supervised reinforcement learning code generation arxiv 2502.01715 authors"
+
+Links: [{"title":"[2502.01715] Process-Supervised Reinforcement Learning for Code Generation","url":"https://arxiv.org/abs/2502.01715"},{"title":"Process-Supervised Reinforcement Learning for Code Generation","url":"https://arxiv.org/html/2502.01715"},{"title":"arXiv:2502.01715v1 [cs.SE] 3 Feb 2025","url":"https://arxiv.org/pdf/2502.01715"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=775&show=25"},{"title":"ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation","url":"https://arxiv.org/html/2601.21912"},{"title":"CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment","url":"https://arxiv.org/html/2510.18471v2"},{"title":"Improving LLM Code Generation via Requirement-Aware Curriculum Reinforcement Learning","url":"https://arxiv.org/html/2605.00433v1"},{"title":"[2509.14480] Process-Supervised Reinforcement Learning for Interactive Multimodal Tool-Use Agents","url":"https://arxiv.org/abs/2509.14480"},{"title":"RLCoder: Reinforcement Learning for Repository-Level Code Completion","url":"https://arxiv.org/html/2407.19487v1"},{"title":"[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning","url":"https://arxiv.org/abs/2207.01780"}]
+
+Based on the search results, here's the information about the arxiv paper 2502.01715:
+
+**Paper Title:** Process-Supervised Reinforcement Learning for Code Generation
+
+**Authors:** Yufan Ye, Ting Zhang, Wenbin Jiang, Hua Huang
+
+**Framework Name:** PRLCoder
+
+**Key Contribution:** The authors propose a "statement mutation/refactoring-compile and execution verification" strategy: mutating and refactoring code line-by-line through a teacher model, and utilizing compiler execution results to automatically label each line
+
+**Results:** PRLCoder improved the pass rate by 10.5% compared to the base model and by 5.1% compared to outcome-supervised reinforcement learning, with more significant performance gains in tasks involving complex code generation
+
+The paper was posted on February 3, 2025 and addresses process-supervised reinforcement learning for code generation, showing advantages over outcome-supervised approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "296aebca-d8d3-4cc8-bfb2-14a01e4c3d15",
+  "tool_use_result": {
+    "query": "PRLCoder process-supervised reinforcement learning code generation arxiv 2502.01715 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EmfRZK3Abv53N5p2HPsVyN",
+        "content": [
+          {
+            "title": "[2502.01715] Process-Supervised Reinforcement Learning for Code Generation",
+            "url": "https://arxiv.org/abs/2502.01715"
+          },
+          {
+            "title": "Process-Supervised Reinforcement Learning for Code Generation",
+            "url": "https://arxiv.org/html/2502.01715"
+          },
+          {
+            "title": "arXiv:2502.01715v1 [cs.SE] 3 Feb 2025",
+            "url": "https://arxiv.org/pdf/2502.01715"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=775&show=25"
+          },
+          {
+            "title": "ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2601.21912"
+          },
+          {
+            "title": "CodeRL+: Improving Code Generation via Reinforcement with Execution Semantics Alignment",
+            "url": "https://arxiv.org/html/2510.18471v2"
+          },
+          {
+            "title": "Improving LLM Code Generation via Requirement-Aware Curriculum Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.00433v1"
+          },
+          {
+            "title": "[2509.14480] Process-Supervised Reinforcement Learning for Interactive Multimodal Tool-Use Agents",
+            "url": "https://arxiv.org/abs/2509.14480"
+          },
+          {
+            "title": "RLCoder: Reinforcement Learning for Repository-Level Code Completion",
+            "url": "https://arxiv.org/html/2407.19487v1"
+          },
+          {
+            "title": "[2207.01780] CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2207.01780"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the arxiv paper 2502.01715:\n\n**Paper Title:** Process-Supervised Reinforcement Learning for Code Generation\n\n**Authors:** Yufan Ye, Ting Zhang, Wenbin Jiang, Hua Huang\n\n**Framework Name:** PRLCoder\n\n**Key Contribution:** The authors propose a \"statement mutation/refactoring-compile and execution verification\" strategy: mutating and refactoring code line-by-line through a teacher model, and utilizing compiler execution results to automatically label each line\n\n**Results:** PRLCoder improved the pass rate by 10.5% compared to the base model and by 5.1% compared to outcome-supervised reinforcement learning, with more significant performance gains in tasks involving complex code generation\n\nThe paper was posted on February 3, 2025 and addresses process-supervised reinforcement learning for code generation, showing advantages over outcome-supervised approaches."
+    ],
+    "durationSeconds": 5.145704733000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T09:42:08.375Z_
+
+<details><summary>↩ Tool result · `toolu_018JuacQHbs8ZpqqMkKMbfEj`</summary>
+
+```text
+Web search results for query: ""DreamPRM-Code" OR "FunPRM" function-as-step process reward model code 2025 arxiv ID"
+
+Links: [{"title":"DreamPRM-Code: Function-as-Step Process Reward Model with Label","url":"https://arxiv.org/pdf/2512.15000"},{"title":"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation","url":"https://arxiv.org/html/2601.22249v1"},{"title":"[2512.15000] DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding","url":"https://arxiv.org/abs/2512.15000"},{"title":"[2601.22249] FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation","url":"https://arxiv.org/abs/2601.22249"},{"title":"FunPRM: Function-as-Step Process Reward Model with Meta Reward","url":"https://www.arxiv.org/pdf/2601.22249"},{"title":"DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding","url":"https://arxiv.org/html/2512.15000v1"},{"title":"[2505.20241] DreamPRM: Domain-Reweighted Process Reward Model for Multimodal Reasoning","url":"https://arxiv.org/abs/2505.20241"},{"title":"DreamPRM: Domain-Reweighted Process Reward Model for Multimodal Reasoning","url":"https://arxiv.org/html/2505.20241v1"},{"title":"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis","url":"https://arxiv.org/html/2604.24198v1"},{"title":"DreamPRM-1.5: Unlocking the Potential of Each Instance for Multimodal Process Reward Model Training","url":"https://arxiv.org/html/2509.05542v1"}]
+
+Based on the search results, I found information about both papers you're looking for:
+
+## DreamPRM-Code
+arXiv ID: 2512.15000
+
+DreamPRM-Code is a coding-focused PRM that treats functions as reasoning steps using a Chain-of-Function prompting strategy to induce modular code generation, and introduces a meta-learning-based correction mechanism that leverages clean final-solution unit-test labels and performs bi-level optimization to refine intermediate labels. It achieved state-of-the-art performance on LiveCodeBench with 80.9 pass@1 rate, surpassing OpenAI o4-mini.
+
+## FunPRM
+arXiv ID: 2601.22249
+
+FunPRM prompts LLMs to encourage modular code generation organized into functions, with functions treated as PRM reasoning steps, and introduces a novel meta-learning-based reward correction mechanism that leverages clean final-solution rewards obtained via a unit-test-based evaluation system to purify noisy partial-solution rewards. FunPRM notably achieves state-of-the-art performance on LiveCodeBench when combined with O4-mini.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "b0bf5e31-17cc-4734-9a5b-20083593fb17",
+  "tool_use_result": {
+    "query": "\"DreamPRM-Code\" OR \"FunPRM\" function-as-step process reward model code 2025 arxiv ID",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LNowtkFheJ1H6Yfq9VBDfD",
+        "content": [
+          {
+            "title": "DreamPRM-Code: Function-as-Step Process Reward Model with Label",
+            "url": "https://arxiv.org/pdf/2512.15000"
+          },
+          {
+            "title": "FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+            "url": "https://arxiv.org/html/2601.22249v1"
+          },
+          {
+            "title": "[2512.15000] DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding",
+            "url": "https://arxiv.org/abs/2512.15000"
+          },
+          {
+            "title": "[2601.22249] FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+            "url": "https://arxiv.org/abs/2601.22249"
+          },
+          {
+            "title": "FunPRM: Function-as-Step Process Reward Model with Meta Reward",
+            "url": "https://www.arxiv.org/pdf/2601.22249"
+          },
+          {
+            "title": "DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding",
+            "url": "https://arxiv.org/html/2512.15000v1"
+          },
+          {
+            "title": "[2505.20241] DreamPRM: Domain-Reweighted Process Reward Model for Multimodal Reasoning",
+            "url": "https://arxiv.org/abs/2505.20241"
+          },
+          {
+            "title": "DreamPRM: Domain-Reweighted Process Reward Model for Multimodal Reasoning",
+            "url": "https://arxiv.org/html/2505.20241v1"
+          },
+          {
+            "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+            "url": "https://arxiv.org/html/2604.24198v1"
+          },
+          {
+            "title": "DreamPRM-1.5: Unlocking the Potential of Each Instance for Multimodal Process Reward Model Training",
+            "url": "https://arxiv.org/html/2509.05542v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about both papers you're looking for:\n\n## DreamPRM-Code\narXiv ID: 2512.15000\n\nDreamPRM-Code is a coding-focused PRM that treats functions as reasoning steps using a Chain-of-Function prompting strategy to induce modular code generation, and introduces a meta-learning-based correction mechanism that leverages clean final-solution unit-test labels and performs bi-level optimization to refine intermediate labels. It achieved state-of-the-art performance on LiveCodeBench with 80.9 pass@1 rate, surpassing OpenAI o4-mini.\n\n## FunPRM\narXiv ID: 2601.22249\n\nFunPRM prompts LLMs to encourage modular code generation organized into functions, with functions treated as PRM reasoning steps, and introduces a novel meta-learning-based reward correction mechanism that leverages clean final-solution rewards obtained via a unit-test-based evaluation system to purify noisy partial-solution rewards. FunPRM notably achieves state-of-the-art performance on LiveCodeBench when combined with O4-mini."
+    ],
+    "durationSeconds": 6.6760733949999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QXrDTNghsvFdaFeGXECrnC`</summary>
+
+```json
+{
+  "query": "Qwen3 arxiv 2505.09388 authors list \"An Yang\"",
+  "allowed_domains": [
+    "arxiv.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "6057de60-15f7-47c8-b5e6-1d3b2beeb4b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLshDWKmHELgchRh8s5wsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1471,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 49838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1837
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015TTs3hoo5JUExyrJdpMAy7`</summary>
+
+```json
+{
+  "query": "\"Predictive Mutation Analysis via Natural Language Channel\" Seshat 2022 TOSEM arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "635a3ea3-5139-465d-a1d6-91612ae90dd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLshDWKmHELgchRh8s5wsm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1471,
+      "cache_creation_input_tokens": 1837,
+      "cache_read_input_tokens": 49838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1837
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T09:42:19.078Z_
+
+<details><summary>↩ Tool result · `toolu_015TTs3hoo5JUExyrJdpMAy7`</summary>
+
+```text
+Web search results for query: ""Predictive Mutation Analysis via Natural Language Channel" Seshat 2022 TOSEM arxiv"
+
+Links: [{"title":"[2104.10865] Predictive Mutation Analysis via Natural Language Channel in Source Code","url":"https://arxiv.org/abs/2104.10865"},{"title":"Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/10.1145/3510417"},{"title":"Predictive Mutation Analysis via Natural Language Channel in Source Code","url":"https://www.researchgate.net/publication/351062778_Predictive_Mutation_Analysis_via_Natural_Language_Channel_in_Source_Code"},{"title":"[PDF] Predictive Mutation Analysis via the Natural Language Channel in Source Code | Semantic Scholar","url":"https://www.semanticscholar.org/paper/29f44d6f53d383f9251d6b54810bb23277c9445f"},{"title":"ARISE @ Handong University - publications","url":"https://arise.handong.edu/publications"},{"title":"Shamra Academia - AI-powered research tools for scholars | Predictive Mutation Analysis via Natural Language Channel in Source Code","url":"https://shamra-academia.com/en/show/5d3a10dbf3126"},{"title":"Detailled Reference - ORBilu","url":"https://orbilu.uni.lu/handle/10993/53506"},{"title":"Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University","url":"https://arxiv.org/pdf/2309.02389"},{"title":"TOSEM: Vol 31, No 4 - ACM Digital Library","url":"https://dl.acm.org/toc/tosem/2022/31/4"},{"title":"TOSEM: Vol 34, No 8","url":"https://dlnext.acm.org/toc/tosem/current"}]
+
+I found the paper you're looking for! Here are the details:
+
+**Title:** "Predictive Mutation Analysis via the Natural Language Channel in Source Code"
+
+**Authors:** Jinhan Kim, Juyoung Jeon, Shin Hong, and Shin Yoo
+
+**Publication:** ACM Transactions on Software Engineering and Methodology (TOSEM), 31(4), pp. 1-27, Oct 2022
+
+**ArXiv:** The paper is also available on arXiv as arXiv:2104.10865
+
+**Key Description:** Seshat is a Predictive Mutation Analysis (PMA) technique that can accurately predict the entire kill matrix, not just the Mutation Score (MS) of the given test suite. Seshat exploits the natural language channel in code, and learns the relationship between the syntactic and semantic concepts of each test case and the mutants it can kill, from a given kill matrix.
+
+**Main Results:** Seshat can predict kill matrices with an average F-score of 0.83 for versions that are up to years apart, which is an improvement in F-score by 0.14 and 0.45 points over the state-of-the-art PMT technique and a simple coverage-based heuristic, respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "d1420dc5-cafa-4e96-82de-fdad222c31e7",
+  "tool_use_result": {
+    "query": "\"Predictive Mutation Analysis via Natural Language Channel\" Seshat 2022 TOSEM arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QBJAQZj8raCTqPVrd6qXU8",
+        "content": [
+          {
+            "title": "[2104.10865] Predictive Mutation Analysis via Natural Language Channel in Source Code",
+            "url": "https://arxiv.org/abs/2104.10865"
+          },
+          {
+            "title": "Predictive Mutation Analysis via the Natural Language Channel in Source Code | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/10.1145/3510417"
+          },
+          {
+            "title": "Predictive Mutation Analysis via Natural Language Channel in Source Code",
+            "url": "https://www.researchgate.net/publication/351062778_Predictive_Mutation_Analysis_via_Natural_Language_Channel_in_Source_Code"
+          },
+          {
+            "title": "[PDF] Predictive Mutation Analysis via the Natural Language Channel in Source Code | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/29f44d6f53d383f9251d6b54810bb23277c9445f"
+          },
+          {
+            "title": "ARISE @ Handong University - publications",
+            "url": "https://arise.handong.edu/publications"
+          },
+          {
+            "title": "Shamra Academia - AI-powered research tools for scholars | Predictive Mutation Analysis via Natural Language Channel in Source Code",
+            "url": "https://shamra-academia.com/en/show/5d3a10dbf3126"
+          },
+          {
+            "title": "Detailled Reference - ORBilu",
+            "url": "https://orbilu.uni.lu/handle/10993/53506"
+          },
+          {
+            "title": "Contextual Predictive Mutation Testing Kush Jain Carnegie Mellon University",
+            "url": "https://arxiv.org/pdf/2309.02389"
+          },
+          {
+            "title": "TOSEM: Vol 31, No 4 - ACM Digital Library",
+            "url": "https://dl.acm.org/toc/tosem/2022/31/4"
+          },
+          {
+            "title": "TOSEM: Vol 34, No 8",
+            "url": "https://dlnext.acm.org/toc/tosem/current"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the details:\n\n**Title:** \"Predictive Mutation Analysis via the Natural Language Channel in Source Code\"\n\n**Authors:** Jinhan Kim, Juyoung Jeon, Shin Hong, and Shin Yoo\n\n**Publication:** ACM Transactions on Software Engineering and Methodology (TOSEM), 31(4), pp. 1-27, Oct 2022\n\n**ArXiv:** The paper is also available on arXiv as arXiv:2104.10865\n\n**Key Description:** Seshat is a Predictive Mutation Analysis (PMA) technique that can accurately predict the entire kill matrix, not just the Mutation Score (MS) of the given test suite. Seshat exploits the natural language channel in code, and learns the relationship between the syntactic and semantic concepts of each test case and the mutants it can kill, from a given kill matrix.\n\n**Main Results:** Seshat can predict kill matrices with an average F-score of 0.83 for versions that are up to years apart, which is an improvement in F-score by 0.14 and 0.45 points over the state-of-the-art PMT technique and a simple coverage-based heuristic, respectively."
+    ],
+    "durationSeconds": 6.267896968999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T09:42:19.795Z_
+
+<details><summary>↩ Tool result · `toolu_01QXrDTNghsvFdaFeGXECrnC`</summary>
+
+```text
+Web search results for query: "Qwen3 arxiv 2505.09388 authors list "An Yang""
+
+Links: [{"title":"[2505.09388] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388"},{"title":"arXiv:2505.09388v1 [cs.CL] 14 May 2025","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/html/2507.10532v2"},{"title":"[2505.09388v1] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388v1"},{"title":"[2505.09388] Qwen3 Technical Report - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2505.09388"},{"title":"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models","url":"https://arxiv.org/html/2506.05176v2"},{"title":"Demystifying Hybrid Thinking: Can LLMs Truly Switch Between Think and No-Think?","url":"https://arxiv.org/html/2510.12680v1"},{"title":"Qwen3-Omni Technical Report","url":"https://arxiv.org/html/2509.17765v1"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388v1"},{"title":"Exploring the Application of Visual Question Answering (VQA) for Classroom Activity Monitoring","url":"https://arxiv.org/html/2507.22369v3"}]
+
+Based on the search results, the Qwen3 Technical Report (arXiv:2505.09388) has 60 authors, with An Yang as the first author, followed by Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, Chujie Zheng, Dayiheng Liu, Fan Zhou, Fei Huang, Feng Hu, Hao Ge, Haoran Wei, Huan Lin, Jialong Tang, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jing Zhou, Jingren Zhou, Junyang Lin, Kai Dang, Keqin Bao, Kexin Yang, Le Yu, Lianghao Deng, Mei Li, Mingfeng Xue, Mingze Li, Pei Zhang, Peng Wang, Qin Zhu, Rui Men, Ruize Gao, Shixuan Liu, Shuang Luo, Tianhao Li, Tianyi Tang, Wenbiao Yin, Xingzhang Ren, Xinyu Wang, Xinyu Zhang, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yinger Zhang, Yu Wan, Yuqiong Liu, Zekun Wang, Zeyu Cui, Zhenru Zhang, Zhipeng Zhou, and Zihan Qiu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "d655bd77-8927-4371-ac2b-e60ceac07370",
+  "tool_use_result": {
+    "query": "Qwen3 arxiv 2505.09388 authors list \"An Yang\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ao5oqrLLEPh3KPMMmaeaBi",
+        "content": [
+          {
+            "title": "[2505.09388] Qwen3 Technical Report",
+            "url": "https://arxiv.org/abs/2505.09388"
+          },
+          {
+            "title": "arXiv:2505.09388v1 [cs.CL] 14 May 2025",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://arxiv.org/html/2507.10532v2"
+          },
+          {
+            "title": "[2505.09388v1] Qwen3 Technical Report",
+            "url": "https://arxiv.org/abs/2505.09388v1"
+          },
+          {
+            "title": "[2505.09388] Qwen3 Technical Report - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2505.09388"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models",
+            "url": "https://arxiv.org/html/2506.05176v2"
+          },
+          {
+            "title": "Demystifying Hybrid Thinking: Can LLMs Truly Switch Between Think and No-Think?",
+            "url": "https://arxiv.org/html/2510.12680v1"
+          },
+          {
+            "title": "Qwen3-Omni Technical Report",
+            "url": "https://arxiv.org/html/2509.17765v1"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388v1"
+          },
+          {
+            "title": "Exploring the Application of Visual Question Answering (VQA) for Classroom Activity Monitoring",
+            "url": "https://arxiv.org/html/2507.22369v3"
+          }
+        ]
+      },
+      "Based on the search results, the Qwen3 Technical Report (arXiv:2505.09388) has 60 authors, with An Yang as the first author, followed by Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, Chujie Zheng, Dayiheng Liu, Fan Zhou, Fei Huang, Feng Hu, Hao Ge, Haoran Wei, Huan Lin, Jialong Tang, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jing Zhou, Jingren Zhou, Junyang Lin, Kai Dang, Keqin Bao, Kexin Yang, Le Yu, Lianghao Deng, Mei Li, Mingfeng Xue, Mingze Li, Pei Zhang, Peng Wang, Qin Zhu, Rui Men, Ruize Gao, Shixuan Liu, Shuang Luo, Tianhao Li, Tianyi Tang, Wenbiao Yin, Xingzhang Ren, Xinyu Wang, Xinyu Zhang, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yinger Zhang, Yu Wan, Yuqiong Liu, Zekun Wang, Zeyu Cui, Zhenru Zhang, Zhipeng Zhou, and Zihan Qiu."
+    ],
+    "durationSeconds": 7.76390552900001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile the bibliography candidates YAML file. Let me organize all the papers I've found:
+
+1. **LoRA** - Hu et al., ICLR 2022, arXiv:2106.09685
+2. **QLoRA** - Dettmers et al., NeurIPS 2023, arXiv:2305.14314
+3. **SWE-bench** - Jimenez et al., ICLR 2024, arXiv:2310.06770
+4. **SWE-agent** - Yang et al., NeurIPS 2024, arXiv:2405.15793
+
+
+5. **ICE-Score** - Zhuo, EACL 2024 Findings, arXiv:2304.14317
+6. **CodeScore** - Dong et al., TOSEM 2023, arXiv:2301.09043
+7. **CodeBERTScore** - Zhou et al., EMNLP 2023, arXiv:2302.05527
+8. **Self-Consistency** - Wang et al., ICLR 2023, arXiv:2203.11171
+9. **Let's Verify Step by Step** - Lightman et al., 2023, arXiv:2305.20050
+10. **SWE-RM** - Shum et al., 2025, arXiv:2512.21919
+11. **CodeRL** - Le et al., NeurIPS 2022, arXiv:2207.01780
+12. **PRLCoder** - Ye et al., 2025, arXiv:2502.01715
+13. **DreamPRM-Code** - arXiv:2512.15000, 2025
+14. **Contextual Predictive Mutation Testing** - Jain et al., ESEC/FSE 2023, arXiv:2309.02389
+15. **Seshat** (Predictive Mutation Analysis) - Kim et al., TOSEM 2022, arXiv:2104.10865
+16. **LLMs for Mutation Testing** - 2024
+
+, arXiv:2406.09843
+
+Now I'm moving through more recent code generation models and benchmarks, including Qwen3, DeepSeek-Coder, and the foundational evaluation datasets like HumanEval and MBPP, along with the AlphaCode variants that pushed the boundaries of competitive programming performance.
+
+I should note that AlphaCode 2 is a tech report rather than an arXiv paper, then I'll set up the YAML file and verify the artifacts directory is ready.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "0f856fd6-5a10-4ef1-b849-21aeb7b14751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYcV6bbLhve5vnfJRNyfBX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 826,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 51675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+所有搜索完成，现在写入 YAML 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "68b3e95a-8261-49e0-b0cf-4c918388dba4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYcV6bbLhve5vnfJRNyfBX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 826,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 51675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019G1kNaBAnr6mJcNLzJ8J15`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "a318d7f8-8c2a-4e00-b23f-d4248b7e1607",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYcV6bbLhve5vnfJRNyfBX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 826,
+      "cache_creation_input_tokens": 2633,
+      "cache_read_input_tokens": 51675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T09:42:36.814Z_
+
+<details><summary>↩ Tool result · `toolu_019G1kNaBAnr6mJcNLzJ8J15`</summary>
+
+```text
+4b_8b_cls_cwm_paired_bootstrap_corrected.json
+4b_eval_hang_analysis.md
+_project
+all_experiments_parsed.json
+analysis_5paired_bootstrap.py
+block-corr-empirical
+block_correlation_analysis.py
+cls4b-v5-ckpt4400-val5120-eval
+cls8b-block-correlation-empirical
+cls8b-s42-resume-ckpt3600-mutation
+cls8b_s42_ckpt3600_per_mutation_pr.json
+cls8b_s42_ckpt3600_per_test_pr_bucketed.json
+cls8b_seed123_ckpt3000_val_eval_pending.md
+comprehensive_results_summary.md
+comprehensive_test_results.md
+cwm-rank32-ablation-v2
+cwm-rank32-alpha64-ablation
+cwm4b_mutation_breakdown.json
+cwm8b_seed123_analysis.txt
+cwm8b_shard_progress.md
+cwm_error_mode_analysis.md
+cwm_rank32_eval_command.sh
+cwm_rank64_train_command.sh
+cwm_v6_diagnosis.md
+cwm_v6_health_check.md
+d008_eval_commands.md
+d076_val_unparseable_root_cause.md
+d077_fix_report.md
+deepseek-traj-func
+deepseek-traj-func-v2
+deepseek_func_summary.json
+deepseek_training_analysis.md
+diag_cls_v4.md
+diag_cwm_v10.md
+diag_server_failures_20260516.md
+diagnosis_cwm_v12_cls_8b.md
+dream_reports
+error_analysis_data.md
+error_overlap_matched_seed.json
+eval_pipeline_prep.md
+eval_readiness_report.md
+eval_repo_cls.py
+eval_repo_cls_v2.py
+eval_status_check_20260514.md
+experiment_status_check_loop19.md
+extract_predictions_generic.py
+f1-macro-audit.md
+f1_macro_summary.json
+fig1_reformulation.pdf
+fig1_reformulation.png
+fig1_reformulation.py
+fig2_gap_amplification.pdf
+fig2_gap_amplification.png
+fig2_gap_amplification.py
+fig3_oracle_stratified.pdf
+fig3_oracle_stratified.png
+fig3_oracle_stratified.py
+figures
+inference_benchmark_results.json
+manifest.yaml
+merge_cwm8b_shards.py
+multi_seed_test_curves.json
+mutation_comparison_summary.json
+mutation_comparison_summary.md
+mutation_type_accuracy.csv
+mvp-a-oracle-sim
+mvp-b-data-prep
+oracle-f2p-stratified
+oracle_icc_sensitivity.json
+oracle_icc_sensitivity.pdf
+oracle_icc_sensitivity.png
+p2p-regression-rate
+paper_consistency_audit.md
+paper_materials.md
+parse_all_experiments.py
+progress_check_20260514.md
+qualitative_cwm_examples.json
+rank_ablation_chart.pdf
+rank_ablation_chart.png
+rank_ablation_data.json
+rank_ablation_table.tex
+re_repair_experiment_design.md
+re_repair_phase0_results.md
+reference_audit.md
+reference_audit_report.md
+registry_f1_metrics.json
+relaxed_matching_results.csv
+repo-eval-precheck.md
+repo_8b_training_plan.md
+repo_level_failure_diagnosis.md
+review_issues.yaml
+review_reports
+run_8b_eval.sh
+run_val_sweep.sh
+seed123_launch_configs.md
+seed123_launch_plan.md
+swebench_pipeline_design.md
+tost_multi_margin.csv
+tost_sensitivity.json
+training_progress_20260512.md
+training_progress_check_20260514.md
+training_status_20260515.md
+traj-v2-results.md
+val_sweep_compilation.md
+val_sweep_status.json
+val_test_distribution_analysis.md
+val_truncation_label_bias_analysis.md
+westd_48478_readiness.md
+westd_status_loop14.md
+westd_status_loop17.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "ba39412d-13a9-4ff7-b4ac-2e7b347efb50",
+  "tool_use_result": {
+    "stdout": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nblock-corr-empirical\nblock_correlation_analysis.py\ncls4b-v5-ckpt4400-val5120-eval\ncls8b-block-correlation-empirical\ncls8b-s42-resume-ckpt3600-mutation\ncls8b_s42_ckpt3600_per_mutation_pr.json\ncls8b_s42_ckpt3600_per_test_pr_bucketed.json\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncomprehensive_results_summary.md\ncomprehensive_test_results.md\ncwm-rank32-ablation-v2\ncwm-rank32-alpha64-ablation\ncwm4b_mutation_breakdown.json\ncwm8b_seed123_analysis.txt\ncwm8b_shard_progress.md\ncwm_error_mode_analysis.md\ncwm_rank32_eval_command.sh\ncwm_rank64_train_command.sh\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\nd076_val_unparseable_root_cause.md\nd077_fix_report.md\ndeepseek-traj-func\ndeepseek-traj-func-v2\ndeepseek_func_summary.json\ndeepseek_training_analysis.md\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndiag_server_failures_20260516.md\ndiagnosis_cwm_v12_cls_8b.md\ndream_reports\nerror_analysis_data.md\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\neval_repo_cls.py\neval_repo_cls_v2.py\neval_status_check_20260514.md\nexperiment_status_check_loop19.md\nextract_predictions_generic.py\nf1-macro-audit.md\nf1_macro_summary.json\nfig1_reformulation.pdf\nfig1_reformulation.png\nfig1_reformulation.py\nfig2_gap_amplification.pdf\nfig2_gap_amplification.png\nfig2_gap_amplification.py\nfig3_oracle_stratified.pdf\nfig3_oracle_stratified.png\nfig3_oracle_stratified.py\nfigures\ninference_benchmark_results.json\nmanifest.yaml\nmerge_cwm8b_shards.py\nmulti_seed_test_curves.json\nmutation_comparison_summary.json\nmutation_comparison_summary.md\nmutation_type_accuracy.csv\nmvp-a-oracle-sim\nmvp-b-data-prep\noracle-f2p-stratified\noracle_icc_sensitivity.json\noracle_icc_sensitivity.pdf\noracle_icc_sensitivity.png\np2p-regression-rate\npaper_consistency_audit.md\npaper_materials.md\nparse_all_experiments.py\nprogress_check_20260514.md\nqualitative_cwm_examples.json\nrank_ablation_chart.pdf\nrank_ablation_chart.png\nrank_ablation_data.json\nrank_ablation_table.tex\nre_repair_experiment_design.md\nre_repair_phase0_results.md\nreference_audit.md\nreference_audit_report.md\nregistry_f1_metrics.json\nrelaxed_matching_results.csv\nrepo-eval-precheck.md\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nreview_issues.yaml\nreview_reports\nrun_8b_eval.sh\nrun_val_sweep.sh\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\ntost_multi_margin.csv\ntost_sensitivity.json\ntraining_progress_20260512.md\ntraining_progress_check_20260514.md\ntraining_status_20260515.md\ntraj-v2-results.md\nval_sweep_compilation.md\nval_sweep_status.json\nval_test_distribution_analysis.md\nval_truncation_label_bias_analysis.md\nwestd_48478_readiness.md\nwestd_status_loop14.md\nwestd_status_loop17.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01BWvT5vBnTdgLiGYJVxbQcF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bibliography_candidates.yaml",
+  "content": "metadata:\n  purpose: \"Dream A2: bibliography expansion candidates\"\n  date: \"2026-05-17\"\n  target_count: \"25-30 total references\"\n  search_method: \"WebSearch verified (no memory-based entries)\"\n\ncandidates:\n  # === Parameter-Efficient Fine-Tuning ===\n  - title: \"LoRA: Low-Rank Adaptation of Large Language Models\"\n    authors: \"Hu et al.\"\n    venue: \"ICLR 2022\"\n    year: 2022\n    arxiv: \"2106.09685\"\n    relevance: \"Parameter-efficient fine-tuning method used in our CLS/CWM training\"\n    bib_key: \"hu2022lora\"\n    category: \"parameter-efficient-finetuning\"\n\n  - title: \"QLoRA: Efficient Finetuning of Quantized LLMs\"\n    authors: \"Dettmers et al.\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.14314\"\n    relevance: \"4-bit quantized LoRA enabling large model fine-tuning on single GPU; directly relevant to our training setup\"\n    bib_key: \"dettmers2023qlora\"\n    category: \"parameter-efficient-finetuning\"\n\n  # === SWE-bench Ecosystem ===\n  - title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Jimenez et al.\"\n    venue: \"ICLR 2024 (Oral)\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    relevance: \"Primary benchmark for real-world software engineering tasks; our verifier targets this evaluation setting\"\n    bib_key: \"jimenez2024swebench\"\n    category: \"swe-bench-ecosystem\"\n\n  - title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"Yang et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    relevance: \"State-of-the-art SWE-bench agent; our verifier provides execution-free feedback for such agents\"\n    bib_key: \"yang2024sweagent\"\n    category: \"swe-bench-ecosystem\"\n\n  # === Code Evaluation Methods (Non-Execution) ===\n  - title: \"ICE-Score: Instructing Large Language Models to Evaluate Code\"\n    authors: \"Zhuo\"\n    venue: \"Findings of EACL 2024\"\n    year: 2024\n    arxiv: \"2304.14317\"\n    relevance: \"LLM-based execution-free code evaluation; related approach but uses prompting rather than trained verifier\"\n    bib_key: \"zhuo2024icescore\"\n    category: \"code-evaluation-non-execution\"\n\n  - title: \"CodeScore: Evaluating Code Generation by Learning Code Execution\"\n    authors: \"Dong et al.\"\n    venue: \"ACM TOSEM 2023\"\n    year: 2023\n    arxiv: \"2301.09043\"\n    relevance: \"Learns to predict execution outcomes for code evaluation; similar motivation to our execution simulation\"\n    bib_key: \"dong2023codescore\"\n    category: \"code-evaluation-non-execution\"\n\n  - title: \"CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code\"\n    authors: \"Zhou et al.\"\n    venue: \"EMNLP 2023\"\n    year: 2023\n    arxiv: \"2302.05527\"\n    relevance: \"Embedding-based code evaluation metric; baseline approach for non-execution code assessment\"\n    bib_key: \"zhou2023codebertscore\"\n    category: \"code-evaluation-non-execution\"\n\n  # === Reasoning and Verification Theory ===\n  - title: \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\"\n    authors: \"Wang et al.\"\n    venue: \"ICLR 2023\"\n    year: 2023\n    arxiv: \"2203.11171\"\n    relevance: \"Majority voting / self-consistency decoding; theoretical basis for our consensus-based verification\"\n    bib_key: \"wang2023selfconsistency\"\n    category: \"reasoning-verification\"\n\n  - title: \"Let's Verify Step by Step\"\n    authors: \"Lightman et al.\"\n    venue: \"arXiv 2023\"\n    year: 2023\n    arxiv: \"2305.20050\"\n    relevance: \"Process vs outcome reward models; motivates our process-level execution simulation approach\"\n    bib_key: \"lightman2023verify\"\n    category: \"reasoning-verification\"\n\n  # === Code Reward Models / Verifiers (2022-2026) ===\n  - title: \"SWE-RM: Execution-free Feedback For Software Engineering Agents\"\n    authors: \"Shum et al.\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2512.21919\"\n    relevance: \"Most directly related work: execution-free reward model for SWE agents using MoE architecture\"\n    bib_key: \"shum2025swerm\"\n    category: \"code-reward-model\"\n\n  - title: \"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning\"\n    authors: \"Le et al.\"\n    venue: \"NeurIPS 2022\"\n    year: 2022\n    arxiv: \"2207.01780\"\n    relevance: \"Pioneering code verifier as critic network for RL-based code generation\"\n    bib_key: \"le2022coderl\"\n    category: \"code-reward-model\"\n\n  - title: \"Process-Supervised Reinforcement Learning for Code Generation\"\n    authors: \"Ye et al.\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2502.01715\"\n    relevance: \"Process-level reward model for code using mutation/refactoring-verification; related to our mutation-based training signal\"\n    bib_key: \"ye2025prlcoder\"\n    category: \"code-reward-model\"\n\n  - title: \"DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding\"\n    authors: \"DreamPRM Team\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2512.15000\"\n    relevance: \"Process reward model treating functions as reasoning steps; complementary verifier design philosophy\"\n    bib_key: \"dreamprm2025code\"\n    category: \"code-reward-model\"\n\n  # === Mutation Testing ===\n  - title: \"Contextual Predictive Mutation Testing\"\n    authors: \"Jain et al.\"\n    venue: \"ESEC/FSE 2023\"\n    year: 2023\n    arxiv: \"2309.02389\"\n    relevance: \"ML-based prediction of mutation detection outcomes; directly related to our execution simulation of test/mutation interactions\"\n    bib_key: \"jain2023contextual\"\n    category: \"mutation-testing\"\n\n  - title: \"Predictive Mutation Analysis via the Natural Language Channel in Source Code\"\n    authors: \"Kim et al.\"\n    venue: \"ACM TOSEM 2022\"\n    year: 2022\n    arxiv: \"2104.10865\"\n    relevance: \"Predicts kill matrix using NL features in code; foundational predictive mutation testing work\"\n    bib_key: \"kim2022seshat\"\n    category: \"mutation-testing\"\n\n  - title: \"A Comprehensive Study on Large Language Models for Mutation Testing\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv 2024\"\n    year: 2024\n    arxiv: \"2406.09843\"\n    relevance: \"LLM-generated mutants are more diverse and closer to real bugs; supports our use of mutations as training signal\"\n    bib_key: \"wang2024llmmutation\"\n    category: \"mutation-testing\"\n\n  # === Foundation Models ===\n  - title: \"Qwen3 Technical Report\"\n    authors: \"Yang et al. (Qwen Team)\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2505.09388\"\n    relevance: \"Base model used in our experiments\"\n    bib_key: \"yang2025qwen3\"\n    category: \"foundation-models\"\n\n  - title: \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\"\n    authors: \"Guo et al.\"\n    venue: \"arXiv 2024\"\n    year: 2024\n    arxiv: \"2401.14196\"\n    relevance: \"Strong open-source code model; baseline and comparison point for code understanding\"\n    bib_key: \"guo2024deepseekcoder\"\n    category: \"foundation-models\"\n\n  # === Code Generation Benchmarks ===\n  - title: \"Evaluating Large Language Models Trained on Code\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv 2021\"\n    year: 2021\n    arxiv: \"2107.03374\"\n    relevance: \"Introduces HumanEval benchmark and pass@k metric; standard evaluation methodology\"\n    bib_key: \"chen2021humaneval\"\n    category: \"code-benchmarks\"\n\n  - title: \"Program Synthesis with Large Language Models\"\n    authors: \"Austin et al.\"\n    venue: \"arXiv 2021\"\n    year: 2021\n    arxiv: \"2108.07732\"\n    relevance: \"Introduces MBPP benchmark; complements HumanEval for code generation evaluation\"\n    bib_key: \"austin2021mbpp\"\n    category: \"code-benchmarks\"\n\n  - title: \"CodeT: Code Generation with Generated Tests\"\n    authors: \"Chen et al.\"\n    venue: \"ICLR 2023\"\n    year: 2023\n    arxiv: \"2207.10397\"\n    relevance: \"Uses generated tests for dual execution agreement to rank code; related test-based verification approach\"\n    bib_key: \"chen2023codet\"\n    category: \"code-benchmarks\"\n\n  - title: \"Competition-Level Code Generation with AlphaCode\"\n    authors: \"Li et al.\"\n    venue: \"Science 2022\"\n    year: 2022\n    arxiv: \"2203.07814\"\n    relevance: \"Massive sampling + filtering/clustering for code generation; establishes generate-then-verify paradigm\"\n    bib_key: \"li2022alphacode\"\n    category: \"code-benchmarks\"\n\n  - title: \"AlphaCode 2 Technical Report\"\n    authors: \"AlphaCode Team (Google DeepMind)\"\n    venue: \"Technical Report, December 2023\"\n    year: 2023\n    arxiv: null\n    url: \"https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf\"\n    relevance: \"Gemini-powered code generation with search and reranking; advanced generate-filter-verify pipeline\"\n    bib_key: \"alphacode2023team\"\n    category: \"code-benchmarks\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "d0717164-3548-4309-b9b6-d6f78414ca63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVGsDHgXQfBgVnwV28ztwk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2815,
+      "cache_read_input_tokens": 54308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2815
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T09:43:22.111Z_
+
+<details><summary>↩ Tool result · `toolu_01BWvT5vBnTdgLiGYJVxbQcF`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bibliography_candidates.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "8265c6a2-98ab-4f39-952f-798ca0f41337",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/bibliography_candidates.yaml",
+    "content": "metadata:\n  purpose: \"Dream A2: bibliography expansion candidates\"\n  date: \"2026-05-17\"\n  target_count: \"25-30 total references\"\n  search_method: \"WebSearch verified (no memory-based entries)\"\n\ncandidates:\n  # === Parameter-Efficient Fine-Tuning ===\n  - title: \"LoRA: Low-Rank Adaptation of Large Language Models\"\n    authors: \"Hu et al.\"\n    venue: \"ICLR 2022\"\n    year: 2022\n    arxiv: \"2106.09685\"\n    relevance: \"Parameter-efficient fine-tuning method used in our CLS/CWM training\"\n    bib_key: \"hu2022lora\"\n    category: \"parameter-efficient-finetuning\"\n\n  - title: \"QLoRA: Efficient Finetuning of Quantized LLMs\"\n    authors: \"Dettmers et al.\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.14314\"\n    relevance: \"4-bit quantized LoRA enabling large model fine-tuning on single GPU; directly relevant to our training setup\"\n    bib_key: \"dettmers2023qlora\"\n    category: \"parameter-efficient-finetuning\"\n\n  # === SWE-bench Ecosystem ===\n  - title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Jimenez et al.\"\n    venue: \"ICLR 2024 (Oral)\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    relevance: \"Primary benchmark for real-world software engineering tasks; our verifier targets this evaluation setting\"\n    bib_key: \"jimenez2024swebench\"\n    category: \"swe-bench-ecosystem\"\n\n  - title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"Yang et al.\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    relevance: \"State-of-the-art SWE-bench agent; our verifier provides execution-free feedback for such agents\"\n    bib_key: \"yang2024sweagent\"\n    category: \"swe-bench-ecosystem\"\n\n  # === Code Evaluation Methods (Non-Execution) ===\n  - title: \"ICE-Score: Instructing Large Language Models to Evaluate Code\"\n    authors: \"Zhuo\"\n    venue: \"Findings of EACL 2024\"\n    year: 2024\n    arxiv: \"2304.14317\"\n    relevance: \"LLM-based execution-free code evaluation; related approach but uses prompting rather than trained verifier\"\n    bib_key: \"zhuo2024icescore\"\n    category: \"code-evaluation-non-execution\"\n\n  - title: \"CodeScore: Evaluating Code Generation by Learning Code Execution\"\n    authors: \"Dong et al.\"\n    venue: \"ACM TOSEM 2023\"\n    year: 2023\n    arxiv: \"2301.09043\"\n    relevance: \"Learns to predict execution outcomes for code evaluation; similar motivation to our execution simulation\"\n    bib_key: \"dong2023codescore\"\n    category: \"code-evaluation-non-execution\"\n\n  - title: \"CodeBERTScore: Evaluating Code Generation with Pretrained Models of Code\"\n    authors: \"Zhou et al.\"\n    venue: \"EMNLP 2023\"\n    year: 2023\n    arxiv: \"2302.05527\"\n    relevance: \"Embedding-based code evaluation metric; baseline approach for non-execution code assessment\"\n    bib_key: \"zhou2023codebertscore\"\n    category: \"code-evaluation-non-execution\"\n\n  # === Reasoning and Verification Theory ===\n  - title: \"Self-Consistency Improves Chain of Thought Reasoning in Language Models\"\n    authors: \"Wang et al.\"\n    venue: \"ICLR 2023\"\n    year: 2023\n    arxiv: \"2203.11171\"\n    relevance: \"Majority voting / self-consistency decoding; theoretical basis for our consensus-based verification\"\n    bib_key: \"wang2023selfconsistency\"\n    category: \"reasoning-verification\"\n\n  - title: \"Let's Verify Step by Step\"\n    authors: \"Lightman et al.\"\n    venue: \"arXiv 2023\"\n    year: 2023\n    arxiv: \"2305.20050\"\n    relevance: \"Process vs outcome reward models; motivates our process-level execution simulation approach\"\n    bib_key: \"lightman2023verify\"\n    category: \"reasoning-verification\"\n\n  # === Code Reward Models / Verifiers (2022-2026) ===\n  - title: \"SWE-RM: Execution-free Feedback For Software Engineering Agents\"\n    authors: \"Shum et al.\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2512.21919\"\n    relevance: \"Most directly related work: execution-free reward model for SWE agents using MoE architecture\"\n    bib_key: \"shum2025swerm\"\n    category: \"code-reward-model\"\n\n  - title: \"CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning\"\n    authors: \"Le et al.\"\n    venue: \"NeurIPS 2022\"\n    year: 2022\n    arxiv: \"2207.01780\"\n    relevance: \"Pioneering code verifier as critic network for RL-based code generation\"\n    bib_key: \"le2022coderl\"\n    category: \"code-reward-model\"\n\n  - title: \"Process-Supervised Reinforcement Learning for Code Generation\"\n    authors: \"Ye et al.\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2502.01715\"\n    relevance: \"Process-level reward model for code using mutation/refactoring-verification; related to our mutation-based training signal\"\n    bib_key: \"ye2025prlcoder\"\n    category: \"code-reward-model\"\n\n  - title: \"DreamPRM-Code: Function-as-Step Process Reward Model with Label Correction for LLM Coding\"\n    authors: \"DreamPRM Team\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2512.15000\"\n    relevance: \"Process reward model treating functions as reasoning steps; complementary verifier design philosophy\"\n    bib_key: \"dreamprm2025code\"\n    category: \"code-reward-model\"\n\n  # === Mutation Testing ===\n  - title: \"Contextual Predictive Mutation Testing\"\n    authors: \"Jain et al.\"\n    venue: \"ESEC/FSE 2023\"\n    year: 2023\n    arxiv: \"2309.02389\"\n    relevance: \"ML-based prediction of mutation detection outcomes; directly related to our execution simulation of test/mutation interactions\"\n    bib_key: \"jain2023contextual\"\n    category: \"mutation-testing\"\n\n  - title: \"Predictive Mutation Analysis via the Natural Language Channel in Source Code\"\n    authors: \"Kim et al.\"\n    venue: \"ACM TOSEM 2022\"\n    year: 2022\n    arxiv: \"2104.10865\"\n    relevance: \"Predicts kill matrix using NL features in code; foundational predictive mutation testing work\"\n    bib_key: \"kim2022seshat\"\n    category: \"mutation-testing\"\n\n  - title: \"A Comprehensive Study on Large Language Models for Mutation Testing\"\n    authors: \"Wang et al.\"\n    venue: \"arXiv 2024\"\n    year: 2024\n    arxiv: \"2406.09843\"\n    relevance: \"LLM-generated mutants are more diverse and closer to real bugs; supports our use of mutations as training signal\"\n    bib_key: \"wang2024llmmutation\"\n    category: \"mutation-testing\"\n\n  # === Foundation Models ===\n  - title: \"Qwen3 Technical Report\"\n    authors: \"Yang et al. (Qwen Team)\"\n    venue: \"arXiv 2025\"\n    year: 2025\n    arxiv: \"2505.09388\"\n    relevance: \"Base model used in our experiments\"\n    bib_key: \"yang2025qwen3\"\n    category: \"foundation-models\"\n\n  - title: \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\"\n    authors: \"Guo et al.\"\n    venue: \"arXiv 2024\"\n    year: 2024\n    arxiv: \"2401.14196\"\n    relevance: \"Strong open-source code model; baseline and comparison point for code understanding\"\n    bib_key: \"guo2024deepseekcoder\"\n    category: \"foundation-models\"\n\n  # === Code Generation Benchmarks ===\n  - title: \"Evaluating Large Language Models Trained on Code\"\n    authors: \"Chen et al.\"\n    venue: \"arXiv 2021\"\n    year: 2021\n    arxiv: \"2107.03374\"\n    relevance: \"Introduces HumanEval benchmark and pass@k metric; standard evaluation methodology\"\n    bib_key: \"chen2021humaneval\"\n    category: \"code-benchmarks\"\n\n  - title: \"Program Synthesis with Large Language Models\"\n    authors: \"Austin et al.\"\n    venue: \"arXiv 2021\"\n    year: 2021\n    arxiv: \"2108.07732\"\n    relevance: \"Introduces MBPP benchmark; complements HumanEval for code generation evaluation\"\n    bib_key: \"austin2021mbpp\"\n    category: \"code-benchmarks\"\n\n  - title: \"CodeT: Code Generation with Generated Tests\"\n    authors: \"Chen et al.\"\n    venue: \"ICLR 2023\"\n    year: 2023\n    arxiv: \"2207.10397\"\n    relevance: \"Uses generated tests for dual execution agreement to rank code; related test-based verification approach\"\n    bib_key: \"chen2023codet\"\n    category: \"code-benchmarks\"\n\n  - title: \"Competition-Level Code Generation with AlphaCode\"\n    authors: \"Li et al.\"\n    venue: \"Science 2022\"\n    year: 2022\n    arxiv: \"2203.07814\"\n    relevance: \"Massive sampling + filtering/clustering for code generation; establishes generate-then-verify paradigm\"\n    bib_key: \"li2022alphacode\"\n    category: \"code-benchmarks\"\n\n  - title: \"AlphaCode 2 Technical Report\"\n    authors: \"AlphaCode Team (Google DeepMind)\"\n    venue: \"Technical Report, December 2023\"\n    year: 2023\n    arxiv: null\n    url: \"https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf\"\n    relevance: \"Gemini-powered code generation with search and reranking; advanced generate-filter-verify pipeline\"\n    bib_key: \"alphacode2023team\"\n    category: \"code-benchmarks\"\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+文件已写入 `artifacts/bibliography_candidates.yaml`。
+
+共收集 23 篇候选论文，覆盖 7 个类别：
+- Parameter-Efficient Fine-Tuning: 2 篇 (LoRA, QLoRA)
+- SWE-bench Ecosystem: 2 篇 (SWE-bench, SWE-agent)
+- Code Evaluation (Non-Execution): 3 篇 (ICE-Score, CodeScore, CodeBERTScore)
+- Reasoning/Verification: 2 篇 (Self-Consistency, Let's Verify Step by Step)
+- Code Reward Models: 4 篇 (SWE-RM, CodeRL, PRLCoder, DreamPRM-Code)
+- Mutation Testing: 3 篇 (Contextual PMT, Seshat, LLM Mutation)
+- Foundation Models: 2 篇 (Qwen3, DeepSeek-Coder)
+- Code Benchmarks: 5 篇 (HumanEval, MBPP, CodeT, AlphaCode, AlphaCode 2)
+
+加上现有 ~10 篇引用，总计可达 30+ 篇，满足 reviewer 要求。每条均含 arXiv ID、venue、year、bib_key 和 relevance 说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "uuid": "d21ab5c6-dc35-464c-af42-3b67fce3bb31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBEh7nLjGoattDH2Cr3MA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2998,
+      "cache_read_input_tokens": 57123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2998
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+文件已写入 `artifacts/bibliography_candidates.yaml`。
+
+共收集 23 篇候选论文，覆盖 7 个类别：
+- Parameter-Efficient Fine-Tuning: 2 篇 (LoRA, QLoRA)
+- SWE-bench Ecosystem: 2 篇 (SWE-bench, SWE-agent)
+- Code Evaluation (Non-Execution): 3 篇 (ICE-Score, CodeScore, CodeBERTScore)
+- Reasoning/Verification: 2 篇 (Self-Consistency, Let's Verify Step by Step)
+- Code Reward Models: 4 篇 (SWE-RM, CodeRL, PRLCoder, DreamPRM-Code)
+- Mutation Testing: 3 篇 (Contextual PMT, Seshat, LLM Mutation)
+- Foundation Models: 2 篇 (Qwen3, DeepSeek-Coder)
+- Code Benchmarks: 5 篇 (HumanEval, MBPP, CodeT, AlphaCode, AlphaCode 2)
+
+加上现有 ~10 篇引用，总计可达 30+ 篇，满足 reviewer 要求。每条均含 arXiv ID、venue、year、bib_key 和 relevance 说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 167677,
+  "duration_api_ms": 305204,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "50f6be18-3a45-46b3-af1d-7f5b6ff47c84",
+  "total_cost_usd": 1.602689,
+  "usage": {
+    "input_tokens": 6749,
+    "cache_creation_input_tokens": 48420,
+    "cache_read_input_tokens": 428248,
+    "output_tokens": 6303,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 48420,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 350,
+        "cache_read_input_tokens": 57123,
+        "cache_creation_input_tokens": 2998,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2998
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 527380,
+      "outputTokens": 13448,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 30,
+      "costUSD": 0.8946199999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6749,
+      "outputTokens": 6303,
+      "cacheReadInputTokens": 428248,
+      "cacheCreationInputTokens": 48420,
+      "webSearchRequests": 0,
+      "costUSD": 0.7080690000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fa3d0ab5-ce7d-4d50-846d-af2ffae25e94"
+}
+```
+
+</details>
+
+---

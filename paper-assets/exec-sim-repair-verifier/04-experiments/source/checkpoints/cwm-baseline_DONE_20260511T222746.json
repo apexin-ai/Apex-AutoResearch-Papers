@@ -1,0 +1,50 @@
+{
+  "exp_id": "cwm-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T21:19:57.582Z",
+    "updated_at": "2026-05-11T22:27:46.303Z",
+    "hypothesis": "CWM generation baseline (预测 execution output) 的 per-class F1 显著低于 classification (87.1/87.9%)，验证 task reformulation (generation→classification) 的有效性",
+    "parent": "mvp-b-train",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_cwm/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm/best/ --output eval_cwm_results.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2126876",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm-baseline.log",
+      "submitted_at": "2026-05-11T21:28:15.525Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "wall_clock_seconds": 3570.8,
+      "gpu_hours": 0.99
+    },
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm/best",
+    "conclusion": "negative",
+    "metrics": {
+      "overall_accuracy": 87.51,
+      "pass_f1": 87.31,
+      "fail_f1": 87.71,
+      "pass_precision": 92.06,
+      "pass_recall": 83.03,
+      "fail_precision": 83.53,
+      "fail_recall": 92.32,
+      "exact_match_rate": 84.02,
+      "train_loss": 0.2534,
+      "eval_loss": 0.0644,
+      "train_runtime_sec": 3439,
+      "test_set_size": 1890,
+      "unparseable_predictions": 0
+    },
+    "notes": "CWM generation baseline 与 classification 结果几乎持平，假设未得到验证。CWM: acc=87.51%, pass_f1=87.31%, fail_f1=87.71% vs Classification: acc=87.5%, pass_f1=87.1%, fail_f1=87.9%。差值: acc +0.01pp, pass_f1 +0.21pp, fail_f1 -0.19pp。CWM 额外提供 exact_match_rate=84.02%（可用于更细粒度的错误定位）。Task reformulation (generation→classification) 在 pass/fail 判别上没有带来显著提升，但 classification 更轻量高效。IndexError/OverflowError 类别 CWM 表现较差（exact_match 25%/0%），说明生成式方法在罕见错误类型上泛化不足。",
+    "completed_at": "2026-05-11T22:27:46.303Z"
+  },
+  "timestamp": "2026-05-11T22:27:46.318221+00:00",
+  "trigger": "update_registry"
+}

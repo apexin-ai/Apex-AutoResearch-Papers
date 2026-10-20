@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0897b7aa676ee7b5755f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d045 home cls earlystop eval seed123",
+  "task_key": "worker_ssh_d045-home-cls-earlystop-eval-seed123_20260513T062216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d045-home-cls-earlystop-eval-seed123_20260513T062216_result.json",
+    "occurrence": 1,
+    "bytes": 1784,
+    "sha256": "e7019e6f07006c5fba1082783e09febac766900071343828bdaaa9a32f5518fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered. Here's the complete task summary:\n\n---\n\n## D045 Task — All 4 Steps Complete\n\n### Step 1: Checkpoint-200 验证 ✓\n- **路径**: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/checkpoint-200/`\n- **状态**: 完整。包含 adapter_config.json, adapter_model.safetensors (47MB), optimizer.pt (94MB), trainer_state.json 等\n- LoRA checkpoint 不含 tokenizer 文件，属正常\n\n### Step 2: Kill CLS v4 训练进程 ✓\n- PID 2885139 (parent) + 2885141 (child) 均已 kill\n- GPU 内存已释放\n\n### Step 3: CLS Eval on checkpoint-200 ✓\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **66.11%** |\n| Majority baseline | 72.96% (gap: **-6.85pp**) |\n| F1 macro | **56.61%** |\n| F1 fail | 36.3% (P=36.9%, R=35.7%) |\n| F1 pass | 76.9% (P=76.5%, R=77.4%) |\n| Confusion | TP=5523, TN=945, FP=1701, FN=1615 |\n| Unparseable | 132 |\n| Predictions | `/home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval/eval_repo_cls_predictions.jsonl` |\n\n### Step 4: CLS seed123 训练已启动 ✓\n- **PID**: 2940525 (python3), parent bash PID 2940520\n- **脚本**: `train_repo_verifier_seed123.py` (eval_steps=100, save_steps=100, save_total_limit=5)\n- **输出目录**: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123/`\n- **日志**: `/tmp/repo-level-cls-seed123_stdout.log`\n- **GPU**: 19.9GB / 32.6GB\n- **进度**: step 3/6633, ~6.9s/it, 训练正常推进\n- **修复**: 升级 accelerate 1.1.1 → 1.13.0 解决 `unwrap_model()` 兼容性问题\n\n### Errors encountered & resolved\n1. Tokenizer 从 checkpoint_dir 加载失败 → 改为从 base model 加载\n2. CUDA OOM (残留子进程占 19GB) → kill 子进程释放 GPU\n3. accelerate 版本不兼容 → pip install -U accelerate"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d045-home-cls-earlystop-eval-seed123.md"
+}

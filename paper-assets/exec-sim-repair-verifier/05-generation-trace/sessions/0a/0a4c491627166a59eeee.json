@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a4c491627166a59eeee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "verify cwm checkpoints",
+  "task_key": "worker_verify_cwm-checkpoints_20260517T174042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cwm-checkpoints_20260517T174042_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "a41c6001a3185dcb8cfa601c767e2ebcf6f71dcae711fa564cf68774eb037d3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MD5 完全一致。结论明确：\n\n```\n=== CWM s123 ===\nAvailable checkpoints: checkpoint-4422 (epoch 1), checkpoint-8844 (epoch 2)\ncheckpoint-13266 exists: NO\nTraining process: not running (stopped at epoch 2)\nCurrent eval: PID 668680, using checkpoint-8844 (epoch 2, latest available)\nAction taken: 继续当前 eval，无更优 checkpoint 可用\n\n=== CWM s42 ===\nbest/ global_step: 13266 (无 trainer_state，通过 md5 确认)\nbest/ epoch: 3.0 (= last epoch)\nLast-epoch checkpoint: checkpoint-13266 (step 13266, epoch 3.0)\nbest/ == last-epoch: YES (md5 e99085b4b34cd4a87ba53197f8c60948 完全一致)\nCurrent eval: PID 662946, using best/ on cuda:0\nAction taken: 无需操作，已在用 last-epoch checkpoint\n```\n\n**需要关注**: s123 训练似乎在 epoch 2 后中断（max_steps=13266 但只到 8844），没有训练进程在跑。如果需要 epoch 3 的 checkpoint，需要恢复训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cwm-checkpoints.md"
+}

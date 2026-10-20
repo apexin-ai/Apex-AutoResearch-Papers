@@ -1,0 +1,44 @@
+{
+  "exp_id": "cls8b-s42-ckpt800-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:21:53.215Z",
+    "updated_at": "2026-05-15T04:46:20.269Z",
+    "hypothesis": "补充 test curve 第四个数据点: 8B CLS s42 ckpt-800 test@8192。已有 400(84.79%)/600(79.05%)/1000(83.52%)，补 800 使 curve 更完整",
+    "parent": "repo-level-cls-8b-conda",
+    "spec": {
+      "command": "python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800",
+      "eval_data": "swebench_test",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "log_path": "/tmp/eval_cls8b_ckpt800_test8192.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800",
+      "parent": "repo-level-cls-8b-s42-resume"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 83.53,
+      "f1_macro": 78.97,
+      "f1_fail": 69.2,
+      "f1_pass": 88.8,
+      "precision_fail": 70.1,
+      "recall_fail": 68.3,
+      "precision_pass": 88.4,
+      "recall_pass": 89.2,
+      "n_unparseable": 0,
+      "n_total": 9784
+    },
+    "completed_at": "2026-05-15T04:46:19.522Z"
+  },
+  "timestamp": "2026-05-15T04:46:20.651523+00:00",
+  "trigger": "update_registry"
+}

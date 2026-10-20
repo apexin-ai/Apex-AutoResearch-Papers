@@ -1,0 +1,36 @@
+{
+  "exp_id": "5-paired-clustered-bootstrap",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:10:42.139Z",
+    "updated_at": "2026-05-12T14:10:48.499Z",
+    "hypothesis": "5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 variant 级别是否等价（扩展之前 3-paired 分析）",
+    "conclusion": "success",
+    "metrics": {
+      "pooled_gap_pp": -0.45,
+      "pooled_ci_lower": -1.71,
+      "pooled_ci_upper": 0.84,
+      "pooled_p_value": 0.499,
+      "tost_p_value": 0.0071,
+      "tost_margin_pp": 2,
+      "seed_level_paired_t_p": 0.425,
+      "seed_level_mean_gap": -0.48,
+      "n_variants_pooled": 523,
+      "n_clusters": 114,
+      "per_seed_gaps": {
+        "seed42": -0.97,
+        "seed123": 1.45,
+        "seed456": -1.84,
+        "seed789": -0.78,
+        "seed0": -0.29
+      }
+    },
+    "notes": "5-paired 扩展了之前 3-paired 分析。核心发现：CLS 和 TRAJ 在 variant 级别统计等价（TOST p=0.0071, margin ±2pp），无显著差异（gap=-0.45pp, p=0.499）。确认 D018：per-test CLS 聚合到 variant 级别后与 TRAJ 表现一致。注意：seed 789/0 使用 4-bit 量化推理（低于 bf16 ~2-3pp），但 paired 比较内部一致。结果保存在 home:/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_5paired.json。"
+  },
+  "timestamp": "2026-05-12T14:10:48.592225+00:00",
+  "trigger": "update_registry"
+}

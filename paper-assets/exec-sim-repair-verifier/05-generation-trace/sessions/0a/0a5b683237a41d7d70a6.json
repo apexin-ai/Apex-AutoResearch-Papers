@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a5b683237a41d7d70a6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor 8b val5120 collect and 4b sweep",
+  "task_key": "worker_monitor_8b-val5120-collect-and-4b-sweep_20260514T155830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_8b-val5120-collect-and-4b-sweep_20260514T155830_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "e40416e131d59119d9780b6ac6aae966b0a995158cd77e23c3ed058f75856f1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B ckpt-400 val@5120 状态：1600/9335 (17.1%), running_acc=80.7%。预计 ckpt-400 还需约 30 分钟完成。已设置 4.5 分钟后轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-8b-val5120-collect-and-4b-sweep.md"
+}

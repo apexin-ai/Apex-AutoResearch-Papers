@@ -1,0 +1,50 @@
+{
+  "exp_id": "deepseek-cls-repo-s456-train-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:30:24.175Z",
+    "updated_at": "2026-05-19T22:35:15.096Z",
+    "hypothesis": "DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage。修复D154 config confound + v2参数修复（--task替代--formulation, --model_name_or_path替代--model_name）。",
+    "parent": "deepseek-cls-repo-v5",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --task cls --data_dir data/swebench_full --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s456_v2/ --seed 456 --max_seq_length 8192 --epochs 3 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "842751",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 70748,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 456,
+      "max_seq_length": 8192,
+      "checkpoint_source": "from-scratch"
+    },
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:3",
+    "pid": "842751",
+    "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s456-train-v3.log",
+    "reproduce": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --task cls --data_dir data/swebench_full --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s456_v2/ --seed 456 --max_seq_length 8192 --epochs 3 --no_wandb",
+      "finished_at": "2026-05-19T22:32:09.191Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T22:32:07.819Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T22:32:24.572463+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T22:35:15.489767+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "comparison": "CLS vs TRAJ (Qwen3-4B, 5-seed, 523 variants)",
+  "mean_diff_pp": 1.24,
+  "se_d": 0.1821,
+  "n_seeds": 5,
+  "df": 4,
+  "alpha": 0.05,
+  "min_equivalence_margin_pp": 1.628,
+  "results": [
+    {
+      "margin_pp": 1,
+      "p_value": 0.870999,
+      "conclusion": "not equivalent at α=0.05"
+    },
+    {
+      "margin_pp": 2,
+      "p_value": 0.007,
+      "conclusion": "equivalent at α=0.05"
+    },
+    {
+      "margin_pp": 3,
+      "p_value": 0.000321,
+      "conclusion": "equivalent at α=0.05"
+    }
+  ],
+  "latex_table": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{TOST equivalence test sensitivity across margins (Qwen3-4B, 5 seeds, 523 variants per seed). Mean accuracy difference: $\\bar{d} = 1.24$ pp.}\n\\label{tab:tost-sensitivity}\n\\begin{tabular}{ccc}\n\\toprule\nMargin $\\delta$ (pp) & TOST $p$-value & Equivalent ($\\alpha{=}0.05$)? \\\\\n\\midrule\n$\\pm 1$ & 0.871 & No \\\\\n$\\pm 2$ & 0.007 & Yes \\\\\n$\\pm 3$ & $< 0.001$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+}

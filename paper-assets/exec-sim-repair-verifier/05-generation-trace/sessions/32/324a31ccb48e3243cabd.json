@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "324a31ccb48e3243cabd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 8b per mutation precision recall",
+  "task_key": "worker_analysis_8b-per-mutation-precision-recall_20260516T014054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_8b-per-mutation-precision-recall_20260516T014054_result.json",
+    "occurrence": 1,
+    "bytes": 2423,
+    "sha256": "cd7ba9c4fa7872b68faa6805fb40c0749641b0ce58fb464e354e3fb8cfc8452b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。纯 CPU 任务，**cuda:0 空闲可分配**。\n\n## Per-mutation-type 8B vs 4B 对比\n\n**配置差异**: 8B = Qwen3-8B ckpt-3600, seq=8192 | 4B = Qwen3-4B ckpt-600, seq=2048\n\n### Fail 类检测（诊断能力核心指标）\n\n| mutation_type | N | 8B P(fail) | 8B R(fail) | 8B F1(fail) | 4B P(fail) | 4B R(fail) | 4B F1(fail) | ΔF1 |\n|---|---|---|---|---|---|---|---|---|\n| gold | 4633 | — | — | — | — | — | — | — |\n| operator_swap | 3357 | 90.62 | 69.65 | 78.76 | 74.31 | 77.70 | 75.97 | **+2.79** |\n| boundary_removal | 1049 | 64.10 | 20.42 | 30.98 | 60.89 | 82.68 | 70.13 | **-39.15** |\n| return_value | 562 | 97.85 | 57.59 | 72.51 | 73.06 | 83.23 | 77.81 | **-5.30** |\n| off_by_one | 183 | 85.71 | 66.67 | 75.00 | 45.00 | 66.67 | 53.73 | **+21.27** |\n\n### 总体指标（Accuracy / F1 macro）\n\n| mutation_type | N | 8B Acc | 4B Acc | ΔAcc | 8B F1mac | 4B F1mac | ΔF1mac |\n|---|---|---|---|---|---|---|---|\n| gold | 4633 | 96.24 | 82.80 | **+13.44** | 49.05 | 45.30 | +3.75 |\n| operator_swap | 3357 | 81.38 | 75.63 | **+5.75** | 81.09 | 75.63 | **+5.46** |\n| boundary_removal | 1049 | 46.90 | 58.91 | **-12.01** | 43.92 | 52.16 | **-8.24** |\n| return_value | 562 | 75.44 | 73.31 | +2.13 | 75.16 | 72.16 | +3.00 |\n| off_by_one | 183 | 86.89 | 66.12 | **+20.77** | 83.06 | 63.50 | **+19.56** |\n\n### 关键发现\n\n**支持 Claim 2 的**: \n- **off_by_one**: 8B F1mac +19.56pp，最大提升，说明更大模型更擅长捕捉细微的 off-by-one 错误\n- **operator_swap**: 8B F1mac +5.46pp，最大类别（n=3357），稳定提升\n- **gold**: 8B accuracy +13.44pp，正确 patch 识别率显著提高\n\n**不利于 Claim 2 的**:\n- **boundary_removal**: 8B F1mac -8.24pp，fail recall 从 82.68% 暴跌至 20.42%。8B 几乎把所有 boundary_removal mutation 都判成 pass，严重漏检\n- **return_value**: fail F1 -5.30pp，8B fail recall 也偏低（57.59% vs 83.23%）\n\n**模式**: 8B 整体 pass bias 更强——在 gold 上受益（更准），但在 boundary_removal/return_value 上导致漏检 mutation。这可能与 seq_len 差异（8192 vs 2048）有关，更长 context 可能让模型倾向于认为 patch 是对的。\n\n**建议**: Claim 2 需要 nuanced framing——scaling 在 operator_swap 和 off_by_one 上有效，但 boundary_removal 是明显的 failure mode，论文中需要讨论这个 pass bias trade-off。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-8b-per-mutation-precision-recall.md"
+}

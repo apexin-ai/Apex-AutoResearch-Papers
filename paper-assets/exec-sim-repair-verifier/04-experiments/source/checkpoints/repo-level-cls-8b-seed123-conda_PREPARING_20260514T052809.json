@@ -1,0 +1,37 @@
+{
+  "exp_id": "repo-level-cls-8b-seed123-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:28:09.211Z",
+    "updated_at": "2026-05-14T05:28:09.211Z",
+    "spec": {
+      "hypothesis": "D058: 8B CLS seed123 repo-level，与 8B CLS seed42 (84.52%) 配对。报 8B CLS mean±std，增强 scaling 证据。",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/",
+      "server": "westd-48478",
+      "gpu": "cuda:3",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "max_seq_length": 2048,
+      "env": "conda base, transformers 4.57.6"
+    }
+  },
+  "timestamp": "2026-05-14T05:28:09.411268+00:00",
+  "trigger": "update_registry"
+}

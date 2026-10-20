@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123-train-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:18:41.990Z",
+    "updated_at": "2026-05-21T06:37:29.504Z",
+    "hypothesis": "DeepSeek CWM repo-level s123 恢复训练 v3：从 v2 的 checkpoint-4209（epoch 1）恢复，跑完剩余 2 epochs。v2 被 ssh_execute timeout (EXIT_CODE=124) 在 step 4423 杀死。使用 --train_file swebench_full/swebench_train.jsonl，与 s42 对齐。",
+    "parent": "deepseek-cwm-repo-s123-train-v2"
+  },
+  "timestamp": "2026-05-21T06:37:29.986990+00:00",
+  "trigger": "update_registry"
+}

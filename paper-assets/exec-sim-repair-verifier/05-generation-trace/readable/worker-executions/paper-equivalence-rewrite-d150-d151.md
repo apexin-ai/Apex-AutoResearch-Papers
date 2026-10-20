@@ -1,0 +1,674 @@
+# paper equivalence rewrite d150 d151
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_paper_equivalence-rewrite-d150-d151_20260519T072313.log`
+- **Structured JSON:** [`f08c334a4e98137fa8d7.json`](../../sessions/f0/f08c334a4e98137fa8d7.json)
+
+## Before a recorded user message
+
+13 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c27b9e49-5878-4f81-82b5-3df27eee85c0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779183000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "00e674e9-02c7-4b2e-afef-d9cae37b4ffb",
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading all four files that need modification to understand the current state before making changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "22bb5788-94c4-4b87-9db4-36c1ddc40c98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取需要修改的 4 个文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "e5f8e5ac-dd2c-4a66-b68b-0e5f688abe1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TZk8NAuY3eKW6Puq3Luox8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+  "offset": 85,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "dfec4e1b-a09c-4520-930b-6f75d4523ddd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T07:23:25.707Z_
+
+<details><summary>↩ Tool result · `toolu_01TZk8NAuY3eKW6Puq3Luox8`</summary>
+
+```text
+85	\traj{} & 8B & 87.60 & 87.79 & 87.70 & \\
+86	\bottomrule
+87	\end{tabular}
+88	\end{table}
+89	
+90	\cls{} and \traj{} both scale positively from 4B to 8B (+1.27\pp{} and +1.70\pp{} respectively), while \cwm{} remains flat ($-$0.03\pp{}). At 8B, the ranking is \cls{} (89.94) $>$ \traj{} (87.70) $>$ \cwm{} (87.33). The \cls{}--\cwm{} gap widens from 1.32\pp{} at 4B to 2.62\pp{} at 8B (Figure~\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \cls{}/\cwm{}) yields $p = 0.0066$ (95\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.
+91	
+92	\cwm{} stagnation ($-$0.03\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \emph{cannot} benefit from scale. The interaction between formulation and scale amplifies at repository-level complexity (\S\ref{sec:repo}), where \traj{} also shows no scaling benefit (72.92\% at both 4B and 8B); only \cls{} scales positively across both complexity levels.
+93	
+94	
+95	\subsection{Function-Level Formulation Comparison}
+96	\label{sec:equivalence}
+97	
+98	\cls{} matches \cwm{} within $\pm$2\pp{} (TOST $p = 0.007$, observed gap 1.24\pp{}, 5 seeds; Appendix Table~\ref{tab:tost_sensitivity}); the minimum equivalence margin is $\pm$1.63\pp{}. \cls{} shows a small advantage over \traj{} ($+$1.89\pp{} mean across 3 paired seeds, df${=}$2; TOST $p = 0.230$ at $\pm$2\pp{}, $p = 0.020$ at $\pm$2.5\pp{}; Appendix Table~\ref{tab:tost_cls_traj}). Among the three formulations, \cls{} achieves the best or comparable accuracy across all function-level settings. Within-problem predictions are correlated (ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \cls{}--\cwm{} gap of 0.02\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered (TOST not significant even at $\pm$5\pp{} margin). Per-test classification provides diagnostic information (which specific tests fail) at comparable or better accuracy, paralleling process supervision~\cite{lightman2023letsverify} where step-level verification enables error localization.
+99	
+100	The \cls{}--\cwm{} equivalence is margin-sensitive: at $\pm$1\pp{}, the observed gap prevents rejection ($p = 0.871$); our $\pm$2\pp{} margin reflects the minimal clinically meaningful difference for verification accuracy (Appendix Table~\ref{tab:tost_sensitivity}). Oracle analysis on SWE-bench Verified (500 instances) shows that per-test advantage concentrates at $T \geq 2$ fail-to-pass tests (31.3\% of instances, contributing 55.3\% of the total oracle advantage; Appendix~\ref{app:oracle}).
+101	
+102	
+103	\subsection{Repo-Level: Complexity-Dependent Divergence}
+104	\label{sec:repo}
+105	
+106	Table~\ref{tab:repo_level} compares \cls{} and \cwm{} on SWE-bench Verified per-test classification at repository-level complexity. Checkpoints are val-selected where validation loss is computable (see \S\ref{sec:setup}); the test set ($n{=}9{,}784$) has zero problem overlap with validation. We report both overall accuracy (where unparseable outputs default to the majority class, pass) and parseable-only accuracy to disentangle generation quality from default assignment effects.
+107	
+108	\begin{table}[t]
+109	\centering
+110	\small
+111	\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set ($n{=}9{,}784$). \cwm{} unparseable outputs default to pass (majority class). Seeds: Qwen3 primary seed 42; DeepSeek \traj{} 6 seeds.}
+112	\label{tab:repo_level}
+113	\resizebox{\columnwidth}{!}{%
+114	\setlength{\tabcolsep}{4pt}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "3172e7b0-8676-4e4c-9a0e-6f7540b3855b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+      "content": "\\traj{} & 8B & 87.60 & 87.79 & 87.70 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +1.70\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \\cls{}/\\cwm{}) yields $p = 0.0066$ (95\\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.\n\n\\cwm{} stagnation ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. The interaction between formulation and scale amplifies at repository-level complexity (\\S\\ref{sec:repo}), where \\traj{} also shows no scaling benefit (72.92\\% at both 4B and 8B); only \\cls{} scales positively across both complexity levels.\n\n\n\\subsection{Function-Level Formulation Comparison}\n\\label{sec:equivalence}\n\n\\cls{} matches \\cwm{} within $\\pm$2\\pp{} (TOST $p = 0.007$, observed gap 1.24\\pp{}, 5 seeds; Appendix Table~\\ref{tab:tost_sensitivity}); the minimum equivalence margin is $\\pm$1.63\\pp{}. \\cls{} shows a small advantage over \\traj{} ($+$1.89\\pp{} mean across 3 paired seeds, df${=}$2; TOST $p = 0.230$ at $\\pm$2\\pp{}, $p = 0.020$ at $\\pm$2.5\\pp{}; Appendix Table~\\ref{tab:tost_cls_traj}). Among the three formulations, \\cls{} achieves the best or comparable accuracy across all function-level settings. Within-problem predictions are correlated (ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered (TOST not significant even at $\\pm$5\\pp{} margin). Per-test classification provides diagnostic information (which specific tests fail) at comparable or better accuracy, paralleling process supervision~\\cite{lightman2023letsverify} where step-level verification enables error localization.\n\nThe \\cls{}--\\cwm{} equivalence is margin-sensitive: at $\\pm$1\\pp{}, the observed gap prevents rejection ($p = 0.871$); our $\\pm$2\\pp{} margin reflects the minimal clinically meaningful difference for verification accuracy (Appendix Table~\\ref{tab:tost_sensitivity}). Oracle analysis on SWE-bench Verified (500 instances) shows that per-test advantage concentrates at $T \\geq 2$ fail-to-pass tests (31.3\\% of instances, contributing 55.3\\% of the total oracle advantage; Appendix~\\ref{app:oracle}).\n\n\n\\subsection{Repo-Level: Complexity-Dependent Divergence}\n\\label{sec:repo}\n\nTable~\\ref{tab:repo_level} compares \\cls{} and \\cwm{} on SWE-bench Verified per-test classification at repository-level complexity. Checkpoints are val-selected where validation loss is computable (see \\S\\ref{sec:setup}); the test set ($n{=}9{,}784$) has zero problem overlap with validation. We report both overall accuracy (where unparseable outputs default to the majority class, pass) and parseable-only accuracy to disentangle generation quality from default assignment effects.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set ($n{=}9{,}784$). \\cwm{} unparseable outputs default to pass (majority class). Seeds: Qwen3 primary seed 42; DeepSeek \\traj{} 6 seeds.}\n\\label{tab:repo_level}\n\\resizebox{\\columnwidth}{!}{%\n\\setlength{\\tabcolsep}{4pt}",
+      "numLines": 30,
+      "startLine": 85,
+      "totalLines": 176
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017xdxRxkkuMC6uwDSWAK957`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "3d03a4d3-d714-4a8a-8fb0-268c6c4f9ac9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T07:23:26.250Z_
+
+<details><summary>↩ Tool result · `toolu_017xdxRxkkuMC6uwDSWAK957`</summary>
+
+```text
+1	\begin{abstract}
+2	Execution-free verification for LLM-based code repair can be formulated as per-test binary classification (\cls{}), execution output generation (\cwm{}), or trajectory-level patch scoring, yet no controlled comparison exists across formulations. We evaluate all three on the same source data with formulation-appropriate label granularity at controlled model sizes (4--8B LoRA fine-tuning).
+3	
+4	At function level, formulations achieve near-equivalent accuracy (\cls{} 88.4\% vs.\ \cwm{} 87.2\% at 4B, 5 seeds; Two One-Sided Tests (TOST) \cls{}--\cwm{} equivalence at $p{=}0.007$). At repository level, divergence amplifies to 19--26\pp{}, with \cwm{} falling below majority baseline due to format non-compliance and output space complexity. Cross-model validation (Qwen3, DeepSeek-Coder) confirms this pattern is consistent across both families but model-contingent in magnitude.
+5	
+6	Two findings generalize. First, per-test classification provides diagnostic granularity (which tests fail) at the best or comparable accuracy across formulations, with the advantage concentrating in multi-failure instances. Second, formulations exhibit complementary errors (oracle ensemble: 90.63\%). \cls{} achieves the highest or equivalent accuracy across conditions, but aggregation penalty and error complementarity motivate complexity-aware routing.
+7	\end{abstract}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "34f31464-8f75-4947-9b1b-525050469c1c",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nExecution-free verification for LLM-based code repair can be formulated as per-test binary classification (\\cls{}), execution output generation (\\cwm{}), or trajectory-level patch scoring, yet no controlled comparison exists across formulations. We evaluate all three on the same source data with formulation-appropriate label granularity at controlled model sizes (4--8B LoRA fine-tuning).\n\nAt function level, formulations achieve near-equivalent accuracy (\\cls{} 88.4\\% vs.\\ \\cwm{} 87.2\\% at 4B, 5 seeds; Two One-Sided Tests (TOST) \\cls{}--\\cwm{} equivalence at $p{=}0.007$). At repository level, divergence amplifies to 19--26\\pp{}, with \\cwm{} falling below majority baseline due to format non-compliance and output space complexity. Cross-model validation (Qwen3, DeepSeek-Coder) confirms this pattern is consistent across both families but model-contingent in magnitude.\n\nTwo findings generalize. First, per-test classification provides diagnostic granularity (which tests fail) at the best or comparable accuracy across formulations, with the advantage concentrating in multi-failure instances. Second, formulations exhibit complementary errors (oracle ensemble: 90.63\\%). \\cls{} achieves the highest or equivalent accuracy across conditions, but aggregation penalty and error complementarity motivate complexity-aware routing.\n\\end{abstract}",
+      "numLines": 7,
+      "startLine": 1,
+      "totalLines": 7
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017kLnZ11ngWniSDaeWaiwDK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "fc78379e-57aa-4809-bfd4-b753e11e8382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T07:23:26.729Z_
+
+<details><summary>↩ Tool result · `toolu_017kLnZ11ngWniSDaeWaiwDK`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	LLM-based automated program repair systems increasingly rely on test-time compute scaling: generating $K$ candidate patches and selecting the best via a verifier~\cite{snell2024scaling}. Full execution verification is reliable but expensive (\$1--3 per candidate at repository scale\footnote{Based on per-instance costs reported by \citet{yang2024sweagent} and \citet{xia2024agentless}.}), driving demand for execution-free alternatives. Three distinct formulations have emerged for this task: \textbf{generation-based simulation}~\cite{meta2025cwm,maimon2026selfexecution} predicts execution output strings per test; \textbf{trajectory-level scoring}~\cite{shum2025swerm} predicts a binary patch verdict without per-test decomposition; and \textbf{per-test classification}~\cite{ni2023lever,chen2023codet} predicts a pass/fail token per test. Each makes different tradeoffs between diagnostic granularity, output complexity, and inference cost.
+5	
+6	Despite active development along each axis, no prior work provides a controlled comparison holding model capacity, training data, and compute constant. Practitioners choosing a formulation for their verification pipeline must rely on results from different models, different datasets, and different evaluation protocols. Whether one formulation is uniformly preferable, or whether the choice depends on properties of the code being verified, remains an open empirical question. A related question is whether formulation choice matters at all relative to more basic decisions: at what complexity level does fine-tuning become necessary, and does formulation selection add value beyond what fine-tuning alone provides?
+7	
+8	We present the first systematic comparison of these three formulations across two model families (Qwen3, DeepSeek-Coder), two complexity levels (function-level and repository-level), and multiple seeds. Our results reveal a three-layer structure in the verification design space. Repository-level verification is inherently harder than function-level (0-shot accuracy drops below majority baseline). Fine-tuning is necessary under standard prompting (0-shot$\to$fine-tuned gains of 25--35\pp{} at repo level). Even after fine-tuning, \emph{formulation choice is governed by a formulation $\times$ model $\times$ complexity interaction}: at function-level complexity, formulations achieve comparable accuracy (\cls{} matching or slightly exceeding both alternatives); at repository-level complexity, formulations diverge sharply, with the divergence being consistent in direction across both model families but model-contingent in magnitude. Figure~\ref{fig:reformulation} illustrates the three formulations.
+9	
+10	We make the following contributions:
+11	
+12	\begin{itemize}[leftmargin=*,itemsep=2pt]
+13	\item \textbf{Formulation equivalence at low complexity.} On function-level benchmarks, \cls{}, \cwm{}, and \traj{} achieve near-identical accuracy across two model families (Qwen3-4B: 88.4/87.2/86.3\%, 5 seeds; DeepSeek-6.7B: 86.9/86.8\%, 2 seeds). The \cls{}--\cwm{} gap is 0.02--1.24\pp{}, within seed noise in both cases. This null result establishes that classification is not inherently easier than generation when execution outputs are short and structured.
+14	
+15	\item \textbf{Complexity-dependent divergence with formulation $\times$ model interaction.} At repository-level complexity under 4--8B LoRA fine-tuning, \cls{} achieves 19--26\pp{} higher accuracy than \cwm{} on Qwen3. Cross-model validation with DeepSeek-Coder is consistent with a formulation-driven explanation, though single-seed constraints limit causal attribution: both families show \cwm{} $\gg$ \cls{} degradation from function to repo level (Qwen3: ${\sim}$5/22\pp{}; DeepSeek: 4--12/25--30\pp{} for \cls{}/\cwm{}). The magnitude is both model-contingent and seed-dependent: DeepSeek \cls{} degradation ranges from ${\sim}$4\pp{} (s42) to ${\sim}$12\pp{} (s123). Preliminary data suggests \cwm{} exhibits higher seed variance at repo level (${\sim}$5\pp{} range; \cls{} Qwen3-8B spread ${\sim}$1\pp{}; DeepSeek \cls{} spread of ${\sim}$8\pp{} conflates seed with preprocessing differences), with no overtraining under our protocol. Variant-level analysis reveals three distinct repo-level failure modes governed by formulation $\times$ checkpoint: format collapse (\cwm{}), decision collapse (\cls{}, checkpoint-dependent), and aggregation penalty (\cls{}); the same model family exhibits different modes depending on checkpoint selection (\S\ref{sec:repo}).
+16	
+17	\item \textbf{Error complementarity.} \cls{} and \cwm{} exhibit opposite error patterns: \cls{} over-predicts passing (75.5\% false negatives), \cwm{} over-predicts failure (83.1\% false positives). An oracle ensemble achieves 90.63\% (+3.12\pp{}).
+18	
+19	\item \textbf{Diagnostic granularity with configuration-dependent cost.} Per-test classification matches \cwm{} (TOST $p = 0.007$) and shows a small advantage over \traj{} ($+$1.89\pp{}) at function level, while identifying which specific tests fail. At repo level, aggregation penalty under the all-pass rule is configuration-dependent: DeepSeek s42 achieves 81.25\% variant-level (1.36\pp{} penalty), matching or exceeding trajectory-level (75.35\%), while other configurations pay 4--19\pp{} (\S\ref{sec:analysis}(k)). Classification yields 217$\times$ throughput over generation.
+20	\end{itemize}
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "1c2ab053-adfd-4937-bfd3-c2e06433e44f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nLLM-based automated program repair systems increasingly rely on test-time compute scaling: generating $K$ candidate patches and selecting the best via a verifier~\\cite{snell2024scaling}. Full execution verification is reliable but expensive (\\$1--3 per candidate at repository scale\\footnote{Based on per-instance costs reported by \\citet{yang2024sweagent} and \\citet{xia2024agentless}.}), driving demand for execution-free alternatives. Three distinct formulations have emerged for this task: \\textbf{generation-based simulation}~\\cite{meta2025cwm,maimon2026selfexecution} predicts execution output strings per test; \\textbf{trajectory-level scoring}~\\cite{shum2025swerm} predicts a binary patch verdict without per-test decomposition; and \\textbf{per-test classification}~\\cite{ni2023lever,chen2023codet} predicts a pass/fail token per test. Each makes different tradeoffs between diagnostic granularity, output complexity, and inference cost.\n\nDespite active development along each axis, no prior work provides a controlled comparison holding model capacity, training data, and compute constant. Practitioners choosing a formulation for their verification pipeline must rely on results from different models, different datasets, and different evaluation protocols. Whether one formulation is uniformly preferable, or whether the choice depends on properties of the code being verified, remains an open empirical question. A related question is whether formulation choice matters at all relative to more basic decisions: at what complexity level does fine-tuning become necessary, and does formulation selection add value beyond what fine-tuning alone provides?\n\nWe present the first systematic comparison of these three formulations across two model families (Qwen3, DeepSeek-Coder), two complexity levels (function-level and repository-level), and multiple seeds. Our results reveal a three-layer structure in the verification design space. Repository-level verification is inherently harder than function-level (0-shot accuracy drops below majority baseline). Fine-tuning is necessary under standard prompting (0-shot$\\to$fine-tuned gains of 25--35\\pp{} at repo level). Even after fine-tuning, \\emph{formulation choice is governed by a formulation $\\times$ model $\\times$ complexity interaction}: at function-level complexity, formulations achieve comparable accuracy (\\cls{} matching or slightly exceeding both alternatives); at repository-level complexity, formulations diverge sharply, with the divergence being consistent in direction across both model families but model-contingent in magnitude. Figure~\\ref{fig:reformulation} illustrates the three formulations.\n\nWe make the following contributions:\n\n\\begin{itemize}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Formulation equivalence at low complexity.} On function-level benchmarks, \\cls{}, \\cwm{}, and \\traj{} achieve near-identical accuracy across two model families (Qwen3-4B: 88.4/87.2/86.3\\%, 5 seeds; DeepSeek-6.7B: 86.9/86.8\\%, 2 seeds). The \\cls{}--\\cwm{} gap is 0.02--1.24\\pp{}, within seed noise in both cases. This null result establishes that classification is not inherently easier than generation when execution outputs are short and structured.\n\n\\item \\textbf{Complexity-dependent divergence with formulation $\\times$ model interaction.} At repository-level complexity under 4--8B LoRA fine-tuning, \\cls{} achieves 19--26\\pp{} higher accuracy than \\cwm{} on Qwen3. Cross-model validation with DeepSeek-Coder is consistent with a formulation-driven explanation, though single-seed constraints limit causal attribution: both families show \\cwm{} $\\gg$ \\cls{} degradation from function to repo level (Qwen3: ${\\sim}$5/22\\pp{}; DeepSeek: 4--12/25--30\\pp{} for \\cls{}/\\cwm{}). The magnitude is both model-contingent and seed-dependent: DeepSeek \\cls{} degradation ranges from ${\\sim}$4\\pp{} (s42) to ${\\sim}$12\\pp{} (s123). Preliminary data suggests \\cwm{} exhibits higher seed variance at repo level (${\\sim}$5\\pp{} range; \\cls{} Qwen3-8B spread ${\\sim}$1\\pp{}; DeepSeek \\cls{} spread of ${\\sim}$8\\pp{} conflates seed with preprocessing differences), with no overtraining under our protocol. Variant-level analysis reveals three distinct repo-level failure modes governed by formulation $\\times$ checkpoint: format collapse (\\cwm{}), decision collapse (\\cls{}, checkpoint-dependent), and aggregation penalty (\\cls{}); the same model family exhibits different modes depending on checkpoint selection (\\S\\ref{sec:repo}).\n\n\\item \\textbf{Error complementarity.} \\cls{} and \\cwm{} exhibit opposite error patterns: \\cls{} over-predicts passing (75.5\\% false negatives), \\cwm{} over-predicts failure (83.1\\% false positives). An oracle ensemble achieves 90.63\\% (+3.12\\pp{}).\n\n\\item \\textbf{Diagnostic granularity with configuration-dependent cost.} Per-test classification matches \\cwm{} (TOST $p = 0.007$) and shows a small advantage over \\traj{} ($+$1.89\\pp{}) at function level, while identifying which specific tests fail. At repo level, aggregation penalty under the all-pass rule is configuration-dependent: DeepSeek s42 achieves 81.25\\% variant-level (1.36\\pp{} penalty), matching or exceeding trajectory-level (75.35\\%), while other configurations pay 4--19\\pp{} (\\S\\ref{sec:analysis}(k)). Classification yields 217$\\times$ throughput over generation.\n\\end{itemize}\n",
+      "numLines": 21,
+      "startLine": 1,
+      "totalLines": 21
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HsD6ZEJyv2ggoAeGFyEVZJ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "1cf8fcf3-c8d0-4aa4-ab31-516a1d47b37d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T1sBSkjbRsTT2ymUY2anDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15106,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15106
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T07:23:27.238Z_
+
+<details><summary>↩ Tool result · `toolu_01HsD6ZEJyv2ggoAeGFyEVZJ`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We presented the first controlled comparison of three execution-free verification formulations (\cls{}, \cwm{}, \traj{}). \cls{} achieves the highest per-test accuracy across all tested conditions; at variant level, aggregation penalty makes the advantage configuration-dependent, motivating complexity-aware routing.
+5	
+6	At function level, \cls{} and \cwm{} achieve equivalent accuracy (TOST $p{=}0.007$); \cls{} shows a small advantage over \traj{} ($+$1.89\pp{}). At repository level under our training protocol, divergence amplifies to 19--26\pp{}; cross-model validation confirms this is consistent across both families but model-contingent in magnitude (Qwen3: ${\sim}$5/22\pp{}; DeepSeek: 4--12/25--30\pp{} for \cls{}/\cwm{}). Seed variance and evaluation protocol add further sensitivity (${\sim}$9\pp{} for the same \cwm{} checkpoint).
+7	
+8	Two properties generalize across models. First, per-test classification provides diagnostic granularity at comparable or better accuracy at function level; at repo level, aggregation penalty is configuration-dependent (1.36--19\pp{}). Second, classification yields 217$\times$ throughput over generation. Error complementarity (oracle ensemble: 90.63\%) further motivates instance-level routing.
+9	
+10	\section*{Limitations}
+11	
+12	Most repo-level comparisons use a single seed; training data comprises synthetic mutations~\cite{andrews2005mutation,just2014mutants}. Our \cwm{} baseline uses 4--8B LoRA fine-tuning; the original 32B Code World Model with execution trace mid-training~\cite{meta2025cwm} may exhibit different scaling behavior at repository level. \traj{} training uses variant-level labels (386 instances at repo level vs.\ ${\sim}$70K for \cls{}/\cwm{}); this asymmetry is inherent to the formulation design but limits direct training-data-controlled comparison. Multi-seed replication and complexity-aware routing are natural extensions; a re-repair pilot ($n{=}44$, $p{=}0.42$; Appendix~\ref{app:extended_analysis}(j)) found no benefit from per-test diagnostics. Extended discussion appears in Appendix~\ref{app:limitations}.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8ab01c06-c8d7-45b5-a79b-82dd4fd0715a",
+  "uuid": "8ad4da9d-1c55-4536-b9f6-9ea1bd772c5e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented the first controlled comparison of three execution-free verification formulations (\\cls{}, \\cwm{}, \\traj{}). \\cls{} achieves the highest per-test accuracy across all tested conditions; at variant level, aggregation penalty makes the advantage configuration-dependent, motivating complexity-aware routing.\n\nAt function level, \\cls{} and \\cwm{} achieve equivalent accuracy (TOST $p{=}0.007$); \\cls{} shows a small advantage over \\traj{} ($+$1.89\\pp{}). At repository level under our training protocol, divergence amplifies to 19--26\\pp{}; cross-model validation confirms this is consistent across both families but model-contingent in magnitude (Qwen3: ${\\sim}$5/22\\pp{}; DeepSeek: 4--12/25--30\\pp{} for \\cls{}/\\cwm{}). Seed variance and evaluation protocol add further sensitivity (${\\sim}$9\\pp{} for the same \\cwm{} checkpoint).\n\nTwo properties generalize across models. First, per-test classification provides diagnostic granularity at comparable or better accuracy at function level; at repo level, aggregation penalty is configuration-dependent (1.36--19\\pp{}). Second, classification yields 217$\\times$ throughput over generation. Error complementarity (oracle ensemble: 90.63\\%) further motivates instance-level routing.\n\n\\section*{Limitations}\n\nMost repo-level comparisons use a single seed; training data comprises synthetic mutations~\\cite{andrews2005mutation,just2014mutants}. Our \\cwm{} baseline uses 4--8B LoRA fine-tuning; the original 32B Code World Model with execution trace mid-training~\\cite{meta2025cwm} may exhibit different scaling behavior at repository level. \\traj{} training uses variant-level labels (386 instances at repo level vs.\\ ${\\sim}$70K for \\cls{}/\\cwm{}); this asymmetry is inherent to the formulation design but limits direct training-data-controlled comparison. Multi-seed replication and complexity-aware routing are natural extensions; a re-repair pilot ($n{=}44$, $p{=}0.42$; Appendix~\\ref{app:extended_analysis}(j)) found no benefit from per-test diagnostics. Extended discussion appears in Appendix~\\ref{app:limitations}.",
+      "numLines": 12,
+      "startLine": 1,
+      "totalLines": 12
+    }
+  }
+}
+```
+
+</details>
+
+---

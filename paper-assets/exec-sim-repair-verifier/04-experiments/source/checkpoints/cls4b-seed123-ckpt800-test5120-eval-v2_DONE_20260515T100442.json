@@ -1,0 +1,49 @@
+{
+  "exp_id": "cls4b-seed123-ckpt800-test5120-eval-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:36:44.872Z",
+    "updated_at": "2026-05-15T10:04:42.370Z",
+    "hypothesis": "CLS 4B seed123 val-best (ckpt-800) test@5120。v1 因 --max_new_tokens 参数不兼容失败，v2 去掉该参数。",
+    "parent": "repo-level-cls-seed123-home",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_seed123_ckpt800_test5120_v2\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3264842",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval-v2.log",
+      "submitted_at": "2026-05-15T09:36:59.423Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "wall_clock_seconds": 1662.9,
+      "gpu_hours": 0.46
+    },
+    "metrics": {
+      "accuracy": 75.33,
+      "f1_macro": 67.03,
+      "f1_fail": 50.5,
+      "f1_pass": 83.6,
+      "precision_fail": 55.2,
+      "recall_fail": 46.5,
+      "precision_pass": 81.3,
+      "recall_pass": 86,
+      "majority_baseline": 73,
+      "gap_vs_majority_pp": 2.4,
+      "unparseable_count": 0,
+      "total_samples": 9784
+    },
+    "conclusion": "negative",
+    "notes": "test acc=75.33%, 远低于 s42 的 83.63%。seed123 val-best (ckpt-800) 在 test 上仅比 majority baseline (73%) 高 2.4pp，seed 方差很大。",
+    "checkpoint_path": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+    "completed_at": "2026-05-15T10:04:42.370Z"
+  },
+  "timestamp": "2026-05-15T10:04:42.646826+00:00",
+  "trigger": "update_registry"
+}

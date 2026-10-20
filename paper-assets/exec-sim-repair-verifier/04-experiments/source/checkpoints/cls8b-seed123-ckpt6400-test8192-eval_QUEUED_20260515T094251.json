@@ -1,0 +1,26 @@
+{
+  "exp_id": "cls8b-seed123-ckpt6400-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:42:51.287Z",
+    "updated_at": "2026-05-15T09:42:51.287Z",
+    "spec": {
+      "hypothesis": "seed123 test curve 补充: ckpt-6400 test@8192",
+      "parent": "repo-level-cls-8b-seed123-conda-v3",
+      "command": "python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_samples 8192 --device cuda:0 --batch_size 1",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl",
+      "data_count": 8192,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6400",
+      "eval_data": "swebench_test@8192"
+    }
+  },
+  "timestamp": "2026-05-15T09:42:51.864268+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,18 @@
+{
+  "exp_id": "repo-level-cwm-8b-conda-v6",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:40:49.599Z",
+    "updated_at": "2026-05-16T00:40:49.599Z",
+    "spec": {
+      "hypothesis": "CWM 8B s42 训练 resume from ckpt-6100 (v5 在 step 6198/6633 被 SIGKILL), 完成剩余 ~433 steps",
+      "parent": "repo-level-cwm-8b-conda-v5"
+    }
+  },
+  "timestamp": "2026-05-16T00:40:49.877878+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "038211861e438793a5f3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh sync eval home to seetacloud",
+  "task_key": "worker_ssh_sync-eval-home-to-seetacloud_20260513T005509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-eval-home-to-seetacloud_20260513T005509_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "bd9439ee564b26a2d2db20b2c1129d251b1df3a2c7135d72571a0bffa834b9c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n| 检查项 | 结果 |\n|--------|------|\n| home md5 | `4dace4333db3986824b8d2a3a566ebe0` |\n| seetacloud md5 | `4dace4333db3986824b8d2a3a566ebe0` |\n| `--help` 语法验证 | 通过 |\n\n注意：home 上文件的当前 md5 (`4dace4333db3986824b8d2a3a566ebe0`) 与任务描述中的 (`a4bf91e40822f0a7ee28cefb7de50829`) 不同，说明 home 上的文件在任务创建后又有更新。seetacloud 已同步为 home 上的最新版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-eval-home-to-seetacloud.md"
+}

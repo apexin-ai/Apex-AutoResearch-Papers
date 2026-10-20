@@ -1,0 +1,27 @@
+{
+  "exp_id": "deepseek-cls-repo-v5",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:47:56.629Z",
+    "updated_at": "2026-05-18T20:37:21.716Z",
+    "hypothesis": "DeepSeek CLS repo-level s42 完整 3 epoch 训练，预期与 s123 (~74%) 相近，提供 R1-N1 要求的多 seed 证据",
+    "reproduce": {
+      "finished_at": "2026-05-18T20:35:45.428Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T20:35:47.523864+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T20:37:22.104385+00:00",
+  "trigger": "update_registry"
+}

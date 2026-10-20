@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0057623bc5f1d4ad21ee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_19.md",
+  "task_key": "loop_19",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_19.md",
+    "occurrence": 1,
+    "bytes": 3738,
+    "sha256": "79d95dc9ebaabd5cc559d37678ba58afa986e664db2b7f6a37bc42e6a9841caa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: max_wall_time\nupdated: '2026-05-17T17:27:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 只允许 cuda:0-3（项目 gpu_ids 白名单）\n- home-1x5090 只有 cuda:0\n- DeepSeek 所有实验用 lr=2e-4；Qwen3 CLS/CWM 用 lr=5e-5；TRAJ 用 lr=2e-4。Appendix hyperparams 表只覆盖 Qwen，需补 DeepSeek 列\n- eval_loss=NaN 是 repo-level 的已知 bug（序列超 max_position_embeddings）���不影响训练，不要因此判断实验失败\n- CLS repo eval 必须用 max_seq_length=8192（不是 2048），否则 28.6% unparseable\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: root@，工作目录 /home/sonny/exec-sim-repair-verifier，模型 /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct，checkpoints /root/autodl-tmp/checkpoints_*\n- **home-1x5090**: sonny@，工作目录 /home/sonny/exec-sim-repair-verifier，Qwen3 via HF cache (~/.cache/huggingface/hub/)\n- 活跃进程（seetacloud）：\n  - GPU 0: cls-v4 eval (max_seq=8192, batch=4) — ETA ~12h from 16:34 UTC\n  - GPU 1: cwm-repo s42 eval (max_new_tokens=512, PID 662946) — ETA 8-15h\n  - GPU 2: cls-s123 eval (max_seq=8192, batch=4) — ETA ~12h\n  - GPU 3: cwm-repo-s123 训练 epoch 3 (PID 542906, step ~9513/13266) — ETA ~8h\n- 活跃进程（home）：deepseek-traj-func eval 刚启动（worker 170705）\n\n### 3. 📊 当前状态\n**刚完成**：Round 1 全 17 issue 逐条审计 + Paper Agent 4 patch 写入质量验证 + TRAJ 8B 2-seed ��成 + CLS unparseable 根因诊断 + eval 修复确认\n\n**关键发现已 post 给 Director**：\n- DeepSeek 零样本 56.56% → 论��� §5.2 \"3-shot degrades DeepSeek\" claim 错误（实为 +3.4pp 提升），需修正 [critical, posted]\n- TRAJ s42 数字采用 87.60%（非 87.98%），bf16 placement 差异已解释\n- cwm-repo-s123 cron 误报 false positive（进程存活，--no_wandb 导致 sentinel 检测失败）\n\n**等待中**：4 个 overnight eval 结果（明早可收集���\n\n### 4. 📋 待办（条件触发式）\n- DeepSeek CLS v4/s123 eval 完成 → 核实 unparseable=0%（修复确认），对比两个 seed accuracy，检查是否 >majority baseline (72.96%) 足够多\n- DeepSeek CWM s42 eval 完成 → 核实 unparseable rate，与 Qwen3 CWM repo 73.8% 对比，判断 tokenizer hypothesis\n- DeepSeek CWM s123 训练完成 → 确认 checkpoint 存在，�� eval（用 GPU 释放的卡）\n- 所有 DeepSeek repo 结果到齐 → 审查 Agent 填 Table 4 的数字是否正确 + 判断 Path A vs Path B narrative\n- Paper Agent 提交章节审查 → L1 合规检查（是否读了 red-section skill） + §5.2 claim 修正是否落实\n- home 上 deepseek-traj-func eval 完成 → 核实与 registry 已有数字（84.16±1.30%）是否一致（TRAJ provenance ���题 M001）\n\n### 5. 🎯 战略上下文\n**核心判断点**：DeepSeek CWM repo 结果决定论文最终 framing：\n- Path A（DeepSeek CWM 也 diverge）→ \"generation bottleneck is formulation-inherent\"\n- Path B（DeepSeek CWM 不 diverge）→ \"divergence is model/tokenizer-contingent\"（当前论文已预留此路径）\n\n**易错**：\n1. 不要把 2048-context eval 数字（82.62% with 28.6% default-pass）写入论文 — 必须等 8192 eval 完成\n2. cwm-repo-s123 registry 显示 DONE/failed 但进程实际存活 — ��要误认为需要重跑\n3. TRAJ 实验 lr=2e-4 与 CLS/CWM 5e-5 不同 — 是 historical choice（TRAJ 数据量小），论文需 disclose 但不构成 invalid\n4. Qwen3-8B scaling table 数字已变（从 3-seed → 2-seed matched）：CLS 89.94, CWM 87.33, TRAJ 87.70±0.13\n5. DeepSeek 零样本 56.56% — 论文仍需修正 §5.2 \"degradation\" 叙事为 \"both improve with 3-shot\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-copy-3.md"
+}

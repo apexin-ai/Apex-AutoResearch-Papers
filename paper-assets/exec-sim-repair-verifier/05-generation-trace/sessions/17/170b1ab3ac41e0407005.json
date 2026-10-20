@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "170b1ab3ac41e0407005",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose 8b training failure",
+  "task_key": "worker_diagnose_8b-training-failure_20260514T141805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b-training-failure_20260514T141805_result.json",
+    "occurrence": 1,
+    "bytes": 2139,
+    "sha256": "41f02b0d1cd5dd52b8623c80ce42cc40cde8a9fe6623bb4ad73157553cc97d0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。关键发现：**两个实验已经被自动恢复，当前正在运行。**\n\n---\n\n## 诊断结果\n\n### 根因：DataLoader worker 被 SIGTERM 杀死（大概率系统内存压力）\n\n两个实验的错误完全相同：\n```\nRuntimeError: DataLoader worker (pid XXXXX) is killed by signal: Terminated.\n```\n\n- **实验 1 (CWM)**: 在 training step 1300 的 eval 阶段（eval 39% 处）崩溃，运行 8h21m\n- **实验 2 (CLS)**: 在 training step 2422（刚完成 step 2400 的 eval+checkpoint 保存后）崩溃，运行 8h22m\n\n**两个实验是同一原因**——几乎同时失败，都是 DataLoader worker 收到 SIGTERM（signal 15，不是 OOM killer 的 SIGKILL/signal 9）。\n\n**最可能的触发条件**：服务器同时跑了 4 个 ML 进程（GPU 0/1 上的两个 4B eval + GPU 2/3 上的两个 8B train），eval 阶段 DataLoader workers 的 CPU 内存峰值叠加，触发系统级内存管理机制向子进程发送 SIGTERM。\n\n排除磁盘满：`/root/autodl-tmp/` 54% (118G 空闲)，`/` 64% (11G 空闲)。\n\n### 最后保存的 Checkpoint\n\n| 实验 | 最后 checkpoint | 时间 | 文件完整性 |\n|------|----------------|------|-----------|\n| CWM 8B | **checkpoint-1200** | 21:47 | 完整（adapter_model.safetensors + optimizer.pt + trainer_state.json 等齐全） |\n| CLS 8B seed123 | **checkpoint-2400** | 22:12 | 完整（同上） |\n\n### 恢复训练状态\n\n**已经自动恢复**。`ps aux` 显示两个实验已在 22:17 从 checkpoint 恢复运行：\n- PID 242651: `train_repo_cwm.py --resume_from_checkpoint checkpoint-1200`（CUDA:2）\n- PID 242727: `train_repo_verifier.py --resume_from_checkpoint checkpoint-2400`（CUDA:3）\n\n### 建议修复方案\n\n1. **减少 DataLoader workers 数量**：如果当前 `num_workers` > 0，降到 2 或 1，减少内存占用\n2. **错开 eval 时间**：两个 8B 训练 + 两个 4B eval 同时跑时 CPU 内存峰值过高，考虑等 eval 任务跑完再重启 8B 训练\n3. **监控当前恢复的训练**：已恢复的两个进程仍然面临同样的 4 进程共存环境，可能再次失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-training-failure.md"
+}

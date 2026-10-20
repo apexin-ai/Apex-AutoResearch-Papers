@@ -1,0 +1,140 @@
+{
+  "title": "14B Seed-Level Statistical Analysis (D169 compliant)",
+  "method": "Seed-level paired t-test (training seeds = replication unit)",
+  "n_seeds": 3,
+  "df": 2,
+  "rope_margin_pp": 2.0,
+  "data": {
+    "CLS_14B": {
+      "s42": 89.21,
+      "s123": 90.79,
+      "s456": 89.79
+    },
+    "CWM_14B": {
+      "s42": 89.26,
+      "s123": 88.99,
+      "s456": 90.26
+    },
+    "TRAJ_14B": {
+      "s42": 89.73,
+      "s123": 88.57,
+      "s456": 88.28
+    },
+    "note": "All bf16-consistent. CLS s42=89.21 from bf16 eval (NF4=89.47). CWM s42=89.26 from bf16 eval (NF4=89.30)."
+  },
+  "results": {
+    "CLS-CWM": {
+      "tost": {
+        "method": "seed-level paired TOST (D169)",
+        "n_seeds": 3,
+        "df": 2,
+        "mean_diff_pp": 0.4267,
+        "sd_pp": 1.2077,
+        "se_pp": 0.6973,
+        "margin_pp": 2.0,
+        "t_lower": 3.4801,
+        "t_upper": -2.2564,
+        "p_lower": 0.036785,
+        "p_upper": 0.076338,
+        "tost_p": 0.076338,
+        "equivalent_at_alpha05": false,
+        "ci90_pp": [
+          -1.609,
+          2.463
+        ],
+        "ci90_inside_rope": false,
+        "ci95_pp": [
+          -2.574,
+          3.427
+        ],
+        "diffs": [
+          -0.05,
+          1.8,
+          -0.47
+        ]
+      },
+      "bayesian_rope": {
+        "method": "Bayesian ROPE (Kruschke 2013, Jeffreys prior)",
+        "n": 3,
+        "df": 2,
+        "mean_diff_pp": 0.4267,
+        "sd_pp": 1.2077,
+        "se_pp": 0.6973,
+        "rope": [
+          -2.0,
+          2.0
+        ],
+        "p_rope": 0.8869,
+        "p_above_rope": 0.0763,
+        "p_below_rope": 0.0368,
+        "hdi_95_lo": -2.57,
+        "hdi_95_hi": 3.43,
+        "hdi_inside_rope": false,
+        "decision_continuous": "Inconclusive",
+        "decision_hdi": "Undecided (95% HDI overlaps ROPE boundary)"
+      }
+    },
+    "CLS-TRAJ": {
+      "tost": {
+        "method": "seed-level paired TOST (D169)",
+        "n_seeds": 3,
+        "df": 2,
+        "mean_diff_pp": 1.07,
+        "sd_pp": 1.422,
+        "se_pp": 0.821,
+        "margin_pp": 2.0,
+        "t_lower": 3.7394,
+        "t_upper": -1.1328,
+        "p_lower": 0.032329,
+        "p_upper": 0.187417,
+        "tost_p": 0.187417,
+        "equivalent_at_alpha05": false,
+        "ci90_pp": [
+          -1.327,
+          3.467
+        ],
+        "ci90_inside_rope": false,
+        "ci95_pp": [
+          -2.462,
+          4.602
+        ],
+        "diffs": [
+          -0.52,
+          2.22,
+          1.51
+        ]
+      },
+      "bayesian_rope": {
+        "method": "Bayesian ROPE (Kruschke 2013, Jeffreys prior)",
+        "n": 3,
+        "df": 2,
+        "mean_diff_pp": 1.07,
+        "sd_pp": 1.422,
+        "se_pp": 0.821,
+        "rope": [
+          -2.0,
+          2.0
+        ],
+        "p_rope": 0.7803,
+        "p_above_rope": 0.1874,
+        "p_below_rope": 0.0323,
+        "hdi_95_lo": -2.46,
+        "hdi_95_hi": 4.6,
+        "hdi_inside_rope": false,
+        "decision_continuous": "Inconclusive",
+        "decision_hdi": "Undecided (95% HDI overlaps ROPE boundary)"
+      }
+    }
+  },
+  "paper_comparison": {
+    "CLS-TRAJ": {
+      "seed_level_tost_p": 0.187417,
+      "paper_tost_p": 0.043,
+      "match": false,
+      "seed_level_p_rope": 0.7803,
+      "paper_p_rope": 0.956,
+      "match_rope": false,
+      "diagnosis": "Paper values (p=0.043, P(ROPE)=0.956) are from per-test clustered bootstrap, NOT seed-level. D169 requires seed-level values."
+    }
+  }
+}

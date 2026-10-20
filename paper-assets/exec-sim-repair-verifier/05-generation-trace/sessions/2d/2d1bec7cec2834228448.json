@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1bec7cec2834228448",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper fix citation keys global",
+  "task_key": "worker_paper_fix-citation-keys-global_20260515T150349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-citation-keys-global_20260515T150349_result.json",
+    "occurrence": 1,
+    "bytes": 237,
+    "sha256": "9d43e157f778172b7035e1a51e15c34e578a01084612933e01ab4052caa50b22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：无需修改。** 所有 `.tex` 文件中旧 key 已清零，新 key `shum2025swerm` 和 `maimon2026selfexecution` 已在 `related_work.tex`（行 6、13）和 `introduction.tex`（行 6、8）中正确就位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-citation-keys-global.md"
+}

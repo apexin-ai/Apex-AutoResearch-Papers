@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b908d1cb7505de2157",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose val sweep seq8192 exit",
+  "task_key": "worker_diagnose_val-sweep-seq8192-exit_20260515T172401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_val-sweep-seq8192-exit_20260515T172401_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "18c8e79ae6e877b1bcf601255fa67a44ac6fe3514a07ade4df5c91c350428537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**原因**: CUDA OOM，首个 checkpoint-1800 即崩溃。\n\n**详情**:\n- `batch_size=1`, `seq_length=8192`, Qwen3-8B on RTX 5090 (32GB)\n- 模型加载占 ~17GB，generate() 时 MLP forward pass 需分配 1.81GB，但仅剩 387MB（PyTorch 已占 25.39GB + 预留 5GB）\n- **0/21 checkpoints 完成**，output dir 为空\n- `PYTORCH_ALLOC_CONF=expandable_segments:True` 已设置，仍不够\n\n**cuda:0 当前状态**: 空闲，0MiB 占用，可用。\n\n**结论**: seq_length=8192 对 8B 模型在单张 32GB GPU 上 batch_size=1 都不可行。需要降 seq_length（回 5120）或用量化/offload 策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-val-sweep-seq8192-exit.md"
+}

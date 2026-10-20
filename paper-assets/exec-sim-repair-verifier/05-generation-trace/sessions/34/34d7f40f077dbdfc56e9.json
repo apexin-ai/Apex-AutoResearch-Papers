@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d7f40f077dbdfc56e9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 14b cls training",
+  "task_key": "worker_code_14b-cls-training_20260522T170157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-cls-training_20260522T170157_result.json",
+    "occurrence": 1,
+    "bytes": 214,
+    "sha256": "ebafac3224ce879e41d8548e0827fa57df2afa156f3041011f7995a324863567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download is ~21% complete, ETA ~75 min. Auto-train pipeline (download wait → training → eval) is running in tmux `cls14b-func-s42`. Will check back around 19:09 when download should be finishing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-cls-training.md"
+}

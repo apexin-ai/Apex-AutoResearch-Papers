@@ -1,0 +1,72 @@
+{
+  "exp_id": "cwm-rank32-alpha64-ablation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:15:21.249Z",
+    "updated_at": "2026-05-15T16:03:03.126Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir checkpoints_cwm_rank32_alpha64/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --lora_rank 32 --lora_alpha 64\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "pid": 379609,
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm-rank32-alpha64-ablation.log",
+      "submitted_at": "2026-05-15T14:15:20.783Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "lora_rank": 32,
+      "lora_alpha": 64,
+      "lr": 0.0002,
+      "epochs": 3,
+      "batch_size": 2,
+      "grad_accumulation": 16,
+      "total_steps": 1434,
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32_alpha64/",
+      "description": "CWM rank=32 alpha=64 ablation. Fixes alpha/rank ratio confound from v2 (ratio=2, matching baseline).",
+      "wall_clock_seconds": 5508.5,
+      "gpu_hours": 1.53
+    },
+    "hypothesis": "LoRA rank ablation 修正：CWM 4B rank=32, alpha=64 (alpha/rank=2，匹配 baseline ratio)。Reviewer 指出 cwm-rank32-ablation-v2 的 alpha=32 导致 effective scaling factor 减半（ratio=1 vs baseline ratio=2），构成混淆变量。本实验修正 alpha 使 ratio 一致，验证 rank=32 在公平 scaling 下是否仍与 rank=16 无差异。",
+    "reproduce": {
+      "finished_at": "2026-05-15T15:40:31.748Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:40:34.962371+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 87.04,
+      "pass_f1": 86.79,
+      "fail_f1": 87.27,
+      "f1_macro": 87.03,
+      "pass_precision": 91.8,
+      "pass_recall": 82.3,
+      "fail_precision": 82.9,
+      "fail_recall": 92.1,
+      "exact_match_rate": 84.55,
+      "train_loss": 0.2069,
+      "eval_loss": 0.0606,
+      "n_instances": 1890,
+      "vs_rank16_baseline": -0.47,
+      "rank16_baseline_accuracy": 87.51
+    },
+    "conclusion": "success",
+    "notes": "rank=32 alpha=64 (ratio=2) accuracy=87.0%，与 rank=32 alpha=32 (ratio=1) 完全一致，均低于 baseline rank=16 (87.51%)。结论：alpha/rank ratio 不是混淆变量，rank=16 已足够，增加 rank 轻微损害泛化。epoch2 eval_loss 最低(0.0555) → epoch3 回升(0.0606)，轻微过拟合与过参数化一致。",
+    "completed_at": "2026-05-15T15:47:09.278Z"
+  },
+  "timestamp": "2026-05-15T16:03:03.442155+00:00",
+  "trigger": "update_registry"
+}

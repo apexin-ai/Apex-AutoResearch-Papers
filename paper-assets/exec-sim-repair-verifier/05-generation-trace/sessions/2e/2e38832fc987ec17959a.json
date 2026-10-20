@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e38832fc987ec17959a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp re repair phase0",
+  "task_key": "worker_exp_re-repair-phase0_20260516T084228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_re-repair-phase0_20260516T084228_result.json",
+    "occurrence": 1,
+    "bytes": 1480,
+    "sha256": "47d8e0e70e53540cafea2a2cfb87f33069792343abc8d31d48400d645f94bca5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 0 完成 — 结果报告\n\n### 运行状态\nPhase 0 成功完成：10 instances × 4 conditions × 3 samples = 120 次生成，总耗时 ~22 分钟。\n\n### 核心结果\n\n| Condition | Best-of-K Mean Sim | Δ vs Control |\n|-----------|-------------------|-------------|\n| **control** | **0.820** | — |\n| cls-diag | 0.818 | -0.002 |\n| oracle-diag | 0.809 | -0.011 |\n| random-diag | 0.719 | **-0.101** |\n\n### 发现\n\n1. **Diagnostic 信息没有帮助**：control 最优，所有 diagnostic 条件持平或更差\n2. **Random diagnostic 明确有害** (-10pp)：证实模型确实在读诊断信息，但随机信息会误导\n3. **天花板效应**：5/10 实例已经接近完美修复（>0.93 相似度），无提升空间\n4. **根因**：mutation patches 太简单（机械性反转），8B base model 不善于利用诊断指令\n\n### 遇到的 Bug / 问题\n- vLLM 0.18.1 不支持 Qwen3ForCausalLM → 改用 transformers generate\n- 长 diagnostic prompt (356+ tests) 导致生成极慢 → 加了 max_show=15 截断\n- 前次进程 GPU 内存未释放 → 需要 kill 子进程（非 bash wrapper）\n\n### Phase 1 建议\n1. 用 agent predictions（非 mutations）作为 incorrect patches — 结构性差异更大\n2. 用 instruct 模型（Qwen3-8B-Instruct 或 API）\n3. Docker 执行验证（真实 resolve rate）\n4. 精简 diagnostic（只显示 failing tests）\n\n详细报告：`artifacts/re_repair_phase0_results.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-re-repair-phase0.md"
+}

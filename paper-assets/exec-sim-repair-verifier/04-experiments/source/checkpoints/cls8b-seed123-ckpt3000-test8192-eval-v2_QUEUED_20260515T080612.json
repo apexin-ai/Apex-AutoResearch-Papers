@@ -1,0 +1,30 @@
+{
+  "exp_id": "cls8b-seed123-ckpt3000-test8192-eval-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:55:31.389Z",
+    "updated_at": "2026-05-15T08:06:12.221Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192_v2\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "346590",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval-v2.log",
+      "submitted_at": "2026-05-15T07:59:04.721Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "seed123 ckpt-3000 (backup, val=88.69%) test@8192。v1 误标 RUNNING 未实际启动，此为重跑。等 cuda:3 ckpt-6400 val 完成后启动。",
+    "parent": "repo-level-cls-8b-seed123-conda-v3",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T08:06:12.517294+00:00",
+  "trigger": "update_registry"
+}

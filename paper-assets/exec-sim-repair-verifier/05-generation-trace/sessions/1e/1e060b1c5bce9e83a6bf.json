@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e060b1c5bce9e83a6bf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research val unparseable diagnose",
+  "task_key": "worker_research_val-unparseable-diagnose_20260514T145443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_val-unparseable-diagnose_20260514T145443_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "adfd2ca0c7fbd8a347be00ede0c4ddd41ae2bb3fc689945b7a756716a01d868b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正在运行，进度正常。\n\n## 诊断结论\n\n### 根因：100% 由输入截断导致\n\n| 指标 | Val (n=9335) | Test (n=9784) |\n|------|-------------|--------------|\n| Mean prompt tokens | 1252 | 902 |\n| Max prompt tokens | **8768** | 2481 |\n| P90 | 4865 | 2041 |\n| >2048 tokens | **1883 (20.2%)** | 484 (4.9%) |\n| >4096 tokens | 1406 (15.1%) | 0 (0%) |\n\n**完全重合**：1883 unparseable = 1883 truncated，0 例外。截断后输入丢失了 generation prompt 和问题结构，模型生成空文本，parse 失败，回退到 majority class。\n\n### Val 长度分布呈双峰\n\n| 截断阈值 | >阈值样本数 | 占比 |\n|---------|-----------|------|\n| 2048 | 1883 | 20.2% |\n| 3072 | 1406 | 15.1% |\n| 4096 | 1406 | 15.1% |\n| 5120 | 234 | 2.5% |\n| 6144 | 36 | 0.4% |\n\n3072-4096 之间无样本，存在明显 gap。**5120 是性价比最优阈值**（unparseable 从 15.1% 降到 2.5%）。\n\n### 已有 val eval 汇总\n\n| Checkpoint | val@2048 (acc) | val@4096 (acc) | unparseable |\n|-----------|---------------|---------------|-------------|\n| ckpt-400 | 80.72% | 82.57% | 1883→1406 |\n| ckpt-600 | 76.78% | 79.18% | 1883→1406 |\n| ckpt-800 | 81.81% | **running** | — |\n| ckpt-1000 | 82.30% | — | — |\n\n### 已启动任务\n\n- **ckpt-800 val@4096** — PID 3125543，正在运行，running_acc=85.0% @ 160/9335\n\n### 建议\n\n1. `build_prompt_ids` 的截断方式有问题：`ids[:max_len]` 从末尾砍，丢失 generation prompt。应改为**截断输入内容而非整个 prompt**（保留 system prompt + 问题结构 + generation prompt，只砍 code/test 内容）。\n2. 长期方案：val eval 统一用 **5120**（2.5% unparseable），或修复截断逻辑后用 4096。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-val-unparseable-diagnose.md"
+}

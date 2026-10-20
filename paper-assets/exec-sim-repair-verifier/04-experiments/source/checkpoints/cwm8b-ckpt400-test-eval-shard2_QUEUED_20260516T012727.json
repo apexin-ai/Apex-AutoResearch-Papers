@@ -1,0 +1,14 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval-shard2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:27:27.393Z",
+    "updated_at": "2026-05-16T01:27:27.394Z"
+  },
+  "timestamp": "2026-05-16T01:27:27.703511+00:00",
+  "trigger": "update_registry"
+}

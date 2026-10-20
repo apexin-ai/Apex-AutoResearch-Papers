@@ -1,0 +1,45 @@
+{
+  "exp_id": "repo-level-cwm-v4",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-12T17:23:40.543Z",
+    "updated_at": "2026-05-12T18:56:52.055Z",
+    "hypothesis": "Repo-level CWM v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交。与 cls-v4 配对验证 complexity gap。",
+    "reproduce": {
+      "finished_at": "2026-05-12T17:38:57.444Z"
+    },
+    "failure_reason": "",
+    "completed_at": "2026-05-12T17:38:58.649Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T17:39:00.373716+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TORCH_HOME=/root/autodl-tmp/.torch_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v4/ --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu_id": "cuda:2",
+      "pid": "77811",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cwm-v4.log"
+    },
+    "conclusion": "killed",
+    "notes": "v4 首次提交因 CLI 参数错误 EXIT_CODE=2 失败。系统自动重试 (PID 77811) 但不含 Director 要求的 save_strategy=steps/save_steps=500。与 v5 并行会触发 cgroup OOM，主动停止保护 v5。"
+  },
+  "timestamp": "2026-05-12T18:56:52.142261+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "370585a573763d1ebb44",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh fix bootstrap method",
+  "task_key": "worker_ssh_fix-bootstrap-method_20260512T223425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-bootstrap-method_20260512T223425_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "e137f290aeb38185a6bfadb7c395a9ac7b125450239f579e9349e3f7a7b9f0f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器验证完成。\n\n## 修复汇报\n\n**修改的函数：** `paired_bootstrap_f1`（第 256 行）\n\n**修改内容：**\n\n1. **函数签名**：增加 `problem_ids` 参数\n2. **新增 cluster 映射逻辑**（第 268-276 行）：构建 `problem_id → indices` 的映射表，并打印 cluster 统计信息\n3. **bootstrap 循环**（第 325-330 行）：将 `rng.randint(0, n, size=n)`（i.i.d. 采样）替换为 `rng.choice(unique_problems, size=n_clusters, replace=True)` + `np.concatenate`（按 problem_id 聚类重采样）\n4. **调用处**（第 528-529 行）：从 `shared_keys`（`(index, problem_id)` 元组）中提取 `problem_ids` 并传入函数\n\n**新旧方法关键区别：**\n- **旧**：i.i.d. 采样 N 个 test 样本 → 忽略 within-problem correlation → CI 过窄约 2x\n- **新**：有放回采样 N_clusters 个 problem_id，每个 problem 包含其所有 tests → 正确反映 block correlation → CI 宽度与论文 §5.1 声明一致\n\n**验证结果：**\n- seetacloud-westd-4x5090：`import eval_repo_level` → OK\n- home-1x5090：`import eval_repo_level` → OK\n- 两台服务器文件完全一致（571 行，24308 字节）\n- 训练进程未受干扰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-bootstrap-method.md"
+}

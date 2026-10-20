@@ -1,0 +1,26 @@
+{
+  "exp_id": "cls8b-seed123-ckpt3000-test8192-eval-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:55:31.389Z",
+    "updated_at": "2026-05-15T07:55:31.389Z",
+    "spec": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000",
+      "eval_data": "test@8192"
+    }
+  },
+  "timestamp": "2026-05-15T07:55:31.619240+00:00",
+  "trigger": "update_registry"
+}

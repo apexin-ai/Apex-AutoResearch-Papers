@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22bc542f22704dccc18f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra repo level submit",
+  "task_key": "worker_infra_repo-level-submit_20260512T110749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_repo-level-submit_20260512T110749_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "d2fbae9aed0b86e0adcc9f25fb1eee31ac5c8ee3fb196b2b1064a2e80e57740b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并在运行中。\n\n### 汇总\n\n| 实验 | tmux session | PID | GPU | 日志 |\n|------|-------------|-----|-----|------|\n| repo-level-cls | `repo-level-cls` | 32599 | cuda:2 | `~/runs/exec-sim-repair-verifier/repo-level-cls.log` |\n| repo-level-cwm | `repo-level-cwm` | 32678 | cuda:3 | `~/runs/exec-sim-repair-verifier/repo-level-cwm.log` |\n\n### 完整命令\n\n**cls:**\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --max_seq_length 4096 --no_wandb --device cuda:0 && python3 eval_repo_verifier.py --checkpoint_dir checkpoints_repo_cls/best --max_seq_length 4096 --device cuda:0\"\n```\n\n**cwm:**\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --max_seq_length 4096 --no_wandb --device cuda:0 && python3 eval_repo_cwm.py --checkpoint_dir checkpoints_repo_cwm/best --max_seq_length 4096 --device cuda:0\"\n```\n\n日志确认：cls 已加载 70,748 train / 9,335 val，class weights fail=1.7009 / pass=0.2991；cwm 已加载 tokenizer 并开始处理数据。训练完成后会自动接 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-repo-level-submit.md"
+}

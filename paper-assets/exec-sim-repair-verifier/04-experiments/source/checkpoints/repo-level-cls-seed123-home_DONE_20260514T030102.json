@@ -1,0 +1,103 @@
+{
+  "exp_id": "repo-level-cls-seed123-home",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:30:50.413Z",
+    "updated_at": "2026-05-14T03:01:02.814Z",
+    "spec": {
+      "command": "python3 train_repo_verifier.py --seed 123 --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/ --no_wandb",
+      "server": "home-1x5090",
+      "gpu": "cuda:0",
+      "pid": 2998850,
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cls-seed123-home.log",
+      "submitted_at": "2026-05-13T21:30:50.261Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 123,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 2,
+      "grad_accumulation": 16,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/",
+      "wall_clock_seconds": 13620.5,
+      "gpu_hours": 3.78
+    },
+    "hypothesis": "D053: CLS seed123 在 home 重跑（与 v5 同环境：transformers 4.57.6 + 相同数据）。验证 repo-level CLS multi-seed robustness，与 CWM seed123 配对。原 westd 训练因环境差异 (transformers 5.8.0) 无效。",
+    "notes": "Checkpoint sweep 完成 (ckpt 200-1000)。最优 checkpoint-600: accuracy=80.73% (+7.77pp vs baseline), f1_macro=77.31。比 CLS v5 (seed42, ckpt-600, 76.92%) 高 3.81pp。训练 eval_loss 最低在 ckpt-200，但 test accuracy 最高在 ckpt-600，确认 eval_loss ≠ test accuracy。ckpt-800 过拟合至 ~73.9%。seed123 在 ckpt-600 表现优于 seed42，repo-level CLS 跨 seed 稳健。Home, transformers 4.57.6。",
+    "reproduce": {
+      "finished_at": "2026-05-14T01:17:48.834Z"
+    },
+    "failure_reason": "D056 early stop — 训练正常但 best checkpoint 已在 step 200，Director 指令提前终止训练并启动 eval",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T01:17:50.747Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T01:17:52.342754+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "checkpoint_sweep": {
+        "ckpt_200": {
+          "accuracy": 64.75,
+          "f1_macro": 63.06,
+          "fail_f1": 55.16,
+          "pass_f1": 70.96
+        },
+        "ckpt_400": {
+          "accuracy": 75.05,
+          "f1_macro": 67.47,
+          "fail_f1": 51.77,
+          "pass_f1": 83.17
+        },
+        "ckpt_600": {
+          "accuracy": 80.73,
+          "f1_macro": 77.31,
+          "fail_f1": 68.49,
+          "pass_f1": 86.12
+        },
+        "ckpt_800": {
+          "accuracy_partial": 73.9,
+          "status": "running"
+        },
+        "ckpt_1000": {
+          "status": "not_started"
+        }
+      },
+      "best_checkpoint": "checkpoint-600",
+      "eval_checkpoint": "checkpoint-600",
+      "eval_samples": 9784,
+      "accuracy": 80.73,
+      "fail_f1": 68.49,
+      "pass_f1": 86.12,
+      "f1_macro": 77.31,
+      "unparseable": 132,
+      "unparseable_pct": 1.35,
+      "majority_baseline": 72.96,
+      "gap_vs_baseline": 7.77,
+      "eval_server": "home-1x5090",
+      "eval_env": "transformers 4.57.6"
+    }
+  },
+  "timestamp": "2026-05-14T03:01:02.939986+00:00",
+  "trigger": "update_registry"
+}

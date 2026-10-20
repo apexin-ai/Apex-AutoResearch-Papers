@@ -1,0 +1,58 @@
+{
+  "exp_id": "cls-seed789",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T10:22:01.380Z",
+    "updated_at": "2026-05-12T11:26:22.575Z",
+    "hypothesis": "补充 cls seed=789 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed789/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 789 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed789/best --model_name Qwen/Qwen3-4B --output eval_seed789.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2748645",
+      "log_path": "/home/sonny/runs/exec-sim-repair-verifier/cls-seed789.log",
+      "submitted_at": "2026-05-12T10:22:13.530Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 789,
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/",
+      "wall_clock_seconds": 3849.0,
+      "gpu_hours": 1.07
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T11:24:03.000Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T11:24:04.214486+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 89,
+      "pass_f1": 88.9,
+      "fail_f1": 89.1,
+      "pass_precision": 93.3,
+      "pass_recall": 84.9,
+      "fail_precision": 85.2,
+      "fail_recall": 93.4
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-12T11:26:22.575Z"
+  },
+  "timestamp": "2026-05-12T11:26:22.639530+00:00",
+  "trigger": "update_registry"
+}

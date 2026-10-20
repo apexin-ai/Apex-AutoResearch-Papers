@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14293be27302deaf1329",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix parseable accuracy bug",
+  "task_key": "worker_code_fix-parseable-accuracy-bug_20260521T210558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-parseable-accuracy-bug_20260521T210558_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "bc207b34811eaae73e3e41b784a3ad4fc3a2c5aea3146407ae123271fd53a9bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bug confirmed and fix validated.\n\n**Bug 原因**：`run_inference` 中 unparseable 的预测（`pred == -1`）被回退为 `majority_class`，然后 `correct = int(pred == label)` 用回退后的 pred 计算。所以部分 unparseable 条目的 `correct = 1`（majority class 恰好匹配 label）。但 shell 脚本里分子 `correct` 包含了这些 unparseable-but-lucky 的条目，分母却只数 parseable 条目，导致比值 > 100%。\n\n**修复**：分子排除 unparseable 条目：\n```python\n# 旧\ncorrect = sum(1 for r in results if r.get('correct', False))\n# 新\ncorrect = sum(1 for r in results if r.get('correct', False) and not r.get('unparseable', False))\n```\n\n**验证**（deepseek_cwm_repo_s123_test）：\n- 修复前：179.54%（6056 correct / 3373 parseable）\n- 修复后：41.27%（1392 correct / 3373 parseable）\n- seq4096 数据无 unparseable，不受影响（86.05% 不变）\n\n已修复 5 个 shell 脚本：`eval_deepseek_cwm_s123_v2.sh`、`eval_deepseek_cwm_s456_v2.sh`、`eval_qwen_cwm_s123.sh`、`eval_qwen_cwm_s456.sh`、`eval_14b_cwm_pilot.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-parseable-accuracy-bug.md"
+}

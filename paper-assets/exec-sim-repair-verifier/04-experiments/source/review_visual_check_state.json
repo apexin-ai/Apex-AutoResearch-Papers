@@ -1,0 +1,87 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:39.058480+00:00",
+  "completed_at": "2026-05-25T21:20:49.173319+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "连续两页纯文本（Abstract + Intro + Related Work），第一个 display item 直到 page 3 才出现。审稿人前 2 分钟只看到文字，缺乏早期视觉锚点。建议考虑在 page 1 底部或 page 2 加入一个精简的 teaser figure 或核心结果预览表"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "纯文本页（§3.3 Oracle Framework + §4.1 Setup），夹在 Figure 1(p3) 和 Table 1+Figure 2(p5) 之间。因包含数学公式定义（oracle accuracy framework），可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3（TOST sensitivity 曲线）整体偏小，legend 文字经缩小处理后处于可读性边界。打印后 curve labels 可能需要审稿人凑近查看"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 3 列数较多（6 列 formulation 指标），水平间距较紧。可读但呼吸感不足，建议检查打印效果"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 4 柱状图中 gold/yellow 色条与白色背景对比度中等，其余颜色（teal、red、blue）对比良好。色盲友好性可接受（使用了不同 hue 而非仅红绿对比）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1 最优值已加粗，booktabs 风格，精度统一（±std 格式一致）。格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 5（Holm-Bonferroni 统计表）格式清晰，Sig? 列标注明确。Caption 自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "主文末页空间利用极充分——Figure 5 + Table 5 + §4.7 Threats + §5 Conclusion + Limitations + References 全在一页内。无拥挤感但也无浪费"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Figure 6（appendix heatmap）颜色鲜明，cell labels 清晰可读，caption 描述充分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16-17",
+      "message": "Appendix Extended Analysis（§I）连续两页纯文本，无 display item。建议考虑添加一个总结表格提高可读性（附录优先级低）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 格式一致（ACL style），未发现 [?] 未解析引用或格式不统一"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Abstract 长度目测约 180-200 words，符合 EMNLP ≤200 words 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 1 使用 figure*（全宽），三面板并排，颜色编码一致（蓝=模型，绿=输出，橙=判定），caption 解释了 Left/Center/Right，自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "无可见 LaTeX 渲染错误、margin 溢出、overfull hbox、或 section heading 孤悬"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格均使用 booktabs 风格（无竖线），排版专业"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 14
+  }
+}

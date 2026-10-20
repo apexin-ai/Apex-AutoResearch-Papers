@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "098a7b4520d7bf2954da",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh launch deepseek s456 v2 gpu1",
+  "task_key": "worker_ssh_launch-deepseek-s456-v2-gpu1_20260520T085925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch-deepseek-s456-v2-gpu1_20260520T085925_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "81be5496de47b91a7da2d16f90efc38eb3ed0458e72d82b81d6a6f3fee3325d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 948088 (bash) → 948092 (timeout) → **948093** (python, State: R running) |\n| **数据行数** | train=**70748**, val=1896 — 与预期一致 |\n| **GPU 1 显存** | **待分配** — 模型权重正从 `/root/autodl-tmp/` 网络盘加载中，DeepSeek 6.7B (~13GB) I/O 较慢 |\n\n进程存活且处于 R (running) 状态，正在加载模型权重到 CPU 内存。模型加载完成后会执行 `.to(device)` 分配 GPU 1 显存。日志当前停留在 `Loaded train=70748` 之后，这是正常的模型加载阶段。\n\n数据验证通过，无 DATA_MISMATCH。GPU 显存分配需要等模型加载完成（autodl-tmp 网络盘 I/O 较慢，预计还需几分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-deepseek-s456-v2-gpu1.md"
+}

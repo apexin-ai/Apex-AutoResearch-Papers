@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0159ac6ad0461be96081",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train s42 8b cls resume wait and submit",
+  "task_key": "worker_train_s42-8b-cls-resume-wait-and-submit_20260514T204443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s42-8b-cls-resume-wait-and-submit_20260514T204443_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "5b30a7e4f1f8bf989bf87d0399d6240ab03edcf5eff82c14dcc6eb119569f3f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 仍被 PID 281646 占用（13.6GB 显存，100% 利用率）。已设定 ~4.5 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s42-8b-cls-resume-wait-and-submit.md"
+}

@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{LoRA rank ablation on CWM 4B (function-level repair verification). Best results in \textbf{bold}.}
+\label{tab:rank-ablation}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Config} & \textbf{Rank} & \textbf{Alpha} & \textbf{Ratio} & \textbf{Acc} & \textbf{F1\textsubscript{fail} / F1\textsubscript{pass}} & \textbf{EM} \\
+\midrule
+Baseline (r16 $\alpha$32) & 16 & 32 & 2.0 & \textbf{87.51} & --- & --- \\
+r32 $\alpha$32             & 32 & 32 & 1.0 & 87.00          & 87.10 / 86.90 & 83.40 \\
+r32 $\alpha$64             & 32 & 64 & 2.0 & 87.04          & 87.27 / 86.79 & \textbf{84.55} \\
+\bottomrule
+\end{tabular}
+\end{table}

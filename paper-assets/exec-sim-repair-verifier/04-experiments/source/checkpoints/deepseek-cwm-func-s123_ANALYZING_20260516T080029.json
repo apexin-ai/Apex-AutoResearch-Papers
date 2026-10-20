@@ -1,0 +1,30 @@
+{
+  "exp_id": "deepseek-cwm-func-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:31:21.577Z",
+    "updated_at": "2026-05-16T08:00:29.428Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --task cwm --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_func_seed123/ --run_name deepseek-cwm-func-seed123 --seed 123 --epochs 3 --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "471780",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cwm-func-s123.log",
+      "submitted_at": "2026-05-16T06:32:05.964Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T08:00:28.244Z"
+    }
+  },
+  "timestamp": "2026-05-16T08:00:29.717298+00:00",
+  "trigger": "update_registry"
+}

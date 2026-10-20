@@ -1,0 +1,1367 @@
+# analysis matched seed error overlap
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_analysis_matched-seed-error-overlap_20260512T165936.log`
+- **Structured JSON:** [`e26c1d6ba058b7ea8faf.json`](../../sessions/e2/e26c1d6ba058b7ea8faf.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "cde4bcf9-9d99-4ad6-83b4-9c5f9ea0e82b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778612400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9e5e568f-642b-4606-8fa4-848bb713f8ff",
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to:
+1. Check prediction files on a remote server
+2. Write a Python analysis script
+3. Run it on the server
+4. Report results
+
+Let me start by checking the prediction files exist and examining their structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "34461430-28b4-4029-9fbf-5ed0ed9ef035",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zXwfDpfrNsxXYaRtSdH4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11879,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11879
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先确认数据文件存在并查看结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "d95214c7-1a94-4ae5-b8c7-5ce854d4f976",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zXwfDpfrNsxXYaRtSdH4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11879,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11879
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0126cwutqiwuRxfpQqEGKyUf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "47e0a7dd-3fe1-4351-ae59-a271400b0ac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zXwfDpfrNsxXYaRtSdH4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11879,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11879
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T16:59:52.411Z_
+
+<details><summary>↩ Tool result · `toolu_0126cwutqiwuRxfpQqEGKyUf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "cc014245-1b79-4c72-955c-384c2d0948ad",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H3UGTE2ERknpQEbmEwd8zH`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_*_seed42_*_predictions.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "af0bdf3c-c291-455d-a61b-00eb730df710",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Si4EVDJLS6EHxhqwEzZT8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 23580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T16:59:59.401Z_
+
+<details><summary>↩ Tool result · `toolu_01H3UGTE2ERknpQEbmEwd8zH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny 451102 May 12 09:09 /home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "f63f2931-9b06-4cc7-ba3e-400221756326",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-rw-r-- 1 sonny sonny 451102 May 12 09:09 /home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny 451102 May 12 09:09 /home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JgwK84dQGksZhKRqbJWVT1`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -c 2000 /home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "fc0a17ac-7164-4948-9490-0bdddb5dc3c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013h7cHEwaAzW39msh6zCmsd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 24333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0112MeUtVX9Q7iZaA9yxKZSa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -c 2000 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "050dcfbb-b8de-4f51-9fb9-af43d8a363f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013h7cHEwaAzW39msh6zCmsd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 24333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T17:00:10.444Z_
+
+<details><summary>↩ Tool result · `toolu_01JgwK84dQGksZhKRqbJWVT1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_seed42/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 2,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"FAIL\\\",\\n      \\\"predicted_label\\\": \\\"FAIL\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"fail\\\"\\n    },\\n    {\\n      \\\"idx\\\": 3,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 4,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 5,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 6,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 7,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_typ\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "b86f7920-a593-41ad-a550-46ee89c2399a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints_seed42/best\\\\\\\",\\\\n    \\\\\\\"test_set_size\\\\\\\": 1890\\\\n  },\\\\n  \\\\\\\"predictions\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 2,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"fail\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 3,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 4,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 5,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 6,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"pass\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 7,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_typ\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_seed42/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 2,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"FAIL\\\",\\n      \\\"predicted_label\\\": \\\"FAIL\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"fail\\\"\\n    },\\n    {\\n      \\\"idx\\\": 3,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 4,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 5,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 6,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"pass\\\"\\n    },\\n    {\\n      \\\"idx\\\": 7,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_typ\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T17:00:11.947Z_
+
+<details><summary>↩ Tool result · `toolu_0112MeUtVX9Q7iZaA9yxKZSa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 2,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"FAIL\\\",\\n      \\\"predicted_label\\\": \\\"FAIL\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"FAIL: SyntaxError: expected ':'\\\",\\n      \\\"error_type\\\": \\\"SyntaxError\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 3,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 4,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 5,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_l\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "886ed8b8-00bf-4a17-86e7-13eafc30be66",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints_cwm/best\\\\\\\",\\\\n    \\\\\\\"test_set_size\\\\\\\": 1890\\\\n  },\\\\n  \\\\\\\"predictions\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 2,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"FAIL: SyntaxError: expected ':'\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"SyntaxError\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 3,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 4,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 5,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_l\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 2,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"FAIL\\\",\\n      \\\"predicted_label\\\": \\\"FAIL\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"FAIL: SyntaxError: expected ':'\\\",\\n      \\\"error_type\\\": \\\"SyntaxError\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 3,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 4,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 5,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_l\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see the structure of both files. Let me now write the analysis script and upload it to the server.
+
+CLS fields: idx, problem_id, mutation_type, source, true_label, predicted_label, correct, raw_output
+CWM fields: idx, problem_id, mutation_type, source, true_label, predicted_label, correct, raw_output, error_type, exact_match
+
+Both have metadata with test_set_size: 1890 and predictions array.
+
+Let me write the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "b925c659-6720-4534-8705-09fa9b7ea473",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMNrromtpoQrVGa6Cz1bZB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2951,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+数据结构清楚了。现在写分析脚本并上传执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "52ad834d-9657-4f85-a2b6-e732296db560",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMNrromtpoQrVGa6Cz1bZB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2951,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Us361426pAiSQLVGVf2Aro`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom collections import Counter, defaultdict\nfrom scipy.stats import chi2_contingency\nfrom sklearn.metrics import cohen_kappa_score, f1_score\n\nwith open(\"/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\") as f:\n    cls_data = json.load(f)[\"predictions\"]\nwith open(\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\") as f:\n    cwm_data = json.load(f)[\"predictions\"]\n\nassert len(cls_data) == len(cwm_data) == 1890\n\ncls_by_idx = {d[\"idx\"]: d for d in cls_data}\ncwm_by_idx = {d[\"idx\"]: d for d in cwm_data}\n\nresults = {}\nN = 1890\n\n# ============ 1. Agreement/Disagreement ============\nboth_correct = sum(1 for i in range(N) if cls_by_idx[i][\"correct\"] and cwm_by_idx[i][\"correct\"])\nboth_wrong = sum(1 for i in range(N) if not cls_by_idx[i][\"correct\"] and not cwm_by_idx[i][\"correct\"])\ncls_only = sum(1 for i in range(N) if cls_by_idx[i][\"correct\"] and not cwm_by_idx[i][\"correct\"])\ncwm_only = sum(1 for i in range(N) if not cls_by_idx[i][\"correct\"] and cwm_by_idx[i][\"correct\"])\n\ncls_preds = [cls_by_idx[i][\"predicted_label\"] for i in range(N)]\ncwm_preds = [cwm_by_idx[i][\"predicted_label\"] for i in range(N)]\ncls_correct = [int(cls_by_idx[i][\"correct\"]) for i in range(N)]\ncwm_correct = [int(cwm_by_idx[i][\"correct\"]) for i in range(N)]\n\nkappa_pred = cohen_kappa_score(cls_preds, cwm_preds)\nkappa_correct = cohen_kappa_score(cls_correct, cwm_correct)\n\ncls_acc = sum(cls_correct) / N\ncwm_acc = sum(cwm_correct) / N\n\nresults[\"agreement\"] = {\n    \"total_samples\": N,\n    \"cls_accuracy\": round(cls_acc * 100, 2),\n    \"cwm_accuracy\": round(cwm_acc * 100, 2),\n    \"both_correct\": both_correct,\n    \"both_correct_pct\": round(both_correct / N * 100, 2),\n    \"both_wrong\": both_wrong,\n    \"both_wrong_pct\": round(both_wrong / N * 100, 2),\n    \"cls_only_correct\": cls_only,\n    \"cls_only_correct_pct\": round(cls_only / N * 100, 2),\n    \"cwm_only_correct\": cwm_only,\n    \"cwm_only_correct_pct\": round(cwm_only / N * 100, 2),\n    \"cohen_kappa_prediction\": round(kappa_pred, 4),\n    \"cohen_kappa_correctness\": round(kappa_correct, 4),\n}\n\n# ============ 2. Oracle combination ============\noracle_correct = sum(1 for i in range(N) if cls_by_idx[i][\"correct\"] or cwm_by_idx[i][\"correct\"])\noracle_acc = oracle_correct / N\ncomplementarity = oracle_acc - max(cls_acc, cwm_acc)\n\nresults[\"oracle\"] = {\n    \"oracle_correct\": oracle_correct,\n    \"oracle_accuracy_pct\": round(oracle_acc * 100, 2),\n    \"complementarity_pct\": round(complementarity * 100, 2),\n    \"better_model\": \"CLS\" if cls_acc >= cwm_acc else \"CWM\",\n    \"better_model_accuracy_pct\": round(max(cls_acc, cwm_acc) * 100, 2),\n}\n\n# ============ 3. Per mutation_type analysis ============\nmutation_types = sorted(set(d[\"mutation_type\"] for d in cls_data))\ntrue_labels = [cls_by_idx[i][\"true_label\"] for i in range(N)]\n\nmut_results = {}\nfor mt in mutation_types:\n    idxs = [i for i in range(N) if cls_by_idx[i][\"mutation_type\"] == mt]\n    n = len(idxs)\n    cls_c = sum(cls_by_idx[i][\"correct\"] for i in idxs)\n    cwm_c = sum(cwm_by_idx[i][\"correct\"] for i in idxs)\n    cls_a = cls_c / n if n > 0 else 0\n    cwm_a = cwm_c / n if n > 0 else 0\n\n    cls_p = [cls_by_idx[i][\"predicted_label\"] for i in idxs]\n    cwm_p = [cwm_by_idx[i][\"predicted_label\"] for i in idxs]\n    tl = [cls_by_idx[i][\"true_label\"] for i in idxs]\n    labels = sorted(set(tl + cls_p + cwm_p))\n\n    cls_f1 = f1_score(tl, cls_p, average=\"macro\", labels=labels, zero_division=0)\n    cwm_f1 = f1_score(tl, cwm_p, average=\"macro\", labels=labels, zero_division=0)\n\n    # Chi-squared: 2x2 contingency table of correct/wrong for CLS vs CWM\n    table = np.array([\n        [cls_c, n - cls_c],\n        [cwm_c, n - cwm_c]\n    ])\n    try:\n        if table.min() >= 0 and table.sum() > 0:\n            chi2, p_val, _, _ = chi2_contingency(table, correction=True)\n        else:\n            chi2, p_val = 0, 1.0\n    except:\n        chi2, p_val = 0, 1.0\n\n    oracle_mt = sum(1 for i in idxs if cls_by_idx[i][\"correct\"] or cwm_by_idx[i][\"correct\"])\n\n    mut_results[mt] = {\n        \"n\": n,\n        \"cls_accuracy_pct\": round(cls_a * 100, 2),\n        \"cwm_accuracy_pct\": round(cwm_a * 100, 2),\n        \"diff_pct\": round((cls_a - cwm_a) * 100, 2),\n        \"cls_f1\": round(cls_f1, 4),\n        \"cwm_f1\": round(cwm_f1, 4),\n        \"chi2\": round(chi2, 4),\n        \"p_value\": round(p_val, 4),\n        \"significant\": p_val < 0.05,\n        \"oracle_accuracy_pct\": round(oracle_mt / n * 100, 2) if n > 0 else 0,\n    }\n\nresults[\"by_mutation_type\"] = mut_results\n\ncls_advantage = {k: v for k, v in sorted(mut_results.items(), key=lambda x: -x[1][\"diff_pct\"]) if v[\"diff_pct\"] > 0}\ncwm_advantage = {k: v for k, v in sorted(mut_results.items(), key=lambda x: x[1][\"diff_pct\"]) if v[\"diff_pct\"] < 0}\nresults[\"mutation_type_summary\"] = {\n    \"cls_stronger\": {k: {\"diff\": v[\"diff_pct\"], \"sig\": v[\"significant\"]} for k, v in cls_advantage.items()},\n    \"cwm_stronger\": {k: {\"diff\": v[\"diff_pct\"], \"sig\": v[\"significant\"]} for k, v in cwm_advantage.items()},\n}\n\n# ============ 4. Per problem_id analysis ============\nproblem_ids = sorted(set(d[\"problem_id\"] for d in cls_data))\nprob_results = {}\nfor pid in problem_ids:\n    idxs = [i for i in range(N) if cls_by_idx[i][\"problem_id\"] == pid]\n    n = len(idxs)\n    cls_c = sum(cls_by_idx[i][\"correct\"] for i in idxs)\n    cwm_c = sum(cwm_by_idx[i][\"correct\"] for i in idxs)\n    prob_results[pid] = {\n        \"n\": n,\n        \"cls_accuracy_pct\": round(cls_c / n * 100, 2) if n > 0 else 0,\n        \"cwm_accuracy_pct\": round(cwm_c / n * 100, 2) if n > 0 else 0,\n        \"diff_pct\": round((cls_c - cwm_c) / n * 100, 2) if n > 0 else 0,\n    }\n\nscatter_data = [(v[\"cls_accuracy_pct\"], v[\"cwm_accuracy_pct\"]) for v in prob_results.values()]\ncls_strong_probs = {k: v for k, v in sorted(prob_results.items(), key=lambda x: -x[1][\"diff_pct\"]) if v[\"diff_pct\"] > 10}\ncwm_strong_probs = {k: v for k, v in sorted(prob_results.items(), key=lambda x: x[1][\"diff_pct\"]) if v[\"diff_pct\"] < -10}\n\nresults[\"by_problem_id\"] = {\n    \"total_problems\": len(problem_ids),\n    \"scatter_data\": scatter_data,\n    \"cls_strong_problems_gt10pct\": cls_strong_probs,\n    \"cwm_strong_problems_gt10pct\": cwm_strong_probs,\n    \"n_cls_strong\": len(cls_strong_probs),\n    \"n_cwm_strong\": len(cwm_strong_probs),\n}\n\n# ============ 5. Error pattern analysis ============\ncls_only_error_idxs = [i for i in range(N) if not cls_by_idx[i][\"correct\"] and cwm_by_idx[i][\"correct\"]]\ncwm_only_error_idxs = [i for i in range(N) if cls_by_idx[i][\"correct\"] and not cwm_by_idx[i][\"correct\"]]\nboth_wrong_idxs = [i for i in range(N) if not cls_by_idx[i][\"correct\"] and not cwm_by_idx[i][\"correct\"]]\n\ndef error_profile(idxs, label):\n    mt_dist = Counter(cls_by_idx[i][\"mutation_type\"] for i in idxs)\n    pid_dist = Counter(cls_by_idx[i][\"problem_id\"] for i in idxs)\n    true_dist = Counter(cls_by_idx[i][\"true_label\"] for i in idxs)\n    return {\n        \"count\": len(idxs),\n        \"mutation_type_distribution\": dict(mt_dist.most_common()),\n        \"true_label_distribution\": dict(true_dist),\n        \"top_problem_ids\": dict(pid_dist.most_common(10)),\n    }\n\nresults[\"error_patterns\"] = {\n    \"cls_only_errors\": error_profile(cls_only_error_idxs, \"CLS-only errors\"),\n    \"cwm_only_errors\": error_profile(cwm_only_error_idxs, \"CWM-only errors\"),\n    \"both_wrong\": error_profile(both_wrong_idxs, \"both wrong\"),\n}\n\n# CWM-only correct samples: exact_match rate\ncwm_only_correct_idxs = [i for i in range(N) if not cls_by_idx[i][\"correct\"] and cwm_by_idx[i][\"correct\"]]\nif cwm_only_correct_idxs:\n    exact_match_count = sum(1 for i in cwm_only_correct_idxs if cwm_by_idx[i].get(\"exact_match\", False))\n    results[\"error_patterns\"][\"cwm_only_correct_exact_match\"] = {\n        \"total\": len(cwm_only_correct_idxs),\n        \"exact_match\": exact_match_count,\n        \"exact_match_rate_pct\": round(exact_match_count / len(cwm_only_correct_idxs) * 100, 2),\n    }\n\n# CLS-only correct: CWM error_type distribution\ncls_only_correct_idxs = [i for i in range(N) if cls_by_idx[i][\"correct\"] and not cwm_by_idx[i][\"correct\"]]\nif cls_only_correct_idxs:\n    cwm_error_types = Counter(cwm_by_idx[i].get(\"error_type\", \"unknown\") for i in cls_only_correct_idxs)\n    results[\"error_patterns\"][\"cls_only_correct_cwm_error_types\"] = dict(cwm_error_types.most_common())\n\n# ============ 6. Cross-seed comparison ============\nresults[\"cross_seed_comparison\"] = {\n    \"prior_cross_seed_oracle_pct\": 90.63,\n    \"prior_cross_seed_complementarity_pct\": 5.9,\n    \"matched_seed_oracle_pct\": round(oracle_acc * 100, 2),\n    \"matched_seed_complementarity_pct\": round(complementarity * 100, 2),\n    \"oracle_difference_pct\": round(oracle_acc * 100 - 90.63, 2),\n    \"complementarity_difference_pct\": round(complementarity * 100 - 5.9, 2),\n}\n\n# ============ Save results ============\nwith open(\"/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json\", \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\n\n# ============ Print summary ============\nprint(\"=\" * 70)\nprint(\"MATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\")\nprint(\"=\" * 70)\n\na = results[\"agreement\"]\nprint(f\"\\n--- 1. Agreement/Disagreement ---\")\nprint(f\"CLS accuracy: {a['cls_accuracy']}%  |  CWM accuracy: {a['cwm_accuracy']}%\")\nprint(f\"Both correct:     {a['both_correct']} ({a['both_correct_pct']}%)\")\nprint(f\"Both wrong:        {a['both_wrong']} ({a['both_wrong_pct']}%)\")\nprint(f\"CLS-only correct:  {a['cls_only_correct']} ({a['cls_only_correct_pct']}%)\")\nprint(f\"CWM-only correct:  {a['cwm_only_correct']} ({a['cwm_only_correct_pct']}%)\")\nprint(f\"Cohen's Kappa (prediction): {a['cohen_kappa_prediction']}\")\nprint(f\"Cohen's Kappa (correctness): {a['cohen_kappa_correctness']}\")\n\no = results[\"oracle\"]\nprint(f\"\\n--- 2. Oracle Combination ---\")\nprint(f\"Oracle accuracy: {o['oracle_accuracy_pct']}% ({o['oracle_correct']}/{N})\")\nprint(f\"Better model: {o['better_model']} at {o['better_model_accuracy_pct']}%\")\nprint(f\"Complementarity: +{o['complementarity_pct']}%\")\n\nprint(f\"\\n--- 3. By Mutation Type ---\")\nprint(f\"{'Type':<25} {'N':>5} {'CLS%':>7} {'CWM%':>7} {'Diff':>7} {'CLS_F1':>7} {'CWM_F1':>7} {'p-val':>8} {'Sig':>4}\")\nfor mt in mutation_types:\n    v = mut_results[mt]\n    sig = \"*\" if v[\"significant\"] else \"\"\n    print(f\"{mt:<25} {v['n']:>5} {v['cls_accuracy_pct']:>7.2f} {v['cwm_accuracy_pct']:>7.2f} {v['diff_pct']:>+7.2f} {v['cls_f1']:>7.4f} {v['cwm_f1']:>7.4f} {v['p_value']:>8.4f} {sig:>4}\")\n\nprint(f\"\\nCLS stronger: {list(results['mutation_type_summary']['cls_stronger'].keys())}\")\nprint(f\"CWM stronger: {list(results['mutation_type_summary']['cwm_stronger'].keys())}\")\n\nprint(f\"\\n--- 4. By Problem ID ---\")\nprint(f\"Total problems: {results['by_problem_id']['total_problems']}\")\nprint(f\"CLS-strong problems (>10% diff): {results['by_problem_id']['n_cls_strong']}\")\nprint(f\"CWM-strong problems (>10% diff): {results['by_problem_id']['n_cwm_strong']}\")\nif cls_strong_probs:\n    print(f\"\\nTop CLS-strong problems:\")\n    for k, v in list(cls_strong_probs.items())[:5]:\n        print(f\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\")\nif cwm_strong_probs:\n    print(f\"\\nTop CWM-strong problems:\")\n    for k, v in list(cwm_strong_probs.items())[:5]:\n        print(f\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\")\n\nprint(f\"\\n--- 5. Error Patterns ---\")\nep = results[\"error_patterns\"]\nprint(f\"CLS-only errors (CLS wrong, CWM right): {ep['cls_only_errors']['count']}\")\nprint(f\"  mutation types: {ep['cls_only_errors']['mutation_type_distribution']}\")\nprint(f\"  true labels: {ep['cls_only_errors']['true_label_distribution']}\")\nprint(f\"CWM-only errors (CWM wrong, CLS right): {ep['cwm_only_errors']['count']}\")\nprint(f\"  mutation types: {ep['cwm_only_errors']['mutation_type_distribution']}\")\nprint(f\"  true labels: {ep['cwm_only_errors']['true_label_distribution']}\")\nprint(f\"Both wrong: {ep['both_wrong']['count']}\")\nprint(f\"  mutation types: {ep['both_wrong']['mutation_type_distribution']}\")\nprint(f\"  true labels: {ep['both_wrong']['true_label_distribution']}\")\nif \"cwm_only_correct_exact_match\" in ep:\n    em = ep[\"cwm_only_correct_exact_match\"]\n    print(f\"\\nCWM-only correct samples exact_match rate: {em['exact_match']}/{em['total']} = {em['exact_match_rate_pct']}%\")\nif \"cls_only_correct_cwm_error_types\" in ep:\n    print(f\"CLS-only correct → CWM error_type distribution: {ep['cls_only_correct_cwm_error_types']}\")\n\nprint(f\"\\n--- 6. Cross-seed Comparison ---\")\ncs = results[\"cross_seed_comparison\"]\nprint(f\"Prior cross-seed: Oracle={cs['prior_cross_seed_oracle_pct']}%, Complementarity={cs['prior_cross_seed_complementarity_pct']}%\")\nprint(f\"Matched-seed:     Oracle={cs['matched_seed_oracle_pct']}%, Complementarity={cs['matched_seed_complementarity_pct']}%\")\nprint(f\"Difference:       Oracle={cs['oracle_difference_pct']:+.2f}%, Complementarity={cs['complementarity_difference_pct']:+.2f}%\")\n\nprint(f\"\\nResults saved to matched_seed_overlap_results.json\")\nPYEOF\necho \"Script written OK\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "12901d39-65bb-4b72-b715-2f1dfa13289d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMNrromtpoQrVGa6Cz1bZB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2951,
+      "cache_read_input_tokens": 24663,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2951
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T17:01:21.091Z_
+
+<details><summary>↩ Tool result · `toolu_01Us361426pAiSQLVGVf2Aro`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "dc01ff03-a651-4c27-9783-34e70d0fb670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+脚本已写入，执行分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "d0ae1d93-2194-4075-adf7-a3a9467ae159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPWmwAwdxWbHYxCVNV6Qem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5521,
+      "cache_read_input_tokens": 27614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5521
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RUm6dLYDppEubpPjWN44tD`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 matched_seed_analysis.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "70217309-ef36-4c55-9b49-aab5b6e0f438",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPWmwAwdxWbHYxCVNV6Qem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5521,
+      "cache_read_input_tokens": 27614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5521
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T17:01:29.126Z_
+
+<details><summary>↩ Tool result · `toolu_01RUm6dLYDppEubpPjWN44tD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && python3 matched_seed_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 405, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 405, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 438, in _iterencode\\n    o = _default(o)\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 179, in default\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\nTypeError: Object of type bool is not JSON serializable\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "6223e6fe-d684-4183-9635-1ec8d9b14ed8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && python3 matched_seed_analysis.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n    yield from chunks\\\\n  File \\\\\\\"/usr/lib/python3.10/json/encoder.py\\\\\\\", line 405, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/usr/lib/python3.10/json/encoder.py\\\\\\\", line 405, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/usr/lib/python3.10/json/encoder.py\\\\\\\", line 438, in _iterencode\\\\n    o = _default(o)\\\\n  File \\\\\\\"/usr/lib/python3.10/json/encoder.py\\\\\\\", line 179, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && python3 matched_seed_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 405, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 405, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 438, in _iterencode\\n    o = _default(o)\\n  File \\\"/usr/lib/python3.10/json/encoder.py\\\", line 179, in default\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\nTypeError: Object of type bool is not JSON serializable\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is that numpy bool values aren't JSON serializable. I need to convert them. The `correct` field from the JSON is a Python bool, but when I do operations like `sum(cls_by_idx[i]["correct"] for i in idxs)`, this should be fine. The issue is likely that the `significant` field uses numpy bool from the comparison `p_val < 0.05`. Let me fix that.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "c8803091-2d25-4451-b60d-4a6a298a2c28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014s1Q2ryMqKRJt83LWB7XEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 33135,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+numpy bool 序列化问题，修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "3c46b8b9-e3ad-4ee2-879c-729cb814511d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014s1Q2ryMqKRJt83LWB7XEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 33135,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01T1UNtQ7Pfidq9BoWActuTo`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && sed -i 's/\"significant\": p_val < 0.05,/\"significant\": bool(p_val < 0.05),/' matched_seed_analysis.py && python3 matched_seed_analysis.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "f4f01408-7dc1-4722-9bb9-a0aba31b441d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014s1Q2ryMqKRJt83LWB7XEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 464,
+      "cache_read_input_tokens": 33135,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 464
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T17:01:39.251Z_
+
+<details><summary>↩ Tool result · `toolu_01T1UNtQ7Pfidq9BoWActuTo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nMATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\n======================================================================\\n\\n--- 1. Agreement/Disagreement ---\\nCLS accuracy: 87.83%  |  CWM accuracy: 87.51%\\nBoth correct:     1601 (84.71%)\\nBoth wrong:        177 (9.37%)\\nCLS-only correct:  59 (3.12%)\\nCWM-only correct:  53 (2.8%)\\nCohen's Kappa (prediction): 0.8815\\nCohen's Kappa (correctness): 0.7259\\n\\n--- 2. Oracle Combination ---\\nOracle accuracy: 90.63% (1713/1890)\\nBetter model: CLS at 87.83%\\nComplementarity: +2.8%\\n\\n--- 3. By Mutation Type ---\\nType                          N    CLS%    CWM%    Diff  CLS_F1  CWM_F1    p-val  Sig\\nboundary_removal             36   91.67   88.89   +2.78  0.9042  0.8691   1.0000     \\noff_by_one                  671   80.33   81.82   -1.49  0.7999  0.8165   0.5305     \\noperator_swap               298   85.91   88.59   -2.68  0.8513  0.8750   0.3900     \\noriginal                    398   89.45   85.18   +4.27  0.4721  0.4600   0.0884     \\nreturn_value                402   98.01   97.01   +1.00  0.9457  0.9148   0.4969     \\nvariable_swap                85   96.47   94.12   +2.35  0.9645  0.9407   0.7172     \\n\\nCLS stronger: ['original', 'boundary_removal', 'variable_swap', 'return_value']\\nCWM stronger: ['operator_swap', 'off_by_one']\\n\\n--- 4. By Problem ID ---\\nTotal problems: 114\\nCLS-strong problems (>10% diff): 9\\nCWM-strong problems (>10% diff): 8\\n\\nTop CLS-strong problems:\\n  MBPP/397: CLS=100.0% CWM=40.0% diff=+60.0%\\n  MBPP/429: CLS=100.0% CWM=50.0% diff=+50.0%\\n  MBPP/123: CLS=100.0% CWM=64.29% diff=+35.7%\\n  MBPP/134: CLS=86.67% CWM=66.67% diff=+20.0%\\n  MBPP/20: CLS=93.33% CWM=73.33% diff=+20.0%\\n\\nTop CWM-strong problems:\\n  MBPP/487: CLS=66.67% CWM=93.33% diff=-26.7%\\n  MBPP/957: CLS=60.0% CWM=86.67% diff=-26.7%\\n  MBPP/556: CLS=80.0% CWM=100.0% diff=-20.0%\\n  MBPP/922: CLS=73.33% CWM=93.33% diff=-20.0%\\n  MBPP/855: CLS=41.67% CWM=58.33% diff=-16.7%\\n\\n--- 5. Error Patterns ---\\nCLS-only errors (CLS wrong, CWM right): 53\\n  mutation types: {'off_by_one': 32, 'operator_swap': 17, 'return_value': 1, 'original': 1, 'boundary_removal': 1, 'variable_swap': 1}\\n  true labels: {'PASS': 13, 'FAIL': 40}\\nCWM-only errors (CWM wrong, CLS right): 59\\n  mutation types: {'off_by_one': 22, 'original': 18, 'operator_swap': 9, 'return_value': 5, 'variable_swap': 3, 'boundary_removal': 2}\\n  true labels: {'PASS': 49, 'FAIL': 10}\\nBoth wrong: 177\\n  mutation types: {'off_by_one': 100, 'original': 41, 'operator_swap': 25, 'return_value': 7, 'boundary_removal': 2, 'variable_swap': 2}\\n  true labels: {'FAIL': 60, 'PASS': 117}\\n\\nCWM-only correct samples exact_match rate: 50/53 = 94.34%\\nCLS-only correct → CWM error_type distribution: {'PASS': 49, 'AssertionError': 7, 'OverflowError': 2, 'TypeError': 1}\\n\\n--- 6. Cross-seed Comparison ---\\nPrior cross-seed: Oracle=90.63%, Complementarity=5.9%\\nMatched-seed:     Oracle=90.63%, Complementarity=2.8%\\nDifference:       Oracle=+0.00%, Complementarity=-3.10%\\n\\nResults saved to matched_seed_overlap_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "ad62cffc-3bc6-46c3-a3b1-ca5a659a18a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nMATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\\\n======================================================================\\\\n\\\\n--- 1. Agreement/Disagreement ---\\\\nCLS accuracy: 87.83%  |  CWM accuracy: 87.51%\\\\nBoth correct:     1601 (84.71%)\\\\nBoth wrong:        177 (9.37%)\\\\nCLS-only correct:  59 (3.12%)\\\\nCWM-only correct:  53 (2.8%)\\\\nCohen's Kappa (prediction): 0.8815\\\\nCohen's Kappa (correctness): 0.7259\\\\n\\\\n--- 2. Oracle Combination ---\\\\nOracle accuracy: 90.63% (1713/1890)\\\\nBetter model: CLS at 87.83%\\\\nComplementarity: +2.8%\\\\n\\\\n--- 3. By Mutation Type ---\\\\nType                          N    CLS%    CWM%    Diff  CLS_F1  CWM_F1    p-val  Sig\\\\nboundary_removal             36   91.67   88.89   +2.78  0.9042  0.8691   1.0000     \\\\noff_by_one                  671   80.33   81.82   -1.49  0.7999  0.8165   0.5305     \\\\noperator_swap               298   85.91   88.59   -2.68  0.8513  0.8750   0.3900     \\\\noriginal                    398   89.45   85.18   +4.27  0.4721  0.4600   0.0884     \\\\nreturn_value                402   98.01   97.01   +1.00  0.9457  0.9148   0.4969     \\\\nvariable_swap                85   96.47   94.12   +2.35  0.9645  0.9407   0.7172     \\\\n\\\\nCLS stronger: ['original', 'boundary_removal', 'variable_swap', 'return_value']\\\\nCWM stronger: ['operator_swap', 'off_by_one']\\\\n\\\\n--- 4. By Problem ID ---\\\\nTotal problems: 114\\\\nCLS-strong problems (>10% diff): 9\\\\nCWM-strong problems (>10% diff): 8\\\\n\\\\nTop CLS-strong problems:\\\\n  MBPP/397: CLS=100.0% CWM=40.0% diff=+60.0%\\\\n  MBPP/429: CLS=100.0% CWM=50.0% diff=+50.0%\\\\n  MBPP/123: CLS=100.0% CWM=64.29% diff=+35.7%\\\\n  MBPP/134: CLS=86.67% CWM=66.67% diff=+20.0%\\\\n  MBPP/20: CLS=93.33% CWM=73.33% diff=+20.0%\\\\n\\\\nTop CWM-strong problems:\\\\n  MBPP/487: CLS=66.67% CWM=93.33% diff=-26.7%\\\\n  MBPP/957: CLS=60.0% CWM=86.67% diff=-26.7%\\\\n  MBPP/556: CLS=80.0% CWM=100.0% diff=-20.0%\\\\n  MBPP/922: CLS=73.33% CWM=93.33% diff=-20.0%\\\\n  MBPP/855: CLS=41.67% CWM=58.33% diff=-16.7%\\\\n\\\\n--- 5. Error Patterns ---\\\\nCLS-only errors (CLS wrong, CWM right): 53\\\\n  mutation types: {'off_by_one': 32, 'operator_swap': 17, 'return_value': 1, 'original': 1, 'boundary_removal': 1, 'variable_swap': 1}\\\\n  true labels: {'PASS': 13, 'FAIL': 40}\\\\nCWM-only errors (CWM wrong, CLS right): 59\\\\n  mutation types: {'off_by_one': 22, 'original': 18, 'operator_swap': 9, 'return_value': 5, 'variable_swap': 3, 'boundary_removal': 2}\\\\n  true labels: {'PASS': 49, 'FAIL': 10}\\\\nBoth wrong: 177\\\\n  mutation types: {'off_by_one': 100, 'original': 41, 'operator_swap': 25, 'return_value': 7, 'boundary_removal': 2, 'variable_swap': 2}\\\\n  true labels: {'FAIL': 60, 'PASS': 117}\\\\n\\\\nCWM-only correct samples exact_match rate: 50/53 = 94.34%\\\\nCLS-only correct → CWM error_type distribution: {'PASS': 49, 'AssertionError': 7, 'OverflowError': 2, 'TypeError': 1}\\\\n\\\\n--- 6. Cross-seed Comparison ---\\\\nPrior cross-seed: Oracle=90.63%, Complementarity=5.9%\\\\nMatched-seed:     Oracle=90.63%, Complementarity=2.8%\\\\nDifference:       Oracle=+0.00%, Complementarity=-3.10%\\\\n\\\\nResults saved to matched_seed_overlap_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nMATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\n======================================================================\\n\\n--- 1. Agreement/Disagreement ---\\nCLS accuracy: 87.83%  |  CWM accuracy: 87.51%\\nBoth correct:     1601 (84.71%)\\nBoth wrong:        177 (9.37%)\\nCLS-only correct:  59 (3.12%)\\nCWM-only correct:  53 (2.8%)\\nCohen's Kappa (prediction): 0.8815\\nCohen's Kappa (correctness): 0.7259\\n\\n--- 2. Oracle Combination ---\\nOracle accuracy: 90.63% (1713/1890)\\nBetter model: CLS at 87.83%\\nComplementarity: +2.8%\\n\\n--- 3. By Mutation Type ---\\nType                          N    CLS%    CWM%    Diff  CLS_F1  CWM_F1    p-val  Sig\\nboundary_removal             36   91.67   88.89   +2.78  0.9042  0.8691   1.0000     \\noff_by_one                  671   80.33   81.82   -1.49  0.7999  0.8165   0.5305     \\noperator_swap               298   85.91   88.59   -2.68  0.8513  0.8750   0.3900     \\noriginal                    398   89.45   85.18   +4.27  0.4721  0.4600   0.0884     \\nreturn_value                402   98.01   97.01   +1.00  0.9457  0.9148   0.4969     \\nvariable_swap                85   96.47   94.12   +2.35  0.9645  0.9407   0.7172     \\n\\nCLS stronger: ['original', 'boundary_removal', 'variable_swap', 'return_value']\\nCWM stronger: ['operator_swap', 'off_by_one']\\n\\n--- 4. By Problem ID ---\\nTotal problems: 114\\nCLS-strong problems (>10% diff): 9\\nCWM-strong problems (>10% diff): 8\\n\\nTop CLS-strong problems:\\n  MBPP/397: CLS=100.0% CWM=40.0% diff=+60.0%\\n  MBPP/429: CLS=100.0% CWM=50.0% diff=+50.0%\\n  MBPP/123: CLS=100.0% CWM=64.29% diff=+35.7%\\n  MBPP/134: CLS=86.67% CWM=66.67% diff=+20.0%\\n  MBPP/20: CLS=93.33% CWM=73.33% diff=+20.0%\\n\\nTop CWM-strong problems:\\n  MBPP/487: CLS=66.67% CWM=93.33% diff=-26.7%\\n  MBPP/957: CLS=60.0% CWM=86.67% diff=-26.7%\\n  MBPP/556: CLS=80.0% CWM=100.0% diff=-20.0%\\n  MBPP/922: CLS=73.33% CWM=93.33% diff=-20.0%\\n  MBPP/855: CLS=41.67% CWM=58.33% diff=-16.7%\\n\\n--- 5. Error Patterns ---\\nCLS-only errors (CLS wrong, CWM right): 53\\n  mutation types: {'off_by_one': 32, 'operator_swap': 17, 'return_value': 1, 'original': 1, 'boundary_removal': 1, 'variable_swap': 1}\\n  true labels: {'PASS': 13, 'FAIL': 40}\\nCWM-only errors (CWM wrong, CLS right): 59\\n  mutation types: {'off_by_one': 22, 'original': 18, 'operator_swap': 9, 'return_value': 5, 'variable_swap': 3, 'boundary_removal': 2}\\n  true labels: {'PASS': 49, 'FAIL': 10}\\nBoth wrong: 177\\n  mutation types: {'off_by_one': 100, 'original': 41, 'operator_swap': 25, 'return_value': 7, 'boundary_removal': 2, 'variable_swap': 2}\\n  true labels: {'FAIL': 60, 'PASS': 117}\\n\\nCWM-only correct samples exact_match rate: 50/53 = 94.34%\\nCLS-only correct → CWM error_type distribution: {'PASS': 49, 'AssertionError': 7, 'OverflowError': 2, 'TypeError': 1}\\n\\n--- 6. Cross-seed Comparison ---\\nPrior cross-seed: Oracle=90.63%, Complementarity=5.9%\\nMatched-seed:     Oracle=90.63%, Complementarity=2.8%\\nDifference:       Oracle=+0.00%, Complementarity=-3.10%\\n\\nResults saved to matched_seed_overlap_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+分析完成。关键结果如下：
+
+---
+
+### 1. Agreement/Disagreement
+
+| 类别 | 数量 | 百分比 |
+|------|------|--------|
+| Both correct | 1601 | 84.71% |
+| Both wrong | 177 | 9.37% |
+| CLS-only correct | 59 | 3.12% |
+| CWM-only correct | 53 | 2.80% |
+
+- CLS accuracy: **87.83%**, CWM accuracy: **87.51%**
+- Cohen's Kappa (prediction): **0.8815** (几乎完全一致)
+- Cohen's Kappa (correctness): **0.7259** (实质一致)
+
+### 2. Oracle Combination
+
+- Oracle accuracy: **90.63%** (1713/1890)
+- Complementarity: **+2.80%** (在 CLS 87.83% 基础上)
+
+### 3. 按 Mutation Type
+
+| Type | N | CLS% | CWM% | Diff | Sig? |
+|------|---|------|------|------|------|
+| original | 398 | 89.45 | 85.18 | **+4.27** | No (p=0.09) |
+| off_by_one | 671 | 80.33 | 81.82 | -1.49 | No |
+| operator_swap | 298 | 85.91 | 88.59 | -2.68 | No |
+| return_value | 402 | 98.01 | 97.01 | +1.00 | No |
+| variable_swap | 85 | 96.47 | 94.12 | +2.35 | No |
+| boundary_removal | 36 | 91.67 | 88.89 | +2.78 | No |
+
+**无一达到统计显著**。CLS 在 original 上优势最大 (+4.27%)，CWM 在 operator_swap (-2.68%) 和 off_by_one (-1.49%) 上略优。
+
+### 4. 按 Problem ID
+
+- 114 个 problems 中，CLS 强势 (>10% diff) 有 9 个，CWM 强势有 8 个
+- 最极端：MBPP/397 CLS=100% vs CWM=40%；MBPP/487 CLS=66.7% vs CWM=93.3%
+
+### 5. Error Patterns
+
+**CLS-only errors (53 样本)**：主要是 off_by_one (32) 和 operator_swap (17)，**true label 偏向 FAIL** (40/53=75.5%) — CLS 倾向于把 FAIL 误判为 PASS。
+
+**CWM-only errors (59 样本)**：分布更均匀，original 占 18 个，**true label 偏向 PASS** (49/59=83.1%) — CWM 倾向于把 PASS 误判为 FAIL。
+
+**两模型错误模式互补**：CLS 漏 FAIL，CWM 漏 PASS。
+
+**CWM-only correct 的 exact_match 率**：50/53 = **94.34%** — CWM 在它独占正确的样本上几乎都做了精确输出预测。
+
+**CLS-only correct 时 CWM 的 error_type**：49/59 预测为 PASS（即 CWM 预测程序通过但实际有错误/预测错了 label），7 个 AssertionError。
+
+### 6. 与 Cross-seed 对比
+
+| 指标 | Cross-seed | Matched-seed | 差异 |
+|------|-----------|-------------|------|
+| Oracle | 90.63% | **90.63%** | 0.00% |
+| Complementarity | 5.90% | **2.80%** | **-3.10%** |
+
+**Oracle accuracy 完全一致**（90.63%），但 matched-seed 的 complementarity 从 5.9% 降到 2.8%。原因：matched-seed 时两个模型共享训练数据划分，各自 accuracy 更高（CLS 87.83% vs cross-seed 的 ~84.7%），但互补性下降 — 相同 seed 导致模型在相似样本上犯类似错误。Oracle 上限未变说明两种方法学到的互补空间是稳定的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "uuid": "7ee6aa74-6b6f-43dc-b90e-1c836b93d987",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgeskAbMY4MrKD4jhvN9zV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1864,
+      "cache_read_input_tokens": 33599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1864
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+分析完成。关键结果如下：
+
+---
+
+### 1. Agreement/Disagreement
+
+| 类别 | 数量 | 百分比 |
+|------|------|--------|
+| Both correct | 1601 | 84.71% |
+| Both wrong | 177 | 9.37% |
+| CLS-only correct | 59 | 3.12% |
+| CWM-only correct | 53 | 2.80% |
+
+- CLS accuracy: **87.83%**, CWM accuracy: **87.51%**
+- Cohen's Kappa (prediction): **0.8815** (几乎完全一致)
+- Cohen's Kappa (correctness): **0.7259** (实质一致)
+
+### 2. Oracle Combination
+
+- Oracle accuracy: **90.63%** (1713/1890)
+- Complementarity: **+2.80%** (在 CLS 87.83% 基础上)
+
+### 3. 按 Mutation Type
+
+| Type | N | CLS% | CWM% | Diff | Sig? |
+|------|---|------|------|------|------|
+| original | 398 | 89.45 | 85.18 | **+4.27** | No (p=0.09) |
+| off_by_one | 671 | 80.33 | 81.82 | -1.49 | No |
+| operator_swap | 298 | 85.91 | 88.59 | -2.68 | No |
+| return_value | 402 | 98.01 | 97.01 | +1.00 | No |
+| variable_swap | 85 | 96.47 | 94.12 | +2.35 | No |
+| boundary_removal | 36 | 91.67 | 88.89 | +2.78 | No |
+
+**无一达到统计显著**。CLS 在 original 上优势最大 (+4.27%)，CWM 在 operator_swap (-2.68%) 和 off_by_one (-1.49%) 上略优。
+
+### 4. 按 Problem ID
+
+- 114 个 problems 中，CLS 强势 (>10% diff) 有 9 个，CWM 强势有 8 个
+- 最极端：MBPP/397 CLS=100% vs CWM=40%；MBPP/487 CLS=66.7% vs CWM=93.3%
+
+### 5. Error Patterns
+
+**CLS-only errors (53 样本)**：主要是 off_by_one (32) 和 operator_swap (17)，**true label 偏向 FAIL** (40/53=75.5%) — CLS 倾向于把 FAIL 误判为 PASS。
+
+**CWM-only errors (59 样本)**：分布更均匀，original 占 18 个，**true label 偏向 PASS** (49/59=83.1%) — CWM 倾向于把 PASS 误判为 FAIL。
+
+**两模型错误模式互补**：CLS 漏 FAIL，CWM 漏 PASS。
+
+**CWM-only correct 的 exact_match 率**：50/53 = **94.34%** — CWM 在它独占正确的样本上几乎都做了精确输出预测。
+
+**CLS-only correct 时 CWM 的 error_type**：49/59 预测为 PASS（即 CWM 预测程序通过但实际有错误/预测错了 label），7 个 AssertionError。
+
+### 6. 与 Cross-seed 对比
+
+| 指标 | Cross-seed | Matched-seed | 差异 |
+|------|-----------|-------------|------|
+| Oracle | 90.63% | **90.63%** | 0.00% |
+| Complementarity | 5.90% | **2.80%** | **-3.10%** |
+
+**Oracle accuracy 完全一致**（90.63%），但 matched-seed 的 complementarity 从 5.9% 降到 2.8%。原因：matched-seed 时两个模型共享训练数据划分，各自 accuracy 更高（CLS 87.83% vs cross-seed 的 ~84.7%），但互补性下降 — 相同 seed 导致模型在相似样本上犯类似错误。Oracle 上限未变说明两种方法学到的互补空间是稳定的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 145199,
+  "duration_api_ms": 136536,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "b9ee5be2-09a7-4b2e-8f1e-d8c718162b20",
+  "total_cost_usd": 0.430944,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 23762,
+    "cache_read_input_tokens": 178625,
+    "output_tokens": 7650,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23762,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1195,
+        "cache_read_input_tokens": 33599,
+        "cache_creation_input_tokens": 1864,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1864
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1714,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001819,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 7650,
+      "cacheReadInputTokens": 178625,
+      "cacheCreationInputTokens": 23762,
+      "webSearchRequests": 0,
+      "costUSD": 0.429125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "4efabc71-422d-4a43-986f-5786cca10405"
+}
+```
+
+</details>
+
+---

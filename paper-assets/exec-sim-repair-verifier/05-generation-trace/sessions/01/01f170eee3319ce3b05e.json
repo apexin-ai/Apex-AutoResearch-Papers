@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01f170eee3319ce3b05e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis unparseable ckpt1000",
+  "task_key": "worker_analysis_unparseable-ckpt1000_20260515T165712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_unparseable-ckpt1000_20260515T165712_result.json",
+    "occurrence": 1,
+    "bytes": 1727,
+    "sha256": "7ad3c9fa7123192fc6694d61cfe9ecc0caf49f57bdf9537968e036737b226287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete picture:\n\n## Unparseable Data — What Exists\n\n**No val eval with unparseable tracking exists for ckpt-1000 (or any checkpoint 200-1600).** The previous val sweep only recorded accuracy, not unparseable counts (`n_cls_unparseable: None` in `compile_val_sweep.py`).\n\nAvailable unparseable data from other eval runs:\n\n| Checkpoint | Split | seq_len | n_instances | unparseable | rate |\n|-----------|-------|---------|-------------|-------------|------|\n| ckpt-200 (different ckpt path¹) | test | 2048 | 9784 | 136 | 1.4% |\n| ckpt-800 (s42) | test | 8192 | 9784 | 0 | 0.0% |\n| ckpt-1400 (s42) | test | 8192 | 9784 | 0 | 0.0% |\n| ckpt-1800 (s42) | val | 2048 | 9335 | 1883 | 20.2% |\n\n¹ `checkpoints_repo_cls_8b` not `checkpoints_repo_cls_8b_s42_resume`\n\n## Key Confound\n\nThe ckpt-1800 eval used **seq_length=2048**, while ckpt-800/1400 used **seq_length=8192**. The 20.2% unparseable could be caused by truncation at seq=2048, not overfitting.\n\n## Extended Val Sweep Status\n\n`run_extended_val_sweep.sh` was launched to re-evaluate at seq=8192 with unparseable tracking, but **crashed at 560/9335 on ckpt-1800** (log stopped ~43 minutes ago at 22:16). No results were saved. The ckpt-1800 val prediction files that previously existed have also been deleted.\n\n## What's Needed\n\nTo get the comparison you want, we need to either:\n1. Re-run the extended sweep (fix whatever crashed it) to get all checkpoints at seq=8192 with unparseable tracking\n2. Or at minimum: run `eval_repo_cls.py` on ckpt-1000 and ckpt-1800 with **identical settings** (same split, same seq_length)\n\nWant me to investigate the crash and re-launch the sweep, or just run ckpt-1000 specifically?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-unparseable-ckpt1000.md"
+}

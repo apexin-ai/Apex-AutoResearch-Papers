@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25e3efb9e9dc42ae5d94",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check traj training status",
+  "task_key": "worker_check_traj-training-status_20260517T134306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_traj-training-status_20260517T134306_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "53bce38026bc9cfb3c0da4fca38304c29fb952ff0a2bafd5f29d6f0efda2b9ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n**状态**: 正常运行中\n\n| 项目 | 值 |\n|------|------|\n| 服务器 | home-1x5090 (RTX 5090) |\n| tmux session | `qwen3-8b-traj-func-s42` (创建于 06:20) |\n| GPU 占用 | 22705 / 32607 MiB, 利用率 94%, 77°C |\n| 总 steps | 756 (3 epochs) |\n| 当前进度 | **step 359/756 (47%)**, epoch 2 进行中 |\n| 训练速度 | ~3.7 s/it |\n| Epoch 1 eval loss | **0.0952** |\n| Checkpoint | `checkpoint-252` 已保存 (epoch 1 结束) |\n| 运行时间 | ~23 分钟 |\n| 预估剩余 | ~25 分钟 (约 06:49 完成 epoch 2 eval, 总计约 50 分钟完成全部 3 epochs) |\n\n训练健康，loss 很低 (0.095)，速度稳定。预计约 **06:50 UTC** 完成全部训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-traj-training-status.md"
+}

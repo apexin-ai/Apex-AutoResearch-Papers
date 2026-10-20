@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0630ee33a7c8a01be999",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect 0shot final",
+  "task_key": "worker_collect_0shot-final_20260517T231446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_0shot-final_20260517T231446_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "71f684e456fe773a67c67f1f083d6af7810a08f0f5e783d6bf8d428a78c9cbc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程状态：**2300/9784 (23.5%)**，acc=50.7%，unparseable=0%，ETA ~13 分钟。2 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-0shot-final.md"
+}

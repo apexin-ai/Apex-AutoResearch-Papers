@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2be87fb891699b6bcdcc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "critical ckpt 3000 provenance verify",
+  "task_key": "worker_critical_ckpt-3000-provenance-verify_20260514T203043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_ckpt-3000-provenance-verify_20260514T203043_result.json",
+    "occurrence": 1,
+    "bytes": 2052,
+    "sha256": "16da5dbff99dbfa460e5cd7ae0687f4d1d25b7a10143c99f27394b139ea24507"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 282772 已终止，GPU 1 显存从 31054MiB 降至 13629MiB，释放 ~17.4GB。\n\n---\n\n## 溯源结论\n\n### Q1: `checkpoints_repo_cls_8b/checkpoint-3000` 的 transformers 版本？\n**transformers 5.x（旧 invalid 训练）**。证据：\n- training_args.bin 包含 5.x 特有属性：`mixed_precision`, `enable_jit_checkpoint`, `train_sampling_strategy`, `ddp_static_graph`\n- 缺少 4.x 遗留属性：`adafactor`, `no_cuda`, `tpu_metrics_debug`, `fp16_backend` 等\n- peft_version = **0.19.1**（非 conda 环境）\n- 创建时间 = May 14 05:30 +0800 = **May 13 21:30 UTC**，早于 conda 训练\n\n### Q2: `checkpoints_repo_cls_8b_conda/` 下的 checkpoint？\n| Checkpoint | 时间 (CST) | peft | transformers |\n|---|---|---|---|\n| checkpoint-200 | May 14 07:27 | 0.19.0 | 4.x |\n| checkpoint-400 | May 14 08:08 | 0.19.0 | 4.x |\n| checkpoint-600 | May 14 08:50 | 0.19.0 | 4.x |\n\n训练仅到 checkpoint-600（未完成到 3000）。\n\n### Q3: `checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000` 的 transformers 版本？\n**transformers 4.x（正确的 conda 训练）**。证据：\n- training_args.bin 包含 4.x 遗留属性（`adafactor`, `no_cuda`, `tpu_metrics_debug` 等）\n- peft_version = **0.19.0**\n- seed = 123, 创建时间 = May 15 00:55 +0800\n- output_dir 指向正确路径\n\n### Q4: 是否有 test eval 进程在跑？\n**PID 282772**（已 kill）：用的正是无效 checkpoint `checkpoints_repo_cls_8b/checkpoint-3000`，split=test, max_seq_length=5120。GPU 已释放。\n\n其他仍在运行的有效进程：\n- PID 280392: `cls_8b_conda/checkpoint-400` val eval (GPU 0)\n- PID 281646: `cls_v5_conda/checkpoint-400` val eval (GPU 0+1)\n\n### Q5: 89.50% val 结果是否 valid？\n**INVALID。** 该结果来自 transformers 5.x 旧训练的 checkpoint，不可引用。\n\n**替代方案：** `checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000` 是用正确环境（transformers 4.x, peft 0.19.0, seed=123）训练完成的，可用作 8B ckpt-3000 的有效替代进行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-ckpt-3000-provenance-verify.md"
+}

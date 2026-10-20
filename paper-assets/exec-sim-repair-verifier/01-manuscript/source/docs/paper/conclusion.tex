@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented the first systematic comparison of three execution-free verification formulations (\cls{}, \cwm{}, \traj{}) under ${\leq}$8B LoRA fine-tuning. At function level, \cls{} and \cwm{} are statistically equivalent (TOST $p{=}0.007$, 5 seeds); \traj{} equivalence is inconclusive after Holm correction. At repository level, divergence reaches 18--26\pp{} via three failure modes; the formulation$\times$complexity interaction is highly significant ($z{=}-23.7$, $p{<}0.001$), consistent across families. 14B results narrow function-level gaps to ${\sim}$1\pp{}; whether repo-level divergence is formulation-inherent or capacity-contingent remains open. Scaling to 32B+~\cite{meta2025cwm} and complexity-aware routing are key open questions.
+
+\section*{Limitations}
+
+Primary findings use ${\leq}$8B LoRA fine-tuning with multi-seed replication; 14B results use a single model family with 3 seeds; cross-family replication at 32B+ is needed. The repo-level gap may diminish with scale or execution-trace pretraining~\cite{meta2025cwm}. All evaluation uses Python-only benchmarks; training data uses synthetic mutation operators~\cite{andrews2005mutation,just2014mutants} with untested transfer to real faults (Appendix~\ref{app:limitations}). Constrained decoding~\cite{poesia2022synchromesh,dong2024xgrammar,willard2023outlines} may mitigate \cwm{}'s format collapse but was not evaluated.

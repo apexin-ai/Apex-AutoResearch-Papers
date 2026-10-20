@@ -1,0 +1,68 @@
+# Secrets / credentials
+_anonymous_repo.json
+.env
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Project internals (not needed for reproduction)
+.claude/
+artifacts/
+checkpoints/
+logs/
+wandb/
+distill_tmp/
+/paper/
+
+# Agent / orchestration files
+AGENTS.md
+ROADMAP.md
+ROADMAP.lock
+decisions.yaml
+decisions.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+dream_registry.lock
+experiment_plan.yaml
+experiment_plan.lock
+literature_map.yaml
+literature_map.lock
+mistakes.yaml
+mistakes.lock
+memory.md
+paper_framing.md
+_last_visual_review.json
+_paper_audit_result.json
+
+# LaTeX build artifacts
+docs/paper/*.aux
+docs/paper/*.bbl
+docs/paper/*.blg
+docs/paper/*.fdb_latexmk
+docs/paper/*.fls
+docs/paper/*.log
+docs/paper/*.out
+docs/paper/*.pdf
+docs/paper/_pdf_images/
+
+# Duplicate/versioned figure files (keep only canonical PDFs)
+docs/paper/figures/paper/fig2_scaling_gap.png
+docs/paper/figures/paper/figure2_v2.*
+docs/paper/figures/paper/figure2_v3.*
+docs/paper/figures/paper/run_*/

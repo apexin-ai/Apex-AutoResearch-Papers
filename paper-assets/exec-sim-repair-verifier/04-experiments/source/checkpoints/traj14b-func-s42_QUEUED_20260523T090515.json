@@ -1,0 +1,15 @@
+{
+  "exp_id": "traj14b-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:04:50.993Z",
+    "updated_at": "2026-05-23T09:05:15.063Z",
+    "hypothesis": "TRAJ 14B (seed 42) 补完 Table 2 的 14B TRAJ 行。与 CLS/CWM 14B 对比验证三公式在 14B 的 scaling 趋势。4B→8B TRAJ scaling +2.13pp，14B 应保持或扩大趋势。"
+  },
+  "timestamp": "2026-05-23T09:05:15.605226+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "1d576be486ad70453c44",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cls4b seed123 test v2",
+  "task_key": "worker_eval_cls4b-seed123-test-v2_20260515T093557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-seed123-test-v2_20260515T093557.log",
+    "occurrence": 1,
+    "bytes": 953236,
+    "sha256": "8e886574bca9b02b091f91e2bac89a038983a25e04fd3d00021943335979a011"
+  },
+  "statistics": {
+    "messages": 762,
+    "user_turns": 0,
+    "tool_calls": 339,
+    "roles": {
+      "system": 1,
+      "record": 3,
+      "assistant": 79,
+      "tool_call": 339,
+      "tool_result": 339,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 762,
+      "chunks": [
+        {
+          "path": "1d576be486ad70453c44-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d576be486ad70453c44-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d576be486ad70453c44-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d576be486ad70453c44-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d576be486ad70453c44-part-0005.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cls4b-seed123-test-v2.md"
+}

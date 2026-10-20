@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "137ed6e1070cc5c9f178",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops repo eval precheck",
+  "task_key": "worker_ops_repo-eval-precheck_20260516T141849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_repo-eval-precheck_20260516T141849_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "10d3b2ddb4d8125e6119f933d6ec53652734f264994b4f556d157481f9c2f0ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "预检完成。关键发现：\n\n- **CLS**: 流程就绪，checkpoint-2211 已有（训练仍在进行，step 2211/6633，epoch 1/3）\n- **CWM**: checkpoint 目录为空，需等训练落盘首个 checkpoint\n- **依赖/数据/磁盘**: 全部 PASS\n- **注意**: eval 脚本默认 model_name 是 Qwen，必须覆盖为 `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`；推荐用 `run_repo_eval.sh` wrapper（自动从 adapter_config.json 读取基座模型路径）\n\n报告已写入 `artifacts/repo-eval-precheck.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-repo-eval-precheck.md"
+}

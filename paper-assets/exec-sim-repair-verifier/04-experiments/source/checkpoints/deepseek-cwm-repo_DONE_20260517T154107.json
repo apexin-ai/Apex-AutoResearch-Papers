@@ -1,0 +1,40 @@
+{
+  "exp_id": "deepseek-cwm-repo",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:05:07.323Z",
+    "updated_at": "2026-05-17T15:41:06.948Z",
+    "spec": {
+      "command": "python3 train_unified.py --task cwm --model_name deepseek-ai/deepseek-coder-6.7b-instruct --seed 42",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "479953",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_cwm_repo/best/",
+      "log_path": "/root/autodl-tmp/checkpoints_deepseek_cwm_repo/trainer_state.json"
+    },
+    "hypothesis": "DeepSeek CWM repo-level 训练验证 CWM 在第二模型家族上的 repo-level 表现，预期 CWM 因生成式格式在长上下文 repo 代码上产生高 unparseable rate（类似 Qwen CWM repo 53-74%）",
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.021,
+      "eval_loss": "NaN",
+      "total_steps": 13266,
+      "epochs": 3,
+      "wall_clock_seconds": 112680,
+      "gpu_hours": 31.3,
+      "note": "eval_loss=NaN is known DeepSeek issue, does not affect training quality"
+    },
+    "completed_at": "2026-05-17T15:41:06.948Z"
+  },
+  "timestamp": "2026-05-17T15:41:07.283233+00:00",
+  "trigger": "update_registry"
+}

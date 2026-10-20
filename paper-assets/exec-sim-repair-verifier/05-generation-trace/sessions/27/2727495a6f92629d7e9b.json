@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2727495a6f92629d7e9b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd full gpu status and eval results",
+  "task_key": "worker_check_westd-full-gpu-status-and-eval-results_20260514T212843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-full-gpu-status-and-eval-results_20260514T212843_result.json",
+    "occurrence": 1,
+    "bytes": 1877,
+    "sha256": "97b22feb3dee43d9cb13d8c01a29804899164864f3dd9d94b43c1203c740e860"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结如下：\n\n---\n\n## Westd 全面状态报告\n\n### 1. GPU 全景\n\n| GPU | PID | 任务 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| cuda:0 | 294727 | **ckpt-600 test@8192 eval** (刚提交) | 17.4G/32.6G | 99% |\n| cuda:1 | 291117 | seed123 ckpt3000 val@8192 eval (**已完成**) | 19.2G/32.6G | 91% |\n| cuda:2 | 266816 | CWM 8B 训练 (step 1621/9335, 17%) | 30.7G/32.6G | 97% |\n| cuda:3 | 266449 | CLS 8B seed123 训练 v3 (step 4122/6633, 62%, loss=0.37) | 30.9G/32.6G | 37% |\n\n### 2. Eval 状态\n\n| Eval | 状态 | 备注 |\n|------|------|------|\n| cls8b-s42-ckpt400-test8192-eval | **DONE** ✅ | 结果已收集 |\n| cls8b-seed123-ckpt3000-val8192-eval | **DONE** ✅ | 结果已收集 |\n| cls4b-seed123-ckpt800-val5120-eval | **NOT_ON_WESTD** | 不在此服务器 |\n| cls8b-seed123-ckpt3000-val-eval (旧) | **DONE/killed** ✅ | registry 已更新 |\n\n### 3. 完整 Metrics\n\n**cls8b-s42-ckpt400-test8192-eval** (test, 9784 samples):\n- Accuracy: **84.79%** (+11.84pp vs majority 72.96%)\n- F1 macro: **81.18%**\n- F1_fail: 72.93% (P=70.3%, R=75.7%)\n- F1_pass: 89.43% (P=90.7%, R=88.2%)\n- Unparseable: 0\n\n**cls8b-seed123-ckpt3000-val8192-eval** (val, 9335 samples):\n- Accuracy: **88.69%** (+12.8pp vs majority 75.9%)\n- F1 macro: **81.73%**\n- F1_fail: 70.5% (P=95.2%, R=55.9%)\n- F1_pass: 93.0% (P=87.6%, R=99.1%)\n- Unparseable: 9\n\n### 4. ckpt-600 test@8192 提交确认\n- PID: 294727, tmux: `cls8b-s42-ckpt600-test8192-eval`\n- 已开始运行 (300/9784 at 05:41)\n- Registry 已创建，parent=repo-level-cls-8b-conda\n\n### 5. 旧 eval registry 更新确认\n- cls8b-seed123-ckpt3000-val-eval → status=DONE, conclusion=killed, notes=\"进程已确认死亡。缺少 --max_seq_length 参数（默认 2048），结果不可比。已被 cls8b-seed123-ckpt3000-val8192-eval 替代。\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-full-gpu-status-and-eval-results.md"
+}

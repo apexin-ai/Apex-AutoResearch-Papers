@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c81e7208fe17a9bbddd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops scp cls8b s42 ckpts",
+  "task_key": "worker_ops_scp-cls8b-s42-ckpts_20260514T151842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-cls8b-s42-ckpts_20260514T151842_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "14b0ede139bfc206132e0e51ebb1a0b903ed6159c3eeeef5cd19ca0d223bafe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成，临时文件已清理。\n\n## 结果\n\n| 目标路径 | Checkpoints | 总大小 |\n|---------|-------------|--------|\n| `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_8b_westd/` | checkpoint-200, 2400, 2600, 2800, 3000 | 880M |\n| `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_8b_conda_westd/` | checkpoint-200, 400, 600 + train.log | 529M |\n\n注意：westd 上的 `checkpoints_repo_cls_8b/` 只有 5 个 checkpoint（200, 2400-3000），中间的 400-2200 不在该目录下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-cls8b-s42-ckpts.md"
+}

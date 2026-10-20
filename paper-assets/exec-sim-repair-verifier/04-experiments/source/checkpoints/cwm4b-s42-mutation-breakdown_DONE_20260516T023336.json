@@ -1,0 +1,42 @@
+{
+  "exp_id": "cwm4b-s42-mutation-breakdown",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:33:17.769Z",
+    "updated_at": "2026-05-16T02:33:36.196Z",
+    "spec": {
+      "command": "mutation_breakdown.py on existing CWM 4B predictions",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "CWM 4B test predictions",
+      "data_count": 9784,
+      "model_name": "Qwen3-4B + CWM LoRA",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis of existing predictions)",
+      "log_path": "artifacts/cwm4b_mutation_breakdown.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_accuracy": 58.04,
+      "parseable_rate": 46.3,
+      "parseable_only_accuracy": 42.9,
+      "gold_parse_rate": 43.5,
+      "gold_parseable_acc": 23.5,
+      "operator_swap_parse_rate": 56.9,
+      "operator_swap_parseable_acc": 63.1,
+      "off_by_one_parse_rate": 4.4,
+      "off_by_one_parseable_acc": 0,
+      "return_value_parse_rate": 48.8,
+      "return_value_parseable_acc": 27,
+      "boundary_removal_parse_rate": 30.6,
+      "boundary_removal_parseable_acc": 59.2,
+      "n_instances": 9784
+    },
+    "completed_at": "2026-05-16T02:33:36.196Z"
+  },
+  "timestamp": "2026-05-16T02:33:36.484793+00:00",
+  "trigger": "update_registry"
+}

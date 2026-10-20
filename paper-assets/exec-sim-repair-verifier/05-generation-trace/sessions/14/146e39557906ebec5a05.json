@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "146e39557906ebec5a05",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b eval bs8 restart",
+  "task_key": "worker_ops_cwm8b-eval-bs8-restart_20260515T143738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-eval-bs8-restart_20260515T143738_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "0c0355b4d030a137d23328ea2f71049060b617ae36e3192074e66c59aa8ed2c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认运行正常，bs=8 生效（每步 +8）。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 新 PID | 381618（实际 python3 进程） |\n| 实际 batch_size | **8**（日志每步 +8：352→360→368） |\n| 显存占用 | **20982 MiB** / 32607 MiB（cuda:3） |\n| Auto-resume 起点 | 从第 **359** 条继续（resumed=359） |\n| 剩余样本 | 9784 - 359 = **9425 条** |\n\n**ETA 估算：**\n- bs=8 每批约 57 秒（22:38:48 跳过完成 → 22:39:45 第一批，22:39:45 → 22:40:41 第二批）\n- 剩余 9425 / 8 ≈ 1179 批 × 57s ≈ **18.7 小时**\n- 预计完成时间：约 **5月16日 17:20**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-eval-bs8-restart.md"
+}

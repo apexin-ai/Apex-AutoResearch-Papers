@@ -1,0 +1,41 @@
+{
+  "exp_id": "qwen3-8b-cwm-repo-s123-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:51:57.661Z",
+    "updated_at": "2026-05-19T22:24:55.889Z",
+    "hypothesis": "Qwen3-8B CWM repo-level s123: multi-seed replication for Table 3 cross-model comparison. s42 CWM checkpoint-400 is val-best (eval_loss=0.286), training s123 with identical config for seed diversity. 预期 CWM 在 repo-level 仍显著低于 CLS（s42 CWM ~58% vs CLS ~84%）。",
+    "parent": "repo-level-cwm-8b-conda-v5",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T17:25:37.268Z",
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/ --save_total_limit 5 --dataloader_num_workers 0 --epochs 3",
+      "finished_at": "2026-05-19T22:24:53.956Z",
+      "training_hours": 4.99
+    },
+    "spec": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123
+    },
+    "pid": "862540",
+    "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s123-train.log",
+    "conclusion": "failed",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed"
+  },
+  "timestamp": "2026-05-19T22:24:56.287489+00:00",
+  "trigger": "update_registry"
+}

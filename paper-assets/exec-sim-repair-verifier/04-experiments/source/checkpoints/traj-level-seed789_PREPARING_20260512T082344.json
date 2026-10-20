@@ -1,0 +1,17 @@
+{
+  "exp_id": "traj-level-seed789",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:23:44.159Z",
+    "updated_at": "2026-05-12T08:23:44.159Z",
+    "spec": {
+      "plan_id": "multi-seed-core"
+    }
+  },
+  "timestamp": "2026-05-12T08:23:44.212352+00:00",
+  "trigger": "update_registry"
+}

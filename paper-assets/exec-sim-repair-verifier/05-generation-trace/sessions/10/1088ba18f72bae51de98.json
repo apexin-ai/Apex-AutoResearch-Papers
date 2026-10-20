@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1088ba18f72bae51de98",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra health check all running",
+  "task_key": "worker_infra_health-check-all-running_20260512T112406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_health-check-all-running_20260512T112406_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "2ee352a9e083d1ebda0d66137a7a0276cb17f32163f0de7cc1864f6c22c3943f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 实验 | 服务器 | 状态 | 运行时长 | 说明 |\n|------|--------|------|----------|------|\n| cls-seed789 | home-1x5090 | **已完成** | - | EXIT_CODE=0, 所有检查 PASS (Accuracy gap +37.2pp) |\n| cls-seed0 | seetacloud | **存活** | 21m24s | 训练中 372/1434 steps (26%), ~3.37s/it, ETA ~60min |\n| repo-level-cls | seetacloud | **已崩溃** | - | EXIT_CODE=1, `KeyError: 'sample_weight'` |\n| repo-level-cwm | seetacloud | **已崩溃** | - | EXIT_CODE=1, `KeyError: 'sample_weight'` |\n\n### GPU 利用率 (seetacloud 4×5090)\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 0 / 32607 MiB |\n| 1 | 81% | 24795 / 32607 MiB |\n| 2 | 0% | 0 / 32607 MiB |\n| 3 | 0% | 0 / 32607 MiB |\n\n只有 GPU 1 在工作（cls-seed0）。repo-level-cls 和 repo-level-cwm 都因 `KeyError: 'sample_weight'` 崩溃，需要修复数据集中的 `sample_weight` 字段后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-health-check-all-running.md"
+}

@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "purpose": "DeepSeek func-level error complementarity analysis",
+    "date": "2026-05-17",
+    "source": "Computed from error_analysis_func_level_deepseek.json (n=1890, seed42 CLS × seed42 CWM)",
+    "note": "Agreement breakdown derived from accuracy + oracle ensemble"
+  },
+  "deepseek_func_level": {
+    "n": 1890,
+    "cls_accuracy": 86.93,
+    "cwm_accuracy": 85.77,
+    "oracle_cls_cwm": 91.53,
+    "oracle_gain_pp": 4.6,
+    "complementarity_ratio": 55.1,
+    "error_overlap": 44.9,
+    "agreement_both_correct": 1534,
+    "agreement_both_correct_pct": 81.16,
+    "agreement_both_wrong": 160,
+    "agreement_both_wrong_pct": 8.47,
+    "cls_only_correct": 109,
+    "cls_only_correct_pct": 5.77,
+    "cwm_only_correct": 87,
+    "cwm_only_correct_pct": 4.60,
+    "total_errors_cls": 247,
+    "total_errors_cwm": 269,
+    "total_disagreements": 196,
+    "disagreement_pct": 10.37
+  },
+  "qwen3_4b_func_level_comparison": {
+    "n": 1890,
+    "cls_accuracy": 87.78,
+    "cwm_accuracy": 87.30,
+    "oracle_cls_cwm": 89.84,
+    "oracle_gain_pp": 2.06,
+    "complementarity_ratio": 31.2,
+    "agreement_both_correct": 1611,
+    "agreement_both_correct_pct": 85.24,
+    "agreement_both_wrong": 192,
+    "agreement_both_wrong_pct": 10.16,
+    "cls_only_correct": 48,
+    "cls_only_correct_pct": 2.54,
+    "cwm_only_correct": 39,
+    "cwm_only_correct_pct": 2.06,
+    "total_disagreements": 87,
+    "disagreement_pct": 4.60
+  },
+  "cross_model_comparison": {
+    "deepseek_complementarity": 55.1,
+    "qwen3_complementarity": 31.2,
+    "delta": 23.9,
+    "deepseek_oracle_gain": 4.6,
+    "qwen3_oracle_gain": 2.06,
+    "interpretation": "DeepSeek shows nearly 2× higher complementarity (55.1% vs 31.2%) and 2× higher oracle gain (+4.6pp vs +2.1pp). This is driven by CWM's strong fail-bias in DeepSeek (fail recall 93.9% vs pass recall 78.2%), creating more differentiated error patterns between CLS and CWM. In Qwen3-4B, CLS and CWM learn more similar decision boundaries (95.4% agreement vs ~90% for DeepSeek)."
+  },
+  "per_label_asymmetry_deepseek": {
+    "cwm_fail_recall": 93.86,
+    "cwm_pass_recall": 78.22,
+    "cls_fail_recall": 86.51,
+    "cls_pass_recall": 87.32,
+    "note": "CWM is a conservative predictor (fail-biased). CLS is balanced. This asymmetry is the primary driver of their complementarity."
+  }
+}

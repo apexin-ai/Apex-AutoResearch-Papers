@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33c18c2db51aa0763684",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research cwm cls hyperparam compare",
+  "task_key": "worker_research_cwm-cls-hyperparam-compare_20260514T113411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cwm-cls-hyperparam-compare_20260514T113411_result.json",
+    "occurrence": 1,
+    "bytes": 3461,
+    "sha256": "44b71697d3e403c866819097267b0428295610bf6dbd8d481f757080240818c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是完整对比表。\n\n## CLS vs CWM Repo-level 训练超参对比\n\n### 数据来源\n- **CLS 4B**: `train_repo_verifier.py` + `/root/autodl-tmp/checkpoints_repo_cls_v5_conda/` adapter_config\n- **CWM 4B**: `train_repo_cwm.py` + `start_seed123_after_eval.sh` 启动命令 + `/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/` adapter_config\n- **CLS 8B**: `train_repo_verifier_8b.py` + `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` adapter_config\n- **CWM 8B**: `train_repo_cwm_8b.py` + `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` adapter_config\n\n### 核心超参对比\n\n| 超参 | CLS 4B | CWM 4B | CLS 8B | CWM 8B | 对齐? |\n|------|--------|--------|--------|--------|-------|\n| base_model | Qwen3-4B | Qwen3-4B | Qwen3-8B | Qwen3-8B | ✅ |\n| learning_rate | 5e-5 | 5e-5 | 5e-5 | 5e-5 | ✅ |\n| weight_decay | 0.01 | 0.01 | 0.01 | 0.01 | ✅ |\n| warmup_ratio | 0.05 | 0.05 | 0.05 | 0.05 | ✅ |\n| lora_r | 16 | 16 | 16 | 16 | ✅ |\n| lora_alpha | 32 | 32 | 32 | 32 | ✅ |\n| lora_dropout | 0.05 | 0.05 | 0.05 | 0.05 | ✅ |\n| target_modules | q,k,v,o_proj | q,k,v,o_proj | q,k,v,o_proj | q,k,v,o_proj | ✅ |\n| epochs | 3 | 3 | 3 | 3 | ✅ |\n| per_device_batch_size | **2** | **1** | 1 | 1 | ⚠️ |\n| grad_accumulation | **16** | **32** | 32 | 32 | ⚠️ |\n| **effective_batch** | **32** | **32** | **32** | **32** | ✅ |\n| total_steps | 6633 | 6633 | 6633 | 6633 | ✅ |\n| max_seq_length | 2048 | 2048 | 2048 | 2048 | ✅ |\n| seed | **42** | **123** | **42** | **42** | ❌ |\n| optimizer | AdamW | AdamW | AdamW | AdamW | ✅ |\n| lr_scheduler | linear | linear | linear | linear | ✅ |\n| bf16 | True | True | True | True | ✅ |\n| gradient_checkpointing | True | True | True | True | ✅ |\n| class_weighting | ✅ inverse freq | ✅ inverse freq | ✅ inverse freq | ✅ inverse freq | ✅ |\n| dataloader_num_workers | 4 | 4 | 4 | 4 | ✅ |\n| train_data | swebench_train (70748) | swebench_train (70748) | swebench_train (70748) | swebench_train (70748) | ✅ |\n| val_data | swebench_val (9335) | swebench_val (9335) | swebench_val (9335) | swebench_val (9335) | ✅ |\n\n### 不影响模型质量的差异（无需担心）\n\n| 参数 | CLS | CWM | 说明 |\n|------|-----|-----|------|\n| eval_steps | 200 | 100 | 只影响 eval 频率，不影响训练 |\n| save_steps | 200 | 100 | 只影响保存频率，不影响训练 |\n| StderrLogCallback | 有 | 无 | 只影响日志输出 |\n\n### 需要关注的差异\n\n**1. batch_size/grad_accum 拆分不同（CLS 4B: 2×16 vs CWM 4B: 1×32）**\n- effective batch size 完全一致（32），学习动力学等价\n- 原因：CWM 生成目标更长（execution_output），单条 seq 占显存更多，所以 per-device batch 降到 1，通过加倍 grad_accum 补偿\n- **审稿人安全**：可以解释 \"We kept effective batch size identical at 32; the micro-batch split differs due to CWM's longer targets requiring more GPU memory per sample\"\n\n**2. CWM 4B seed=123，其余三个 seed=42**\n- 来源：CWM 4B 通过 `start_seed123_after_eval.sh` 启动，显式传了 `--seed 123`\n- **风险**：审稿人可能质疑 seed 不一致。建议统一说明 \"seed=42 for main experiments; CWM-4B additionally verified with seed=123\" 或者如果有 seed=42 的 CWM 4B 结果也列出\n- 如果 CWM 4B seed=42 的早期 run 因 crash 废弃，可补跑一个 seed=42 的 CWM 4B 作为主结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cwm-cls-hyperparam-compare.md"
+}

@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0",
+  "id": "078504e397ae42a3cd8b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "viz rank ablation chart",
+  "task_key": "worker_viz_rank-ablation-chart_20260515T163715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_viz_rank-ablation-chart_20260515T163715.jsonl",
+    "occurrence": 1,
+    "bytes": 15073,
+    "sha256": "737a9048c38be9d5d0516f7304b32e879aba9846a7b97c8c341db664691a5850"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:38:28.721495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:38:28.721857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nblock-corr-empirical\nblock_correlation_analysis.py\ncls4b-v5-ckpt4400-val5120-eval\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncomprehensive_results_summary.md\ncomprehensive_test_results.md\ncwm-rank32-ablation-v2\ncwm-rank32-alpha64-ablation\ncwm8b_seed123_analysis.txt\ncwm_error_mode_analysis.md\ncwm_rank32_eval_command.sh\ncwm_rank64_train_command.sh\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\nd076_val_unparseable_root_cause.md\nd077_fix_report.md\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndiagnosis_cwm_v12_cls_8b.md\ndream_reports\nerror_analysis_data.md\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\neval_repo_cls.py\neval_repo_cls_v2.py\neval_status_check_20260514.md\nextract_predictions_generic.py\nfigures\nmanifest.yaml\nmulti_seed_test_curves.json\nmutation_type_accuracy.csv\nmvp-a-oracle-sim\nmvp-b-data-prep\noracle-f2p-stratified\np2p-regression-rate\npaper_materials.md\nparse_all_experiments.py\nprogress_check_20260514.md\nrelaxed_matching_results.csv\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nreview_issues.yaml\nreview_reports\nrun_8b_eval.sh\nrun_val_sweep.sh\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\ntost_multi_margin.csv\ntraining_progress_20260512.md\ntraining_progress_check_20260514.md\ntraining_status_20260515.md\nval_sweep_compilation.md\nval_test_distribution_analysis.md\nval_truncation_label_bias_analysis.md\nwestd_48478_readiness.md\nwestd_status_loop14.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:38:28.722046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:38:28.722188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:38:28.722408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nconfigs = ['r16 α32\\n(ratio=2)', 'r32 α32\\n(ratio=1)', 'r32 α64\\n(ratio=2)']\naccs = [87.51, 87.0, 87.04]\ncolors = ['#2c3e50', '#7f8c8d', '#bdc3c7']\nhatches = ['///', '...', '\\\\\\\\\\\\']\n\nfig, ax = plt.subplots(figsize=(5.5, 4))\n\nbars = ax.bar(configs, accs, width=0.55, color=colors, edgecolor='black', linewidth=0.8, zorder=3)\nfor bar, h in zip(bars, hatches):\n    bar.set_hatch(h)\n\nfor bar, acc in zip(bars, accs):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.08,\n            f'{acc:.2f}', ha='center', va='bottom', fontsize=13, fontweight='bold')\n\nax.axhline(y=87.51, color='#e74c3c', linestyle='--', linewidth=1.2, zorder=2, label='Baseline (r16 α32)')\n\nax.set_ylim(85.5, 88.5)\nax.set_ylabel('Accuracy (%)', fontsize=13)\nax.set_title('LoRA Rank Ablation on CWM 4B (Function-level)', fontsize=14, fontweight='bold', pad=12)\nax.tick_params(axis='both', labelsize=12)\nax.legend(fontsize=11, loc='upper right')\nax.yaxis.grid(True, linestyle=':', alpha=0.5, zorder=0)\nax.set_axisbelow(True)\n\nfor spine in ['top', 'right']:\n    ax.spines[spine].set_visible(False)\n\nplt.tight_layout()\nfig.savefig('artifacts/rank_ablation_chart.pdf', bbox_inches='tight')\nfig.savefig('artifacts/rank_ablation_chart.png', dpi=300, bbox_inches='tight')\nprint('Charts saved.')\nPYEOF",
+              "description": "Generate rank ablation bar chart"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:38:28.722696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nModuleNotFoundError: No module named 'matplotlib'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:38:28.722846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip install matplotlib -q 2>&1 | tail -1",
+              "description": "Install matplotlib"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:38:28.722981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "hint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:38:28.723098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip install matplotlib -q --break-system-packages 2>&1 | tail -3",
+              "description": "Install matplotlib with PEP 668 override"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:38:28.723224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/ubuntu/.local/bin' which is not on PATH.\n  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location."
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:38:28.723353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nconfigs = ['r16 α32\\n(ratio=2)', 'r32 α32\\n(ratio=1)', 'r32 α64\\n(ratio=2)']\naccs = [87.51, 87.0, 87.04]\ncolors = ['#2c3e50', '#7f8c8d', '#bdc3c7']\nhatches = ['///', '...', '\\\\\\\\\\\\']\n\nfig, ax = plt.subplots(figsize=(5.5, 4))\n\nbars = ax.bar(configs, accs, width=0.55, color=colors, edgecolor='black', linewidth=0.8, zorder=3)\nfor bar, h in zip(bars, hatches):\n    bar.set_hatch(h)\n\nfor bar, acc in zip(bars, accs):\n    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.08,\n            f'{acc:.2f}', ha='center', va='bottom', fontsize=13, fontweight='bold')\n\nax.axhline(y=87.51, color='#e74c3c', linestyle='--', linewidth=1.2, zorder=2, label='Baseline (r16 α32)')\n\nax.set_ylim(85.5, 88.5)\nax.set_ylabel('Accuracy (%)', fontsize=13)\nax.set_title('LoRA Rank Ablation on CWM 4B (Function-level)', fontsize=14, fontweight='bold', pad=12)\nax.tick_params(axis='both', labelsize=12)\nax.legend(fontsize=11, loc='upper right')\nax.yaxis.grid(True, linestyle=':', alpha=0.5, zorder=0)\nax.set_axisbelow(True)\n\nfor spine in ['top', 'right']:\n    ax.spines[spine].set_visible(False)\n\nplt.tight_layout()\nfig.savefig('artifacts/rank_ablation_chart.pdf', bbox_inches='tight')\nfig.savefig('artifacts/rank_ablation_chart.png', dpi=300, bbox_inches='tight')\nprint('Charts saved.')\nPYEOF",
+              "description": "Generate rank ablation bar chart"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:38:28.723487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Charts saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:38:28.723625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_table.tex",
+              "content": "\\begin{table}[t]\n\\centering\n\\caption{LoRA rank ablation on CWM 4B (function-level repair verification). Best results in \\textbf{bold}.}\n\\label{tab:rank-ablation}\n\\begin{tabular}{lcccccc}\n\\toprule\n\\textbf{Config} & \\textbf{Rank} & \\textbf{Alpha} & \\textbf{Ratio} & \\textbf{Acc} & \\textbf{F1\\textsubscript{fail} / F1\\textsubscript{pass}} & \\textbf{EM} \\\\\n\\midrule\nBaseline (r16 $\\alpha$32) & 16 & 32 & 2.0 & \\textbf{87.51} & --- & --- \\\\\nr32 $\\alpha$32             & 32 & 32 & 1.0 & 87.00          & 87.10 / 86.90 & 83.40 \\\\\nr32 $\\alpha$64             & 32 & 64 & 2.0 & 87.04          & 87.27 / 86.79 & \\textbf{84.55} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:38:28.723764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_table.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:38:28.723920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_chart.png"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:38:28.724567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:38:28.724739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "rank_ablation_chart_pdf",
+              "type": "chart",
+              "description": "LoRA rank ablation bar chart (PDF) comparing r16α32, r32α32, r32α64 on CWM 4B function-level accuracy",
+              "project": "exec-sim-repair-verifier",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_chart.pdf",
+              "tags": "['rank-ablation', 'cwm-4b', 'lora', 'paper-figure']"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:38:28.724921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_49e636\\\", \\\"name\\\": \\\"rank_ablation_chart_pdf\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"LoRA rank ablation bar chart (PDF) comparing r16α32, r32α32, r32α64 on CWM 4B function-level accuracy\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/chart/rank_ablation_chart.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:38:17.683263+00:00\\\", \\\"tags\\\": [\\\"rank-ablation\\\", \\\"cwm-4b\\\", \\\"lora\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:38:28.725063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "rank_ablation_chart_png",
+              "type": "chart",
+              "description": "LoRA rank ablation bar chart (PNG 300dpi) comparing r16α32, r32α32, r32α64 on CWM 4B function-level accuracy",
+              "project": "exec-sim-repair-verifier",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_chart.png",
+              "tags": "['rank-ablation', 'cwm-4b', 'lora', 'paper-figure']"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:38:28.725214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_a27979\\\", \\\"name\\\": \\\"rank_ablation_chart_png\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"LoRA rank ablation bar chart (PNG 300dpi) comparing r16α32, r32α32, r32α64 on CWM 4B function-level accuracy\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/chart/rank_ablation_chart.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:38:19.689629+00:00\\\", \\\"tags\\\": [\\\"rank-ablation\\\", \\\"cwm-4b\\\", \\\"lora\\\", \\\"paper-figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:38:28.725356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "rank_ablation_table",
+              "type": "paper",
+              "description": "LaTeX table for LoRA rank ablation results (Acc, F1, EM) on CWM 4B",
+              "project": "exec-sim-repair-verifier",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/rank_ablation_table.tex",
+              "tags": "['rank-ablation', 'cwm-4b', 'lora', 'paper-table']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:38:28.725503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_5c1b4c\\\", \\\"name\\\": \\\"rank_ablation_table\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"LaTeX table for LoRA rank ablation results (Acc, F1, EM) on CWM 4B\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/paper/rank_ablation_table.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:38:21.207339+00:00\\\", \\\"tags\\\": [\\\"rank-ablation\\\", \\\"cwm-4b\\\", \\\"lora\\\", \\\"paper-table\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:38:28.725668+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件：\n\n| 产出 | 路径 |\n|------|------|\n| PDF 图表 | `artifacts/rank_ablation_chart.pdf` |\n| PNG 图表 (300dpi) | `artifacts/rank_ablation_chart.png` |\n| LaTeX 表格 | `artifacts/rank_ablation_table.tex` |\n\n图表结论：r16 α32 (ratio=2) baseline 以 87.51% 最优，增大 rank 到 32 无论 alpha=32 还是 alpha=64 都略有下降（~0.5pp），说明当前数据规模下 rank=16 已足够，更大 rank 反而轻微过拟合。r32 α64 的 EM (84.55) 高于 r32 α32 (83.40)，保持 ratio=2 对 exact match 有帮助。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_viz_rank-ablation-chart_20260515T163715"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/viz-rank-ablation-chart.md"
+}

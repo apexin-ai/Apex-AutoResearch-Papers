@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "061f2122c09da3345211",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research p2p regression rate",
+  "task_key": "worker_research_p2p-regression-rate_20260511T194309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_p2p-regression-rate_20260511T194309_result.json",
+    "occurrence": 1,
+    "bytes": 2119826,
+    "sha256": "b1ea7df57bb191081421a22e2499b854f8404b65acd06a3932836f5e56fd050e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "061f2122c09da3345211-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/research-p2p-regression-rate.md"
+}

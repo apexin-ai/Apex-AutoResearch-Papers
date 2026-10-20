@@ -1,0 +1,360 @@
+{
+  "schema_version": "1.0",
+  "id": "16ec1439ba28e92b1b06",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "experiment deepseek zero shot",
+  "task_key": "worker_experiment_deepseek-zero-shot_20260517T124706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_deepseek-zero-shot_20260517T124706.log",
+    "occurrence": 1,
+    "bytes": 8168,
+    "sha256": "9f1fef29a14758d567eaaebdbf61a622b6edb7c17228fb45e493d5289bbc381f"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "session_id": "2fa3f13e-f47a-4434-bfe5-b1d9ab21fcd1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f7abb879-05f4-46e2-b353-2b60e0090b13",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779026400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "6e747411-1c0b-4866-a07a-faeb6c03a48b",
+                "session_id": "2fa3f13e-f47a-4434-bfe5-b1d9ab21fcd1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "pass/fail\n```\n\n**数据集**: 用与 Qwen3 零样本实验 (`llm_judge_zeroshot.py`) 相同的测试集和数据加载方式。\n\n**运行参数**:\n- `temperature=0`（确定性推理）\n- batch inference 自动分批\n- 输出预测结果到 `artifacts/deepseek_coder_6b_zeroshot_results.json`\n\n**评估**:\n- 计算：accuracy, precision, recall, F1（per-class + macro）\n- 与已有实验对比（如果有 Qwen3 零样本结果）\n- 输出 metrics 到 `artifacts/deepseek_coder_6b_zeroshot_metrics.json`\n\n**执行**:\n1. SSH 到 home-1x5090\n2. 找到已有 zeroshot 脚本或创建新的推理脚本\n3. 用 DeepSeek-coder-6.7B-instruct 跑推理\n4. 计算指标并保存结果\n\n先 SSH 连上服务器探索已有脚本，然后执行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fa3f13e-f47a-4434-bfe5-b1d9ab21fcd1",
+            "uuid": "b4b34710-f350-40b1-91e2-0704c863c59a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HHaBV1siBeSeREKDsYqXff",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14212,
+                "cache_read_input_tokens": 11701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14212
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pass/fail\n```\n\n**数据集**: 用与 Qwen3 零样本实验 (`llm_judge_zeroshot.py`) 相同的测试集和数据加载方式。\n\n**运行参数**:\n- `temperature=0`（确定性推理）\n- batch inference 自动分批\n- 输出预测结果到 `artifacts/deepseek_coder_6b_zeroshot_results.json`\n\n**评估**:\n- 计算：accuracy, precision, recall, F1（per-class + macro）\n- 与已有实验对比（如果有 Qwen3 零样本结果）\n- 输出 metrics 到 `artifacts/deepseek_coder_6b_zeroshot_metrics.json`\n\n**执行**:\n1. SSH 到 home-1x5090\n2. 找到已有 zeroshot 脚本或创建新的推理脚本\n3. 用 DeepSeek-coder-6.7B-instruct 跑推理\n4. 计算指标并保存结果\n\n先 SSH 连上服务器探索已有脚本，然后执行。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 7834,
+            "duration_api_ms": 9251,
+            "num_turns": 1,
+            "stop_reason": "end_turn",
+            "session_id": "2fa3f13e-f47a-4434-bfe5-b1d9ab21fcd1",
+            "total_cost_usd": 0.1036075,
+            "usage": {
+              "input_tokens": 3,
+              "cache_creation_input_tokens": 14212,
+              "cache_read_input_tokens": 11701,
+              "output_tokens": 310,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 14212,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 3,
+                  "output_tokens": 310,
+                  "cache_read_input_tokens": 11701,
+                  "cache_creation_input_tokens": 14212,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 14212
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1042,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001167,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3,
+                "outputTokens": 310,
+                "cacheReadInputTokens": 11701,
+                "cacheCreationInputTokens": 14212,
+                "webSearchRequests": 0,
+                "costUSD": 0.1024405,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "94f0b757-9bb1-4edc-9d59-7e5fcdf0aaca"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-deepseek-zero-shot.md"
+}

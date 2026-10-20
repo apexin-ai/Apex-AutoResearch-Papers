@@ -1,0 +1,39 @@
+{
+  "exp_id": "s42-extended-val-sweep-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:03:12.942Z",
+    "updated_at": "2026-05-15T16:48:09.948Z",
+    "spec": {
+      "command": "bash run_extended_val_sweep.sh",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "389491",
+      "log_path": "~/runs/exec-sim-repair-verifier/s42-extended-val-sweep-v2.log",
+      "submitted_at": "2026-05-15T16:03:12.598Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/",
+      "eval_data": "swebench_val",
+      "wall_clock_seconds": 2697.3,
+      "gpu_hours": 0.75
+    },
+    "hypothesis": "s42 resume extended val sweep: 18 checkpoints (1800-5200 步长200), 寻找 s42-resume 训练的最优 val checkpoint。前 8 个 ckpt (200-1600) 已在之前 sweep 完成 (peak=ckpt-1000 88.23%)，本轮覆盖后半段。",
+    "conclusion": "failed",
+    "failure_reason": "OOM: cuda:0 已被 cls8b-s42-resume-val-sweep (pid 388791) 占用，冗余提交导致 CUDA out of memory。cls8b-s42-resume-val-sweep 是正确的 sweep job，本实验作废。",
+    "completed_at": "2026-05-15T16:48:09.948Z"
+  },
+  "timestamp": "2026-05-15T16:48:10.237767+00:00",
+  "trigger": "update_registry"
+}

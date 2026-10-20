@@ -1,0 +1,50 @@
+{
+  "exp_id": "14b-baseline-0shot-3shot-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:42:42.654Z",
+    "updated_at": "2026-05-22T20:27:04.106Z",
+    "hypothesis": "Qwen3-14B 0-shot and 3-shot baselines on function-level CLS should be comparable to or below 8B baselines (0-shot ~52%, 3-shot ~60%), establishing that scale alone without fine-tuning does not close the gap to fine-tuned models.",
+    "parent": "14b-baseline-0shot-3shot",
+    "spec": {
+      "pid": "202994",
+      "server": "seetacloud-westd-4x5090",
+      "command": "bash /tmp/run_14b_eval.sh",
+      "model_name": "Qwen3-14B",
+      "gpu": "cuda:1",
+      "data_path": "swebench_full/swebench_test_func.jsonl",
+      "data_count": 0,
+      "seed": 0,
+      "checkpoint_source": "Qwen/Qwen3-14B (base model, no fine-tuning)",
+      "eval_data": "swebench_full/swebench_test_func.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "0shot": {
+        "accuracy": 66.24,
+        "gap_vs_majority": 14.5,
+        "f1_fail": 72.99,
+        "f1_pass": 55.01,
+        "unparseable": 0,
+        "n": 1890
+      },
+      "3shot": {
+        "accuracy": 73.12,
+        "gap_vs_majority": 21.38,
+        "f1_fail": 75.79,
+        "f1_pass": 69.8,
+        "unparseable": 0,
+        "n": 1890
+      }
+    },
+    "checkpoint_path": "N/A (eval-only, no checkpoint)",
+    "log_path": "/tmp/14b_eval.log",
+    "completed_at": "2026-05-22T20:27:04.106Z"
+  },
+  "timestamp": "2026-05-22T20:27:04.538490+00:00",
+  "trigger": "update_registry"
+}

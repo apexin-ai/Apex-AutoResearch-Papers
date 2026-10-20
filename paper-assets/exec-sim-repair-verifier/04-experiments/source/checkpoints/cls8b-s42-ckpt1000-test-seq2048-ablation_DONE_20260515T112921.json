@@ -1,0 +1,63 @@
+{
+  "exp_id": "cls8b-s42-ckpt1000-test-seq2048-ablation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:42:13.701Z",
+    "updated_at": "2026-05-15T11:29:21.594Z",
+    "hypothesis": "Seq_length confound ablation: CLS 8B val-best (ckpt-1000) eval@max_seq_length=2048（与 CWM 训练配置对齐）。对比 CLS@8192=83.52%。如 CLS@2048 仍大幅超越 CWM，排除 seq_length confound。Reviewer critical 直接回应。",
+    "notes": "高优先级 Reviewer critical。等 cuda:0 或 cuda:3 空闲后立即提交。ckpt-1000 在 /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000。命令: eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test --batch_size 1。",
+    "spec": {
+      "command": "eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "360735",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1000-test-seq2048-ablation.log",
+      "submitted_at": "2026-05-15T10:59:58.351Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000",
+      "eval_data": "test@2048(n=9784)",
+      "wall_clock_seconds": 1763.2,
+      "gpu_hours": 0.49
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T11:26:38.401Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T11:26:43.647776+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 82.83,
+      "f1_macro": 76.88,
+      "fail_precision": 72.2,
+      "fail_recall": 59.3,
+      "fail_f1": 65.2,
+      "pass_precision": 85.9,
+      "pass_recall": 91.5,
+      "pass_f1": 88.6,
+      "unparseable": 136
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000",
+    "completed_at": "2026-05-15T11:29:21.594Z"
+  },
+  "timestamp": "2026-05-15T11:29:21.843700+00:00",
+  "trigger": "update_registry"
+}

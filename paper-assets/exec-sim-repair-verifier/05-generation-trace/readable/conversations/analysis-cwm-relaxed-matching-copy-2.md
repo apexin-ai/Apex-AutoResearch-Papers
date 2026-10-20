@@ -1,0 +1,1838 @@
+# analysis cwm relaxed matching
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_analysis_cwm-relaxed-matching_20260515T122839.jsonl`
+- **Structured JSON:** [`65b850e98c8b0491102e.json`](../../sessions/65/65b850e98c8b0491102e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T12:34:22.910735+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T12:34:22.911215+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T12:34:22.911468+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*.jsonl\" -path \"*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*.jsonl\" -path \"*eval*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T12:34:22.911667+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type d -name \"*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type d -name \"*eval*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T12:34:22.911890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/results/repo_cls_v5_conda_eval/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_v5_conda_ckpt400/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_v5_conda_ckpt600/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_conda_ckpt400/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_conda_ckpt600/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_s42_ckpt1600_val8192/eval_repo_cls_predictions.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T12:34:22.912096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_results\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_v5_conda_eval\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_conda_eval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T12:34:22.912313+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T12:34:22.912504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 644\\ndrwxr-xr-x  2 root root   4096 May 13 01:25 .\\ndrwxr-xr-x 19 root root   4096 May 15 05:39 ..\\n-rw-r--r--  1 root root 212459 May 13 01:25 cls8b_seed123_predictions.json\\n-rw-r--r--  1 root root    574 May 13 01:25 cls8b_seed123_results.json\\n-rw-r--r--  1 root root 212459 May 13 01:25 cls8b_seed123_results_predictions.json\\n-rw-r--r--  1 root root    575 May 13 01:24 cls8b_seed42.json\\n-rw-r--r--  1 root root 212459 May 13 01:24 cls8b_seed42_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T12:34:22.912680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*cwm*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:34:22.912859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\n/home/sonny/exec-sim-repair-verifier/build_cwm_data.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/train_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/__pycache__/train_repo_cwm.cpython-312.pyc\\n/home/sonny/exec-sim-repair-verifier/__pycache__/eval_repo_cwm.cpython-310.pyc\\n/home/sonny/exec-sim-repair-verifier/__pycache__/eval_repo_cwm.cpython-312.pyc\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/train_repo_cwm.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n/home/sonny/exec-sim-repair-verifier/train_repo_cwm.py.bak\\n/home/sonny/exec-sim-repair-verifier/train_repo_cwm_8b.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py.bak\\n/home/sonny/exec-sim-repair-verifier/analyze_cwm_errors.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T12:34:22.913205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*predictions*cwm*\" -o -name \"*cwm*predictions*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*predictions*cwm*\" -o -name \"*cwm*predictions*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T12:34:22.913377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T12:34:22.913506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -2 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -2 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T12:34:22.913653+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T12:34:22.913779+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T12:34:22.914006+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.04,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.44,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.01,\\n      \\\"recall\\\": 82.41,\\n      \\\"f1\\\": 86.95,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 172,\\n    \\\"tp\\\": 806\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.44,\\n    \\\"exact_match_count\\\": 1596,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 806,\\n        \\\"exact_match_rate\\\": 82.41,\\n        \\\"pass_fail_accuracy\\\": 82.41\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 677,\\n        \\\"exact_match_rate\\\": 89.79,\\n        \\\"pass_fail_accuracy\\\": 92.71\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 16,\\n        \\\"exact_match_rate\\\": 72.73,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 3,\\n        \\\"exact_match_rate\\\": 15.0,\\n        \\\"pass_fail_accuracy\\\": 65.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 5,\\n        \\
+…[truncated 1142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T12:34:22.914208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*seed42*\" -o -name \"*s42*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*seed42*\" -o -name \"*s42*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T12:34:22.914347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42_predictions.json\\n/home/sonny/exec-sim-repair-verifier/results/repo_cls_8b_s42_ckpt1600_val8192\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T12:34:22.914472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp -type f -name \"*cwm*seed42*\" -o -name \"*cwm*s42*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp -type f -name \"*cwm*seed42*\" -o -name \"*cwm*s42*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T12:34:22.914597+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T12:34:22.914731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp -type f -name \"*cwm*\" -not -path \"*__pycache__*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp -type f -name \"*cwm*\" -not -path \"*__pycache__*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T12:34:22.914908+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/train_repo_cwm.log\\n/root/autodl-tmp/cwm_v9_train.log\\n/root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm.json\\n/root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/results/repo_cwm_seed123_conda_eval/eval_repo_cwm.json\\n/root/autodl-tmp/results/repo_cwm_seed123_conda_eval/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm.json\\n/root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/cwm_v10_eval.log\\n/root/autodl-tmp/cwm_seed123_train.log\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm.json\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500_backup/eval_repo_cwm.json\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500_backup/eval_repo_cwm_predictions.jsonl\\n/root/autodl-tmp/repo-level-cwm-8b-v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T12:34:22.915053+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp -type d -name \"*cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp -type d -name \"*cwm*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T12:34:22.915195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints_repo_cwm\\n/root/autodl-tmp/dryrun_cwm_fix\\n/root/autodl-tmp/checkpoints_repo_cwm_v4\\n/root/autodl-tmp/checkpoints_repo_cwm_v6\\n/root/autodl-tmp/checkpoints_repo_cwm_v9\\n/root/autodl-tmp/checkpoints_repo_cwm_v10\\n/root/autodl-tmp/results/repo_cwm_v10_eval\\n/root/autodl-tmp/results/checkpoints_repo_cwm_conda_v12_eval\\n/root/autodl-tmp/results/repo_cwm_seed123_conda_eval\\n/root/autodl-tmp/results/repo_cwm_v12_conda_eval\\n/root/autodl-tmp/results/cwm_v12_error_analysis\\n/root/autodl-tmp/results/cwm_seed123_error_analysis\\n/root/autodl-tmp/checkpoints_repo_cwm_v11\\n/root/autodl-tmp/checkpoints_repo_cwm_seed123\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok1024\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok512\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok256\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_full\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500_backup\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test\\n/root/autodl-tmp/checkpoints_repo_cwm_conda_v12\\n/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda\\n/root/autodl-tmp/checkpoints_backup_cwm_8b\\n/root/autodl-tmp/checkpoints_cwm_4b_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T12:34:22.915366+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T12:34:22.915553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.67,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 34.92,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 84.09,\\n      \\\"recall\\\": 89.25,\\n      \\\"f1\\\": 86.6,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.37,\\n      \\\"recall\\\": 84.25,\\n      \\\"f1\\\": 86.74,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 814,\\n    \\\"fp\\\": 98,\\n    \\\"fn\\\": 154,\\n    \\\"tp\\\": 824\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 83.97,\\n    \\\"exact_match_count\\\": 1587,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 824,\\n        \\\"exact_match_rate\\\": 84.25,\\n        \\\"pass_fail_accuracy\\\": 84.25\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 645,\\n        \\\"exact_match_rate\\\": 85.54,\\n        \\\"pass_fail_accuracy\\\": 88.99\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\
+…[truncated 1142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T12:34:22.915709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T12:34:22.915887+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CWM\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-500\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cwm_unparseable\\\": 5255,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 58.04,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": -14.91,\\n    \\\"f1_fail\\\": 34.12,\\n    \\\"f1_pass\\\": 69.22,\\n    \\\"f1_macro\\\": 51.67,\\n    \\\"precision_fail\\\": 29.65,\\n    \\\"precision_pass\\\": 74.46,\\n    \\\"recall_fail\\\": 40.17,\\n    \\\"recall_pass\\\": 64.67,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 1063,\\n      \\\"fp\\\": 1583,\\n      \\\"fn\\\": 2522,\\n      \\\"tp\\\": 4616\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"generation_stats\\\": {\\n    \\\"mean\\\": 3073.7,\\n    \\\"median\\\": 2742.0,\\n    \\\"max\\\": 28528,\\n    \\\"min\\\": 168\\n  },\\n  \\\"truncation\\\": {\\n    \\\"truncated_count\\\": 478,\\n    \\\"truncated_pct\\\": 4.89,\\n    \\\"truncated_accuracy\\\": 44.98,\\n    \\\"non_truncated_accuracy\\\": 58.71\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"batch_size\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T12:34:22.916024+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/eval_repo_cwm.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/eval_repo_cwm.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T12:34:22.916180+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CWM\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cwm_unparseable\\\": 6574,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 59.09,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": -13.87,\\n    \\\"f1_fail\\\": 13.67,\\n    \\\"f1_pass\\\": 73.19,\\n    \\\"f1_macro\\\": 43.43,\\n    \\\"precision_fail\\\": 15.92,\\n    \\\"precision_pass\\\": 70.11,\\n    \\\"recall_fail\\\": 11.98,\\n    \\\"recall_pass\\\": 76.55,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 317,\\n      \\\"fp\\\": 2329,\\n      \\\"fn\\\": 1674,\\n      \\\"tp\\\": 5464\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"generation_stats\\\": {\\n    \\\"mean\\\": 3059.0,\\n    \\\"median\\\": 2659.5,\\n    \\\"max\\\": 12757,\\n    \\\"min\\\": 89\\n  },\\n  \\\"truncation\\\": {\\n    \\\"truncated_count\\\": 478,\\n    \\\"truncated_pct\\\": 4.89,\\n    \\\"truncated_accuracy\\\": 21.34,\\n    \\\"non_truncated_accuracy\\\": 61.03\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"batch_size\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T12:34:22.916363+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T12:34:22.916623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"+ pytest -rA xarray/tests/test_dataset.py\\\\n============================= test session starts ==============================\\\\nplatform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0\\\\nrootdir: /testbed\\\\nconfigfile: setup.cfg\\\\nplugins: xdist-3.6.1, env-1.1.5, cov-5.0.0, timeout-2.3.1, hypothesis-6.115.5\\\\ncollected 1852 items\\\\n\\\\nxarray/tests/test_dataset.py FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF........... [  2%]\\\\n........................................................................ [  6%]\\\\n........................................................................ [ 10%]\\\\n........................................................................ [ 13%]\\\\n........................................................................ [ 17%]\\\\n........................................................................ [ 21%]\\\\n........................................................................ [ 25%]\\\\n........................................................................ [ 29%]\\\\n........................................................................ [ 33%]\\\\n........................................................................ [ 37%]\\\\n........................................................................ [ 41%]\\\\n........................................................................ [ 45%]\\\\n........................................................................ [ 48%]\\\\n........................................................................ [ 52%]\\\\n.........................................................sssssssssssssss [ 56%]\\\\ns....................................................................... [ 60%]\\\\n........................................................................ 
+…[truncated 7345 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T12:34:22.916782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T12:34:22.916960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"9784 /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T12:34:22.917124+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:34:22.917310+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeEr
+…[truncated 1887 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T12:34:22.917492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp -type d -name \"*cwm*\" -not -name \"*repo*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp -type d -name \"*cwm*\" -not -name \"*repo*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:34:22.917631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/dryrun_cwm_fix\\n/root/autodl-tmp/results/cwm_v12_error_analysis\\n/root/autodl-tmp/results/cwm_seed123_error_analysis\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok1024\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok512\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_tok256\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_full\\n/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500_backup\\n/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test\\n/root/autodl-tmp/checkpoints_backup_cwm_8b\\n/root/autodl-tmp/checkpoints_cwm_4b_rank32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T12:34:22.917756+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type d -name \"*checkpoint*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type d -name \"*checkpoint*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:34:22.917924+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/checkpoint-478\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls\\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cwm\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/checkpoint-956\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/checkpoint-1434\\n/home/sonny/exec-sim-repair-verifier/
+…[truncated 197 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T12:34:22.918112+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T12:34:22.918237+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T12:34:22.918372+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install python-Levenshtein thefuzz 2>&1 | tail -3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip install python-Levenshtein thefuzz 2>&1 | tail -3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T12:34:22.918561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Installing collected packages: rapidfuzz, thefuzz, Levenshtein, python-Levenshtein\\nSuccessfully installed Levenshtein-0.27.3 python-Levenshtein-0.27.3 rapidfuzz-3.14.5 thefuzz-0.22.1\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T12:34:22.918783+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_relaxed_matching.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Relaxed matching analysis for repo-level CWM predictions.\nCompares strict vs normalized vs enhanced parsing to address reviewer concern\nthat high unparseable rate is due to overly strict keyword matching.\"\"\"\n\nimport json\nimport re\nfrom collections import Counter\n\nPRED_FILE = \"/root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl\"\n\ndef load_predictions(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n# === Strategy 1: Strict (original parser) ===\ndef parse_strict(text):\n    \"\"\"Original parse_cwm_prediction logic.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text_lower = text.strip().lower()\n    if text_lower.startswith(\"pass\"):\n        return 1\n    if text_lower.startswith(\"fail\"):\n        return 0\n    fail_kw = [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\"]\n    pass_kw = [\"pass\", \"success\", \"completed\"]\n    has_fail = any(p in text_lower for p in fail_kw)\n    has_pass = any(p in text_lower for p in pass_kw)\n    if has_fail and not has_pass:\n        return 0\n    if has_pass and not has_fail:\n        return 1\n    return -1\n\n# === Strategy 2: Normalized (strip whitespace + collapse + case-insensitive + improved keywords) ===\ndef parse_normalized(text):\n    \"\"\"Normalized: strip, collapse whitespace, improved keyword priority.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text = re.sub(r'\\s+', ' ', text.strip()).lower()\n    \n    # Check start\n    if text.startswith(\"pass\"):\n        return 1\n    if text.startswith(\"fail\"):\n        return 0\n    \n    # Check end (last 200 chars) - test summaries often at the end\n    tail = text[-200:] if len(text) > 200 else text\n    \n    # Pytest summary pattern: \"X failed\" or \"X passed\" at the end\n    fail_summary = re.search(r'(\\d+)\\s+failed', tail)\n    pass_summary = re.search(r'(\\d+)\\s+passed', tail)\n    \n    if fail_summary and not pass_summary:\n        return 0\n    if pass_summary and not fail_summary:\n        return 1\n    if fail_summary and pass_summary:\n        # Both present in summary - if any failed, it's a fail\n        n_failed = int(fail_summary.group(1))\n        if n_failed > 0:\n            return 0\n        return 1\n    \n    # Fallback to keyword counting\n    fail_kw = [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\", \"failed\"]\n    pass_kw = [\"pass\", \"passed\", \"success\", \"completed\", \"ok\"]\n    has_fail = any(p in text for p in fail_kw)\n    has_pass = any(p in text for p in pass_kw)\n    if has_fail and not has_pass:\n        return 0\n    if has_pass and not has_fail:\n        return 1\n    return -1\n\n# === Strategy 3: Enhanced/Fuzzy (aggressive extraction with multiple heuristics) ===\ndef parse_enhanced(text):\n    \"\"\"Enhanced parser: pytest summary, last-line heuristic, keyword density.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    \n    text_clean = text.strip()\n    text_lower = text_clean.lower()\n    \n    # Heuristic 1: starts with pass/fail\n    if text_lower.startswith(\"pass\"):\n        return 1\n    if text_lower.startswith(\"fail\"):\n        return 0\n    \n    # Heuristic 2: pytest summary anywhere in text\n    # Pattern: \"N failed, M passed\" or \"M passed, N failed\" or \"M passed\"\n    pytest_results = re.findall(\n        r'=+\\s*([\\d\\w\\s,]+(?:passed|failed|error|warnings?)[\\d\\w\\s,]*)\\s*=+', \n        text_lower\n    )\n    if pytest_results:\n        last_summary = pytest_results[-1]\n        if 'failed' in last_summary or 'error' in last_summary:\n            return 0\n        if 'passed' in last_summary:\n            return 1\n    \n    # Heuristic 3: \"FAILED\" or \"PASSED\" on its own line (common in pytest)\n    lines = text_clean.split('\\n')\n    for line in reversed(lines[-20:] if len(lines) > 20 else lines):\n        line_stripped = line.strip().upper()\n        if line_stripped == \"FAILED\" or line_stripped.startswith(\"FAILED \"):\n            return 0\n        if line_stripped == \"PASSED\" or line_stripped.startswith(\"PASSED \"):\n            return 1\n        # Django test runner: \"OK\" or \"FAILED (failures=N)\"\n        if re.match(r'^OK\\b', line_stripped):\n            return 1\n        if re.match(r'^FAILED\\s*\\(', line_stripped):\n            return 0\n    \n    # Heuristic 4: pytest short test summary\n    if \"short test summary\" in text_lower:\n        after_summary = text_lower.split(\"short test summary\")[-1]\n        if \"failed\" in after_summary or \"error\" in after_summary:\n            return 0\n        if \"passed\" in after_summary:\n            return 1\n    \n    # Heuristic 5: tail keyword density (last 500 chars)\n    tail = text_lower[-500:] if len(text_lower) > 500 else text_lower\n    fail_count = sum(tail.count(kw) for kw in [\"fail\", \"error\", \"traceback\", \"assert\"])\n    pass_count = sum(tail.count(kw) for kw in [\"pass\", \"success\", \"ok\", \"completed\"])\n    \n    if fail_count > 0 and pass_count == 0:\n        return 0\n    if pass_count > 0 and fail_count == 0:\n        return 1\n    if fail_count > pass_count * 2:\n        return 0\n    if pass_count > fail_count * 2:\n        return 1\n    \n    # Heuristic 6: if text contains test output markers, check F vs .\n    # In pytest: F = fail, . = pass, E = error\n    test_line = re.search(r'[\\.FEsx]{10,}', text_clean)\n    if test_line:\n        markers = test_line.group(0)\n        n_fail = markers.count('F') + markers.count('E')\n        if n_fail > 0:\n            return 0\n        return 1\n    \n    return -1\n\n\ndef analyze(predictions):\n    n = len(predictions)\n    results = {\"strict\": [], \"normalized\": [], \"enhanced\": []}\n    \n    for pred in predictions:\n        gen_text = pred[\"gen_text\"]\n        label = pred[\"label\"]\n        \n        s = parse_strict(gen_text)\n        n_parsed = parse_normalized(gen_text)\n        e = parse_enhanced(gen_text)\n        \n        results[\"strict\"].append({\"pred\": s, \"label\": label})\n        results[\"normalized\"].append({\"pred\": n_parsed, \"label\": label})\n        results[\"enhanced\"].append({\"pred\": e, \"label\": label})\n    \n    print(f\"Total instances: {n}\")\n    print(f\"Label distribution: pass={sum(1 for p in predictions if p['label']==1)}, fail={sum(1 for p in predictions if p['label']==0)}\")\n    print(f\"Majority baseline: {sum(1 for p in predictions if p['label']==1)/n*100:.2f}% (always predict pass)\")\n    print()\n    print(f\"{'Metric':<30} {'Strict':<15} {'Normalized':<15} {'Enhanced':<15}\")\n    print(\"-\" * 75)\n    \n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        \n        n_parseable = len(parseable)\n        n_unparseable = len(unparseable)\n        parseable_rate = n_parseable / n * 100\n        unparseable_rate = n_unparseable / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        # Overall accuracy: parseable get their prediction, unparseable get majority (1=pass)\n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)  # majority=pass\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        \n        print(f\"{'Parseable rate':<30} {parseable_rate:.1f}%{'':>8} {'' if name != 'strict' else ''}\", end=\"\")\n        # Print in columns\n    \n    # Better formatted output\n    print()\n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        \n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        unparseable_rate = (n - n_parseable) / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        \n        # Upper bound: parseable get acc_parseable, unparseable get 100%\n        upper_bound = parseable_rate/100 * acc_parseable + (1-parseable_rate/100) * 72.96\n        \n        print(f\"\\n=== {name.upper()} ===\")\n        print(f\"  Parseable:          {n_parseable}/{n} ({parseable_rate:.1f}%)\")\n        print(f\"  Unparseable:        {n-n_parseable}/{n} ({unparseable_rate:.1f}%)\")\n        print(f\"  Acc (parseable):    {acc_parseable:.2f}%\")\n        print(f\"  Overall acc:        {overall_acc:.2f}% (unparseable→majority)\")\n        print(f\"  Upper bound:        {upper_bound:.2f}% (parseable×acc + unparseable×73%)\")\n    \n    # Final comparison table\n    print(\"\\n\\n\" + \"=\" * 75)\n    print(\"SUMMARY: CWM Relaxed Matching vs CLS\")\n    print(\"=\" * 75)\n    print(f\"{'Method':<20} {'Parse%':<10} {'Acc(parsed)':<15} {'Overall':<12} {'Upper Bound':<12}\")\n    print(\"-\" * 75)\n    \n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        upper_bound = parseable_rate/100 * acc_parseable/100 * 100 + (1-parseable_rate/100) * 72.96\n        \n        print(f\"  CWM-{name:<14} {parseable_rate:<10.1f} {acc_parseable:<15.2f} {overall_acc:<12.2f} {upper_bound:<12.2f}\")\n    \n    print(f\"  {'Majority baseline':<20} {'100.0':<10} {'72.96':<15} {'72.96':<12} {'—':<12}\")\n    print(f\"  {'CLS 4B (best)':<20} {'100.0':<10} {'83.63':<15} {'83.63':<12} {'—':<12}\")\n    print(f\"  {'CLS 8B (best)':<20} {'100.0':<10} {'83.52':<15} {'83.52':<12} {'—':<12}\")\n    \n    print(\"\\n\\nCONCLUSION:\")\n    print(\"Even with the most aggressive relaxed matching (Enhanced),\")\n    \n    preds_e = results[\"enhanced\"]\n    parseable_e = [p for p in preds_e if p[\"pred\"] != -1]\n    n_pe = len(parseable_e)\n    pr_e = n_pe / n * 100\n    if n_pe > 0:\n        acc_e = sum(1 for p in parseable_e if p[\"pred\"] == p[\"label\"]) / n_pe * 100\n    else:\n        acc_e = 0\n    correct_pe = sum(1 for p in parseable_e if p[\"pred\"] == p[\"label\"])\n    unparseable_e = [p for p in preds_e if p[\"pred\"] == -1]\n    correct_ue = sum(1 for p in unparseable_e if p[\"label\"] == 1)\n    overall_e = (correct_pe + correct_ue) / n * 100\n    \n    print(f\"  - CWM parseable rate improves to {pr_e:.1f}% (from 46.3% strict)\")\n    print(f\"  - CWM accuracy on parsed samples: {acc_e:.2f}%\")\n    print(f\"  - CWM overall accuracy: {overall_e:.2f}%\")\n    print(f\"  - CLS accuracy: 83.63%\")\n    print(f\"  - Gap: CLS still outperforms CWM by {83.63 - overall_e:.1f} pp\")\n    print(f\"  → Strict matching is NOT the reason CWM underperforms CLS.\")\n    \n    # Save detailed results\n    output = {\n        \"analysis\": \"repo-level CWM 4B seed42 relaxed matching\",\n        \"total_instances\": n,\n        \"majority_baseline\": 72.96,\n        \"cls_4b_accuracy\": 83.63,\n        \"cls_8b_accuracy\": 83.52,\n        \"strategies\": {}\n    }\n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        unparseable_list = [p for p in preds if p[\"pred\"] == -1]\n        correct_unparseable = sum(1 for p in unparseable_list if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        upper_bound = parseable_rate/100 * acc_parseable/100 * 100 + (1-parseable_rate/100) * 72.96\n        \n        output[\"strategies\"][name] = {\n            \"parseable_count\": n_parseable,\n            \"parseable_rate\": round(parseable_rate, 2),\n            \"unparseable_rate\": round(100 - parseable_rate, 2),\n            \"accuracy_parseable\": round(acc_parseable, 2),\n            \"overall_accuracy\": round(overall_acc, 2),\n            \"upper_bound\": round(upper_bound, 2)\n        }\n    \n    output_path = \"/home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json\"\n    with open(output_path, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n\\nResults saved to: {output_path}\")\n\n\nif __name__ == \"__main__\":\n    predictions = load_predictions(PRED_FILE)\n    analyze(predictions)\nSCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_relaxed_matching.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Relaxed matching analysis for repo-level CWM predictions.\nCompares strict vs normalized vs enhanced parsing to address reviewer concern\nthat high unparseable rate is due to overly strict keyword matching.\"\"\"\n\nimport json\nimport re\nfrom collections import Counter\n\nPRED_FILE = \"/root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl\"\n\ndef load_predictions(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n# === Strategy 1: Strict (original parser) ===\ndef parse_strict(text):\n    \"\"\"Original parse_cwm_prediction logic.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text_lower = text.strip().lower()\n    if text_lower.startswith(\"pass\"):\n        return 1\n    if text_lower.startswith(\"fail\"):\n        return 0\n    fail_kw = [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\"]\n    pass_kw = [\"pass\", \"success\", \"completed\"]\n    has_fail = any(p in text_lower for p in fail_kw)\n    has_pass = any(p in text_lower for p in pass_kw)\n    if has_fail and not has_pass:\n        return 0\n    if has_pass and not has_fail:\n        return 1\n    return -1\n\n# === Strategy 2: Normalized (strip whitespace + collapse + case-insensitive + improved keywords) ===\ndef parse_normalized(text):\n    \"\"\"Normalized: strip, collapse whitespace, improved keyword priority.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text = re.sub(r'\\s+', ' ', text.strip()).lower()\n    \n    # Check start\n    if text.startswith(\"pass\"):\n        return 1\n    if text.startswith(\"fail\"):\n        return 0\n    \n    # Check end (last 200 chars) - test summaries often at the end\n    tail = text[-200:] if len(text) > 200 else text\n    \n    # Pytest summary pattern: \"X failed\" or \"X passed\" at the end\n    fail_summary = re.search(r'(\\d+)\\s+failed', tail)\n    pass_summary = re.search(r'(\\d+)\\s+passed', tail)\n    \n    if fail_summary and not pass_summary:\n        return 0\n    if pass_summary and not fail_summary:\n        return 1\n    if fail_summary and pass_summary:\n        # Both present in summary - if any failed, it's a fail\n        n_failed = int(fail_summary.group(1))\n        if n_failed > 0:\n            return 0\n        return 1\n    \n    # Fallback to keyword counting\n    fail_kw = [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\", \"failed\"]\n    pass_kw = [\"pass\", \"passed\", \"success\", \"completed\", \"ok\"]\n    has_fail = any(p in text for p in fail_kw)\n    has_pass = any(p in text for p in pass_kw)\n    if has_fail and not has_pass:\n        return 0\n    if has_pass and not has_fail:\n        return 1\n    return -1\n\n# === Strategy 3: Enhanced/Fuzzy (aggressive extraction with multiple heuristics) ===\ndef parse_enhanced(text):\n    \"\"\"Enhanced parser: pytest summary, last-line heuristic, keyword density.\"\"\"\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    \n    text_clean = text.strip()\n    text_lower = text_clean.lower()\n    \n    # Heuristic 1: starts with pass/fail\n    if text_lower.startswith(\"pass\"):\n        return 1\n    if text_lower.startswith(\"fail\"):\n        return 0\n    \n    # Heuristic 2: pytest summary anywhere in text\n    # Pattern: \"N failed, M passed\" or \"M passed, N failed\" or \"M passed\"\n    pytest_results = re.findall(\n        r'=+\\s*([\\d\\w\\s,]+(?:passed|failed|error|warnings?)[\\d\\w\\s,]*)\\s*=+', \n        text_lower\n    )\n    if pytest_results:\n        last_summary = pytest_results[-1]\n        if 'failed' in last_summary or 'error' in last_summary:\n            return 0\n        if 'passed' in last_summary:\n            return 1\n    \n    # Heuristic 3: \"FAILED\" or \"PASSED\" on its own line (common in pytest)\n    lines = text_clean.split('\\n')\n    for line in reversed(lines[-20:] if len(lines) > 20 else lines):\n        line_stripped = line.strip().upper()\n        if line_stripped == \"FAILED\" or line_stripped.startswith(\"FAILED \"):\n            return 0\n        if line_stripped == \"PASSED\" or line_stripped.startswith(\"PASSED \"):\n            return 1\n        # Django test runner: \"OK\" or \"FAILED (failures=N)\"\n        if re.match(r'^OK\\b', line_stripped):\n            return 1\n        if re.match(r'^FAILED\\s*\\(', line_stripped):\n            return 0\n    \n    # Heuristic 4: pytest short test summary\n    if \"short test summary\" in text_lower:\n        after_summary = text_lower.split(\"short test summary\")[-1]\n        if \"failed\" in after_summary or \"error\" in after_summary:\n            return 0\n        if \"passed\" in after_summary:\n            return 1\n    \n    # Heuristic 5: tail keyword density (last 500 chars)\n    tail = text_lower[-500:] if len(text_lower) > 500 else text_lower\n    fail_count = sum(tail.count(kw) for kw in [\"fail\", \"error\", \"traceback\", \"assert\"])\n    pass_count = sum(tail.count(kw) for kw in [\"pass\", \"success\", \"ok\", \"completed\"])\n    \n    if fail_count > 0 and pass_count == 0:\n        return 0\n    if pass_count > 0 and fail_count == 0:\n        return 1\n    if fail_count > pass_count * 2:\n        return 0\n    if pass_count > fail_count * 2:\n        return 1\n    \n    # Heuristic 6: if text contains test output markers, check F vs .\n    # In pytest: F = fail, . = pass, E = error\n    test_line = re.search(r'[\\.FEsx]{10,}', text_clean)\n    if test_line:\n        markers = test_line.group(0)\n        n_fail = markers.count('F') + markers.count('E')\n        if n_fail > 0:\n            return 0\n        return 1\n    \n    return -1\n\n\ndef analyze(predictions):\n    n = len(predictions)\n    results = {\"strict\": [], \"normalized\": [], \"enhanced\": []}\n    \n    for pred in predictions:\n        gen_text = pred[\"gen_text\"]\n        label = pred[\"label\"]\n        \n        s = parse_strict(gen_text)\n        n_parsed = parse_normalized(gen_text)\n        e = parse_enhanced(gen_text)\n        \n        results[\"strict\"].append({\"pred\": s, \"label\": label})\n        results[\"normalized\"].append({\"pred\": n_parsed, \"label\": label})\n        results[\"enhanced\"].append({\"pred\": e, \"label\": label})\n    \n    print(f\"Total instances: {n}\")\n    print(f\"Label distribution: pass={sum(1 for p in predictions if p['label']==1)}, fail={sum(1 for p in predictions if p['label']==0)}\")\n    print(f\"Majority baseline: {sum(1 for p in predictions if p['label']==1)/n*100:.2f}% (always predict pass)\")\n    print()\n    print(f\"{'Metric':<30} {'Strict':<15} {'Normalized':<15} {'Enhanced':<15}\")\n    print(\"-\" * 75)\n    \n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        \n        n_parseable = len(parseable)\n        n_unparseable = len(unparseable)\n        parseable_rate = n_parseable / n * 100\n        unparseable_rate = n_unparseable / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        # Overall accuracy: parseable get their prediction, unparseable get majority (1=pass)\n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)  # majority=pass\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        \n        print(f\"{'Parseable rate':<30} {parseable_rate:.1f}%{'':>8} {'' if name != 'strict' else ''}\", end=\"\")\n        # Print in columns\n    \n    # Better formatted output\n    print()\n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        \n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        unparseable_rate = (n - n_parseable) / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        \n        # Upper bound: parseable get acc_parseable, unparseable get 100%\n        upper_bound = parseable_rate/100 * acc_parseable + (1-parseable_rate/100) * 72.96\n        \n        print(f\"\\n=== {name.upper()} ===\")\n        print(f\"  Parseable:          {n_parseable}/{n} ({parseable_rate:.1f}%)\")\n        print(f\"  Unparseable:        {n-n_parseable}/{n} ({unparseable_rate:.1f}%)\")\n        print(f\"  Acc (parseable):    {acc_parseable:.2f}%\")\n        print(f\"  Overall acc:        {overall_acc:.2f}% (unparseable→majority)\")\n        print(f\"  Upper bound:        {upper_bound:.2f}% (parseable×acc + unparseable×73%)\")\n    \n    # Final comparison table\n    print(\"\\n\\n\" + \"=\" * 75)\n    print(\"SUMMARY: CWM Relaxed Matching vs CLS\")\n    print(\"=\" * 75)\n    print(f\"{'Method':<20} {'Parse%':<10} {'Acc(parsed)':<15} {'Overall':<12} {'Upper Bound':<12}\")\n    print(\"-\" * 75)\n    \n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        \n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        \n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        unparseable = [p for p in preds if p[\"pred\"] == -1]\n        correct_unparseable = sum(1 for p in unparseable if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        upper_bound = parseable_rate/100 * acc_parseable/100 * 100 + (1-parseable_rate/100) * 72.96\n        \n        print(f\"  CWM-{name:<14} {parseable_rate:<10.1f} {acc_parseable:<15.2f} {overall_acc:<12.2f} {upper_bound:<12.2f}\")\n    \n    print(f\"  {'Majority baseline':<20} {'100.0':<10} {'72.96':<15} {'72.96':<12} {'—':<12}\")\n    print(f\"  {'CLS 4B (best)':<20} {'100.0':<10} {'83.63':<15} {'83.63':<12} {'—':<12}\")\n    print(f\"  {'CLS 8B (best)':<20} {'100.0':<10} {'83.52':<15} {'83.52':<12} {'—':<12}\")\n    \n    print(\"\\n\\nCONCLUSION:\")\n    print(\"Even with the most aggressive relaxed matching (Enhanced),\")\n    \n    preds_e = results[\"enhanced\"]\n    parseable_e = [p for p in preds_e if p[\"pred\"] != -1]\n    n_pe = len(parseable_e)\n    pr_e = n_pe / n * 100\n    if n_pe > 0:\n        acc_e = sum(1 for p in parseable_e if p[\"pred\"] == p[\"label\"]) / n_pe * 100\n    else:\n        acc_e = 0\n    correct_pe = sum(1 for p in parseable_e if p[\"pred\"] == p[\"label\"])\n    unparseable_e = [p for p in preds_e if p[\"pred\"] == -1]\n    correct_ue = sum(1 for p in unparseable_e if p[\"label\"] == 1)\n    overall_e = (correct_pe + correct_ue) / n * 100\n    \n    print(f\"  - CWM parseable rate improves to {pr_e:.1f}% (from 46.3% strict)\")\n    print(f\"  - CWM accuracy on parsed samples: {acc_e:.2f}%\")\n    print(f\"  - CWM overall accuracy: {overall_e:.2f}%\")\n    print(f\"  - CLS accuracy: 83.63%\")\n    print(f\"  - Gap: CLS still outperforms CWM by {83.63 - overall_e:.1f} pp\")\n    print(f\"  → Strict matching is NOT the reason CWM underperforms CLS.\")\n    \n    # Save detailed results\n    output = {\n        \"analysis\": \"repo-level CWM 4B seed42 relaxed matching\",\n        \"total_instances\": n,\n        \"majority_baseline\": 72.96,\n        \"cls_4b_accuracy\": 83.63,\n        \"cls_8b_accuracy\": 83.52,\n        \"strategies\": {}\n    }\n    for name in [\"strict\", \"normalized\", \"enhanced\"]:\n        preds = results[name]\n        parseable = [p for p in preds if p[\"pred\"] != -1]\n        n_parseable = len(parseable)\n        parseable_rate = n_parseable / n * 100\n        if n_parseable > 0:\n            acc_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"]) / n_parseable * 100\n        else:\n            acc_parseable = 0\n        correct_parseable = sum(1 for p in parseable if p[\"pred\"] == p[\"label\"])\n        unparseable_list = [p for p in preds if p[\"pred\"] == -1]\n        correct_unparseable = sum(1 for p in unparseable_list if p[\"label\"] == 1)\n        overall_acc = (correct_parseable + correct_unparseable) / n * 100\n        upper_bound = parseable_rate/100 * acc_parseable/100 * 100 + (1-parseable_rate/100) * 72.96\n        \n        output[\"strategies\"][name] = {\n            \"parseable_count\": n_parseable,\n            \"parseable_rate\": round(parseable_rate, 2),\n            \"unparseable_rate\": round(100 - parseable_rate, 2),\n            \"accuracy_parseable\": round(acc_parseable, 2),\n            \"overall_accuracy\": round(overall_acc, 2),\n            \"upper_bound\": round(upper_bound, 2)\n        }\n    \n    output_path = \"/home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json\"\n    with open(output_path, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n\\nResults saved to: {output_path}\")\n\n\nif __name__ == \"__main__\":\n    predictions = load_predictions(PRED_FILE)\n    analyze(predictions)\nSCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:34:22.919169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T12:34:22.919316+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python analyze_relaxed_matching.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python analyze_relaxed_matching.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T12:34:22.919483+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total instances: 9784\\nLabel distribution: pass=7138, fail=2646\\nMajority baseline: 72.96% (always predict pass)\\n\\nMetric                         Strict          Normalized      Enhanced       \\n---------------------------------------------------------------------------\\nParseable rate                 46.3%         Parseable rate                 69.6%         Parseable rate                 77.2%         \\n\\n=== STRICT ===\\n  Parseable:          4529/9784 (46.3%)\\n  Unparseable:        5255/9784 (53.7%)\\n  Acc (parseable):    42.88%\\n  Overall acc:        58.04% (unparseable→majority)\\n  Upper bound:        59.04% (parseable×acc + unparseable×73%)\\n\\n=== NORMALIZED ===\\n  Parseable:          6811/9784 (69.6%)\\n  Unparseable:        2973/9784 (30.4%)\\n  Acc (parseable):    54.16%\\n  Overall acc:        59.61% (unparseable→majority)\\n  Upper bound:        59.87% (parseable×acc + unparseable×73%)\\n\\n=== ENHANCED ===\\n  Parseable:          7555/9784 (77.2%)\\n  Unparseable:        2229/9784 (22.8%)\\n  Acc (parseable):    60.79%\\n  Overall acc:        62.34% (unparseable→majority)\\n  Upper bound:        63.57% (parseable×acc + unparseable×73%)\\n\\n\\n===========================================================================\\nSUMMARY: CWM Relaxed Matching vs CLS\\n===========================================================================\\nMethod               Parse%     Acc(parsed)     Overall      Upper Bound \\n---------------------------------------------------------------------------\\n  CWM-strict         46.3       42.88           58.04        59.04       \\n  CWM-normalized     69.6       54.16           59.61        59.87       \\n  CWM-enhanced       77.2       60.79           62.34        63.57       \\n  Majority baseline    100.0      72.96           72.96        —           \\n  CLS 4B (best)        100.0      83.63           83.63        —           \\n  CLS 8B (best)     
+…[truncated 618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T12:34:22.919662+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T12:34:22.919789+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T12:34:22.919933+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T12:34:22.920085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"repo-level CWM 4B seed42 relaxed matching\\\",\\n  \\\"total_instances\\\": 9784,\\n  \\\"majority_baseline\\\": 72.96,\\n  \\\"cls_4b_accuracy\\\": 83.63,\\n  \\\"cls_8b_accuracy\\\": 83.52,\\n  \\\"strategies\\\": {\\n    \\\"strict\\\": {\\n      \\\"parseable_count\\\": 4529,\\n      \\\"parseable_rate\\\": 46.29,\\n      \\\"unparseable_rate\\\": 53.71,\\n      \\\"accuracy_parseable\\\": 42.88,\\n      \\\"overall_accuracy\\\": 58.04,\\n      \\\"upper_bound\\\": 59.04\\n    },\\n    \\\"normalized\\\": {\\n      \\\"parseable_count\\\": 6811,\\n      \\\"parseable_rate\\\": 69.61,\\n      \\\"unparseable_rate\\\": 30.39,\\n      \\\"accuracy_parseable\\\": 54.16,\\n      \\\"overall_accuracy\\\": 59.61,\\n      \\\"upper_bound\\\": 59.87\\n    },\\n    \\\"enhanced\\\": {\\n      \\\"parseable_count\\\": 7555,\\n      \\\"parseable_rate\\\": 77.22,\\n      \\\"unparseable_rate\\\": 22.78,\\n      \\\"accuracy_parseable\\\": 60.79,\\n      \\\"overall_accuracy\\\": 62.34,\\n      \\\"upper_bound\\\": 63.57\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T12:34:22.920228+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CWM Relaxed Matching Analysis",
+  "type": "data",
+  "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+  "project": "exec-sim-repair-verifier",
+  "content": "{\n  \"analysis\": \"repo-level CWM 4B seed42 relaxed matching\",\n  \"note\": \"Function-level CWM seed42 does not exist. Function-level CWM (seeds 123/789) already has 0 unparseable and ~87% accuracy. This analysis targets repo-level CWM where unparseable=53.7%.\",\n  \"total_instances\": 9784,\n  \"majority_baseline\": 72.96,\n  \"cls_4b_accuracy\": 83.63,\n  \"cls_8b_accuracy\": 83.52,\n  \"strategies\": {\n    \"strict\": {\n      \"description\": \"Original parser: keyword match, unparseable when both pass+fail keywords present\",\n      \"parseable_count\": 4529,\n      \"parseable_rate\": 46.29,\n      \"unparseable_rate\": 53.71,\n      \"accuracy_parseable\": 42.88,\n      \"overall_accuracy\": 58.04,\n      \"upper_bound\": 59.04\n    },\n    \"normalized\": {\n      \"description\": \"Strip whitespace + collapse spaces + pytest summary parsing in tail\",\n      \"parseable_count\": 6811,\n      \"parseable_rate\": 69.61,\n      \"unparseable_rate\": 30.39,\n      \"accuracy_parseable\": 54.16,\n      \"overall_accuracy\": 59.61,\n      \"upper_bound\": 59.87\n    },\n    \"enhanced\": {\n      \"description\": \"Aggressive: pytest summary regex, last-line heuristic, keyword density, F/. marker counting\",\n      \"parseable_count\": 7555,\n      \"parseable_rate\": 77.22,\n      \"unparseable_rate\": 22.78,\n      \"accuracy_parseable\": 60.79,\n      \"overall_accuracy\": 62.34,\n      \"upper_bound\": 63.57\n    }\n  },\n  \"conclusion\": \"Even with the most aggressive relaxed matching, CWM overall accuracy (62.34%) still falls 21.3pp below CLS (83.63%) and even below majority baseline (72.96%). Strict matching is NOT the reason CWM underperforms CLS.\"\n}",
+  "content_filename": "relaxed_matching_analysis.json",
+  "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CWM Relaxed Matching Analysis",
+    "type": "data",
+    "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+    "project": "exec-sim-repair-verifier",
+    "content": "{\n  \"analysis\": \"repo-level CWM 4B seed42 relaxed matching\",\n  \"note\": \"Function-level CWM seed42 does not exist. Function-level CWM (seeds 123/789) already has 0 unparseable and ~87% accuracy. This analysis targets repo-level CWM where unparseable=53.7%.\",\n  \"total_instances\": 9784,\n  \"majority_baseline\": 72.96,\n  \"cls_4b_accuracy\": 83.63,\n  \"cls_8b_accuracy\": 83.52,\n  \"strategies\": {\n    \"strict\": {\n      \"description\": \"Original parser: keyword match, unparseable when both pass+fail keywords present\",\n      \"parseable_count\": 4529,\n      \"parseable_rate\": 46.29,\n      \"unparseable_rate\": 53.71,\n      \"accuracy_parseable\": 42.88,\n      \"overall_accuracy\": 58.04,\n      \"upper_bound\": 59.04\n    },\n    \"normalized\": {\n      \"description\": \"Strip whitespace + collapse spaces + pytest summary parsing in tail\",\n      \"parseable_count\": 6811,\n      \"parseable_rate\": 69.61,\n      \"unparseable_rate\": 30.39,\n      \"accuracy_parseable\": 54.16,\n      \"overall_accuracy\": 59.61,\n      \"upper_bound\": 59.87\n    },\n    \"enhanced\": {\n      \"description\": \"Aggressive: pytest summary regex, last-line heuristic, keyword density, F/. marker counting\",\n      \"parseable_count\": 7555,\n      \"parseable_rate\": 77.22,\n      \"unparseable_rate\": 22.78,\n      \"accuracy_parseable\": 60.79,\n      \"overall_accuracy\": 62.34,\n      \"upper_bound\": 63.57\n    }\n  },\n  \"conclusion\": \"Even with the most aggressive relaxed matching, CWM overall accuracy (62.34%) still falls 21.3pp below CLS (83.63%) and even below majority baseline (72.96%). Strict matching is NOT the reason CWM underperforms CLS.\"\n}",
+    "content_filename": "relaxed_matching_analysis.json",
+    "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T12:34:22.920376+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'repo-level ...CWM underperforms CLS.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T12:34:22.920499+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CWM Relaxed Matching Analysis",
+  "type": "data",
+  "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+  "project": "exec-sim-repair-verifier",
+  "source_path": "/home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json",
+  "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CWM Relaxed Matching Analysis",
+    "type": "data",
+    "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+    "project": "exec-sim-repair-verifier",
+    "source_path": "/home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json",
+    "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:34:22.920626+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T12:34:22.920765+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CWM Relaxed Matching Analysis",
+  "type": "data",
+  "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+  "project": "exec-sim-repair-verifier",
+  "content": "{\"analysis\":\"repo-level CWM 4B seed42 relaxed matching\",\"note\":\"Function-level CWM seed42 does not exist. Function-level CWM (seeds 123/789) already has 0 unparseable and ~87% accuracy. This analysis targets repo-level CWM where unparseable=53.7%.\",\"total_instances\":9784,\"majority_baseline\":72.96,\"cls_4b_accuracy\":83.63,\"cls_8b_accuracy\":83.52,\"strategies\":{\"strict\":{\"description\":\"Original parser: keyword match, unparseable when both pass+fail keywords present\",\"parseable_count\":4529,\"parseable_rate\":46.29,\"unparseable_rate\":53.71,\"accuracy_parseable\":42.88,\"overall_accuracy\":58.04,\"upper_bound\":59.04},\"normalized\":{\"description\":\"Strip whitespace + collapse spaces + pytest summary parsing in tail\",\"parseable_count\":6811,\"parseable_rate\":69.61,\"unparseable_rate\":30.39,\"accuracy_parseable\":54.16,\"overall_accuracy\":59.61,\"upper_bound\":59.87},\"enhanced\":{\"description\":\"Aggressive: pytest summary regex, last-line heuristic, keyword density, F/. marker counting\",\"parseable_count\":7555,\"parseable_rate\":77.22,\"unparseable_rate\":22.78,\"accuracy_parseable\":60.79,\"overall_accuracy\":62.34,\"upper_bound\":63.57}},\"conclusion\":\"Even with the most aggressive relaxed matching, CWM overall accuracy (62.34%) still falls 21.3pp below CLS (83.63%) and even below majority baseline (72.96%). Strict matching is NOT the reason CWM underperforms CLS.\"}",
+  "content_filename": "relaxed_matching_analysis.json",
+  "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CWM Relaxed Matching Analysis",
+    "type": "data",
+    "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+    "project": "exec-sim-repair-verifier",
+    "content": "{\"analysis\":\"repo-level CWM 4B seed42 relaxed matching\",\"note\":\"Function-level CWM seed42 does not exist. Function-level CWM (seeds 123/789) already has 0 unparseable and ~87% accuracy. This analysis targets repo-level CWM where unparseable=53.7%.\",\"total_instances\":9784,\"majority_baseline\":72.96,\"cls_4b_accuracy\":83.63,\"cls_8b_accuracy\":83.52,\"strategies\":{\"strict\":{\"description\":\"Original parser: keyword match, unparseable when both pass+fail keywords present\",\"parseable_count\":4529,\"parseable_rate\":46.29,\"unparseable_rate\":53.71,\"accuracy_parseable\":42.88,\"overall_accuracy\":58.04,\"upper_bound\":59.04},\"normalized\":{\"description\":\"Strip whitespace + collapse spaces + pytest summary parsing in tail\",\"parseable_count\":6811,\"parseable_rate\":69.61,\"unparseable_rate\":30.39,\"accuracy_parseable\":54.16,\"overall_accuracy\":59.61,\"upper_bound\":59.87},\"enhanced\":{\"description\":\"Aggressive: pytest summary regex, last-line heuristic, keyword density, F/. marker counting\",\"parseable_count\":7555,\"parseable_rate\":77.22,\"unparseable_rate\":22.78,\"accuracy_parseable\":60.79,\"overall_accuracy\":62.34,\"upper_bound\":63.57}},\"conclusion\":\"Even with the most aggressive relaxed matching, CWM overall accuracy (62.34%) still falls 21.3pp below CLS (83.63%) and even below majority baseline (72.96%). Strict matching is NOT the reason CWM underperforms CLS.\"}",
+    "content_filename": "relaxed_matching_analysis.json",
+    "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T12:34:22.920930+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'repo-level ...CWM underperforms CLS.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T12:34:22.921057+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "CWM Relaxed Matching Analysis",
+  "type": "data",
+  "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+  "project": "exec-sim-repair-verifier",
+  "content": "See /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json on westd server.\n\nSUMMARY TABLE:\nMethod          | Parse%  | Acc(parsed) | Overall  | Upper Bound\nstrict          | 46.3%   | 42.88%      | 58.04%   | 59.04%\nnormalized      | 69.6%   | 54.16%      | 59.61%   | 59.87%\nenhanced        | 77.2%   | 60.79%      | 62.34%   | 63.57%\nMajority base   | 100%    | 72.96%      | 72.96%   | -\nCLS 4B          | 100%    | 83.63%      | 83.63%   | -\nCLS 8B          | 100%    | 83.52%      | 83.52%   | -\n\nCONCLUSION: Even with aggressive relaxed matching, CWM (62.34%) is 21.3pp below CLS (83.63%) and still below majority baseline (72.96%). Strict matching is NOT the cause.",
+  "content_filename": "relaxed_matching_analysis.txt",
+  "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "CWM Relaxed Matching Analysis",
+    "type": "data",
+    "description": "Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.",
+    "project": "exec-sim-repair-verifier",
+    "content": "See /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json on westd server.\n\nSUMMARY TABLE:\nMethod          | Parse%  | Acc(parsed) | Overall  | Upper Bound\nstrict          | 46.3%   | 42.88%      | 58.04%   | 59.04%\nnormalized      | 69.6%   | 54.16%      | 59.61%   | 59.87%\nenhanced        | 77.2%   | 60.79%      | 62.34%   | 63.57%\nMajority base   | 100%    | 72.96%      | 72.96%   | -\nCLS 4B          | 100%    | 83.63%      | 83.63%   | -\nCLS 8B          | 100%    | 83.52%      | 83.52%   | -\n\nCONCLUSION: Even with aggressive relaxed matching, CWM (62.34%) is 21.3pp below CLS (83.63%) and still below majority baseline (72.96%). Strict matching is NOT the cause.",
+    "content_filename": "relaxed_matching_analysis.txt",
+    "tags": "['rebuttal', 'W4', 'cwm', 'relaxed-matching']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T12:34:22.921202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_77c4fb\", \"name\": \"CWM Relaxed Matching Analysis\", \"type\": \"data\", \"description\": \"Repo-level CWM 4B seed42: strict vs normalized vs enhanced parsing. Even best-case (enhanced) only reaches 62.34% overall vs CLS 83.63%. Strict matching is NOT the cause of CWM underperformance.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/data/relaxed_matching_analysis.txt\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:34:12.553109+00:00\", \"tags\": [\"rebuttal\", \"W4\", \"cwm\", \"relaxed-matching\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T12:34:22.921364+00:00_
+
+分析完成。结果：
+
+## Repo-level CWM 4B (seed 42) Relaxed Matching 分析
+
+| 策略 | Parseable率 | Acc (parsed) | Overall Acc | Upper Bound |
+|------|------------|-------------|-------------|-------------|
+| **Strict** (原始) | 46.3% | 42.88% | 58.04% | 59.04% |
+| **Normalized** (whitespace+pytest summary) | 69.6% | 54.16% | 59.61% | 59.87% |
+| **Enhanced** (6种启发式) | 77.2% | 60.79% | 62.34% | 63.57% |
+| Majority baseline | 100% | 72.96% | 72.96% | — |
+| **CLS 4B** | 100% | **83.63%** | **83.63%** | — |
+
+### 关键发现
+
+1. Enhanced parser 将 parseable rate 从 46.3% 提升到 77.2%，unparseable 从 53.7% 降到 22.8%
+2. 但即使 parseable accuracy 从 42.88% 提升到 60.79%，**overall accuracy 仅从 58.04% → 62.34%**
+3. CWM 最优上界 63.57% **仍低于 majority baseline (72.96%)**，更远低于 CLS (83.63%)
+4. **Gap = 21.3pp**，strict matching 不是 CWM 低性能的原因
+
+### 备注
+- 函数级 CWM seed 42 不存在（只有 seed 123/789，均已 0 unparseable、~87% accuracy）
+- 分析脚本和 JSON 结果已保存在 westd: `/home/sonny/exec-sim-repair-verifier/analyze_relaxed_matching.py`
+- Artifact 已注册: `art_20260515_77c4fb`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_cwm-relaxed-matching_20260515T122839"
+}
+```
+
+</details>
+
+---

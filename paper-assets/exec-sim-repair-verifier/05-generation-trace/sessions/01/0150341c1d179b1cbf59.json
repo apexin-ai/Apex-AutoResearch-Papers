@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0150341c1d179b1cbf59",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh training status check",
+  "task_key": "worker_ssh_training-status-check_20260520T102139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training-status-check_20260520T102139_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "3036b14895ceb4ea7ebec5bc13f554a1009432f3b9e341ebf7f12ca4b31f2bd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总 (2026-05-20 18:22 UTC)\n\n### GPU 状态\n\n| GPU | Util | VRAM | Temp |\n|-----|------|------|------|\n| 0 | 98% | 21.3/32.6 GB | 74°C |\n| 1 | 99% | 20.3/32.6 GB | 76°C |\n| 2 | 90% | 20.0/32.6 GB | 71°C |\n| 3 | 93% | 31.3/32.6 GB | 76°C |\n\n### 训练任务\n\n| GPU | 任务 | Step | 进度 | sec/step | 已运行 | 剩余 | 预计完成 (UTC) | Checkpoint |\n|-----|------|------|------|----------|--------|------|---------------|------------|\n| 0 | Qwen3-8B CWM s123 (v4) | 1365/6633 | **20.6%** | 12.1 | 8h46m | ~17.7h | **May 21 ~12:00** | ckpt-1300 (18:09) |\n| 3 | Qwen3-8B CWM s456 (v3) | ~1400/6633 (eval中) | **21.1%** | 11.7 | 8h45m | ~17.0h | **May 21 ~11:20** | ckpt-1300 (18:01) |\n| 2 | DeepSeek CWM s123-v2 | 2025/12627 | **16.0%** | 8.0 | 4h30m | ~23.6h | **May 21 ~18:00** | 无 (尚未保存) |\n| 1 | DeepSeek CWM s456-v2 | 528/12627 | **4.2%** | 7.9 | 1h18m | ~26.6h | **May 21 ~21:00** | 无 (尚未保存) |\n\n### 关键信息\n\n- **任务变化**: 与上次检查不同 — Qwen 改用 `train_repo_cwm.py` (Qwen3-8B, 非 Qwen2.5)，DeepSeek v2 改用 `train_unified.py` + `swebench_full/swebench_train.jsonl` (70748 样本，12627 steps)\n- **GPU 3 VRAM 接近满载** (31.3/32.6 GB, 96%)，需关注 OOM 风险\n- **DeepSeek s123-v2 checkpoints 为空**：2025 步没有保存任何 checkpoint，确认一下是否配置了 save_steps\n- **Qwen 两个训练** 已保存 5 个 checkpoint（300, 1000-1300），save_total_limit=5，符合预期\n- **所有进程正常运行，无 OOM、无报错**\n- Qwen s456 刚完成 step 1400 的 eval，eval_loss=0.359\n\n### 预计全部完成: May 21 ~21:00 UTC (DeepSeek s456-v2 最慢)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-status-check.md"
+}

@@ -1,0 +1,58 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ni2023lever}
+\citation{chen2023codet}
+\citation{ding2024codeworldmodels}
+\citation{zhang2025swebench}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{le2022coderl}
+\citation{li2022competition}
+\citation{shinn2023reflexion}
+\citation{zhang2023predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ Outcome Supervision.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification in Code Repair Pipelines.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CLS (Per-test Classification).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM (Code World Model).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TRAJ (Trajectory-Level).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset: SWE-bench PerTest}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench PerTest dataset statistics.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:dataset}{{1}{3}{SWE-bench PerTest dataset statistics}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Setup}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Function-Level Equivalence}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Function-level accuracy (\%) across formulations and models. Differences are not statistically significant (paired bootstrap, $p > 0.1$).}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:func-level}{{2}{3}{Function-level accuracy (\%) across formulations and models. Differences are not statistically significant (paired bootstrap, $p > 0.1$)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repo-Level Divergence: Qwen3}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen3-8B repo-level results. CWM parseable rate is 46.3\%; accuracy reported on parseable subset only.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:qwen-repo}{{3}{4}{Qwen3-8B repo-level results. CWM parseable rate is 46.3\%; accuracy reported on parseable subset only}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}DeepSeek Repo-Level Case Study}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:deepseek-repo}{{4.3}{4}{DeepSeek Repo-Level Case Study}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DeepSeek repo-level CLS performance across checkpoints (seed 42).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:deepseek-cls}{{4}{4}{DeepSeek repo-level CLS performance across checkpoints (seed 42)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DeepSeek repo-level CWM vs CLS comparison (seed 42).}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:deepseek-cwm-cls}{{5}{4}{DeepSeek repo-level CWM vs CLS comparison (seed 42)}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-seed Analysis.}{4}{table.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces DeepSeek repo-level summary across seeds. TRAJ results from 6-seed evaluation.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:deepseek-summary}{{6}{5}{DeepSeek repo-level summary across seeds. TRAJ results from 6-seed evaluation}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Efficiency Analysis}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Error Complementarity}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Re-repair resolve rate by diagnostic condition (60 instances, 5 samples/condition).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:rerepair}{{7}{6}{Re-repair resolve rate by diagnostic condition (60 instances, 5 samples/condition)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Downstream Repair Exploration}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tokenizer-Specificity of CWM Failure.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepSeek Training Limitations.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendations.}{6}{section*.10}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibdata{references}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.11}\protected@file@percent }
+\gdef \@abspage@last{7}

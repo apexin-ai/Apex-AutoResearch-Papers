@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ff0f25ae41ef23ce0a7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh fix eval checkpoint bug",
+  "task_key": "worker_ssh_fix-eval-checkpoint-bug_20260521T131432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-eval-checkpoint-bug_20260521T131432_result.json",
+    "occurrence": 1,
+    "bytes": 1979,
+    "sha256": "afb79c4882e63c354eddf255fb6748a27c3c8b6c77be98a644843c929421066e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，验证通过。汇总报告：\n\n---\n\n## 1. Diff（7 个脚本，同一 bug 模式）\n\n**6 个 tail-1 脚本**（eval_deepseek_cwm_s123_v2.sh, eval_deepseek_cwm_s456_v2.sh, eval_qwen_cwm_s123.sh, eval_qwen_cwm_s456.sh, eval_14b_cwm_pilot.sh, cwm8b_final_test_eval.sh）：\n\n```diff\n- FINAL_CKPT=$(ls -d ${CKPT_DIR}/checkpoint-* 2>/dev/null | sort -t'-' -k2 -n | tail -1)\n+ FINAL_CKPT=$(ls -d ${CKPT_DIR}/checkpoint-* 2>/dev/null | awk -F'checkpoint-' '{print $NF, $0}' | sort -n | tail -1 | cut -d' ' -f2-)\n```\n\n**1 个 sweep 脚本**（cwm8b_val_sweep.sh）：\n\n```diff\n- mapfile -t CKPTS < <(ls -d ${CKPT_BASE}/checkpoint-* 2>/dev/null | sort -t'-' -k2 -n)\n+ mapfile -t CKPTS < <(ls -d ${CKPT_BASE}/checkpoint-* 2>/dev/null | awk -F'checkpoint-' '{print $NF, $0}' | sort -n | cut -d' ' -f2-)\n```\n\n**验证**：s456 目录 BUG 版→`checkpoint-8418`，FIXED 版→`checkpoint-12627` ✓\n\n## 2. s456 epoch 2 eval 进度\n\n| 项目 | 值 |\n|------|----|\n| PID | 56657（仍在跑） |\n| Checkpoint | checkpoint-8418（epoch 2） |\n| 进度 | **360 / 9784 样本（3.7%）** |\n| 速率 | ~12.9 samples/min |\n| 预计剩余 | ~12 小时 |\n| 输出路径 | `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s456_v2_eval/results_incremental.jsonl` |\n\n完成后需标注为 epoch2 结果。\n\n## 3. s123 训练进度\n\n| 项目 | 值 |\n|------|----|\n| PID | 28200（仍在跑） |\n| 进度 | **8120 / 12627 steps（64.3%），epoch 1.9** |\n| 速率 | ~8s/step |\n| 已跑时间 | 8h50m（从 checkpoint-4209 resume） |\n| 预计剩余 | **~10 小时**（⚠️ 远晚于 22:30 UTC 的预估） |\n\n## 4. Qwen eval 脚本\n\n`eval_qwen_cwm_s123.sh` 和 `eval_qwen_cwm_s456.sh` **均有相同 bug，已修复** ✓\n\n## 5. 自动触发机制\n\n- **无 crontab**\n- **无 inotifywait / watch / auto-eval 脚本**\n- eval 需手动触发。s123 训练完成后需要手动运行 `eval_deepseek_cwm_s123_v2.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-eval-checkpoint-bug.md"
+}

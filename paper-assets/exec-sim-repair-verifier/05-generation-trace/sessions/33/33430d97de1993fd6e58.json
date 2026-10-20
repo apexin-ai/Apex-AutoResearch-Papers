@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33430d97de1993fd6e58",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cwm func s123 cuda3",
+  "task_key": "worker_eval_deepseek-cwm-func-s123-cuda3_20260516T080220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cwm-func-s123-cuda3_20260516T080220_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "6288d29219cf42a2111f37e926675f8108bdc9b73b74a076000c4c04c03d8f5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：**\n- 训练已完成，`best/` checkpoint 在 `/root/autodl-tmp/checkpoints_deepseek_cwm_func_seed123/best/`（含 adapter_model.safetensors）\n- Eval 已在 GPU 3 启动（tmux session: `eval-cwm-func-s123`），模型已加载（23.8GB 显存），推理进行中\n- 9784 个 test 样本，batch_size=8\n- 日志：`/tmp/eval_cwm_func_s123.log`\n- ~4 分钟后回来检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cwm-func-s123-cuda3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1ff28b295e5457dd2a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls14b final status urgent",
+  "task_key": "worker_ssh_cls14b-final-status-urgent_20260523T022459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls14b-final-status-urgent_20260523T022459_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "4ba1e86ae738e67e513b2eab5831ae1bb19d5a70c8c72027a5effeec31c35e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练和 eval 均已完成。全量结果如下：\n\n---\n\n### 1. GPU 状态\n4x RTX 5090 全部空闲，0 MiB 显存占用，无运行进程。\n\n### 2. 训练进程\nPID 215642 已退出。训练于 09:50 完成，耗时 **4h12m**，3 epochs / 1434 steps。\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 0.3187 |\n| eval_loss | 0.0918 |\n| 速度 | 3.03 samples/s |\n\n### 3. Auto-eval\n自动触发成功，使用 checkpoint-956（best），09:53:25 完成。\n\n### 4. CLS 14B v2 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Overall Accuracy** | **89.47%** |\n| Accuracy vs Baseline Gap | **+37.72pp** (baseline 51.75%) |\n| Unparseable | **0** |\n\n**Per-class:**\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|-----|---------|\n| fail | 89.57% | 88.49% | **89.02%** | 912 |\n| pass | 89.38% | 90.39% | **89.88%** | 978 |\n\n**Confusion Matrix:**\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| Actual fail | **807** (TN) | 105 (FP) |\n| Actual pass | 94 (FN) | **884** (TP) |\n\n### 5. Checkpoints\n- `checkpoint-956` (best, epoch 2)\n- `checkpoint-1434` (final, epoch 3)\n- `best/` (symlink/copy of checkpoint-956)\n\n**MVP-B criteria: PASS** — 两个 class F1 均 >65%，accuracy gap ≥10pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls14b-final-status-urgent.md"
+}

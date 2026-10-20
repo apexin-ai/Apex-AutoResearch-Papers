@@ -1,0 +1,26 @@
+{
+  "exp_id": "oracle-f2p-stratified",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T06:06:58.065Z",
+    "updated_at": "2026-05-12T06:07:14.982Z",
+    "spec": {
+      "command": "python3 oracle_f2p_stratified.py --output oracle_f2p_stratified_results.json",
+      "server": "home-1x5090",
+      "data_path": "n/a (simulation using SWE-bench F2P distribution)",
+      "data_count": 0,
+      "model_name": "n/a (oracle simulation)",
+      "seed": 42,
+      "checkpoint_path": "n/a",
+      "log_path": "/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-12T06:07:14.982Z"
+  },
+  "timestamp": "2026-05-12T06:07:15.007054+00:00",
+  "trigger": "update_registry"
+}

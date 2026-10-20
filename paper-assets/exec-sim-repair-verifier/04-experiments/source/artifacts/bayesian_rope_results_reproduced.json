@@ -1,0 +1,92 @@
+{
+  "method": "Bayesian ROPE (Kruschke 2013)",
+  "prior": "Jeffreys (non-informative)",
+  "posterior": "t(n-1, x_bar, s/sqrt(n))",
+  "rope_margin_pp": 2.0,
+  "results": [
+    {
+      "n": 5,
+      "mean_diff_pp": 1.048,
+      "sd_pp": 0.765,
+      "se_pp": 0.342,
+      "df": 4,
+      "rope": [
+        -2.0,
+        2.0
+      ],
+      "p_rope": 0.975,
+      "p_above_rope": 0.025,
+      "p_below_rope": 0.0,
+      "hdi_95_lo": 0.1,
+      "hdi_95_hi": 2.0,
+      "hdi_inside_rope": true,
+      "decision_continuous": "Equivalence supported",
+      "decision_hdi": "Accept equivalence (95% HDI inside ROPE)",
+      "comparison": "CLS-CWM per-test (8B, 5 seeds)",
+      "source": "bayesian_rope_report.md, from per-seed per-test accuracy diffs"
+    },
+    {
+      "n": 5,
+      "mean_diff_pp": 1.934,
+      "sd_pp": 1.279,
+      "se_pp": 0.572,
+      "df": 4,
+      "rope": [
+        -2.0,
+        2.0
+      ],
+      "p_rope": 0.542,
+      "p_above_rope": 0.457,
+      "p_below_rope": 0.001,
+      "hdi_95_lo": 0.35,
+      "hdi_95_hi": 3.52,
+      "hdi_inside_rope": false,
+      "decision_continuous": "Inconclusive",
+      "decision_hdi": "Undecided (95% HDI overlaps ROPE boundary)",
+      "comparison": "CLS-TRAJ per-test (8B, 5 seeds)",
+      "source": "bayesian_rope_report.md, from per-seed per-test accuracy diffs"
+    },
+    {
+      "n": 5,
+      "mean_diff_pp": -0.486,
+      "sd_pp": 1.219,
+      "se_pp": 0.545,
+      "df": 4,
+      "rope": [
+        -2.0,
+        2.0
+      ],
+      "p_rope": 0.97,
+      "p_above_rope": 0.005,
+      "p_below_rope": 0.025,
+      "hdi_95_lo": -2.0,
+      "hdi_95_hi": 1.03,
+      "hdi_inside_rope": true,
+      "decision_continuous": "Equivalence supported",
+      "decision_hdi": "Accept equivalence (95% HDI inside ROPE)",
+      "comparison": "CLS-TRAJ variant (8B, 5 seeds)",
+      "source": "tost_margin_sweep_cls_traj.json, variant-level paired diffs"
+    },
+    {
+      "n": 3,
+      "mean_diff_pp": 1.07,
+      "sd_pp": 1.422,
+      "se_pp": 0.821,
+      "df": 2,
+      "rope": [
+        -2.0,
+        2.0
+      ],
+      "p_rope": 0.78,
+      "p_above_rope": 0.187,
+      "p_below_rope": 0.032,
+      "hdi_95_lo": -2.46,
+      "hdi_95_hi": 4.6,
+      "hdi_inside_rope": false,
+      "decision_continuous": "Inconclusive",
+      "decision_hdi": "Undecided (95% HDI overlaps ROPE boundary)",
+      "comparison": "CLS-TRAJ (14B, 3 seeds)",
+      "source": "registry: CLS_14B=[89.21, 90.79, 89.79], TRAJ_14B=[89.73, 88.57, 88.28], diffs=[-0.52, 2.22, 1.51]"
+    }
+  ]
+}

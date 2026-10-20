@@ -1,0 +1,42 @@
+% §5.3 14B narrative drafts — replace line 107 in experiments.tex
+% Use after CLS/CWM 14B eval results are available
+% Replace {CLS_ACC}, {CLS_DELTA}, {CWM_ACC}, {CWM_DELTA}, {GAP} with actual numbers
+% Note: TRAJ 14B not available — omit or mark as future work
+
+%% ====== DRAFT A: CWM flat scaling (CWM 14B ≈ 8B) ======
+% Use when: CWM 14B accuracy within ±1pp of 87.33 (8B)
+% Narrative: CLS scales, CWM plateaus → divergent trajectories
+
+At 14B, \cls{} reaches {CLS_ACC}\% ({CLS_DELTA}\pp{} from 8B), confirming a monotonic scaling trend across three model sizes.
+\cwm{} remains at {CWM_ACC}\% ({CWM_DELTA}\pp{}), extending the plateau observed from 4B to 8B.
+The \cls{}--\cwm{} gap widens from 2.62\pp{} at 8B to {GAP}\pp{} at 14B, consistent with divergent scaling trajectories: classification benefits from increased capacity while generation-based simulation does not.
+This three-point pattern (4B, 8B, 14B) strengthens the practical recommendation for \cls{} at function level---not only is it equivalent or better at each size, but the advantage grows with scale.
+
+
+%% ====== DRAFT B: CWM delayed scaling (CWM 14B > 8B significantly) ======
+% Use when: CWM 14B accuracy ≥ 88.5 (clearly above 87.33)
+% Narrative: both scale, CLS scales faster → gap persists but generation not fundamentally blocked
+
+At 14B, \cls{} reaches {CLS_ACC}\% ({CLS_DELTA}\pp{} from 8B) and \cwm{} reaches {CWM_ACC}\% ({CWM_DELTA}\pp{}), indicating that both formulations benefit from increased capacity at 14B.
+The \cls{}--\cwm{} gap {narrows from/remains at} 2.62\pp{} at 8B to {GAP}\pp{} at 14B.
+\cwm{}'s delayed onset of scaling (flat 4B$\to$8B, positive 8B$\to$14B) suggests that generation-based simulation requires a capacity threshold before the task becomes learnable---consistent with the hypothesis that short-output generation is not inherently harder than classification, but requires more parameters to reliably learn output formatting.
+The practical implication is that formulation choice may matter less at larger scale, though \cls{} retains a throughput advantage (217$\times$ fewer output tokens).
+
+
+%% ====== TABLE ROWS (for tab:scaling, lines 82/86) ======
+% Note: 14B has seed 42 only (NF4 QLoRA). Need footnote.
+
+% CLS 14B row:
+%  & 14B & {CLS_S42} & --- & {CLS_S42}\textsuperscript{$\dagger$} & {CLS_DELTA} \\
+
+% CWM 14B row:
+%  & 14B & {CWM_S42} & --- & {CWM_S42}\textsuperscript{$\dagger$} & {CWM_DELTA} \\
+
+% TRAJ 14B row (no experiment):
+%  & 14B & --- & --- & --- & --- \\
+
+% Add footnote: \textsuperscript{$\dagger$}Single seed (42), NF4 quantization.
+
+% Table caption update needed:
+% Old: "seeds 42/123, bfloat16"
+% New: "seeds 42/123, bfloat16; 14B: seed 42, NF4 (single-seed, exploratory)"

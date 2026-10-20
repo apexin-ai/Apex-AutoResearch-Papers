@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "069574b4df5a2e7c1a13",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260516T183909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260516T183909_result.json",
+    "occurrence": 1,
+    "bytes": 1413,
+    "sha256": "86ae552e297034ae921d73547a87721e3101a91cab6e58a373ed483bf81b0ea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 显存 | 利用率 | 任务 | PID | 进度 |\n|-----|------|--------|------|-----|------|\n| cuda:0 | **0 MiB** / 32607 MiB | **0%** | **空闲** | — | — |\n| cuda:1 | 19713 / 32607 MiB | 99% | deepseek-cwm-repo (s42) | 479953 | **92% (4294/4668)** |\n| cuda:2 | 17633 / 32607 MiB | 100% | deepseek-cls-repo-s123 | 542509 | **5% (338/6633)** |\n| cuda:3 | 18061 / 32607 MiB | 99% | deepseek-cwm-repo-s123 | 542901 | **3% (424/13266)** |\n\n### cuda:0 状态\n\n**空闲。** `deepseek-cls-repo-v3` (PID 547808) 已死——日志显示启动失败：\n\n```\ntrain_unified.py: error: unrecognized arguments: --resume_from_checkpoint /root/autodl-tmp/checkpoints_deepseek_cls_repo/checkpoint-2211\nEXIT_CODE=2\n```\n\n`train_unified.py` 不支持 `--resume_from_checkpoint` 参数，导致立即退出。\n\n### Registry 需更新的条目\n\n| 条目 | 记录 PID | 实际状态 |\n|------|----------|----------|\n| deepseek-cls-repo-v3 (cuda:0) | 547808 | **已死** — 参数错误退出 |\n| deepseek-cls-repo-resume (cuda:0) | 546754 | **已死** — 早已结束 |\n\n### 进度预估\n\n- **cwm-repo (cuda:1)**: 92%，剩余 ~374 步，约 2 分钟/步 → **~12 分钟后完成**\n- **cls-repo-s123 (cuda:2)**: 5%，~11s/step，剩余 6295 步 → **~19 小时**\n- **cwm-repo-s123 (cuda:3)**: 3%，~8.3s/step，剩余 12842 步 → **~30 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check.md"
+}

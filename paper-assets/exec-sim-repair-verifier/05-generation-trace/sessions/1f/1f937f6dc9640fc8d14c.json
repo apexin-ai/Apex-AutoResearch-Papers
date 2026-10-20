@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f937f6dc9640fc8d14c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops confirm training steps",
+  "task_key": "worker_ops_confirm-training-steps_20260516T115651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_confirm-training-steps_20260516T115651_result.json",
+    "occurrence": 1,
+    "bytes": 3407,
+    "sha256": "2f69b66222fef98dd58275b53bd14c513118e9c54f78bde71bf53dc747dabafc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full picture obtained. Here's the precise report:\n\n---\n\n## 训练状态汇报（2026-05-16 实时数据）\n\n### 重要发现：原 Qwen3 训练全部已死，当前运行的是新的 DeepSeek 训练\n\n原来 5/14 启动的 Qwen3-4B/8B 训练三个全部在 2026-05-14 ~08:58 停止（train.log 最后修改时间），当前 cuda:0 和 cuda:1 上运行的是**今天（5/16）新启动的 DeepSeek-Coder-6.7B 训练**。\n\n---\n\n### 1. cls-repo (cuda:0, PID 470263)\n\n| 项目 | 值 |\n|------|-----|\n| **当前 step** | **1754/6633** |\n| **total steps** | 6633 |\n| **模型** | deepseek-coder-6.7b-instruct（非 Qwen3） |\n| **run_name** | deepseek-cls-repo-seq8192 |\n| **启动时间** | 2026-05-16 15:29:33 |\n| **已运行** | ~5h24m |\n| **速度** | ~11.8s/it |\n| **output_dir** | /root/autodl-tmp/checkpoints_deepseek_cls_repo/ |\n| **重启** | 第一次 OOM 失败（GPU 0 被旧进程占满），随后成功启动 |\n\n命令：\n```\nCUDA_VISIBLE_DEVICES=0 python3 train_unified.py \\\n  --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n  --data_dir data/ --task cls \\\n  --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo/ \\\n  --run_name deepseek-cls-repo-level --epochs 3 --no_wandb\n```\n\n---\n\n### 2. cwm-repo (cuda:1, PID 479953)\n\n| 项目 | 值 |\n|------|-----|\n| **当前 step** | **1643/13266** |\n| **total steps** | **13266**（确认，非 6633） |\n| **模型** | deepseek-coder-6.7b-instruct |\n| **run_name** | deepseek-cwm-repo-s42 |\n| **启动时间** | 2026-05-16 16:04:49（tmux创建），训练开始 16:15:35 |\n| **已运行** | ~3h44m |\n| **速度** | ~8.0s/it |\n| **output_dir** | /root/autodl-tmp/checkpoints_deepseek_cwm_repo/ |\n\n**total steps = 13266 的原因**：`batch_size=2, grad_accumulation=8` → effective batch 16 → 70748/16 ≈ 4422 steps/epoch × 3 epochs = 13266\n\n命令：\n```\npython3 train_unified.py \\\n  --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n  --train_file swebench_full/swebench_train.jsonl --val_file swebench_full/swebench_val.jsonl \\\n  --task cwm --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 \\\n  --epochs 3 --batch_size 2 --grad_accumulation 8 --lr 2e-4 \\\n  --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/\n```\n\n---\n\n### 3. cuda:2 orphan (PID 499350) — 已死亡\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | **进程已不存在，GPU 空闲（0% util, 0 MiB）** |\n| **死亡时间** | 2026-05-14 08:58:39（log 最后修改） |\n| **死亡时 step** | ~662/6633 |\n| **模型** | Qwen3-8B（/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/） |\n| **任务** | CLS |\n| **数据** | train=70748, val=9335 |\n| **params** | trainable: 15,335,424 / total: 8,206,070,784 (0.19%) |\n| **output_dir** | /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ |\n| **已保存 ckpt** | checkpoint-200, checkpoint-400, checkpoint-600 |\n\n---\n\n### 关于之前报告的矛盾\n\n- **\"step 1632/6633\" vs \"step 643/6633\"**：两个都过时了。之前的 Qwen3-4B cls 训练停在了 step 643/6633（5/14 死亡）。当前实际跑的是 DeepSeek-6.7B，在 step 1754/6633。\n- **cwm total steps 13266 vs 6633**：Qwen3-4B 旧 run 是 6633（grad_accum=16），DeepSeek 新 run 是 13266（grad_accum=8）。当前运行的确实是 13266。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-confirm-training-steps.md"
+}

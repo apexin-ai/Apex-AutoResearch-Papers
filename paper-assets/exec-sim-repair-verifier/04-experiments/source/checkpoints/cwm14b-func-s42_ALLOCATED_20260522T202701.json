@@ -1,0 +1,28 @@
+{
+  "exp_id": "cwm14b-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:23:21.299Z",
+    "updated_at": "2026-05-22T20:27:01.480Z",
+    "hypothesis": "Qwen3-14B QLoRA CWM at function level should remain equivalent to CLS (within ±2pp SESOI), consistent with 4B/8B equivalence pattern. If CWM remains flat while CLS scales, the CLS-CWM gap at 14B widens further, strengthening the scaling divergence narrative for §5.3.",
+    "spec": {
+      "command": "bash -c \"bash /tmp/run_cwm14b_train.sh\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "211042",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm14b-func-s42.log",
+      "submitted_at": "2026-05-22T20:25:23.612Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T20:27:01.928256+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1899 @@
+# analysis deepseek cls repo s123 results
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_analysis_deepseek-cls-repo-s123-results_20260518T223828.jsonl`
+- **Structured JSON:** [`568322cf2aed73f3fc79.json`](../../sessions/56/568322cf2aed73f3fc79.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T22:42:29.381322+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T22:42:29.381693+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T22:42:29.381922+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -lah /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -lah /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T22:42:29.382081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -200 ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tail -200 ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T22:42:29.382222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16K\\ndrwxr-xr-x  5 root root   80 May 17 23:06 .\\ndrwxr-xr-x 58 root root 4.0K May 19 06:36 ..\\ndrwxr-xr-x  2 root root 4.0K May 17 23:06 best\\ndrwxr-xr-x  2 root root 4.0K May 17 15:51 checkpoint-4422\\ndrwxr-xr-x  2 root root 4.0K May 17 23:06 checkpoint-6633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T22:42:29.382494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 96%|█████████▌| 4467/4668 [18:14<00:52,  3.82it/s]\\u001b[A\\n\\r 96%|█████████▌| 4468/4668 [18:14<00:55,  3.59it/s]\\u001b[A\\n\\r 96%|█████████▌| 4469/4668 [18:15<01:02,  3.17it/s]\\u001b[A\\n\\r 96%|█████████▌| 4470/4668 [18:15<01:00,  3.28it/s]\\u001b[A\\n\\r 96%|█████████▌| 4471/4668 [18:15<00:50,  3.88it/s]\\u001b[A\\n\\r 96%|█████████▌| 4472/4668 [18:15<00:49,  3.99it/s]\\u001b[A\\n\\r 96%|█████████▌| 4473/4668 [18:16<00:46,  4.24it/s]\\u001b[A\\n\\r 96%|█████████▌| 4474/4668 [18:16<00:47,  4.08it/s]\\u001b[A\\n\\r 96%|█████████▌| 4475/4668 [18:16<00:56,  3.43it/s]\\u001b[A\\n\\r 96%|█████████▌| 4476/4668 [18:16<00:52,  3.68it/s]\\u001b[A\\n\\r 96%|█████████▌| 4477/4668 [18:17<00:43,  4.34it/s]\\u001b[A\\n\\r 96%|█████████▌| 4478/4668 [18:17<00:40,  4.69it/s]\\u001b[A\\n\\r 96%|█████████▌| 4479/4668 [18:17<00:44,  4.21it/s]\\u001b[A\\n\\r 96%|█████████▌| 4480/4668 [18:17<00:51,  3.63it/s]\\u001b[A\\n\\r 96%|█████████▌| 4481/4668 [18:18<00:57,  3.23it/s]\\u001b[A\\n\\r 96%|█████████▌| 4482/4668 [18:18<00:53,  3.47it/s]\\u001b[A\\n\\r 96%|█████████▌| 4483/4668 [18:18<00:45,  4.08it/s]\\u001b[A\\n\\r 96%|█████████▌| 4484/4668 [18:18<00:45,  4.05it/s]\\u001b[A\\n\\r 96%|█████████▌| 4485/4668 [18:19<00:49,  3.69it/s]\\u001b[A\\n\\r 96%|█████████▌| 4486/4668 [18:19<00:55,  3.27it/s]\\u001b[A\\n\\r 96%|█████████▌| 4487/4668 [18:19<00:55,  3.25it/s]\\u001b[A\\n\\r 96%|█████████▌| 4488/4668 [18:20<00:47,  3.82it/s]\\u001b[A\\n\\r 96%|█████████▌| 4489/4668 [18:20<00:44,  4.02it/s]\\u001b[A\\n\\r 96%|█████████▌| 4490/4668 [18:20<00:48,  3.69it/s]\\u001b[A\\n\\r 96%|█████████▌| 4491/4668 [18:20<00:46,  3.82it/s]\\u001b[A\\n\\r 96%|█████████▌| 4492/4668 [18:21<00:47,  3.67it/s]\\u001b[A\\n\\r 96%|█████████▋| 4493/4668 [18:21<00:45,  3.81it/s]\\u001b[A\\n\\r 96%|█████████▋| 4495/4668 [18:21<00:34,  4.98it/s]\\u001b[A\\n\\r 96%|█████████▋| 4496/4668 [18:21<00:32,  5.28it/s]\\u001b[A\\n\\r 96%|█████████▋| 4497/4668 
+…[truncated 7535 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T22:42:29.382673+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*cls_repo_s123*\" -o -type d -name \"*deepseek*cls*repo*s123*\" -o -type d -name \"*deepseek*cls*repo*123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*cls_repo_s123*\" -o -type d -name \"*deepseek*cls*repo*s123*\" -o -type d -name \"*deepseek*cls*repo*123*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T22:42:29.382842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T22:42:29.383076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep \"eval_loss\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep \"eval_loss\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T22:42:29.383228+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r                                                   \\u001b[A{'eval_loss': nan, 'eval_runtime': 1144.3988, 'eval_samples_per_second': 8.157, 'eval_steps_per_second': 4.079, 'epoch': 1.0}\\n\\r                                                   \\u001b[A{'eval_loss': nan, 'eval_runtime': 1144.9284, 'eval_samples_per_second': 8.153, 'eval_steps_per_second': 4.077, 'epoch': 2.0}\\n{'eval_loss': nan, 'eval_runtime': 1144.1769, 'eval_samples_per_second': 8.159, 'eval_steps_per_second': 4.08, 'epoch': 3.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T22:42:29.383357+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -lah /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -lah /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T22:42:29.383486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1.6M\\ndrwxr-xr-x  2 root root   68 May 17 23:55 .\\ndrwxr-xr-x 44 root root 4.0K May 19 06:31 ..\\n-rw-r--r--  1 root root  766 May 17 23:55 eval_summary.json\\n-rw-r--r--  1 root root 1.5M May 17 23:55 predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T22:42:29.383614+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -lah /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -lah /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T22:42:29.383747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 67M\\ndrwxr-xr-x 2 root root 4.0K May 17 23:06 .\\ndrwxr-xr-x 5 root root   80 May 17 23:06 ..\\n-rw-r--r-- 1 root root 5.2K May 17 23:06 README.md\\n-rw-r--r-- 1 root root 1.1K May 17 23:06 adapter_config.json\\n-rw-r--r-- 1 root root  65M May 17 23:06 adapter_model.safetensors\\n-rw-r--r-- 1 root root 1.1K May 17 23:06 chat_template.jinja\\n-rw-r--r-- 1 root root  462 May 17 23:06 special_tokens_map.json\\n-rw-r--r-- 1 root root 2.2M May 17 23:06 tokenizer.json\\n-rw-r--r-- 1 root root 4.3K May 17 23:06 tokenizer_config.json\\n-rw-r--r-- 1 root root 5.9K May 17 23:06 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T22:42:29.383919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/eval_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/eval_summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T22:42:29.384071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CLS\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best\\\",\\n  \\\"split\\\": \\\"test\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"n_cls_unparseable\\\": 2796,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 82.62,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": 9.67,\\n    \\\"f1_fail\\\": 53.37,\\n    \\\"f1_pass\\\": 89.32,\\n    \\\"f1_macro\\\": 71.35,\\n    \\\"precision_fail\\\": 97.3,\\n    \\\"precision_pass\\\": 80.95,\\n    \\\"recall_fail\\\": 36.77,\\n    \\\"recall_pass\\\": 99.62,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 973,\\n      \\\"fp\\\": 1673,\\n      \\\"fn\\\": 27,\\n      \\\"tp\\\": 7111\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\",\\n    \\\"max_seq_length\\\": 2048,\\n    \\\"batch_size\\\": 8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T22:42:29.384202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -5 /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -5 /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T22:42:29.384361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": true, \\\"gen_text\\\": \\\", but replace it with a new one\\\", \\\"unparseable\\\": true}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"django__django-14315\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"pass\\\", \\\"unparseable\\\": false}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"pytest-dev__pytest-7490\\\", \\\"label\\\": 0, \\\"pred\\\": 1, \\\"correct\\\": 0, \\\"truncated\\\": true, \\\"gen_text\\\": \\\"]()\\\\n# Saves the x\\\", \\\"unparseable\\\": true}\\n{\\\"index\\\": 3, \\\"problem_id\\\": \\\"pydata__xarray-6992\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"correct\\\": 1, \\\"truncated\\\": true, \\\"gen_text\\\": \\\", but replace it with a new one\\\", \\\"unparseable\\\": true}\\n{\\\"index\\\": 4, \\\"problem_id\\\": \\\"astropy__astropy-7336\\\", \\\"label\\\": 0, \\\"pred\\\": 1, \\\"correct\\\": 0, \\\"truncated\\\": false, \\\"gen_text\\\": \\\"pass\\\", \\\"unparseable\\\": false}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T22:42:29.384493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep \"train_loss\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep \"train_loss\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T22:42:29.384618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'train_runtime': 77406.6011, 'train_samples_per_second': 2.742, 'train_steps_per_second': 0.086, 'train_loss': 0.03932609962636163, 'epoch': 3.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T22:42:29.384736+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep \"'loss'\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep \"'loss'\" ~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T22:42:29.384980+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r  0%|          | 0/6633 [00:00<?, ?it/s]\\r  0%|          | 1/6633 [00:10<19:57:28, 10.83s/it]\\r  0%|          | 2/6633 [00:19<17:47:05,  9.66s/it]\\r  0%|          | 3/6633 [00:29<18:17:56,  9.94s/it]\\r  0%|          | 4/6633 [00:38<17:00:50,  9.24s/it]\\r  0%|          | 5/6633 [00:48<17:59:06,  9.77s/it]\\r  0%|          | 6/6633 [01:04<21:55:57, 11.91s/it]\\r  0%|          | 7/6633 [01:14<20:47:32, 11.30s/it]\\r  0%|          | 8/6633 [01:29<22:39:48, 12.32s/it]\\r  0%|          | 9/6633 [01:40<21:44:15, 11.81s/it]\\r  0%|          | 10/6633 [01:51<21:23:22, 11.63s/it]\\r  0%|          | 11/6633 [02:00<20:10:10, 10.97s/it]\\r  0%|          | 12/6633 [02:12<20:36:54, 11.21s/it]\\r  0%|          | 13/6633 [02:22<20:05:21, 10.92s/it]\\r  0%|          | 14/6633 [02:32<19:30:49, 10.61s/it]\\r  0%|          | 15/6633 [02:46<21:09:18, 11.51s/it]\\r  0%|          | 16/6633 [02:58<21:16:02, 11.57s/it]\\r  0%|          | 17/6633 [03:09<21:11:47, 11.53s/it]\\r  0%|          | 18/6633 [03:20<21:09:03, 11.51s/it]\\r  0%|          | 19/6633 [03:31<20:50:48, 11.35s/it]\\r  0%|          | 20/6633 [03:42<20:23:23, 11.10s/it]\\r  0%|          | 21/6633 [03:56<22:13:45, 12.10s/it]\\r  0%|          | 22/6633 [04:09<22:22:30, 12.18s/it]\\r  0%|          | 23/6633 [04:22<22:59:26, 12.52s/it]\\r  0%|          | 24/6633 [04:33<22:22:34, 12.19s/it]\\r  0%|          | 25/6633 [04:46<22:20:24, 12.17s/it]\\r  0%|          | 26/6633 [04:57<21:50:48, 11.90s/it]\\r  0%|          | 27/6633 [05:11<23:07:16, 12.60s/it]\\r  0%|          | 28/6633 [05:21<21:39:36, 11.81s/it]\\r  0%|          | 29/6633 [05:30<20:08:35, 10.98s/it]\\r  0%|          | 30/6633 [05:44<21:49:44, 11.90s/it]\\r  0%|          | 31/6633 [05:54<20:54:26, 11.40s/it]\\r  0%|          | 32/6633 [06:06<21:12:48, 11.57s/it]\\r  0%|          | 33/6633 [06:17<20:48:06, 11.35s/it]\\r  1%|          | 34/6633 [06:31<21:57:45, 11.98s/it]\\r  1%|          | 35/6633 [06:39<19:48
+…[truncated 6433 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T22:42:29.385187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*s123*\" -o -type d -name \"*seed123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/ -type d -name \"*s123*\" -o -type d -name \"*seed123*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T22:42:29.385330+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/cls_seed123_ckpt200\\n/root/autodl-tmp/eval_results/cls8b_seed123_ckpt3000_test_mutation\\n/root/autodl-tmp/eval_results/deepseek_cwm_func_s123_test\\n/root/autodl-tmp/eval_results/deepseek_cls_func_s123_test\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test\\n/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T22:42:29.385456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T22:42:29.385583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"9784 /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T22:42:29.385701+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/compute_deepseek_func_icc.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/compute_deepseek_func_icc.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T22:42:29.385841+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /home/sonny/exec-sim-repair-verifier/compute_deepseek_func_icc.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T22:42:29.385996+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/compute_deepseek_func_icc.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/compute_deepseek_func_icc.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T22:42:29.386157+00:00_
+
+1	#!/usr/bin/env python3
+2	"""Compute inter-seed ICC(3,1) for DeepSeek function-level CLS."""
+3	import json, sys, os
+4	import numpy as np
+5	
+6	def load_predictions(path):
+7	    with open(path) as f:
+8	        return [json.loads(line) for line in f]
+9	
+10	def icc_3_1(matrix):
+11	    """ICC(3,1) two-way mixed, single measures.
+12	    matrix: (n_subjects, k_raters) array of 0/1 values.
+13	    """
+14	    n, k = matrix.shape
+15	    if n < 2 or k < 2:
+16	        return float('nan'), float('nan'), float('nan')
+17	
+18	    grand_mean = matrix.mean()
+19	    row_means = matrix.mean(axis=1)
+20	    col_means = matrix.mean(axis=0)
+21	
+22	    SS_total = ((matrix - grand_mean) ** 2).sum()
+23	    SS_rows = k * ((row_means - grand_mean) ** 2).sum()
+24	    SS_cols = n * ((col_means - grand_mean) ** 2).sum()
+25	    SS_error = SS_total - SS_rows - SS_cols
+26	
+27	    MS_rows = SS_rows / (n - 1)
+28	    MS_error = SS_error / ((n - 1) * (k - 1))
+29	
+30	    # ICC(3,1)
+31	    denom = MS_rows + (k - 1) * MS_error
+32	    if denom == 0:
+33	        icc = 0.0
+34	    else:
+35	        icc = (MS_rows - MS_error) / denom
+36	
+37	    # 95% CI using F distribution
+38	    if MS_error == 0:
+39	        return icc, float('nan'), float('nan')
+40	
+41	    F_val = MS_rows / MS_error
+42	    from scipy.stats import f as f_dist
+43	    df1 = n - 1
+44	    df2 = (n - 1) * (k - 1)
+45	
+46	    F_L = F_val / f_dist.ppf(0.975, df1, df2)
+47	    F_U = F_val / f_dist.ppf(0.025, df1, df2)
+48	
+49	    icc_lo = (F_L - 1) / (F_L + k - 1)
+50	    icc_hi = (F_U - 1) / (F_U + k - 1)
+51	
+52	    return icc, icc_lo, icc_hi
+53	
+54	
+55	def main():
+56	    s42_path = sys.argv[1]
+57	    s123_path = sys.argv[2]
+58	
+59	    preds_s42 = load_predictions(s42_path)
+60	    preds_s123 = load_predictions(s123_path)
+61	
+62	    assert len(preds_s42) == len(preds_s123), \
+63	        f"Mismatch: {len(preds_s42)} vs {len(preds_s123)}"
+64	
+65	    n = len(preds_s42)
+66	    matrix = np.zeros((n, 2), dtype=float)
+67	    for i in range(n):
+68	        matrix[i, 
+…[truncated 1745 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T22:42:29.386304+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"eval_summary.json\" -path \"*deepseek*repo*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/ -name \"eval_summary.json\" -path \"*deepseek*repo*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T22:42:29.386433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/eval_summary.json\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt2105_test_seq8192/eval_summary.json\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/eval_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T22:42:29.386592+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 -c \"\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\nprint(f'Total predictions: {len(preds)}')\n\n# Count unparseable\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(f'Unparseable: {n_unparse}')\n\n# Group by problem_id\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nn_variants = len(groups)\nprint(f'Unique problem_ids (variants): {n_variants}')\n\n# Variant-level accuracy (AND rule): all tests correct\nvariant_correct = sum(1 for pid, tests in groups.items() if all(t['correct'] for t in tests))\nvariant_acc = variant_correct / n_variants * 100\nprint(f'Variant-level accuracy (AND): {variant_correct}/{n_variants} = {variant_acc:.2f}%')\n\n# Also compute per-label stats at variant level\n# How many tests per variant?\ntest_counts = [len(v) for v in groups.values()]\nprint(f'Tests per variant: min={min(test_counts)}, max={max(test_counts)}, mean={sum(test_counts)/len(test_counts):.1f}')\n\n# Variant-level: what fraction have label=1 for ALL tests vs mixed\nall_pass = sum(1 for pid, tests in groups.items() if all(t['label']==1 for t in tests))\nall_fail = sum(1 for pid, tests in groups.items() if all(t['label']==0 for t in tests))\nmixed = n_variants - all_pass - all_fail\nprint(f'Variants: all_pass={all_pass}, all_fail={all_fail}, mixed={mixed}')\n\n# Per-test accuracy\ncorrect_total = sum(1 for p in preds if p['correct'])\nprint(f'Per-test accuracy: {correct_total}/{len(preds)} = {correct_total/len(preds)*100:.2f}%')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 -c \"\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\nprint(f'Total predictions: {len(preds)}')\n\n# Count unparseable\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(f'Unparseable: {n_unparse}')\n\n# Group by problem_id\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nn_variants = len(groups)\nprint(f'Unique problem_ids (variants): {n_variants}')\n\n# Variant-level accuracy (AND rule): all tests correct\nvariant_correct = sum(1 for pid, tests in groups.items() if all(t['correct'] for t in tests))\nvariant_acc = variant_correct / n_variants * 100\nprint(f'Variant-level accuracy (AND): {variant_correct}/{n_variants} = {variant_acc:.2f}%')\n\n# Also compute per-label stats at variant level\n# How many tests per variant?\ntest_counts = [len(v) for v in groups.values()]\nprint(f'Tests per variant: min={min(test_counts)}, max={max(test_counts)}, mean={sum(test_counts)/len(test_counts):.1f}')\n\n# Variant-level: what fraction have label=1 for ALL tests vs mixed\nall_pass = sum(1 for pid, tests in groups.items() if all(t['label']==1 for t in tests))\nall_fail = sum(1 for pid, tests in groups.items() if all(t['label']==0 for t in tests))\nmixed = n_variants - all_pass - all_fail\nprint(f'Variants: all_pass={all_pass}, all_fail={all_fail}, mixed={mixed}')\n\n# Per-test accuracy\ncorrect_total = sum(1 for p in preds if p['correct'])\nprint(f'Per-test accuracy: {correct_total}/{len(preds)} = {correct_total/len(preds)*100:.2f}%')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T22:42:29.386735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total predictions: 9784\\nUnparseable: 2796\\nUnique problem_ids (variants): 25\\nVariant-level accuracy (AND): 9/25 = 36.00%\\nTests per variant: min=45, max=2322, mean=391.4\\nVariants: all_pass=9, all_fail=0, mixed=16\\nPer-test accuracy: 8084/9784 = 82.62%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T22:42:29.386947+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 -c \"\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nprint('Per-variant breakdown:')\nprint(f'{'problem_id':50s} n_tests  n_correct  acc%   n_fail  fail_recall  all_correct')\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    print(f'{pid:50s} {n:7d}  {n_correct:9d}  {acc:5.1f}  {n_fail:6d}  {fail_recall:10.1f}%  {all_ok}')\n\n# Also: unparseable distribution\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(f'\\nTruncated: {n_trunc}/{len(preds)}')\nprint(f'Unparseable: {n_unparse}/{len(preds)}')\n\n# Unparseable accuracy\nunparse_preds = [p for p in preds if p.get('unparseable', False)]\nif unparse_preds:\n    unparse_correct = sum(1 for p in unparse_preds if p['correct'])\n    print(f'Unparseable accuracy: {unparse_correct}/{len(unparse_preds)} = {unparse_correct/len(unparse_preds)*100:.1f}%')\n\nparseable_preds = [p for p in preds if not p.get('unparseable', False)]\nif parseable_preds:\n    parse_correct = sum(1 for p in parseable_preds if p['correct'])\n    print(f'Parseable accuracy: {parse_correct}/{len(parseable_preds)} = {parse_correct/len(parseable_preds)*100:.1f}%')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 -c \"\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nprint('Per-variant breakdown:')\nprint(f'{'problem_id':50s} n_tests  n_correct  acc%   n_fail  fail_recall  all_correct')\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    print(f'{pid:50s} {n:7d}  {n_correct:9d}  {acc:5.1f}  {n_fail:6d}  {fail_recall:10.1f}%  {all_ok}')\n\n# Also: unparseable distribution\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(f'\\nTruncated: {n_trunc}/{len(preds)}')\nprint(f'Unparseable: {n_unparse}/{len(preds)}')\n\n# Unparseable accuracy\nunparse_preds = [p for p in preds if p.get('unparseable', False)]\nif unparse_preds:\n    unparse_correct = sum(1 for p in unparse_preds if p['correct'])\n    print(f'Unparseable accuracy: {unparse_correct}/{len(unparse_preds)} = {unparse_correct/len(unparse_preds)*100:.1f}%')\n\nparseable_preds = [p for p in preds if not p.get('unparseable', False)]\nif parseable_preds:\n    parse_correct = sum(1 for p in parseable_preds if p['correct'])\n    print(f'Parseable accuracy: {parse_correct}/{len(parseable_preds)} = {parse_correct/len(parseable_preds)*100:.1f}%')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T22:42:29.387157+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 -c \\\"\\\\nimport json\\\\nfrom collections import defaultdict\\\\n\\\\npreds = [json.loads(l) for l in open(\\\\'predictions.jsonl\\\\')]\\\\n\\\\ngroups = defaultdict(list)\\\\nfor p in preds:\\\\n    groups[p[\\\\'problem_id\\\\']].append(p)\\\\n\\\\nprint(\\\\'Per-variant breakdown:\\\\')\\\\nprint(f\\\\'{\\\\'problem_id\\\\':50s} n_tests  n_correct  acc%   n_fail  fail_recall  all_correct\\\\')\\\\nfor pid in sorted(groups.keys()):\\\\n    tests = groups[pid]\\\\n    n = len(tests)\\\\n    n_correct = sum(1 for t in tests if t[\\\\'correct\\\\'])\\\\n    acc = n_correct / n * 100\\\\n    fail_tests = [t for t in tests if t[\\\\'label\\\\'] == 0]\\\\n    n_fail = len(fail_tests)\\\\n    fail_correct = sum(1 for t in fail_tests if t[\\\\'correct\\\\'])\\\\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float(\\\\'nan\\\\')\\\\n    all_ok = \\\\'YES\\\\' if all(t[\\\\'correct\\\\'] for t in tests) else \\\\'NO\\\\'\\\\n    print(f\\\\'{pid:50s} {n:7d}  {n_correct:9d}  {acc:5.1f}  {n_fail:6d}  {fail_recall:10.1f}%  {all_ok}\\\\')\\\\n\\\\n# Also: unparseable distribution\\\\nn_trunc = sum(1 for p in preds if p.get(\\\\'truncated\\\\', False))\\\\nn_unparse = sum(1 for p in preds if p.get(\\\\'unparseable\\\\', False))\\\\nprint(f\\\\'\\\\\\\\nTruncated: {n_trunc}/{len(preds)}\\\\')\\\\nprint(f\\\\'Unparseable: {n_unparse}/{len(preds)}\\\\')\\\\n\\\\n# Unparseable accuracy\\\\nunparse_preds = [p for p in preds if p.get(\\\\'unparseable\\\\', False)]\\\\nif unparse_preds:\\\\n    unparse_correct = sum(1 for p in unparse_preds if p[\\\\'correct\\\\'])\\\\n    print(f\\\\'Unparseable accuracy: {unparse_correct}/{len(unparse_preds)} = {unparse_correct/len(unparse_preds)*100:.1f}%\\\\')\\\\n\\\\nparseable_preds = [p for p in preds if not p.get(\\\\'unparseable\\\\', Fals
+…[truncated 558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T22:42:29.387330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nprint(\"Per-variant breakdown:\")\nheader = \"{:50s} {:>7s} {:>9s} {:>5s} {:>6s} {:>11s} {:>5s}\".format(\n    \"problem_id\", \"n_tests\", \"n_correct\", \"acc%\", \"n_fail\", \"fail_recall\", \"ok?\")\nprint(header)\n\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    row = \"{:50s} {:7d} {:9d} {:5.1f} {:6d} {:10.1f}% {:>5s}\".format(\n        pid, n, n_correct, acc, n_fail, fail_recall, all_ok)\n    print(row)\n\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(\"\\nTruncated: {}/{}\".format(n_trunc, len(preds)))\nprint(\"Unparseable: {}/{}\".format(n_unparse, len(preds)))\n\nunparse_preds = [p for p in preds if p.get('unparseable', False)]\nif unparse_preds:\n    unparse_correct = sum(1 for p in unparse_preds if p['correct'])\n    print(\"Unparseable accuracy: {}/{} = {:.1f}%\".format(\n        unparse_correct, len(unparse_preds), unparse_correct/len(unparse_preds)*100))\n\nparseable_preds = [p for p in preds if not p.get('unparseable', False)]\nif parseable_preds:\n    parse_correct = sum(1 for p in parseable_preds if p['correct'])\n    print(\"Parseable accuracy: {}/{} = {:.1f}%\".format(\n        parse_correct, len(parseable_preds), parse_correct/len(parseable_preds)*100))\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cd /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test && python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('predictions.jsonl')]\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nprint(\"Per-variant breakdown:\")\nheader = \"{:50s} {:>7s} {:>9s} {:>5s} {:>6s} {:>11s} {:>5s}\".format(\n    \"problem_id\", \"n_tests\", \"n_correct\", \"acc%\", \"n_fail\", \"fail_recall\", \"ok?\")\nprint(header)\n\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    row = \"{:50s} {:7d} {:9d} {:5.1f} {:6d} {:10.1f}% {:>5s}\".format(\n        pid, n, n_correct, acc, n_fail, fail_recall, all_ok)\n    print(row)\n\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nprint(\"\\nTruncated: {}/{}\".format(n_trunc, len(preds)))\nprint(\"Unparseable: {}/{}\".format(n_unparse, len(preds)))\n\nunparse_preds = [p for p in preds if p.get('unparseable', False)]\nif unparse_preds:\n    unparse_correct = sum(1 for p in unparse_preds if p['correct'])\n    print(\"Unparseable accuracy: {}/{} = {:.1f}%\".format(\n        unparse_correct, len(unparse_preds), unparse_correct/len(unparse_preds)*100))\n\nparseable_preds = [p for p in preds if not p.get('unparseable', False)]\nif parseable_preds:\n    parse_correct = sum(1 for p in parseable_preds if p['correct'])\n    print(\"Parseable accuracy: {}/{} = {:.1f}%\".format(\n        parse_correct, len(parseable_preds), parse_correct/len(parseable_preds)*100))\nPYEOF\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T22:42:29.387502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Per-variant breakdown:\\nproblem_id                                         n_tests n_correct  acc% n_fail fail_recall   ok?\\nastropy__astropy-7336                                 1071       671  62.7    437        8.9%    NO\\ndjango__django-10880                                    73        73 100.0      0        nan%   YES\\ndjango__django-10973                                    90        90 100.0      0        nan%   YES\\ndjango__django-11848                                   237       165  69.6     72        0.0%    NO\\ndjango__django-11880                                   132       132 100.0      0        nan%   YES\\ndjango__django-12143                                    70        70 100.0      0        nan%   YES\\ndjango__django-12325                                   711       238  33.5    474        0.2%    NO\\ndjango__django-12406                                   437       410  93.8     45       40.0%    NO\\ndjango__django-13109                                   206       206 100.0      0        nan%   YES\\ndjango__django-14315                                   593       270  45.5    341        5.3%    NO\\ndjango__django-14351                                   228       209  91.7     18        0.0%    NO\\ndjango__django-14376                                    60        60 100.0      0        nan%   YES\\ndjango__django-14434                                   151       151 100.0      0        nan%   YES\\ndjango__django-14631                                   459       415  90.4    197       79.7%    NO\\ndjango__django-15037                                    64        45  70.3     19        0.0%    NO\\ndjango__django-17029                                    61        61 100.0      0        nan%   YES\\nmatplotlib__matplotlib-24177                          1572      1524  96.9    786       93.9%    NO\\npsf__requests-6028                                     442       421  95.2      3  
+…[truncated 970 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T22:42:29.387869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T22:42:29.388027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/adapter_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T22:42:29.388163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\noptimizer.pt\\nrng_state.pth\\nscheduler.pt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntrainer_state.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T22:42:29.388318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alora_invocation_tokens\\\": null,\\n  \\\"alpha_pattern\\\": {},\\n  \\\"arrow_config\\\": null,\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"ensure_weight_tying\\\": false,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 32,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.05,\\n  \\\"lora_ga_config\\\": null,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"peft_version\\\": \\\"0.19.0\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 16,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"o_proj\\\",\\n    \\\"k_proj\\\",\\n    \\\"v_proj\\\",\\n    \\\"q_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_bdlora\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T22:42:29.388450+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/trainer_state.json')); print('best_metric:', d.get('best_metric')); print('best_model_checkpoint:', d.get('best_model_checkpoint')); print('num_log_history:', len(d.get('log_history',[]))); [print(e) for e in d.get('log_history',[]) if 'eval_loss' in e]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/trainer_state.json')); print('best_metric:', d.get('best_metric')); print('best_model_checkpoint:', d.get('best_model_checkpoint')); print('num_log_history:', len(d.get('log_history',[]))); [print(e) for e in d.get('log_history',[]) if 'eval_loss' in e]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T22:42:29.388581+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T22:42:29.388710+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/trainer_state.json'))\nprint('best_metric:', d.get('best_metric'))\nprint('best_model_checkpoint:', d.get('best_model_checkpoint'))\n\nlog = d.get('log_history', [])\nprint('Total log entries:', len(log))\n\n# Print eval entries\nfor e in log:\n    if 'eval_loss' in e:\n        print(e)\n\n# Print loss at key epochs\nepoch_losses = {}\nfor e in log:\n    if 'loss' in e:\n        ep = round(e['epoch'], 1)\n        epoch_losses[ep] = e['loss']\n\nfor ep in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:\n    if ep in epoch_losses:\n        print(f'loss @ epoch {ep}: {epoch_losses[ep]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/trainer_state.json'))\nprint('best_metric:', d.get('best_metric'))\nprint('best_model_checkpoint:', d.get('best_model_checkpoint'))\n\nlog = d.get('log_history', [])\nprint('Total log entries:', len(log))\n\n# Print eval entries\nfor e in log:\n    if 'eval_loss' in e:\n        print(e)\n\n# Print loss at key epochs\nepoch_losses = {}\nfor e in log:\n    if 'loss' in e:\n        ep = round(e['epoch'], 1)\n        epoch_losses[ep] = e['loss']\n\nfor ep in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0]:\n    if ep in epoch_losses:\n        print(f'loss @ epoch {ep}: {epoch_losses[ep]}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T22:42:29.388872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best_metric: inf\\nbest_model_checkpoint: None\\nTotal log entries: 135\\n{'epoch': 1.0, 'eval_loss': nan, 'eval_runtime': 1144.3988, 'eval_samples_per_second': 8.157, 'eval_steps_per_second': 4.079, 'step': 2211}\\n{'epoch': 2.0, 'eval_loss': nan, 'eval_runtime': 1144.9284, 'eval_samples_per_second': 8.153, 'eval_steps_per_second': 4.077, 'step': 4422}\\n{'epoch': 3.0, 'eval_loss': nan, 'eval_runtime': 1144.1769, 'eval_samples_per_second': 8.159, 'eval_steps_per_second': 4.08, 'step': 6633}\\nloss @ epoch 0.5: 0.0195\\nloss @ epoch 1.0: 0.0099\\nloss @ epoch 1.5: 0.0081\\nloss @ epoch 2.0: 0.0052\\nloss @ epoch 2.5: 0.0031\\nloss @ epoch 3.0: 0.0039\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T22:42:29.389045+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/cls_v4_s123*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/cls_v4_s123*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T22:42:29.389169+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/*s123*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/*s123*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T22:42:29.389283+00:00_
+
+artifacts/_project/report/cls_v4_s123_config_comparison.md
+artifacts/cls_v4_s123_config_comparison.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T22:42:29.389397+00:00_
+
+artifacts/qwen3_8b_traj_s123_eval.json
+artifacts/cls_v4_s123_config_comparison.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T22:42:29.389512+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls_v4_s123_config_comparison.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls_v4_s123_config_comparison.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T22:42:29.389675+00:00_
+
+1	# DeepSeek CLS Repo: s42 v4 vs s123 训练配置对比
+2	
+3	## 结论
+4	
+5	**不可以直接合并为双 seed 报告。** 虽然训练超参数完全一致（仅 seed 不同），但 checkpoint 选择点不同：v4 是 epoch 2（中途停止），s123 是 3 epochs 完成后的 best checkpoint。3.6pp 的差距（71.29% vs 74.93%）很可能反映的是训练进度差异，而非 seed variance。
+6	
+7	## 训练配置对比
+8	
+9	| 参数 | s42 v4 | s123 | v5 (s42 retrain) |
+10	|------|--------|------|-------------------|
+11	| 训练脚本 | train_unified.py | train_unified.py | train_unified.py |
+12	| base model | deepseek-coder-6.7b-instruct | deepseek-coder-6.7b-instruct | deepseek-coder-6.7b-instruct |
+13	| train data | swebench_train.jsonl | swebench_train.jsonl | swebench_train.jsonl |
+14	| raw train samples | 70748 | 70748 | 70748 |
+15	| **preprocessing** | **truncate（保留全部 70748）** | **truncate（保留全部 70748）** | **drop（剩 67343）** |
+16	| truncated/dropped | 3405 truncated (4.8%) | 3405 truncated (4.8%) | 3405 dropped (4.8%) |
+17	| train max_seq_length | 2048 (default) | 2048 (default) | 2048 (default) |
+18	| lr | 2e-4 | 2e-4 | 2e-4 |
+19	| lr_scheduler | linear | linear | linear |
+20	| warmup_ratio | 0.1 | 0.1 | 0.1 |
+21	| epochs (planned) | 3 | 3 | 3 |
+22	| **epochs (actual)** | **~2 (stopped at step 4422)** | **3 (completed)** | **3 (completed)** |
+23	| total_steps | 6633 | 6633 | 6315 |
+24	| batch_size | 2 | 2 | 2 |
+25	| grad_accumulation | 16 | 16 | 16 |
+26	| effective batch | 32 | 32 | 32 |
+27	| seed | 42 | 123 | 42 |
+28	| bf16 | true | true | true |
+29	| weight_decay | 0.0 | 0.0 | 0.0 |
+30	| max_grad_norm | 1.0 | 1.0 | 1.0 |
+31	
+32	## LoRA 配置（三者完全一致）
+33	
+34	| 参数 | 值 |
+35	|------|-----|
+36	| rank (r) | 16 |
+37	| alpha | 32 |
+38	| dropout | 0.05 |
+39	| target_modules | q_proj, k_proj, v_proj, o_proj |
+40	| bias | none |
+41	| task_type | CAUSAL_LM |
+42	
+43	## Eval 配置
+44	
+45	| 参数 | s42 v4 | s123 |
+46	|------|--------|------|
+47	| eval checkpoint | checkpoint-4422 (epoch 2) | best/ (epoch 3 后保存) |
+48	| eval seq_length | 8192 | 8192 |
+49	| test data | swebench_test.jsonl (9784) | swebench_test.jsonl (9784) |
+50	| **Accuracy** | **71.29%** | **7
+…[truncated 1441 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T22:42:29.389869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"*cls_repo*s123*\" -o -name \"*cls_repo*123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/ -name \"*cls_repo*s123*\" -o -name \"*cls_repo*123*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-18T22:42:29.390001+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"*8192*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/ -name \"*8192*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T22:42:29.390128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.log\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.json\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192_predictions.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T22:42:29.390265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/cls8b_s42_ckpt800_test8192\\n/root/autodl-tmp/eval_results/cls8b_s42_ckpt1400_test8192\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v4_8192.log\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.log\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v4_8192.json\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v4_8192_predictions.jsonl\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.json\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192_predictions.jsonl\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt2105_test_seq8192\\n/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T22:42:29.390400+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T22:42:29.390544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"CLS\\\",\\n  \\\"checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best\\\",\\n  \\\"n_instances\\\": 9784,\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 74.93,\\n    \\\"majority_baseline\\\": 72.96,\\n    \\\"gap_vs_majority_pp\\\": 1.97,\\n    \\\"f1_fail\\\": 22.84,\\n    \\\"f1_pass\\\": 85.03,\\n    \\\"f1_macro\\\": 53.94,\\n    \\\"precision_fail\\\": 68.11,\\n    \\\"precision_pass\\\": 75.32,\\n    \\\"recall_fail\\\": 13.72,\\n    \\\"recall_pass\\\": 97.62,\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 363,\\n      \\\"fp\\\": 2283,\\n      \\\"fn\\\": 170,\\n      \\\"tp\\\": 6968\\n    },\\n    \\\"support\\\": {\\n      \\\"fail\\\": 2646,\\n      \\\"pass\\\": 7138\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model_name\\\": \\\"/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\",\\n    \\\"max_seq_length\\\": 8192,\\n    \\\"batch_size\\\": 4\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T22:42:29.390680+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192_predictions.jsonl')]\nprint(\"=== seq8192 eval ===\")\nprint(\"Total predictions:\", len(preds))\n\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nprint(\"Truncated:\", n_trunc)\nprint(\"Unparseable:\", n_unparse)\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nn_variants = len(groups)\nvariant_correct = sum(1 for pid, tests in groups.items() if all(t['correct'] for t in tests))\nprint(\"Variants:\", n_variants)\nprint(\"Variant-level accuracy (AND): {}/{} = {:.2f}%\".format(variant_correct, n_variants, variant_correct/n_variants*100))\n\ncorrect_total = sum(1 for p in preds if p['correct'])\nprint(\"Per-test accuracy: {}/{} = {:.2f}%\".format(correct_total, len(preds), correct_total/len(preds)*100))\n\nprint(\"\\nPer-variant breakdown:\")\nheader = \"{:50s} {:>7s} {:>9s} {:>5s} {:>6s} {:>11s} {:>5s}\".format(\n    \"problem_id\", \"n_tests\", \"n_correct\", \"acc%\", \"n_fail\", \"fail_recall\", \"ok?\")\nprint(header)\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    row = \"{:50s} {:7d} {:9d} {:5.1f} {:6d} {:10.1f}% {:>5s}\".format(\n        pid, n, n_correct, acc, n_fail, fail_recall, all_ok)\n    print(row)\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "python3 << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\npreds = [json.loads(l) for l in open('/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_8192_predictions.jsonl')]\nprint(\"=== seq8192 eval ===\")\nprint(\"Total predictions:\", len(preds))\n\nn_unparse = sum(1 for p in preds if p.get('unparseable', False))\nn_trunc = sum(1 for p in preds if p.get('truncated', False))\nprint(\"Truncated:\", n_trunc)\nprint(\"Unparseable:\", n_unparse)\n\ngroups = defaultdict(list)\nfor p in preds:\n    groups[p['problem_id']].append(p)\n\nn_variants = len(groups)\nvariant_correct = sum(1 for pid, tests in groups.items() if all(t['correct'] for t in tests))\nprint(\"Variants:\", n_variants)\nprint(\"Variant-level accuracy (AND): {}/{} = {:.2f}%\".format(variant_correct, n_variants, variant_correct/n_variants*100))\n\ncorrect_total = sum(1 for p in preds if p['correct'])\nprint(\"Per-test accuracy: {}/{} = {:.2f}%\".format(correct_total, len(preds), correct_total/len(preds)*100))\n\nprint(\"\\nPer-variant breakdown:\")\nheader = \"{:50s} {:>7s} {:>9s} {:>5s} {:>6s} {:>11s} {:>5s}\".format(\n    \"problem_id\", \"n_tests\", \"n_correct\", \"acc%\", \"n_fail\", \"fail_recall\", \"ok?\")\nprint(header)\nfor pid in sorted(groups.keys()):\n    tests = groups[pid]\n    n = len(tests)\n    n_correct = sum(1 for t in tests if t['correct'])\n    acc = n_correct / n * 100\n    fail_tests = [t for t in tests if t['label'] == 0]\n    n_fail = len(fail_tests)\n    fail_correct = sum(1 for t in fail_tests if t['correct'])\n    fail_recall = (fail_correct / n_fail * 100) if n_fail > 0 else float('nan')\n    all_ok = 'YES' if all(t['correct'] for t in tests) else 'NO'\n    row = \"{:50s} {:7d} {:9d} {:5.1f} {:6d} {:10.1f}% {:>5s}\".format(\n        pid, n, n_correct, acc, n_fail, fail_recall, all_ok)\n    print(row)\nPYEOF\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T22:42:29.390885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== seq8192 eval ===\\nTotal predictions: 9784\\nTruncated: 0\\nUnparseable: 0\\nVariants: 25\\nVariant-level accuracy (AND): 7/25 = 28.00%\\nPer-test accuracy: 7331/9784 = 74.93%\\n\\nPer-variant breakdown:\\nproblem_id                                         n_tests n_correct  acc% n_fail fail_recall   ok?\\nastropy__astropy-7336                                 1071       755  70.5    437       32.3%    NO\\ndjango__django-10880                                    73        55  75.3      0        nan%    NO\\ndjango__django-10973                                    90        90 100.0      0        nan%   YES\\ndjango__django-11848                                   237       180  75.9     72       50.0%    NO\\ndjango__django-11880                                   132       132 100.0      0        nan%   YES\\ndjango__django-12143                                    70        70 100.0      0        nan%   YES\\ndjango__django-12325                                   711       255  35.9    474        3.8%    NO\\ndjango__django-12406                                   437       390  89.2     45        0.0%    NO\\ndjango__django-13109                                   206       206 100.0      0        nan%   YES\\ndjango__django-14315                                   593       252  42.5    341        0.0%    NO\\ndjango__django-14351                                   228       175  76.8     18        0.0%    NO\\ndjango__django-14376                                    60        59  98.3      0        nan%    NO\\ndjango__django-14434                                   151       151 100.0      0        nan%   YES\\ndjango__django-14631                                   459       262  57.1    197        0.0%    NO\\ndjango__django-15037                                    64        45  70.3     19        0.0%    NO\\ndjango__django-17029                                    61        61 100.0      0        nan%   YES\\n
+…[truncated 1022 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-18T22:42:29.391126+00:00_
+
+All data collected. Here's the complete summary:
+
+---
+
+## deepseek-cls-repo-s123 完整结果
+
+### 训练
+
+| 指标 | 值 |
+|------|-----|
+| 总步数 | 6633 (3 epochs) |
+| 训练时间 | 21h30m |
+| 平均 train_loss | 0.0393 |
+| eval_loss | nan (所有 epoch, metric 计算 bug) |
+| best checkpoint | epoch 3 (因 eval_loss=nan, 默认取最后) |
+
+**Loss 轨迹:**
+
+| Epoch | Loss |
+|-------|------|
+| 0.5 | 0.0195 |
+| 1.0 | 0.0099 |
+| 1.5 | 0.0081 |
+| 2.0 | 0.0052 |
+| 2.5 | 0.0031 |
+| 3.0 | 0.0039 |
+
+### 评估结果对比
+
+| 指标 | seq8192 | seq2048 |
+|------|---------|---------|
+| Per-test Accuracy | **74.93%** | 82.62% |
+| Majority baseline | 72.96% | 72.96% |
+| Gap vs majority | +1.97pp | +9.67pp |
+| F1 macro | **53.94%** | 71.35% |
+| F1 fail | 22.84% | 53.37% |
+| F1 pass | 85.03% | 89.32% |
+| Precision fail | 68.11% | 97.30% |
+| Recall fail | 13.72% | 36.77% |
+| Recall pass | 97.62% | 99.62% |
+| Unparseable | **0** | 2796 (28.6%) |
+| **Variant accuracy (AND)** | **7/25 = 28.00%** | **9/25 = 36.00%** |
+
+seq2048 的 "更高" 指标是假象: 2796 个 unparseable 样本默认预测为 pass, 而 73% 样本本身就是 pass, 所以 accuracy 被虚高了。seq8192 无 truncation, 是更可靠的度量。
+
+### Variant-level 详细 (seq8192)
+
+- **7/25 correct** (全部是纯 pass 的 variant, 无 fail test case)
+- 所有含 fail test 的 variant 都未完全正确
+- Fail recall 极低 (13.72%), 模型倾向于预测 pass
+
+### Checkpoints
+
+- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/` (65MB LoRA adapter, epoch 3)
+- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-4422/` (epoch 2)
+- `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/checkpoint-6633/` (epoch 3)
+- LoRA: r=16, alpha=32, dropout=0.05, target=[q,k,v,o_proj]
+
+### 关键问题
+
+1. **eval_loss=nan**: 所有 epoch 的 eval loss 都是 nan, `best_metric=inf`, `best_model_checkpoint=None`。Trainer 实际保存了最后一个 checkpoint 作为 best
+2. **seq8192 variant accuracy 只有 28%**: 比 seq2048 的 36% 更低, 说明更长 context 反而让模型在某些 all-pass variant 上也犯错 (如 django-10880, django-14376)
+3. **Fail detection 几乎失效**: seq8192 recall_fail=13.72%, 模型严重偏向预测 pass
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_deepseek-cls-repo-s123-results_20260518T223828"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,487 @@
+\begin{thebibliography}{70}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Abdollahi et~al.(2025)Abdollahi, Tasnia, Saha, Yang, Wang, and
+  Hemmati}]{abdollahi2025demystifying}
+Mohammad Abdollahi, Khandaker~Rifah Tasnia, Soumit~Kanti Saha, Jinqiu Yang,
+  Song Wang, and Hadi Hemmati. 2025.
+\newblock Demystifying errors in {LLM} reasoning traces: An empirical study of
+  code execution simulation.
+\newblock \emph{arXiv preprint arXiv:2512.00215}.
+
+\bibitem[{{AlphaCode Team}(2023)}]{alphacode2023team}
+{AlphaCode Team}. 2023.
+\newblock \href
+  {https://storage.googleapis.com/deepmind-media/AlphaCode2/AlphaCode2_Tech_Report.pdf}
+  {{AlphaCode} 2 technical report}.
+\newblock Technical report, Google DeepMind.
+
+\bibitem[{Andrews et~al.(2005)Andrews, Briand, and
+  Labiche}]{andrews2005mutation}
+James~H Andrews, Lionel~C Briand, and Yvan Labiche. 2005.
+\newblock Is mutation an appropriate tool for testing experiments?
+\newblock In \emph{ICSE}, pages 402--411.
+
+\bibitem[{Angrist and Pischke(2009)}]{angrist2009mostly}
+Joshua~D. Angrist and J{\"o}rn-Steffen Pischke. 2009.
+\newblock \emph{Mostly Harmless Econometrics: An Empiricist's Companion}.
+\newblock Princeton University Press.
+
+\bibitem[{Austin et~al.(2021)Austin, Odena, Nye et~al.}]{austin2021mbpp}
+Jacob Austin, Augustus Odena, Maxwell Nye, and 1 others. 2021.
+\newblock Program synthesis with large language models.
+\newblock \emph{arXiv preprint arXiv:2108.07732}.
+
+\bibitem[{Cameron et~al.(2008)Cameron, Gelbach, and
+  Miller}]{cameron2008bootstrap}
+A.~Colin Cameron, Jonah~B. Gelbach, and Douglas~L. Miller. 2008.
+\newblock Bootstrap-based improvements for inference with clustered errors.
+\newblock \emph{Review of Economics and Statistics}, 90(3):414--427.
+
+\bibitem[{Chen et~al.(2023)Chen, Zhang, Nguyen, Zan, Lin, Lou, and
+  Chen}]{chen2023codet}
+Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and
+  Weizhu Chen. 2023.
+\newblock {CodeT}: Code generation with generated tests.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Chen et~al.(2025)Chen, Lu, Okoshi, Mo, Motomura, and
+  Fan}]{chen2025vgsearch}
+Hao~Mark Chen, Guanxi Lu, Yasuyuki Okoshi, Zhiwen Mo, Masato Motomura, and
+  Hongxiang Fan. 2025.
+\newblock Rethinking optimal verification granularity for compute-efficient
+  test-time scaling.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Chen et~al.(2021)Chen, Tworek, Jun et~al.}]{chen2021humaneval}
+Mark Chen, Jerry Tworek, Heewoo Jun, and 1 others. 2021.
+\newblock Evaluating large language models trained on code.
+\newblock \emph{arXiv preprint arXiv:2107.03374}.
+
+\bibitem[{Chowdhury et~al.(2024)Chowdhury, Aung, Shern, Jaffe, Sherburn,
+  Starace, Mays, Dias, Aljubeh, Glaese, Jimenez, Yang, Ho, Patwardhan, Liu, and
+  Madry}]{chowdhury2024swebenchverified}
+Neil Chowdhury, James Aung, Chan~Jun Shern, Oliver Jaffe, Dane Sherburn, Giulio
+  Starace, Evan Mays, Rachel Dias, Marwan Aljubeh, Mia Glaese, Carlos~E.
+  Jimenez, John Yang, Leyton Ho, Tejal Patwardhan, Kevin Liu, and Aleksander
+  Madry. 2024.
+\newblock \href {https://openai.com/index/introducing-swe-bench-verified/}
+  {Introducing {SWE-bench} verified}.
+
+\bibitem[{Cohen(1988)}]{cohen1988}
+Jacob Cohen. 1988.
+\newblock \emph{Statistical Power Analysis for the Behavioral Sciences}, 2nd
+  edition.
+\newblock Lawrence Erlbaum Associates.
+
+\bibitem[{Davison and Hinkley(1997)}]{davison1997bootstrap}
+Anthony~C Davison and David~V Hinkley. 1997.
+\newblock \emph{Bootstrap Methods and their Application}.
+\newblock Cambridge University Press.
+
+\bibitem[{Dettmers et~al.(2023)Dettmers, Pagnoni, Holtzman, and
+  Zettlemoyer}]{dettmers2024qlora}
+Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. 2023.
+\newblock {QLoRA}: Efficient finetuning of quantized {LLMs}.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Dong et~al.(2025{\natexlab{a}})Dong, Ding, Jiang, Li, Li, and
+  Jin}]{dong2024codescore}
+Yihong Dong, Jiazheng Ding, Xue Jiang, Ge~Li, Zhuo Li, and Zhi Jin.
+  2025{\natexlab{a}}.
+\newblock {CodeScore}: Evaluating code generation by learning code execution.
+\newblock \emph{ACM Transactions on Software Engineering and Methodology},
+  34(8).
+
+\bibitem[{Dong et~al.(2025{\natexlab{b}})Dong, Ruan, Cai, Lai, Xu, Zhao, and
+  Chen}]{dong2024xgrammar}
+Yixin Dong, Charlie~F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, and
+  Tianqi Chen. 2025{\natexlab{b}}.
+\newblock {XGrammar}: Flexible and efficient structured generation engine for
+  large language models.
+\newblock In \emph{MLSys}.
+
+\bibitem[{{FAIR CodeGen team} et~al.(2025){FAIR CodeGen team}, Copet,
+  Carbonneaux, Cohen, Gehring, Kahn, Kossen, Kreuk, McMilin, Meyer, Wei, Zhang,
+  Zheng et~al.}]{meta2025cwm}
+{FAIR CodeGen team}, Jade Copet, Quentin Carbonneaux, Gal Cohen, Jonas Gehring,
+  Jacob Kahn, Jannik Kossen, Felix Kreuk, Emily McMilin, Michel Meyer, Yuxiang
+  Wei, David Zhang, Kunhao Zheng, and 1 others. 2025.
+\newblock {CWM}: An open-weights {LLM} for research on code generation with
+  world models.
+\newblock \emph{arXiv preprint arXiv:2510.02387}.
+
+\bibitem[{Gu et~al.(2024)Gu, Rozi{\`e}re, Leather, Solar-Lezama, Synnaeve, and
+  Wang}]{gu2024cruxeval}
+Alex Gu, Baptiste Rozi{\`e}re, Hugh Leather, Armando Solar-Lezama, Gabriel
+  Synnaeve, and Sida~I. Wang. 2024.
+\newblock {CRUXEval}: A benchmark for code reasoning, understanding and
+  execution.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning}, pages 16568--16621.
+
+\bibitem[{Guo et~al.(2024)Guo, Zhu, Yang, Xie, Dong, Zhang, Chen, Bi, Wu, Li,
+  Luo, Xiong, and Liang}]{guo2024deepseekcoder}
+Daya Guo, Qihao Zhu, Dejian Yang, Zhenda Xie, Kai Dong, Wentao Zhang, Guanting
+  Chen, Xiao Bi, Y.~Wu, Y.K. Li, Fuli Luo, Yingfei Xiong, and Wenfeng Liang.
+  2024.
+\newblock {DeepSeek-Coder}: When the large language model meets programming --
+  the rise of code intelligence.
+\newblock \emph{arXiv preprint arXiv:2401.14196}.
+
+\bibitem[{Hai et~al.(2025)Hai, Nguyen, and Bui}]{nam2025repoexec}
+Nam~Le Hai, Dung~Manh Nguyen, and Nghi D.~Q. Bui. 2025.
+\newblock On the impacts of contexts on repository-level code generation.
+\newblock In \emph{Findings of NAACL}.
+
+\bibitem[{Hoenig and Heisey(2001)}]{hoenig2001}
+John~M. Hoenig and Dennis~M. Heisey. 2001.
+\newblock The abuse of power: The pervasive fallacy of power calculations for
+  data analysis.
+\newblock \emph{The American Statistician}, 55(1):19--24.
+
+\bibitem[{Holm(1979)}]{holm1979}
+Sture Holm. 1979.
+\newblock A simple sequentially rejective multiple test procedure.
+\newblock \emph{Scandinavian Journal of Statistics}, 6(2):65--70.
+
+\bibitem[{Hu et~al.(2022)Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and
+  Chen}]{hu2022lora}
+Edward~J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
+  Wang, Lu~Wang, and Weizhu Chen. 2022.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Jain et~al.(2023)Jain, Alon, Groce, and
+  Le~Goues}]{jain2023contextual}
+Kush Jain, Uri Alon, Alex Groce, and Claire Le~Goues. 2023.
+\newblock Contextual predictive mutation testing.
+\newblock In \emph{ESEC/FSE}.
+
+\bibitem[{Jiang et~al.(2025)Jiang, Dong, Liu, Deng, Wang, Tao, Cao, Li, Jin,
+  Jiao, Huang, Li, and Li}]{jiang2025coderlplus}
+Xue Jiang, Yihong Dong, Mengyang Liu, Hongyi Deng, Tian Wang, Yongding Tao,
+  Rongyu Cao, Binhua Li, Zhi Jin, Wenpin Jiao, Fei Huang, Yongbin Li, and
+  Ge~Li. 2025.
+\newblock {CodeRL+}: Improving code generation via reinforcement with execution
+  semantics alignment.
+\newblock \emph{arXiv preprint arXiv:2510.18471}.
+
+\bibitem[{Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan}]{jimenez2024swebench}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
+  Press, and Karthik Narasimhan. 2024.
+\newblock {SWE-bench}: Can language models resolve real-world {GitHub} issues?
+\newblock In \emph{ICLR}.
+
+\bibitem[{Just et~al.(2014)Just, Jalali, Inozemtseva, Ernst, Holmes, and
+  Fraser}]{just2014mutants}
+Ren{\'e} Just, Darioush Jalali, Laura Inozemtseva, Michael~D Ernst, Reid
+  Holmes, and Gordon Fraser. 2014.
+\newblock Are mutants a valid substitute for real faults in software testing?
+\newblock In \emph{FSE}, pages 654--665.
+
+\bibitem[{Kim et~al.(2022)Kim, Jeon, Hong, and Yoo}]{kim2022predictive}
+Jinhan Kim, Juyoung Jeon, Shin Hong, and Shin Yoo. 2022.
+\newblock \href {https://doi.org/10.1145/3510417} {Predictive mutation analysis
+  via the natural language channel in source code}.
+\newblock \emph{ACM Transactions on Software Engineering and Methodology}.
+
+\bibitem[{Kruschke(2013)}]{kruschke2013bayesian}
+John~K Kruschke. 2013.
+\newblock Bayesian estimation supersedes the t test.
+\newblock \emph{Journal of Experimental Psychology: General}, 142(2):573--603.
+
+\bibitem[{Kruschke(2018)}]{kruschke2018rejecting}
+John~K Kruschke. 2018.
+\newblock Rejecting or accepting parameter values in {B}ayesian estimation.
+\newblock \emph{Advances in Methods and Practices in Psychological Science},
+  1(2):270--280.
+
+\bibitem[{Lakens(2017)}]{lakens2017}
+Dani{\"e}l Lakens. 2017.
+\newblock Equivalence tests: A practical primer for $t$ tests, correlations,
+  and meta-analyses.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362.
+
+\bibitem[{Le et~al.(2022)Le, Wang, Gotmare, Savarese, and Hoi}]{le2022coderl}
+Hung Le, Yue Wang, Akhilesh~Deepak Gotmare, Silvio Savarese, and Steven~C.H.
+  Hoi. 2022.
+\newblock {CodeRL}: Mastering code generation through pretrained models and
+  deep reinforcement learning.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Lee and Huang(2026)}]{lee2026solidcoder}
+Woojin Lee and Jin-Xia Huang. 2026.
+\newblock {SolidCoder}: Bridging the mental-reality gap in {LLM} code
+  generation through concrete execution.
+\newblock \emph{arXiv preprint arXiv:2604.19825}.
+
+\bibitem[{Li et~al.(2025{\natexlab{a}})Li, Cao, Cao, Li, Tan, Keutzer, Xing,
+  Gonzalez, and Stoica}]{li2025sstar}
+Dacheng Li, Shiyi Cao, Chengkun Cao, Xiuyu Li, Shangyin Tan, Kurt Keutzer,
+  Jiarong Xing, Joseph~E. Gonzalez, and Ion Stoica. 2025{\natexlab{a}}.
+\newblock S*: Test time scaling for code generation.
+\newblock In \emph{Findings of EMNLP}.
+
+\bibitem[{Li et~al.(2025{\natexlab{b}})Li, Dai, Li, Zhang, Wang, Tang, and
+  Yu}]{li2025codeprm}
+Qingyao Li, Xinyi Dai, Xiangyang Li, Weinan Zhang, Yasheng Wang, Ruiming Tang,
+  and Yong Yu. 2025{\natexlab{b}}.
+\newblock {CodePRM}: Execution feedback-enhanced process reward model for code
+  generation.
+\newblock In \emph{Findings of ACL}, pages 8169--8182.
+
+\bibitem[{Li et~al.(2024)Li, Kan, Callot, Bhasker, Rashid, and
+  Esler}]{li2024redo}
+Shou Li, Andrey Kan, Laurent Callot, Bhavana Bhasker, Muhammad~Shihab Rashid,
+  and Timothy~B Esler. 2024.
+\newblock {REDO}: Execution-free runtime error detection for coding agents.
+\newblock \emph{arXiv preprint arXiv:2410.09117}.
+
+\bibitem[{Li et~al.(2022)Li, Choi, Chung, Kushman, Schrittwieser
+  et~al.}]{li2022alphacode}
+Yujia Li, David Choi, Junyoung Chung, Nate Kushman, Julian Schrittwieser, and 1
+  others. 2022.
+\newblock Competition-level code generation with {AlphaCode}.
+\newblock \emph{Science}, 378(6624):1092--1097.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe}]{lightman2023letsverify}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy
+  Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+\newblock Let's verify step by step.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Liu et~al.(2024)Liu, Zhang, Ibrahimzada, and
+  Jabbarvand}]{liu2024codemind}
+Changshu Liu, Shizhuo~Dylan Zhang, Ali~Reza Ibrahimzada, and Reyhaneh
+  Jabbarvand. 2024.
+\newblock {CodeMind}: A framework to challenge large language models for code
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2402.09664}.
+
+\bibitem[{Liu et~al.(2023)Liu, Lu, Chen, Jiang, Svyatkovskiy, Fu, Sundaresan,
+  and Duan}]{liu2023codeexecutor}
+Chenxiao Liu, Shuai Lu, Weizhu Chen, Daxin Jiang, Alexey Svyatkovskiy, Shengyu
+  Fu, Neel Sundaresan, and Nan Duan. 2023.
+\newblock Code execution with pre-trained language models.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2023}.
+
+\bibitem[{Maimon et~al.(2026)Maimon, Yoran, Kreuk, Hassid, Cohen, Chambon, and
+  Adi}]{maimon2026selfexecution}
+Gallil Maimon, Ori Yoran, Felix Kreuk, Michael Hassid, Gal Cohen, Pierre
+  Chambon, and Yossi Adi. 2026.
+\newblock Self-execution simulation improves coding models.
+\newblock \emph{arXiv preprint arXiv:2604.03253}.
+
+\bibitem[{Moulton(1990)}]{moulton1990}
+Brent~R. Moulton. 1990.
+\newblock An illustration of a pitfall in estimating the effects of aggregate
+  variables on micro units.
+\newblock \emph{The Review of Economics and Statistics}, 72(2):334--338.
+
+\bibitem[{Ni et~al.(2023)Ni, Iyer, Radev, Stoyanov, Yih, Wang, and
+  Lin}]{ni2023lever}
+Ansong Ni, Srini Iyer, Dragomir Radev, Veselin Stoyanov, Wen-tau Yih, Sida~I.
+  Wang, and Xi~Victoria Lin. 2023.
+\newblock {LEVER}: Learning to verify language-to-code generation with
+  execution.
+\newblock In \emph{ICML}.
+
+\bibitem[{Nye et~al.(2021)Nye, Andreassen, Gur-Ari, Michalewski, Austin, Biber,
+  Dohan, Lewkowycz, Bosma, Luan, Sutton, and Odena}]{nye2021scratchpad}
+Maxwell Nye, Anders~Johan Andreassen, Guy Gur-Ari, Henryk Michalewski, Jacob
+  Austin, David Biber, David Dohan, Aitor Lewkowycz, Maarten Bosma, David Luan,
+  Charles Sutton, and Augustus Odena. 2021.
+\newblock Show your work: Scratchpads for intermediate computation with
+  language models.
+\newblock \emph{arXiv preprint arXiv:2112.00114}.
+
+\bibitem[{Poesia et~al.(2022)Poesia, Polozov, Le, Tiwari, Soares, Meek, and
+  Gulwani}]{poesia2022synchromesh}
+Gabriel Poesia, Oleksandr Polozov, Vu~Le, Ashish Tiwari, Gustavo Soares,
+  Christopher Meek, and Sumit Gulwani. 2022.
+\newblock Synchromesh: Reliable code generation from pre-trained language
+  models.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Raffel et~al.(2020)Raffel, Shazeer, Roberts, Lee, Narang, Matena,
+  Zhou, Li, and Liu}]{raffel2020t5}
+Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
+  Matena, Yanqi Zhou, Wei Li, and Peter~J Liu. 2020.
+\newblock Exploring the limits of transfer learning with a unified text-to-text
+  transformer.
+\newblock \emph{JMLR}, 21(140):1--67.
+
+\bibitem[{Schuirmann(1987)}]{schuirmann1987tost}
+Donald~J Schuirmann. 1987.
+\newblock A comparison of the two one-sided tests procedure and the power
+  approach for assessing the equivalence of average bioavailability.
+\newblock \emph{Journal of Pharmacokinetics and Biopharmaceutics},
+  15(6):657--680.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik
+  Narasimhan, and Shunyu Yao. 2023.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Shrout and Fleiss(1979)}]{shrout1979icc}
+Patrick~E Shrout and Joseph~L Fleiss. 1979.
+\newblock \href {https://doi.org/10.1037/0033-2909.86.2.420} {Intraclass
+  correlations: Uses in assessing rater reliability}.
+\newblock \emph{Psychological Bulletin}, 86(2):420--428.
+
+\bibitem[{Shum et~al.(2025)Shum, Hui, Chen, Zhang, Yang, Huang, Lin, and
+  He}]{shum2025swerm}
+KaShun Shum, Binyuan Hui, Jiawei Chen, Lei Zhang, Jiaxi Yang, Yuzhen Huang,
+  Junyang Lin, and Junxian He. 2025.
+\newblock {SWE-RM}: Execution-free feedback for software engineering agents.
+\newblock \emph{arXiv preprint arXiv:2512.21919}.
+
+\bibitem[{Snell et~al.(2025)Snell, Lee, Xu, and Kumar}]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2025.
+\newblock Scaling {LLM} test-time compute optimally can be more effective than
+  scaling parameters for reasoning.
+\newblock In \emph{ICLR}.
+\newblock Oral.
+
+\bibitem[{Tang et~al.(2026)Tang, Ye, Chu, Ye, Liu, Ren, and
+  Bao}]{tang2026execverify}
+Lingxiao Tang, He~Ye, Zhaoyang Chu, Muyang Ye, Zhongxin Liu, Xiaoxue Ren, and
+  Lingfeng Bao. 2026.
+\newblock {ExecVerify}: White-box {RL} with verifiable stepwise rewards for
+  code execution reasoning.
+\newblock \emph{arXiv preprint arXiv:2603.11226}.
+
+\bibitem[{Tufano et~al.(2019)Tufano, Watson, Bavota, Di~Penta, White, and
+  Poshyvanyk}]{tufano2019predictive}
+Michele Tufano, Cody Watson, Gabriele Bavota, Massimiliano Di~Penta, Martin
+  White, and Denys Poshyvanyk. 2019.
+\newblock Learning how to mutate source code from bug-fixes.
+\newblock In \emph{ICSME}.
+
+\bibitem[{Uesato et~al.(2022)Uesato, Kushman, Kumar, Song, Siegel, Wang,
+  Creswell, Irving, and Higgins}]{uesato2022solving}
+Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa
+  Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins. 2022.
+\newblock Solving math word problems with process- and outcome-based feedback.
+\newblock \emph{arXiv preprint arXiv:2211.14275}.
+
+\bibitem[{Venkatkrishna et~al.(2026)Venkatkrishna, Paul, and
+  Gurevych}]{venkatkrishna2026aletheia}
+Vatsal Venkatkrishna, Indraneil Paul, and Iryna Gurevych. 2026.
+\newblock Aletheia: What makes {RLVR} for code verifiers tick?
+\newblock \emph{arXiv preprint arXiv:2601.12186}.
+
+\bibitem[{Wang et~al.(2025)Wang, Chen, Deng, Lin, Harman, Papadakis, and
+  Zhang}]{wang2024llmmutation}
+Bo~Wang, Mingda Chen, Ming Deng, Youfang Lin, Mark Harman, Mike Papadakis, and
+  Jie~M. Zhang. 2025.
+\newblock A comprehensive study on large language models for mutation testing.
+\newblock \emph{ACM Transactions on Software Engineering and Methodology}.
+
+\bibitem[{Wang et~al.(2026)Wang, Wu, Hu, Liu, Fan, Yu, Weng, Xi, and
+  Li}]{wang2026verpo}
+Longwen Wang, Xuan'er Wu, Xiaohui Hu, Yirui Liu, Yuankai Fan, Kaidong Yu,
+  Qizhen Weng, Wei Xi, and Xuelong Li. 2026.
+\newblock {VeRPO}: Verifiable dense reward policy optimization for code
+  generation.
+\newblock \emph{arXiv preprint arXiv:2601.03525}.
+
+\bibitem[{Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou}]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou. 2023.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Wellek(2010)}]{wellek2010}
+Stefan Wellek. 2010.
+\newblock \emph{Testing Statistical Hypotheses of Equivalence and
+  Noninferiority}, 2nd edition.
+\newblock Chapman and Hall/CRC.
+
+\bibitem[{Willard and Louf(2023)}]{willard2023outlines}
+Brandon~T. Willard and R{\'e}mi Louf. 2023.
+\newblock Efficient guided generation for large language models.
+\newblock \emph{arXiv preprint arXiv:2307.09702}.
+
+\bibitem[{Xia et~al.(2025)Xia, Deng, Dunn, and Zhang}]{xia2024agentless}
+Chunqiu~Steven Xia, Yinlin Deng, Soren Dunn, and Lingming Zhang. 2025.
+\newblock Agentless: Demystifying {LLM}-based software engineering agents.
+\newblock In \emph{FSE}.
+\newblock Distinguished Paper.
+
+\bibitem[{Xu et~al.(2025)Xu, Tan, Liu, Peng, Gao, and He}]{xu2025patchreasoner}
+Junjielong Xu, Boyin Tan, Xiaoyuan Liu, Chao Peng, Pengfei Gao, and Pinjia He.
+  2025.
+\newblock Scalable supervising software agents with patch reasoner.
+\newblock \emph{arXiv preprint arXiv:2510.22775}.
+
+\bibitem[{Yang et~al.(2025{\natexlab{a}})Yang, Li, Yang, Zhang, Hui
+  et~al.}]{qwen2025qwen3}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, and 1 others.
+  2025{\natexlab{a}}.
+\newblock {Qwen3} technical report.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Yang et~al.(2025{\natexlab{b}})Yang, Cai, Liu, Le, Zhang,
+  Bissyand{\'e}, Liu, and Tian}]{yang2025aprsurvey}
+Boyang Yang, Zijian Cai, Fengling Liu, Bach Le, Lingming Zhang,
+  Tegawend{\'e}~F. Bissyand{\'e}, Yang Liu, and Haoye Tian. 2025{\natexlab{b}}.
+\newblock A survey of {LLM}-based automated program repair: Taxonomies, design
+  paradigms, and applications.
+\newblock \emph{arXiv preprint arXiv:2506.23749}.
+
+\bibitem[{Yang et~al.(2024)Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and
+  Press}]{yang2024sweagent}
+John Yang, Carlos~E Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao,
+  Karthik Narasimhan, and Ofir Press. 2024.
+\newblock {SWE-agent}: Agent-computer interfaces enable automated software
+  engineering.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Ye et~al.(2025)Ye, Zhang, Jiang, and Huang}]{ye2025prlcoder}
+Yufan Ye, Ting Zhang, Wenbin Jiang, and Hua Huang. 2025.
+\newblock Process-supervised reinforcement learning for code generation.
+\newblock In \emph{EMNLP}.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Hosseini, Bansal, Kazemi, Kumar, and
+  Agarwal}]{hosseini2025genrm}
+Lunjun Zhang, Arian Hosseini, Hritik Bansal, Seyed~Mehran Kazemi, Aviral Kumar,
+  and Rishabh Agarwal. 2025.
+\newblock Generative verifiers: Reward modeling as next-token prediction.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Zhang et~al.(2026)Zhang, Qin, Cao, Xue, and Xie}]{zhang2026funprm}
+Ruiyi Zhang, Peijia Qin, Qi~Cao, Eric Xue, and Pengtao Xie. 2026.
+\newblock {FunPRM}: Function-as-step process reward model with meta reward
+  correction for code generation.
+\newblock \emph{arXiv preprint arXiv:2601.22249}.
+
+\bibitem[{Zhao et~al.(2026)Zhao, Liu, Zhang, Zhou, Gao, Li, Lyu, Qian, Qi, Li,
+  and Zhou}]{zhao2026genprm}
+Jian Zhao, Runze Liu, Kaiyan Zhang, Zhimu Zhou, Junqi Gao, Dong Li, Jiafei Lyu,
+  Zhouyi Qian, Biqing Qi, Xiu Li, and Bowen Zhou. 2026.
+\newblock {GenPRM}: Scaling test-time compute of process reward models via
+  generative reasoning.
+\newblock In \emph{AAAI}.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Alon, Agarwal, and
+  Neubig}]{zhou2023codebertscore}
+Shuyan Zhou, Uri Alon, Sumit Agarwal, and Graham Neubig. 2023.
+\newblock {CodeBERTScore}: Evaluating code generation with pretrained models of
+  code.
+\newblock In \emph{EMNLP}.
+
+\bibitem[{Zhuo(2024)}]{zhuo2024icescore}
+Terry~Yue Zhuo. 2024.
+\newblock {ICE-Score}: Instructing large language models to evaluate code.
+\newblock In \emph{Findings of EACL}.
+
+\end{thebibliography}

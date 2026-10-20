@@ -1,0 +1,18 @@
+{
+  "exp_id": "p2p-regression-rate",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T20:03:33.129Z",
+    "updated_at": "2026-05-11T20:04:02.945Z",
+    "conclusion": "negative",
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/p2p_regression_analysis.md",
+    "log_path": "/home/sonny/exec-sim-repair-verifier/p2p_regression_analysis.md",
+    "completed_at": "2026-05-11T20:04:02.945Z"
+  },
+  "timestamp": "2026-05-11T20:04:02.961891+00:00",
+  "trigger": "update_registry"
+}

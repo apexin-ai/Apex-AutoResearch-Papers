@@ -1,0 +1,30 @@
+{
+  "exp_id": "cls8b-s42-resume-val-sweep",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:58:20.430Z",
+    "updated_at": "2026-05-15T15:58:36.866Z",
+    "spec": {
+      "command": "bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep.sh",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "pid": "388791",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep.log",
+      "submitted_at": "2026-05-15T15:58:20.050Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "val split",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "hypothesis": "Extended val sweep on CLS 8B s42 resume checkpoints (step 1800-5800, 21 points). 原始 sweep peak = ckpt-1000 (88.23%). 检查 resume 后是否有更好的 val checkpoint。"
+    }
+  },
+  "timestamp": "2026-05-15T15:58:37.114196+00:00",
+  "trigger": "update_registry"
+}

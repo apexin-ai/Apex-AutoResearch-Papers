@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-b-complexity-bin",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:20:07.634Z",
+    "updated_at": "2026-05-19T03:20:55.392Z",
+    "hypothesis": "不同 formulation 的 accuracy 优劣与 variant 复杂度（test count）相关：TRAJ 在低 test-count variants 更优，CLS 在高 test-count variants 更优"
+  },
+  "timestamp": "2026-05-19T03:20:55.916123+00:00",
+  "trigger": "update_registry"
+}

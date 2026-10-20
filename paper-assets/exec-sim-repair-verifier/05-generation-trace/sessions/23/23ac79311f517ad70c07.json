@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ac79311f517ad70c07",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops kill gpu1 zombie 0519",
+  "task_key": "worker_ops_kill-gpu1-zombie-0519_20260519T025055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu1-zombie-0519_20260519T025055_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "13fdd9d720d4bb8045453688ef890d5f31c70f15d3ce1b8450d6b81c0474d985"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 已完全释放：0 MiB 显存，0% 利用率。其余 GPU（0/2/3）正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu1-zombie-0519.md"
+}

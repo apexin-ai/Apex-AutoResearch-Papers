@@ -1,0 +1,7 @@
+mutation_type,cls_8b_s42_ckpt800,cls_8b_s42_ckpt1400,cls_8b_s123_ckpt3000,cls_8b_s123_ckpt6400,cwm_4b_s42,cwm_4b_seed123,val_pct,test_pct,test_n
+gold,94.09,98.36,99.57,98.42,,,45.2,47.4,4633
+mutation_operator_swap,82.72,82.16,82.60,83.23,,,19.1,34.3,3357
+mutation_boundary_removal,41.47,47.28,44.90,41.75,,,15.0,10.7,1049
+mutation_return_value,83.99,69.04,66.37,69.04,,,10.7,5.7,562
+mutation_off_by_one,71.04,89.07,79.23,78.69,,,10.0,1.9,183
+OVERALL,83.53,85.47,85.60,85.08,58.04,59.09,100.0,100.0,9784

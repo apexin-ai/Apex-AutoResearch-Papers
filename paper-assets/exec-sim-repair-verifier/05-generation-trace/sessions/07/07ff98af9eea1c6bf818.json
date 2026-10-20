@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07ff98af9eea1c6bf818",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code add perinstance eval output",
+  "task_key": "worker_code_add-perinstance-eval-output_20260512T160625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add-perinstance-eval-output_20260512T160625_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "c8a309de2301c513bcdd5773afcf918651e88634e3374345a1c58ce12c7babfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 代码修改\n两个脚本各添加了 `--save_predictions` 参数，在 eval 循环中收集 per-instance 数据，条件性输出 `_predictions.json` 文件。\n\n### CLS seed42 predictions\n- 文件：`eval_cls_seed42_with_preds_predictions.json`（1890 条）\n- 正确率：1660/1890 (87.8%)\n- mutation_type 分布：off_by_one=671, return_value=402, original=398, operator_swap=298, variable_swap=85, boundary_removal=36\n- 字段：idx, problem_id, mutation_type, source, true_label, predicted_label, correct, raw_output\n\n### CWM seed42 predictions\n- 文件：`eval_cwm_seed42_with_preds_predictions.json`（1890 条）\n- 正确率：1654/1890 (87.5%)\n- 额外字段：error_type, exact_match\n- exact match rate: 84.0%\n\n### Aggregate metrics 一致性\nCLS aggregate metrics 与原 `eval_seed42.json` **完全一致**，向后兼容验证通过。\n\n### 文件路径\n```\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds.json          # aggregate\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json  # per-instance\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds.json          # aggregate\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json  # per-instance\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-perinstance-eval-output.md"
+}

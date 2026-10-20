@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "192614715bda0b963bb9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek training logs",
+  "task_key": "worker_analysis_deepseek-training-logs_20260516T080159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-training-logs_20260516T080159_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "3feb48cad272d66055da6ab0321da304098ce51ccd1cb4b546c6a60c4666e1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/deepseek_training_analysis.md`。\n\n**摘要：**\n\n| | CWM (seed123) | CLS |\n|---|---|---|\n| 状态 | SUCCESS | SUCCESS |\n| Best eval_loss | **0.04076** (epoch 2) | **0.07008** (epoch 1) |\n| Final train_loss | 0.0976 | 0.0948 |\n| 训练时长 | 87.4 min | 90.7 min |\n| 过拟合 | epoch 3 轻微 (+10.7%) | epoch 1 起单调上升 |\n\nCWM eval_loss 比 CLS 低 42%（0.041 vs 0.070）。日志中无 accuracy 指标，两者均只记录了 loss。Checkpoint 均已正确保存（adapter_model.safetensors 67MB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-training-logs.md"
+}

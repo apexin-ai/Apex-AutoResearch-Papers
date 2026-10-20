@@ -1,0 +1,37 @@
+{
+  "exp_id": "deepseek-traj-func-v2-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:47:04.812Z",
+    "updated_at": "2026-05-16T14:35:19.627Z",
+    "failure_reason": "",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T13:47:10.604094+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 python3 train_traj_verifier.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --train_file traj_train.jsonl --val_file traj_val.jsonl --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --epochs 3 --batch_size 2 --grad_accumulation 4 --lr 2e-4 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_deepseek_traj_v2_s123/ --run_name deepseek-traj-v2-s123",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/traj_train.jsonl",
+      "data_count": 8052,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "513115"
+    }
+  },
+  "timestamp": "2026-05-16T14:35:19.967529+00:00",
+  "trigger": "update_registry"
+}

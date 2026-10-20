@@ -1,0 +1,57 @@
+{
+  "method": "Holm-Bonferroni",
+  "k": 5,
+  "alpha": 0.05,
+  "results": [
+    {
+      "rank": 1,
+      "comparison": "Repo: CLS vs CWM (Qwen3-8B)",
+      "level": "repo",
+      "raw_p": 0.003,
+      "multiplier": 5,
+      "adj_p": 0.015,
+      "significant": true,
+      "note": "paired bootstrap, diff=+29.17pp"
+    },
+    {
+      "rank": 2,
+      "comparison": "Func: CLS vs CWM (TOST \u00b12pp)",
+      "level": "function",
+      "raw_p": 0.007,
+      "multiplier": 4,
+      "adj_p": 0.028,
+      "significant": true,
+      "note": "seed-level paired t-test, 5 seeds (same as clustered bootstrap)"
+    },
+    {
+      "rank": 3,
+      "comparison": "Func: CLS vs TRAJ (TOST \u00b12pp)",
+      "level": "function",
+      "raw_p": 0.025,
+      "multiplier": 3,
+      "adj_p": 0.075,
+      "significant": false,
+      "note": "seed-level paired t-test, 5 seeds, df=4"
+    },
+    {
+      "rank": 4,
+      "comparison": "Repo: CWM vs TRAJ (Qwen3-8B)",
+      "level": "repo",
+      "raw_p": 0.039,
+      "multiplier": 2,
+      "adj_p": 0.078,
+      "significant": false,
+      "note": "unpaired bootstrap, diff=-20.83pp"
+    },
+    {
+      "rank": 5,
+      "comparison": "Repo: CLS vs TRAJ (Qwen3-8B)",
+      "level": "repo",
+      "raw_p": 0.385,
+      "multiplier": 1,
+      "adj_p": 0.385,
+      "significant": false,
+      "note": "unpaired bootstrap, diff=+8.33pp"
+    }
+  ]
+}

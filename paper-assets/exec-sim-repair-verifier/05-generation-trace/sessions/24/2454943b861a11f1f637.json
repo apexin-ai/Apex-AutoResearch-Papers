@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2454943b861a11f1f637",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag cls8b s42 ckpt1600 val8192 eval log",
+  "task_key": "worker_diag_cls8b-s42-ckpt1600-val8192-eval-log_20260515T034445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cls8b-s42-ckpt1600-val8192-eval-log_20260515T034445_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "db71803d0b38ae7ee9f825297bd9086b6c5cec6538a979c017ca7f53b636f6d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**cls8b-s42-ckpt1600-val8192-eval: 失败**\n\n**失败原因**: 启动时网络不可达（`Errno 101: Network is unreachable`），无法从 huggingface.co 下载 `Qwen/Qwen3-8B` 的 tokenizer config。重试 5 次后 OSError 退出。没有产出任何结果文件。\n\n**时间线**:\n- `11:40:18` 加载数据完成（9335 val instances），开始加载 checkpoint-1600\n- `11:40:30` ~ `11:41:08` HF 连接重试 4 次\n- 之后最终失败退出\n\n**Registry 已更新**: status=DONE, conclusion=failed, notes 记录了失败原因。\n\n**重跑建议**: 启动前需 `source /etc/network_turbo` 开启代理，或设置 `HF_HUB_OFFLINE=1`（如果 tokenizer 已缓存在本地）/ `TRANSFORMERS_OFFLINE=1`。这是 val sweep 的最后一个数据点（ckpt-1600），需要补上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cls8b-s42-ckpt1600-val8192-eval-log.md"
+}

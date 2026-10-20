@@ -1,0 +1,75 @@
+# reviewer / loop_13.md
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_13.md`
+- **Structured JSON:** [`8226b3070245520f1503.json`](../../sessions/82/8226b3070245520f1503.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 13
+reason: max_wall_time
+updated: '2026-05-15T16:41:52+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- seetacloud-westd-4x5090 四卡分配：cuda:0 eval/ablation 轮转，cuda:1 CLS 8B s42 训练，cuda:2 CWM 8B 训练，cuda:3 CWM 8B eval。跨卡使用必须核对当前占用
+- rank ablation 已审查定论：**不升级为独立 claim**，仅作为 §4.8 ablation 支撑 "formulation bottleneck, not capacity bottleneck"。Director 若再问 efficiency narrative，直接引用本轮审查结论
+- 论文引用已修复：Qwen3 用 `\cite{qwen2025qwen3}` 不是 `yang2024qwen25`。`yang2024qwen25` 残留在 bib 未引用，属孤立条目
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: seetacloud-westd-4x5090 (root) + home-1x5090 (sonny)
+- **工作目录**: `/home/sonny/exec-sim-repair-verifier`（远程），本地 workspace `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier`
+- **Python**: `/root/miniconda3/bin/python`，conda base 环境（不是 venv）
+- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-{4B,8B}/`
+- **训练 checkpoints**: `/root/autodl-tmp/checkpoints_repo_{cls,cwm}_8b_*`
+- **活跃进程**（截至 handoff）:
+  - cuda:0: `cls8b-s42-resume-val-sweep` (PID 388791) — 21 checkpoint val sweep
+  - cuda:1: CLS 8B s42 resume 训练 (PID 295794)
+  - cuda:2: CWM 8B conda v2 训练 (PID 266816, resume from ckpt-1600)
+  - cuda:3: `cwm8b-ckpt400-test-eval` (PID 381618) — test@full 9784 samples, ETA May 16 ~09:20 UTC
+
+### 3. 📊 当前状态
+本轮完成的审查：
+- cwm8b-ckpt400-test-eval 误报诊断：进程活跃，registry 脏字段已清理，ETA 修正
+- 论文引用修复（3 个 paper worker）：Qwen3 key 修正 + 孤立 bib 清理，PASS
+- cwm-rank32-alpha64-ablation：accuracy=87.04%，与 v2(87.0%) 一致，alpha/rank ratio 非混淆变量确认
+- rank ablation 战略评估：不建议升级 efficiency claim，保持 ablation 定位
+- rank ablation 可视化：chart + table 审核通过，建议补 baseline F1/EM 数据
+- cls8b-s42-resume-val-sweep 启动确认：cuda:0 100% util，正常推进
+
+**RUNNING**: cwm8b-ckpt400-test-eval (cuda:3), cls8b-s42-resume-val-sweep (cuda:0), cuda:1/2 长跑训练
+**PREPARING**: cls8b-s42-extended-val-sweep（已被 cls8b-s42-resume-val-sweep 替代，可能是残留条目）
+
+### 4. 📋 待办
+- cwm8b-ckpt400-test-eval 完成（ETA May 16 ~09:20 UTC）→ 交叉验证 accuracy vs CLS 8B (84.7-85.6%)，关注 CWM 8B repo-level 是否也出现 format compliance collapse（function-level running_acc ~70% 已远低于 CLS）
+- cls8b-s42-resume-val-sweep 完成 → 核对 val-best checkpoint 是否优于原始 peak ckpt-1000 (88.23%)，验证论文 Table 4 中的 val-selected checkpoint 选择是否需要更新
+- cuda:1 CLS 8B s42 训练完成 → 检查最终 eval_loss / checkpoint 状态
+- cuda:2 CWM 8B 训练完成 → 检查 checkpoint，可能需要 eval 以填充论文 Table 4 "CWM 8B" 行（当前为 "---"）
+- experiments.tex 段落 (h) 更新 → Agent 应补充 alpha=64 控制实验一句话，审查时确认已添加
+
+### 5. 🎯 战略上下文
+- **核心论点**: CLS vs CWM 是 formulation 差异（classification vs generation），不是 capacity 差异。function-level gap 小 (~1.2pp)，8B scaling gap 扩大 (2.43pp)，repo-level gap 巨大 (25.59pp, CWM format compliance collapse)
+- **最关键的待出数据**: CWM 8B repo-level test eval（cwm8b-ckpt400-test-eval）。如果 CWM 8B 也 collapse（running_acc ~70% 暗示会），则论文 Claim 1 "complexity-dependent advantage" 完全 lock down。如果意外接近 CLS → 需要重新审视 bottleneck 假说
+- **易错点**: 
+  1. registry 中 `cwm8b-ckpt400-test-eval` 历史上有误报 failure 记录（"process dead 5×"），别被旧 failure_reason 字段误导——已清理但 extra.previous_failure 仍存
+  2. 论文 Table 4 CLS 8B seed 123 = 85.60% 来自 val-best checkpoint（非 ckpt-6200 的 84.7%），两个数字来源不同不要混淆
+  3. constraints.yaml 未创建，无法核对 gpu_ids 白名单——只能靠 spec 中的 gpu 字段 + nvidia-smi 交叉验证
+  4. `cls8b-s42-extended-val-sweep` (PREPARING) 可能是 dead entry，实际已被 `cls8b-s42-resume-val-sweep` (RUNNING) 替代
+
+
+---

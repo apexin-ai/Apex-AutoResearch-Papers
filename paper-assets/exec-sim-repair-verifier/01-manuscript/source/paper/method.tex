@@ -1,0 +1,89 @@
+% Method section draft for EMNLP 2026 submission
+% Classification Scales Where Generation Stalls:
+% Reformulating Execution Simulation for Code Repair Verification
+
+\section{Method}
+\label{sec:method}
+
+We compare three formulations for execution-free verification of code repair patches, varying along two axes: \emph{output granularity} (per-test vs.\ trajectory-level) and \emph{prediction format} (classification vs.\ generation). This section defines the problem setup (\S\ref{ssec:problem}), describes each formulation (\S\ref{ssec:cls}--\S\ref{ssec:traj}), analyzes the structural failure modes unique to the generation formulation (\S\ref{ssec:failure_modes}), and develops an oracle framework for characterizing when per-test granularity provides value (\S\ref{ssec:oracle}).
+
+\subsection{Problem Setup}
+\label{ssec:problem}
+
+Given a candidate patch $p$ applied to a code repository, and a test suite $T = \{t_1, \ldots, t_n\}$ associated with the issue, the verification task is to determine whether $p$ correctly resolves the issue without introducing regressions.
+Each test suite comprises two partitions: \emph{fail-to-pass} tests $T_{\textsc{f2p}} \subseteq T$ that currently fail and should pass after a correct fix, and \emph{pass-to-pass} tests $T_{\textsc{p2p}} \subseteq T$ that should continue passing (i.e., no regressions).
+A patch is considered correct if and only if all tests pass under the patched code.
+
+We study three formulations that differ in how they map $(p, T)$ to a patch-level verdict. The first two operate at per-test granularity and aggregate to a patch-level decision; the third predicts patch-level correctness directly.
+
+\subsection{Per-Test Binary Classification (CLS)}
+\label{ssec:cls}
+
+The classification formulation defines a function $f$ that maps each (code, test) pair to a binary verdict:
+\begin{equation}
+    f(\texttt{code\_context}(p), t_i) \rightarrow \{\textsc{Pass}, \textsc{Fail}\}
+    \label{eq:cls}
+\end{equation}
+where $\texttt{code\_context}(p)$ denotes the patched code context relevant to test $t_i$, including the function under test and its dependencies.
+
+The model produces a \emph{single token} as output---either \textsc{Pass} or \textsc{Fail}---trained with standard cross-entropy loss over the binary label set. At inference, a single forward pass with greedy decoding yields the verdict for each test. Patch-level correctness is determined by conjunction: the patch is predicted correct if and only if $f$ predicts \textsc{Pass} for all $t_i \in T$.
+
+This formulation has two structural properties relevant to our comparison: (1) inference cost is exactly one generated token per test, independent of the complexity of the expected execution output; and (2) the model need not reconstruct any execution output---it must only discriminate between passing and failing behavior.
+
+\subsection{Execution Output Generation (CWM)}
+\label{ssec:cwm}
+
+The generation formulation, following \citet{meta2025cwm}, defines a function $g$ that predicts the execution output as a string:
+\begin{equation}
+    g(\texttt{code\_context}(p), t_i) \rightarrow \hat{o}_i \in \Sigma^*
+    \label{eq:cwm}
+\end{equation}
+where $\hat{o}_i$ is the predicted output string and $\Sigma^*$ denotes the set of all strings over the output vocabulary. The model is trained with standard language modeling loss to generate the expected output token-by-token. A per-test verdict is derived by exact-match comparison: the test is predicted to pass if and only if $\hat{o}_i = o_i^*$, where $o_i^*$ is the ground-truth expected output.
+
+Inference cost scales with output length: generating the predicted output for test $t_i$ requires $|\hat{o}_i|$ tokens, subject to a generation budget $B$. When $|\hat{o}_i| > B$, the output is truncated and exact-match necessarily fails. Patch-level aggregation follows the same conjunction rule as CLS.
+
+The CWM formulation is strictly more demanding than CLS: it must reconstruct the full output string to derive the same binary verdict that CLS predicts directly.
+
+\subsection{Trajectory-Level Scoring (TRAJ)}
+\label{ssec:traj}
+
+The trajectory-level formulation defines a function $h$ that scores the patch against the entire test suite jointly:
+\begin{equation}
+    h(\texttt{code\_context}(p), T) \rightarrow \{\textsc{Resolved}, \textsc{Unresolved}\}
+    \label{eq:traj}
+\end{equation}
+The model receives the code context and a representation of the full test suite, producing a single binary verdict for the patch. This formulation mirrors the setup used by trajectory-level reward models such as SWE-RM~\cite{shum2025swerm}.
+
+TRAJ serves as a granularity control: it operates at the same binary classification level as CLS but discards per-test structure. Any accuracy difference between CLS (aggregated to patch level) and TRAJ isolates the effect of per-test decomposition, controlling for the classification-vs.-generation confound.
+
+\subsection{CWM Failure Mode Analysis}
+\label{ssec:failure_modes}
+
+The generation formulation introduces two failure modes that are absent in classification by construction:
+
+\paragraph{Token-Budget Exhaustion.}
+When the expected output $o_i^*$ exceeds the generation budget $B$, the CWM prediction is necessarily truncated: $|\hat{o}_i| \leq B < |o_i^*|$, causing exact-match to fail regardless of prediction quality. This failure mode is triggered by long execution outputs (e.g., verbose data structures, stack traces, multi-line formatted output) and becomes more frequent as code complexity increases. CLS is immune: it produces exactly one token irrespective of output length.
+
+\paragraph{String-Value Prediction Errors.}
+Even within the budget, CWM must reproduce the exact output string character-by-character. Complex return types---floating-point numbers with precision-sensitive formatting, nested data structures, memory addresses, or timestamps---require the model to predict arbitrary string values that carry no semantic distinction relevant to the pass/fail verdict. A single character mismatch causes exact-match failure. CLS bypasses this entirely: the model need only determine that the output would differ from the expected value, not reconstruct the differing string.
+
+These two failure modes predict a \emph{complexity-dependent} divergence between CLS and CWM: on simple code with short, simple outputs, neither mode triggers and the formulations achieve equivalent accuracy. As code complexity grows---longer outputs, more complex types---CWM failure modes activate and CLS gains an increasing advantage. We test this prediction empirically in \S\ref{sec:experiments}.
+
+\subsection{Oracle Accuracy-Utility Framework}
+\label{ssec:oracle}
+
+Per-test verification provides value beyond trajectory-level scoring only when per-test predictions carry \emph{actionable} information---i.e., when knowing \emph{which} tests fail enables better decisions than knowing only \emph{whether} any test fails. We formalize the conditions under which this holds.
+
+\paragraph{Per-Test Advantage.}
+Consider a patch $p$ with test suite $T$ containing $|T_{\textsc{f2p}}|$ fail-to-pass tests. Under a trajectory-level verifier, a single incorrect prediction on any test causes a patch-level error. Under a per-test verifier, errors on individual tests may cancel or compound depending on the aggregation rule (conjunction for pass-to-pass, disjunction for fail-to-pass). The per-test advantage depends on: (1) per-test accuracy $a$, (2) the number of fail-to-pass tests $|T_{\textsc{f2p}}|$, (3) the pass-to-pass regression rate, and (4) the correlation structure among prediction errors.
+
+\paragraph{Block-Correlation Model.}
+Per-test predictions for tests within the same patch are not independent: they share the same code context and may exhibit correlated errors. We model this using the intra-cluster correlation coefficient $\rho$ (ICC), which captures the fraction of prediction variance attributable to the patch (cluster) level. The effective number of independent predictions per patch is captured by the design effect:
+\begin{equation}
+    \textsc{Deff} = 1 + (\bar{n} - 1) \cdot \rho
+    \label{eq:deff}
+\end{equation}
+where $\bar{n}$ is the mean number of tests per patch. When $\rho = 0$, predictions are independent and per-test granularity provides maximum advantage. As $\rho \rightarrow 1$, all tests within a patch are predicted identically and per-test granularity collapses to trajectory-level---the formulations become equivalent.
+
+\paragraph{Threshold Conditions.}
+Per-test granularity provides substantial advantage when three conditions hold jointly: (1) $|T_{\textsc{f2p}}| \geq 2$, so that multiple independent test outcomes contribute to the fail-to-pass verdict; (2) $\rho$ is moderate rather than near-unity, preserving meaningful variation across tests within a patch; and (3) per-test accuracy is sufficiently high that the additional granularity provides signal rather than noise. We derive empirical estimates of these parameters from SWE-bench Verified in \S\ref{sec:experiments} and use them to characterize the accuracy-utility frontier: the region of the (accuracy, test-count, correlation) space where per-test verification outperforms trajectory-level scoring.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07d4adc1766b8d38e8de",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check training progress",
+  "task_key": "worker_ops_check-training-progress_20260516T113514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-progress_20260516T113514_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "65c0f427bc402be901467b670ba2bd76a701cfabc712558832eb94fbccde8ddc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### cls-repo (GPU 0, `checkpoints_repo_cls_v5_conda`)\n- **Step 643/6633** (~9.7%)\n- eval_loss=0.0996 (at step 600 checkpoint)\n- Speed: ~7.3s/it\n- **ETA: ~12h（约明早 07:40 UTC）**\n\n### cwm-repo (GPU 1, `checkpoints_repo_cwm_seed123_conda`)\n- **Step 695/6633** (~10.5%)\n- eval完成 step 600 checkpoint\n- Speed: ~7.9s/it\n- **ETA: ~13h（约明早 08:35 UTC）**\n\n### cuda:2 — 不空闲\n- 正在跑 `checkpoints_repo_cls_8b_conda` (PID 499350)\n- **Step 662/6633** (~10.0%)\n- loss=0.9534, eval_loss=0.0937 (step 600)\n- Speed: ~8.1s/it, ETA ~13.4h\n\n### cuda:3 — 空闲\n- 0 MiB 显存, 0% 利用率，可用\n\n### eval 脚本\n- `eval_repo_verifier.py` ✓\n- `eval_repo_cwm.py` ✓\n- `run_deepseek_repo_eval.sh` ✓ (支持 `bash run_deepseek_repo_eval.sh [cls|cwm] [gpu_id]`)\n\n---\n\n**注意**: 你给的旧日志 (`train_repo_cls.log` / `train_repo_cwm.log`) 是 5/12 的 crash 记录（DataLoader ValueError，collator 收到 dict 而非 tensor）。当前跑的是修复后的版本，在 `checkpoints_repo_*_conda/train.log` 里。三个训练都刚过 step 600 checkpoint，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-progress.md"
+}

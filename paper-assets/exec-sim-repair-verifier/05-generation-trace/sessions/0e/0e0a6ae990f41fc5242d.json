@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e0a6ae990f41fc5242d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis ckpt6315 variant level recompute",
+  "task_key": "worker_analysis_ckpt6315-variant-level-recompute_20260518T220731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ckpt6315-variant-level-recompute_20260518T220731_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "e03322dd595fe476326d87d4f5e1964f4504e9846ed7d09f43db73aa50e49aae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n### 总结\n\n**ckpt-6315 variant-level: 38/48 = 79.17%**\n\nepoch 1 → epoch 3 的变化：\n- Variant accuracy: 81.25% → 79.17% (-2.08pp)\n- Variant fail recall: 90.91% → 59.09% (-31.82pp)  \n- Variant pass recall: 73.08% → 96.15% (+23.07pp)\n\nepoch 3 per-test accuracy 几乎没变 (82.61% → 82.51%)，但 variant-level 暴露了严重的类别偏移：模型越训越倾向预测 pass，fail 的区分能力大幅退化。ckpt-2105 是更好的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ckpt6315-variant-level-recompute.md"
+}

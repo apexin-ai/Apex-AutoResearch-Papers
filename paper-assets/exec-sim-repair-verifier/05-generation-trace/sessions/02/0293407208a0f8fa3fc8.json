@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0293407208a0f8fa3fc8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls 8b val sweep westd",
+  "task_key": "worker_eval_cls-8b-val-sweep-westd_20260514T194450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-8b-val-sweep-westd_20260514T194450_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "f111e48db3ea2904f90852907032d68192fe3fffedb251cf15289e0139553498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在后台运行：\n- **PID**: 276768\n- **当前**: checkpoint-200, 170/9335 样本, 速度 ~2 样本/秒\n- **预计**: 单 checkpoint ~75 分钟, 3 个串行共 ~3.5 小时\n- **日志**: `/tmp/cls8b_val_sweep.log`\n- **结果**: `/root/autodl-tmp/results/cls8b_ckpt{200,400,600}_val/summary.json`\n\n30 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-8b-val-sweep-westd.md"
+}

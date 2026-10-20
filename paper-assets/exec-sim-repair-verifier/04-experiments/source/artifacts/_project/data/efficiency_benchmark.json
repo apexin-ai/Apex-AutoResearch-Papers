@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "purpose": "CLS vs TRAJ inference efficiency benchmark",
+    "date": "2026-05-17",
+    "model": "deepseek-coder-6.7b-instruct (base, no LoRA)",
+    "gpu": "RTX 5090 32GB",
+    "torch_version": "2.10.0+cu128",
+    "num_runs": 10,
+    "traj_max_new_tokens": 200,
+    "note": "LoRA adds <2% overhead, base model is valid proxy"
+  },
+  "raw_measurements": {
+    "cls_batch1_short": {
+      "mean_ms": 18.15,
+      "std_ms": 0.02,
+      "input_tokens": 89,
+      "output_tokens": 1
+    },
+    "cls_batch1_medium": {
+      "mean_ms": 46.9,
+      "std_ms": 0.07,
+      "input_tokens": 475,
+      "output_tokens": 1
+    },
+    "cls_batch1_long": {
+      "mean_ms": 142.25,
+      "std_ms": 0.22,
+      "input_tokens": 1591,
+      "output_tokens": 1
+    },
+    "traj_batch1_short": {
+      "mean_ms": 2498.72,
+      "std_ms": 1.71,
+      "input_tokens": 90,
+      "mean_output_tokens": 195,
+      "output_tokens_target": 200
+    },
+    "traj_batch1_medium": {
+      "mean_ms": 2631.46,
+      "std_ms": 2.17,
+      "input_tokens": 420,
+      "mean_output_tokens": 200,
+      "output_tokens_target": 200
+    },
+    "traj_batch1_long": {
+      "mean_ms": 2877.18,
+      "std_ms": 1.51,
+      "input_tokens": 1592,
+      "mean_output_tokens": 200,
+      "output_tokens_target": 200
+    },
+    "cls_batch8_medium": {
+      "mean_ms": 263.6,
+      "std_ms": 2.32,
+      "batch_size": 8,
+      "input_tokens": 475,
+      "output_tokens": 1,
+      "throughput_samples_per_sec": 30.3
+    },
+    "cls_batch16_medium": {
+      "mean_ms": 549.5,
+      "std_ms": 0.45,
+      "batch_size": 16,
+      "input_tokens": 475,
+      "output_tokens": 1,
+      "throughput_samples_per_sec": 29.1
+    },
+    "cls_batch32_medium": {
+      "mean_ms": 1101.62,
+      "std_ms": 0.81,
+      "batch_size": 32,
+      "input_tokens": 475,
+      "output_tokens": 1,
+      "throughput_samples_per_sec": 29.0
+    },
+    "traj_batch8_medium": {
+      "mean_ms": 3611.38,
+      "std_ms": 3.02,
+      "batch_size": 8,
+      "input_tokens": 420,
+      "mean_output_tokens": 200,
+      "throughput_samples_per_sec": 2.2
+    },
+    "traj_batch16_medium": {
+      "mean_ms": 4855.33,
+      "std_ms": 0.76,
+      "batch_size": 16,
+      "input_tokens": 420,
+      "mean_output_tokens": 200,
+      "throughput_samples_per_sec": 3.3
+    },
+    "traj_batch32_medium": {
+      "mean_ms": 7314.84,
+      "std_ms": 3.91,
+      "batch_size": 32,
+      "input_tokens": 420,
+      "mean_output_tokens": 200,
+      "throughput_samples_per_sec": 4.4
+    }
+  },
+  "effective_comparison": {
+    "func_level": {
+      "mean_tests_per_instance": 2.3,
+      "cls_time_per_instance_ms": 107.87,
+      "traj_time_per_instance_ms": 2631.46,
+      "speedup_ratio": 24.39,
+      "note": "CLS = 2.3 x 46.9ms, TRAJ = 1 x 2631.5ms"
+    },
+    "repo_level": {
+      "mean_tests_per_instance": 12.3,
+      "cls_time_per_instance_ms": 576.87,
+      "traj_time_per_instance_ms": 2631.46,
+      "speedup_ratio": 4.56,
+      "note": "CLS = 12.3 x 46.9ms, TRAJ = 1 x 2631.5ms"
+    }
+  },
+  "summary_table": "| Metric | CLS (1 token) | TRAJ (~200 tokens) | Ratio (TRAJ/CLS) |\n|--------|--------------|-------------------|------------------|\n| short (input=89 tok) | 18.1 ms | 2498.7 ms | 137.7x |\n| medium (input=475 tok) | 46.9 ms | 2631.5 ms | 56.1x |\n| long (input=1591 tok) | 142.2 ms | 2877.2 ms | 20.2x |\n\n| Effective (func, 2.3 tests) | 107.9 ms | 2631.5 ms | 24.4x |\n| Effective (repo, 12.3 tests) | 576.9 ms | 2631.5 ms | 4.6x |"
+}

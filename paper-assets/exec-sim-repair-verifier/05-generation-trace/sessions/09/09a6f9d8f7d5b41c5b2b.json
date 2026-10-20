@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09a6f9d8f7d5b41c5b2b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops s3 backup archive",
+  "task_key": "worker_ops_s3-backup-archive_20260525T205549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-archive_20260525T205549_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "3026fd5b3d132096f20b89ae33afb2b9f975fccecb039c1bc472b8af6b9995fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。以下是最终汇报：\n\n---\n\n## 备份结果\n\n### (a) Tarball\n- **路径**: `/root/autodl-tmp/exec-sim-repair-verifier-final-20260525T205829Z.tar.gz`（远程服务器）\n- **大小**: 5.9 GB (6,279,884,689 bytes)\n\n### (b) S3 URI\n```\ns3://agent-ml-manager-backups-emnlp/manager-backup/backends/exec-sim-repair-verifier/project-archive/exec-sim-repair-verifier-final-20260525T205829Z.tar.gz\n```\n\n### (c) 上传速率\n- **16.4 MB/s**，耗时 364.6s（从远程服务器直接上传 S3，跳过 SCP 中转）\n\n### (d) 备份内容清单\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| **code/** | 148 MB | 项目全部代码（含 data/）：训练/评测脚本（train_*.py, eval_*.py, build_*.py）、数据集文件（JSONL）、结果 JSON |\n| **checkpoints/** | 6.7 GB | 42 个训练 run 的 best LoRA adapter（DeepSeek/Qwen3 4B/8B/14B × cls/cwm/traj × 多 seed）+ 7 个 14B func-level checkpoint |\n| **results/** | 1.3 GB | eval_results/（77 个评测目录）、experiment_results/（22 组）、logs/、scripts/、runs/、batch test 日志、结果 JSON |\n| **data/** | 279 MB | project_data（训练/测试 JSONL）、data_dryrun、swebench_full_s123_snapshot |\n| **paper/** | 168 KB | figures（figure2 PDF/PNG）、artifacts（regression results）、plot 和 regression 脚本 |\n\n### 排除项\n- 公开模型 (models/ 109GB, .hf_cache 23GB)\n- 中间 checkpoint（只保留 best/）\n- miniconda3、__pycache__、venv\n- 已清理远程 S3 凭证文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-archive.md"
+}

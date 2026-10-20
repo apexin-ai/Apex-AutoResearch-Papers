@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09404dadedf512564eda",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor training status check",
+  "task_key": "worker_monitor_training-status-check_20260515T042501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-status-check_20260515T042501_result.json",
+    "occurrence": 1,
+    "bytes": 2158,
+    "sha256": "50f590470acb482acb164eec0e7c7c48ee92ef9d1d12a4a60f6beb5b7287b91e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告（May 15 12:25 UTC）\n\n### GPU 概览\n\n| GPU | 进程 | 显存 | 利用率 | 温度 | 功耗 |\n|-----|------|------|--------|------|------|\n| 0 | PID 328094（未知） | 17.2/32.6 GB | 76% | 56°C | 415W |\n| 1 | CLS 8B s42 resume | 27.3/32.6 GB | 98% | 71°C | 466W |\n| 2 | CWM 8B | 30.7/32.6 GB | 82% | 67°C | 454W |\n| 3 | CLS 8B seed123 | 30.9/32.6 GB | 97% | 72°C | 574W |\n\n3 个训练进程全部存活。GPU 0 有一个未知的 python3 进程（PID 328094）。\n\n---\n\n### 1. CLS 8B seed123 v3（PID 266444 → 266449, cuda:3）\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **6092 / 6633（91.8%）** |\n| 最近 eval_loss（step 6000） | **0.3525**，epoch 2.71 |\n| 最近 train_loss（step 6050） | **0.2067** |\n| 速度 | ~8.2 s/step |\n| 预估完成 | **~May 15 13:40 UTC**（约 75 分钟） |\n| 异常 | 无 |\n\nCheckpoints：`checkpoint-200, checkpoint-5400, checkpoint-5600, checkpoint-5800, checkpoint-6000`\n\n---\n\n### 2. CWM 8B（PID 266816, cuda:2）\n\n日志实际路径：`repo-level-cwm-8b-conda-v2.log`（非 v4）\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **3225 / 6633（48.6%）** |\n| 最近 eval_loss（step 3200） | **0.4462**，epoch 1.4 |\n| 速度 | ~12 s/step |\n| 预估完成 | **~May 16 00:00 UTC**（约 11.5 小时，含 eval 暂停） |\n| 异常 | 无 |\n\nCheckpoints：`checkpoint-400, checkpoint-2900, checkpoint-3000, checkpoint-3100, checkpoint-3200`\n\n---\n\n### 3. CLS 8B s42 resume（PID 295794, cuda:1）\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **2557 / 6633（38.6%）** |\n| 最近 eval_loss（step 2400） | **0.3444**，epoch 1.09 |\n| 最近 train_loss（step 2550） | **0.2881** |\n| 速度 | ~8.2 s/step |\n| 预估完成 | **~May 15 21:45 UTC**（约 9.3 小时，含 eval 暂停） |\n| 异常 | 无 |\n\n---\n\n### 关键发现\n\n- **seed123 将在约 75 分钟内完成**（比之前预估的 14:25 UTC 提前约 45 分钟）\n- CWM 的 eval_loss（0.446）明显高于两个 CLS 实验（0.35 / 0.34），CWM 任务本身更难\n- GPU 0 有一个未在监控列表中的进程（PID 328094），占 17.2 GB 显存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-status-check.md"
+}

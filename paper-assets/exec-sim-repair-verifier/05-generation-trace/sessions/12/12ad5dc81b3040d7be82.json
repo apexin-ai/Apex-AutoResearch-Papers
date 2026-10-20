@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ad5dc81b3040d7be82",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cwm8b eval progress",
+  "task_key": "worker_check_cwm8b-eval-progress_20260516T042708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cwm8b-eval-progress_20260516T042708_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "4f3de143b99602cb912b8ee4e308d6bed9a2a79772bd2a4683f36fcaaaa145df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM 8B Eval 进度汇总\n\n| Shard | PID | GPU | 状态 | 已完成/总数 | 进度 | 预计剩余 |\n|-------|-----|-----|------|-------------|------|----------|\n| **v3** (全量) | 443221 | cuda:3 | 运行中 | 7176 / 9784 | 73.3% | ~5h |\n| **shard2** | 448100 | cuda:1 | 运行中 | 1568 / 2104 | 74.5% | ~1h |\n| **shard3** | 453335 | cuda:0 | 运行中 | 928 / 1480 | 62.7% | ~1h |\n| **shard4** | — | cuda:2 | **已完成** | 688 / 684 | 100% | — |\n\n### GPU 利用率\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 21133 / 32607 MiB | 88% |\n| 1 | 21133 / 32607 MiB | 84% |\n| 2 | 0 / 32607 MiB | **0% (空闲)** |\n| 3 | 21133 / 32607 MiB | 83% |\n\n### 关键信息\n- **shard4 已完成**，进程已退出，GPU 2 空闲可复用\n- **v3** 的 running_acc = 64.4%（12:27 时刻），output_dir = `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/`\n- **v3 与 shard2/3/4 有大量重叠**：v3 跑全量 0-9784，shard2 跑 7680-9784，shard3 跑 6200-7680，shard4 跑 9100-9783。shard2/3/4 先跑完的部分可以直接用，v3 作为完整备份\n- shard2 的 bash 包装进程 CPU=0%，但实际 python 子进程 (pid 448100) 在 100% CPU 正常运行\n- 无 OOM 或异常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cwm8b-eval-progress.md"
+}

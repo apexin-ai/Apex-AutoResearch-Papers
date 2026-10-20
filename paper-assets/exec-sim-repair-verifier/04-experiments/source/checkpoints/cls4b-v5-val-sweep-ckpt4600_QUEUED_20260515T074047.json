@@ -1,0 +1,30 @@
+{
+  "exp_id": "cls4b-v5-val-sweep-ckpt4600",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:50:50.548Z",
+    "updated_at": "2026-05-15T07:40:47.601Z",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4600_val5120\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3221945",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4600.log",
+      "submitted_at": "2026-05-15T04:42:23.647Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "hypothesis": "4B v5 val sweep 最后一个数据点: ckpt-4600 val@5120。确认 val-best 是否在 ckpt-4400(89.96%) 之后继续改善。",
+    "parent": "cls4b-v5-train",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T07:40:47.904315+00:00",
+  "trigger": "update_registry"
+}

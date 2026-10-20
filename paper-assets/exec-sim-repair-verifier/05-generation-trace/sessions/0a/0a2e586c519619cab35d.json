@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a2e586c519619cab35d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval script fix d008",
+  "task_key": "worker_code_eval-script-fix-d008_20260513T000154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-script-fix-d008_20260513T000154_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "39ecf80d5c9b2a16fad41e64e88c448f23dcf9237d82561c3dda78464f37e9f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 files are byte-for-byte identical between both servers:\n\n| File | MD5 | Lines | Bytes |\n|------|-----|-------|-------|\n| `eval_repo_cls.py` | `5748c837cd2a8a2d83ab4d90b50f622f` | 307 | 11551 |\n| `eval_repo_cwm.py` | `4fc9808182f003ac2d7a5e23bcbf7e57` | 339 | 13163 |\n| `paired_bootstrap_repo.py` | `d9073b9399fe471c5abfaece2a438227` | 229 | 9052 |\n\nAll 3 fixes complete:\n- **Fix #1**: `max_seq_length` default changed from 4096 to 2048 in both `eval_repo_cls.py` and `eval_repo_cwm.py`\n- **Fix #2**: Truncation tracking breakdown added to `eval_repo_cwm.py` summary JSON (`truncated_count`, `truncated_pct`, `truncated_accuracy`, `non_truncated_accuracy`)\n- **Fix #3**: All 3 scripts synced to seetacloud-westd-4x5090 — MD5 hashes match, syntax verified"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-script-fix-d008.md"
+}

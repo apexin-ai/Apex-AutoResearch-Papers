@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "093503587e16cebb33af",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d049 cls 8b dryrun",
+  "task_key": "worker_ssh_d049-cls-8b-dryrun_20260513T094824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-cls-8b-dryrun_20260513T094824_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "6f2852b1c89aa79e4c3afdc26217e8ca2d67a628a75a498f733dbc8f41c233bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **8B 脚本** | 已在 westd-48478，无需同步（11418 bytes, 2026-05-13 17:01） |\n| **Qwen3-8B 模型** | 已缓存 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`（完整 5 shards） |\n| **Dry-run 5 steps** | 通过，无报错 |\n| **cuda:3** | 已释放，0 MiB / 32607 MiB |\n\n### 训练指标\n\n| Step | Loss | Grad Norm | LR |\n|------|------|-----------|-----|\n| 1 | 195.8 | 442.4 | 0 (warmup) |\n| 2 | 368.5 | 891.0 | 5e-5 |\n| 3 | 249.6 | 602.9 | 3.75e-5 |\n| 4 | 299.3 | 800.8 | 2.5e-5 |\n| 5 | 241.6 | 722.3 | 1.25e-5 |\n\n- **平均 loss**: 271.0，**速度**: 9.27s/it (3.45 samples/s)\n- **GPU 显存峰值**: 25741 MiB / 32607 MiB (79%)\n- **LoRA**: 15.3M trainable / 8.2B total (0.19%)\n- **Attention**: SDPA（flash-attn 未安装）\n- **数据**: train=70748 (3.8% 截断), val=9335 (20.2% 截断)\n\n### 注意事项\n1. **需要离线模式**：服务器网络不通 HuggingFace，必须用 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` + 本地路径\n2. **val 截断率 20.2%** 偏高，可考虑增大 `max_seq_length`（当前 2048）\n3. **loss 偏大**（~200-370）——这是 weighted CE + 累积 grad_accumulation=32 的效果，正常\n\n### 推荐启动命令\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nnohup bash -c 'export HF_HUB_OFFLINE=1; export TRANSFORMERS_OFFLINE=1; \\\nCUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier_8b.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/ \\\n  --seed 42' \\\n> /tmp/cls_8b_train.log 2>&1 & echo $!\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d049-cls-8b-dryrun.md"
+}

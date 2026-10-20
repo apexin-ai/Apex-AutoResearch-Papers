@@ -1,0 +1,17 @@
+{
+  "exp_id": "matched-seed-8b-predictions",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:21:33.762Z",
+    "updated_at": "2026-05-12T17:38:58.989Z",
+    "hypothesis": "在 home 服务器生成 matched-seed per-instance predictions（8B CWM eval JSONs 或 4B 补充分析），为 error overlap / oracle 分析提供数据",
+    "notes": "4B CWM per-instance predictions 已生成: seed0 (87.57%), seed42 (已有), seed456 (86.98%). 缺失: CWM seed123/789 (checkpoints only on seetacloud). 8B CLS seed456 checkpoint 在 home 但 GPU 被 repo-level-cls-home 训练占用(PID 2840848, 19GB VRAM). 8B CLS seed42/123 和所有 8B CWM checkpoints 不在 home. CLS JSONL predictions (all 5 seeds) 和 TRAJ predictions (all 5 seeds) 已存在.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T17:38:59.233265+00:00",
+  "trigger": "update_registry"
+}

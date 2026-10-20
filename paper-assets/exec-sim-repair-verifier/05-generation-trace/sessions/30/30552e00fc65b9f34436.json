@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30552e00fc65b9f34436",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval collect cls func s123 results",
+  "task_key": "worker_eval_collect-cls-func-s123-results_20260516T111459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-cls-func-s123-results_20260516T111459_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "35fc7ebb33cbd1e8c25138d9cda0834c15bbee49ef958bb5cbb2e5f7969e4508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DeepSeek CLS func seed123 Eval 结果\n\n| Metric | seed123 | seed42 | Δ |\n|--------|---------|--------|---|\n| Accuracy | **86.77%** | 86.93% | -0.16pp |\n| F1 macro | **86.77%** | 86.92% | -0.15pp |\n| Precision (fail) | 85.0% | 86.4% | -1.4pp |\n| Precision (pass) | 88.6% | 87.4% | +1.2pp |\n| Recall (fail) | 88.2% | 86.5% | +1.7pp |\n| Recall (pass) | 85.5% | 87.3% | -1.8pp |\n\n两个 seed 的 accuracy/F1 差异 <0.2pp，性能高度一致。seed123 偏向预测 fail（recall_fail 高、recall_pass 低），seed42 更均衡。Unparseable = 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-cls-func-s123-results.md"
+}

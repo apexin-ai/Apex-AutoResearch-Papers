@@ -1,0 +1,10 @@
+See server: /root/autodl-tmp/eval_results/cls8b_block_correlation.json
+
+8B CLS Block Correlation Results (ckpt-3600 val-best):
+- Samples: 9784, Problems: 25 (SWE-bench instances)
+- Overall accuracy: 84.48%, error rate: 0.1552
+- ICC: 0.3146 (p=0.0000, 5000 permutations)
+- Design Effect: 114.41 (avg cluster k0=361.42)
+- Error rate std: 0.2195 (vs 0.0183 expected under i.i.d.)
+- 10/25 problems all-correct (vs ~0 expected under i.i.d.)
+- Strong block correlation confirmed

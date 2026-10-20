@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0859a7b8d58b8669d385",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train s42 8b resume immediate",
+  "task_key": "worker_train_s42-8b-resume-immediate_20260514T204620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s42-8b-resume-immediate_20260514T204620_result.json",
+    "occurrence": 1,
+    "bytes": 153,
+    "sha256": "8a9ffd8242030cc905b4bd3066469f34a7da54a2a0baf6ed2ee509a049cf64c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 当前被占用（PID 281646，13620MiB）。已设定 3 分钟后再次检查，会持续轮询直到空闲后立即提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s42-8b-resume-immediate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bea95c872c7d67dcc85",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check ds s123 e3 eval done",
+  "task_key": "worker_check_ds-s123-e3-eval-done_20260522T114754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ds-s123-e3-eval-done_20260522T114754_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "784bb93a09793cb10605e05c871e23ba5dcc3dc5d3c2ae3e22b56a48caa771ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**deepseek-cwm-repo-s123-e3-eval → DONE (success)**\n\n| Seed | Accuracy | F1 macro | F1 fail | Unparseable |\n|------|----------|----------|---------|-------------|\n| s42 | 61.49% | — | — | — |\n| **s123** | **57.31%** | **51.79%** | **35.49%** | **51.39%** |\n| s456 | ~56% | — | — | — |\n\n- checkpoint: `checkpoint-12627`，日志和结果 JSON 均完整，进程正常退出\n- 57.31% 在预期 56-62% 范围内，三 seed 均一致低于 majority baseline（72.96%），CWM repo-level 表现符合预期\n- Registry 已更新（status=DONE, conclusion=success, metrics 已写入）\n- 无活跃 cron 需要删除（已在之前 session 清理）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ds-s123-e3-eval-done.md"
+}

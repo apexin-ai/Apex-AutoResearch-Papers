@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11acffe234a04f5cfb7e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra post restart status",
+  "task_key": "worker_infra_post-restart-status_20260518T125845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_post-restart-status_20260518T125845_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "d3dab6165cbe645a0ae118e627e490b6a13c7caa5d6d7a954d50ab15a6458d89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 任务 | 进度 | running_acc | 利用率 | 显存 |\n|-----|------|------|-------------|--------|------|\n| 0 | CLS v5 retrain | **3633/6315** (57%) | eval_loss=0.0886 (epoch 1 刚完成) | 99% | 24861 MiB |\n| 1 | CWM s42 epoch 3 eval | **5963/9784** (61%) | 56.4% | 50% | 17699 MiB |\n| 2 | CWM s42 epoch 2 eval (D124) | **2798/9784** (29%) | 66.9% | 57% | 17851 MiB |\n| 3 | CWM s123 eval | **5562/9784** (57%) | 61.3% | 49% | 17699 MiB |\n\n四张卡全在跑，GPU 0 的 CLS v5 训练刚过 epoch 1 eval checkpoint（eval_loss 0.0886），正在继续 epoch 2。三个 CWM eval 任务正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-restart-status.md"
+}

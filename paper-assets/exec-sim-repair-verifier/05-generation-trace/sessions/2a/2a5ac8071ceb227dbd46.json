@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5ac8071ceb227dbd46",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deepseek cwm eval results",
+  "task_key": "worker_ssh_deepseek-cwm-eval-results_20260520T011720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek-cwm-eval-results_20260520T011720_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "ae848569c739a3feeda1214cc197dc62b909a66128c4408defbe2177a3132d23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DeepSeek CWM s42 e3 seq4096 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **N** | 83 |\n| **Accuracy** | 54/83 = **65.06%** |\n| **Unparseable rate** | 52/83 = **62.65%** |\n| **Truncated** | 0/83 = 0% |\n| **Parseable-only acc** | 12/31 = **38.71%** |\n\n### Confusion Matrix\n\n|  | Pred=1 | Pred=0 |\n|--|--------|--------|\n| **Label=1** | TP=52 | FN=15 |\n| **Label=0** | FP=14 | TN=2 |\n\n- **Precision**: 0.7879\n- **Recall**: 0.7761\n- **F1**: 0.7820\n- Label分布: pos=67, neg=16 (极度不均衡)\n- Pred分布: pos=66, neg=17\n\n### Unparseable 分析\n\n52条 unparseable 样本**全部被默认判为 pred=1**（pass），其中42条 label=1 → 正确率 80.77%。这意味着高 accuracy 主要来自 unparseable 默认 pass + 正样本占比高（67/83=80.7%），而非模型真正的判别能力。\n\n### 可解析样本的真实表现\n\n31条可解析样本 accuracy 仅 **38.71%**，比随机猜还差。模型在能解析的情况下判别能力极弱。\n\n### Gen Length\n\nmean=1706 chars, median=1727, min=1241, max=2624, stdev=277\n\n### GPU 状态\n\n| GPU | Util | Memory |\n|-----|------|--------|\n| 0 | 99% | 21253/32607 MiB (占用中) |\n| **1** | 100% | **0 MiB** (已释放，util=100%可能是瞬时读数) |\n| **2** | 0% | **0 MiB** (已释放) |\n| 3 | 95% | 31259/32607 MiB (占用中) |\n\n**结论**: 这个 checkpoint 效果很差。unparseable rate 62.65% 说明模型大量生成无法解析的输出；可解析部分 accuracy 38.71% 低于 baseline。高整体 accuracy 是 unparseable→默认pass + 正样本占比 80.7% 的假象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-cwm-eval-results.md"
+}

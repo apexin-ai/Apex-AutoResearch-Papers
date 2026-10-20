@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cd5a15e830caaa127ff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code rank32 eval script",
+  "task_key": "worker_code_rank32-eval-script_20260515T132749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rank32-eval-script_20260515T132749_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "4d89de7b03112342245bfd571ca7554fc990f5dc0e72a141eedda5c61cf18bd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。eval 命令已写入 `artifacts/cwm_rank32_eval_command.sh` 并注册。\n\n关键信息：\n- **eval 脚本**: `eval_cwm_baseline.py`，读取 `data/cwm_test.jsonl`（1890 samples，function-level）\n- **参数与 baseline 一致**: `batch_size=16, max_seq_length=2048, max_new_tokens=64, --save_predictions`\n- **checkpoint**: `checkpoints_cwm_rank32/best`（训练完成后自动生成，备选 `checkpoint-1434`）\n- **输出**: `eval_results/cwm_rank32_eval/eval_cwm_rank32_results.json`\n- **GPU**: `CUDA_VISIBLE_DEVICES=0`（训练完成释放后可用）\n- eval 脚本无 `--device` 参数，用 `model.cuda()` 硬编码，需通过 `CUDA_VISIBLE_DEVICES` 控制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rank32-eval-script.md"
+}

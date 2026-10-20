@@ -1,0 +1,31 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:43:44.996Z",
+    "updated_at": "2026-05-16T00:46:20.962Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B + LoRA ckpt-400",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400",
+      "eval_data": "test split (n=9784)",
+      "parent": "cwm8b-ckpt400-test-eval",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v2.log"
+    },
+    "hypothesis": "CWM 8B ckpt-400 test eval resume (v1 在 1544/9784 被 SIGKILL, 实际已完成 5280)",
+    "conclusion": "killed",
+    "failure_reason": "Killed to switch bs=1 → bs=8 per Director D102 (3-5x speedup)",
+    "completed_at": "2026-05-16T00:46:20.962Z"
+  },
+  "timestamp": "2026-05-16T00:46:21.239027+00:00",
+  "trigger": "update_registry"
+}

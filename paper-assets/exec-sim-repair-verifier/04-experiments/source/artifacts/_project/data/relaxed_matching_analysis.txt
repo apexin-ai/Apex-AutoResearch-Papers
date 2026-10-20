@@ -1,0 +1,12 @@
+See /home/sonny/exec-sim-repair-verifier/relaxed_matching_analysis.json on westd server.
+
+SUMMARY TABLE:
+Method          | Parse%  | Acc(parsed) | Overall  | Upper Bound
+strict          | 46.3%   | 42.88%      | 58.04%   | 59.04%
+normalized      | 69.6%   | 54.16%      | 59.61%   | 59.87%
+enhanced        | 77.2%   | 60.79%      | 62.34%   | 63.57%
+Majority base   | 100%    | 72.96%      | 72.96%   | -
+CLS 4B          | 100%    | 83.63%      | 83.63%   | -
+CLS 8B          | 100%    | 83.52%      | 83.52%   | -
+
+CONCLUSION: Even with aggressive relaxed matching, CWM (62.34%) is 21.3pp below CLS (83.63%) and still below majority baseline (72.96%). Strict matching is NOT the cause.

@@ -1,0 +1,32 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123-train-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:18:41.990Z",
+    "updated_at": "2026-05-22T02:07:59.843Z",
+    "hypothesis": "DeepSeek CWM repo-level s123 恢复训练 v3：从 v2 的 checkpoint-4209（epoch 1）恢复，跑完剩余 2 epochs。v2 被 ssh_execute timeout (EXIT_CODE=124) 在 step 4423 杀死。使用 --train_file swebench_full/swebench_train.jsonl，与 s42 对齐。",
+    "parent": "deepseek-cwm-repo-s123-train-v2",
+    "spec": {
+      "command": "python train_unified.py --task cwm --resume_from_checkpoint checkpoint-4209 --seed 123 --epochs 3 --run_name deepseek-cwm-repo-s123-v2-resume --train_file swebench_full/swebench_train.jsonl",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "GPU 2 (RTX 5090 32GB)",
+      "pid": 28200,
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "resumed_from": "checkpoint-4209 (epoch 1)",
+      "checkpoint_source": "checkpoint-4209 from v2 (killed by timeout)",
+      "eval_data": "N/A (training, not eval)",
+      "auto_started_by": "watch_s123_eval_then_resume.sh (PID 817) at ~04:24 UTC"
+    },
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T02:08:00.472130+00:00",
+  "trigger": "update_registry"
+}

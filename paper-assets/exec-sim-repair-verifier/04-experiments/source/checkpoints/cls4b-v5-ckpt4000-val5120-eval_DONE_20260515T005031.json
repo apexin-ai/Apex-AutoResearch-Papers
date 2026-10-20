@@ -1,0 +1,48 @@
+{
+  "exp_id": "cls4b-v5-ckpt4000-val5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:43:18.289Z",
+    "updated_at": "2026-05-15T00:50:30.858Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split val --max_new_tokens 512 --max_seq_length 5120 --batch_size 16 --device cuda:0",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3186818",
+      "account": "sonny",
+      "data_path": "val split",
+      "data_count": 9335,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints_repo_cls_v5/checkpoint-4000",
+      "eval_data": "val@5120 9335 samples",
+      "checkpoint_path": "checkpoints_repo_cls_v5/checkpoint-4000",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-val5120-eval.log"
+    },
+    "hypothesis": "4B v5 ckpt-4000 val@5120 eval (supplementary data, D088)",
+    "parent": "repo-level-cls-v5",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 89.84,
+      "f1_macro": 84.25,
+      "f1_fail": 74.85,
+      "f1_pass": 93.64,
+      "precision_fail": 92.95,
+      "recall_fail": 62.66,
+      "precision_pass": 89.24,
+      "recall_pass": 98.49,
+      "unparseable": 0,
+      "truncated": 234,
+      "total": 9335
+    },
+    "completed_at": "2026-05-15T00:50:30.859Z"
+  },
+  "timestamp": "2026-05-15T00:50:31.072851+00:00",
+  "trigger": "update_registry"
+}

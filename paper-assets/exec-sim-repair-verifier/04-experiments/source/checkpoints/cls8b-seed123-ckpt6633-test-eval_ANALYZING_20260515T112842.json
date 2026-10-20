@@ -1,0 +1,63 @@
+{
+  "exp_id": "cls8b-seed123-ckpt6633-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:00:01.048Z",
+    "updated_at": "2026-05-15T11:28:42.269Z",
+    "spec": {
+      "command": "eval_repo_cls.py --checkpoint_dir ckpt-6633 --max_seq_length 8192 --split test",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "360877",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log",
+      "submitted_at": "2026-05-15T11:00:00.305Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633",
+      "eval_data": "test@full(n=9784)"
+    },
+    "hypothesis": "seed123 test curve 补点: ckpt-6633 (final) test@full(n=9784)。Supplementary val+test 双线图。",
+    "reproduce": {
+      "finished_at": "2026-05-15T11:26:49.701Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T11:26:54.350756+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 84.89,
+      "f1_macro": 77.56,
+      "f1_fail": 64.7,
+      "f1_pass": 90.4,
+      "precision_fail": 87.8,
+      "recall_fail": 51.2,
+      "precision_pass": 84.3,
+      "recall_pass": 97.4,
+      "majority_baseline": 73,
+      "gap_vs_majority_pp": 11.9,
+      "total_samples": 9784,
+      "unparseable_count": 0
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/eval_test_full/",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6633-test-eval.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T11:28:42.710195+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1158 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb0a44ab4446b780ee2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis experiment summary table",
+  "task_key": "worker_analysis_experiment-summary-table_20260514T003543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_experiment-summary-table_20260514T003543.jsonl",
+    "occurrence": 1,
+    "bytes": 101349,
+    "sha256": "9272e2fe62b1ce81b643125641964a827be4f159cbeabf9e11bbc3f7072f0655"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T00:42:59.675567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T00:42:59.676014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T00:42:59.676220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T00:42:59.676873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (103,670 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T00:42:59.677115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Parse registry and extract success experiments",
+              "prompt": "You have a large JSON file at:\n/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\n\nThe file has schema: {result: string} where `result` is a JSON string that needs to be parsed.\n\nYour task:\n1. First probe the structure with jq (type/length/keys)\n2. Parse the nested JSON string in \"result\" \n3. Extract ALL experiments (not just success) - I need every experiment's data to build comprehensive tables\n4. For each experiment, extract these fields (use null if missing):\n   - exp_id\n   - hypothesis (first 80 chars)\n   - model_name\n   - seed\n   - formulation (cls/cwm/traj or whatever is there)\n   - level (function/repo)\n   - status\n   - conclusion\n   - accuracy\n   - f1_macro\n   - pass_f1, fail_f1\n   - pass_precision, pass_recall, fail_precision, fail_recall\n   - unparseable_pct\n   - exact_match_rate\n   - test_set_size\n   - Any other metrics fields present\n   - tags or labels if present\n   - notes if present\n\nWrite a Python script that:\n- Reads and parses the JSON file\n- Extracts all experiments into a structured format\n- Saves the output as a clean JSON file at /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json\n\nThen print a COMPLETE dump of every experiment's extracted data to stdout so I can see all of it. Do NOT summarize - print the full structured data for every single experiment. Use a format like:\n\n```\n=== EXP: exp_id ===\nconclusion: ...\nstatus: ...\nmodel: ...\nseed: ...\nformulation: ...\nlevel: ...\naccuracy: ...\nf1_macro: ...\npass_f1: ... fail_f1: ...\npass_precision: ... pass_recall: ...\nfail_precision: ... fail_recall: ...\nunparseable_pct: ...\nexact_match_rate: ...\ntest_set_size: ...\nhypothesis: ...\ntags: ...\nnotes: ...\nall_metrics: {full metrics dict}\n```\n\nPrint ALL experiments, every single one. This is critical - do not skip or summarize any."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T00:42:59.677324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results && ls -la mcp-agent-ml-research-read_registry-1778718961321.txt | awk '{print $5}'",
+              "description": "Check file size"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T00:42:59.677458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "110217"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T00:42:59.677593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\n# Top-level structure\necho \"=== TOP LEVEL TYPE ===\"\ncat \"$FILE\" | python3 -c \"import json,sys; d=json.load(sys.stdin); print(type(d), list(d.keys()) if isinstance(d,dict) else len(d))\"\necho \"=== RESULT TYPE ===\"\ncat \"$FILE\" | python3 -c \"import json,sys; d=json.load(sys.stdin); r=d.get('result',''); print(type(r), len(r) if isinstance(r,str) else 'not str')\"\necho \"=== PARSED RESULT TYPE ===\"\ncat \"$FILE\" | python3 -c \"\nimport json,sys\nd=json.load(sys.stdin)\nr=json.loads(d['result'])\nprint(type(r))\nif isinstance(r,dict):\n    print('keys:', list(r.keys())[:20])\nelif isinstance(r,list):\n    print('length:', len(r))\n\"",
+              "description": "Probe JSON structure"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T00:42:59.677721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== TOP LEVEL TYPE ===\n<class 'dict'> ['result']\n=== RESULT TYPE ===\n<class 'str'> 96847\n=== PARSED RESULT TYPE ===\n<class 'dict'>\nkeys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T00:42:59.677876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json,sys\nd=json.load(sys.stdin)\nr=json.loads(d['result'])\nprint('success:', r.get('success'))\nprint('error:', r.get('error'))\nprint('metadata:', r.get('metadata'))\ndata = r.get('data', {})\nprint('data type:', type(data))\nif isinstance(data, dict):\n    print('data keys:', list(data.keys())[:30])\n    for k in list(data.keys())[:3]:\n        print(f'  data[\\\"{k}\\\"] type:', type(data[k]))\n        if isinstance(data[k], dict):\n            print(f'    keys:', list(data[k].keys())[:20])\nelif isinstance(data, list):\n    print('data length:', len(data))\n    if data:\n        print('first item type:', type(data[0]))\n        if isinstance(data[0], dict):\n            print('first item keys:', list(data[0].keys())[:20])\n\"",
+              "description": "Explore data structure deeper"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T00:42:59.678019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "success: True\nerror: None\nmetadata: {'elapsed_seconds': 0.215}\ndata type: <class 'dict'>\ndata keys: ['experiments', 'count', 'total', 'baseline']\n  data[\"experiments\"] type: <class 'dict'>\n    keys: ['repo-level-cls-8b-conda', 'repo-level-cwm-v11', 'repo-level-cls-v5-conda', 'repo-level-cwm-seed123-conda', 'repo-level-cls-seed123-home', 'repo-level-cwm-v12', 'repo-level-cwm-seed123', 'repo-level-cls-8b', 'repo-level-cls-seed123', 'repo-level-cls-v5', 'repo-level-cwm-v10', 'repo-level-cls-v4', 'repo-level-cwm-v9', 'repo-level-cls-v3', 'repo-level-cls-v2', 'repo-level-cwm-v7', 'repo-level-cls-home', 'repo-level-cwm-v8', 'repo-level-cwm-v6', 'cwm8b-seed123']\n  data[\"count\"] type: <class 'int'>\n  data[\"total\"] type: <class 'int'>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T00:42:59.678155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json,sys\nd=json.load(sys.stdin)\nr=json.loads(d['result'])\ndata = r['data']\nexps = data['experiments']\nprint('count:', data['count'], 'total:', data['total'])\nprint('baseline:', json.dumps(data.get('baseline'), indent=2)[:500] if data.get('baseline') else 'None')\nprint()\n# Show full keys for first experiment\nfirst_key = list(exps.keys())[0]\nprint(f'=== First exp: {first_key} ===')\nprint(json.dumps(exps[first_key], indent=2)[:2000])\n\"",
+              "description": "Examine experiment structure and baseline"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T00:42:59.678298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "count: 59 total: 59\nbaseline: None\n\n=== First exp: repo-level-cls-8b-conda ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-13T22:07:02.272Z\",\n  \"updated_at\": \"2026-05-13T22:59:26.673Z\",\n  \"spec\": {\n    \"hypothesis\": \"CLS 8B conda \\u91cd\\u8bad (transformers 4.57.6)\\uff0c\\u4e0e CLS v5 (4B) \\u540c\\u73af\\u5883\\u5bf9\\u6bd4\\uff0c\\u9a8c\\u8bc1 repo-level scaling effect\\u3002\\u4e4b\\u524d 8B \\u5728 transformers 5.8.0 \\u8bad\\u7ec3\\u7ed3\\u679c\\u65e0\\u6548 (71.37%)\\u3002\",\n    \"server\": \"westd-48478\",\n    \"gpu\": \"cuda:3\",\n    \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda\",\n    \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\",\n    \"data_count\": 70748,\n    \"model_name\": \"Qwen/Qwen3-8B\",\n    \"seed\": 42,\n    \"learning_rate\": 5e-05,\n    \"weight_decay\": 0.01,\n    \"warmup_ratio\": 0.05,\n    \"save_steps\": 200,\n    \"eval_steps\": 200,\n    \"save_total_limit\": 5,\n    \"num_train_epochs\": 3,\n    \"lora_rank\": 16,\n    \"lora_alpha\": 32,\n    \"batch_size\": 1,\n    \"grad_accumulation\": 32,\n    \"max_seq_length\": 2048,\n    \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/\",\n    \"log_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log\",\n    \"env\": \"conda base, transformers 4.57.6\",\n    \"pid\": 185438,\n    \"account\": \"root\",\n    \"total_steps\": 6633,\n    \"speed\": \"~8.3s/step\",\n    \"estimated_hours\": 15.3,\n    \"gpu_mem_used\": \"25751/32607 MiB\",\n    \"tmux_session\": \"cls8b-conda\"\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T00:42:59.678447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json,sys\nd=json.load(sys.stdin)\nr=json.loads(d['result'])\nexps = r['data']['experiments']\n# Show all experiment keys and their status\nfor k,v in exps.items():\n    print(f'{k}: status={v.get(\\\"status\\\")}, has_result={\\\"result\\\" in v}')\n\"",
+              "description": "List all experiments with status"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T00:42:59.678581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "repo-level-cls-8b-conda: status=RUNNING, has_result=False\nrepo-level-cwm-v11: status=DONE, has_result=False\nrepo-level-cls-v5-conda: status=RUNNING, has_result=False\nrepo-level-cwm-seed123-conda: status=RUNNING, has_result=False\nrepo-level-cls-seed123-home: status=RUNNING, has_result=False\nrepo-level-cwm-v12: status=RUNNING, has_result=False\nrepo-level-cwm-seed123: status=DONE, has_result=False\nrepo-level-cls-8b: status=DONE, has_result=False\nrepo-level-cls-seed123: status=DONE, has_result=False\nrepo-level-cls-v5: status=DONE, has_result=False\nrepo-level-cwm-v10: status=DONE, has_result=False\nrepo-level-cls-v4: status=DONE, has_result=False\nrepo-level-cwm-v9: status=DONE, has_result=False\nrepo-level-cls-v3: status=DONE, has_result=False\nrepo-level-cls-v2: status=DONE, has_result=False\nrepo-level-cwm-v7: status=DONE, has_result=False\nrepo-level-cls-home: status=DONE, has_result=False\nrepo-level-cwm-v8: status=DONE, has_result=False\nrepo-level-cwm-v6: status=DONE, has_result=False\ncwm8b-seed123: status=DONE, has_result=False\ncls8b-seed123: status=DONE, has_result=False\ncls8b-eval-seed123: status=DONE, has_result=False\ncls8b-eval-seed42: status=DONE, has_result=False\nrepo-level-cwm-v4: status=DONE, has_result=False\nrepo-level-cwm-v2: status=DONE, has_result=False\nrepo-level-cwm-v5: status=DONE, has_result=False\nmatched-seed-8b-predictions: status=DONE, has_result=False\nrepo-level-cwm-v3: status=DONE, has_result=False\ncwm-seed789: status=DONE, has_result=False\ncls8b-seed456: status=DONE, has_result=False\ncwm8b-seed456: status=DONE, has_result=False\n5-paired-clustered-bootstrap: status=DONE, has_result=False\nrepo-level-cwm: status=DONE, has_result=False\nrepo-level-cls: status=DONE, has_result=False\ncwm-seed0: status=DONE, has_result=False\nper-test-precision-recall: status=DONE, has_result=False\ncwm-seed123: status=DONE, has_result=False\ncwm-seed456: status=DONE, has_result=False\ncls-seed0: status=DONE, has_result=False\ncls-seed789: status=DONE, has_result=False\ntraj-leve\n…[truncated 948 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T00:42:59.678729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json,sys\nd=json.load(sys.stdin)\nr=json.loads(d['result'])\nexps = r['data']['experiments']\n# Show a few DONE experiments fully to understand structure\nfor k in ['repo-level-cls', 'repo-level-cwm', 'cls-seed0', 'traj-level-finetuned', 'llm-judge-32b-zeroshot', 'mvp-a-oracle-sim']:\n    if k in exps:\n        print(f'=== {k} ===')\n        print(json.dumps(exps[k], indent=2)[:3000])\n        print()\n\" 2>&1 | head -300",
+              "description": "Examine DONE experiments to see metrics fields"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T00:42:59.678965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== repo-level-cls ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-12T11:07:29.362Z\",\n  \"updated_at\": \"2026-05-12T14:12:05.932Z\",\n  \"hypothesis\": \"Repo-level (SWE-bench) classification verifier \\u2014 \\u9a8c\\u8bc1 per-test classification \\u4ece\\u51fd\\u6570\\u7ea7 (HumanEval/MBPP) \\u6269\\u5c55\\u5230 repo-level \\u7684\\u6cdb\\u5316\\u80fd\\u529b\\uff0c\\u4f7f\\u7528 max_seq_length=4096 \\u548c class weighting \\u5904\\u7406 85/15 \\u4e0d\\u5e73\\u8861\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-12T11:24:07.920Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=1 (generic error \\u2014 check log tail)\",\n  \"completed_at\": \"2026-05-12T11:24:09.838Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-12T11:24:11.030736+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\",\n      \"notes\": \"\\u5931\\u8d25\\u539f\\u56e0: KeyError: 'sample_weight' \\u2014 train_repo_verifier.py:124 compute_loss \\u5c1d\\u8bd5 inputs.pop(\\\"sample_weight\\\") \\u4f46 Dataset/Collator \\u672a\\u63d0\\u4f9b\\u8be5\\u5b57\\u6bb5\\u3002\\u4ee3\\u7801 bug\\uff0c\\u975e infra/resource \\u95ee\\u9898\\u3002\\u4e0e repo-level-cwm \\u540c\\u4e00 root cause\\u3002\\u4fee\\u590d\\uff1aDataset.__getitem__ \\u9700\\u8981\\u8fd4\\u56de sample_weight \\u5b57\\u6bb5\\uff0c\\u6216 Collator \\u9700\\u8981\\u4f20\\u9012\\u8be5\\u5b57\\u6bb5\\u3002\"\n    }\n  },\n  \"notes\": \"\\u5931\\u8d25\\u539f\\u56e0: KeyError: 'sample_weight' \\u2014 train_repo_verifier.py:124 compute_loss \\u5c1d\\u8bd5 inputs.pop(\\\"sample_weight\\\") \\u4f46 Dataset/Collator \\u672a\\u63d0\\u4f9b\\u8be5\\u5b57\\u6bb5\\u3002\\u4ee3\\u7801 bug\\uff0c\\u975e infra/resource \\u95ee\\u9898\\u3002\\u4e0e repo-level-cwm \\u540c\\u4e00 root cause\\u3002\\u4fee\\u590d\\uff1aDataset.__getitem__ \\u9700\\u8981\\u8fd4\\u56de sample_weight \\u5b57\\u6bb5\\uff0c\\u6216 Collator \\u9700\\u8981\\u4f20\\u9012\\u8be5\\u5b57\\u6bb5\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME\n…[truncated 12894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T00:42:59.679130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/",
+              "description": "Check artifacts directory exists"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T00:42:59.679304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n_project\nanalysis_5paired_bootstrap.py\nblock-corr-empirical\nblock_correlation_analysis.py\ncwm8b_seed123_analysis.txt\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndream_reports\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\nextract_predictions_generic.py\nfigures\nmanifest.yaml\nmvp-a-oracle-sim\nmvp-b-data-prep\noracle-f2p-stratified\np2p-regression-rate\npaper_materials.md\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\ntraining_progress_20260512.md\nval_truncation_label_bias_analysis.md\nwestd_48478_readiness.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T00:42:59.679476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/parse_all_experiments.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Parse all experiments from registry JSON and output structured data.\"\"\"\n\nimport json\nimport sys\n\nINPUT_FILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/mcp-agent-ml-research-read_registry-1778718961321.txt\"\nOUTPUT_FILE = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json\"\n\n\ndef extract_experiment(exp_id, exp_data):\n    \"\"\"Extract all fields from one experiment into a flat dict.\"\"\"\n    spec = exp_data.get(\"spec\", {})\n    metrics = exp_data.get(\"metrics\", {})\n    extra = exp_data.get(\"extra\", {})\n\n    # Determine formulation from exp_id\n    formulation = None\n    eid_lower = exp_id.lower()\n    if \"cls\" in eid_lower:\n        formulation = \"cls\"\n    elif \"cwm\" in eid_lower:\n        formulation = \"cwm\"\n    elif \"traj\" in eid_lower:\n        formulation = \"traj\"\n    elif \"judge\" in eid_lower:\n        formulation = \"llm-judge\"\n    elif \"oracle\" in eid_lower:\n        formulation = \"oracle-sim\"\n    elif \"bootstrap\" in eid_lower or \"voting\" in eid_lower or \"corr\" in eid_lower:\n        formulation = \"analysis\"\n    elif \"p2p\" in eid_lower or \"mvp\" in eid_lower:\n        formulation = \"analysis\"\n    else:\n        formulation = \"other\"\n\n    # Determine level\n    level = None\n    if \"repo-level\" in eid_lower or \"repo\" in eid_lower:\n        level = \"repo\"\n    elif \"traj\" in eid_lower:\n        level = \"trajectory\"\n    elif any(x in eid_lower for x in [\"cls-seed\", \"cwm-seed\", \"cls8b\", \"cwm8b\", \"cwm-baseline\"]):\n        level = \"function\"\n    elif \"judge\" in eid_lower:\n        level = \"function\"\n    else:\n        level = spec.get(\"level\", \"function\")\n\n    hypothesis = exp_data.get(\"hypothesis\", spec.get(\"hypothesis\", \"\"))\n\n    result = {\n        \"exp_id\": exp_id,\n        \"status\": exp_data.get(\"status\"),\n        \"conclusion\": exp_data.get(\"conclusion\"),\n        \"hypothesis\": hypothesis,\n        \"hypothesis_short\": (hypothesis[:80] + \"...\") if len(hypothesis) > 80 else hypothesis,\n        \"model_name\": spec.get(\"model_name\"),\n        \"seed\": spec.get(\"seed\"),\n        \"formulation\": formulation,\n        \"level\": level,\n        # Core metrics\n        \"accuracy\": metrics.get(\"accuracy\") or metrics.get(\"overall_accuracy\"),\n        \"f1_macro\": metrics.get(\"f1_macro\"),\n        \"pass_f1\": metrics.get(\"pass_f1\"),\n        \"fail_f1\": metrics.get(\"fail_f1\"),\n        \"pass_precision\": metrics.get(\"pass_precision\"),\n        \"pass_recall\": metrics.get(\"pass_recall\"),\n        \"fail_precision\": metrics.get(\"fail_precision\"),\n        \"fail_recall\": metrics.get(\"fail_recall\"),\n        \"unparseable_pct\": metrics.get(\"unparseable\") if metrics.get(\"unparseable\") is not None else metrics.get(\"unparseable_predictions\") if metrics.get(\"unparseable_predictions\") is not None else metrics.get(\"unparseable_pct\"),\n        \"exact_match_rate\": metrics.get(\"exact_match_rate\"),\n        \"test_set_size\": spec.get(\"data_count\"),\n        # Additional metrics\n        \"train_loss\": metrics.get(\"train_loss\"),\n        \"eval_loss\": metrics.get(\"eval_loss\"),\n        \"train_runtime_sec\": metrics.get(\"train_runtime_sec\"),\n        \"majority_baseline\": metrics.get(\"majority_baseline\"),\n        \"accuracy_vs_baseline_gap\": metrics.get(\"accuracy_vs_baseline_gap\"),\n        \"trajectory_accuracy\": metrics.get(\"trajectory_accuracy\"),\n        \"unresolved_f1\": metrics.get(\"unresolved_f1\"),\n        \"resolved_f1\": metrics.get(\"resolved_f1\"),\n        \"per_test_consistency\": metrics.get(\"per_test_consistency\"),\n        # All raw metrics\n        \"all_metrics\": metrics if metrics else None,\n        # Spec details\n        \"server\": spec.get(\"server\"),\n        \"gpu\": spec.get(\"gpu\"),\n        \"checkpoint_path\": spec.get(\"checkpoint_path\"),\n        \"data_path\": spec.get(\"data_path\"),\n        \"learning_rate\": spec.get(\"learning_rate\") or spec.get(\"lr\"),\n        \"batch_size\": spec.get(\"batch_size\"),\n        \"grad_accumulation\": spec.get(\"grad_accumulation\"),\n        \"max_seq_length\": spec.get(\"max_seq_length\"),\n        \"num_train_epochs\": spec.get(\"num_train_epochs\") or spec.get(\"epochs\"),\n        \"lora_rank\": spec.get(\"lora_rank\"),\n        \"lora_alpha\": spec.get(\"lora_alpha\"),\n        \"wall_clock_seconds\": spec.get(\"wall_clock_seconds\"),\n        \"gpu_hours\": spec.get(\"gpu_hours\"),\n        \"hyperparams\": spec.get(\"hyperparams\"),\n        # Metadata\n        \"tags\": exp_data.get(\"tags\"),\n        \"notes\": exp_data.get(\"notes\"),\n        \"failure_reason\": exp_data.get(\"failure_reason\"),\n        \"created_at\": exp_data.get(\"created_at\"),\n        \"updated_at\": exp_data.get(\"updated_at\"),\n        \"completed_at\": exp_data.get(\"completed_at\"),\n        \"retry_count\": exp_data.get(\"retry_count\"),\n        \"parent\": exp_data.get(\"parent\"),\n        \"extra\": extra if extra else None,\n    }\n    return result\n\n\ndef main():\n    with open(INPUT_FILE, \"r\") as f:\n        raw = json.load(f)\n\n    inner = json.loads(raw[\"result\"])\n    experiments_dict = inner[\"data\"][\"experiments\"]\n\n    all_experiments = []\n    for exp_id, exp_data in experiments_dict.items():\n        parsed = extract_experiment(exp_id, exp_data)\n        all_experiments.append(parsed)\n\n    # Save clean JSON\n    with open(OUTPUT_FILE, \"w\") as f:\n        json.dump(all_experiments, f, indent=2, ensure_ascii=False)\n\n    print(f\"Total experiments: {len(all_experiments)}\")\n    print(f\"Saved to: {OUTPUT_FILE}\")\n    print()\n\n    # Print COMPLETE dump of every experiment\n    for exp in all_experiments:\n        print(f\"=== EXP: {exp['exp_id']} ===\")\n        print(f\"  conclusion: {exp['conclusion']}\")\n        print(f\"  status: {exp['status']}\")\n        print(f\"  model: {exp['model_name']}\")\n        print(f\"  seed: {exp['seed']}\")\n        print(f\"  formulation: {exp['formulation']}\")\n        print(f\"  level: {exp['level']}\")\n        print(f\"  accuracy: {exp['accuracy']}\")\n        print(f\"  f1_macro: {exp['f1_macro']}\")\n        print(f\"  pass_f1: {exp['pass_f1']}  fail_f1: {exp['fail_f1']}\")\n        print(f\"  pass_precision: {exp['pass_precision']}  pass_recall: {exp['pass_recall']}\")\n        print(f\"  fail_precision: {exp['fail_precision']}  fail_recall: {exp['fail_recall']}\")\n        print(f\"  unparseable_pct: {exp['unparseable_pct']}\")\n        print(f\"  exact_match_rate: {exp['exact_match_rate']}\")\n        print(f\"  test_set_size: {exp['test_set_size']}\")\n        print(f\"  train_loss: {exp['train_loss']}  eval_loss: {exp['eval_loss']}\")\n        print(f\"  majority_baseline: {exp['majority_baseline']}\")\n        print(f\"  trajectory_accuracy: {exp['trajectory_accuracy']}\")\n        print(f\"  unresolved_f1: {exp['unresolved_f1']}  resolved_f1: {exp['resolved_f1']}\")\n        print(f\"  per_test_consistency: {exp['per_test_consistency']}\")\n        print(f\"  wall_clock_sec: {exp['wall_clock_seconds']}  gpu_hours: {exp['gpu_hours']}\")\n        print(f\"  server: {exp['server']}  gpu: {exp['gpu']}\")\n        print(f\"  lr: {exp['learning_rate']}  batch: {exp['batch_size']}  grad_accum: {exp['grad_accumulation']}\")\n        print(f\"  max_seq_len: {exp['max_seq_length']}  epochs: {exp['num_train_epochs']}\")\n        print(f\"  lora_rank: {exp['lora_rank']}  lora_alpha: {exp['lora_alpha']}\")\n        print(f\"  hyperparams: {json.dumps(exp['hyperparams'], ensure_ascii=False) if exp['hyperparams'] else None}\")\n        print(f\"  hypothesis: {exp['hypothesis_short']}\")\n        print(f\"  tags: {exp['tags']}\")\n        print(f\"  notes: {exp['notes']}\")\n        print(f\"  failure_reason: {exp['failure_reason']}\")\n        print(f\"  created_at: {exp['created_at']}\")\n        print(f\"  completed_at: {exp['completed_at']}\")\n        print(f\"  retry_count: {exp['retry_count']}\")\n        print(f\"  parent: {exp['parent']}\")\n        print(f\"  all_metrics: {json.dumps(exp['all_metrics'], indent=4, ensure_ascii=False) if exp['all_metrics'] else None}\")\n        print()\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T00:42:59.679673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/parse_all_experiments.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T00:42:59.679824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts && python3 parse_all_experiments.py 2>&1",
+              "description": "Run the parser script to extract and print all experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T00:42:59.679976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (89.9KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt\n\nPreview (first 2KB):\nTotal experiments: 59\nSaved to: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json\n\n=== EXP: repo-level-cls-8b-conda ===\n  conclusion: None\n  status: RUNNING\n  model: Qwen/Qwen3-8B\n  seed: 42\n  formulation: cls\n  level: repo\n  accuracy: None\n  f1_macro: None\n  pass_f1: None  fail_f1: None\n  pass_precision: None  pass_recall: None\n  fail_precision: None  fail_recall: None\n  unparseable_pct: None\n  exact_match_rate: None\n  test_set_size: 70748\n  train_loss: None  eval_loss: None\n  majority_baseline: None\n  trajectory_accuracy: None\n  unresolved_f1: None  resolved_f1: None\n  per_test_consistency: None\n  wall_clock_sec: None  gpu_hours: None\n  server: westd-48478  gpu: cuda:3\n  lr: 5e-05  batch: 1  grad_accum: 32\n  max_seq_len: 2048  epochs: 3\n  lora_rank: 16  lora_alpha: 32\n  hyperparams: None\n  hypothesis: CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling ...\n  tags: None\n  notes: None\n  failure_reason: None\n  created_at: 2026-05-13T22:07:02.272Z\n  completed_at: None\n  retry_count: 0\n  parent: None\n  all_metrics: None\n\n=== EXP: repo-level-cwm-v11 ===\n  conclusion: killed\n  status: DONE\n  model: None\n  seed: None\n  formulation: cwm\n  level: repo\n  accuracy: 66.6\n  f1_macro: 52.99\n  pass_f1: 78.3  fail_f1: 27.7\n  pass_precision: 74.5  pass_recall: 82.5\n  fail_precision: 33.3  fail_recall: 23.7\n  unparseable_pct: 376\n  exact_match_rate: None\n  test_set_size: None\n  train_loss: None  eval_loss: None\n  majority_baseline: 73\n  trajectory_accuracy: None\n  unresolved_f1: None  resolved_f1: None\n  per_test_consistency: None\n  wall_clock_sec: None  gpu_hours: None\n  server: seetacloud-westd-4x5090  g\n…[truncated 277 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T00:42:59.680130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T00:42:59.680254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (38361 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T00:42:59.680387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "limit": "500",
+              "offset": "0"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T00:42:59.680584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tTotal experiments: 59\n1\tSaved to: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json\n2\t\n3\t=== EXP: repo-level-cls-8b-conda ===\n4\t  conclusion: None\n5\t  status: RUNNING\n6\t  model: Qwen/Qwen3-8B\n7\t  seed: 42\n8\t  formulation: cls\n9\t  level: repo\n10\t  accuracy: None\n11\t  f1_macro: None\n12\t  pass_f1: None  fail_f1: None\n13\t  pass_precision: None  pass_recall: None\n14\t  fail_precision: None  fail_recall: None\n15\t  unparseable_pct: None\n16\t  exact_match_rate: None\n17\t  test_set_size: 70748\n18\t  train_loss: None  eval_loss: None\n19\t  majority_baseline: None\n20\t  trajectory_accuracy: None\n21\t  unresolved_f1: None  resolved_f1: None\n22\t  per_test_consistency: None\n23\t  wall_clock_sec: None  gpu_hours: None\n24\t  server: westd-48478  gpu: cuda:3\n25\t  lr: 5e-05  batch: 1  grad_accum: 32\n26\t  max_seq_len: 2048  epochs: 3\n27\t  lora_rank: 16  lora_alpha: 32\n28\t  hyperparams: None\n29\t  hypothesis: CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling ...\n30\t  tags: None\n31\t  notes: None\n32\t  failure_reason: None\n33\t  created_at: 2026-05-13T22:07:02.272Z\n34\t  completed_at: None\n35\t  retry_count: 0\n36\t  parent: None\n37\t  all_metrics: None\n38\t\n39\t=== EXP: repo-level-cwm-v11 ===\n40\t  conclusion: killed\n41\t  status: DONE\n42\t  model: None\n43\t  seed: None\n44\t  formulation: cwm\n45\t  level: repo\n46\t  accuracy: 66.6\n47\t  f1_macro: 52.99\n48\t  pass_f1: 78.3  fail_f1: 27.7\n49\t  pass_precision: 74.5  pass_recall: 82.5\n50\t  fail_precision: 33.3  fail_recall: 23.7\n51\t  unparseable_pct: 376\n52\t  exact_match_rate: None\n53\t  test_set_size: None\n54\t  train_loss: None  eval_loss: None\n55\t  majority_baseline: 73\n56\t  trajectory_accuracy: None\n57\t  unresolved_f1: None  resolved_f1: None\n58\t  per_test_consistency: None\n59\t  wall_clock_sec: None  gpu_hours: None\n60\t  server: seetacloud-westd-4x5090  gpu: cuda:2\n61\t  lr: None  batch: None  grad_accum: None\n62\t  max_seq_len: None  epochs: None\n63\t  lora_rank: Non\n…[truncated 15230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T00:42:59.680744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "offset": "500",
+              "limit": "500"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T00:42:59.680969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "500\t  train_loss: None  eval_loss: None\n501\t  majority_baseline: 0.7296\n502\t  trajectory_accuracy: None\n503\t  unresolved_f1: None  resolved_f1: None\n504\t  per_test_consistency: None\n505\t  wall_clock_sec: None  gpu_hours: None\n506\t  server: home-1x5090  gpu: cuda:0\n507\t  lr: None  batch: None  grad_accum: None\n508\t  max_seq_len: None  epochs: None\n509\t  lora_rank: None  lora_alpha: None\n510\t  hyperparams: None\n511\t  hypothesis: CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200...\n512\t  tags: None\n513\t  notes: D045 early stop at step 2600/6633. Best checkpoint = step-200 (eval_loss=0.0701). Eval on checkpoint-200: accuracy=66.11% (below majority 72.96%), F1_macro=56.61%, F1_pass=76.9%, F1_fail=36.3%, 132 unparseable. Predictions: /home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval/eval_repo_cls_predictions.jsonl\n514\t  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n515\t  created_at: 2026-05-12T17:17:08.066Z\n516\t  completed_at: 2026-05-12T19:00:01.551Z\n517\t  retry_count: 1\n518\t  parent: None\n519\t  all_metrics: {\n520\t    \"accuracy\": 0.6611,\n521\t    \"f1_macro\": 0.5661,\n522\t    \"f1_pass\": 0.769,\n523\t    \"f1_fail\": 0.363,\n524\t    \"precision_pass\": 0.765,\n525\t    \"recall_pass\": 0.774,\n526\t    \"precision_fail\": 0.369,\n527\t    \"recall_fail\": 0.357,\n528\t    \"majority_baseline\": 0.7296,\n529\t    \"n_unparseable\": 132,\n530\t    \"best_checkpoint\": \"checkpoint-200\",\n531\t    \"early_stop\": \"D045\"\n532\t}\n533\t\n534\t=== EXP: repo-level-cwm-v9 ===\n535\t  conclusion: failed\n536\t  status: DONE\n537\t  model: Qwen/Qwen3-4B\n538\t  seed: 42\n539\t  formulation: cwm\n540\t  level: repo\n541\t  accuracy: None\n542\t  f1_macro: None\n543\t  pass_f1: None  fail_f1: None\n544\t  pass_precision: None  pass_recall: None\n545\t  fail_precision: None  fail_recall: None\n546\t  unparseable_pct: None\n547\t  exact_match_rate: None\n548\t  test_set_size: 70748\n549\t  train_loss: None  eval_loss: None\n550\t  majority_baseline: None\n551\t  trajectory_accuracy: None\n\n…[truncated 16434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T00:42:59.681139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "offset": "1000",
+              "limit": "500"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T00:42:59.681341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1000\t  tags: None\n1001\t  notes: v4 首次提交因 CLI 参数错误 EXIT_CODE=2 失败。系统自动重试 (PID 77811) 但不含 Director 要求的 save_strategy=steps/save_steps=500。与 v5 并行会触发 cgroup OOM，主动停止保护 v5。\n1002\t  failure_reason: \n1003\t  created_at: 2026-05-12T17:23:40.543Z\n1004\t  completed_at: 2026-05-12T17:38:58.649Z\n1005\t  retry_count: 1\n1006\t  parent: None\n1007\t  all_metrics: None\n1008\t\n1009\t=== EXP: repo-level-cwm-v2 ===\n1010\t  conclusion: failed\n1011\t  status: DONE\n1012\t  model: None\n1013\t  seed: None\n1014\t  formulation: cwm\n1015\t  level: repo\n1016\t  accuracy: None\n1017\t  f1_macro: None\n1018\t  pass_f1: None  fail_f1: None\n1019\t  pass_precision: None  pass_recall: None\n1020\t  fail_precision: None  fail_recall: None\n1021\t  unparseable_pct: None\n1022\t  exact_match_rate: None\n1023\t  test_set_size: None\n1024\t  train_loss: None  eval_loss: None\n1025\t  majority_baseline: None\n1026\t  trajectory_accuracy: None\n1027\t  unresolved_f1: None  resolved_f1: None\n1028\t  per_test_consistency: None\n1029\t  wall_clock_sec: 10813.1  gpu_hours: 3.0\n1030\t  server: seetacloud-westd-4x5090  gpu: ['cuda:3']\n1031\t  lr: None  batch: None  grad_accum: None\n1032\t  max_seq_len: None  epochs: None\n1033\t  lora_rank: None  lora_alpha: None\n1034\t  hyperparams: None\n1035\t  hypothesis: Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_we...\n1036\t  tags: None\n1037\t  notes: ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。与 repo-level-cls-v2 同一 root cause。\n1038\t  failure_reason: None\n1039\t  created_at: 2026-05-12T14:41:28.527Z\n1040\t  completed_at: 2026-05-12T18:57:16.157Z\n1041\t  retry_count: 0\n1042\t  parent: None\n1043\t  all_metrics: None\n1044\t\n1045\t=== EXP: repo-level-cwm-v5 ===\n1046\t  conclusion: failed\n1047\t  status: DONE\n1048\t  model: Qwen/Qwen3-4B\n1049\t  seed: 42\n1050\t  formulation: cwm\n1051\t  level: repo\n1052\t  accuracy: None\n1053\t  f1_macro: None\n1054\t  pass_f1: None  fail_f1: None\n1055\t  pass_precision: None  pass_recall: None\n1056\t  fail_precision: None  fail_recall: None\n105\n…[truncated 16433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T00:42:59.681507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "offset": "1500",
+              "limit": "500"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T00:42:59.681713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1500\t  unresolved_f1: None  resolved_f1: None\n1501\t  per_test_consistency: None\n1502\t  wall_clock_sec: 1093.5  gpu_hours: 0.3\n1503\t  server: home-1x5090  gpu: ['cuda:0']\n1504\t  lr: None  batch: None  grad_accum: None\n1505\t  max_seq_len: None  epochs: None\n1506\t  lora_rank: None  lora_alpha: None\n1507\t  hyperparams: None\n1508\t  hypothesis: Per-test 级别 precision/recall 诊断分析 — 按 mutation type 和 problem 粒度评估分类器的诊断质量\n1509\t  tags: None\n1510\t  notes: 扩展诊断分析完成 (eval_pertest_diagnostic.py)。新增发现：114 个 problems 中 48 个 (42.1%) 完美预测；median problem fail-F1=94.12%；return_value 最易 (F1=98.6%), off_by_one 最难 (F1=80.8%)；worst problems: MBPP/397 (40%), HumanEval/130 (46%)。脚本和结果保存在 home:/home/sonny/exec-sim-repair-verifier/eval_pertest_diag.json。\n1511\t  failure_reason: None\n1512\t  created_at: 2026-05-12T05:51:25.659Z\n1513\t  completed_at: 2026-05-12T06:09:39.167Z\n1514\t  retry_count: 0\n1515\t  parent: None\n1516\t  all_metrics: {\n1517\t    \"accuracy\": 87.51,\n1518\t    \"fail_precision\": 82.75,\n1519\t    \"fail_recall\": 93.64,\n1520\t    \"fail_f1\": 87.86,\n1521\t    \"pass_precision\": 93.24,\n1522\t    \"pass_recall\": 81.8,\n1523\t    \"pass_f1\": 87.15,\n1524\t    \"FP_count\": 58,\n1525\t    \"FN_count\": 178,\n1526\t    \"best_mutation\": \"return_value (97.26%)\",\n1527\t    \"worst_mutation\": \"off_by_one (82.56%)\",\n1528\t    \"bucket_6_10_acc\": 96.3,\n1529\t    \"bucket_11plus_acc\": 87.12\n1530\t}\n1531\t\n1532\t=== EXP: cwm-seed123 ===\n1533\t  conclusion: success\n1534\t  status: DONE\n1535\t  model: Qwen/Qwen3-4B\n1536\t  seed: 123\n1537\t  formulation: cwm\n1538\t  level: function\n1539\t  accuracy: 87.2\n1540\t  f1_macro: None\n1541\t  pass_f1: 86.95  fail_f1: 87.44\n1542\t  pass_precision: None  pass_recall: None\n1543\t  fail_precision: None  fail_recall: None\n1544\t  unparseable_pct: 0\n1545\t  exact_match_rate: 84.44\n1546\t  test_set_size: 15290\n1547\t  train_loss: None  eval_loss: None\n1548\t  majority_baseline: None\n1549\t  trajectory_accuracy: None\n1550\t  unresolved_f1: None  resolved_f1: None\n1551\t  per_test_consistency: None\n1552\t  wall_clock_sec\n…[truncated 17280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T00:42:59.681902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "offset": "2000",
+              "limit": "600"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T00:42:59.682132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2000\t    \"icc\": 0.1909,\n2001\t    \"icc_p_value\": 0,\n2002\t    \"design_effect\": 3.9676,\n2003\t    \"overall_error_rate\": 0.1249,\n2004\t    \"all_correct_observed\": 46,\n2005\t    \"all_correct_expected_iid\": 16.35,\n2006\t    \"all_correct_ratio\": 2.81,\n2007\t    \"error_std_observed\": 0.1531,\n2008\t    \"error_std_expected_iid\": 0.0811,\n2009\t    \"error_std_ratio\": 1.89,\n2010\t    \"n_samples\": 1890,\n2011\t    \"n_problems\": 114,\n2012\t    \"inference_precision\": \"bfloat16\",\n2013\t    \"version\": \"v2_corrected\"\n2014\t}\n2015\t\n2016\t=== EXP: model-size-scaling-cwm8b ===\n2017\t  conclusion: success\n2018\t  status: DONE\n2019\t  model: Qwen/Qwen3-8B\n2020\t  seed: 42\n2021\t  formulation: cwm\n2022\t  level: function\n2023\t  accuracy: 87.67\n2024\t  f1_macro: None\n2025\t  pass_f1: 87.57  fail_f1: 87.77\n2026\t  pass_precision: 91.53  pass_recall: 83.95\n2027\t  fail_precision: 84.19  fail_recall: 91.67\n2028\t  unparseable_pct: 0\n2029\t  exact_match_rate: 84.39\n2030\t  test_set_size: 15290\n2031\t  train_loss: 0.229  eval_loss: None\n2032\t  majority_baseline: None\n2033\t  trajectory_accuracy: None\n2034\t  unresolved_f1: None  resolved_f1: None\n2035\t  per_test_consistency: None\n2036\t  wall_clock_sec: 5867.9  gpu_hours: 1.63\n2037\t  server: seetacloud-westd-4x5090  gpu: ['cuda:1']\n2038\t  lr: None  batch: None  grad_accum: None\n2039\t  max_seq_len: None  epochs: None\n2040\t  lora_rank: None  lora_alpha: None\n2041\t  hyperparams: None\n2042\t  hypothesis: Qwen3-8B CWM generation baseline 在函数级的 F1 与同尺寸 classification 的差距，相比 4B 尺度（差距 0....\n2043\t  tags: None\n2044\t  notes: 8B CWM 相比 4B 几乎无提升: accuracy 87.67 vs 87.51 (+0.16pp), pass_f1 87.57 vs 87.31 (+0.26pp), fail_f1 87.77 vs 87.71 (+0.06pp), exact_match 84.39 vs 84.02 (+0.37pp)。CWM对模型容量增加不敏感，瓶颈可能在于生成精确错误信息的任务复杂度本身，而非模型能力不足。训练3 epoch完成，train_loss=0.229（低于cls的0.3125），eval_loss在epoch2最低(0.0512)。关键对比：8B cls-cwm gap (accuracy 2.81pp, pass_f1 3.29pp, fail_f1 2.29pp) 远大于4B的gap (accuracy 0.90pp, pass_f1 1.10pp, fail_f1 0.69pp)。Gap扩大约3倍，强烈支持complexity hypothesis——classification的scaling效率显著优于CW\n…[truncated 20434 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T00:42:59.682301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bpjooq854.txt",
+              "offset": "2600",
+              "limit": "500"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T00:42:59.682457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2600\t        \"median\": 1,\n2601\t        \"mean\": 3,\n2602\t        \"P75\": 2,\n2603\t        \"P90\": 3\n2604\t    },\n2605\t    \"total_reg5pct\": {\n2606\t        \"iid_adv_70_85\": -0.01,\n2607\t        \"block_adv_70_85\": -0.005,\n2608\t        \"pass\": false\n2609\t    },\n2610\t    \"total_reg10pct\": {\n2611\t        \"iid_adv_70_85\": 0.132,\n2612\t        \"block_adv_70_85\": 0.083,\n2613\t        \"pass\": true\n2614\t    },\n2615\t    \"total_reg20pct\": {\n2616\t        \"iid_adv_70_85\": 0.357,\n2617\t        \"block_adv_70_85\": 0.278,\n2618\t        \"pass\": true\n2619\t    }\n2620\t}\n2621\t\n2622\t=== EXP: p2p-regression-rate ===\n2623\t  conclusion: negative\n2624\t  status: DONE\n2625\t  model: None\n2626\t  seed: None\n2627\t  formulation: analysis\n2628\t  level: function\n2629\t  accuracy: None\n2630\t  f1_macro: None\n2631\t  pass_f1: None  fail_f1: None\n2632\t  pass_precision: None  pass_recall: None\n2633\t  fail_precision: None  fail_recall: None\n2634\t  unparseable_pct: None\n2635\t  exact_match_rate: None\n2636\t  test_set_size: None\n2637\t  train_loss: None  eval_loss: None\n2638\t  majority_baseline: None\n2639\t  trajectory_accuracy: None\n2640\t  unresolved_f1: None  resolved_f1: None\n2641\t  per_test_consistency: None\n2642\t  wall_clock_sec: None  gpu_hours: None\n2643\t  server: None  gpu: None\n2644\t  lr: None  batch: None  grad_accum: None\n2645\t  max_seq_len: None  epochs: None\n2646\t  lora_rank: None  lora_alpha: None\n2647\t  hyperparams: None\n2648\t  hypothesis: \n2649\t  tags: None\n2650\t  notes: P2P regression rate measured at 1.04% mean / 0% median on CoderForge Qwen3-32B SWE-bench Verified data (106 unresolved patches). 77% of incorrect patches break zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair). Project premise partially invalidated for P2P.\n2651\t  failure_reason: None\n2652\t  created_at: 2026-05-11T20:03:33.129Z\n2653\t  completed_at: 2026-05-11T20:04:02.945Z\n2654\t  retry_count: 0\n2655\t  parent: None\n2656\t  all_metrics: None\n2\n…[truncated 1523 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T00:42:59.682625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json && python3 -c \"\nimport json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json') as f:\n    data = json.load(f)\nprint(f'Total experiments in JSON: {len(data)}')\n# Quick summary\nstatuses = {}\nconclusions = {}\nfor e in data:\n    s = e['status'] or 'None'\n    c = e['conclusion'] or 'None'\n    statuses[s] = statuses.get(s, 0) + 1\n    conclusions[c] = conclusions.get(c, 0) + 1\nprint(f'Statuses: {statuses}')\nprint(f'Conclusions: {conclusions}')\nprint(f'With metrics: {sum(1 for e in data if e[\\\"all_metrics\\\"])}')\nprint(f'With accuracy: {sum(1 for e in data if e[\\\"accuracy\\\"] is not None)}')\n\"",
+              "description": "Verify output JSON and print summary stats"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T00:42:59.682759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4146 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json\nTotal experiments in JSON: 59\nStatuses: {'RUNNING': 5, 'DONE': 54}\nConclusions: {'None': 5, 'killed': 5, 'success': 33, 'failed': 13, 'negative': 3}\nWith metrics: 35\nWith accuracy: 29"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T00:42:59.683034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here is the summary:\n\n**Output file**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/all_experiments_parsed.json`\n\n**Parser script**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/parse_all_experiments.py`\n\n**59 experiments extracted** with breakdown:\n- **By status**: 5 RUNNING, 54 DONE\n- **By conclusion**: 33 success, 13 failed, 5 killed, 3 negative, 5 None (running)\n- **35** have metrics data, **29** have accuracy values\n\n**Full stdout dump** was produced (all 59 experiments with every field) and saved by the tool at the persisted output path. The output above shows the complete content of all experiments across 2694 lines, covering:\n\n- **Function-level experiments**: cls (seeds 0/42/123/456/789), cwm (seeds 0/42/123/456/789), traj (seeds 0/42/123/456/789), 8B scaling (cls8b, cwm8b with multiple seeds), LLM-judge (8B/32B zero-shot)\n- **Repo-level experiments**: cls (v2-v5, seed123, 8b), cwm (v2-v12, seed123), multiple failures tracked with root causes\n- **Analysis experiments**: 5-paired-clustered-bootstrap, per-test-majority-voting, block-corr-empirical, oracle-f2p-stratified, p2p-regression-rate, matched-seed-8b-predictions, mvp-a-oracle-sim, mvp-b-data-prep, mvp-b-train, multi-seed-core\n\nEach experiment record includes all requested fields: exp_id, hypothesis, model_name, seed, formulation, level, status, conclusion, accuracy, f1_macro, pass/fail F1/precision/recall, unparseable_pct, exact_match_rate, test_set_size, full raw metrics dict, tags, notes, failure_reason, hyperparams, server/GPU info, and timing data.\nagentId: a240a9647eba4480f (use SendMessage with to: 'a240a9647eba4480f' to continue this agent)\n<usage>total_tokens: 79485\ntool_uses: 17\nduration_ms: 132471</usage>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Agent",
+            "elapsed_ms": 5
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T00:42:59.683275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts && python3 -c \"\nimport json\n\nwith open('all_experiments_parsed.json') as f:\n    data = json.load(f)\n\n# Filter success experiments and print key metrics\nfor exp in sorted(data, key=lambda x: x.get('exp_id','')):\n    c = exp.get('conclusion','')\n    eid = exp.get('exp_id','')\n    status = exp.get('status','')\n    model = exp.get('model_name','')\n    seed = exp.get('seed','')\n    form = exp.get('formulation','')\n    level = exp.get('level','')\n    acc = exp.get('accuracy','')\n    f1m = exp.get('f1_macro','')\n    pf1 = exp.get('pass_f1','')\n    ff1 = exp.get('fail_f1','')\n    pp = exp.get('pass_precision','')\n    pr = exp.get('pass_recall','')\n    fp = exp.get('fail_precision','')\n    fr = exp.get('fail_recall','')\n    up = exp.get('unparseable_pct','')\n    em = exp.get('exact_match_rate','')\n    ts = exp.get('test_set_size','')\n    hyp = exp.get('hypothesis','')\n    notes = exp.get('notes','')\n    tags = exp.get('tags','')\n    metrics = exp.get('all_metrics',{})\n    \n    print(f'=== {eid} === conclusion={c} status={status}')\n    print(f'  model={model} seed={seed} form={form} level={level}')\n    print(f'  acc={acc} f1m={f1m} pf1={pf1} ff1={ff1}')\n    print(f'  pp={pp} pr={pr} fp={fp} fr={fr}')\n    print(f'  unparseable={up} exact_match={em} test_size={ts}')\n    print(f'  hyp={hyp[:80]}')\n    print(f'  notes={str(notes)[:120]}')\n    print(f'  tags={tags}')\n    if metrics:\n        print(f'  raw_metrics={json.dumps(metrics)}')\n    print()\n\"\n",
+              "description": "Print all parsed experiment data"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T00:42:59.683535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (38.5KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bssooke29.txt\n\nPreview (first 2KB):\n=== 5-paired-clustered-bootstrap === conclusion=success status=DONE\n  model=None seed=None form=analysis level=function\n  acc=None f1m=None pf1=None ff1=None\n  pp=None pr=None fp=None fr=None\n  unparseable=None exact_match=None test_size=None\n  hyp=5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 v\n  notes=5-paired 扩展了之前 3-paired 分析。核心发现：CLS 和 TRAJ 在 variant 级别统计等价（TOST p=0.0071, margin ±2pp），无显著差异（gap=-0.45pp, p=0.499）。确认 D\n  tags=None\n  raw_metrics={\"pooled_gap_pp\": -0.45, \"pooled_ci_lower\": -1.71, \"pooled_ci_upper\": 0.84, \"pooled_p_value\": 0.499, \"tost_p_value\": 0.0071, \"tost_margin_pp\": 2, \"seed_level_paired_t_p\": 0.425, \"seed_level_mean_gap\": -0.48, \"n_variants_pooled\": 523, \"n_clusters\": 114, \"per_seed_gaps\": {\"seed42\": -0.97, \"seed123\": 1.45, \"seed456\": -1.84, \"seed789\": -0.78, \"seed0\": -0.29}}\n\n=== block-corr-empirical === conclusion=success status=DONE\n  model=Qwen/Qwen3-4B + LoRA (seed 42) seed=42 form=analysis level=function\n  acc=None f1m=None pf1=None ff1=None\n  pp=None pr=None fp=None fr=None\n  unparseable=None exact_match=None test_size=1890\n  hyp=训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的\n  notes=v2 修正版：用 bfloat16 推理替代 v1 的 4-bit 量化。accuracy 偏差已消除 (87.51% = 主评估)。ICC 从 0.233 降至 0.191（4-bit 量化误差本身也是 block-correlated \n  tags=None\n  raw_metrics={\"icc\": 0.1909, \"icc_p_value\": 0, \"design_effect\": 3.9676, \"overall_error_rate\": 0.1249, \"all_correct_observed\": 46, \"all_correct_expected_iid\": 16.35, \"all_correct_ratio\": 2.81, \"error_std_observed\": 0.1531, \"error_std_expected_iid\": 0.0811, \"error_std_ratio\": 1.89, \"n_samples\": 1890, \"n_problems\": 114, \"inference_precision\": \"bfloat16\", \"version\": \"v2_corrected\"}\n\n=\n…[truncated 244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T00:42:59.683705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/cd03d944-31d8-4706-ad87-0759b31a8651/tool-results/bssooke29.txt"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T00:42:59.684186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t=== 5-paired-clustered-bootstrap === conclusion=success status=DONE\n2\t  model=None seed=None form=analysis level=function\n3\t  acc=None f1m=None pf1=None ff1=None\n4\t  pp=None pr=None fp=None fr=None\n5\t  unparseable=None exact_match=None test_size=None\n6\t  hyp=5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 v\n7\t  notes=5-paired 扩展了之前 3-paired 分析。核心发现：CLS 和 TRAJ 在 variant 级别统计等价（TOST p=0.0071, margin ±2pp），无显著差异（gap=-0.45pp, p=0.499）。确认 D\n8\t  tags=None\n9\t  raw_metrics={\"pooled_gap_pp\": -0.45, \"pooled_ci_lower\": -1.71, \"pooled_ci_upper\": 0.84, \"pooled_p_value\": 0.499, \"tost_p_value\": 0.0071, \"tost_margin_pp\": 2, \"seed_level_paired_t_p\": 0.425, \"seed_level_mean_gap\": -0.48, \"n_variants_pooled\": 523, \"n_clusters\": 114, \"per_seed_gaps\": {\"seed42\": -0.97, \"seed123\": 1.45, \"seed456\": -1.84, \"seed789\": -0.78, \"seed0\": -0.29}}\n10\t\n11\t=== block-corr-empirical === conclusion=success status=DONE\n12\t  model=Qwen/Qwen3-4B + LoRA (seed 42) seed=42 form=analysis level=function\n13\t  acc=None f1m=None pf1=None ff1=None\n14\t  pp=None pr=None fp=None fr=None\n15\t  unparseable=None exact_match=None test_size=1890\n16\t  hyp=训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的\n17\t  notes=v2 修正版：用 bfloat16 推理替代 v1 的 4-bit 量化。accuracy 偏差已消除 (87.51% = 主评估)。ICC 从 0.233 降至 0.191（4-bit 量化误差本身也是 block-correlated \n18\t  tags=None\n19\t  raw_metrics={\"icc\": 0.1909, \"icc_p_value\": 0, \"design_effect\": 3.9676, \"overall_error_rate\": 0.1249, \"all_correct_observed\": 46, \"all_correct_expected_iid\": 16.35, \"all_correct_ratio\": 2.81, \"error_std_observed\": 0.1531, \"error_std_expected_iid\": 0.0811, \"error_std_ratio\": 1.89, \"n_samples\": 1890, \"n_problems\": 114, \"inference_precision\": \"bfloat16\", \"version\": \"v2_corrected\"}\n20\t\n21\t=== cls-seed0 === conclusion=success status=DONE\n22\t  model=None seed=None form=cls level=function\n23\t  acc=87.94 f1m=None pf1=87.79 ff1=88.08\n24\t  pp=92.13 pr=83.84 fp=84.2 fr=92.32\n25\t  unparseable=0 exact_match=None test_size=Non\n…[truncated 36878 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T00:42:59.684629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport numpy as np\nfrom scipy import stats\n\n# ============================================================\n# DATA: Function-level CLS 4B (5 seeds)\n# ============================================================\ncls_4b = {\n    0:   {\"acc\": 87.94, \"pf1\": 87.79, \"ff1\": 88.08, \"pp\": 92.13, \"pr\": 83.84, \"fp\": 84.20, \"fr\": 92.32},\n    42:  {\"acc\": 87.83, \"pf1\": 88.06, \"ff1\": 87.59, \"pp\": 89.45, \"pr\": 86.71, \"fp\": 86.20, \"fr\": 89.04},\n    123: {\"acc\": 89.52, \"pf1\": 89.64, \"ff1\": 89.40, \"pp\": 91.76, \"pr\": 87.63, \"fp\": 87.34, \"fr\": 91.56},\n    456: {\"acc\": 87.88, \"pf1\": 87.53, \"ff1\": 88.21, \"pp\": 93.60, \"pr\": 82.21, \"fp\": 83.12, \"fr\": 93.97},\n    789: {\"acc\": 89.00, \"pf1\": 88.90, \"ff1\": 89.10, \"pp\": 93.30, \"pr\": 84.90, \"fp\": 85.20, \"fr\": 93.40},\n}\n\n# ============================================================\n# DATA: Function-level CWM 4B (5 seeds)\n# ============================================================\ncwm_4b = {\n    0:   {\"acc\": 87.57, \"pf1\": 87.18, \"ff1\": 87.93, \"pp\": 93.45, \"pr\": 81.70, \"fp\": 82.71, \"fr\": 93.86, \"em\": 84.29},\n    42:  {\"acc\": 87.51, \"pf1\": 87.31, \"ff1\": 87.71, \"pp\": 92.06, \"pr\": 83.03, \"fp\": 83.53, \"fr\": 92.32, \"em\": 84.02},\n    123: {\"acc\": 87.20, \"pf1\": 86.95, \"ff1\": 87.44, \"pp\": None, \"pr\": None, \"fp\": None, \"fr\": None, \"em\": 84.44},\n    456: {\"acc\": 86.98, \"pf1\": 86.66, \"ff1\": 87.29, \"pp\": 92.26, \"pr\": 81.70, \"fp\": 82.52, \"fr\": 92.65, \"em\": 84.02},\n    789: {\"acc\": 86.67, \"pf1\": 86.74, \"ff1\": 86.60, \"pp\": 89.37, \"pr\": 84.25, \"fp\": 84.09, \"fr\": 89.25, \"em\": 83.97},\n}\n\n# ============================================================\n# DATA: Function-level CLS 8B (3 seeds)\n# ============================================================\ncls_8b = {\n    42:  {\"acc\": 90.48, \"pf1\": 90.86, \"ff1\": 90.06, \"pp\": 90.22, \"pr\": 91.51, \"fp\": 90.76, \"fr\": 89.36},\n    123: {\"acc\": 89.37, \"pf1\": 89.54, \"ff1\": 89.19, \"pp\": 91.20, \"pr\": 87.93, \"fp\": 87.54, \"fr\": 90.90},\n    # Note: cls8b-seed123 registry has 89.4 but cls8b-eval-seed123 has 89.37 - use the eval version\n    456: {\"acc\": 88.31, \"pf1\": 88.20, \"ff1\": 88.41, \"pp\": 92.29, \"pr\": 84.46, \"fp\": 84.72, \"fr\": 92.43},\n}\n\n# ============================================================\n# DATA: Function-level CWM 8B (3 seeds)\n# ============================================================\ncwm_8b = {\n    42:  {\"acc\": 87.67, \"pf1\": 87.57, \"ff1\": 87.77, \"pp\": 91.53, \"pr\": 83.95, \"fp\": 84.19, \"fr\": 91.67, \"em\": 84.39},\n    123: {\"acc\": 86.98, \"pf1\": 86.83, \"ff1\": 87.13, \"pp\": 91.12, \"pr\": 82.92, \"fp\": 83.30, \"fr\": 91.34, \"em\": 84.13},\n    456: {\"acc\": 86.24, \"pf1\": 85.96, \"ff1\": 86.51, \"pp\": 91.08, \"pr\": 81.39, \"fp\": 82.09, \"fr\": 91.45, \"em\": 82.80},\n}\n\n# ============================================================\n# DATA: Trajectory-level (5 seeds)\n# ============================================================\ntraj = {\n    0:   {\"acc\": 85.66, \"uf1\": 87.37, \"rf1\": 83.41, \"up\": 82.71, \"ur\": 92.59, \"rp\": 90.07, \"rr\": 77.66, \"con\": 79.55},\n    42:  {\"acc\": 85.66, \"uf1\": 87.50, \"rf1\": 83.18, \"up\": None, \"ur\": None, \"rp\": None, \"rr\": None, \"con\": 79.94},\n    123: {\"acc\": 85.47, \"uf1\": 87.00, \"rf1\": 83.52, \"up\": 83.53, \"ur\": 90.78, \"rp\": 88.17, \"rr\": 79.33, \"con\": 78.59},\n    456: {\"acc\": 87.40, \"uf1\": 88.70, \"rf1\": 85.80, \"up\": 85.70, \"ur\": 91.90, \"rp\": 89.70, \"rr\": 82.30, \"con\": 78.80},\n    789: {\"acc\": 87.31, \"uf1\": 88.27, \"rf1\": 86.17, \"up\": 87.41, \"ur\": 89.15, \"rp\": 87.18, \"rr\": 85.18, \"con\": 76.74},\n}\n\n# ============================================================\n# DATA: LLM Judge zero-shot\n# ============================================================\nllm_judge = {\n    \"8B\":  {\"acc\": 64.40, \"pf1\": 50.50, \"ff1\": 72.20, \"pp\": 90.0, \"pr\": 35.1, \"fp\": 57.9, \"fr\": 95.8},\n    \"32B\": {\"acc\": 71.69, \"pf1\": 65.68, \"ff1\": 75.91, \"pp\": 88.12, \"pr\": 52.35, \"fp\": 64.40, \"fr\": 92.43},\n}\n\n# ============================================================\n# DATA: Repo-level\n# ============================================================\nrepo = {\n    \"cls-v4\": {\"acc\": 66.11, \"f1m\": 56.61, \"pf1\": 76.9, \"ff1\": 36.3, \"pp\": 76.5, \"pr\": 77.4, \"fp\": 36.9, \"fr\": 35.7, \"unp\": 132, \"note\": \"early stop, old hyperparams\"},\n    \"cls-v5\": {\"acc\": 76.92, \"f1m\": 73.90, \"pf1\": 82.78, \"ff1\": 65.01, \"pp\": 90.83, \"pr\": 76.04, \"fp\": 55.09, \"fr\": 79.29, \"unp\": 132, \"note\": \"best CLS, corrected hyperparams\"},\n    \"cwm-v10\": {\"acc\": 69.91, \"f1m\": 46.71, \"pf1\": 81.87, \"ff1\": 11.54, \"unp\": 9102, \"note\": \"93% unparseable, eval invalid\"},\n    \"cwm-v11\": {\"acc\": 66.60, \"f1m\": 52.99, \"pf1\": 78.30, \"ff1\": 27.70, \"unp\": 376, \"note\": \"killed, mixed transformers versions, 500-sample subset\"},\n    \"cls-8b\":  {\"acc\": 71.37, \"f1m\": 69.05, \"pf1\": 77.53, \"ff1\": 60.57, \"pp\": 90.71, \"pr\": 67.69, \"fp\": 48.26, \"fr\": 81.29, \"unp\": 136, \"note\": \"below majority baseline, transformers 5.8.0 mismatch\"},\n}\n\ndef ms(vals):\n    a = np.array(vals)\n    return np.mean(a), np.std(a, ddof=1)\n\ndef fmt(m, s):\n    return f\"{m:.2f} ± {s:.2f}\"\n\n# ============================================================\n# COMPUTE TABLES\n# ============================================================\n\nprint(\"=\" * 120)\nprint(\"TABLE 1: Function-level CLS (per-test classification, 4B, 5 seeds)\")\nprint(\"=\" * 120)\nprint(f\"{'Seed':<8} {'Accuracy':<10} {'Pass_F1':<10} {'Fail_F1':<10} {'Pass_P':<10} {'Pass_R':<10} {'Fail_P':<10} {'Fail_R':<10}\")\nprint(\"-\" * 78)\nfor s in [0, 42, 123, 456, 789]:\n    d = cls_4b[s]\n    print(f\"{s:<8} {d['acc']:<10.2f} {d['pf1']:<10.2f} {d['ff1']:<10.2f} {d['pp']:<10.2f} {d['pr']:<10.2f} {d['fp']:<10.2f} {d['fr']:<10.2f}\")\naccs = [cls_4b[s][\"acc\"] for s in cls_4b]\npf1s = [cls_4b[s][\"pf1\"] for s in cls_4b]\nff1s = [cls_4b[s][\"ff1\"] for s in cls_4b]\npps = [cls_4b[s][\"pp\"] for s in cls_4b]\nprs = [cls_4b[s][\"pr\"] for s in cls_4b]\nfps = [cls_4b[s][\"fp\"] for s in cls_4b]\nfrs = [cls_4b[s][\"fr\"] for s in cls_4b]\nm, s = ms(accs); m2,s2=ms(pf1s); m3,s3=ms(ff1s); m4,s4=ms(pps); m5,s5=ms(prs); m6,s6=ms(fps); m7,s7=ms(frs)\nprint(\"-\" * 78)\nprint(f\"{'Mean±Std':<8} {fmt(m,s):<10} {fmt(m2,s2):<10} {fmt(m3,s3):<10} {fmt(m4,s4):<10} {fmt(m5,s5):<10} {fmt(m6,s6):<10} {fmt(m7,s7):<10}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 2: Function-level CWM (execution simulation, 4B, 5 seeds)\")\nprint(\"=\" * 120)\nprint(f\"{'Seed':<8} {'Accuracy':<10} {'Pass_F1':<10} {'Fail_F1':<10} {'Pass_P':<10} {'Pass_R':<10} {'Fail_P':<10} {'Fail_R':<10} {'ExactMatch':<12}\")\nprint(\"-\" * 90)\nfor s in [0, 42, 123, 456, 789]:\n    d = cwm_4b[s]\n    pp_str = f\"{d['pp']:.2f}\" if d['pp'] else \"—\"\n    pr_str = f\"{d['pr']:.2f}\" if d['pr'] else \"—\"\n    fp_str = f\"{d['fp']:.2f}\" if d['fp'] else \"—\"\n    fr_str = f\"{d['fr']:.2f}\" if d['fr'] else \"—\"\n    print(f\"{s:<8} {d['acc']:<10.2f} {d['pf1']:<10.2f} {d['ff1']:<10.2f} {pp_str:<10} {pr_str:<10} {fp_str:<10} {fr_str:<10} {d['em']:<12.2f}\")\naccs_c = [cwm_4b[s][\"acc\"] for s in cwm_4b]\npf1s_c = [cwm_4b[s][\"pf1\"] for s in cwm_4b]\nff1s_c = [cwm_4b[s][\"ff1\"] for s in cwm_4b]\nems = [cwm_4b[s][\"em\"] for s in cwm_4b]\nm, s = ms(accs_c); m2,s2=ms(pf1s_c); m3,s3=ms(ff1s_c); m4,s4=ms(ems)\npps_v = [cwm_4b[s][\"pp\"] for s in cwm_4b if cwm_4b[s][\"pp\"] is not None]\nprs_v = [cwm_4b[s][\"pr\"] for s in cwm_4b if cwm_4b[s][\"pr\"] is not None]\nfps_v = [cwm_4b[s][\"fp\"] for s in cwm_4b if cwm_4b[s][\"fp\"] is not None]\nfrs_v = [cwm_4b[s][\"fr\"] for s in cwm_4b if cwm_4b[s][\"fr\"] is not None]\nprint(\"-\" * 90)\npp_m, pp_s = ms(pps_v); pr_m, pr_s = ms(prs_v); fp_m, fp_s = ms(fps_v); fr_m, fr_s = ms(frs_v)\nprint(f\"{'Mean±Std':<8} {fmt(m,s):<10} {fmt(m2,s2):<10} {fmt(m3,s3):<10} {fmt(pp_m,pp_s):<10} {fmt(pr_m,pr_s):<10} {fmt(fp_m,fp_s):<10} {fmt(fr_m,fr_s):<10} {fmt(m4,s4):<12}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 3: Function-level CLS vs CWM 对比 (4B)\")\nprint(\"=\" * 120)\n\ncls_accs = np.array([cls_4b[s][\"acc\"] for s in [0, 42, 123, 456, 789]])\ncwm_accs = np.array([cwm_4b[s][\"acc\"] for s in [0, 42, 123, 456, 789]])\ncls_pf1 = np.array([cls_4b[s][\"pf1\"] for s in [0, 42, 123, 456, 789]])\ncwm_pf1 = np.array([cwm_4b[s][\"pf1\"] for s in [0, 42, 123, 456, 789]])\ncls_ff1 = np.array([cls_4b[s][\"ff1\"] for s in [0, 42, 123, 456, 789]])\ncwm_ff1 = np.array([cwm_4b[s][\"ff1\"] for s in [0, 42, 123, 456, 789]])\n\ngap_acc = cls_accs - cwm_accs\ngap_pf1 = cls_pf1 - cwm_pf1\ngap_ff1 = cls_ff1 - cwm_ff1\n\nt_acc, p_acc = stats.ttest_rel(cls_accs, cwm_accs)\nt_pf1, p_pf1 = stats.ttest_rel(cls_pf1, cwm_pf1)\nt_ff1, p_ff1 = stats.ttest_rel(cls_ff1, cwm_ff1)\n\nprint(f\"{'Model':<12} {'Form':<8} {'Seeds':<8} {'Acc (mean±std)':<18} {'Pass_F1':<18} {'Fail_F1':<18}\")\nprint(\"-\" * 82)\nprint(f\"{'4B':<12} {'CLS':<8} {'5':<8} {fmt(cls_accs.mean(), cls_accs.std(ddof=1)):<18} {fmt(cls_pf1.mean(), cls_pf1.std(ddof=1)):<18} {fmt(cls_ff1.mean(), cls_ff1.std(ddof=1)):<18}\")\nprint(f\"{'4B':<12} {'CWM':<8} {'5':<8} {fmt(cwm_accs.mean(), cwm_accs.std(ddof=1)):<18} {fmt(cwm_pf1.mean(), cwm_pf1.std(ddof=1)):<18} {fmt(cwm_ff1.mean(), cwm_ff1.std(ddof=1)):<18}\")\nprint(f\"{'Gap (CLS-CWM)':<20} {'5':<8} {fmt(gap_acc.mean(), gap_acc.std(ddof=1)):<18} {fmt(gap_pf1.mean(), gap_pf1.std(ddof=1)):<18} {fmt(gap_ff1.mean(), gap_ff1.std(ddof=1)):<18}\")\nprint(f\"  Paired t-test p-value:       acc={p_acc:.4f}, pass_f1={p_pf1:.4f}, fail_f1={p_ff1:.4f}\")\n\nper_seed_gaps = {s: cls_4b[s][\"acc\"] - cwm_4b[s][\"acc\"] for s in [0, 42, 123, 456, 789]}\nprint(f\"\\n  Per-seed accuracy gaps: {', '.join(f'seed{s}={g:+.2f}pp' for s,g in per_seed_gaps.items())}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 4: 8B Scaling (3 matched seeds)\")\nprint(\"=\" * 120)\nprint(f\"{'Model':<10} {'Size':<6} {'Form':<6} {'Seeds':<6} {'Acc (mean±std)':<18} {'Pass_F1':<18} {'Fail_F1':<18}\")\nprint(\"-\" * 82)\n\ncls8_accs = np.array([cls_8b[s][\"acc\"] for s in [42, 123, 456]])\ncwm8_accs = np.array([cwm_8b[s][\"acc\"] for s in [42, 123, 456]])\ncls8_pf1 = np.array([cls_8b[s][\"pf1\"] for s in [42, 123, 456]])\ncwm8_pf1 = np.array([cwm_8b[s][\"pf1\"] for s in [42, 123, 456]])\ncls8_ff1 = np.array([cls_8b[s][\"ff1\"] for s in [42, 123, 456]])\ncwm8_ff1 = np.array([cwm_8b[s][\"ff1\"] for s in [42, 123, 456]])\n\n# 4B matched 3 seeds for comparison\ncls4_3 = np.array([cls_4b[s][\"acc\"] for s in [42, 123, 456]])\ncwm4_3 = np.array([cwm_4b[s][\"acc\"] for s in [42, 123, 456]])\ncls4_3pf1 = np.array([cls_4b[s][\"pf1\"] for s in [42, 123, 456]])\ncwm4_3pf1 = np.array([cwm_4b[s][\"pf1\"] for s in [42, 123, 456]])\n\nprint(f\"{'Qwen3':<10} {'4B':<6} {'CLS':<6} {'3':<6} {fmt(cls4_3.mean(), cls4_3.std(ddof=1)):<18} {fmt(cls4_3pf1.mean(), cls4_3pf1.std(ddof=1)):<18} {'—':<18}\")\nprint(f\"{'Qwen3':<10} {'4B':<6} {'CWM':<6} {'3':<6} {fmt(cwm4_3.mean(), cwm4_3.std(ddof=1)):<18} {fmt(cwm4_3pf1.mean(), cwm4_3pf1.std(ddof=1)):<18} {'—':<18}\")\nprint(f\"{'Qwen3':<10} {'8B':<6} {'CLS':<6} {'3':<6} {fmt(cls8_accs.mean(), cls8_accs.std(ddof=1)):<18} {fmt(cls8_pf1.mean(), cls8_pf1.std(ddof=1)):<18} {fmt(cls8_ff1.mean(), cls8_ff1.std(ddof=1)):<18}\")\nprint(f\"{'Qwen3':<10} {'8B':<6} {'CWM':<6} {'3':<6} {fmt(cwm8_accs.mean(), cwm8_accs.std(ddof=1)):<18} {fmt(cwm8_pf1.mean(), cwm8_pf1.std(ddof=1)):<18} {fmt(cwm8_ff1.mean(), cwm8_ff1.std(ddof=1)):<18}\")\n\ngap_4b_3 = cls4_3 - cwm4_3\ngap_8b_3 = cls8_accs - cwm8_accs\nprint(f\"\\n  CLS-CWM gap (4B, 3-seed): {fmt(gap_4b_3.mean(), gap_4b_3.std(ddof=1))}pp\")\nprint(f\"  CLS-CWM gap (8B, 3-seed): {fmt(gap_8b_3.mean(), gap_8b_3.std(ddof=1))}pp\")\nprint(f\"  Scaling: 4B→8B CLS gain = {cls8_accs.mean()-cls4_3.mean():+.2f}pp, CWM gain = {cwm8_accs.mean()-cwm4_3.mean():+.2f}pp\")\nprint(f\"  Gap widening: 8B gap ({gap_8b_3.mean():.2f}) vs 4B gap ({gap_4b_3.mean():.2f}) = {gap_8b_3.mean()-gap_4b_3.mean():+.2f}pp wider at 8B\")\n\nper_seed_8b = {s: cls_8b[s][\"acc\"] - cwm_8b[s][\"acc\"] for s in [42, 123, 456]}\nprint(f\"  Per-seed 8B gaps: {', '.join(f'seed{s}={g:+.2f}pp' for s,g in per_seed_8b.items())}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 5: Trajectory-level (5 seeds)\")\nprint(\"=\" * 120)\nprint(f\"{'Seed':<8} {'Accuracy':<10} {'Unres_F1':<10} {'Res_F1':<10} {'Unres_P':<10} {'Unres_R':<10} {'Res_P':<10} {'Res_R':<10} {'Consist':<10}\")\nprint(\"-\" * 88)\nfor s in [0, 42, 123, 456, 789]:\n    d = traj[s]\n    up = f\"{d['up']:.2f}\" if d['up'] else \"—\"\n    ur = f\"{d['ur']:.2f}\" if d['ur'] else \"—\"\n    rp = f\"{d['rp']:.2f}\" if d['rp'] else \"—\"\n    rr = f\"{d['rr']:.2f}\" if d['rr'] else \"—\"\n    print(f\"{s:<8} {d['acc']:<10.2f} {d['uf1']:<10.2f} {d['rf1']:<10.2f} {up:<10} {ur:<10} {rp:<10} {rr:<10} {d['con']:<10.2f}\")\n\ntaccs = [traj[s][\"acc\"] for s in traj]\ntuf1 = [traj[s][\"uf1\"] for s in traj]\ntrf1 = [traj[s][\"rf1\"] for s in traj]\ntcon = [traj[s][\"con\"] for s in traj]\nm1,s1=ms(taccs); m2,s2=ms(tuf1); m3,s3=ms(trf1); m4,s4=ms(tcon)\nprint(\"-\" * 88)\nprint(f\"{'Mean±Std':<8} {fmt(m1,s1):<10} {fmt(m2,s2):<10} {fmt(m3,s3):<10} {'—':<10} {'—':<10} {'—':<10} {'—':<10} {fmt(m4,s4):<10}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 6: Zero-shot LLM Judge\")\nprint(\"=\" * 120)\nprint(f\"{'Model':<20} {'Accuracy':<10} {'Pass_F1':<10} {'Fail_F1':<10} {'Pass_P':<10} {'Pass_R':<10} {'Fail_P':<10} {'Fail_R':<10}\")\nprint(\"-\" * 90)\nfor name, d in llm_judge.items():\n    print(f\"{'Qwen3-'+name+' 0-shot':<20} {d['acc']:<10.2f} {d['pf1']:<10.2f} {d['ff1']:<10.2f} {d['pp']:<10.2f} {d['pr']:<10.2f} {d['fp']:<10.2f} {d['fr']:<10.2f}\")\n# Fine-tuned 4B for reference\nm_cls, _ = ms([cls_4b[s][\"acc\"] for s in cls_4b])\nm_cls_pf1, _ = ms([cls_4b[s][\"pf1\"] for s in cls_4b])\nm_cls_ff1, _ = ms([cls_4b[s][\"ff1\"] for s in cls_4b])\nprint(f\"{'FT 4B CLS (ref)':<20} {m_cls:<10.2f} {m_cls_pf1:<10.2f} {m_cls_ff1:<10.2f}\")\nprint(f\"\\n  Gap vs FT 4B:  8B 0-shot: {64.40 - m_cls:+.2f}pp,  32B 0-shot: {71.69 - m_cls:+.2f}pp\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 7: Repo-level (completed results)\")\nprint(\"=\" * 120)\nprint(f\"{'Exp':<22} {'Acc':<8} {'F1_macro':<10} {'Pass_F1':<10} {'Fail_F1':<10} {'Unparse':<10} {'Majority':<10} {'Note'}\")\nprint(\"-\" * 110)\nfor name, d in repo.items():\n    acc = f\"{d['acc']:.2f}\" if d.get('acc') else \"—\"\n    f1m = f\"{d['f1m']:.2f}\" if d.get('f1m') else \"—\"\n    pf1 = f\"{d['pf1']:.2f}\" if d.get('pf1') else \"—\"\n    ff1 = f\"{d['ff1']:.2f}\" if d.get('ff1') else \"—\"\n    unp = str(d.get('unp','—'))\n    print(f\"{name:<22} {acc:<8} {f1m:<10} {pf1:<10} {ff1:<10} {unp:<10} {'72.96%':<10} {d['note']}\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"TABLE 8: Analysis experiments\")\nprint(\"=\" * 120)\n\nprint(\"\\n--- 5-paired-clustered-bootstrap (CLS vs TRAJ equivalence) ---\")\nprint(\"  Pooled gap (CLS-TRAJ): -0.45pp, 95% CI [-1.71, +0.84]\")\nprint(\"  Paired t-test p-value: 0.499 (not significant)\")\nprint(\"  TOST equivalence p-value: 0.0071 (equivalent within ±2pp margin)\")\nprint(\"  Per-seed gaps: seed42=-0.97, seed123=+1.45, seed456=-1.84, seed789=-0.78, seed0=-0.29\")\n\nprint(\"\\n--- per-test-majority-voting (K=3, temp=0.7) ---\")\nprint(\"  Greedy accuracy: 87.51%  →  Majority vote: 86.83%  (Δ = -0.69pp)\")\nprint(\"  Unanimous rate: 93.3%, split samples: 127, net flips: -13\")\n\nprint(\"\\n--- block-corr-empirical (error correlation within problems) ---\")\nprint(\"  ICC = 0.191 (p < 1e-10), design effect = 3.97\")\nprint(\"  All-correct ratio: 2.81× expected under i.i.d.\")\nprint(\"  Error std ratio: 1.89× expected under i.i.d.\")\n\nprint(\"\\n--- oracle-f2p-stratified (per-test advantage by F2P count) ---\")\nprint(\"  T=1 (68.7%): block adv = -0.09pp (no advantage)\")\nprint(\"  T=2 (19.1%): block adv = 31.69pp\")\nprint(\"  T=3-5 (7.1%): block adv = 40.74pp\")\nprint(\"  T≥6 (5.1%): block adv = 40.06pp\")\nprint(\"  T=2 contributes 55.3% of overall advantage\")\n\nprint(\"\\n--- mvp-a-oracle-sim (total F2P+P2P simulation) ---\")\nprint(\"  10% regression threshold: iid_adv=13.2pp, block_adv=8.3pp (PASS)\")\nprint(\"  5% regression threshold: iid_adv=-1.0pp, block_adv=-0.5pp (FAIL)\")\nprint(\"  F2P real (T=1 median): iid_adv=1.98pp, block_adv=10.88pp\")\n\nprint(\"\\n--- p2p-regression-rate ---\")\nprint(\"  Conclusion: NEGATIVE\")\nprint(\"  P2P regression rate: 1.04% mean / 0% median (on CoderForge SWE-bench Verified)\")\n\nprint(\"\\n--- per-test-precision-recall (diagnostic analysis) ---\")\nprint(\"  114 problems: 48 (42.1%) perfectly predicted\")\nprint(\"  Median problem fail-F1: 94.12%\")\nprint(\"  Best mutation type: return_value (97.26%), Worst: off_by_one (82.56%)\")\n\nprint(\"\\n--- mvp-b-data-prep (HumanEval/MBPP dataset) ---\")\nprint(\"  Total: 19,076 samples (HumanEval 5,575 + MBPP 13,501)\")\nprint(\"  Class balance: pass 52.0% / fail 48.0%\")\n\nprint(\"\\n--- mvp-b-train (initial pilot) ---\")\nprint(\"  Accuracy: 87.5%, pass_f1: 87.1%, fail_f1: 87.9%\")\nprint(\"  Majority baseline: 52.0%, gap: +35.5pp\")\n\nprint()\nprint(\"=\" * 120)\nprint(\"CORE COMPARISON NUMBERS (for paper)\")\nprint(\"=\" * 120)\n\n# 1. 4B CLS vs CWM gap (5-seed)\nprint(f\"\\n1. 4B CLS vs CWM (5-seed paired):\")\nprint(f\"   Accuracy gap: {fmt(gap_acc.mean(), gap_acc.std(ddof=1))}pp\")\nprint(f\"   Pass_F1 gap:  {fmt(gap_pf1.mean(), gap_pf1.std(ddof=1))}pp\")\nprint(f\"   Fail_F1 gap:  {fmt(gap_ff1.mean(), gap_ff1.std(ddof=1))}pp\")\nprint(f\"   Paired t-test: t={t_acc:.3f}, p={p_acc:.4f}\")\n\n# 2. 8B CLS vs CWM gap (3-seed)\ngap8_acc = cls8_accs - cwm8_accs\ngap8_pf1 = cls8_pf1 - cwm8_pf1\ngap8_ff1 = cls8_ff1 - cwm8_ff1\nt8, p8 = stats.ttest_rel(cls8_accs, cwm8_accs)\nprint(f\"\\n2. 8B CLS vs CWM (3-seed paired):\")\nprint(f\"   Accuracy gap: {fmt(gap8_acc.mean(), gap8_acc.std(ddof=1))}pp\")\nprint(f\"   Pass_F1 gap:  {fmt(gap8_pf1.mean(), gap8_pf1.std(ddof=1))}pp\")\nprint(f\"   Fail_F1 gap:  {fmt(gap8_ff1.mean(), gap8_ff1.std(ddof=1))}pp\")\nprint(f\"   Paired t-test: t={t8:.3f}, p={p8:.4f}\")\n\n# 3. Scaling effect\nprint(f\"\\n3. Scaling 4B → 8B (matched 3 seeds: 42, 123, 456):\")\nprint(f\"   CLS accuracy gain: {cls8_accs.mean() - cls4_3.mean():+.2f}pp ({fmt(cls4_3.mean(), cls4_3.std(ddof=1))} → {fmt(cls8_accs.mean(), cls8_accs.std(ddof=1))})\")\nprint(f\"   CWM accuracy gain: {cwm8_accs.mean() - cwm4_3.mean():+.2f}pp ({fmt(cwm4_3.mean(), cwm4_3.std(ddof=1))} → {fmt(cwm8_accs.mean(), cwm8_accs.std(ddof=1))})\")\nprint(f\"   4B CLS-CWM gap: {fmt(gap_4b_3.mean(), gap_4b_3.std(ddof=1))}pp\")\nprint(f\"   8B CLS-CWM gap: {fmt(gap8_acc.mean(), gap8_acc.std(ddof=1))}pp\")\nprint(f\"   Gap widening: {gap8_acc.mean() - gap_4b_3.mean():+.2f}pp at 8B → CWM bottleneck amplified\")\n\n# 4. Fine-tuned 4B vs zero-shot 32B\nprint(f\"\\n4. Fine-tuned 4B vs Zero-shot 32B:\")\nft4b_mean = cls_accs.mean()\nprint(f\"   FT 4B CLS (5-seed): {ft4b_mean:.2f}%\")\nprint(f\"   Zero-shot 32B:      {71.69}%\")\nprint(f\"   Gap: {ft4b_mean - 71.69:+.2f}pp in favor of FT 4B\")\nprint(f\"   → Fine-tuned 4B dominates 8× larger zero-shot model\")\n\n# 5. Repo-level CLS vs CWM\nprint(f\"\\n5. Repo-level CLS vs CWM (seed=42, CLS v5 only valid):\")\nprint(f\"   CLS v5: accuracy=76.92%, F1_macro=73.90% (majority baseline=72.96%)\")\nprint(f\"   CWM v10: accuracy=69.91% (93% unparseable → eval invalid)\")\nprint(f\"   CWM v11: accuracy=66.6% (killed, subset-500, 75% unparseable)\")\nprint(f\"   ⚠️ CWM repo-level results unreliable; only CLS v5 is valid reference\")\n\n# 6. TOST equivalence\nprint(f\"\\n6. TOST equivalence (CLS aggregated ≈ TRAJ at variant level):\")\nprint(f\"   Variant-level CLS vs TRAJ gap: -0.45pp, 95% CI [-1.71, +0.84]\")\nprint(f\"   TOST p-value: 0.0071 (< 0.05 → statistically equivalent within ±2pp)\")\nprint(f\"   → Per-test CLS aggregated to variant-level is equivalent to dedicated TRAJ model\")\n\n# 7. Summary table of means\nprint()\nprint(\"=\" * 120)\nprint(\"SUMMARY OF MEANS\")\nprint(\"=\" * 120)\nprint(f\"{'Configuration':<35} {'Accuracy':<12} {'Pass_F1':<12} {'Fail_F1':<12}\")\nprint(\"-\" * 71)\nprint(f\"{'4B CLS (5-seed)':<35} {fmt(cls_accs.mean(), cls_accs.std(ddof=1)):<12} {fmt(cls_pf1.mean(), cls_pf1.std(ddof=1)):<12} {fmt(cls_ff1.mean(), cls_ff1.std(ddof=1)):<12}\")\nprint(f\"{'4B CWM (5-seed)':<35} {fmt(cwm_accs.mean(), cwm_accs.std(ddof=1)):<12} {fmt(cwm_pf1.mean(), cwm_pf1.std(ddof=1)):<12} {fmt(cwm_ff1.mean(), cwm_ff1.std(ddof=1)):<12}\")\nprint(f\"{'8B CLS (3-seed)':<35} {fmt(cls8_accs.mean(), cls8_accs.std(ddof=1)):<12} {fmt(cls8_pf1.mean(), cls8_pf1.std(ddof=1)):<12} {fmt(cls8_ff1.mean(), cls8_ff1.std(ddof=1)):<12}\")\nprint(f\"{'8B CWM (3-seed)':<35} {fmt(cwm8_accs.mean(), cwm8_accs.std(ddof=1)):<12} {fmt(cwm8_pf1.mean(), cwm8_pf1.std(ddof=1)):<12} {fmt(cwm8_ff1.mean(), cwm8_ff1.std(ddof=1)):<12}\")\nprint(f\"{'Traj-level (5-seed)':<35} {fmt(np.mean(taccs), np.std(taccs, ddof=1)):<12} {'—':<12} {'—':<12}\")\nprint(f\"{'Zero-shot 8B':<35} {'64.40':<12} {'50.50':<12} {'72.20':<12}\")\nprint(f\"{'Zero-shot 32B':<35} {'71.69':<12} {'65.68':<12} {'75.91':<12}\")\nprint(f\"{'Repo-level CLS v5 (1-seed)':<35} {'76.92':<12} {'82.78':<12} {'65.01':<12}\")\n\nPYEOF\n",
+              "description": "Compute all summary tables and statistics"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T00:42:59.685110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "========================================================================================================================\nTABLE 1: Function-level CLS (per-test classification, 4B, 5 seeds)\n========================================================================================================================\nSeed     Accuracy   Pass_F1    Fail_F1    Pass_P     Pass_R     Fail_P     Fail_R    \n------------------------------------------------------------------------------\n0        87.94      87.79      88.08      92.13      83.84      84.20      92.32     \n42       87.83      88.06      87.59      89.45      86.71      86.20      89.04     \n123      89.52      89.64      89.40      91.76      87.63      87.34      91.56     \n456      87.88      87.53      88.21      93.60      82.21      83.12      93.97     \n789      89.00      88.90      89.10      93.30      84.90      85.20      93.40     \n------------------------------------------------------------------------------\nMean±Std 88.43 ± 0.78 88.38 ± 0.87 88.48 ± 0.75 92.05 ± 1.64 85.06 ± 2.18 85.21 ± 1.65 92.06 ± 1.93\n\n========================================================================================================================\nTABLE 2: Function-level CWM (execution simulation, 4B, 5 seeds)\n========================================================================================================================\nSeed     Accuracy   Pass_F1    Fail_F1    Pass_P     Pass_R     Fail_P     Fail_R     ExactMatch  \n------------------------------------------------------------------------------------------\n0        87.57      87.18      87.93      93.45      81.70      82.71      93.86      84.29       \n42       87.51      87.31      87.71      92.06      83.03      83.53      92.32      84.02       \n123      87.20      86.95      87.44      —          —          —          —          84.44       \n456      86.98      86.66      87.29      92.26      81.70      82.52      92.65      84.02       \n789      86.67      86.7\n…[truncated 10115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T00:42:59.685312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T00:42:59.685448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T00:42:59.685572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T00:42:59.685694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T00:42:59.685832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T00:42:59.685996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\\\", \\\"content\\\": \\\"# 项目经验教训\\\\n\\\\n## 环境一致性（2026-05-13 确认）\\\\n\\\\n**home vs westd transformers 版本不同：home=4.57.6, westd=5.8.0**。导致相同代码+超参训练出 22pp accuracy 差距。Multi-seed 对比实验必须在同一环境运行，跨服务器对比无效。\\\\n\\\\n数据文件也不一致（md5 不同，行顺序/shuffle 不同）。在极端过拟合场景下，early steps 数据顺序对 best checkpoint 影响极大。\\\\n\\\\n**教训**：跨服务器 multi-seed 前必须验证：① transformers 版本 ② 数据文件 md5 ③ Python 版本。三者都一致才能做 apple-to-apple 对比。\\\\n\\\\n## Eval 脚本 generation_stats 单位\\\\n\\\\neval_repo_cwm.py L215 `len(r[\\\\\\\"gen_text\\\\\\\"])` 统计的是 **characters** 不是 tokens。max=7582 chars 对应 ≤1024 tokens（代码/traceback 每 token ~7.4 chars），无异常。\\\\n\\\\n## Repo-level 训练过拟合模式\\\\n\\\\n所有 repo-level 模型 best checkpoint 在 <10% 训练（step 200-600 / total 6633）。之后 eval_loss 单调上升。LR=5e-5 已比 2e-4 好很多（v5 best@600 vs v4 best@200），但仍然极度过拟合。未来可考虑：更激进的 early stopping / 更低 lr / 更多 regularization。\\\\n\\\\n## D008 Go/No-Go 判据\\\\n\\\\nCLS v5 (76.92%) vs CWM v11 (66.6%)，gap 10.3pp，CWM 低于 majority baseline 6.4pp。CWM 75.2% 输出不可解析。D008 = GO，repo-level 明确放大 complexity-dependent advantage。\\\\n\\\\n## Seed123 Launch Configs（已作废）\\\\n\\\\n原始 seed123 配置见 registry spec。注意：westd 上的 seed123 训练使用了错误环境（transformers 5.8.0），结果无效。需在 home 或统一环境后的 westd 上重跑。\\\\n\\\", \\\"total_chars\\\": 1060, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T00:42:59.686175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "content": "# 项目经验教训\n\n## 环境一致性（2026-05-13 确认）\n\n**home vs westd transformers 版本不同：home=4.57.6, westd=5.8.0**。导致相同代码+超参训练出 22pp accuracy 差距。Multi-seed 对比实验必须在同一环境运行，跨服务器对比无效。\n\n数据文件也不一致（md5 不同，行顺序/shuffle 不同）。在极端过拟合场景下，early steps 数据顺序对 best checkpoint 影响极大。\n\n**教训**：跨服务器 multi-seed 前必须验证：① transformers 版本 ② 数据文件 md5 ③ Python 版本。三者都一致才能做 apple-to-apple 对比。\n\n## Eval 脚本 generation_stats 单位\n\neval_repo_cwm.py L215 `len(r[\"gen_text\"])` 统计的是 **characters** 不是 tokens。max=7582 chars 对应 ≤1024 tokens（代码/traceback 每 token ~7.4 chars），无异常。\n\n## Repo-level 训练过拟合模式\n\n所有 repo-level 模型 best checkpoint 在 <10% 训练（step 200-600 / total 6633）。之后 eval_loss 单调上升。LR=5e-5 已比 2e-4 好很多（v5 best@600 vs v4 best@200），但仍然极度过拟合。未来可考虑：更激进的 early stopping / 更低 lr / 更多 regularization。\n\n## D008 Go/No-Go 判据\n\nCLS v5 (76.92%) vs CWM v11 (66.6%)，gap 10.3pp，CWM 低于 majority baseline 6.4pp。CWM 75.2% 输出不可解析。D008 = GO，repo-level 明确放大 complexity-dependent advantage。\n\n## Seed123 Launch Configs（已作废）\n\n原始 seed123 配置见 registry spec。注意：westd 上的 seed123 训练使用了错误环境（transformers 5.8.0），结果无效。需在 home 或统一环境后的 westd 上重跑。\n\n## 核心实验数字速查（2026-05-14 汇总）\n\n| 配置 | Accuracy | Pass_F1 | Fail_F1 |\n|------|----------|---------|---------|\n| 4B CLS (5-seed) | 88.43 ± 0.78 | 88.38 ± 0.87 | 88.48 ± 0.75 |\n| 4B CWM (5-seed) | 87.19 ± 0.37 | 86.97 ± 0.28 | 87.39 ± 0.51 |\n| 8B CLS (3-seed) | 89.39 ± 1.09 | 89.53 ± 1.33 | 89.22 ± 0.83 |\n| 8B CWM (3-seed) | 86.96 ± 0.72 | 86.79 ± 0.81 | 87.14 ± 0.63 |\n| Traj-level (5-seed) | 86.30 ± 0.97 | — | — |\n| Zero-shot 8B | 64.40 | 50.50 | 72.20 |\n| Zero-shot 32B | 71.69 | 65.68 | 75.91 |\n| Repo-level CLS v5 | 76.92 | 82.78 | 65.01 |\n\n**关键 gaps**: 4B CLS-CWM=+1.25±1.01pp (p=0.051), 8B CLS-CWM=+2.42±0.37pp (p=0.008), FT 4B vs 0-shot 32B=+16.74pp, TOST CLS≈TRAJ (p=0.007, ±2pp)\n"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T00:42:59.686335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T00:42:59.686491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "success-experiments-summary",
+              "type": "report",
+              "description": "All success experiments metrics summary: 8 tables (CLS/CWM/Traj/8B-scaling/LLM-judge/repo-level/analysis) + core comparison numbers for paper",
+              "project": "exec-sim-repair-verifier",
+              "content_filename": "success_experiments_summary.md",
+              "tags": "['metrics', 'summary', 'paper']",
+              "content": "# Experiment Results Summary (2026-05-14)\n\n33 success experiments out of 59 total. All function-level experiments use CoderForge test set (1,890 test samples, 114 problems).\n\n---\n\n## Table 1: Function-level CLS (per-test classification, Qwen3-4B, 5 seeds)\n\n| Seed | Accuracy | Pass_F1 | Fail_F1 | Pass_P | Pass_R | Fail_P | Fail_R |\n|------|----------|---------|---------|--------|--------|--------|--------|\n| 0    | 87.94    | 87.79   | 88.08   | 92.13  | 83.84  | 84.20  | 92.32  |\n| 42   | 87.83    | 88.06   | 87.59   | 89.45  | 86.71  | 86.20  | 89.04  |\n| 123  | 89.52    | 89.64   | 89.40   | 91.76  | 87.63  | 87.34  | 91.56  |\n| 456  | 87.88    | 87.53   | 88.21   | 93.60  | 82.21  | 83.12  | 93.97  |\n| 789  | 89.00    | 88.90   | 89.10   | 93.30  | 84.90  | 85.20  | 93.40  |\n| **Mean±Std** | **88.43 ± 0.78** | **88.38 ± 0.87** | **88.48 ± 0.75** | **92.05 ± 1.64** | **85.06 ± 2.18** | **85.21 ± 1.65** | **92.06 ± 1.93** |\n\n---\n\n## Table 2: Function-level CWM (execution simulation, Qwen3-4B, 5 seeds)\n\n| Seed | Accuracy | Pass_F1 | Fail_F1 | Pass_P | Pass_R | Fail_P | Fail_R | ExactMatch |\n|------|----------|---------|---------|--------|--------|--------|--------|------------|\n| 0    | 87.57    | 87.18   | 87.93   | 93.45  | 81.70  | 82.71  | 93.86  | 84.29      |\n| 42   | 87.51    | 87.31   | 87.71   | 92.06  | 83.03  | 83.53  | 92.32  | 84.02      |\n| 123  | 87.20    | 86.95   | 87.44   | —      | —      | —      | —      | 84.44      |\n| 456  | 86.98    | 86.66   | 87.29   | 92.26  | 81.70  | 82.52  | 92.65  | 84.02      |\n| 789  | 86.67    | 86.74   | 86.60   | 89.37  | 84.25  | 84.09  | 89.25  | 83.97      |\n| **Mean±Std** | **87.19 ± 0.37** | **86.97 ± 0.28** | **87.39 ± 0.51** | **91.78 ± 1.72** | **82.67 ± 1.23** | **83.21 ± 0.73** | **92.02 ± 1.96** | **84.15 ± 0.21** |\n\n---\n\n## Table 3: Function-level CLS vs CWM (4B, 5-seed paired comparison)\n\n| Model | Formulation | Seeds | Accuracy (mean±std) | Pass_F1 | Fail_F1 |\n|-------|-------------|-------|---------------------|---------|---------|\n| 4B    | CLS         | 5     | 88.43 ± 0.78       | 88.38 ± 0.87 | 88.48 ± 0.75 |\n| 4B    | CWM         | 5     | 87.19 ± 0.37       | 86.97 ± 0.28 | 87.39 ± 0.51 |\n| **Gap (CLS−CWM)** | | 5 | **+1.25 ± 1.01**   | **+1.42 ± 0.94** | **+1.08 ± 1.13** |\n\n- Paired t-test: acc p=0.0506, pass_f1 p=0.0285, fail_f1 p=0.0993\n- Per-seed accuracy gaps: seed0=+0.37, seed42=+0.32, seed123=+2.32, seed456=+0.90, seed789=+2.33\n\n---\n\n## Table 4: 8B Scaling (3 matched seeds: 42, 123, 456)\n\n| Model | Size | Formulation | Seeds | Accuracy (mean±std) | Pass_F1 | Fail_F1 |\n|-------|------|-------------|-------|---------------------|---------|---------|\n| Qwen3 | 4B  | CLS         | 3     | 88.41 ± 0.96       | 88.41 ± 1.10 | — |\n| Qwen3 | 4B  | CWM         | 3     | 87.23 ± 0.27       | 86.97 ± 0.33 | — |\n| Qwen3 | 8B  | CLS         | 3     | 89.39 ± 1.09       | 89.53 ± 1.33 | 89.22 ± 0.83 |\n| Qwen3 | 8B  | CWM         | 3     | 86.96 ± 0.72       | 86.79 ± 0.81 | 87.14 ± 0.63 |\n\n| Per-seed 8B detail | Seed 42 | Seed 123 | Seed 456 |\n|---|---|---|---|\n| 8B CLS | 90.48 | 89.37 | 88.31 |\n| 8B CWM | 87.67 | 86.98 | 86.24 |\n| Gap | +2.81 | +2.39 | +2.07 |\n\n- CLS-CWM gap (4B, 3-seed): +1.18 ± 1.03pp\n- CLS-CWM gap (8B, 3-seed): +2.42 ± 0.37pp (paired t p=0.0077)\n- 4B→8B CLS gain: +0.98pp; CWM gain: −0.27pp\n- Gap widening: +1.24pp wider at 8B → CWM bottleneck amplified by scale\n\n---\n\n## Table 5: Trajectory-level (Qwen3-4B, 5 seeds)\n\n| Seed | Accuracy | Unresolved_F1 | Resolved_F1 | Unres_P | Unres_R | Res_P | Res_R | Consistency |\n|------|----------|---------------|-------------|---------|---------|-------|-------|-------------|\n| 0    | 85.66    | 87.37         | 83.41       | 82.71   | 92.59   | 90.07 | 77.66 | 79.55       |\n| 42   | 85.66    | 87.50         | 83.18       | —       | —       | —     | —     | 79.94       |\n| 123  | 85.47    | 87.00         | 83.52       | 83.53   | 90.78   | 88.17 | 79.33 | 78.59       |\n| 456  | 87.40    | 88.70         | 85.80       | 85.70   | 91.90   | 89.70 | 82.30 | 78.80       |\n| 789  | 87.31    | 88.27         | 86.17       | 87.41   | 89.15   | 87.18 | 85.18 | 76.74       |\n| **Mean±Std** | **86.30 ± 0.97** | **87.77 ± 0.70** | **84.42 ± 1.44** | — | — | — | — | **78.72 ± 1.24** |\n\n---\n\n## Table 6: Zero-shot LLM Judge\n\n| Model | Accuracy | Pass_F1 | Fail_F1 | Pass_P | Pass_R | Fail_P | Fail_R |\n|-------|----------|---------|---------|--------|--------|--------|--------|\n| Qwen3-8B zero-shot  | 64.40 | 50.50 | 72.20 | 90.00 | 35.10 | 57.90 | 95.80 |\n| Qwen3-32B zero-shot | 71.69 | 65.68 | 75.91 | 88.12 | 52.35 | 64.40 | 92.43 |\n| FT 4B CLS (ref)     | 88.43 | 88.38 | 88.48 | 92.05 | 85.06 | 85.21 | 92.06 |\n\n- Gap vs FT 4B: 8B zero-shot −24.03pp, 32B zero-shot −16.74pp\n- Fine-tuned 4B dominates 8× larger zero-shot model\n\n---\n\n## Table 7: Repo-level (SWE-bench, completed results)\n\n| Experiment | Acc | F1_macro | Pass_F1 | Fail_F1 | Unparseable | Majority BL | Status |\n|------------|-----|----------|---------|---------|-------------|-------------|--------|\n| CLS v4 (old hp) | 66.11 | 56.61 | 76.90 | 36.30 | 132 | 72.96% | success (early stop) |\n| CLS v5 (fixed hp) | **76.92** | **73.90** | **82.78** | **65.01** | 132 | 72.96% | **success** |\n| CWM v10 | 69.91 | 46.71 | 81.87 | 11.54 | 9,102 (93%) | 72.96% | success (eval invalid) |\n| CWM v11 | 66.60 | 52.99 | 78.30 | 27.70 | 376 (75%) | 72.96% | killed (subset-500) |\n| CLS 8B | 71.37 | 69.05 | 77.53 | 60.57 | 136 | 72.96% | killed (env mismatch) |\n\n- Only CLS v5 is a valid repo-level result\n- CWM repo-level: generation too long / unparseable, eval unreliable\n- CLS 8B: trained with mismatched transformers version (5.8.0 vs 4.57.6)\n\n---\n\n## Table 8: Analysis Experiments\n\n### 5-paired-clustered-bootstrap (CLS vs TRAJ equivalence)\n- Pooled variant-level gap (CLS−TRAJ): −0.45pp, 95% CI [−1.71, +0.84]\n- Paired t-test: p=0.499 (not significant)\n- TOST equivalence: p=0.0071 (equivalent within ±2pp margin)\n- Per-seed gaps: seed42=−0.97, seed123=+1.45, seed456=−1.84, seed789=−0.78, seed0=−0.29\n\n### per-test-majority-voting (K=3, temp=0.7)\n- Greedy: 87.51% → Majority vote: 86.83% (Δ=−0.69pp)\n- Unanimous: 93.3%, split samples: 127, net flips: −13\n- Conclusion: NEGATIVE — majority voting hurts\n\n### block-corr-empirical (error correlation within problems)\n- ICC=0.191 (p<1e-10), design effect=3.97\n- All-correct ratio: 2.81× vs i.i.d. expectation\n- Error std ratio: 1.89× vs i.i.d.\n\n### oracle-f2p-stratified (per-test advantage by F2P count)\n- T=1 (68.7%): block_adv=−0.09pp (no advantage)\n- T=2 (19.1%): block_adv=+31.69pp\n- T=3–5 (7.1%): block_adv=+40.74pp\n- T≥6 (5.1%): block_adv=+40.06pp\n- T=2 contributes 55.3% of overall advantage\n\n### mvp-a-oracle-sim (total F2P+P2P simulation)\n- 10% regression: iid_adv=13.2pp, block_adv=8.3pp (PASS)\n- 5% regression: iid_adv=−1.0pp, block_adv=−0.5pp (FAIL)\n\n### per-test-precision-recall (diagnostic)\n- 48/114 problems (42.1%) perfectly predicted\n- Median problem fail-F1: 94.12%\n- Best mutation: return_value (97.26%), Worst: off_by_one (82.56%)\n\n---\n\n## Core Comparison Numbers (Paper)\n\n1. **4B CLS vs CWM (5-seed)**: gap=+1.25±1.01pp, paired t p=0.051\n2. **8B CLS vs CWM (3-seed)**: gap=+2.42±0.37pp, paired t p=0.008\n3. **Scaling 4B→8B**: CLS +0.98pp, CWM −0.27pp; gap widens +1.24pp\n4. **FT 4B vs zero-shot 32B**: +16.74pp advantage for fine-tuned 4B\n5. **Repo-level**: CLS v5=76.92% (only valid), CWM eval invalid\n6. **TOST CLS≈TRAJ**: equivalent within ±2pp (p=0.007)\n"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T00:42:59.686729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_515c1c\\\", \\\"name\\\": \\\"success-experiments-summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"All success experiments metrics summary: 8 tables (CLS/CWM/Traj/8B-scaling/LLM-judge/repo-level/analysis) + core comparison numbers for paper\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/report/success_experiments_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T00:42:51.161017+00:00\\\", \\\"tags\\\": [\\\"metrics\\\", \\\"summary\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T00:42:59.686933+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总报告已注册为 artifact `art_20260514_515c1c`，核心数字已追加到 memory.md。\n\n**关键结果**:\n\n| 配置 | Accuracy | CLS−CWM Gap |\n|------|----------|-------------|\n| 4B (5-seed) | CLS 88.43±0.78 / CWM 87.19±0.37 | +1.25±1.01pp (p=0.051) |\n| 8B (3-seed) | CLS 89.39±1.09 / CWM 86.96±0.72 | +2.42±0.37pp (p=0.008) |\n| Traj (5-seed) | 86.30±0.97 | TOST≈CLS (p=0.007) |\n| Zero-shot 32B | 71.69 | vs FT 4B: −16.74pp |\n| Repo CLS v5 | 76.92 | CWM eval invalid |\n\nScaling 放大 gap +1.24pp (CLS 吃到 scaling, CWM 不吃)。Repo-level 只有 CLS v5 有效，CWM 因 unparseable 过高不可用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_experiment-summary-table_20260514T003543"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-experiment-summary-table.md"
+}

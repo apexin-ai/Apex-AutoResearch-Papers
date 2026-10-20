@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "327f09a668eb30722628",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis logistic regression marginal",
+  "task_key": "worker_analysis_logistic-regression-marginal_20260522T170132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_logistic-regression-marginal_20260522T170132.log",
+    "occurrence": 1,
+    "bytes": 605218,
+    "sha256": "df1b7ee46f18bc305f11b897d0f446d6f5c7f9796ca6dc6cafa4761f1b955d78"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 44,
+      "tool_call": 70,
+      "record": 1,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 188,
+      "chunks": [
+        {
+          "path": "327f09a668eb30722628-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "327f09a668eb30722628-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-logistic-regression-marginal.md"
+}

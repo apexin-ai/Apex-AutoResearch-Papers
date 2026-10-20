@@ -1,0 +1,23 @@
+{
+  "exp_id": "deepseek-cwm-repo-s456-train-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:04:20.919Z",
+    "updated_at": "2026-05-20T09:22:41.733Z",
+    "hypothesis": "DeepSeek CWM repo-level s456-v2：第 3 seed，与 s42/s123-v2 对齐（train_unified.py + --train_file swebench_full/swebench_train.jsonl, 70748 行）。组成完整 3-seed coverage (42/123/456)。使用 epoch 3 final checkpoint 评估。",
+    "parent": "deepseek-cwm-repo-s456-train",
+    "spec": {
+      "pid": 949112,
+      "note": "nohup launch, confirmed single process on GPU 1, data=70748 verified"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T09:22:41.733Z"
+  },
+  "timestamp": "2026-05-20T09:22:42.167341+00:00",
+  "trigger": "update_registry"
+}

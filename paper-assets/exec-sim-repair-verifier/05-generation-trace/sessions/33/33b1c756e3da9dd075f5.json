@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b1c756e3da9dd075f5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops diagnose seed123 vs v5 config",
+  "task_key": "worker_ops_diagnose-seed123-vs-v5-config_20260513T204513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-seed123-vs-v5-config_20260513T204513_result.json",
+    "occurrence": 1,
+    "bytes": 2596,
+    "sha256": "bb58d9c12ea675f19624cbe038dc475365fc3cbcce3cec2e4005d2c37954af05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整对比结果：\n\n---\n\n## 对比总结\n\n### 1. 训练代码\n**完全一致** — `train_repo_verifier.py` md5 = `9799cc4bb8a1c896f792e74178f45aeb`\n\n### 2. 训练超参\n\n| 参数 | home (CLS v5) | westd (seed123) |\n|------|:---:|:---:|\n| learning_rate | 5e-05 | 5e-05 |\n| weight_decay | 0.01 | 0.01 |\n| warmup_ratio | 0.05 | 0.05 |\n| batch_size | 2 | 2 |\n| grad_accum | 16 | 16 |\n| bf16 | True | True |\n| seed | **42** | **123** |\n\n超参**完全一致**（除 seed）。lr 都是 5e-5，不是 2e-4。\n\n### 3. Python / transformers 版本\n\n| | home | westd |\n|---|:---:|:---:|\n| Python | 3.10.12 | 3.10.12 |\n| **transformers** | **4.57.6** | **5.8.0** |\n\n### 4. 数据文件\n- 行数：均 70748\n- **md5 不同**：home `e25e2c88...` vs westd `be5814c9...`\n- keys 相同，但行顺序不同（不同 shuffle）\n\n### 5. Base Model 路径\n- home: `Qwen/Qwen3-4B`（hub 引用）\n- westd: `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`（本地 cache，offline 模式）\n\n### 6. 训练曲线对比\n\n**home (seed=42)** — 当前 step 4200/6633 (epoch 1.90)：\n| step | eval_loss |\n|------|-----------|\n| 200 | 0.1258 |\n| 400 | 0.0761 |\n| **600** | **0.0642** ← best |\n| 800 | 0.2045 |\n| 1000+ | 0.12~0.33（严重过拟合） |\n\n**westd (seed=123)** — 当前 step 3200/6633 (epoch 1.45)，仍在运行：\n| step | eval_loss |\n|------|-----------|\n| **200** | **0.0808** ← best |\n| 400 | 0.0902 |\n| 600 | 0.1147 |\n| 800 | 0.1473 |\n| 1000+ | 0.19~0.36（更严重的过拟合） |\n\n---\n\n## 22pp Gap 最可能原因\n\n**三个差异叠加导致：**\n\n1. **transformers 4.57.6 vs 5.8.0（主因）** — 跨大版本（4→5），tokenizer 行为、attention 实现、训练循环细节均可能变化。westd 的模型从 step 200 之后就持续恶化，而 home 在 step 600 才达到 best 后开始恶化，说明 transformers 5.x 下模型的训练动态有显著不同。\n\n2. **数据文件内容/顺序不同** — 两边数据 md5 不一致。在两者都严重过拟合的情况下，early steps 看到的数据顺序对 best checkpoint 质量影响极大。\n\n3. **两者都严重过拟合，best checkpoint 都很早** — home best 在 step 600（epoch 0.27），westd best 在 step 200（epoch 0.09）。两者 eval_loss 差距其实不大（0.0642 vs 0.0808），但这种微小 loss 差距在分类 accuracy 上可以放大为 22pp。\n\n**建议**：在 westd 上将 transformers 降级到 4.57.6，用与 home 相同的数据文件重跑，排除这两个变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-seed123-vs-v5-config.md"
+}

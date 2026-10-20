@@ -1,0 +1,25 @@
+{
+  "exp_id": "deepseek-cls-repo-v5-ckpt6315-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:58:30.134Z",
+    "updated_at": "2026-05-18T19:58:30.134Z",
+    "spec": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "checkpoint_source": "checkpoint-6315 (epoch 3, final, eval_loss=0.1587)",
+      "eval_data": "repo_test (9784 instances)",
+      "command": "mkdir -p /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192 && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/checkpoint-6315 --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/eval_summary.json --pred_output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/predictions.jsonl"
+    }
+  },
+  "timestamp": "2026-05-18T19:58:30.474422+00:00",
+  "trigger": "update_registry"
+}

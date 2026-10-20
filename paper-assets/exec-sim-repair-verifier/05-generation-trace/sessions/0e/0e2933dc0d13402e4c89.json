@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2933dc0d13402e4c89",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose exp downsample cls func v3 eval",
+  "task_key": "worker_diagnose_exp-downsample-cls-func-v3-eval_20260519T070808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-downsample-cls-func-v3-eval_20260519T070808_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "d5da31f0c4b0caa4ea2843639596e31049a5421631b04ff15747e79597186780"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：GPU 显存 OOM**。进程在推理到 960/9784 样本时静默死亡，日志无 traceback。GPU 2 残留 100% GPU-Util + 0MiB memory 的异常状态，是 CUDA driver 级 OOM 杀进程的典型表现。Qwen3-4B 模型本身约 8-9GB，但 SWE-bench test set 中存在超长 git diff，KV cache 撑爆 32GB VRAM。\n\n无部分结果（脚本在推理全部完成后才写文件）。\n\n修复建议：\n1. 加 `max_length` 截断超长输入\n2. 推理循环加 OOM try/except + `torch.cuda.empty_cache()`\n3. predictions 改为逐条 append JSONL（防中断零产出）\n4. 用 `cuda:1`（当前空闲）重跑，GPU 2 需重置\n\n报告已保存到 `artifacts/diagnose_exp-downsample-cls-func-v3-eval.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-downsample-cls-func-v3-eval.md"
+}

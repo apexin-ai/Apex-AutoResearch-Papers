@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "322789037a1f82974390",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b s42 ckpt1000 test seq2048 ablation",
+  "task_key": "worker_analysis_cls8b-s42-ckpt1000-test-seq2048-ablation_20260515T112800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-s42-ckpt1000-test-seq2048-ablation_20260515T112800_result.json",
+    "occurrence": 1,
+    "bytes": 1570,
+    "sha256": "9fcf6c6b3fcb742ab49ac7177742f89b9b954b7deadd0379f032fc9024e9b198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个日志均无 W&B run id，无错误。结果汇总：\n\n---\n\n## 实验 1: cls8b-s42-ckpt1000-test-seq2048-ablation\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **82.83%** |\n| **F1 macro** | **76.88%** |\n| fail: P / R / F1 | 72.2% / 59.3% / 65.2% |\n| pass: P / R / F1 | 85.9% / 91.5% / 88.6% |\n| Unparseable | 136 |\n| 错误 | 无 |\n| W&B run id | 无 |\n\n**结论: SUCCESS** — CLS@2048 accuracy=82.83% 仍大幅超越 CWM 4B test=58.04%（+24.8pp），与 CLS@8192=83.52% 仅差 0.69pp。**seq_length confound 被排除**：缩短 seq_length 从 8192→2048 几乎不影响 CLS 性能，证明 CLS 的优势不是来自更长的输入序列。\n\n---\n\n## 实验 2: cls8b-seed123-ckpt6633-test-eval\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **84.89%** |\n| **F1 macro** | **77.56%** |\n| fail: P / R / F1 | 87.8% / 51.2% / 64.7% |\n| pass: P / R / F1 | 84.3% / 97.4% / 90.4% |\n| Unparseable | 0 |\n| 错误 | 无 |\n| W&B run id | 无 |\n\n**结论: SUCCESS** — seed123 final ckpt-6633 test accuracy=84.89%，高于 seed42 的 83.52%，进一步确认 CLS 8B 在不同 seed 下的稳定性。注意 fail recall 仅 51.2%（高 precision 87.8% 但低 recall），说明 seed123 更保守——更少误报但漏检更多。\n\n---\n\n### 交叉对比总结\n\n| 配置 | Accuracy | F1 macro |\n|------|----------|----------|\n| CLS 8B s42 ckpt-1000 @8192 | 83.52% | — |\n| CLS 8B s42 ckpt-1000 @2048 | 82.83% | 76.88% |\n| CLS 8B seed123 ckpt-6633 @full | 84.89% | 77.56% |\n| CWM 4B (baseline) | 58.04% | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-s42-ckpt1000-test-seq2048-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23fc605e5c3bb199d69a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cls 8b s123 resume prep",
+  "task_key": "worker_code_cls-8b-s123-resume-prep_20260514T140925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cls-8b-s123-resume-prep_20260514T140925_result.json",
+    "occurrence": 1,
+    "bytes": 3133,
+    "sha256": "9534f64669d8e63f9cef12176b13c6b3438acbb4c66669099c390e55ac1b4e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. ckpt-200 状态：✅ 存在且完整\n```\ncheckpoint-200/\n├── adapter_config.json\n├── adapter_model.safetensors  (58MB)\n├── optimizer.pt               (117MB)\n├── scheduler.pt\n├── rng_state.pth\n├── trainer_state.json\n└── training_args.bin\n```\n\n当前目录下的 checkpoint 列表：`checkpoint-200, 1600, 1800, 2000, 2200`（400/600 确认已被 save_total_limit=5 删除）。\n\n### 2. 脚本需要修改（3 处）\n\n脚本路径：`/home/sonny/exec-sim-repair-verifier/train_repo_verifier.py`\n\n**问题 A**：无 `--resume_from_checkpoint` 参数，`trainer.train()` 也不传。\n**问题 B**：`save_total_limit` 硬编码为 5，无 CLI 覆盖。\n**问题 C**：`is_dryrun = args.max_steps > 0`——如果用 `--max_steps 600` 会触发 dryrun 模式，`save_strategy=\"no\"`，不会保存任何 checkpoint。\n\n**推荐方案**：不用 `--max_steps`，保持 `epochs=3`（与原训练一致），resume 后手动监控，ckpt-600 保存后 kill。这样 LR scheduler 与原训练完全一致。\n\n#### 修改 1：添加 CLI 参数（line 199 之后）\n```python\np.add_argument(\"--resume_from_checkpoint\", default=None)\np.add_argument(\"--save_total_limit\", type=int, default=5)\n```\n\n#### 修改 2：使用 CLI 值替代硬编码（line 272）\n```python\n# 改前\n\"save_total_limit\": 5,\n# 改后\n\"save_total_limit\": args.save_total_limit,\n```\n\n#### 修改 3：传 resume 参数给 trainer（line 297）\n```python\n# 改前\ntrainer.train()\n# 改后\ntrainer.train(resume_from_checkpoint=args.resume_from_checkpoint)\n```\n\n### 3. 恢复训练命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=3 python3 /home/sonny/exec-sim-repair-verifier/train_repo_verifier.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --device cuda:0 \\\n  --batch_size 1 \\\n  --grad_accumulation 32 \\\n  --seed 123 \\\n  --no_wandb \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda_resume/ \\\n  --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200 \\\n  --save_total_limit 10\n```\n\n注意：`CUDA_VISIBLE_DEVICES=3` + `--device cuda:0`，因为 CUDA_VISIBLE_DEVICES 重映射后只有一张卡可见。\n\n### 4. 预计时长\n- Step 200 → 600 = 400 steps × ~8.3s/step ≈ **55 分钟**\n- 监控 ckpt-600 保存后 kill 进程\n\n### 5. 操作流程\n1. 等当前 s123 训练完成（预计 May 15 ~12:00 UTC）\n2. 修改 `train_repo_verifier.py`（3 处，见上）\n3. 在 tmux 中运行恢复命令\n4. 监控日志，等 \"Checkpoint saved at step 600\" 出现\n5. Kill 进程\n6. 验证 `ls /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda_resume/` 应有 checkpoint-400 和 checkpoint-600\n\n### 6. 注意事项\n- output_dir 用新目录 `_resume/` 避免覆盖原有 checkpoint\n- 不用 `--max_steps`，避免触发 dryrun 模式导致不保存 checkpoint\n- `epochs=3` 保持与原训练一致，确保 scheduler 状态恢复后 LR 曲线匹配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cls-8b-s123-resume-prep.md"
+}

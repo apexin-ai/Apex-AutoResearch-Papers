@@ -1,0 +1,251 @@
+% Experiments draft — generated 2026-05-15, numbers from registry
+% NOTE: All numbers cross-checked against experiment registry.
+% exp_id references provided for key claims.
+
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate the three formulations defined in \S\ref{sec:method} across two complexity levels---function-level and repository-level---to test the prediction that classification gains an increasing advantage over generation as code complexity grows.
+
+\subsection{Experimental Setup}
+\label{ssec:setup}
+
+\paragraph{Function-Level Data.}
+We construct a function-level benchmark from HumanEval~\citep{chen2021humaneval} and MBPP~\citep{austin2021mbpp} by applying five categories of systematic mutations---\texttt{off\_by\_one}, \texttt{operator\_swap}, \texttt{variable\_swap}, \texttt{return\_value}, and \texttt{boundary\_removal}---to correct solutions, yielding 19,076 (code, test, label) triples.
+We split by problem identity: 15,290 train / 1,896 validation / 1,890 test, with zero problem overlap between splits.
+The test set is approximately class-balanced (51.7\% \textsc{Pass}, 48.3\% \textsc{Fail}).
+
+\paragraph{Repo-Level Data.}
+We derive a per-test verification dataset from SWE-bench Verified~\citep{jimenez2024swebench} by pairing each candidate patch with individual test cases and their ground-truth outcomes.
+The resulting dataset contains approximately 70K training samples, 9,335 validation samples, and 9,784 test samples.
+The test set is class-imbalanced (72.96\% \textsc{Pass}); we report the majority-class baseline throughout.
+Validation and test splits have zero problem overlap and exhibit a mutation-type composition shift (operator\_swap: 19.1\% val $\to$ 34.3\% test), which we discuss in \S\ref{ssec:analysis}.
+
+\paragraph{Models and Training.}
+All models use Qwen3~\citep{qwen2025qwen3} as the base architecture with LoRA adaptation~\citep{hu2022lora} (rank$=$16, $\alpha$$=$32).
+We train Qwen3-4B and Qwen3-8B variants for CLS, CWM, and TRAJ formulations.
+Training uses AdamW with learning rate $2 \times 10^{-4}$ (function-level) or $5 \times 10^{-5}$ (repo-level), weight decay 0.01, warmup ratio 0.05, batch size 32 (effective), and 3 epochs.
+Function-level experiments use seeds 42, 123, 456, 789, and 0 (five seeds); 8B scaling experiments use seeds 42, 123, and 456 (three matched pairs).
+Seeds 42/123/456 use bfloat16 precision; seeds 789 and 0 use NF4 quantization due to hardware constraints.\footnote{NF4 seeds appear only in 4B paired comparisons (\S\ref{ssec:equivalence}), where the within-seed paired design controls for quantization effects.}
+
+\paragraph{Checkpoint Selection.}
+All reported results use validation-selected checkpoints: we sweep all saved checkpoints on the validation split and select the one with highest accuracy, then evaluate on the held-out test split exactly once.
+
+\paragraph{Statistical Methods.}
+We report seed-level means $\pm$ sample standard deviations.
+For the CLS--CWM comparison, we use seed-paired bootstrap (10,000 resamples) with one-sided tests.
+For CLS--TRAJ equivalence, we apply the two one-sided tests (TOST) procedure~\citep{schuirmann1987tost} with a pre-specified $\pm$2 percentage-point (pp) equivalence margin.
+For repo-level results with clustered per-test predictions, we use clustered bootstrap with 114 problem-level clusters and 10,000 resamples.
+We report the intra-cluster correlation coefficient (ICC) and design effect (DEFF) to characterize block-correlation structure.
+
+
+\subsection{Function-Level Results}
+\label{ssec:func_results}
+
+% exp_id: multi-seed-core, cwm-baseline, cwm-seed{123,456,789,0},
+%         cls-seed{789,0}, traj-level-{finetuned,seed123,seed456,seed789,seed0},
+%         llm-judge-8b-zeroshot, llm-judge-32b-zeroshot
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Method} & \textbf{Model} & \textbf{Accuracy (\%)} & \textbf{Seeds} \\
+\midrule
+CLS & Qwen3-4B & 88.43 $\pm$ 0.78 & 5 \\
+CWM & Qwen3-4B & 87.19 $\pm$ 0.37 & 5 \\
+TRAJ & Qwen3-4B & 86.30 $\pm$ 0.97 & 5 \\
+\midrule
+ZS Judge & Qwen3-8B & 64.40 & 1 \\
+ZS Judge & Qwen3-32B\textsuperscript{\textdagger} & 71.69 & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Function-level per-test verification accuracy on HumanEval+MBPP mutants ($n$$=$$1{,}890$). CLS, CWM, and TRAJ are fine-tuned with LoRA; ZS Judge uses zero-shot prompting. \textsuperscript{\textdagger}NF4 quantization. All three fine-tuned formulations achieve $>$86\% accuracy, substantially outperforming zero-shot baselines.}
+\label{tab:func_results}
+\end{table}
+
+Table~\ref{tab:func_results} presents function-level results.
+All three fine-tuned formulations---CLS, CWM, and TRAJ---achieve strong accuracy in the 86--89\% range, with CLS leading at 88.43\%.
+
+\paragraph{CLS vs.\ CWM.}
+CLS outperforms CWM by 1.24pp across five matched seeds (bootstrap 95\% CI: [0.46, 2.04], one-sided $p = 0.025$).
+The gap is consistent: CLS achieves higher accuracy in all five seed pairs, with per-seed gaps ranging from 0.32pp (seed 42) to 2.33pp (seed 789).
+While statistically significant, this gap is modest---both formulations achieve near-equivalent accuracy on function-level code where execution outputs are short and CWM failure modes rarely activate.
+
+\paragraph{Zero-shot baselines.}
+Zero-shot LLM-as-judge performance lags far behind fine-tuned models: Qwen3-8B achieves only 64.40\% and Qwen3-32B (NF4) reaches 71.69\%, both exhibiting a systematic bias toward predicting \textsc{Fail} (fail recall $>$92\%, pass recall $<$53\%).
+The 16.7pp gap between the 32B zero-shot model and the fine-tuned 4B CLS confirms that task-specific fine-tuning is essential for execution simulation, and that the classification formulation's advantage is not an artifact of model scale.
+
+
+\subsection{Scaling Behavior}
+\label{ssec:scaling}
+
+% exp_id: model-size-scaling-cls8b, cls8b-seed{123,456},
+%         model-size-scaling-cwm8b, cwm8b-seed{123,456}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{4B} & \textbf{8B} & \textbf{$\Delta$} & \textbf{Gap} \\
+\midrule
+CLS & 88.43 & 89.39 $\pm$ 1.09 & +0.96 & \multirow{2}{*}{} \\
+CWM & 87.19 & 86.96 $\pm$ 0.72 & $-$0.23 & \\
+\midrule
+CLS$-$CWM & 1.24 & 2.43 & & $p = 0.008$ \\
+\bottomrule
+\end{tabular}
+\caption{Scaling from 4B to 8B on function-level data. 4B uses five seeds; 8B uses three matched seeds (42, 123, 456). CLS gains +0.96pp from scaling; CWM loses $-$0.23pp. The CLS--CWM gap nearly doubles from 1.24pp to 2.43pp ($p = 0.008$).}
+\label{tab:scaling}
+\end{table}
+
+Table~\ref{tab:scaling} examines scaling behavior by comparing 4B and 8B models with three matched seed pairs per formulation.
+The key finding is asymmetric: CLS gains +0.96pp from doubling model size (88.43\% $\to$ 89.39\%), while CWM shows no improvement ($-$0.23pp, 87.19\% $\to$ 86.96\%).
+The CLS--CWM gap consequently widens from 1.24pp at 4B to 2.43pp at 8B ($p = 0.008$, paired $t$-test across three seeds).
+
+This asymmetry is consistent with a \emph{generation bottleneck} rather than a capacity limitation.
+If CWM's lower accuracy were due to insufficient model capacity, scaling should help CWM at least as much as CLS.
+Instead, the generation formulation appears to have a ceiling imposed by the exact-match evaluation criterion: additional capacity helps the model produce better token-level predictions, but exact-match accuracy is dominated by the hardest output tokens (precision-sensitive numbers, formatting characters) where even small errors cause failure.
+Classification sidesteps this bottleneck entirely---the model need only determine whether the output \emph{would differ} from the expected value, not reconstruct the differing string.
+
+
+\subsection{Per-Test vs.\ Trajectory-Level Equivalence}
+\label{ssec:equivalence}
+
+% exp_id: 5-paired-clustered-bootstrap, block-corr-empirical
+
+Per-test classification decomposes the verification task into $|T|$ binary predictions that are aggregated to a patch verdict by conjunction.
+This decomposition could either help (richer signal) or hurt (error compounding).
+We compare CLS (aggregated to variant level) against TRAJ across five matched seed pairs using the clustered bootstrap framework from \S\ref{ssec:setup}.
+
+The pooled CLS--TRAJ gap is $-$0.45pp (95\% CI: [$-$1.71, +0.84], $p = 0.499$), with per-seed gaps ranging from $-$1.84pp (seed 456) to +1.45pp (seed 123).
+A TOST equivalence test confirms that the two formulations are statistically equivalent within $\pm$2pp ($p = 0.007$).
+We justify this margin on the basis of the block-correlation structure: with an empirically estimated ICC of 0.191 and design effect of 3.97 (\S\ref{ssec:analysis}), a 2pp variant-level difference corresponds to substantially less than 1pp in effective independent predictions.
+
+The practical implication is that per-test classification achieves the \emph{same} patch-level accuracy as trajectory-level scoring while providing strictly more information: for each patch, CLS identifies which specific tests are predicted to fail, enabling diagnostic applications (targeted re-repair, failure triage) that trajectory-level verifiers cannot support.
+
+
+\subsection{Accuracy-Utility Frontier}
+\label{ssec:frontier}
+
+% exp_id: oracle-f2p-stratified, p2p-regression-rate
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+$|T_{\textsc{f2p}}|$ & \textbf{\% Instances} & \textbf{Block Adv.\ (pp)} & \textbf{Contrib.\ (\%)} \\
+\midrule
+1 & 68.7 & $-$0.09 & --- \\
+2 & 19.1 & 31.69 & 55.3 \\
+3--5 & 7.1 & 40.74 & 26.3 \\
+$\geq$ 6 & 5.1 & 40.06 & 18.4 \\
+\bottomrule
+\end{tabular}
+\caption{Oracle accuracy-utility frontier stratified by the number of fail-to-pass tests $|T_{\textsc{f2p}}|$ in SWE-bench Verified. Block advantage measures the oracle gain from per-test over trajectory-level verification under the empirical ICC. The advantage concentrates in instances with $T \geq 2$ (31.3\% of instances, 100\% of advantage).}
+\label{tab:frontier}
+\end{table}
+
+Per-test verification provides value only when per-test predictions carry actionable information.
+Table~\ref{tab:frontier} stratifies the per-test oracle advantage by the number of fail-to-pass tests ($|T_{\textsc{f2p}}|$) using the empirical correlation structure (ICC$=$0.191).
+
+When $|T_{\textsc{f2p}}| = 1$ (68.7\% of SWE-bench Verified instances), per-test and trajectory-level formulations are informationally equivalent: there is only one fail-to-pass test, so knowing \emph{which} test fails adds nothing beyond knowing \emph{that} a test fails.
+The advantage concentrates in multi-test instances: at $|T_{\textsc{f2p}}| = 2$ (19.1\% of instances), the block-correlated oracle advantage is 31.69pp, accounting for 55.3\% of the total advantage.
+
+\paragraph{Pass-to-pass regression rate.}
+We also examine whether per-test verification provides value through pass-to-pass (P2P) regression detection.
+Empirically, the P2P regression rate on SWE-bench Verified is approximately 1\% (mean; 0\% median) across incorrect patches: 77\% of incorrect patches break zero P2P tests.
+At this rate, per-test verification offers negligible advantage on the P2P dimension---the signal is too sparse.
+We report this as an honest negative: the per-test formulation's value on SWE-bench Verified derives primarily from fail-to-pass discrimination in multi-test instances, not from regression detection.
+The practical decision boundary is $|T_{\textsc{f2p}}| \geq 2$: below this threshold, trajectory-level scoring suffices.
+
+
+\subsection{Repo-Level Results}
+\label{ssec:repo_results}
+
+% exp_id: repo-level-cls-v5, repo-level-cwm-v12, repo-level-cwm-seed123-conda,
+%         cls8b-s42-ckpt1000-test8192-eval, cls8b-seed123-ckpt3000-test8192-eval
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Method} & \textbf{Size} & \textbf{Seed} & \textbf{Acc (\%)} & \textbf{Unp.\ (\%)} & \textbf{vs Maj.} \\
+\midrule
+\multicolumn{6}{l}{\emph{Majority baseline}} \\
+--- & --- & --- & 72.96 & --- & 0 \\
+\midrule
+\multicolumn{6}{l}{\emph{Same-size comparison (primary)}} \\
+CLS & 4B & 42 & 83.63 & 1.3 & +10.67 \\
+CWM & 4B & 42 & 58.04 & 53.7 & $-$14.92 \\
+CWM & 4B & 123 & 59.09 & 67.2 & $-$13.87 \\
+\midrule
+\multicolumn{6}{l}{\emph{Cross-size comparison (secondary)}} \\
+CLS & 8B & 42 & 83.52 & 0.0 & +10.56 \\
+CLS & 8B & 123 & 85.60 & 0.0 & +12.64 \\
+CWM & 8B & 42 & \multicolumn{3}{c}{\emph{in progress}} \\
+\bottomrule
+\end{tabular}
+\caption{Repo-level verification on SWE-bench Verified ($n$$=$$9{,}784$). Unp.\ = unparseable prediction rate. CLS outperforms CWM by 25.59pp at matched 4B scale. CWM falls below the majority baseline in both seeds, with 54--67\% of predictions unparseable.}
+\label{tab:repo_results}
+\end{table}
+
+Table~\ref{tab:repo_results} presents the central result: at repository-level complexity, the CLS--CWM gap explodes from the 1--2pp range observed at function level to over 25pp.
+
+\paragraph{Primary comparison (same-size 4B).}
+At matched model scale and seed, CLS achieves 83.63\% accuracy versus CWM at 58.04\%---a 25.59pp gap.
+The gap is driven by CWM's catastrophic failure on repo-level code: 53.7--67.2\% of CWM predictions are unparseable (the model generates execution traces that consume the entire token budget without reaching a verdict).
+CWM accuracy falls \emph{below} the majority baseline (72.96\%) by approximately 14pp in both seeds, meaning the CWM verifier provides negative value compared to always predicting the majority class.
+Among the minority of parseable CWM predictions, accuracy is only 42--43\%---below random chance---indicating that the model is anti-informative even when it produces interpretable output.
+
+\paragraph{Secondary comparison (cross-size).}
+Two 8B CLS seeds confirm the pattern: CLS at 83.52\% (seed 42) and 85.60\% (seed 123) versus matched-seed 4B CWM at 58.04\% and 59.09\%, yielding gaps of 25.48pp and 26.51pp respectively.
+8B CWM training on repo-level data is in progress; we will include 8B--8B comparisons in the final version.
+
+\paragraph{Gap amplification.}
+The CLS--CWM gap follows a clear complexity gradient: 1.24pp at function-level 4B, 2.43pp at function-level 8B, and $\sim$25pp at repo-level 4B.
+This 20$\times$ amplification from function-level to repo-level confirms the complexity-dependent reformulation advantage predicted by the failure-mode analysis in \S\ref{ssec:failure_modes}: on simple code with short outputs, the generation formulation copes; on complex code with long traces, it collapses.
+
+
+\subsection{Analysis}
+\label{ssec:analysis}
+
+% exp_id: cwm-rank32-ablation-v2, cls8b-s42-ckpt1000-test-seq2048-ablation,
+%         block-corr-empirical
+
+\paragraph{Error complementarity.}
+CLS and CWM exhibit systematically opposite error patterns on function-level data.
+Of CLS errors, 75.5\% are false negatives (missed bugs: the model predicts \textsc{Pass} for a truly failing test), while 83.1\% of CWM errors are false positives (false alarms: the model predicts \textsc{Fail} for a truly passing test).
+An oracle that selects the correct prediction whenever the two models disagree achieves 90.63\% accuracy---a 2.20pp gain over CLS alone and 3.44pp over CWM.
+This complementarity suggests that formulation diversity (combining classification and generation verifiers) may be a productive strategy for verification pipelines, even at function-level complexity where the individual formulations achieve similar accuracy.
+
+\paragraph{CWM error-mode breakdown.}
+A detailed analysis of 500 repo-level CWM predictions reveals three error modes in order of prevalence.
+\emph{Token-budget exhaustion} (77\% of unparseable predictions): the model generates realistic pytest execution traces---dots, warnings, file paths---that consume the entire 1,024-token generation budget before reaching any pass/fail verdict.
+\emph{Keyword ambiguity} (23\% of unparseable): the generated trace contains both pass-indicating and fail-indicating keywords (e.g., test names containing ``fail,'' deprecation warnings alongside success indicators), preventing reliable keyword extraction.
+Among the minority of parseable predictions, the model hallucinates failures: 90\% of parseable errors are \textsc{Pass}$\to$\textsc{Fail} misclassifications (64 of 71 wrong parseable predictions).
+These failure modes are structural to the generation formulation and cannot be addressed by increasing model capacity---as confirmed by the CWM scaling results in \S\ref{ssec:scaling}.
+
+\paragraph{Per-repository variation.}
+CWM unparseable rates vary dramatically across repositories: from $\sim$0\% on scikit-learn (concise test output) to 100\% on sphinx (verbose build output).
+This variation reflects a fundamental dependency on the target repository's test output format---a dependency that CLS avoids by construction, since it never generates execution output.
+
+\paragraph{Sequence-length confound ablation.}
+CLS and CWM use different maximum sequence lengths at repo-level (CLS: 8,192 tokens; CWM: 2,048 tokens), raising the concern that CLS's advantage could be an artifact of additional input context rather than formulation.
+To control for this, we evaluate the CLS 8B model (seed 42, val-selected checkpoint) at $\text{max\_seq\_length} = 2{,}048$ (matching CWM's configuration).
+Accuracy drops by only 0.69pp (83.52\% $\to$ 82.83\%), leaving a 24.79pp gap over CWM.
+This confirms that the classification advantage is driven by the formulation, not the input sequence length.
+
+\paragraph{LoRA rank ablation.}
+To address the concern that LoRA rank$=$16 may systematically disadvantage CWM (which must reconstruct output strings and might benefit from additional adapter capacity), we train a CWM 4B model with rank$=$32 on function-level data.
+The rank$=$32 model achieves 87.0\% accuracy versus 87.51\% at rank$=$16 ($\Delta = -$0.51pp), well within seed-level variance ($\pm$0.53pp).
+CWM's capacity to generate execution outputs is not bottlenecked by adapter rank at this scale.
+
+\paragraph{Block correlation.}
+The empirical ICC of 0.191 ($p < 0.0001$) indicates significant block correlation: per-test predictions within the same patch are positively correlated, with a design effect of 3.97.
+In practical terms, the 114 test-level clusters (problems) in our function-level evaluation yield an effective sample size of approximately $1{,}890 / 3.97 \approx 476$ independent observations.
+This correlation structure has two implications: (1) it motivates the clustered bootstrap procedure used throughout, and (2) it amplifies the per-test advantage in the oracle framework (\S\ref{ssec:frontier}), since correlated correct predictions within a cluster mean that a single per-test error is more likely to flip the patch-level verdict.

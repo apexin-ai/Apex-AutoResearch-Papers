@@ -1,0 +1,73 @@
+{
+  "exp_id": "deepseek-cls-repo-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:26:56.947Z",
+    "updated_at": "2026-05-18T22:53:35.233Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --task cls --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/ --run_name deepseek-cls-repo-s123 --epochs 3 --seed 123 --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "542509",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log",
+      "submitted_at": "2026-05-16T17:27:50.211Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/"
+    },
+    "hypothesis": "DeepSeek CLS repo-level seed 123 replication for multi-seed evidence (same config as s42)",
+    "reproduce": {
+      "finished_at": "2026-05-17T15:08:43.365Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T15:08:48.655545+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "per_test_accuracy_seq8192": 74.93,
+      "per_test_accuracy_seq2048": 82.62,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_seq8192": 1.97,
+      "f1_macro_seq8192": 53.94,
+      "f1_fail_seq8192": 22.84,
+      "f1_pass_seq8192": 85.03,
+      "precision_fail_seq8192": 68.11,
+      "recall_fail_seq8192": 13.72,
+      "recall_pass_seq8192": 97.62,
+      "variant_accuracy_seq8192": 28,
+      "variant_correct_seq8192": 7,
+      "variant_total_seq8192": 25,
+      "variant_accuracy_seq2048": 36,
+      "variant_correct_seq2048": 9,
+      "variant_total_seq2048": 25,
+      "unparseable_seq8192": 0,
+      "unparseable_seq2048": 2796,
+      "train_loss_avg": 0.0393,
+      "eval_loss": "NaN_all_epochs",
+      "total_steps": 6633,
+      "epochs": 3,
+      "train_time": "21h30m",
+      "best_checkpoint": "epoch_3_default_due_to_nan_eval_loss",
+      "note": "seq2048 metrics inflated by 28.6% unparseable defaulting to pass; seq8192 is reliable measure"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T22:53:35.585383+00:00",
+  "trigger": "update_registry"
+}

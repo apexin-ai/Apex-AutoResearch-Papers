@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a8b50f32da7cf774d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b ckpt4000 test retry",
+  "task_key": "worker_eval_cls4b-ckpt4000-test-retry_20260515T140327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-ckpt4000-test-retry_20260515T140327_result.json",
+    "occurrence": 1,
+    "bytes": 285,
+    "sha256": "230bdfc2c2dd3b89543fb6855088f7d1df53a6407674899cfde51fed7351e53d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "home-1x5090 仍然离线（SSH 连接超时）。无法执行任何操作——检查日志、提交 eval 都不行。\n\n**状态**：home 服务器持续不可达，与上次失败原因相同。需要你确认服务器是否已开机/网络是否恢复后再重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-ckpt4000-test-retry.md"
+}

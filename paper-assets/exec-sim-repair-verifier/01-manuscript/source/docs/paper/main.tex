@@ -1,0 +1,69 @@
+\documentclass[11pt]{article}
+
+% ACL style (review mode for anonymous ARR submission)
+\usepackage[review]{acl}
+
+% Standard packages from official ACL template
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+
+% Graphics (xcolor loaded by acl.sty)
+\usepackage{graphicx}
+\graphicspath{{../../artifacts/}}
+
+% Lists
+\usepackage{enumitem}
+
+% Custom commands
+\newcommand{\cls}{\textsc{Cls}}
+\newcommand{\cwm}{\textsc{Cwm}}
+\newcommand{\traj}{\textsc{Traj}}
+\newcommand{\fone}{F\textsubscript{1}}
+\newcommand{\pp}{\,\text{pp}}
+
+\title{A Systematic Comparison of Execution-Free Verification Formulations for Code Repair}
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+
+\input{introduction}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/paper/fig1_reformulation.pdf}
+\caption{Three verification formulations. \textbf{Left:} \cls{} predicts binary pass/fail per test (1 output token). \textbf{Center:} \cwm{} generates execution output, derives verdict by exact match ($O(L)$ tokens). \textbf{Right:} Trajectory-level scoring predicts patch-level resolved/unresolved (1 token, no per-test signal). Each formulation makes different tradeoffs between output complexity, diagnostic granularity, and inference cost.}
+\label{fig:reformulation}
+\end{figure*}
+
+\input{related_work}
+
+\input{method}
+
+\input{experiments}
+
+\input{conclusion}
+
+\bibliography{references}
+
+% ARR checklist is filled in OpenReview submission form, not in PDF
+% \input{checklist}
+
+\input{appendix}
+
+\end{document}

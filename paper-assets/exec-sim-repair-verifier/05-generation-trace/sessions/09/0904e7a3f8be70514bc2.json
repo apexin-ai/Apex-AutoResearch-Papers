@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0904e7a3f8be70514bc2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix 8b checkpoint backup urgent",
+  "task_key": "worker_fix_8b-checkpoint-backup-urgent_20260514T110101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_8b-checkpoint-backup-urgent_20260514T110101_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "c1b2c41f555dad446a3232c3d2e2f0e495ea175b2efa44bf7f79e899f9666411"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 磁盘\n- 总 250G，已用 131G，剩余 120G（53%）\n- 单个 8B checkpoint: **176M**\n- 备份占用增量: 10 × 176M ≈ 1.7G\n\n### 已备份 checkpoint\n**CLS 8B seed123** (5个): checkpoint-200, 800, 1000, 1200, 1400\n→ `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/`\n\n**CWM 8B** (5个): checkpoint-300, 400, 500, 600, 700\n→ `/root/autodl-tmp/checkpoints_backup_cwm_8b/`\n\n已丢失无法恢复: CLS ckpt-400/600, CWM ckpt-100/200\n\n### 自动备份\ntmux session `ckpt_backup` 已启动，每 60 秒扫描新 checkpoint 并自动备份。日志: `/root/autodl-tmp/backup.log`\n\n### 空间估算\nCLS 6633 steps / 200 save_steps ≈ 33 checkpoints × 176M ≈ **5.8G**，120G 剩余空间完全充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-8b-checkpoint-backup-urgent.md"
+}

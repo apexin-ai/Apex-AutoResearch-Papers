@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d421cd240bf61d341b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix cls eval strategy",
+  "task_key": "worker_code_fix-cls-eval-strategy_20260512T195335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-cls-eval-strategy_20260512T195335_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "999e4ddbc49e19e541b53b919ac6749a19a3f88d3e5d45d9fa64815ca70b5da1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- `eval_strategy` 从 `\"epoch\"` 改为 `\"steps\"`（第 252 行）\n- 新增 `eval_steps=200`（第 253 行），与 `save_steps=200` 对齐\n- 语法检查通过\n- 训练进程 PID 2840844 仍在运行，未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-cls-eval-strategy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00d5849dfa017dc064da",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh post restart status check",
+  "task_key": "worker_ssh_post-restart-status-check_20260513T091614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_post-restart-status-check_20260513T091614_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "184278d38306f8af12439fb8f0ac3d9a22a9f0590961a77be5e363cc7aa61021"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇报\n\n### 1. Home — CLS v5 (PID 2947259)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** — 运行 1h35m，实际训练子进程 PID 2947263 CPU 100% |\n| 进度 | **step 589 / 6633**（~9%），刚完成 step 400 checkpoint 保存和 eval |\n| GPU | 98% 利用率，19467 MiB / 32607 MiB |\n| 最新 loss | step 550: **0.7077**（从 step 50 的 99.12 → step 500 的 0.808 → 0.708，稳步下降） |\n| eval_loss | step 400 eval: **0.0761** |\n| 速度 | ~6-7 s/it，预计剩余 ~11.5h |\n\n### 2. Seetacloud — CWM v11 (PID 130026)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** — 运行 56m27s，CPU 0%（父进程正常，GPU 在干活） |\n| 进度 | **step 8550 / 9335**（~92%），进度条显示 23:43 elapsed |\n| GPU | GPU 2: 98% 利用率，29806 MiB / 32607 MiB；其余 3 卡空闲 |\n| 最新 loss | step 100: **19.93**（step 50: 29.94 → step 100: 19.93）— 日志只记录到 step 100，后续 loss 未打印，但进度条仍在正常推进 |\n| 速度 | ~5-6 it/s，预计剩余 ~2.5 min |\n\n**结论**：两个训练都在正常运行。CWM v11 即将完成（~2-3 分钟内结束），CLS v5 还需约 11 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-post-restart-status-check.md"
+}

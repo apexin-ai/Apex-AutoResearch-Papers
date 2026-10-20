@@ -1,0 +1,29 @@
+{
+  "exp_id": "block-corr-empirical",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:20:56.388Z",
+    "updated_at": "2026-05-12T08:36:39.118Z",
+    "spec": {
+      "plan_id": "block-corr-empirical",
+      "command": "python3 block_correlation_analysis.py --data_dir data --checkpoint_dir checkpoints/best --model_name Qwen/Qwen3-4B --output block_corr_results.json --batch_size 4 --n_permutations 2000",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen/Qwen3-4B + LoRA (seed 42)",
+      "seed": 42,
+      "checkpoint_source": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/",
+      "log_path": "/tmp/block_corr.log"
+    },
+    "hypothesis": "训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的 block-correlation 假设",
+    "conclusion": "success",
+    "completed_at": "2026-05-12T08:36:39.118Z"
+  },
+  "timestamp": "2026-05-12T08:36:39.155689+00:00",
+  "trigger": "update_registry"
+}

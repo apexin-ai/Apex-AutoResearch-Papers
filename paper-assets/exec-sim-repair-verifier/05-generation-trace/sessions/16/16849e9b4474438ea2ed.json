@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "16849e9b4474438ea2ed",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home few shot qwen8b",
+  "task_key": "worker_eval_home-few-shot-qwen8b_20260517T174103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-few-shot-qwen8b_20260517T174103_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "daedd541199d7d23bf98218421be509af04af8616c40487f8fac83ae30a2e085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已确认，无需重跑。之前的 `few_shot_baseline.py` 今天已经在 func-level test set 上跑过，结果如下：\n\n```json\n{\n  \"model\": \"Qwen3-8B\",\n  \"method\": \"3-shot\",\n  \"test_set\": \"func-level CLS (data/test.jsonl)\",\n  \"test_set_size\": 1890,\n  \"label_dist\": {\"pass\": 978, \"fail\": 912, \"pass_rate\": \"51.7%\"},\n  \"accuracy\": 68.78,\n  \"pass_f1\": 64.46,\n  \"fail_f1\": 72.17,\n  \"unparseable_rate\": 0.0,\n  \"confusion_matrix\": {\"tn\": 765, \"fp\": 147, \"fn\": 443, \"tp\": 535},\n  \"shot_selection\": {\"seed\": 42, \"n_pass\": 2, \"n_fail\": 1},\n  \"elapsed_seconds\": 171.0\n}\n```\n\n与之前报告的 68.78% 完全一致。对比全景：\n\n| Model | Method | Accuracy |\n|-------|--------|----------|\n| DeepSeek-6.7B | zero-shot | 56.56% |\n| DeepSeek-6.7B | 3-shot | 59.95% |\n| Qwen3-8B | zero-shot | 64.4% |\n| **Qwen3-8B** | **3-shot** | **68.78%** |"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "model": "Qwen3-8B",
+              "method": "3-shot",
+              "test_set": "func-level CLS (data/test.jsonl)",
+              "test_set_size": 1890,
+              "label_dist": {
+                "pass": 978,
+                "fail": 912,
+                "pass_rate": "51.7%"
+              },
+              "accuracy": 68.78,
+              "pass_f1": 64.46,
+              "fail_f1": 72.17,
+              "unparseable_rate": 0.0,
+              "confusion_matrix": {
+                "tn": 765,
+                "fp": 147,
+                "fn": 443,
+                "tp": 535
+              },
+              "shot_selection": {
+                "seed": 42,
+                "n_pass": 2,
+                "n_fail": 1
+              },
+              "elapsed_seconds": 171.0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-few-shot-qwen8b.md"
+}

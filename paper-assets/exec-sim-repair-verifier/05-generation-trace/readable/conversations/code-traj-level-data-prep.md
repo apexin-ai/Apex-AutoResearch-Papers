@@ -1,0 +1,1128 @@
+# code traj level data prep
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_code_traj-level-data-prep_20260512T034232.jsonl`
+- **Structured JSON:** [`736881286a689ae6ec38.json`](../../sessions/73/736881286a689ae6ec38.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-12T03:45:50.440947+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-12T03:45:50.441295+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T03:45:50.441477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ls -la /home/sonny/exec-sim-repair-verifier/",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T03:45:50.441608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/train.jsonl /home/sonny/exec-sim-repair-verifier/data/val.jsonl /home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/train.jsonl /home/sonny/exec-sim-repair-verifier/data/val.jsonl /home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-12T03:45:50.441732+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -2 /home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -2 /home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T03:45:50.441957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 516\\ndrwxrwxr-x 13 sonny sonny  4096 May 11 20:42 .\\ndrwxr-x--- 48 sonny sonny  4096 May 11 13:49 ..\\n-rw-rw-r--  1 sonny sonny  8425 May 11 12:53 analyze_p2p_regression.py\\n-rw-rw-r--  1 sonny sonny  6118 May 11 14:13 build_cwm_data.py\\n-rw-rw-r--  1 sonny sonny 14815 May 11 11:39 build_data.py\\n-rw-rw-r--  1 sonny sonny 30516 May 11 20:32 build_swebench_data.py\\n-rw-rw-r--  1 sonny sonny 13829 May 11 20:30 build_swebench_data.py.bak\\n-rw-rw-r--  1 sonny sonny  4644 May 11 20:21 build_trace_data.py\\ndrwxrwxr-x  5 sonny sonny  4096 May 11 14:04 checkpoints\\ndrwxrwxr-x  5 sonny sonny  4096 May 11 15:25 checkpoints_cwm\\ndrwxrwxr-x  5 sonny sonny  4096 May 11 18:52 checkpoints_seed123\\ndrwxrwxr-x  5 sonny sonny  4096 May 11 17:54 checkpoints_seed42\\ndrwxrwxr-x  5 sonny sonny  4096 May 11 19:50 checkpoints_seed456\\ndrwxrwxr-x  2 sonny sonny  4096 May 11 20:42 checkpoints_trace\\ndrwxrwxr-x  4 sonny sonny  4096 May 11 20:33 data\\ndrwxrwxr-x  2 sonny sonny  4096 May 11 11:40 data_dryrun\\n-rw-rw-r--  1 sonny sonny 12366 May 11 14:14 eval_cwm_baseline.py\\n-rw-rw-r--  1 sonny sonny  2280 May 11 15:26 eval_cwm_results.json\\n-rw-rw-r--  1 sonny sonny   575 May 11 14:05 eval_results.json\\n-rw-rw-r--  1 sonny sonny   575 May 11 18:53 eval_seed123.json\\n-rw-rw-r--  1 sonny sonny   576 May 11 17:55 eval_seed42.json\\n-rw-rw-r--  1 sonny sonny   575 May 11 19:51 eval_seed456.json\\n-rw-rw-r--  1 sonny sonny 10241 May 11 20:23 eval_trace_judge.py\\n-rw-rw-r--  1 sonny sonny  8737 May 11 12:12 eval_verifier.py\\n-rw-rw-r--  1 sonny sonny   604 May 11 20:34 gold.pilot_gold.json\\n-rw-rw-r--  1 sonny sonny  2010 May 11 17:05 inference_cost_results.json\\ndrwxrwxr-x  3 sonny sonny  4096 May 11 19:43 logs\\n-rw-rw-r--  1 sonny sonny 10577 May 11 17:01 measure_inference_cost.py\\n-rw-rw-r--  1 sonny sonny   578 May 11 20:34 mutation_boundary_removal.pilot_mutation_boundary_removal.json\\n-rw-rw-r--  1 sonny 
+…[truncated 1847 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T03:45:50.442132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  15290 /home/sonny/exec-sim-repair-verifier/data/train.jsonl\\n   1896 /home/sonny/exec-sim-repair-verifier/data/val.jsonl\\n   1890 /home/sonny/exec-sim-repair-verifier/data/test.jsonl\\n  19076 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T03:45:50.442302+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef separate_paren_groups(paren_string: str) -> List[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\\\\n    separate those group into separate strings and return the list of those.\\\\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\\\\n    Ignore any spaces in the input string.\\\\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\\\\n    ['()', '(())', '(()())']\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = []\\\\n    current_string = []\\\\n    current_depth = 0\\\\n\\\\n    for c in paren_string:\\\\n        if c == '(':\\\\n            current_depth += 1\\\\n            current_string.append(c)\\\\n        elif c == ')':\\\\n            current_depth -= 1\\\\n            current_string.append(c)\\\\n\\\\n            if current_depth == 0:\\\\n                result.append(''.join(current_string))\\\\n                current_string.clear()\\\\n\\\\n    return result\\\\n\\\", \\\"test\\\": \\\"assert separate_paren_groups('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/1\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef separate_paren_groups(paren_string: str) -> List[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\\\\n    separate those group into separate strings and return the list of those.\\\\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\\\\n    Ignore any spaces in the input string.\\\\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\\\\n    ['()', '(())', '(()())']\\\\n    \\\\\\\"\\\\\\\"\\\
+…[truncated 848 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T03:45:50.442463+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/train_verifier.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/train_verifier.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T03:45:50.442585+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_verifier.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_verifier.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T03:45:50.442903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# train_verifier.py — Qwen3 LoRA fine-tuning for code-test pass/fail classification\\n# Input: data_dir/ with {train,val}.jsonl (fields: code, test, label 0=fail/1=pass)\\n# Output: LoRA adapter in output_dir/best/\\n# Deps: torch, transformers, peft, datasets, wandb\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, TaskType, get_peft_model\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    DataCollatorForSeq2Seq,\\n    Trainer,\\n    TrainingArguments,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\nLABEL_MAP = {1: \\\"pass\\\", 0: \\\"fail\\\"}\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    \\\"\\\"\\\"Qwen3 tokenizers support enable_thinking; older ones don't.\\\"\\\"\\\"\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_messages(code, test, answer=None):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    if answer is not None:\\n        msgs.append({\\\"role\\\": \\\"assistant\\\", \\\"content\\\": answer})\\n    return msgs\\n\\n
+…[truncated 6682 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T03:45:50.443120+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/data/",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/data/",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T03:45:50.443515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# eval_verifier.py — Evaluate fine-tuned Qwen3 LoRA verifier on test set\\n# Input: data_dir/test.jsonl + LoRA checkpoint\\n# Output: Formatted report to stdout + JSON to --output\\n# Deps: torch, transformers, peft, scikit-learn\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import Counter\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import (\\n    accuracy_score,\\n    confusion_matrix,\\n    f1_score,\\n    precision_score,\\n    recall_score,\\n)\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in tex
+…[truncated 7295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T03:45:50.443690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cwm_test.jsonl\\ncwm_train.jsonl\\ncwm_val.jsonl\\nstats.json\\nswebench_fix_test\\nswebench_pilot\\ntest.jsonl\\ntrace_test.jsonl\\ntrace_train.jsonl\\ntrace_val.jsonl\\ntrain.jsonl\\nval.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T03:45:50.443881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 -c \"\nimport json\nfrom collections import defaultdict, Counter\n\nfor split in ['train', 'val', 'test']:\n    groups = defaultdict(list)\n    for line in open(f'/home/sonny/exec-sim-repair-verifier/data/{split}.jsonl'):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'][:50])\n        groups[key].append(d['label'])\n    n_groups = len(groups)\n    sizes = [len(v) for v in groups.values()]\n    resolved = sum(1 for v in groups.values() if all(l == 1 for l in v))\n    unresolved = n_groups - resolved\n    print(f'{split}: {n_groups} trajectories, resolved={resolved} ({resolved/n_groups*100:.1f}%), unresolved={unresolved} ({unresolved/n_groups*100:.1f}%)')\n    print(f'  tests/traj: min={min(sizes)}, max={max(sizes)}, mean={sum(sizes)/len(sizes):.1f}')\n\"\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "python3 -c \"\nimport json\nfrom collections import defaultdict, Counter\n\nfor split in ['train', 'val', 'test']:\n    groups = defaultdict(list)\n    for line in open(f'/home/sonny/exec-sim-repair-verifier/data/{split}.jsonl'):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'][:50])\n        groups[key].append(d['label'])\n    n_groups = len(groups)\n    sizes = [len(v) for v in groups.values()]\n    resolved = sum(1 for v in groups.values() if all(l == 1 for l in v))\n    unresolved = n_groups - resolved\n    print(f'{split}: {n_groups} trajectories, resolved={resolved} ({resolved/n_groups*100:.1f}%), unresolved={unresolved} ({unresolved/n_groups*100:.1f}%)')\n    print(f'  tests/traj: min={min(sizes)}, max={max(sizes)}, mean={sum(sizes)/len(sizes):.1f}')\n\"\n",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T03:45:50.444034+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T03:45:50.444160+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\nfrom collections import defaultdict\n\nfor split in ['train', 'val', 'test']:\n    groups = defaultdict(list)\n    for line in open(f'data/{split}.jsonl'):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'][:50])\n        groups[key].append(d['label'])\n    n_groups = len(groups)\n    sizes = [len(v) for v in groups.values()]\n    resolved = sum(1 for v in groups.values() if all(l == 1 for l in v))\n    unresolved = n_groups - resolved\n    print(f'{split}: {n_groups} trajectories, resolved={resolved} ({resolved/n_groups*100:.1f}%), unresolved={unresolved} ({unresolved/n_groups*100:.1f}%)')\n    print(f'  tests/traj: min={min(sizes)}, max={max(sizes)}, mean={sum(sizes)/len(sizes):.1f}')\n\"\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"\nimport json\nfrom collections import defaultdict\n\nfor split in ['train', 'val', 'test']:\n    groups = defaultdict(list)\n    for line in open(f'data/{split}.jsonl'):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'][:50])\n        groups[key].append(d['label'])\n    n_groups = len(groups)\n    sizes = [len(v) for v in groups.values()]\n    resolved = sum(1 for v in groups.values() if all(l == 1 for l in v))\n    unresolved = n_groups - resolved\n    print(f'{split}: {n_groups} trajectories, resolved={resolved} ({resolved/n_groups*100:.1f}%), unresolved={unresolved} ({unresolved/n_groups*100:.1f}%)')\n    print(f'  tests/traj: min={min(sizes)}, max={max(sizes)}, mean={sum(sizes)/len(sizes):.1f}')\n\"\n",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T03:45:50.444298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train: 3930 trajectories, resolved=1406 (35.8%), unresolved=2524 (64.2%)\\n  tests/traj: min=1, max=91, mean=3.9\\nval: 506 trajectories, resolved=192 (37.9%), unresolved=314 (62.1%)\\n  tests/traj: min=1, max=41, mean=3.7\\ntest: 527 trajectories, resolved=192 (36.4%), unresolved=335 (63.6%)\\n  tests/traj: min=1, max=35, mean=3.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T03:45:50.444442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/build_traj_data.py << 'PYEOF'\nimport argparse\nimport json\nimport os\nimport random\nfrom collections import defaultdict\n\n\ndef build_traj_data(input_path, output_path):\n    groups = defaultdict(list)\n    for line in open(input_path):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'])\n        groups[key].append(d)\n\n    traj_records = []\n    for (pid, mut, code), tests in groups.items():\n        labels = [t['label'] for t in tests]\n        resolved = 1 if all(l == 1 for l in labels) else 0\n\n        test_summary = \"\\n\".join([f\"- {t['test'][:100]}\" for t in tests[:10]])\n\n        traj_records.append({\n            \"code\": code,\n            \"test_summary\": f\"{len(tests)} tests:\\n{test_summary}\",\n            \"label\": resolved,\n            \"source\": tests[0].get('source', ''),\n            \"problem_id\": pid,\n            \"mutation_type\": mut,\n            \"num_tests\": len(tests),\n            \"num_pass\": sum(labels),\n            \"num_fail\": len(labels) - sum(labels),\n        })\n\n    random.shuffle(traj_records)\n    with open(output_path, 'w') as f:\n        for r in traj_records:\n            f.write(json.dumps(r) + '\\n')\n\n    return len(traj_records)\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Build trajectory-level data from per-test data\")\n    p.add_argument(\"--input_dir\", required=True)\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--prefix\", default=\"traj\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    args = p.parse_args()\n\n    random.seed(args.seed)\n\n    for split in [\"train\", \"val\", \"test\"]:\n        in_path = os.path.join(args.input_dir, f\"{split}.jsonl\")\n        out_path = os.path.join(args.output_dir, f\"{args.prefix}_{split}.jsonl\")\n        if not os.path.exists(in_path):\n            print(f\"Skipping {split}: {in_path} not found\")\n            continue\n        n = build_traj_data(in_path, out_path)\n\n        # Stats\n        resolved = sum(1 for line in open(out_path) if json.loads(line)['label'] == 1)\n        unresolved = n - resolved\n        avg_tests = sum(json.loads(line)['num_tests'] for line in open(out_path)) / n\n        print(f\"{split}: {n} trajectories (resolved={resolved}/{n} {resolved/n*100:.1f}%, \"\n              f\"unresolved={unresolved}/{n} {unresolved/n*100:.1f}%, \"\n              f\"avg_tests={avg_tests:.1f}) -> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/build_traj_data.py << 'PYEOF'\nimport argparse\nimport json\nimport os\nimport random\nfrom collections import defaultdict\n\n\ndef build_traj_data(input_path, output_path):\n    groups = defaultdict(list)\n    for line in open(input_path):\n        d = json.loads(line)\n        key = (d['problem_id'], d.get('mutation_type', ''), d['code'])\n        groups[key].append(d)\n\n    traj_records = []\n    for (pid, mut, code), tests in groups.items():\n        labels = [t['label'] for t in tests]\n        resolved = 1 if all(l == 1 for l in labels) else 0\n\n        test_summary = \"\\n\".join([f\"- {t['test'][:100]}\" for t in tests[:10]])\n\n        traj_records.append({\n            \"code\": code,\n            \"test_summary\": f\"{len(tests)} tests:\\n{test_summary}\",\n            \"label\": resolved,\n            \"source\": tests[0].get('source', ''),\n            \"problem_id\": pid,\n            \"mutation_type\": mut,\n            \"num_tests\": len(tests),\n            \"num_pass\": sum(labels),\n            \"num_fail\": len(labels) - sum(labels),\n        })\n\n    random.shuffle(traj_records)\n    with open(output_path, 'w') as f:\n        for r in traj_records:\n            f.write(json.dumps(r) + '\\n')\n\n    return len(traj_records)\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Build trajectory-level data from per-test data\")\n    p.add_argument(\"--input_dir\", required=True)\n    p.add_argument(\"--output_dir\", required=True)\n    p.add_argument(\"--prefix\", default=\"traj\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    args = p.parse_args()\n\n    random.seed(args.seed)\n\n    for split in [\"train\", \"val\", \"test\"]:\n        in_path = os.path.join(args.input_dir, f\"{split}.jsonl\")\n        out_path = os.path.join(args.output_dir, f\"{args.prefix}_{split}.jsonl\")\n        if not os.path.exists(in_path):\n            print(f\"Skipping {split}: {in_path} not found\")\n            continue\n        n = build_traj_data(in_path, out_path)\n\n        # Stats\n        resolved = sum(1 for line in open(out_path) if json.loads(line)['label'] == 1)\n        unresolved = n - resolved\n        avg_tests = sum(json.loads(line)['num_tests'] for line in open(out_path)) / n\n        print(f\"{split}: {n} trajectories (resolved={resolved}/{n} {resolved/n*100:.1f}%, \"\n              f\"unresolved={unresolved}/{n} {unresolved/n*100:.1f}%, \"\n              f\"avg_tests={avg_tests:.1f}) -> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T03:45:50.444584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-12T03:45:50.444744+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/train_traj_verifier.py << 'PYEOF'\nimport argparse\nimport json\nimport logging\nimport os\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig, TaskType, get_peft_model\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    DataCollatorForSeq2Seq,\n    Trainer,\n    TrainingArguments,\n)\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code repair verifier. Given the code patch and test summary, \"\n    \"predict whether all tests pass (resolved) or any test fails (unresolved).\"\n)\nLABEL_MAP = {1: \"resolved\", 0: \"unresolved\"}\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False,\n            enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_messages(code, test_summary, answer=None):\n    user_msg = f\"[Code]\\n{code}\\n\\n[Test Summary]\\n{test_summary}\"\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    if answer is not None:\n        msgs.append({\"role\": \"assistant\", \"content\": answer})\n    return msgs\n\n\ndef tokenize_example(tokenizer, code, test_summary, label, max_len, tmpl_kw):\n    answer = LABEL_MAP[label]\n\n    prompt_ids = tokenizer.apply_chat_template(\n        build_messages(code, test_summary),\n        tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    full_ids = tokenizer.apply_chat_template(\n        build_messages(code, test_summary, answer),\n        tokenize=True, add_generation_prompt=False, **tmpl_kw,\n    )\n\n    truncated = len(full_ids) > max_len\n    if truncated:\n        full_ids = full_ids[:max_len]\n\n    prompt_len = min(len(prompt_ids), len(full_ids))\n    labels = [-100] * prompt_len + full_ids[prompt_len:]\n\n    return {\n        \"input_ids\": full_ids,\n        \"labels\": labels,\n        \"attention_mask\": [1] * len(full_ids),\n    }, truncated\n\n\ndef preprocess_split(tokenizer, data, max_len, name, tmpl_kw):\n    out = {\"input_ids\": [], \"labels\": [], \"attention_mask\": []}\n    n_trunc = 0\n    for ex in data:\n        tok, trunc = tokenize_example(\n            tokenizer, ex[\"code\"], ex[\"test_summary\"], ex[\"label\"], max_len, tmpl_kw,\n        )\n        for k in out:\n            out[k].append(tok[k])\n        n_trunc += int(trunc)\n    pct = n_trunc / len(data) * 100 if data else 0\n    log.info(f\"{name}: {n_trunc}/{len(data)} truncated ({pct:.1f}%)\")\n    return Dataset.from_dict(out)\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Train Qwen3 LoRA trajectory-level verifier\")\n    p.add_argument(\"--data_dir\", required=True)\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\")\n    p.add_argument(\"--output_dir\", default=\"checkpoints_traj/\")\n    p.add_argument(\"--wandb_project\", default=\"exec-sim-repair-verifier\")\n    p.add_argument(\"--run_name\", default=\"traj-qwen3-4b-lora\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--batch_size\", type=int, default=2)\n    p.add_argument(\"--grad_accumulation\", type=int, default=16)\n    p.add_argument(\"--lr\", type=float, default=2e-4)\n    p.add_argument(\"--epochs\", type=int, default=3)\n    p.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    p.add_argument(\"--lora_rank\", type=int, default=16)\n    p.add_argument(\"--lora_alpha\", type=int, default=32)\n    p.add_argument(\"--lora_dropout\", type=float, default=0.05)\n    p.add_argument(\"--max_steps\", type=int, default=-1)\n    p.add_argument(\"--no_wandb\", action=\"store_true\")\n    p.add_argument(\"--data_prefix\", default=\"traj\")\n    args = p.parse_args()\n\n    if args.no_wandb:\n        os.environ[\"WANDB_DISABLED\"] = \"true\"\n    else:\n        os.environ[\"WANDB_PROJECT\"] = args.wandb_project\n\n    log.info(f\"Loading tokenizer: {args.model_name}\")\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.model_name, trust_remote_code=True, padding_side=\"right\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    tmpl_kw = detect_thinking_support(tokenizer)\n    log.info(f\"Chat template kwargs: {tmpl_kw}\")\n\n    train_raw = load_jsonl(os.path.join(args.data_dir, f\"{args.data_prefix}_train.jsonl\"))\n    val_raw = load_jsonl(os.path.join(args.data_dir, f\"{args.data_prefix}_val.jsonl\"))\n    log.info(f\"Loaded train={len(train_raw)}, val={len(val_raw)}\")\n\n    train_ds = preprocess_split(tokenizer, train_raw, args.max_seq_length, \"train\", tmpl_kw)\n    val_ds = preprocess_split(tokenizer, val_raw, args.max_seq_length, \"val\", tmpl_kw)\n\n    log.info(f\"Loading model: {args.model_name}\")\n    try:\n        import flash_attn  # noqa: F401\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n    log.info(f\"Attention: {attn_impl}\")\n\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    model.config.use_cache = False\n\n    lora_cfg = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=args.lora_rank,\n        lora_alpha=args.lora_alpha,\n        lora_dropout=args.lora_dropout,\n        target_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"],\n    )\n    model = get_peft_model(model, lora_cfg)\n    model.enable_input_require_grads()\n    model.print_trainable_parameters()\n\n    collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True)\n\n    is_dryrun = args.max_steps > 0\n    ta = {\n        \"output_dir\": args.output_dir,\n        \"num_train_epochs\": args.epochs,\n        \"max_steps\": args.max_steps,\n        \"per_device_train_batch_size\": args.batch_size,\n        \"per_device_eval_batch_size\": args.batch_size,\n        \"gradient_accumulation_steps\": args.grad_accumulation,\n        \"learning_rate\": args.lr,\n        \"warmup_ratio\": args.warmup_ratio,\n        \"bf16\": True,\n        \"logging_steps\": 1 if is_dryrun else 50,\n        \"eval_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"save_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"load_best_model_at_end\": not is_dryrun,\n        \"save_total_limit\": 2,\n        \"seed\": args.seed,\n        \"run_name\": args.run_name,\n        \"report_to\": \"none\" if args.no_wandb else \"wandb\",\n        \"gradient_checkpointing\": True,\n        \"dataloader_num_workers\": 4,\n    }\n    if not is_dryrun:\n        ta[\"metric_for_best_model\"] = \"eval_loss\"\n        ta[\"greater_is_better\"] = False\n    training_args = TrainingArguments(**ta)\n\n    trainer = Trainer(\n        model=model,\n        args=training_args,\n        train_dataset=train_ds,\n        eval_dataset=val_ds,\n        data_collator=collator,\n    )\n\n    log.info(\"Starting training...\")\n    trainer.train()\n\n    if not is_dryrun:\n        best_dir = os.path.join(args.output_dir, \"best\")\n        trainer.save_model(best_dir)\n        tokenizer.save_pretrained(best_dir)\n        log.info(f\"Best model saved to {best_dir}\")\n    else:\n        log.info(\"Dry-run complete.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/train_traj_verifier.py << 'PYEOF'\nimport argparse\nimport json\nimport logging\nimport os\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig, TaskType, get_peft_model\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    DataCollatorForSeq2Seq,\n    Trainer,\n    TrainingArguments,\n)\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code repair verifier. Given the code patch and test summary, \"\n    \"predict whether all tests pass (resolved) or any test fails (unresolved).\"\n)\nLABEL_MAP = {1: \"resolved\", 0: \"unresolved\"}\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False,\n            enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_messages(code, test_summary, answer=None):\n    user_msg = f\"[Code]\\n{code}\\n\\n[Test Summary]\\n{test_summary}\"\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    if answer is not None:\n        msgs.append({\"role\": \"assistant\", \"content\": answer})\n    return msgs\n\n\ndef tokenize_example(tokenizer, code, test_summary, label, max_len, tmpl_kw):\n    answer = LABEL_MAP[label]\n\n    prompt_ids = tokenizer.apply_chat_template(\n        build_messages(code, test_summary),\n        tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    full_ids = tokenizer.apply_chat_template(\n        build_messages(code, test_summary, answer),\n        tokenize=True, add_generation_prompt=False, **tmpl_kw,\n    )\n\n    truncated = len(full_ids) > max_len\n    if truncated:\n        full_ids = full_ids[:max_len]\n\n    prompt_len = min(len(prompt_ids), len(full_ids))\n    labels = [-100] * prompt_len + full_ids[prompt_len:]\n\n    return {\n        \"input_ids\": full_ids,\n        \"labels\": labels,\n        \"attention_mask\": [1] * len(full_ids),\n    }, truncated\n\n\ndef preprocess_split(tokenizer, data, max_len, name, tmpl_kw):\n    out = {\"input_ids\": [], \"labels\": [], \"attention_mask\": []}\n    n_trunc = 0\n    for ex in data:\n        tok, trunc = tokenize_example(\n            tokenizer, ex[\"code\"], ex[\"test_summary\"], ex[\"label\"], max_len, tmpl_kw,\n        )\n        for k in out:\n            out[k].append(tok[k])\n        n_trunc += int(trunc)\n    pct = n_trunc / len(data) * 100 if data else 0\n    log.info(f\"{name}: {n_trunc}/{len(data)} truncated ({pct:.1f}%)\")\n    return Dataset.from_dict(out)\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Train Qwen3 LoRA trajectory-level verifier\")\n    p.add_argument(\"--data_dir\", required=True)\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\")\n    p.add_argument(\"--output_dir\", default=\"checkpoints_traj/\")\n    p.add_argument(\"--wandb_project\", default=\"exec-sim-repair-verifier\")\n    p.add_argument(\"--run_name\", default=\"traj-qwen3-4b-lora\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--batch_size\", type=int, default=2)\n    p.add_argument(\"--grad_accumulation\", type=int, default=16)\n    p.add_argument(\"--lr\", type=float, default=2e-4)\n    p.add_argument(\"--epochs\", type=int, default=3)\n    p.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    p.add_argument(\"--lora_rank\", type=int, default=16)\n    p.add_argument(\"--lora_alpha\", type=int, default=32)\n    p.add_argument(\"--lora_dropout\", type=float, default=0.05)\n    p.add_argument(\"--max_steps\", type=int, default=-1)\n    p.add_argument(\"--no_wandb\", action=\"store_true\")\n    p.add_argument(\"--data_prefix\", default=\"traj\")\n    args = p.parse_args()\n\n    if args.no_wandb:\n        os.environ[\"WANDB_DISABLED\"] = \"true\"\n    else:\n        os.environ[\"WANDB_PROJECT\"] = args.wandb_project\n\n    log.info(f\"Loading tokenizer: {args.model_name}\")\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.model_name, trust_remote_code=True, padding_side=\"right\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    tmpl_kw = detect_thinking_support(tokenizer)\n    log.info(f\"Chat template kwargs: {tmpl_kw}\")\n\n    train_raw = load_jsonl(os.path.join(args.data_dir, f\"{args.data_prefix}_train.jsonl\"))\n    val_raw = load_jsonl(os.path.join(args.data_dir, f\"{args.data_prefix}_val.jsonl\"))\n    log.info(f\"Loaded train={len(train_raw)}, val={len(val_raw)}\")\n\n    train_ds = preprocess_split(tokenizer, train_raw, args.max_seq_length, \"train\", tmpl_kw)\n    val_ds = preprocess_split(tokenizer, val_raw, args.max_seq_length, \"val\", tmpl_kw)\n\n    log.info(f\"Loading model: {args.model_name}\")\n    try:\n        import flash_attn  # noqa: F401\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n    log.info(f\"Attention: {attn_impl}\")\n\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    model.config.use_cache = False\n\n    lora_cfg = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=args.lora_rank,\n        lora_alpha=args.lora_alpha,\n        lora_dropout=args.lora_dropout,\n        target_modules=[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"],\n    )\n    model = get_peft_model(model, lora_cfg)\n    model.enable_input_require_grads()\n    model.print_trainable_parameters()\n\n    collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True)\n\n    is_dryrun = args.max_steps > 0\n    ta = {\n        \"output_dir\": args.output_dir,\n        \"num_train_epochs\": args.epochs,\n        \"max_steps\": args.max_steps,\n        \"per_device_train_batch_size\": args.batch_size,\n        \"per_device_eval_batch_size\": args.batch_size,\n        \"gradient_accumulation_steps\": args.grad_accumulation,\n        \"learning_rate\": args.lr,\n        \"warmup_ratio\": args.warmup_ratio,\n        \"bf16\": True,\n        \"logging_steps\": 1 if is_dryrun else 50,\n        \"eval_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"save_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"load_best_model_at_end\": not is_dryrun,\n        \"save_total_limit\": 2,\n        \"seed\": args.seed,\n        \"run_name\": args.run_name,\n        \"report_to\": \"none\" if args.no_wandb else \"wandb\",\n        \"gradient_checkpointing\": True,\n        \"dataloader_num_workers\": 4,\n    }\n    if not is_dryrun:\n        ta[\"metric_for_best_model\"] = \"eval_loss\"\n        ta[\"greater_is_better\"] = False\n    training_args = TrainingArguments(**ta)\n\n    trainer = Trainer(\n        model=model,\n        args=training_args,\n        train_dataset=train_ds,\n        eval_dataset=val_ds,\n        data_collator=collator,\n    )\n\n    log.info(\"Starting training...\")\n    trainer.train()\n\n    if not is_dryrun:\n        best_dir = os.path.join(args.output_dir, \"best\")\n        trainer.save_model(best_dir)\n        tokenizer.save_pretrained(best_dir)\n        log.info(f\"Best model saved to {best_dir}\")\n    else:\n        log.info(\"Dry-run complete.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T03:45:50.444989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T03:45:50.445212+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py << 'PYEOF'\nimport argparse\nimport json\nimport logging\nimport os\nfrom collections import Counter\n\nimport torch\nfrom peft import PeftModel\nfrom sklearn.metrics import (\n    accuracy_score,\n    confusion_matrix,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code repair verifier. Given the code patch and test summary, \"\n    \"predict whether all tests pass (resolved) or any test fails (unresolved).\"\n)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False,\n            enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_prompt_ids(tokenizer, code, test_summary, tmpl_kw, max_len):\n    user_msg = f\"[Code]\\n{code}\\n\\n[Test Summary]\\n{test_summary}\"\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    ids = tokenizer.apply_chat_template(\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    if len(ids) > max_len:\n        ids = ids[:max_len]\n    return ids\n\n\ndef parse_prediction(text):\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text = text.strip().lower()\n    if text.startswith(\"resolved\"):\n        return 1\n    if text.startswith(\"unresolved\"):\n        return 0\n    if \"resolved\" in text and \"unresolved\" not in text:\n        return 1\n    if \"unresolved\" in text:\n        return 0\n    return -1\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Evaluate trajectory-level LoRA verifier\")\n    p.add_argument(\"--data_dir\", required=True)\n    p.add_argument(\"--checkpoint_dir\", required=True)\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\")\n    p.add_argument(\"--output\", default=\"eval_traj_results.json\")\n    p.add_argument(\"--batch_size\", type=int, default=16)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--data_prefix\", default=\"traj\")\n    p.add_argument(\"--per_test_data\", default=None, help=\"Path to per-test test.jsonl for consistency analysis\")\n    args = p.parse_args()\n\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.checkpoint_dir, trust_remote_code=True, padding_side=\"left\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    tmpl_kw = detect_thinking_support(tokenizer)\n\n    log.info(f\"Loading base model: {args.model_name}\")\n    try:\n        import flash_attn  # noqa: F401\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n\n    base_model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    log.info(f\"Loading adapter: {args.checkpoint_dir}\")\n    model = PeftModel.from_pretrained(base_model, args.checkpoint_dir)\n    model.eval()\n    model = model.cuda()\n\n    test_path = os.path.join(args.data_dir, f\"{args.data_prefix}_test.jsonl\")\n    test_data = load_jsonl(test_path)\n    log.info(f\"Test set: {len(test_data)} trajectories\")\n\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    n_resolved = label_counts.get(1, 0)\n    n_unresolved = label_counts.get(0, 0)\n    total = len(test_data)\n    majority_baseline = max(n_resolved, n_unresolved) / total\n    majority_class = 1 if n_resolved >= n_unresolved else 0\n\n    log.info(f\"Class balance: resolved={n_resolved} ({n_resolved/total*100:.1f}%), \"\n             f\"unresolved={n_unresolved} ({n_unresolved/total*100:.1f}%)\")\n\n    eos_ids = [tokenizer.eos_token_id]\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    if im_end_id is not None and im_end_id != tokenizer.unk_token_id:\n        eos_ids.append(im_end_id)\n\n    y_true, y_pred = [], []\n    n_unparseable = 0\n    pred_details = []\n\n    for i in range(0, total, args.batch_size):\n        batch = test_data[i:i + args.batch_size]\n        batch_labels = [ex[\"label\"] for ex in batch]\n        batch_ids = [\n            build_prompt_ids(tokenizer, ex[\"code\"], ex[\"test_summary\"], tmpl_kw, args.max_seq_length)\n            for ex in batch\n        ]\n\n        max_len = max(len(ids) for ids in batch_ids)\n        padded = [\n            [tokenizer.pad_token_id] * (max_len - len(ids)) + ids\n            for ids in batch_ids\n        ]\n        masks = [\n            [0] * (max_len - len(ids)) + [1] * len(ids)\n            for ids in batch_ids\n        ]\n\n        input_ids = torch.tensor(padded, device=\"cuda\")\n        attention_mask = torch.tensor(masks, device=\"cuda\")\n\n        with torch.no_grad():\n            outputs = model.generate(\n                input_ids=input_ids,\n                attention_mask=attention_mask,\n                max_new_tokens=10,\n                do_sample=False,\n                eos_token_id=eos_ids,\n            )\n\n        for j in range(len(batch)):\n            gen_ids = outputs[j][max_len:]\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n            pred = parse_prediction(gen_text)\n\n            if pred == -1:\n                n_unparseable += 1\n                pred = majority_class\n                log.warning(f\"Unparseable [{i+j}]: '{gen_text}' -> majority fallback\")\n\n            y_true.append(batch_labels[j])\n            y_pred.append(pred)\n            pred_details.append({\n                \"problem_id\": batch[j][\"problem_id\"],\n                \"mutation_type\": batch[j][\"mutation_type\"],\n                \"true_label\": batch_labels[j],\n                \"pred_label\": pred,\n                \"gen_text\": gen_text.strip(),\n            })\n\n        done = min(i + args.batch_size, total)\n        if done % (args.batch_size * 10) == 0 or done == total:\n            log.info(f\"Progress: {done}/{total}\")\n\n    acc = accuracy_score(y_true, y_pred)\n    gap = acc - majority_baseline\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1])\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1])\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1])\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\n\n    # Per-test consistency analysis\n    consistency_report = None\n    per_test_path = args.per_test_data or os.path.join(args.data_dir, \"test.jsonl\")\n    if os.path.exists(per_test_path):\n        from collections import defaultdict\n        per_test_data = load_jsonl(per_test_path)\n        pt_groups = defaultdict(list)\n        for d in per_test_data:\n            key = (d[\"problem_id\"], d.get(\"mutation_type\", \"\"))\n            pt_groups[key].append(d[\"label\"])\n\n        n_consistent = 0\n        n_compared = 0\n        for det in pred_details:\n            key = (det[\"problem_id\"], det[\"mutation_type\"])\n            if key in pt_groups:\n                pt_labels = pt_groups[key]\n                pt_resolved = 1 if all(l == 1 for l in pt_labels) else 0\n                if det[\"pred_label\"] == pt_resolved:\n                    n_consistent += 1\n                n_compared += 1\n\n        if n_compared > 0:\n            consistency_report = {\n                \"n_compared\": n_compared,\n                \"n_consistent\": n_consistent,\n                \"consistency_rate\": round(n_consistent / n_compared * 100, 2),\n            }\n\n    results = {\n        \"test_set_size\": total,\n        \"class_balance\": {\n            \"resolved\": n_resolved, \"unresolved\": n_unresolved,\n            \"resolved_pct\": round(n_resolved / total * 100, 1),\n        },\n        \"majority_baseline_accuracy\": round(majority_baseline * 100, 2),\n        \"overall_accuracy\": round(acc * 100, 2),\n        \"accuracy_vs_baseline_gap_pp\": round(gap * 100, 2),\n        \"per_class\": {\n            \"unresolved\": {\n                \"precision\": round(float(prec[0]) * 100, 2),\n                \"recall\": round(float(rec[0]) * 100, 2),\n                \"f1\": round(float(f1[0]) * 100, 2),\n                \"support\": int(n_unresolved),\n            },\n            \"resolved\": {\n                \"precision\": round(float(prec[1]) * 100, 2),\n                \"recall\": round(float(rec[1]) * 100, 2),\n                \"f1\": round(float(f1[1]) * 100, 2),\n                \"support\": int(n_resolved),\n            },\n        },\n        \"confusion_matrix\": {\"tn\": int(cm[0][0]), \"fp\": int(cm[0][1]), \"fn\": int(cm[1][0]), \"tp\": int(cm[1][1])},\n        \"unparseable_predictions\": n_unparseable,\n    }\n    if consistency_report:\n        results[\"per_test_consistency\"] = consistency_report\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"EVALUATION REPORT: Trajectory-Level Verifier\")\n    print(\"=\" * 60)\n    print(f\"\\nTest set: {total} trajectories\")\n    print(f\"Class balance: resolved={n_resolved} ({n_resolved/total*100:.1f}%), \"\n          f\"unresolved={n_unresolved} ({n_unresolved/total*100:.1f}%)\")\n    print(f\"Majority baseline accuracy: {majority_baseline*100:.1f}%\")\n    print(f\"\\nOverall accuracy: {acc*100:.1f}%\")\n    gap_status = \"PASS\" if gap >= 0.10 else \"FAIL\"\n    print(f\"Accuracy vs baseline gap: {gap*100:+.1f}pp [{gap_status}] (threshold: >=10pp)\")\n    print(f\"\\nPer-class metrics:\")\n    print(f\"  {'Class':<12} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\")\n    print(f\"  {'---':<12} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\")\n    for name, idx, support in [(\"unresolved\", 0, n_unresolved), (\"resolved\", 1, n_resolved)]:\n        f1_status = \"OK\" if f1[idx] > 0.65 else \"LOW\"\n        print(f\"  {name:<12} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\")\n    print(f\"\\nConfusion matrix:\")\n    print(f\"                  Predicted\")\n    print(f\"                  unres   resol\")\n    print(f\"  Actual unres    {cm[0][0]:>5}   {cm[0][1]:>5}\")\n    print(f\"  Actual resol    {cm[1][0]:>5}   {cm[1][1]:>5}\")\n    if n_unparseable:\n        print(f\"\\nUnparseable: {n_unparseable} (majority class fallback)\")\n    if consistency_report:\n        print(f\"\\nPer-test consistency: {consistency_report['n_consistent']}/{consistency_report['n_compared']} \"\n              f\"({consistency_report['consistency_rate']:.1f}%)\")\n    print(\"=\" * 60)\n\n    with open(args.output, \"w\") as f:\n        json.dump(results, f, indent=2)\n    log.info(f\"Results saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py << 'PYEOF'\nimport argparse\nimport json\nimport logging\nimport os\nfrom collections import Counter\n\nimport torch\nfrom peft import PeftModel\nfrom sklearn.metrics import (\n    accuracy_score,\n    confusion_matrix,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code repair verifier. Given the code patch and test summary, \"\n    \"predict whether all tests pass (resolved) or any test fails (unresolved).\"\n)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False,\n            enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_prompt_ids(tokenizer, code, test_summary, tmpl_kw, max_len):\n    user_msg = f\"[Code]\\n{code}\\n\\n[Test Summary]\\n{test_summary}\"\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    ids = tokenizer.apply_chat_template(\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    if len(ids) > max_len:\n        ids = ids[:max_len]\n    return ids\n\n\ndef parse_prediction(text):\n    if \"&lt;/think>\" in text:\n        text = text.split(\"&lt;/think>\")[-1]\n    text = text.strip().lower()\n    if text.startswith(\"resolved\"):\n        return 1\n    if text.startswith(\"unresolved\"):\n        return 0\n    if \"resolved\" in text and \"unresolved\" not in text:\n        return 1\n    if \"unresolved\" in text:\n        return 0\n    return -1\n\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Evaluate trajectory-level LoRA verifier\")\n    p.add_argument(\"--data_dir\", required=True)\n    p.add_argument(\"--checkpoint_dir\", required=True)\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\")\n    p.add_argument(\"--output\", default=\"eval_traj_results.json\")\n    p.add_argument(\"--batch_size\", type=int, default=16)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--data_prefix\", default=\"traj\")\n    p.add_argument(\"--per_test_data\", default=None, help=\"Path to per-test test.jsonl for consistency analysis\")\n    args = p.parse_args()\n\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.checkpoint_dir, trust_remote_code=True, padding_side=\"left\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    tmpl_kw = detect_thinking_support(tokenizer)\n\n    log.info(f\"Loading base model: {args.model_name}\")\n    try:\n        import flash_attn  # noqa: F401\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n\n    base_model = AutoModelForCausalLM.from_pretrained(\n        args.model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    log.info(f\"Loading adapter: {args.checkpoint_dir}\")\n    model = PeftModel.from_pretrained(base_model, args.checkpoint_dir)\n    model.eval()\n    model = model.cuda()\n\n    test_path = os.path.join(args.data_dir, f\"{args.data_prefix}_test.jsonl\")\n    test_data = load_jsonl(test_path)\n    log.info(f\"Test set: {len(test_data)} trajectories\")\n\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    n_resolved = label_counts.get(1, 0)\n    n_unresolved = label_counts.get(0, 0)\n    total = len(test_data)\n    majority_baseline = max(n_resolved, n_unresolved) / total\n    majority_class = 1 if n_resolved >= n_unresolved else 0\n\n    log.info(f\"Class balance: resolved={n_resolved} ({n_resolved/total*100:.1f}%), \"\n             f\"unresolved={n_unresolved} ({n_unresolved/total*100:.1f}%)\")\n\n    eos_ids = [tokenizer.eos_token_id]\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    if im_end_id is not None and im_end_id != tokenizer.unk_token_id:\n        eos_ids.append(im_end_id)\n\n    y_true, y_pred = [], []\n    n_unparseable = 0\n    pred_details = []\n\n    for i in range(0, total, args.batch_size):\n        batch = test_data[i:i + args.batch_size]\n        batch_labels = [ex[\"label\"] for ex in batch]\n        batch_ids = [\n            build_prompt_ids(tokenizer, ex[\"code\"], ex[\"test_summary\"], tmpl_kw, args.max_seq_length)\n            for ex in batch\n        ]\n\n        max_len = max(len(ids) for ids in batch_ids)\n        padded = [\n            [tokenizer.pad_token_id] * (max_len - len(ids)) + ids\n            for ids in batch_ids\n        ]\n        masks = [\n            [0] * (max_len - len(ids)) + [1] * len(ids)\n            for ids in batch_ids\n        ]\n\n        input_ids = torch.tensor(padded, device=\"cuda\")\n        attention_mask = torch.tensor(masks, device=\"cuda\")\n\n        with torch.no_grad():\n            outputs = model.generate(\n                input_ids=input_ids,\n                attention_mask=attention_mask,\n                max_new_tokens=10,\n                do_sample=False,\n                eos_token_id=eos_ids,\n            )\n\n        for j in range(len(batch)):\n            gen_ids = outputs[j][max_len:]\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n            pred = parse_prediction(gen_text)\n\n            if pred == -1:\n                n_unparseable += 1\n                pred = majority_class\n                log.warning(f\"Unparseable [{i+j}]: '{gen_text}' -> majority fallback\")\n\n            y_true.append(batch_labels[j])\n            y_pred.append(pred)\n            pred_details.append({\n                \"problem_id\": batch[j][\"problem_id\"],\n                \"mutation_type\": batch[j][\"mutation_type\"],\n                \"true_label\": batch_labels[j],\n                \"pred_label\": pred,\n                \"gen_text\": gen_text.strip(),\n            })\n\n        done = min(i + args.batch_size, total)\n        if done % (args.batch_size * 10) == 0 or done == total:\n            log.info(f\"Progress: {done}/{total}\")\n\n    acc = accuracy_score(y_true, y_pred)\n    gap = acc - majority_baseline\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1])\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1])\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1])\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\n\n    # Per-test consistency analysis\n    consistency_report = None\n    per_test_path = args.per_test_data or os.path.join(args.data_dir, \"test.jsonl\")\n    if os.path.exists(per_test_path):\n        from collections import defaultdict\n        per_test_data = load_jsonl(per_test_path)\n        pt_groups = defaultdict(list)\n        for d in per_test_data:\n            key = (d[\"problem_id\"], d.get(\"mutation_type\", \"\"))\n            pt_groups[key].append(d[\"label\"])\n\n        n_consistent = 0\n        n_compared = 0\n        for det in pred_details:\n            key = (det[\"problem_id\"], det[\"mutation_type\"])\n            if key in pt_groups:\n                pt_labels = pt_groups[key]\n                pt_resolved = 1 if all(l == 1 for l in pt_labels) else 0\n                if det[\"pred_label\"] == pt_resolved:\n                    n_consistent += 1\n                n_compared += 1\n\n        if n_compared > 0:\n            consistency_report = {\n                \"n_compared\": n_compared,\n                \"n_consistent\": n_consistent,\n                \"consistency_rate\": round(n_consistent / n_compared * 100, 2),\n            }\n\n    results = {\n        \"test_set_size\": total,\n        \"class_balance\": {\n            \"resolved\": n_resolved, \"unresolved\": n_unresolved,\n            \"resolved_pct\": round(n_resolved / total * 100, 1),\n        },\n        \"majority_baseline_accuracy\": round(majority_baseline * 100, 2),\n        \"overall_accuracy\": round(acc * 100, 2),\n        \"accuracy_vs_baseline_gap_pp\": round(gap * 100, 2),\n        \"per_class\": {\n            \"unresolved\": {\n                \"precision\": round(float(prec[0]) * 100, 2),\n                \"recall\": round(float(rec[0]) * 100, 2),\n                \"f1\": round(float(f1[0]) * 100, 2),\n                \"support\": int(n_unresolved),\n            },\n            \"resolved\": {\n                \"precision\": round(float(prec[1]) * 100, 2),\n                \"recall\": round(float(rec[1]) * 100, 2),\n                \"f1\": round(float(f1[1]) * 100, 2),\n                \"support\": int(n_resolved),\n            },\n        },\n        \"confusion_matrix\": {\"tn\": int(cm[0][0]), \"fp\": int(cm[0][1]), \"fn\": int(cm[1][0]), \"tp\": int(cm[1][1])},\n        \"unparseable_predictions\": n_unparseable,\n    }\n    if consistency_report:\n        results[\"per_test_consistency\"] = consistency_report\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"EVALUATION REPORT: Trajectory-Level Verifier\")\n    print(\"=\" * 60)\n    print(f\"\\nTest set: {total} trajectories\")\n    print(f\"Class balance: resolved={n_resolved} ({n_resolved/total*100:.1f}%), \"\n          f\"unresolved={n_unresolved} ({n_unresolved/total*100:.1f}%)\")\n    print(f\"Majority baseline accuracy: {majority_baseline*100:.1f}%\")\n    print(f\"\\nOverall accuracy: {acc*100:.1f}%\")\n    gap_status = \"PASS\" if gap >= 0.10 else \"FAIL\"\n    print(f\"Accuracy vs baseline gap: {gap*100:+.1f}pp [{gap_status}] (threshold: >=10pp)\")\n    print(f\"\\nPer-class metrics:\")\n    print(f\"  {'Class':<12} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\")\n    print(f\"  {'---':<12} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\")\n    for name, idx, support in [(\"unresolved\", 0, n_unresolved), (\"resolved\", 1, n_resolved)]:\n        f1_status = \"OK\" if f1[idx] > 0.65 else \"LOW\"\n        print(f\"  {name:<12} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\")\n    print(f\"\\nConfusion matrix:\")\n    print(f\"                  Predicted\")\n    print(f\"                  unres   resol\")\n    print(f\"  Actual unres    {cm[0][0]:>5}   {cm[0][1]:>5}\")\n    print(f\"  Actual resol    {cm[1][0]:>5}   {cm[1][1]:>5}\")\n    if n_unparseable:\n        print(f\"\\nUnparseable: {n_unparseable} (majority class fallback)\")\n    if consistency_report:\n        print(f\"\\nPer-test consistency: {consistency_report['n_consistent']}/{consistency_report['n_compared']} \"\n              f\"({consistency_report['consistency_rate']:.1f}%)\")\n    print(\"=\" * 60)\n\n    with open(args.output, \"w\") as f:\n        json.dump(results, f, indent=2)\n    log.info(f\"Results saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T03:45:50.445445+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T03:45:50.445596+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 build_traj_data.py --input_dir data/ --output_dir data/ --prefix traj --seed 42",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 build_traj_data.py --input_dir data/ --output_dir data/ --prefix traj --seed 42",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T03:45:50.445728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train: 8052 trajectories (resolved=3764/8052 46.7%, unresolved=4288/8052 53.3%, avg_tests=1.9) -> data/traj_train.jsonl\\nval: 1001 trajectories (resolved=457/1001 45.7%, unresolved=544/1001 54.3%, avg_tests=1.9) -> data/traj_val.jsonl\\ntest: 1032 trajectories (resolved=479/1032 46.4%, unresolved=553/1032 53.6%, avg_tests=1.8) -> data/traj_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T03:45:50.445902+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && wc -l data/traj_*.jsonl && echo \"---\" && head -2 data/traj_train.jsonl | python3 -m json.tool",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && wc -l data/traj_*.jsonl && echo \"---\" && head -2 data/traj_train.jsonl | python3 -m json.tool",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T03:45:50.446045+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && wc -l data/traj_*.jsonl && echo \\\"---\\\" && head -2 data/traj_train.jsonl | python3 -m json.tool'\\n\\nExit code: 1\\n\\nStdout:\\n\\n   1032 data/traj_test.jsonl\\n   8052 data/traj_train.jsonl\\n   1001 data/traj_val.jsonl\\n  10085 total\\n---\\n\\nStderr:\\n\\nExtra data: line 2 column 1 (char 849)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T03:45:50.446165+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && head -1 data/traj_train.jsonl | python3 -m json.tool",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && head -1 data/traj_train.jsonl | python3 -m json.tool",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T03:45:50.446304+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"code\\\": \\\"\\\\ndef rounded_avg(n, m):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"You are given two positive integers n and m, and your task is to compute the\\\\n    average of the integers from n through m (including n and m). \\\\n    Round the answer to the nearest integer and convert that to binary.\\\\n    If n is greater than m, return -1.\\\\n    Example:\\\\n    rounded_avg(1, 5) => \\\\\\\"0b11\\\\\\\"\\\\n    rounded_avg(7, 5) => -0\\\\n    rounded_avg(10, 20) => \\\\\\\"0b1111\\\\\\\"\\\\n    rounded_avg(20, 33) => \\\\\\\"0b11010\\\\\\\"\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if m < n:\\\\n        return -1\\\\n    summation = 0\\\\n    for i in range(n, m+1):\\\\n        summation += i\\\\n    return bin(round(summation/(m - n + 1)))\\\\n\\\",\\n    \\\"test_summary\\\": \\\"1 tests:\\\\n- assert rounded_avg(197,233) == \\\\\\\"0b11010111\\\\\\\"\\\",\\n    \\\"label\\\": 1,\\n    \\\"source\\\": \\\"humaneval\\\",\\n    \\\"problem_id\\\": \\\"HumanEval/103\\\",\\n    \\\"mutation_type\\\": \\\"off_by_one\\\",\\n    \\\"num_tests\\\": 1,\\n    \\\"num_pass\\\": 1,\\n    \\\"num_fail\\\": 0\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-12T03:45:50.446449+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir /tmp/traj_test/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --max_steps 5 2>&1",
+  "account": "sonny",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir /tmp/traj_test/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 --max_steps 5 2>&1",
+    "account": "sonny",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-12T03:45:50.446614+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"2026-05-11 20:45:21,623 INFO Loading tokenizer: Qwen/Qwen3-4B\\n2026-05-11 20:45:22,275 INFO Chat template kwargs: {'enable_thinking': False}\\n2026-05-11 20:45:22,300 INFO Loaded train=8052, val=1001\\n2026-05-11 20:45:26,251 INFO train: 0/8052 truncated (0.0%)\\n2026-05-11 20:45:26,936 INFO val: 0/1001 truncated (0.0%)\\n2026-05-11 20:45:26,955 INFO Loading model: Qwen/Qwen3-4B\\n2026-05-11 20:45:26,955 INFO Attention: sdpa\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 182.63it/s]\\ntrainable params: 11,796,480 || all params: 4,034,264,576 || trainable%: 0.2924\\nTraceback (most recent call last):\\n  File \\\"/home/sonny/exec-sim-repair-verifier/train_traj_verifier.py\\\", line 217, in &lt;module>\\n    main()\\n  File \\\"/home/sonny/exec-sim-repair-verifier/train_traj_verifier.py\\\", line 196, in main\\n    trainer = Trainer(\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py\\\", line 172, in wrapped_func\\n    return func(*args, **kwargs)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/transformers/trainer.py\\\", line 612, in __init__\\n    self._move_model_to_device(model, args.device)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/transformers/trainer.py\\\", line 910, in _move_model_to_device\\n    model = model.to(device)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\\\", line 1381, in to\\n    return self._apply(convert)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\\\", line 933, in _apply\\n    module._apply(fn)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/torch/nn/modules/module.py\\\", line 933, in _apply\\n    module._apply(fn)\\n  File \\\"/home/sonny/.local/lib/python3.10/site-packages/t
+…[truncated 1123 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T03:45:50.446767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "nvidia-smi",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "nvidia-smi",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T03:45:50.446928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 11 20:45:33 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |\\n|-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        Off |   00000000:01:00.0 Off |                  N/A |\\n| 47%   74C    P1            468W /  575W |   27101MiB /  32607MiB |     94%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n                                                                                         \\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A         2310157      C   python3                               27092MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T03:45:50.447068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ps -p 2310157 -o pid,user,etime,cmd",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ps -p 2310157 -o pid,user,etime,cmd",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T03:45:50.447224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    PID USER         ELAPSED CMD\\n2310157 sonny          03:41 python3 train_trace_judge.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_trace/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_traj-level-data-prep_20260512T034232",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-12T03:45:50.447399+00:00_
+
+`train_trace_judge.py` is currently training on the GPU (running 3m41s). Scripts are all created and data is built. The dry-run can't proceed until that finishes.
+
+---
+
+### 汇报
+
+**1. 数据统计**
+
+| Split | Trajectories | Resolved | Unresolved | Avg tests/traj |
+|-------|-------------|----------|------------|----------------|
+| train | 8,052 | 3,764 (46.7%) | 4,288 (53.3%) | 1.9 |
+| val | 1,001 | 457 (45.7%) | 544 (54.3%) | 1.9 |
+| test | 1,032 | 479 (46.4%) | 553 (53.6%) | 1.8 |
+
+0% truncation at max_seq_length=2048.
+
+**2. Dry-run**
+
+无法执行 — `train_trace_judge.py` 正在占用 GPU（27GB/32GB, PID 2310157, 已运行 ~4 分钟）。需等该任务结束后再 dry-run。
+
+**3. 已创建的脚本**
+- `build_traj_data.py` — 已执行，数据在 `data/traj_{train,val,test}.jsonl`
+- `train_traj_verifier.py` — prompt 用 `[Code]`/`[Test Summary]` 格式，label 为 resolved/unresolved
+- `eval_traj_verifier.py` — 含 per-test 一致性分析
+
+**4. 完整训练命令**
+```bash
+cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py \
+  --data_dir data/ --model_name Qwen/Qwen3-4B \
+  --output_dir checkpoints_traj/ \
+  --batch_size 2 --grad_accumulation 16 --lr 2e-4 \
+  --epochs 3 --seed 42 --run_name traj-qwen3-4b-lora
+```
+
+**5. 完整 eval 命令**
+```bash
+cd /home/sonny/exec-sim-repair-verifier && python3 eval_traj_verifier.py \
+  --data_dir data/ --checkpoint_dir checkpoints_traj/best \
+  --model_name Qwen/Qwen3-4B --output eval_traj_results.json
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_traj-level-data-prep_20260512T034232"
+}
+```
+
+</details>
+
+---

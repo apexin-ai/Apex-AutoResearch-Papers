@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "322dbaff8f762b7d8fe7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper rank32 ablation update",
+  "task_key": "worker_paper_rank32-ablation-update_20260515T194553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rank32-ablation-update_20260515T194553_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "5bcc375846982a0778c849b950a475118165123dbd7be60b21fc5b45ef104187"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更总结：\n\n**experiments.tex 更新：**\n- §3.7(h) LoRA rank sensitivity：原段落文字改为引用新表格 `tab:rank_ablation`，包含 rank=16 baseline、rank=32 (α=32, ratio=1)、rank=32 (α=64, ratio=2) 三行完整数据（Acc/Fail F1/Pass F1/Δ），并说明 α/r=2 corrected 排除了 scaling factor 混淆变量\n- §3.6 seq_length ablation：数字已验证一致（83.52→82.83, -0.69pp），添加了 exp_id 注释\n- 所有 exp_id 以 LaTeX 注释标注（`cwm-baseline`, `cwm-rank32-ablation-v2`, `cwm-rank32-alpha64-ablation`, `model-size-scaling-cls8b`, `cls8b-s42-ckpt1000-test-seq2048-ablation`）\n\n**产出：**\n- `artifacts/rank_ablation_data.json` 已创建并注册（art_20260515_0557df），包含两组 ablation 的完整数据和 exp_id 溯源\n- `review_issues.yaml` R1-C3 状态更新为 done"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rank32-ablation-update.md"
+}

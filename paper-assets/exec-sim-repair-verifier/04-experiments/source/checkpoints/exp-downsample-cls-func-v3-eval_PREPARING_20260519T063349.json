@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-downsample-cls-func-v3-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:32:19.527Z",
+    "updated_at": "2026-05-19T06:33:48.962Z",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B --adapter_path /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best --data_dir data/swebench_full --split test --max_seq_length 2048 --device cuda:0 --output_dir artifacts/eval_cls_downsample_qwen3_4b",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "802400",
+      "log_path": "~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3-eval.log",
+      "submitted_at": "2026-05-19T05:32:18.897Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T06:33:49.407316+00:00",
+  "trigger": "update_registry"
+}

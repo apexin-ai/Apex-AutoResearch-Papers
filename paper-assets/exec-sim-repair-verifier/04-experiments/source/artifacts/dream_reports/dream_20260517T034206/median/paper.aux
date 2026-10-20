@@ -1,0 +1,76 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{ni2023lever}
+\citation{chen2022codet}
+\citation{gu2024cwm}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{le2022coderl}
+\citation{li2022alphacode}
+\citation{shinn2023reflexion}
+\citation{zhang2025swerm}
+\citation{zhang2022predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ Outcome Supervision.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification in Code Repair Pipelines.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Predictive Mutation Testing.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Formulation Definitions}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Test Classification (CLS).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution Output Generation (CWM).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-Level Scoring (TRAJ).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Setup}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Complexity Levels}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Repository-level CLS accuracy across model families. All models use 4-bit LoRA on the same data split.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:cls-comparison}{{1}{4}{Repository-level CLS accuracy across model families. All models use 4-bit LoRA on the same data split}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces CWM unparseable rate and accuracy across model families and complexity levels. Unparseable outputs default to the majority label.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:cwm-unparseable}{{2}{4}{CWM unparseable rate and accuracy across model families and complexity levels. Unparseable outputs default to the majority label}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Construction}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:data}{{4.1}{4}{Data Construction}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model CLS Comparison}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cls-comparison}{{4.2}{4}{Cross-Model CLS Comparison}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}CWM Unparseable Rate Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cwm-analysis}{{4.3}{4}{CWM Unparseable Rate Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multi-seed results for DeepSeek-4B repository-level verification.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:multiseed}{{3}{5}{Multi-seed results for DeepSeek-4B repository-level verification}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Multi-Seed Stability}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:multiseed}{{4.4}{5}{Multi-Seed Stability}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}CLS vs CWM: Design Space Summary}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Downstream Utility: Diagnostic-Guided Re-Repair}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:rerepair}{{4.6}{5}{Downstream Utility: Diagnostic-Guided Re-Repair}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Experimental Design.}{5}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Re-repair resolve rate (pass@1) by diagnostic condition, $N=200$ instances.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:rerepair-200}{{4}{6}{Re-repair resolve rate (pass@1) by diagnostic condition, $N=200$ instances}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Re-repair Phase 1 results (Qwen3-8B-Instruct, $N=60$, two prompt formats).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:rerepair-phase1}{{5}{6}{Re-repair Phase 1 results (Qwen3-8B-Instruct, $N=60$, two prompt formats)}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase 1 Detailed Analysis.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design Space Characterization.}{6}{section*.10}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibcite{ni2023lever}{{1}{2023}{{Ni et~al.}}{{}}}
+\bibcite{chen2022codet}{{2}{2022}{{Chen et~al.}}{{}}}
+\bibcite{gu2024cwm}{{3}{2024}{{Gu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pass@5 resolve rates (Phase 1, $N=60$).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:rerepair-passat5}{{6}{7}{Pass@5 resolve rates (Phase 1, $N=60$)}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tokenizer-Specific Failure.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\bibcite{lightman2023lets}{{4}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{uesato2022solving}{{5}{2022}{{Uesato et~al.}}{{}}}
+\bibcite{le2022coderl}{{6}{2022}{{Le et~al.}}{{}}}
+\bibcite{li2022alphacode}{{7}{2022}{{Li et~al.}}{{}}}
+\bibcite{shinn2023reflexion}{{8}{2023}{{Shinn et~al.}}{{}}}
+\bibcite{zhang2025swerm}{{9}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{zhang2022predictive}{{10}{2022}{{Zhang et~al.}}{{}}}
+\gdef \@abspage@last{8}

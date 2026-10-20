@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a4f1c8c696b370e7ed2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code integrate cwm results",
+  "task_key": "worker_code_integrate-cwm-results_20260521T061652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integrate-cwm-results_20260521T061652_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "a8cb3f8700272dedfc663889682a65987c839d61af074524c0ca5fa906852e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过 `--help` 验证。输出 4 个文件到 `--output_dir`：`table3_cwm.txt`、`table3_cwm_latex.tex`、`w5_cwm_data.csv`（CWM only）+ `w5_all_data.csv`（含 hardcoded CLS/TRAJ）、`quality_check.txt`。缺失目录会 warning 并用 NaN 填充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-integrate-cwm-results.md"
+}

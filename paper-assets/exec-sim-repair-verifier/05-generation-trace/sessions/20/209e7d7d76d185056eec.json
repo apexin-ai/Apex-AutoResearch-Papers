@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "209e7d7d76d185056eec",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b seed123 ckpt6633 test eval",
+  "task_key": "worker_analysis_cls8b-seed123-ckpt6633-test-eval_20260515T112810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-seed123-ckpt6633-test-eval_20260515T112810_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "2706a3146b9a7919aa8808f276fce0db1fa0833bd346c7d56271b98ce0193a70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成，status=DONE。\n\n**seed123 ckpt-6633 (final) test 结果**：accuracy=84.89%, f1_macro=77.56%, gap vs majority=+11.9pp。\n\n对比参考：\n| | val | test |\n|---|---|---|\n| ckpt-3000 (val-best) | 88.69% | 85.60% |\n| ckpt-6633 (final) | 87.10% | 84.89% |\n\nFinal checkpoint test 比 val-best test 低 0.71pp，符合预期的轻微 overfitting 趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-seed123-ckpt6633-test-eval.md"
+}

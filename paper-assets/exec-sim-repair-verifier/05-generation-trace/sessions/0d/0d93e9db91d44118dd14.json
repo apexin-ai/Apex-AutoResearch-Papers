@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d93e9db91d44118dd14",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect home eval results",
+  "task_key": "worker_collect_home-eval-results_20260515T073925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_home-eval-results_20260515T073925_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "7e6dc230741fde67a4fd81f6c1e8c5056c9780ad17f198393e8b3ada996bf630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ckpt4600 (val) — 已完成，registry 已更新：**\n\n| Metric | Value |\n|--------|-------|\n| accuracy | 90.07% |\n| f1_macro | 85.04% |\n| f1_fail | 76.37% (P=89.65%, R=66.52%) |\n| f1_pass | 93.71% (P=90.16%, R=97.56%) |\n| majority_baseline | 75.88% |\n| gap_vs_majority | +14.19pp |\n| unparseable | 0 |\n| total_samples | 9,335 |\n\n对比 hypothesis 里的 ckpt-4400 val (89.96%)：ckpt-4600 val accuracy **90.07%**，轻微提升 +0.11pp。val-best 从 ckpt-4400 移到 ckpt-4600。\n\n**ckpt4400 (test) — 仍在运行 (39%)，已设置 4.5 分钟后轮询。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-home-eval-results.md"
+}

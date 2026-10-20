@@ -1,0 +1,34 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T12:16:19.540Z",
+    "updated_at": "2026-05-15T15:00:37.722Z",
+    "hypothesis": "CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。",
+    "notes": "2026-05-15 14:37 UTC: D102 bs=1→bs=8 重启。kill pid=367292, 新 pid=381618。auto-resume 从 359 条继续，剩余 9425/9784。显存 20982/32607 MiB on cuda:3。ETA May 16 17:20 UTC。",
+    "reproduce": {
+      "finished_at": "2026-05-15T14:55:30.129Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-15T14:55:32.005Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T14:55:37.446501+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-15 14:37 UTC: D102 bs=1→bs=8 重启。kill pid=367292, 新 pid=381618。auto-resume 从 359 条继续，剩余 9425/9784。显存 20982/32607 MiB on cuda:3。ETA May 16 17:20 UTC。"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T15:00:38.215485+00:00",
+  "trigger": "update_registry"
+}

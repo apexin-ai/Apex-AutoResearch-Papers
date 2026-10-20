@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "description": "LoRA rank ablation and seq_length confound ablation data for CWM/CLS experiments",
+    "model": "Qwen3-4B (rank ablation), Qwen3-8B (seq_length ablation)",
+    "task": "function-level (rank), repo-level (seq_length)",
+    "date_locked": "2026-05-15",
+    "decisions": ["D097", "D098", "D094"]
+  },
+  "rank_ablation": {
+    "description": "CWM 4B function-level, seed=42, epochs=3, lr=2e-4",
+    "baseline_seed_variance_pp": 0.53,
+    "baseline_seeds": {"s42": 87.51, "s456": 86.98},
+    "configurations": [
+      {
+        "config": "rank=16, alpha=32 (baseline)",
+        "exp_id": "cwm-baseline",
+        "rank": 16,
+        "alpha": 32,
+        "alpha_rank_ratio": 2,
+        "accuracy": 87.51,
+        "f1_macro": null,
+        "f1_fail": null,
+        "f1_pass": null,
+        "eval_loss": null,
+        "delta_vs_baseline": 0.0
+      },
+      {
+        "config": "rank=32, alpha=32 (ratio=1)",
+        "exp_id": "cwm-rank32-ablation-v2",
+        "rank": 32,
+        "alpha": 32,
+        "alpha_rank_ratio": 1,
+        "accuracy": 87.00,
+        "f1_macro": 87.0,
+        "f1_fail": 87.1,
+        "f1_pass": 86.9,
+        "eval_loss": 0.0688,
+        "delta_vs_baseline": -0.51
+      },
+      {
+        "config": "rank=32, alpha=64 (ratio=2, corrected)",
+        "exp_id": "cwm-rank32-alpha64-ablation",
+        "rank": 32,
+        "alpha": 64,
+        "alpha_rank_ratio": 2,
+        "accuracy": 87.04,
+        "f1_macro": 87.03,
+        "f1_fail": 87.27,
+        "f1_pass": 86.79,
+        "eval_loss": 0.0606,
+        "delta_vs_baseline": -0.47
+      }
+    ],
+    "conclusion": "rank=32 vs rank=16 difference [-0.51pp, -0.47pp] within seed variance (0.53pp). CWM capacity is not the bottleneck."
+  },
+  "seq_length_ablation": {
+    "description": "CLS 8B repo-level, seed=42, ckpt-1000 (val-selected)",
+    "configurations": [
+      {
+        "config": "CLS 8B @seq8192 (default)",
+        "exp_id": "model-size-scaling-cls8b",
+        "max_seq_length": 8192,
+        "accuracy": 83.52,
+        "f1_macro": 77.50
+      },
+      {
+        "config": "CLS 8B @seq2048 (CWM-aligned)",
+        "exp_id": "cls8b-s42-ckpt1000-test-seq2048-ablation",
+        "max_seq_length": 2048,
+        "accuracy": 82.83,
+        "f1_macro": 76.88
+      }
+    ],
+    "delta_pp": -0.69,
+    "vs_cwm_gap_at_2048": 24.79,
+    "vs_cwm_gap_at_8192": 25.48,
+    "conclusion": "seq_length contributes only 0.69pp; 97% of CLS advantage comes from formulation, not context length."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b07e2051dfdb2cda1ca",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent check cwm 8b checkpoints",
+  "task_key": "worker_urgent_check-cwm-8b-checkpoints_20260514T140908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_check-cwm-8b-checkpoints_20260514T140908_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "6fa0c3f736cd275f893d262bd3c1c91639f06ee2e97898bf6d8b6801b7a6a457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM 8B Checkpoint 状况汇报\n\n### Checkpoint 保留\n\n| 位置 | 内容 |\n|------|------|\n| **主目录** (`checkpoints_repo_cwm_8b_conda`) | checkpoint-400, 900, 1000, 1100, 1200 （共 5 个，满 save_total_limit） |\n| **备份目录** (`checkpoints_backup_cwm_8b`) | checkpoint-300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200 （共 10 个） |\n\n### 配置\n\n- `save_steps=100`（默认值），`save_total_limit=5`\n\n### 关键结论\n\n1. **备份脚本运行正常** — 300~1200 的 checkpoint 全部备份，不存在 CLS 8B s123 那样的丢失问题\n2. **checkpoint-100、200 两处都没有** — 可能在备份脚本启动前就已被淘汰，或训练从其他 step 开始\n3. **checkpoint-400 安全** — 主目录和备份目录都有\n4. **无需紧急备份操作**\n\n### ⚠️ 新问题：训练已崩溃\n\n日志显示训练进程报 `ValueError` 退出：\n\n```\nValueError: type of {'input_ids': [...]} unknown: <class 'dict'>. \nShould be one of a python, numpy, or pytorch object.\n```\n\n进度条显示 `0%| | 0/6633`，说明在尝试恢复训练时 DataLoader 崩溃。训练当前**没有在运行**，停在 step 1200。这是 data collator 处理样本时的类型错误，可能是某条数据格式异常。\n\n### 需要决策\n\n- 训练崩溃需要排查修复后重启（从 checkpoint-1200 resume）\n- checkpoint 备份情况良好，不需要类似 CLS 8B s123 的恢复训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-check-cwm-8b-checkpoints.md"
+}

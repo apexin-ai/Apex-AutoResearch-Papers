@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12510e6c980a611abf5e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm v6 sigterm",
+  "task_key": "worker_diagnose_cwm-v6-sigterm_20260512T205350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm-v6-sigterm_20260512T205350_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "de40dadee3f9f84abf95f5efda85f54b10957f8431e6122a7ae5612748cc05d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告写入 `artifacts/cwm_v6_diagnosis.md`。核心结论：\n\n**SIGTERM 来源是 SeetaCloud 平台**，不是 OOM。tmux server 被宿主机/编排系统杀死，SIGTERM 级联到训练进程。cgroup 所有指标（memory/pids/cpu）均远未触及上限。\n\n**但更严重的问题是 checkpoint 从未保存成功。** 6 次 CWM 训练、所有 checkpoint 目录全空。v1 跑到 step 694（理应有 6 个 checkpoint），目录仍然为空。这意味着即使训练不被 kill，checkpoint 保存逻辑本身就有 bug。\n\n**建议优先级**：\n1. 修 checkpoint 保存 bug（排查 Trainer 的 save_strategy/save_steps 是否实际生效）\n2. 添加 SIGTERM handler 做 graceful shutdown 保存\n3. 降低 save_steps 到 50\n4. 解决上述问题后可继续在 seetacloud 训练（从零开始，无可用 checkpoint resume）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm-v6-sigterm.md"
+}

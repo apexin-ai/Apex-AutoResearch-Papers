@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "035134cfa17eaaa4ec0e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "gpu0 batch test and eval",
+  "task_key": "worker_gpu0_batch-test-and-eval_20260521T215715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu0_batch-test-and-eval_20260521T215715_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "bd49699890488fa421ab10b35670587fbdd9cc069b3bbc611e5862d84c156fe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算进度估算：\n\n- **测试集总量**: 1890 样本\n- **已完成**: 272 样本 (14.4%)\n- **文件创建时间**: epoch 1779399289，最后修改: 1779400682\n- **已用时间**: 1393 秒 ≈ 23 分钟\n- **处理速率**: ~11.7 样本/分钟 (batch_size=4)\n- **剩余**: 1618 样本 → 约 **138 分钟 ≈ 2.3 小时**\n- **预计总时间**: ~2.7 小时\n\n---\n\n## 汇报结果\n\n| 项目 | 结果 |\n|------|------|\n| **当前 eval batch_size** | **4** |\n| **其他参数** | checkpoint-6633, max_seq_length=8192, max_new_tokens=512 |\n| **GPU 0 显存使用** | 20752 / 32607 MiB (63.6%)，GPU 利用率 82% |\n| **是否 kill** | **否** — batch_size=4 > 1，无需干预 |\n| **Batch test** | **无需执行** — 当前已是 batch=4，显存 63.6% |\n| **预估 eval 总时间** | ~2.7 小时（DDL 前充裕完成） |\n| **进度** | 272/1890 (14.4%)，约 2.3 小时后完成 |\n\nMonitor 已自动选择了 batch_size=4，显存还有 ~12GB 余量。理论上 batch=8 可能也能跑（但风险是长序列样本 OOM）。当前配置安全稳定，2.7 小时可完成，5月25日 DDL 前没有时间压力，建议不干预让它跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu0-batch-test-and-eval.md"
+}

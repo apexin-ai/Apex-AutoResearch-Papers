@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen3-8b-cwm-repo-s456-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:44:10.474Z",
+    "updated_at": "2026-05-19T17:48:21.225Z",
+    "hypothesis": "Qwen3-8B CWM repo-level s456: multi-seed replication (3rd seed) for Table 3 cross-model comparison. 与 s42 config 完全一致（train_repo_cwm.py, bs=1, ga=32, lr=5e-5, seq2048, epochs=3, lora_r=16）。预期 CWM 在 repo-level 仍显著低于 CLS。",
+    "parent": "repo-level-cwm-8b-conda-v5"
+  },
+  "timestamp": "2026-05-19T17:48:21.637527+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,8 @@
+2026-05-16 15:22:56,940 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 392, column 18:
+            columns: [Regression Rate, "Block Adv (pp ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 392, column 64:
+     ... te, "Block Adv (pp)", Beneficial?]
+                                         ^

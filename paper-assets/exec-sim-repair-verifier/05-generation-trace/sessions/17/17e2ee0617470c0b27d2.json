@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e2ee0617470c0b27d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops fix cls func s123 metrics",
+  "task_key": "worker_ops_fix-cls-func-s123-metrics_20260516T120802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cls-func-s123-metrics_20260516T120802_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "3480821bfe1e03bd63ab61cbcec1e14c7265ebd6b34c27079f89331624405739"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。`deepseek-cls-func-s123` metrics 已写入：\n\n| 指标 | 值 |\n|------|-----|\n| test_accuracy | 86.77% |\n| test_f1_macro | 86.77% |\n| test_precision_fail | 84.99% |\n| test_precision_pass | 88.56% |\n| test_recall_fail | 88.16% |\n| test_recall_pass | 85.48% |\n| test_unparseable_rate | 0 |\n| test_n | 1890 |\n| best_eval_loss | 0.06753 |\n| train_time_seconds | 5391 (从 checkpoint 时间戳估算) |\n\n与预期一致（86.77% vs 预期 ~86.77%）。两个 seed 的均值：(86.93 + 86.77) / 2 = 86.85%，符合 ROADMAP 中 86.85±0.11% 的描述。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cls-func-s123-metrics.md"
+}

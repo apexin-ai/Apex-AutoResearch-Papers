@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15f073dcada139afe854",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778634671.md",
+  "task_key": "loop_5_1778634671",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778634671.md",
+    "occurrence": 1,
+    "bytes": 4044,
+    "sha256": "e95c8e048ad700a6d06de076fcb3ac92dfdc978eac16b5e46c38b9c02a1bf0af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T01:11:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0,1,2,3`，但 seetacloud cgroup 360GB RAM 限制 → **只能同时跑 1 个训练进程**（D028 教训，v3 并行 OOM SIGKILL）\n- home-1x5090 只有 1 张 GPU（cuda:0），62GB RAM\n- westd-48478 = seetacloud-westd-4x5090 是**同一台物理机**（D041 撤回教训），不要当两台用\n- CWM 训练 output_dir 是 `checkpoints_repo_cwm_v9/`（不是 v10，历史原因未改目录名）\n- repo-level 数据量 70748 条，max_seq_length=2048，val 截断率 20.2%（fail 样本 31% 被截断，论文必须说明）\n- D008 Go/No-Go 判定：F1 diff ≥3pp → EMNLP Main；1-3pp → 加 seeds；<1pp → Kill C1 pivot\n\n### 2. 🖥️ 基础设施快照\n**seetacloud-westd-4x5090** (account: root)\n- 工作目录: `/root/autodl-tmp/` 下（根分区 30GB 禁存大文件）\n- 模型/数据: `/root/autodl-tmp/swebench_full/`, `/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n- 训练日志: `/root/autodl-tmp/cwm_v9_train.log`\n- 活跃进程: repo-level-cwm-v10, PID 105205, cuda:2, step ~316/6633 @ 00:15 UTC, ETA ~15:00-20:00 UTC 5/13\n- Cron 监控 PID 105205 ✓\n- 需 `source /etc/network_turbo` 再做 pip/git；HF 用 ModelScope 替代\n\n**home-1x5090** (account: sonny)\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- Checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- 训练日志: `/tmp/repo-level-cls-v3_stdout.log`\n- 活跃进程: repo-level-cls-v4, PID 2885139, cuda:0, step ~800/6633 @ 00:15 UTC, ETA ~11:00 UTC 5/13\n- Cron 监控 PID 2885139 ✓\n\n**活跃 Worker**: `worker_ssh_sync-eval-home-to-seetacloud_20260513T005509`（同步 eval 代码 home→seetacloud）\n\n### 3. 📊 当前状态\n两个 repo-level 训练并行跑中，这是项目 C1 claim 的决胜实验：\n- **repo-level-cls-v4** (RUNNING, home cuda:0): CLS 分类方法，~12% 进度，ETA ~11:00 UTC。eval_loss 非单调（step200 最低 0.070），load_best_model_at_end=True\n- **repo-level-cwm-v10** (RUNNING, seetacloud cuda:2): CWM 生成方法（C1 对照组），~5% 进度，ETA ~15:00-20:00 UTC。从 checkpoint-200 resume\n- **repo-level-cls-seed123** (PREPARING): 等 CLS v4 完成后在 home cuda:0 启动\n- **repo-level-cwm-seed123** (PREPARING): 等 CWM v10 完成后在 seetacloud cuda:2 启动\n- 1 个 Worker 在跑（sync eval 代码），无待处理的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- CLS v4 cron 回调（DONE/failed）→ spawn Worker 跑 eval → 记录 metrics → 立即在 home 启动 CLS seed123（复用 v4 配置改 seed=123）\n- CWM v10 cron 回调（DONE/failed）→ spawn Worker 跑 eval → 记录 metrics → 立即在 seetacloud 启动 CWM seed123\n- CLS v4 eval_loss 非单调 → 训练完后做**双 checkpoint 对比**（step200 vs 最低 eval_loss 的其他 checkpoint），分别跑 test inference\n- v4 + v10 eval 都完成 → paired bootstrap 统计检验 → D008 Go/No-Go 判定\n- Go/No-Go 落在 1-3pp → seed123 实验结果加入分析再判\n- sync-eval Worker 完成 → 确认 seetacloud eval 脚本就绪\n\n### 5. 🎯 战略上下文\n**核心结论链**：函数级 CLS≈CWM（gap<0.5pp, TOST 等价 p=0.007）→ 核心假说转为 **complexity-dependent advantage**：repo-level 代码更复杂时 CLS 应优于 CWM。4B→8B scaling gap 从 1.25pp→2.43pp 已验证。repo-level 是最后一块拼图。\n\n**CWM 已迭代 10 次、CLS 4 次**，v6/v7 是平台 SIGTERM 杀死（非代码 bug），v8/v9 是参数配置问题。当前版本（v4/v10）必须成功，否则时间上来不及（ARR May 25 截止，剩 ~12 天）。\n\n**易错点**：\n- 不要把 westd-48478 当独立服务器用——它就是 seetacloud（D041）\n- seetacloud 禁止并行训练（cgroup 360GB 会 OOM kill）\n- CWM 的 output_dir 叫 `checkpoints_repo_cwm_v9/` 但实际跑的是 v10\n- eval 时注意 max_seq_length=2048 和截断率问题\n- Paper Agent Step 2 在进行中（图表生成 + 模板下载），可并行推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778634671.md"
+}

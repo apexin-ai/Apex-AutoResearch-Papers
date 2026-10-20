@@ -1,0 +1,2944 @@
+# analysis tost multi margin
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 99
+- **Recorded user turns:** 0
+- **Tool calls:** 49
+- **Original source:** `logs/chats/worker_analysis_tost-multi-margin_20260515T122851.jsonl`
+- **Structured JSON:** [`7eb7f5754a150d9c47f4.json`](../../sessions/7e/7eb7f5754a150d9c47f4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+99 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T12:34:58.081831+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T12:34:58.082323+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T12:34:58.082605+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*.py\" -path \"*tost*\" -o -type f -name \"*.py\" -path \"*equivalence*\" -o -type f -name \"*.py\" -path \"*bootstrap*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*.py\" -path \"*tost*\" -o -type f -name \"*.py\" -path \"*equivalence*\" -o -type f -name \"*.py\" -path \"*bootstrap*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T12:34:58.082845+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*tost*\" -o -type f -name \"*equivalence*\" -o -type f -name \"*bootstrap*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -type f -name \"*tost*\" -o -type f -name \"*equivalence*\" -o -type f -name \"*bootstrap*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T12:34:58.083099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/repo_level_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T12:34:58.083300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/__pycache__/paired_bootstrap_repo.cpython-310.pyc\\n/home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/bootstrap_preliminary_2pairs.json\\n/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json\\n/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/repo_level_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T12:34:58.083482+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -rl \"tost\\|TOST\\|equivalence\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -rl \"tost\\|TOST\\|equivalence\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T12:34:58.083688+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T12:34:58.083932+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:34:58.084144+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/artifacts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T12:34:58.084346+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -rl \"tost\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -i",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -rl \"tost\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -i",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T12:34:58.084552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T12:34:58.084772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -rl \"equivalence\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -i",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -rl \"equivalence\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -i",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T12:34:58.085007+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T12:34:58.085209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T12:34:58.085590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"analysis_5paired_bootstrap.py — Paired clustered bootstrap for CLS vs CWM comparison.\\n\\nCompares CLS (classification) and CWM (code-with-mutation generation) verifiers\\nacross multiple training seeds using clustered bootstrap resampling.\\n\\nINPUT FORMAT:\\n  Prediction files in JSONL (one JSON per line) or JSON array format.\\n  Required fields per record:\\n    - index    : int, test case index (aligns CLS/CWM on same test case)\\n    - problem_id : str, e.g. \\\"HumanEval/0\\\" (used as cluster key)\\n    - label    : int, ground truth (0=fail, 1=pass)\\n    - pred     : int, model prediction (0 or 1)\\n      (also accepts field name \\\"prediction\\\")\\n\\nOUTPUT FORMAT:\\n  Printed report + JSON file with:\\n    - per_seed  : per-pair accuracy and difference\\n    - pooled    : mean diff, 95% CI, TOST result\\n    - bootstrap_se_pp : bootstrap standard error in percentage points\\n\\nUSAGE:\\n  python3 analysis_5paired_bootstrap.py \\\\\\n    --pairs cls_s42.jsonl cwm_s42.jsonl  cls_s0.jsonl cwm_s0.jsonl ... \\\\\\n    --n-resamples 1000 --margin 2.0 --seed 42 --output results.json\\n\\nSTATISTICAL METHOD:\\n  1. For each seed pair, compute per-test-case paired difference:\\n     d_i = 1(CLS correct) - 1(CWM correct)  in {-1, 0, +1}\\n  2. Pool differences across all seeds, grouped by problem_id clusters\\n  3. Clustered bootstrap: resample problem_ids with replacement (not test cases),\\n     include all variants within each selected problem across all seeds\\n  4. 95% CI from percentile bootstrap\\n  5. TOST equivalence: check if 90% CI falls within +/-margin\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom collections import defaultdict\\n\\nimport numpy as np\\n\\n\\ndef load_predictions(path):\\n    \\\"\\\"\\\"Load prediction file (JSONL or JSON array). Normalize field names.\\\"\\\"\\\"\\n    with open(path) as f:\\n        content = f.
+…[truncated 7318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T12:34:58.085994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T12:34:58.086269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/swebench_pilot_data.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_pilot_data.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/swebench_pilot_data.jsonl\\n
+…[truncated 1889 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T12:34:58.086500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*bootstrap*results*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*bootstrap*results*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T12:34:58.086691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T12:34:58.086906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*pred*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*pred*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T12:34:58.087137+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/block_corr_from_predictions.py\\n/home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_generic.py\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n/hom
+…[truncated 1319 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T12:34:58.087385+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/bootstrap_preliminary_2pairs.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/bootstrap_preliminary_2pairs.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T12:34:58.087614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_pairs\\\": 2,\\n  \\\"n_total\\\": 3780,\\n  \\\"n_clusters\\\": 114,\\n  \\\"n_resamples\\\": 1000,\\n  \\\"per_seed\\\": [\\n    {\\n      \\\"pair\\\": 1,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed42.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed123.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.51,\\n      \\\"cwm_acc_pct\\\": 87.3,\\n      \\\"diff_pp\\\": 0.21\\n    },\\n    {\\n      \\\"pair\\\": 2,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed0.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed123.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.78,\\n      \\\"cwm_acc_pct\\\": 87.3,\\n      \\\"diff_pp\\\": 0.48\\n    }\\n  ],\\n  \\\"pooled\\\": {\\n    \\\"mean_diff_pp\\\": 0.344,\\n    \\\"ci95\\\": [\\n      -0.733,\\n      1.413\\n    ],\\n    \\\"tost_90ci\\\": [\\n      -0.586,\\n      1.21\\n    ],\\n    \\\"tost_margin_pp\\\": 2.0,\\n    \\\"tost_equivalent\\\": true,\\n    \\\"tost_p\\\": 0.001,\\n    \\\"min_equiv_margin_pp\\\": 1.21\\n  },\\n  \\\"bootstrap_se_pp\\\": 0.539,\\n  \\\"preliminary\\\": true\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T12:34:58.087832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T12:34:58.088044+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cls8b_seed123_predictions.json\\ncls8b_seed123_results.json\\ncls8b_seed123_results_predictions.json\\ncls8b_seed42.json\\ncls8b_seed42_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T12:34:58.088252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"predictions_cls*\" -o -name \"predictions_cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"predictions_cls*\" -o -name \"predictions_cwm*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T12:34:58.088462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T12:34:58.088700+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*bootstrap*\" -o -name \"*tost*\" -o -name \"*equiv*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*bootstrap*\" -o -name \"*tost*\" -o -name \"*equiv*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T12:34:58.088950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/__pycache__/paired_bootstrap_repo.cpython-310.pyc\\n/home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/bootstrap_preliminary_2pairs.json\\n/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json\\n/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py\\n/home/sonny/exec-sim-repair-verifier/eval_repo_bootstrap.py\\n/home/sonny/exec-sim-repair-verifier/repo_level_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T12:34:58.089163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.json\" -maxdepth 1 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.json\" -maxdepth 1 -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T12:34:58.089402+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_llm_judge_8b.json\\n/home/sonny/exec-sim-repair-verifier/eval_llm_judge_32b.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_results_bf16.json\\n/home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.json\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation_v2.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_pertest_diag.json\\n/home/sonny/exec-sim-repair-verifier/bootstrap_preliminary_2pairs.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/analysis_error_overlap_report.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_repo_cls.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T12:34:58.089642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T12:34:58.089929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"8B_scaling_gap_seed_level\\\",\\n  \\\"date\\\": \\\"2026-05-12\\\",\\n  \\\"n_test\\\": 1890,\\n  \\\"data_8b\\\": {\\n    \\\"seed42\\\": {\\n      \\\"cls_acc\\\": 90.48,\\n      \\\"cwm_acc\\\": 87.67,\\n      \\\"gap_pp\\\": 2.81\\n    },\\n    \\\"seed123\\\": {\\n      \\\"cls_acc\\\": 89.37,\\n      \\\"cwm_acc\\\": 86.98,\\n      \\\"gap_pp\\\": 2.39\\n    },\\n    \\\"seed456\\\": {\\n      \\\"cls_acc\\\": 88.31,\\n      \\\"cwm_acc\\\": 86.24,\\n      \\\"gap_pp\\\": 2.07\\n    }\\n  },\\n  \\\"seed_level\\\": {\\n    \\\"n_seeds\\\": 3,\\n    \\\"cls_mean\\\": 89.39,\\n    \\\"cwm_mean\\\": 86.96,\\n    \\\"mean_gap_pp\\\": 2.423,\\n    \\\"se_gap_pp\\\": 0.214,\\n    \\\"sd_gap_pp\\\": 0.371,\\n    \\\"ci95_pp\\\": [\\n      1.501,\\n      3.345\\n    ],\\n    \\\"paired_t\\\": {\\n      \\\"t_stat\\\": 11.31,\\n      \\\"p_two_sided\\\": 0.0077,\\n      \\\"p_one_sided\\\": 0.0039\\n    },\\n    \\\"cohens_d\\\": 6.53,\\n    \\\"wilcoxon\\\": {\\n      \\\"W\\\": 6.0,\\n      \\\"p_one_sided\\\": 0.125\\n    }\\n  },\\n  \\\"bootstrap\\\": {\\n    \\\"n_boot\\\": 10000,\\n    \\\"pooled_mean_gap_pp\\\": 2.421,\\n    \\\"pooled_se_pp\\\": 0.601,\\n    \\\"ci95_pp\\\": [\\n      1.252,\\n      3.598\\n    ],\\n    \\\"ci90_pp\\\": [\\n      1.445,\\n      3.404\\n    ],\\n    \\\"p_gt0\\\": 0.9998\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"n_permutations\\\": 8,\\n    \\\"p_one_sided\\\": 0.125\\n  },\\n  \\\"tost\\\": {\\n    \\\"margin_pp\\\": 2.0,\\n    \\\"ci90_pp\\\": [\\n      1.445,\\n      3.404\\n    ],\\n    \\\"equivalent\\\": false,\\n    \\\"min_equiv_margin_pp\\\": 3.404,\\n    \\\"ttest_tost_p\\\": 0.9066\\n  },\\n  \\\"scaling_comparison\\\": {\\n    \\\"ref_4b_gap_pp\\\": 1.25,\\n    \\\"ref_4b_n_seeds\\\": 5,\\n    \\\"gap_8b_pp\\\": 2.423,\\n    \\\"gap_increase_pp\\\": 1.173,\\n    \\\"gap_increase_pct\\\": 93.9,\\n    \\\"t_stat\\\": 5.476,\\n 
+…[truncated 445 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T12:34:58.090174+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:34:58.090564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"8B Scaling Gap Statistical Analysis — Seed-Level + Confusion-Matrix Bootstrap.\\n\\nNo per-instance predictions available for 8B, so we use:\\n1. Seed-level paired analysis (n=3 pairs)\\n2. Confusion-matrix-based binomial bootstrap per seed\\n3. Comparison with 4B gap\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\n\\n# ============================================================\\n# DATA\\n# ============================================================\\n\\n# 8B aggregate results (from eval JSON files on server)\\ndata_8b = {\\n    \\\"seed42\\\":  {\\\"cls_acc\\\": 90.48, \\\"cwm_acc\\\": 87.67,\\n                \\\"cls_cm\\\": {\\\"tn\\\":815,\\\"fp\\\":97,\\\"fn\\\":83,\\\"tp\\\":895},\\n                \\\"cwm_cm\\\": {\\\"tn\\\":836,\\\"fp\\\":76,\\\"fn\\\":157,\\\"tp\\\":821}},\\n    \\\"seed123\\\": {\\\"cls_acc\\\": 89.37, \\\"cwm_acc\\\": 86.98,\\n                \\\"cls_cm\\\": {\\\"tn\\\":829,\\\"fp\\\":83,\\\"fn\\\":118,\\\"tp\\\":860},\\n                \\\"cwm_cm\\\": {\\\"tn\\\":833,\\\"fp\\\":79,\\\"fn\\\":167,\\\"tp\\\":811}},\\n    \\\"seed456\\\": {\\\"cls_acc\\\": 88.31, \\\"cwm_acc\\\": 86.24,\\n                \\\"cls_cm\\\": {\\\"tn\\\":None,\\\"fp\\\":None,\\\"fn\\\":None,\\\"tp\\\":None},\\n                \\\"cwm_cm\\\": {\\\"tn\\\":834,\\\"fp\\\":78,\\\"fn\\\":182,\\\"tp\\\":796}},\\n}\\n\\nN = 1890  # test set size (all seeds use same test set)\\n\\n# 4B reference (user-provided, 5 seeds)\\nref_4b = {\\n    \\\"n_seeds\\\": 5,\\n    \\\"cls_mean\\\": 88.43,\\n    \\\"cwm_mean\\\": 87.18,\\n    \\\"gap_pp\\\": 1.25,\\n    \\\"tost_p\\\": 0.007,\\n    \\\"ci95\\\": [-1.71, 0.84],  # placeholder from user\\n}\\n\\n# ============================================================\\n# 1. SEED-LEVEL PAIRED ANALYSIS\\n# ============================================================\\n\\nseeds = list(data_8b.keys())\\ncls_accs
+…[truncated 7522 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T12:34:58.090959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_cls*\" -o -name \"eval_cwm*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_cls*\" -o -name \"eval_cwm*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:34:58.091204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n/home/sonny/exec-sim-repair-verifier/results/eval_cls_v5_conda.log\\n/home/sonny/exec-sim-repair-verifier/results/eval_cls_8b_conda.log\\n/home/sonny/exec-sim-repair-verifier/results/eval_cls_v5_conda_ckpt400.log\\n/home/sonny/exec-sim-repair-verifier/results/eval_cls_v5_conda_ckpt600.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T12:34:58.091398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -5 /home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -5 /home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:34:58.091759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T12:34:58.092090+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T12:34:58.092305+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T12:34:58.092670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.94,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 36.19,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 84.2,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 88.08,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.13,\\n      \\\"recall\\\": 83.84,\\n      \\\"f1\\\": 87.79,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 158,\\n    \\\"tp\\\": 820\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T12:34:58.092976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.2,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.45,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.04,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.44,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.01,\\n      \\\"recall\\\": 82.41,\\n      \\\"f1\\\": 86.95,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 172,\\n    \\\"tp\\\": 806\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.44,\\n    \\\"exact_match_count\\\": 1596,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 806,\\n        \\\"exact_match_rate\\\": 82.41,\\n        \\\"pass_fail_accuracy\\\": 82.41\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 677,\\n        \\\"exact_match_rate\\\": 89.79,\\n        \\\"pass_fail_accuracy\\\": 92.71\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 16,\\n        \\\"exact_match_rate\\\": 72.73,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 3,\\n        \\\"exact_match_rate\\\": 15.0,\\n        \\\"pass_fail_accuracy\\\": 65.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 5,\\n        \\
+…[truncated 1142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T12:34:58.093245+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:34:58.093546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.67,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 34.92,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 84.09,\\n      \\\"recall\\\": 89.25,\\n      \\\"f1\\\": 86.6,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.37,\\n      \\\"recall\\\": 84.25,\\n      \\\"f1\\\": 86.74,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 814,\\n    \\\"fp\\\": 98,\\n    \\\"fn\\\": 154,\\n    \\\"tp\\\": 824\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 83.97,\\n    \\\"exact_match_count\\\": 1587,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 824,\\n        \\\"exact_match_rate\\\": 84.25,\\n        \\\"pass_fail_accuracy\\\": 84.25\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 645,\\n        \\\"exact_match_rate\\\": 85.54,\\n        \\\"pass_fail_accuracy\\\": 88.99\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\
+…[truncated 1142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T12:34:58.093791+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_cls*seed*\" -o -name \"eval_cwm*seed*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_cls*seed*\" -o -name \"eval_cwm*seed*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T12:34:58.094037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T12:34:58.094287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.json\" -path \"*/eval_results/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.json\" -path \"*/eval_results/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T12:34:58.094499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_results_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T12:34:58.094700+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T12:34:58.094952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 90.48,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 38.73,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 90.76,\\n      \\\"recall\\\": 89.36,\\n      \\\"f1\\\": 90.06,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 90.22,\\n      \\\"recall\\\": 91.51,\\n      \\\"f1\\\": 90.86,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 815,\\n    \\\"fp\\\": 97,\\n    \\\"fn\\\": 83,\\n    \\\"tp\\\": 895\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T12:34:58.095188+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_results_bf16.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_results_bf16.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T12:34:58.095407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.51,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 82.75,\\n      \\\"recall\\\": 93.64,\\n      \\\"f1\\\": 87.86,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 93.24,\\n      \\\"recall\\\": 81.8,\\n      \\\"f1\\\": 87.15,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 854,\\n    \\\"fp\\\": 58,\\n    \\\"fn\\\": 178,\\n    \\\"tp\\\": 800\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T12:34:58.095600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_majority_voting.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/eval_majority_voting.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:34:58.095870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"K\\\": 3,\\n  \\\"temperature\\\": 0.7,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"single_pass_accuracy\\\": 87.51,\\n  \\\"majority_vote_accuracy\\\": 86.83,\\n  \\\"improvement_pp\\\": -0.69,\\n  \\\"agreement_distribution\\\": {\\n    \\\"3/3\\\": {\\n      \\\"count\\\": 1763,\\n      \\\"pct\\\": 93.3\\n    },\\n    \\\"2/3\\\": {\\n      \\\"count\\\": 127,\\n      \\\"pct\\\": 6.7\\n    }\\n  },\\n  \\\"per_pass_accuracies\\\": [\\n    86.72,\\n    86.83,\\n    87.62\\n  ],\\n  \\\"flipped_correct\\\": 15,\\n  \\\"flipped_wrong\\\": 28,\\n  \\\"net_flips\\\": -13,\\n  \\\"single_pass\\\": {\\n    \\\"accuracy\\\": 87.51,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 82.75,\\n        \\\"recall\\\": 93.64,\\n        \\\"f1\\\": 87.86,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 81.8,\\n        \\\"f1\\\": 87.15,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 854,\\n      \\\"fp\\\": 58,\\n      \\\"fn\\\": 178,\\n      \\\"tp\\\": 800\\n    },\\n    \\\"unparseable\\\": 0\\n  },\\n  \\\"majority_vote\\\": {\\n    \\\"accuracy\\\": 86.83,\\n    \\\"accuracy_vs_baseline_gap_pp\\\": 35.08,\\n    \\\"per_class\\\": {\\n      \\\"FAIL\\\": {\\n        \\\"precision\\\": 81.66,\\n        \\\"recall\\\": 93.75,\\n        \\\"f1\\\": 87.29,\\n        \\\"support\\\": 912\\n      },\\n      \\\"PASS\\\": {\\n        \\\"precision\\\": 93.24,\\n        \\\"recall\\\": 80.37,\\n        \\\"f1\\\": 86.33,\\n        \\\"support\\\": 978\\n      }\\n    },\\n    \\\"confusion_matrix\\\": {\\n      \\\"tn\\\": 855,\\n      \\\"fp\\\
+…[truncated 345 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T12:34:58.096129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -r \"88.43\\|5.*seed\\|seed.*5\\|cls_mean\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" --include=\"*.json\" --include=\"*.md\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -r \"88.43\\|5.*seed\\|seed.*5\\|cls_mean\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" --include=\"*.json\" --include=\"*.md\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T12:34:58.096329+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T12:34:58.096514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.md\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"*.md\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T12:34:58.096732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/checkpoint-478/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/checkpoint-1434/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/README.md\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/checkpoint-956/README.md\\n/home/sonny/exec-sim-repair-verif
+…[truncated 242 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T12:34:58.097046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -r \"88.43\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -r \"88.43\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T12:34:58.097252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T12:34:58.097446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -r \"0.007\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -r \"0.007\" /home/sonny/exec-sim-repair-verifier --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T12:34:58.097647+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analysis_8b_scaling_bootstrap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T12:34:58.097905+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T12:34:58.098098+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T12:34:58.098270+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T12:34:58.098545+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\", \"content\": \"# Memory — exec-sim-repair-verifier\\n\\n## 硬教训：标 FAILED 前必须确认进程已退出 (2026-05-15)\\n- **事故**：v1 ckpt-3000 test eval (PID 345441) 被误标 DONE/failed，但进程实际在跑。随后 v2 提交到同 GPU 导致 OOM。\\n- **规则**：标 FAILED/DONE(failed) 前必须 `ps -p PID` 确认进程已退出。标 RUNNING 的实验所在 GPU 不得提交新任务。\\n- **适用范围**：所有 registry 状态变更操作\\n\\n## 硬教训：eval 不要用 --max_samples (2026-05-15)\\n- **事故**：seed123 ckpt-6200/6400 test eval 用了 `--max_samples 8192`，只评了 8192/9784 样本，与主表 n=9784 不可比。被 Reviewer 抓出后需 kill+重跑。\\n- **规则**：test eval 禁止 --max_samples 参数，必须评完整 test set (n=9784)。val eval 同理 (n=9335)。\\n- **例外**：debug/dry-run 时可以用，但结果不入正式表。\\n\\n## 硬教训：s42 resume 从 ckpt-600 开始 (2026-05-15)\\n- s42 resume 的 checkpoint 目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` 从 ckpt-600 开始（200步间隔），不含 ckpt-200/400。\\n- 原始训练 ckpt-200/400 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，但那是 s42 原始训练目录不是 resume 目录。\\n- **提交 s42 val eval 前检查 checkpoint 是否存在于 resume 目录**。\\n\\n## D088 Checkpoint 选择 — Val Sweep 完成 (2026-05-15)\\n- **主指标回到 val-selected checkpoint**（ML 社区规范）\\n- **8B s42 Val-best = ckpt-1000 (88.23%, F1m=82.72%)** ← 8/8 checkpoint 全完成\\n- 完整 val curve: 200(63.5%) → 400(81.0%) → 800(84.5%) → **1000(88.2%)** → 1200(87.8%) → 1400(86.0%) → 1600(86.8%)\\n- **Test curve 完整**: 200(70.07%) → 400(84.79%) → 600(79.05%) → 800(83.53%) → 1000(83.52%) → 1200(83.84%) → **1400(85.47%)** → 1600(84.99%)\\n- Test-best = ckpt-1400 (85.47%), Val-best = ckpt-1000 (88.23%, test=83.52%)\\n\\n## seed123 8B Test Curve 完成 (2026-05-15)\\n- ckpt-200: 72.55% (≈majority baseline 72.96%, 模型尚未学到)\\n- ckpt-3000: **85.60%** ← test-best (val-best checkpoint)\\n- ckpt-6200: 84.70%\\n- ckpt-6400: 85.08%\\n- ckpt-6600: 84.90%\\n- ckpt-6633: 84.89%\\n- **Val curve**: 3000(88.69%) → 6200(87.52%) → 6400(87.48%) → 6600(87.23%) → 6633(87.10%)\\n- save_total_limit=5 导致中段 checkpoint 被删，只剩 200, 6
+…[truncated 3470 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T12:34:58.098831+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"predictions_cls*\" -o -name \"predictions_cwm*\" -o -name \"*_predictions.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /home/sonny/exec-sim-repair-verifier -name \"predictions_cls*\" -o -name \"predictions_cwm*\" -o -name \"*_predictions.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T12:34:58.099076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed42_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_results_predictions.json\\n/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T12:34:58.099288+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T12:34:58.099502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"\\\"}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"gen_text\\\": \\\"\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T12:34:58.099721+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-15T12:34:58.099933+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T12:34:58.100125+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T12:34:58.100316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"PASS: test completed successfully\\\"}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"gen_text\\\": \\\"FAIL: SyntaxError: expected ':'\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T12:34:58.100530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -20 /home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "head -20 /home/sonny/exec-sim-repair-verifier/eval_results_bf16_predictions.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T12:34:58.100731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n    \\\"label\\\": 1,\\n    \\\"prediction\\\": 1,\\n    \\\"correct\\\": 1\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n    \\\"label\\\": 1,\\n    \\\"prediction\\\": 1,\\n    \\\"correct\\\": 1\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n    \\\"label\\\": 0,\\n    \\\"prediction\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T12:34:58.100935+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T12:34:58.101114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n  1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n  1890 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed123.jsonl\\n  1890 /home/sonny/exec-sim-repair-verifier/predictions_cwm_seed789.jsonl\\n  7560 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T12:34:58.101330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"def tost_analysis\" /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "grep -n \"def tost_analysis\" /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T12:34:58.101507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"118:def tost_analysis(boot_means, observed_mean, margin_pp, alpha=0.05):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-15T12:34:58.101670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -n +118 /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tail -n +118 /home/sonny/exec-sim-repair-verifier/analysis_5paired_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T12:34:58.101974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def tost_analysis(boot_means, observed_mean, margin_pp, alpha=0.05):\\n    \\\"\\\"\\\"TOST equivalence test + 95% CI via bootstrap percentiles.\\\"\\\"\\\"\\n    margin = margin_pp / 100\\n\\n    ci95_lo = float(np.percentile(boot_means, 2.5))\\n    ci95_hi = float(np.percentile(boot_means, 97.5))\\n\\n    # TOST at level alpha <-> (1-2*alpha)% CI within [-delta, +delta]\\n    tost_lo = float(np.percentile(boot_means, 100 * alpha))\\n    tost_hi = float(np.percentile(boot_means, 100 * (1 - alpha)))\\n    equivalent = (tost_lo > -margin) and (tost_hi < margin)\\n\\n    # Bootstrap TOST p-value (percentile inversion)\\n    p_upper = float(np.mean(boot_means >= margin))\\n    p_lower = float(np.mean(boot_means <= -margin))\\n    tost_p = max(p_upper, p_lower)\\n\\n    min_margin = max(abs(tost_lo), abs(tost_hi))\\n\\n    return {\\n        \\\"mean_diff_pp\\\": round(observed_mean * 100, 3),\\n        \\\"ci95\\\": [round(ci95_lo * 100, 3), round(ci95_hi * 100, 3)],\\n        \\\"tost_90ci\\\": [round(tost_lo * 100, 3), round(tost_hi * 100, 3)],\\n        \\\"tost_margin_pp\\\": margin_pp,\\n        \\\"tost_equivalent\\\": equivalent,\\n        \\\"tost_p\\\": round(tost_p, 4),\\n        \\\"min_equiv_margin_pp\\\": round(min_margin * 100, 3),\\n    }\\n\\n\\ndef main():\\n    ap = argparse.ArgumentParser(\\n        description=\\\"Paired clustered bootstrap CI for CLS vs CWM\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=__doc__,\\n    )\\n    ap.add_argument(\\\"--pairs\\\", nargs=\\\"+\\\", required=True, metavar=\\\"FILE\\\",\\n                     help=\\\"CLS1 CWM1 CLS2 CWM2 ... (alternating, even count)\\\")\\n    ap.add_argument(\\\"--n-resamples\\\", type=int, default=1000)\\n    ap.add_argument(\\\"--margin\\\", type=float, default=2.0,\\n                     help=\\\"TOST equivalence margin in pp (default: 2.0)\\\")\\n    ap.add_argument(\\\"--seed\\\", type=int,
+…[truncated 3965 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-15T12:34:58.102320+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/tost_multi_margin.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Multi-margin TOST equivalence test for CLS vs CWM.\n\nUses clustered bootstrap (by problem_id) across all available CLS-CWM pairs.\nTests margins: 1pp, 2pp, 3pp.\n\"\"\"\n\nimport json\nimport sys\nfrom collections import defaultdict\nfrom itertools import product\nimport numpy as np\n\n\ndef load_predictions(path):\n    with open(path) as f:\n        content = f.read().strip()\n    if content.startswith(\"[\"):\n        records = json.loads(content)\n    else:\n        records = [json.loads(line) for line in content.split(\"\\n\") if line.strip()]\n    out = []\n    for r in records:\n        pred = r.get(\"pred\", r.get(\"prediction\"))\n        if pred is None:\n            raise ValueError(f\"No 'pred' or 'prediction' field in: {r}\")\n        out.append({\n            \"index\": r[\"index\"],\n            \"problem_id\": r[\"problem_id\"],\n            \"label\": int(r[\"label\"]),\n            \"pred\": int(pred),\n        })\n    return sorted(out, key=lambda x: x[\"index\"])\n\n\ndef align_and_diff(cls_preds, cwm_preds):\n    cls_map = {r[\"index\"]: r for r in cls_preds}\n    cwm_map = {r[\"index\"]: r for r in cwm_preds}\n    common = sorted(set(cls_map) & set(cwm_map))\n\n    diffs_by_pid = defaultdict(list)\n    n_cls_correct = 0\n    n_cwm_correct = 0\n\n    for idx in common:\n        c, w = cls_map[idx], cwm_map[idx]\n        assert c[\"label\"] == w[\"label\"], f\"Label mismatch at index {idx}\"\n        cc = int(c[\"pred\"] == c[\"label\"])\n        wc = int(w[\"pred\"] == w[\"label\"])\n        n_cls_correct += cc\n        n_cwm_correct += wc\n        diffs_by_pid[c[\"problem_id\"]].append(cc - wc)\n\n    n = len(common)\n    return {\n        \"diffs_by_pid\": dict(diffs_by_pid),\n        \"n\": n,\n        \"cls_acc\": n_cls_correct / n,\n        \"cwm_acc\": n_cwm_correct / n,\n        \"mean_diff\": (n_cls_correct - n_cwm_correct) / n,\n    }\n\n\ndef clustered_bootstrap(all_diffs_by_pid, n_resamples, rng_seed):\n    rng = np.random.default_rng(rng_seed)\n    pids = list(all_diffs_by_pid.keys())\n    K = len(pids)\n\n    sums = np.array([sum(all_diffs_by_pid[p]) for p in pids])\n    counts = np.array([len(all_diffs_by_pid[p]) for p in pids])\n\n    boot_means = np.empty(n_resamples)\n    for b in range(n_resamples):\n        chosen = rng.integers(0, K, size=K)\n        boot_means[b] = np.sum(sums[chosen]) / np.sum(counts[chosen])\n\n    return boot_means\n\n\ndef tost_analysis(boot_means, observed_mean, margin_pp, alpha=0.05):\n    margin = margin_pp / 100\n\n    ci95_lo = float(np.percentile(boot_means, 2.5))\n    ci95_hi = float(np.percentile(boot_means, 97.5))\n\n    tost_lo = float(np.percentile(boot_means, 100 * alpha))\n    tost_hi = float(np.percentile(boot_means, 100 * (1 - alpha)))\n    equivalent = (tost_lo > -margin) and (tost_hi < margin)\n\n    p_upper = float(np.mean(boot_means >= margin))\n    p_lower = float(np.mean(boot_means <= -margin))\n    tost_p = max(p_upper, p_lower)\n\n    min_margin = max(abs(tost_lo), abs(tost_hi))\n\n    return {\n        \"mean_diff_pp\": round(observed_mean * 100, 3),\n        \"ci95\": [round(ci95_lo * 100, 3), round(ci95_hi * 100, 3)],\n        \"tost_90ci\": [round(tost_lo * 100, 3), round(tost_hi * 100, 3)],\n        \"tost_margin_pp\": margin_pp,\n        \"tost_equivalent\": equivalent,\n        \"tost_p\": round(tost_p, 4),\n        \"min_equiv_margin_pp\": round(min_margin * 100, 3),\n    }\n\n\ndef main():\n    base = \"/home/sonny/exec-sim-repair-verifier\"\n    cls_files = [\n        f\"{base}/predictions_cls_seed42.jsonl\",\n        f\"{base}/predictions_cls_seed0.jsonl\",\n    ]\n    cwm_files = [\n        f\"{base}/predictions_cwm_seed123.jsonl\",\n        f\"{base}/predictions_cwm_seed789.jsonl\",\n    ]\n\n    margins = [1.0, 2.0, 3.0]\n    n_resamples = 10000\n    rng_seed = 42\n\n    # Build all CLS x CWM pairs\n    pairs = list(product(cls_files, cwm_files))\n    n_pairs = len(pairs)\n\n    print(f\"Loading {n_pairs} CLS x CWM pairs...\\n\")\n\n    all_diffs = defaultdict(list)\n    pair_stats = []\n\n    for i, (cls_path, cwm_path) in enumerate(pairs):\n        cls_name = cls_path.split(\"/\")[-1]\n        cwm_name = cwm_path.split(\"/\")[-1]\n        print(f\"  Pair {i+1}: {cls_name} vs {cwm_name}\")\n\n        cls_preds = load_predictions(cls_path)\n        cwm_preds = load_predictions(cwm_path)\n        r = align_and_diff(cls_preds, cwm_preds)\n\n        print(f\"    CLS={r['cls_acc']*100:.2f}%  CWM={r['cwm_acc']*100:.2f}%  \"\n              f\"diff={r['mean_diff']*100:+.2f}pp  (n={r['n']})\")\n\n        pair_stats.append({\n            \"pair\": i + 1,\n            \"cls_file\": cls_name,\n            \"cwm_file\": cwm_name,\n            \"n\": r[\"n\"],\n            \"cls_acc_pct\": round(r[\"cls_acc\"] * 100, 2),\n            \"cwm_acc_pct\": round(r[\"cwm_acc\"] * 100, 2),\n            \"diff_pp\": round(r[\"mean_diff\"] * 100, 2),\n        })\n\n        for pid, diffs in r[\"diffs_by_pid\"].items():\n            all_diffs[pid].extend(diffs)\n\n    flat = np.concatenate([np.array(v) for v in all_diffs.values()])\n    observed_mean = float(np.mean(flat))\n    n_total = len(flat)\n    n_clusters = len(all_diffs)\n\n    print(f\"\\n{'='*65}\")\n    print(f\"Pooled: {n_total} obs, {n_clusters} problem clusters, {n_pairs} pairs\")\n    print(f\"Observed mean diff (CLS - CWM): {observed_mean*100:+.3f}pp\")\n\n    print(f\"\\nBootstrapping ({n_resamples} resamples, cluster by problem_id)...\")\n    boot = clustered_bootstrap(all_diffs, n_resamples, rng_seed)\n    boot_se = float(np.std(boot)) * 100\n\n    print(f\"Bootstrap SE: {boot_se:.3f}pp\")\n\n    # Multi-margin TOST\n    print(f\"\\n{'='*65}\")\n    print(f\"MULTI-MARGIN TOST EQUIVALENCE TEST\")\n    print(f\"{'='*65}\")\n    print(f\"{'Margin':>10}  {'90% CI':>22}  {'p-value':>10}  {'Equiv?':>8}  {'Min margin':>12}\")\n    print(f\"{'-'*65}\")\n\n    tost_results = {}\n    for m in margins:\n        t = tost_analysis(boot, observed_mean, m)\n        status = \"YES\" if t[\"tost_equivalent\"] else \"NO\"\n        ci_str = f\"[{t['tost_90ci'][0]:+.3f}, {t['tost_90ci'][1]:+.3f}]\"\n        print(f\"  ±{m:.0f}pp    {ci_str:>22}  {t['tost_p']:>10.4f}  {status:>8}  {t['min_equiv_margin_pp']:>10.3f}pp\")\n        tost_results[f\"margin_{m:.0f}pp\"] = t\n\n    print(f\"\\n  95% CI of diff: [{tost_results['margin_2pp']['ci95'][0]:+.3f}, \"\n          f\"{tost_results['margin_2pp']['ci95'][1]:+.3f}]pp\")\n    print(f\"  Bootstrap SE:   {boot_se:.3f}pp\")\n    print(f\"  Min equiv margin: {tost_results['margin_1pp']['min_equiv_margin_pp']:.3f}pp\")\n\n    # Interpretation\n    print(f\"\\n{'='*65}\")\n    print(\"INTERPRETATION\")\n    print(f\"{'='*65}\")\n    for m in margins:\n        key = f\"margin_{m:.0f}pp\"\n        t = tost_results[key]\n        if t[\"tost_equivalent\"]:\n            print(f\"  ±{m:.0f}pp: EQUIVALENT (p={t['tost_p']:.4f} < 0.05)\")\n        else:\n            print(f\"  ±{m:.0f}pp: NOT equivalent (p={t['tost_p']:.4f} >= 0.05)\")\n\n    min_m = tost_results[\"margin_1pp\"][\"min_equiv_margin_pp\"]\n    print(f\"\\n  Smallest margin for equivalence: {min_m:.3f}pp\")\n    print(f\"  → Even at ±{min_m:.1f}pp, CLS ≈ CWM (clustered bootstrap, {n_pairs} pairs)\")\n\n    # Save\n    results = {\n        \"analysis\": \"multi_margin_tost_equivalence\",\n        \"date\": \"2026-05-15\",\n        \"n_pairs\": n_pairs,\n        \"n_total\": n_total,\n        \"n_clusters\": n_clusters,\n        \"n_resamples\": n_resamples,\n        \"observed_mean_diff_pp\": round(observed_mean * 100, 3),\n        \"bootstrap_se_pp\": round(boot_se, 3),\n        \"per_pair\": pair_stats,\n        \"tost_results\": tost_results,\n        \"min_equiv_margin_pp\": round(min_m, 3),\n    }\n\n    out_path = f\"{base}/tost_multi_margin_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/tost_multi_margin.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Multi-margin TOST equivalence test for CLS vs CWM.\n\nUses clustered bootstrap (by problem_id) across all available CLS-CWM pairs.\nTests margins: 1pp, 2pp, 3pp.\n\"\"\"\n\nimport json\nimport sys\nfrom collections import defaultdict\nfrom itertools import product\nimport numpy as np\n\n\ndef load_predictions(path):\n    with open(path) as f:\n        content = f.read().strip()\n    if content.startswith(\"[\"):\n        records = json.loads(content)\n    else:\n        records = [json.loads(line) for line in content.split(\"\\n\") if line.strip()]\n    out = []\n    for r in records:\n        pred = r.get(\"pred\", r.get(\"prediction\"))\n        if pred is None:\n            raise ValueError(f\"No 'pred' or 'prediction' field in: {r}\")\n        out.append({\n            \"index\": r[\"index\"],\n            \"problem_id\": r[\"problem_id\"],\n            \"label\": int(r[\"label\"]),\n            \"pred\": int(pred),\n        })\n    return sorted(out, key=lambda x: x[\"index\"])\n\n\ndef align_and_diff(cls_preds, cwm_preds):\n    cls_map = {r[\"index\"]: r for r in cls_preds}\n    cwm_map = {r[\"index\"]: r for r in cwm_preds}\n    common = sorted(set(cls_map) & set(cwm_map))\n\n    diffs_by_pid = defaultdict(list)\n    n_cls_correct = 0\n    n_cwm_correct = 0\n\n    for idx in common:\n        c, w = cls_map[idx], cwm_map[idx]\n        assert c[\"label\"] == w[\"label\"], f\"Label mismatch at index {idx}\"\n        cc = int(c[\"pred\"] == c[\"label\"])\n        wc = int(w[\"pred\"] == w[\"label\"])\n        n_cls_correct += cc\n        n_cwm_correct += wc\n        diffs_by_pid[c[\"problem_id\"]].append(cc - wc)\n\n    n = len(common)\n    return {\n        \"diffs_by_pid\": dict(diffs_by_pid),\n        \"n\": n,\n        \"cls_acc\": n_cls_correct / n,\n        \"cwm_acc\": n_cwm_correct / n,\n        \"mean_diff\": (n_cls_correct - n_cwm_correct) / n,\n    }\n\n\ndef clustered_bootstrap(all_diffs_by_pid, n_resamples, rng_seed):\n    rng = np.random.default_rng(rng_seed)\n    pids = list(all_diffs_by_pid.keys())\n    K = len(pids)\n\n    sums = np.array([sum(all_diffs_by_pid[p]) for p in pids])\n    counts = np.array([len(all_diffs_by_pid[p]) for p in pids])\n\n    boot_means = np.empty(n_resamples)\n    for b in range(n_resamples):\n        chosen = rng.integers(0, K, size=K)\n        boot_means[b] = np.sum(sums[chosen]) / np.sum(counts[chosen])\n\n    return boot_means\n\n\ndef tost_analysis(boot_means, observed_mean, margin_pp, alpha=0.05):\n    margin = margin_pp / 100\n\n    ci95_lo = float(np.percentile(boot_means, 2.5))\n    ci95_hi = float(np.percentile(boot_means, 97.5))\n\n    tost_lo = float(np.percentile(boot_means, 100 * alpha))\n    tost_hi = float(np.percentile(boot_means, 100 * (1 - alpha)))\n    equivalent = (tost_lo > -margin) and (tost_hi < margin)\n\n    p_upper = float(np.mean(boot_means >= margin))\n    p_lower = float(np.mean(boot_means <= -margin))\n    tost_p = max(p_upper, p_lower)\n\n    min_margin = max(abs(tost_lo), abs(tost_hi))\n\n    return {\n        \"mean_diff_pp\": round(observed_mean * 100, 3),\n        \"ci95\": [round(ci95_lo * 100, 3), round(ci95_hi * 100, 3)],\n        \"tost_90ci\": [round(tost_lo * 100, 3), round(tost_hi * 100, 3)],\n        \"tost_margin_pp\": margin_pp,\n        \"tost_equivalent\": equivalent,\n        \"tost_p\": round(tost_p, 4),\n        \"min_equiv_margin_pp\": round(min_margin * 100, 3),\n    }\n\n\ndef main():\n    base = \"/home/sonny/exec-sim-repair-verifier\"\n    cls_files = [\n        f\"{base}/predictions_cls_seed42.jsonl\",\n        f\"{base}/predictions_cls_seed0.jsonl\",\n    ]\n    cwm_files = [\n        f\"{base}/predictions_cwm_seed123.jsonl\",\n        f\"{base}/predictions_cwm_seed789.jsonl\",\n    ]\n\n    margins = [1.0, 2.0, 3.0]\n    n_resamples = 10000\n    rng_seed = 42\n\n    # Build all CLS x CWM pairs\n    pairs = list(product(cls_files, cwm_files))\n    n_pairs = len(pairs)\n\n    print(f\"Loading {n_pairs} CLS x CWM pairs...\\n\")\n\n    all_diffs = defaultdict(list)\n    pair_stats = []\n\n    for i, (cls_path, cwm_path) in enumerate(pairs):\n        cls_name = cls_path.split(\"/\")[-1]\n        cwm_name = cwm_path.split(\"/\")[-1]\n        print(f\"  Pair {i+1}: {cls_name} vs {cwm_name}\")\n\n        cls_preds = load_predictions(cls_path)\n        cwm_preds = load_predictions(cwm_path)\n        r = align_and_diff(cls_preds, cwm_preds)\n\n        print(f\"    CLS={r['cls_acc']*100:.2f}%  CWM={r['cwm_acc']*100:.2f}%  \"\n              f\"diff={r['mean_diff']*100:+.2f}pp  (n={r['n']})\")\n\n        pair_stats.append({\n            \"pair\": i + 1,\n            \"cls_file\": cls_name,\n            \"cwm_file\": cwm_name,\n            \"n\": r[\"n\"],\n            \"cls_acc_pct\": round(r[\"cls_acc\"] * 100, 2),\n            \"cwm_acc_pct\": round(r[\"cwm_acc\"] * 100, 2),\n            \"diff_pp\": round(r[\"mean_diff\"] * 100, 2),\n        })\n\n        for pid, diffs in r[\"diffs_by_pid\"].items():\n            all_diffs[pid].extend(diffs)\n\n    flat = np.concatenate([np.array(v) for v in all_diffs.values()])\n    observed_mean = float(np.mean(flat))\n    n_total = len(flat)\n    n_clusters = len(all_diffs)\n\n    print(f\"\\n{'='*65}\")\n    print(f\"Pooled: {n_total} obs, {n_clusters} problem clusters, {n_pairs} pairs\")\n    print(f\"Observed mean diff (CLS - CWM): {observed_mean*100:+.3f}pp\")\n\n    print(f\"\\nBootstrapping ({n_resamples} resamples, cluster by problem_id)...\")\n    boot = clustered_bootstrap(all_diffs, n_resamples, rng_seed)\n    boot_se = float(np.std(boot)) * 100\n\n    print(f\"Bootstrap SE: {boot_se:.3f}pp\")\n\n    # Multi-margin TOST\n    print(f\"\\n{'='*65}\")\n    print(f\"MULTI-MARGIN TOST EQUIVALENCE TEST\")\n    print(f\"{'='*65}\")\n    print(f\"{'Margin':>10}  {'90% CI':>22}  {'p-value':>10}  {'Equiv?':>8}  {'Min margin':>12}\")\n    print(f\"{'-'*65}\")\n\n    tost_results = {}\n    for m in margins:\n        t = tost_analysis(boot, observed_mean, m)\n        status = \"YES\" if t[\"tost_equivalent\"] else \"NO\"\n        ci_str = f\"[{t['tost_90ci'][0]:+.3f}, {t['tost_90ci'][1]:+.3f}]\"\n        print(f\"  ±{m:.0f}pp    {ci_str:>22}  {t['tost_p']:>10.4f}  {status:>8}  {t['min_equiv_margin_pp']:>10.3f}pp\")\n        tost_results[f\"margin_{m:.0f}pp\"] = t\n\n    print(f\"\\n  95% CI of diff: [{tost_results['margin_2pp']['ci95'][0]:+.3f}, \"\n          f\"{tost_results['margin_2pp']['ci95'][1]:+.3f}]pp\")\n    print(f\"  Bootstrap SE:   {boot_se:.3f}pp\")\n    print(f\"  Min equiv margin: {tost_results['margin_1pp']['min_equiv_margin_pp']:.3f}pp\")\n\n    # Interpretation\n    print(f\"\\n{'='*65}\")\n    print(\"INTERPRETATION\")\n    print(f\"{'='*65}\")\n    for m in margins:\n        key = f\"margin_{m:.0f}pp\"\n        t = tost_results[key]\n        if t[\"tost_equivalent\"]:\n            print(f\"  ±{m:.0f}pp: EQUIVALENT (p={t['tost_p']:.4f} < 0.05)\")\n        else:\n            print(f\"  ±{m:.0f}pp: NOT equivalent (p={t['tost_p']:.4f} >= 0.05)\")\n\n    min_m = tost_results[\"margin_1pp\"][\"min_equiv_margin_pp\"]\n    print(f\"\\n  Smallest margin for equivalence: {min_m:.3f}pp\")\n    print(f\"  → Even at ±{min_m:.1f}pp, CLS ≈ CWM (clustered bootstrap, {n_pairs} pairs)\")\n\n    # Save\n    results = {\n        \"analysis\": \"multi_margin_tost_equivalence\",\n        \"date\": \"2026-05-15\",\n        \"n_pairs\": n_pairs,\n        \"n_total\": n_total,\n        \"n_clusters\": n_clusters,\n        \"n_resamples\": n_resamples,\n        \"observed_mean_diff_pp\": round(observed_mean * 100, 3),\n        \"bootstrap_se_pp\": round(boot_se, 3),\n        \"per_pair\": pair_stats,\n        \"tost_results\": tost_results,\n        \"min_equiv_margin_pp\": round(min_m, 3),\n    }\n\n    out_path = f\"{base}/tost_multi_margin_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T12:34:58.102653+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T12:34:58.102876+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 tost_multi_margin.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 tost_multi_margin.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T12:34:58.103117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading 4 CLS x CWM pairs...\\n\\n  Pair 1: predictions_cls_seed42.jsonl vs predictions_cwm_seed123.jsonl\\n    CLS=87.51%  CWM=87.30%  diff=+0.21pp  (n=1890)\\n  Pair 2: predictions_cls_seed42.jsonl vs predictions_cwm_seed789.jsonl\\n    CLS=87.51%  CWM=86.67%  diff=+0.85pp  (n=1890)\\n  Pair 3: predictions_cls_seed0.jsonl vs predictions_cwm_seed123.jsonl\\n    CLS=87.78%  CWM=87.30%  diff=+0.48pp  (n=1890)\\n  Pair 4: predictions_cls_seed0.jsonl vs predictions_cwm_seed789.jsonl\\n    CLS=87.78%  CWM=86.67%  diff=+1.11pp  (n=1890)\\n\\n=================================================================\\nPooled: 7560 obs, 114 problem clusters, 4 pairs\\nObserved mean diff (CLS - CWM): +0.661pp\\n\\nBootstrapping (10000 resamples, cluster by problem_id)...\\nBootstrap SE: 0.577pp\\n\\n=================================================================\\nMULTI-MARGIN TOST EQUIVALENCE TEST\\n=================================================================\\n    Margin                  90% CI     p-value    Equiv?    Min margin\\n-----------------------------------------------------------------\\n  ±1pp          [-0.275, +1.620]      0.2854        NO       1.620pp\\n  ±2pp          [-0.275, +1.620]      0.0104       YES       1.620pp\\n  ±3pp          [-0.275, +1.620]      0.0000       YES       1.620pp\\n\\n  95% CI of diff: [-0.479, +1.792]pp\\n  Bootstrap SE:   0.577pp\\n  Min equiv margin: 1.620pp\\n\\n=================================================================\\nINTERPRETATION\\n=================================================================\\n  ±1pp: NOT equivalent (p=0.2854 >= 0.05)\\n  ±2pp: EQUIVALENT (p=0.0104 < 0.05)\\n  ±3pp: EQUIVALENT (p=0.0000 < 0.05)\\n\\n  Smallest margin for equivalence: 1.620pp\\n  → Even at ±1.6pp, CLS ≈ CWM (clustered bootstrap, 4 pairs)\\n\\nSaved to /home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\"
+…[truncated 52 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T12:34:58.103351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T12:34:58.103617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"multi_margin_tost_equivalence\\\",\\n  \\\"date\\\": \\\"2026-05-15\\\",\\n  \\\"n_pairs\\\": 4,\\n  \\\"n_total\\\": 7560,\\n  \\\"n_clusters\\\": 114,\\n  \\\"n_resamples\\\": 10000,\\n  \\\"observed_mean_diff_pp\\\": 0.661,\\n  \\\"bootstrap_se_pp\\\": 0.577,\\n  \\\"per_pair\\\": [\\n    {\\n      \\\"pair\\\": 1,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed42.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed123.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.51,\\n      \\\"cwm_acc_pct\\\": 87.3,\\n      \\\"diff_pp\\\": 0.21\\n    },\\n    {\\n      \\\"pair\\\": 2,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed42.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed789.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.51,\\n      \\\"cwm_acc_pct\\\": 86.67,\\n      \\\"diff_pp\\\": 0.85\\n    },\\n    {\\n      \\\"pair\\\": 3,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed0.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed123.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.78,\\n      \\\"cwm_acc_pct\\\": 87.3,\\n      \\\"diff_pp\\\": 0.48\\n    },\\n    {\\n      \\\"pair\\\": 4,\\n      \\\"cls_file\\\": \\\"predictions_cls_seed0.jsonl\\\",\\n      \\\"cwm_file\\\": \\\"predictions_cwm_seed789.jsonl\\\",\\n      \\\"n\\\": 1890,\\n      \\\"cls_acc_pct\\\": 87.78,\\n      \\\"cwm_acc_pct\\\": 86.67,\\n      \\\"diff_pp\\\": 1.11\\n    }\\n  ],\\n  \\\"tost_results\\\": {\\n    \\\"margin_1pp\\\": {\\n      \\\"mean_diff_pp\\\": 0.661,\\n      \\\"ci95\\\": [\\n        -0.479,\\n        1.792\\n      ],\\n      \\\"tost_90ci\\\": [\\n        -0.275,\\n        1.62\\n      ],\\n      \\\"tost_margin_pp\\\": 1.0,\\n      \\\"tost_equivalent\\\": false,\\n      \\\"tost_p\\\": 0.2854,\\n      \\\"min_equiv_margin_pp\\\": 1.62\\n    },\\n    \\\"margin_2pp\\\": {\\n      \\\"
+…[truncated 840 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-15T12:34:58.103892+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "TOST Multi-Margin Equivalence Results",
+  "type": "data",
+  "description": "Multi-margin TOST equivalence test (±1/2/3pp) for CLS vs CWM using 4-pair clustered bootstrap (10K resamples, 114 problem clusters). W2 reviewer response.",
+  "project": "exec-sim-repair-verifier",
+  "content_filename": "tost_multi_margin_results.json",
+  "content": "{\n  \"analysis\": \"multi_margin_tost_equivalence\",\n  \"date\": \"2026-05-15\",\n  \"n_pairs\": 4,\n  \"n_total\": 7560,\n  \"n_clusters\": 114,\n  \"n_resamples\": 10000,\n  \"observed_mean_diff_pp\": 0.661,\n  \"bootstrap_se_pp\": 0.577,\n  \"per_pair\": [\n    {\"pair\": 1, \"cls_file\": \"predictions_cls_seed42.jsonl\", \"cwm_file\": \"predictions_cwm_seed123.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.51, \"cwm_acc_pct\": 87.3, \"diff_pp\": 0.21},\n    {\"pair\": 2, \"cls_file\": \"predictions_cls_seed42.jsonl\", \"cwm_file\": \"predictions_cwm_seed789.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.51, \"cwm_acc_pct\": 86.67, \"diff_pp\": 0.85},\n    {\"pair\": 3, \"cls_file\": \"predictions_cls_seed0.jsonl\", \"cwm_file\": \"predictions_cwm_seed123.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.78, \"cwm_acc_pct\": 87.3, \"diff_pp\": 0.48},\n    {\"pair\": 4, \"cls_file\": \"predictions_cls_seed0.jsonl\", \"cwm_file\": \"predictions_cwm_seed789.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.78, \"cwm_acc_pct\": 86.67, \"diff_pp\": 1.11}\n  ],\n  \"tost_results\": {\n    \"margin_1pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 1.0, \"tost_equivalent\": false, \"tost_p\": 0.2854, \"min_equiv_margin_pp\": 1.62},\n    \"margin_2pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 2.0, \"tost_equivalent\": true, \"tost_p\": 0.0104, \"min_equiv_margin_pp\": 1.62},\n    \"margin_3pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 3.0, \"tost_equivalent\": true, \"tost_p\": 0.0, \"min_equiv_margin_pp\": 1.62}\n  },\n  \"min_equiv_margin_pp\": 1.62\n}",
+  "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "TOST Multi-Margin Equivalence Results",
+    "type": "data",
+    "description": "Multi-margin TOST equivalence test (±1/2/3pp) for CLS vs CWM using 4-pair clustered bootstrap (10K resamples, 114 problem clusters). W2 reviewer response.",
+    "project": "exec-sim-repair-verifier",
+    "content_filename": "tost_multi_margin_results.json",
+    "content": "{\n  \"analysis\": \"multi_margin_tost_equivalence\",\n  \"date\": \"2026-05-15\",\n  \"n_pairs\": 4,\n  \"n_total\": 7560,\n  \"n_clusters\": 114,\n  \"n_resamples\": 10000,\n  \"observed_mean_diff_pp\": 0.661,\n  \"bootstrap_se_pp\": 0.577,\n  \"per_pair\": [\n    {\"pair\": 1, \"cls_file\": \"predictions_cls_seed42.jsonl\", \"cwm_file\": \"predictions_cwm_seed123.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.51, \"cwm_acc_pct\": 87.3, \"diff_pp\": 0.21},\n    {\"pair\": 2, \"cls_file\": \"predictions_cls_seed42.jsonl\", \"cwm_file\": \"predictions_cwm_seed789.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.51, \"cwm_acc_pct\": 86.67, \"diff_pp\": 0.85},\n    {\"pair\": 3, \"cls_file\": \"predictions_cls_seed0.jsonl\", \"cwm_file\": \"predictions_cwm_seed123.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.78, \"cwm_acc_pct\": 87.3, \"diff_pp\": 0.48},\n    {\"pair\": 4, \"cls_file\": \"predictions_cls_seed0.jsonl\", \"cwm_file\": \"predictions_cwm_seed789.jsonl\", \"n\": 1890, \"cls_acc_pct\": 87.78, \"cwm_acc_pct\": 86.67, \"diff_pp\": 1.11}\n  ],\n  \"tost_results\": {\n    \"margin_1pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 1.0, \"tost_equivalent\": false, \"tost_p\": 0.2854, \"min_equiv_margin_pp\": 1.62},\n    \"margin_2pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 2.0, \"tost_equivalent\": true, \"tost_p\": 0.0104, \"min_equiv_margin_pp\": 1.62},\n    \"margin_3pp\": {\"mean_diff_pp\": 0.661, \"ci95\": [-0.479, 1.792], \"tost_90ci\": [-0.275, 1.62], \"tost_margin_pp\": 3.0, \"tost_equivalent\": true, \"tost_p\": 0.0, \"min_equiv_margin_pp\": 1.62}\n  },\n  \"min_equiv_margin_pp\": 1.62\n}",
+    "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T12:34:58.104115+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'multi_margi..._equiv_margin_pp': 1.62}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T12:34:58.104310+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "TOST Multi-Margin Equivalence Results",
+  "type": "data",
+  "description": "Multi-margin TOST equivalence test (±1/2/3pp) for CLS vs CWM using 4-pair clustered bootstrap (10K resamples, 114 problem clusters). W2 reviewer response.",
+  "project": "exec-sim-repair-verifier",
+  "content_filename": "tost_multi_margin_results.json",
+  "content": "{\"analysis\":\"multi_margin_tost_equivalence\",\"date\":\"2026-05-15\",\"n_pairs\":4,\"n_total\":7560,\"n_clusters\":114,\"n_resamples\":10000,\"observed_mean_diff_pp\":0.661,\"bootstrap_se_pp\":0.577,\"tost_results\":{\"margin_1pp\":{\"tost_p\":0.2854,\"tost_equivalent\":false},\"margin_2pp\":{\"tost_p\":0.0104,\"tost_equivalent\":true},\"margin_3pp\":{\"tost_p\":0.0,\"tost_equivalent\":true}},\"min_equiv_margin_pp\":1.62}",
+  "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "TOST Multi-Margin Equivalence Results",
+    "type": "data",
+    "description": "Multi-margin TOST equivalence test (±1/2/3pp) for CLS vs CWM using 4-pair clustered bootstrap (10K resamples, 114 problem clusters). W2 reviewer response.",
+    "project": "exec-sim-repair-verifier",
+    "content_filename": "tost_multi_margin_results.json",
+    "content": "{\"analysis\":\"multi_margin_tost_equivalence\",\"date\":\"2026-05-15\",\"n_pairs\":4,\"n_total\":7560,\"n_clusters\":114,\"n_resamples\":10000,\"observed_mean_diff_pp\":0.661,\"bootstrap_se_pp\":0.577,\"tost_results\":{\"margin_1pp\":{\"tost_p\":0.2854,\"tost_equivalent\":false},\"margin_2pp\":{\"tost_p\":0.0104,\"tost_equivalent\":true},\"margin_3pp\":{\"tost_p\":0.0,\"tost_equivalent\":true}},\"min_equiv_margin_pp\":1.62}",
+    "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T12:34:58.104495+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'analysis': 'multi_margi..._equiv_margin_pp': 1.62}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T12:34:58.104662+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "TOST Multi-Margin Equivalence Results",
+  "type": "report",
+  "description": "Multi-margin TOST equivalence test results for CLS vs CWM at margins 1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.",
+  "project": "exec-sim-repair-verifier",
+  "source_path": "/home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json",
+  "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "TOST Multi-Margin Equivalence Results",
+    "type": "report",
+    "description": "Multi-margin TOST equivalence test results for CLS vs CWM at margins 1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.",
+    "project": "exec-sim-repair-verifier",
+    "source_path": "/home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json",
+    "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T12:34:58.104867+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /home/sonny/exec-sim-repair-verifier/tost_multi_margin_results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T12:34:58.105097+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "TOST Multi-Margin Equivalence Results",
+  "type": "report",
+  "description": "Multi-margin TOST equivalence test results for CLS vs CWM at margins 1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.",
+  "project": "exec-sim-repair-verifier",
+  "content": "TOST Multi-Margin Equivalence Test Results\n===========================================\nDate: 2026-05-15\nMethod: Clustered bootstrap (by problem_id), 10,000 resamples\nData: 4 CLS-CWM pairs (2 CLS seeds x 2 CWM seeds), 7,560 total obs, 114 clusters\n\nPer-pair accuracy differences (CLS - CWM):\n  Pair 1: cls_s42 vs cwm_s123  → +0.21pp (87.51% vs 87.30%)\n  Pair 2: cls_s42 vs cwm_s789  → +0.85pp (87.51% vs 86.67%)\n  Pair 3: cls_s0  vs cwm_s123  → +0.48pp (87.78% vs 87.30%)\n  Pair 4: cls_s0  vs cwm_s789  → +1.11pp (87.78% vs 86.67%)\n\nPooled mean diff: +0.661pp\n95% CI: [-0.479, +1.792]pp\nBootstrap SE: 0.577pp\n\nTOST Results:\n  Margin    90% CI                p-value    Equivalent?\n  ±1pp      [-0.275, +1.620]     0.2854     NO\n  ±2pp      [-0.275, +1.620]     0.0104     YES\n  ±3pp      [-0.275, +1.620]     0.0000     YES\n\nMinimum equivalence margin: 1.620pp\n\nConclusions:\n- At ±2pp: EQUIVALENT (p=0.010), confirming the C2 claim\n- At ±1pp: NOT equivalent (p=0.285), 90% CI upper bound 1.62pp exceeds 1pp\n- At ±3pp: trivially equivalent (p≈0)\n- The smallest margin that still yields equivalence is ±1.62pp",
+  "content_filename": "tost_multi_margin_results.txt",
+  "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "TOST Multi-Margin Equivalence Results",
+    "type": "report",
+    "description": "Multi-margin TOST equivalence test results for CLS vs CWM at margins 1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.",
+    "project": "exec-sim-repair-verifier",
+    "content": "TOST Multi-Margin Equivalence Test Results\n===========================================\nDate: 2026-05-15\nMethod: Clustered bootstrap (by problem_id), 10,000 resamples\nData: 4 CLS-CWM pairs (2 CLS seeds x 2 CWM seeds), 7,560 total obs, 114 clusters\n\nPer-pair accuracy differences (CLS - CWM):\n  Pair 1: cls_s42 vs cwm_s123  → +0.21pp (87.51% vs 87.30%)\n  Pair 2: cls_s42 vs cwm_s789  → +0.85pp (87.51% vs 86.67%)\n  Pair 3: cls_s0  vs cwm_s123  → +0.48pp (87.78% vs 87.30%)\n  Pair 4: cls_s0  vs cwm_s789  → +1.11pp (87.78% vs 86.67%)\n\nPooled mean diff: +0.661pp\n95% CI: [-0.479, +1.792]pp\nBootstrap SE: 0.577pp\n\nTOST Results:\n  Margin    90% CI                p-value    Equivalent?\n  ±1pp      [-0.275, +1.620]     0.2854     NO\n  ±2pp      [-0.275, +1.620]     0.0104     YES\n  ±3pp      [-0.275, +1.620]     0.0000     YES\n\nMinimum equivalence margin: 1.620pp\n\nConclusions:\n- At ±2pp: EQUIVALENT (p=0.010), confirming the C2 claim\n- At ±1pp: NOT equivalent (p=0.285), 90% CI upper bound 1.62pp exceeds 1pp\n- At ±3pp: trivially equivalent (p≈0)\n- The smallest margin that still yields equivalence is ±1.62pp",
+    "content_filename": "tost_multi_margin_results.txt",
+    "tags": "['tost', 'equivalence', 'w2-response', 'statistics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T12:34:58.105348+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_73352d\", \"name\": \"TOST Multi-Margin Equivalence Results\", \"type\": \"report\", \"description\": \"Multi-margin TOST equivalence test results for CLS vs CWM at margins 1/2/3pp. 4-pair clustered bootstrap, 10K resamples. For W2 reviewer response.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/report/tost_multi_margin_results.txt\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:34:49.302999+00:00\", \"tags\": [\"tost\", \"equivalence\", \"w2-response\", \"statistics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-15T12:34:58.105609+00:00_
+
+## 结果
+
+| Margin | 90% CI | p-value | Equivalent? |
+|--------|--------|---------|-------------|
+| ±1pp | [−0.275, +1.620] | 0.2854 | **NO** |
+| ±2pp | [−0.275, +1.620] | 0.0104 | **YES** |
+| ±3pp | [−0.275, +1.620] | 0.0000 | **YES** |
+
+**关键数字：**
+- 4 对 CLS-CWM 配对（2 CLS seeds × 2 CWM seeds），7560 obs，114 problem clusters，10K bootstrap resamples
+- 池化均差 +0.661pp，95% CI [−0.479, +1.792]pp
+- 最小等价 margin = **1.620pp**
+
+**结论：**
+- ±2pp TOST p=0.010，确认 C2 claim（与先前报告 p=0.007 一致量级）
+- ±1pp 不能拒绝非等价（p=0.285），90% CI 上界 1.62pp 超出 1pp
+- ±3pp 轻松等价
+- 回复 W2：即使收紧至 ±1.62pp 仍可建立等价性，但 ±1pp 确实不够——差异的上界可达 1.6pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_tost-multi-margin_20260515T122851"
+}
+```
+
+</details>
+
+---

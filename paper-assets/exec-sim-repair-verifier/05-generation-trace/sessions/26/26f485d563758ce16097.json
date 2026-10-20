@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f485d563758ce16097",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt1600 val8192 v2",
+  "task_key": "worker_eval_cls8b-s42-ckpt1600-val8192-v2_20260515T034640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt1600-val8192-v2_20260515T034640_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "c47c53afd0ddff731a4d52732a9c5e1abbc63ec63ccc2885208a2edd70d98f34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估正在正常运行。\n\n- **Exp ID**: `cls8b-s42-ckpt1600-val8192-v2`\n- **PID**: 325097\n- **Server**: seetacloud-westd-4x5090, cuda:0\n- **进度**: 160/9335, running_acc=84.4%\n- **日志**: `/tmp/eval_cls8b_ckpt1600_val8192_v2.log`\n- **修复**: 使用本地模型路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` + `HF_HUB_OFFLINE=1` + `network_turbo`，完全绕过网络依赖\n\n模型加载成功，推理正常进行。按 ~1.5s/sample 估算，9335 条约需 ~3.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt1600-val8192-v2.md"
+}

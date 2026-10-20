@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2134af28ecced447b356",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls8b repo s456 train v2",
+  "task_key": "worker_diagnose_cls8b-repo-s456-train-v2_20260519T221156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls8b-repo-s456-train-v2_20260519T221156_result.json",
+    "occurrence": 1,
+    "bytes": 1500,
+    "sha256": "7ac3c9b16be66b649f006b59c16d22b139e17e0b1334e01578408316ecd28d44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：cls8b-repo-s456-train-v2\n\n### 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 6633 (3 epochs × 2211 steps/epoch) |\n| 超时时已完成 | **2320/6633 steps (35%)** |\n| 已完成 epoch | **epoch 1 完整 + epoch 2 的 ~5%** |\n| 最后 logged loss | step 2300: **loss=0.4199**, grad_norm=0.27, epoch=1.04 |\n| 训练速度 | ~8.2s/step，稳定无波动 |\n\n### Loss 收敛情况（正常）\n\n| Step | Loss | Epoch |\n|------|------|-------|\n| 50 | 234.68 | 0.02 |\n| 200 | 2.51 | 0.09 |\n| 2250 | 0.70 | 1.02 |\n| 2300 | 0.42 | 1.04 |\n\nloss 持续下降，grad_norm 稳定，无 OOM/NaN/异常。\n\n### Checkpoint 状态\n\n| Checkpoint | 时间 |\n|------------|------|\n| checkpoint-600 | May 20 00:18 |\n| checkpoint-1600 | May 20 03:46 |\n| checkpoint-1800 | May 20 04:28 |\n| checkpoint-2000 | May 20 05:10 |\n| **checkpoint-2200** | **May 20 05:51** (最新) |\n\n### 超时原因\n\n训练速度 ~8.2s/step，完整 3 epoch 需要 6633 × 8.2s ≈ **15.1 小时**（加上 validation 约 **15.5 小时**）。timeout 设置 8 小时远远不够，纯粹是 timeout 不足，训练本身没有任何问题。\n\n### 建议\n\n**Resume from checkpoint-2200**，不需要重跑。\n\n- 剩余 4433 steps ≈ 10.2 小时 + 2 次 validation ≈ 0.5 小时 = **~10.7 小时**\n- 建议 timeout 设 **13 小时**（留余量）\n- Resume 命令加 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls8b-repo-s456-train-v2.md"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "qwen3-4b-traj-repo-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:10:00.484Z",
+    "updated_at": "2026-05-18T22:28:21.335Z",
+    "hypothesis": "Qwen3-4B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ achieves 75.35% ± 5.00 (6 seeds); Qwen3-4B TRAJ expected to be comparable or higher given Qwen3 在 CLS repo-level 的强表现 (83.63%).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_traj_verifier.py --data_dir data/swebench_full/ --model_name /root/autodl-tmp/models/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_qwen3_4b_traj_repo/ --run_name qwen3-4b-traj-repo --seed 42 --max_seq_length 8192 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --epochs 3 --lora_rank 16 --lora_alpha 32 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full/traj_train.jsonl",
+      "data_count": 386,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 767245,
+      "max_seq_length": 8192,
+      "batch_size": 1,
+      "grad_accumulation": 8,
+      "lr": "2e-4",
+      "epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "total_steps": 147,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_qwen3_4b_traj_repo/",
+      "log_path": "/root/autodl-tmp/checkpoints_qwen3_4b_traj_repo/train.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T22:28:21.729108+00:00",
+  "trigger": "update_registry"
+}

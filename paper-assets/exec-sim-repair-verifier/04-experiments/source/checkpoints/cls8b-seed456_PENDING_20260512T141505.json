@@ -1,0 +1,28 @@
+{
+  "exp_id": "cls8b-seed456",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:55:11.074Z",
+    "updated_at": "2026-05-12T14:15:05.480Z",
+    "hypothesis": "8B CLS 第 3 个 seed，与 cwm8b-seed456 配对。完成后有 3 matched 8B pairs (seed42/123/456)，增强 scaling gap 证据",
+    "spec": {
+      "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output_dir checkpoints_cls8b_seed456/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b_seed456/best --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output eval_cls8b_seed456.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2810143",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed456.log",
+      "submitted_at": "2026-05-12T13:57:23.981Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    }
+  },
+  "timestamp": "2026-05-12T14:15:05.574220+00:00",
+  "trigger": "update_registry"
+}

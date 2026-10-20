@@ -1,0 +1,36 @@
+{
+  "exp_id": "deepseek-cls-repo-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:26:56.947Z",
+    "updated_at": "2026-05-17T15:08:44.116Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --task cls --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/ --run_name deepseek-cls-repo-s123 --epochs 3 --seed 123 --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "542509",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s123.log",
+      "submitted_at": "2026-05-16T17:27:50.211Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_train.jsonl",
+      "data_count": 70748,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/"
+    },
+    "hypothesis": "DeepSeek CLS repo-level seed 123 replication for multi-seed evidence (same config as s42)",
+    "reproduce": {
+      "finished_at": "2026-05-17T15:08:43.365Z"
+    }
+  },
+  "timestamp": "2026-05-17T15:08:44.433306+00:00",
+  "trigger": "update_registry"
+}

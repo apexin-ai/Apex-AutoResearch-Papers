@@ -1,0 +1,3 @@
+Location: home-1x5090:/home/sonny/exec-sim-repair-verifier/eval_repo_level.py
+Modes: --mode cls | --mode cwm
+Outputs: accuracy/F1 JSON + per-instance predictions JSONL (--save_predictions)

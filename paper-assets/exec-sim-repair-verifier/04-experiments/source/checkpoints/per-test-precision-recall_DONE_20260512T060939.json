@@ -1,0 +1,39 @@
+{
+  "exp_id": "per-test-precision-recall",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T05:51:25.659Z",
+    "updated_at": "2026-05-12T06:09:39.167Z",
+    "spec": {
+      "command": "python3 eval_precision_recall.py --data_dir data/ --checkpoint_dir checkpoints/best --model_name Qwen/Qwen3-4B --output eval_precision_recall_results.json",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2414143",
+      "log_path": "~/runs/exec-sim-repair-verifier/per-test-precision-recall.log",
+      "submitted_at": "2026-05-12T05:51:25.631Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/",
+      "eval_data": "data/test.jsonl",
+      "checkpoint_path": "n/a (eval only)",
+      "wall_clock_seconds": 1093.5,
+      "gpu_hours": 0.3
+    },
+    "hypothesis": "Per-test failure prediction 的 precision/recall 分布揭示模型在不同 mutation type 和问题复杂度下的诊断能力差异",
+    "conclusion": "success",
+    "completed_at": "2026-05-12T06:09:39.167Z"
+  },
+  "timestamp": "2026-05-12T06:09:39.193260+00:00",
+  "trigger": "update_registry"
+}

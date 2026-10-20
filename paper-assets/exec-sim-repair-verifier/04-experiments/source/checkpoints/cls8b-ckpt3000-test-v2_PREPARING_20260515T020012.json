@@ -1,0 +1,29 @@
+{
+  "exp_id": "cls8b-ckpt3000-test-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:24:30.275Z",
+    "updated_at": "2026-05-15T02:00:12.048Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 5120 --max_new_tokens 512 --device cuda:0 --output_dir /root/autodl-tmp/results/cls8b_ckpt3000_test/ --batch_size 1\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "282767",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-ckpt3000-test-v2.log",
+      "submitted_at": "2026-05-14T20:24:30.033Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "notes": "INVALID: checkpoints_repo_cls_8b/checkpoint-3000 是 transformers 5.x 旧训练产物（peft 0.19.1），非 conda 环境训练。Provenance verify 确认后已取消。PID 282767 需确认是否已终止。"
+  },
+  "timestamp": "2026-05-15T02:00:12.268487+00:00",
+  "trigger": "update_registry"
+}

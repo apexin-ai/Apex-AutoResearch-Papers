@@ -1,0 +1,56 @@
+{
+  "exp_id": "cls8b-s42-ckpt-ablation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:03:31.233Z",
+    "updated_at": "2026-05-19T13:18:02.927Z",
+    "hypothesis": "Checkpoint selection bias quantification (N2): comparing epoch 1 (ckpt-2200) / val-selected (ckpt-3600, 84.48%) / final epoch (ckpt-6633) for Qwen3-8B CLS repo-level s42",
+    "spec": {
+      "command": "bash -c \"bash /home/sonny/exec-sim-repair-verifier/run_cls_ablation_chain.sh > /root/autodl-tmp/logs/cls8b_ablation_chain.log 2>&1\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "830917",
+      "log_path": "/root/autodl-tmp/logs/cls8b_ablation_chain.log",
+      "submitted_at": "2026-05-19T12:18:34.779Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (eval-only ablation, checkpoints at /home/sonny/exec-sim-repair-verifier/checkpoints/cls-repo-8b-s42-*/)",
+      "wall_clock_seconds": 3568.1,
+      "gpu_hours": 0.99
+    },
+    "metrics": {
+      "ckpt-2200": {
+        "accuracy": 85.34,
+        "f1_macro": 79.04,
+        "f1_fail": 67.56,
+        "f1_pass": 90.53
+      },
+      "ckpt-3600": {
+        "accuracy": 84.48,
+        "f1_macro": 78.17,
+        "f1_fail": 66.43,
+        "f1_pass": 89.91
+      },
+      "ckpt-6633": {
+        "accuracy": 85.29,
+        "f1_macro": 78.44,
+        "f1_fail": 66.28,
+        "f1_pass": 90.6
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:09:55.556Z"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T13:18:02.927Z"
+  },
+  "timestamp": "2026-05-19T13:18:03.429602+00:00",
+  "trigger": "update_registry"
+}

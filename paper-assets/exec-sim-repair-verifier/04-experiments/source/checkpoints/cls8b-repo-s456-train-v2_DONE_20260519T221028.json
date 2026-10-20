@@ -1,0 +1,46 @@
+{
+  "exp_id": "cls8b-repo-s456-train-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:59:54.224Z",
+    "updated_at": "2026-05-19T22:10:27.159Z",
+    "hypothesis": "Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见。前次(cls8b-repo-s456-train)因数据损坏失败，数据已修复。",
+    "parent": "repo-level-cls-8b-s42-resume",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T14:01:35.673Z",
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/ --epochs 3",
+      "finished_at": "2026-05-19T22:10:23.332Z",
+      "training_hours": 8.15
+    },
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/ --epochs 3",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "840928",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 456,
+      "checkpoint_source": "from-scratch",
+      "lora_r": 16,
+      "lora_alpha": 32
+    },
+    "pid": "840928",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train-v2.log",
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T22:10:24.298Z"
+  },
+  "timestamp": "2026-05-19T22:10:28.108332+00:00",
+  "trigger": "update_registry"
+}

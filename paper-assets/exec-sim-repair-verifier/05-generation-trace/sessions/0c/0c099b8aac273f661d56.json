@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c099b8aac273f661d56",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm8b v5 gpu2 check",
+  "task_key": "worker_diagnose_cwm8b-v5-gpu2-check_20260515T175703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm8b-v5-gpu2-check_20260515T175703_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "fdc440730cbe3856d2169239d6d118752068b89b9ec5419902dbb72d921dc572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1：GPU 2 状态\n\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 18,477 MiB | 78% |\n| 1 | 27,313 MiB | 88% |\n| **2** | **0 MiB** | **0%** |\n| 3 | 22,527 MiB | 88% |\n\n**PID 400279/400280 存活**（运行 6 分钟），CPU 104%，RSS 4.6GB——正在加载 Qwen3-8B 模型到内存，尚未上 GPU。日志最后一条停在 `01:56:53`（数据 truncation 报告），之后进入模型加载阶段，无新输出是正常的。\n\n**判断：进程正常，处于模型加载中间阶段，预计几分钟内 GPU 2 会出现显存占用。不需要 kill/重启。**\n\n注意一点：当前运行的脚本是 `train_repo_cwm.py`，而非你重启命令中指定的 `train_repo_cwm_8b.py`。\n\n### 任务 2：checkpoint-400\n\n**checkpoint-400 存在**，内容完整：\n- `adapter_model.safetensors` (61MB)\n- `optimizer.pt` (123MB)\n- `trainer_state.json`, `scheduler.pt`, `rng_state.pth` 等\n- 创建时间：May 14 16:32\n\n**全部现存 checkpoint（5 个）：**\n- checkpoint-400\n- checkpoint-4900\n- checkpoint-5000\n- checkpoint-5100\n- checkpoint-5200"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm8b-v5-gpu2-check.md"
+}

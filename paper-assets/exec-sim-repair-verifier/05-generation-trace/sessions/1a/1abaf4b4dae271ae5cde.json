@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1abaf4b4dae271ae5cde",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm seed123 check",
+  "task_key": "worker_analysis_cwm-seed123-check_20260512T131341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-seed123-check_20260512T131341_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "3995bf8652b836383a8cb01ccb6bd06ea75e940620ffc2ca637747d5f1face21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cwm-seed123 完成，registry 已更新为 DONE/success。Cron 已不存在（无需清除）。\n\n**最终 metrics：**\n\n| 指标 | 值 |\n|------|-----|\n| overall_accuracy | **87.20%** |\n| pass_f1 | 86.95 |\n| fail_f1 | 87.44 |\n| exact_match_rate | 84.44% |\n| vs majority baseline | +35.45pp |\n\n与 cwm-baseline (seed=42, 87.51%) 对比：accuracy 差 0.31pp，基本一致，确认 4B CWM 性能稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-seed123-check.md"
+}

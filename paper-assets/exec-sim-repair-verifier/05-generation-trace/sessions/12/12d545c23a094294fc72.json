@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12d545c23a094294fc72",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops re repair docker check",
+  "task_key": "worker_ops_re-repair-docker-check_20260517T040114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_re-repair-docker-check_20260517T040114_result.json",
+    "occurrence": 1,
+    "bytes": 2666,
+    "sha256": "772bfb6c3cd70a740db88d89b1ea628c40fc7a08223a07830087c4ef2cb8a266"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。\n\n---\n\n## Docker 可行性结论\n**不可行** — `docker` 命令不存在（`command not found`）。swebench-harness 也未安装。无法在此服务器上进行 SWE-bench Docker 验证。\n\n## SWE-bench 数据\n**有** — 数据充足：\n- HF cache: `datasets--princeton-nlp--SWE-bench_Verified` (arrow 格式)\n- 项目目录 `/home/sonny/exec-sim-repair-verifier/data/swebench_full/`:\n  - `swebench_test.jsonl`, `swebench_train.jsonl`, `swebench_val.jsonl`\n  - `swebench_verified_meta.jsonl`\n  - 4 种 mutation prediction 文件 (`boundary_removal`, `off_by_one`, `operator_swap`, `return_value`)\n  - `predictions_gold.jsonl`\n  - trajectory 文件 (`traj_*.jsonl`)\n\n## 代码审计摘要\n\n### prompt 结构\n4 个 condition，信息差递增：\n| Condition | 信息内容 |\n|-----------|---------|\n| `control` | 只有 Issue Description + Incorrect Patch，**无任何测试信息** |\n| `random-diag` | 加入随机 50% pass/fail 标签的测试诊断（噪音 baseline） |\n| `cls-diag` | 模拟分类器 ~84% 准确率（翻转 16% oracle 标签） |\n| `oracle-diag` | 完美测试诊断（ground truth per-test pass/fail） |\n\n所有 condition 共享 system prompt（要求输出 unified diff）和 base prompt（issue + mutation patch）。\n\n### eval metric\n**Diff similarity** — `difflib.SequenceMatcher.ratio()` 对比生成 diff 与 gold patch。统计：\n- mean/median similarity\n- best-of-K (per instance 取最高)\n- win rate（条件 beat control 的 instance 占比）\n- valid diff 比率\n\n**无 Docker 执行验证**（文件 docstring 明确写 \"No Docker verification\"）。\n\n### Docker eval 代码路径\n**不存在。** `re_repair_eval.py` 文件不存在。当前只有 `re_repair_phase0.py` 使用 diff similarity 作为 proxy metric。\n\n### 外部依赖\n- `numpy`\n- `transformers` (AutoModelForCausalLM, AutoTokenizer)\n- `torch`\n- 标准库: `difflib`, `json`, `re`, `argparse`, `logging`, `pathlib`, `collections`\n\n## 磁盘\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| `/root/autodl-tmp` | 250G | 184G | 67G | 74% |\n| `/` (overlay) | 30G | 21G | 9.5G | 69% |\n\n## Instruct 模型\n**无 Qwen3-8B-Instruct。** 现有的是 base 模型：\n- `/root/autodl-tmp/models/Qwen/Qwen3-8B`（5 个 safetensors shard，完整）\n- `/root/autodl-tmp/models/Qwen/Qwen3-32B`\n\n下载可行性：`hf` CLI 已安装，但 `hf whoami` 不可用（命令接口变化）。磁盘剩余 67G 足够存放 Qwen3-8B-Instruct（~16GB）。需要确认网络连通性和正确的 `hf` 子命令后可执行下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-re-repair-docker-check.md"
+}

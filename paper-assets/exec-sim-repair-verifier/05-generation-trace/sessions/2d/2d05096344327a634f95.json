@@ -1,0 +1,559 @@
+{
+  "schema_version": "1.0",
+  "id": "2d05096344327a634f95",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "ssh 14b figure2 regen",
+  "task_key": "worker_ssh_14b-figure2-regen_20260523T080432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_14b-figure2-regen_20260523T080432.jsonl",
+    "occurrence": 1,
+    "bytes": 20647,
+    "sha256": "13514a640f502b0b837a1e0135565935a29646784b8af078c43c8bea2e402cc8"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T08:06:21.302484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T08:06:21.302832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T08:06:21.303020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -E \"CONFIRMED_14B|cls_acc_14b|cwm_acc_14b\" /home/sonny/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T08:06:21.303164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T08:06:21.303292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -E \"CONFIRMED_14B|cls_acc_14b|cwm_acc_14b\" /home/sonny/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T08:06:21.303457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T08:06:21.303616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -e CONFIRMED_14B -e cls_acc_14b -e cwm_acc_14b /home/sonny/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T08:06:21.303745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /home/sonny/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T08:06:21.303908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cd /home/sonny/exec-sim-repair-verifier && git pull origin master 2>&1 || true"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T08:06:21.304040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fatal: not a git repository (or any of the parent directories): .git\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T08:06:21.304189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T08:06:21.304398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8b_scaling_bootstrap_results.json\\\\n__pycache__\\\\naggregate_variant_level.py\\\\naggregate_variant_level_v2.py\\\\nanalysis_5paired_bootstrap.py\\\\nanalysis_8b_scaling_bootstrap.py\\\\nanalysis_error_overlap.py\\\\nanalysis_error_overlap_report.json\\\\nanalyze_cwm_errors.py\\\\nanalyze_cwm_eval.py\\\\nanalyze_cwm_relaxed.py\\\\nanalyze_p2p_regression.py\\\\nanalyze_relaxed_matching.py\\\\nartifacts\\\\nauto_eval_on_complete.sh\\\\nbayesian_rope.py\\\\nbenchmark_func_inference.py\\\\nbenchmark_inference.py\\\\nblock_corr_from_predictions.py\\\\nbootstrap_preliminary_2pairs.json\\\\nbuild_cwm_data.py\\\\nbuild_data.py\\\\nbuild_swebench_data.py\\\\nbuild_trace_data.py\\\\nbuild_traj_data.py\\\\ncheckpoints\\\\ncheckpoints_cls14b\\\\ncheckpoints_cls8b\\\\ncheckpoints_cls8b_seed123\\\\ncheckpoints_cls_seed0\\\\ncheckpoints_cwm8b\\\\ncheckpoints_cwm8b_seed123\\\\ncheckpoints_cwm8b_seed456\\\\ncheckpoints_cwm_rank32\\\\ncheckpoints_cwm_rank32_alpha64\\\\ncheckpoints_cwm_rank64\\\\ncheckpoints_cwm_seed123\\\\ncheckpoints_cwm_seed789\\\\ncheckpoints_repo_cls\\\\ncheckpoints_repo_cls_seed123\\\\ncheckpoints_repo_cwm\\\\ncompile_val_sweep.py\\\\ncomplexity_bin_analysis.py\\\\ncompute_complementarity.py\\\\ncwm_forced_parse.py\\\\ncwm_parseable_bias.py\\\\ndata\\\\ndownsample_cls_data.py\\\\nerror_analysis_deepseek_func.py\\\\nerror_analysis_func.py\\\\neval_14b_baseline.py\\\\neval_14b_cwm_pilot.sh\\\\neval_3shot_baseline.py\\\\neval_block_correlation_v2.json\\\\neval_cls8b_results.json\\\\neval_cls8b_seed123.json\\\\neval_cls8b_seed42.json\\\\neval_cls_seed0.json\\\\neval_cwm8b_results.json\\\\neval_cwm8b_seed123.json\\\\neval_cwm8b_seed456.json\\\\neval_cwm_baseline.py\\\\neval_cwm_baseline.py.bak\\\\neval_cwm_constrained.py\\\\neval_cwm_rank32_alpha64_results.json\\\\neval_cwm_rank32_alpha64_results_predictions.json\\\\neval_cwm_rank32_results.json\\\\neval_cwm_seed123.json\\\\neval_cwm_seed123_with_preds.json\\\\neval_cwm_seed123_with_preds_predictions.json\\\\neval_cwm_seed789.json\\\\neval_deepseek_cwm_s123_1epoch.log\\\\neval_deepseek_cwm_s123_1epoc\n…[truncated 3234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T08:06:21.304580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/artifacts/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T08:06:21.304722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14b_pilot_feasibility.md\\\\nbayesian_rope_results.json\\\\nbenchmark_func_inference_results.json\\\\nbenchmark_inference_results.json\\\\ncomplexity_bin_analysis.json\\\\ncomplexity_bin_analysis.pdf\\\\ncomplexity_bin_analysis.png\\\\ncwm_parseable_bias.json\\\\ndeepseek_func_icc_result.json\\\\nerror_analysis_func_level.json\\\\neval_3shot_deepseek\\\\neval_3shot_dryrun\\\\neval_3shot_qwen3_8b\\\\neval_cls_downsample_v3\\\\neval_summaries\\\\nfigure2_v2.png\\\\ninference_benchmark_results.json\\\\nlogistic_regression_results.json\\\\nrouting_results.json\\\\ntost_sensitivity_cls_traj.json\\\\nvariant_bootstrap_ci.json\\\\nvariant_level_aggregation.json\\\\nvariant_level_all_configs.json\\\\nvariant_level_verified_results.md\\\\nw5_dryrun\\\\nw5_glmm_results.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T08:06:21.304881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T08:06:21.305115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Figure 2 v3: parameterized 14B data with confirmed/exploratory toggle.\"\"\"\n2\t\n3\timport matplotlib\n4\tmatplotlib.use('Agg')\n5\timport matplotlib.pyplot as plt\n6\timport matplotlib.ticker as mticker\n7\timport numpy as np\n8\tfrom pathlib import Path\n9\t\n10\t# ── Configuration ────────────────────────────────────────────────────\n11\tCONFIRMED_14B = True  # 3-seed results confirmed 2026-05-23\n12\t\n13\t# 4B/8B: established multi-seed means (do not change)\n14\tsizes = [4, 8, 14]\n15\tcls_acc_4b = 88.68\n16\tcls_acc_8b = 89.94\n17\tcwm_acc_4b = 87.36\n18\tcwm_acc_8b = 87.33\n19\t\n20\t# 14B: fill with 3-seed mean after training\n21\tcls_acc_14b = 89.93  # 3-seed mean (s42=89.21, s123=90.79, s456=89.79)\n22\tcwm_acc_14b = 89.50  # 3-seed mean (s42=89.26, s123=88.99, s456=90.26)\n23\t\n24\tcls_acc = [cls_acc_4b, cls_acc_8b, cls_acc_14b]\n25\tcwm_acc = [cwm_acc_4b, cwm_acc_8b, cwm_acc_14b]\n26\t\n27\t# ── Plot ─────────────────────────────────────────────────────────────\n28\tfig, ax = plt.subplots(figsize=(5, 3.5))\n29\t\n30\tif not CONFIRMED_14B:\n31\t    ax.axvspan(12.5, 15.5, color='#f0f0f0', zorder=0)\n32\t    ax.axvline(x=13, color='#cccccc', linestyle=':', linewidth=0.8, zorder=0)\n33\t    ax.text(14, 90.65, 'exploratory', fontsize=7, color='#888888',\n34\t            ha='center', fontstyle='italic')\n35\t\n36\tax.fill_between(sizes, cls_acc, cwm_acc, color='#e0e0e0', alpha=0.5, zorder=1)\n37\t\n38\tCLS_COLOR = '#2c7fb8'\n39\tCWM_COLOR = '#d95f02'\n40\t\n41\tif CONFIRMED_14B:\n42\t    # All 3 points: solid line, filled markers\n43\t    ax.plot(sizes, cls_acc, 'o-', color=CLS_COLOR, linewidth=1.8,\n44\t            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n45\t            label='CLS', zorder=3)\n46\t    ax.plot(sizes, cwm_acc, 's-', color=CWM_COLOR, linewidth=1.8,\n47\t            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n48\t            label='CWM', zorder=3)\n49\telse:\n50\t    # 4B-8B: solid line, filled markers\n51\t    ax.plot(sizes[:2], cls_acc[:2], 'o-', color=CLS_COLOR, linewidth=1.8,\n52\t  \n…[truncated 3170 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T08:06:21.305721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T08:06:21.306171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T08:06:21.306409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "mkdir -p /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T08:06:21.306625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T08:06:21.306822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat > /home/sonny/exec-sim-repair-verifier/artifacts/plot_figure2_v3.py << 'PYEOF'\n\"\"\"Figure 2 v3: parameterized 14B data with confirmed/exploratory toggle.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport numpy as np\nfrom pathlib import Path\n\n# ── Configuration ────────────────────────────────────────────────────\nCONFIRMED_14B = True  # 3-seed results confirmed 2026-05-23\n\n# 4B/8B: established multi-seed means (do not change)\nsizes = [4, 8, 14]\ncls_acc_4b = 88.68\ncls_acc_8b = 89.94\ncwm_acc_4b = 87.36\ncwm_acc_8b = 87.33\n\n# 14B: fill with 3-seed mean after training\ncls_acc_14b = 89.93  # 3-seed mean (s42=89.21, s123=90.79, s456=89.79)\ncwm_acc_14b = 89.50  # 3-seed mean (s42=89.26, s123=88.99, s456=90.26)\n\ncls_acc = [cls_acc_4b, cls_acc_8b, cls_acc_14b]\ncwm_acc = [cwm_acc_4b, cwm_acc_8b, cwm_acc_14b]\n\n# ── Plot ─────────────────────────────────────────────────────────────\nfig, ax = plt.subplots(figsize=(5, 3.5))\n\nif not CONFIRMED_14B:\n    ax.axvspan(12.5, 15.5, color='#f0f0f0', zorder=0)\n    ax.axvline(x=13, color='#cccccc', linestyle=':', linewidth=0.8, zorder=0)\n    ax.text(14, 90.65, 'exploratory', fontsize=7, color='#888888',\n            ha='center', fontstyle='italic')\n\nax.fill_between(sizes, cls_acc, cwm_acc, color='#e0e0e0', alpha=0.5, zorder=1)\n\nCLS_COLOR = '#2c7fb8'\nCWM_COLOR = '#d95f02'\n\nif CONFIRMED_14B:\n    ax.plot(sizes, cls_acc, 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes, cwm_acc, 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\nelse:\n    ax.plot(sizes[:2], cls_acc[:2], 'o-', color=CLS_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CLS_COLOR, markeredgecolor=CLS_COLOR,\n            label='CLS', zorder=3)\n    ax.plot(sizes[:2], cwm_acc[:2], 's-', color=CWM_COLOR, linewidth=1.8,\n            markersize=7, markerfacecolor=CWM_COLOR, markeredgecolor=CWM_COLOR,\n            label='CWM', zorder=3)\n    ax.plot(sizes[2], cls_acc[2], 'o', color=CLS_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CLS_COLOR, markeredgewidth=1.8, zorder=3)\n    ax.plot(sizes[2], cwm_acc[2], 's', color=CWM_COLOR, markersize=7,\n            markerfacecolor='white', markeredgecolor=CWM_COLOR, markeredgewidth=1.8, zorder=3)\n    ax.plot([sizes[1], sizes[2]], [cls_acc[1], cls_acc[2]], '--', color=CLS_COLOR,\n            linewidth=1.8, zorder=2)\n    ax.plot([sizes[1], sizes[2]], [cwm_acc[1], cwm_acc[2]], '--', color=CWM_COLOR,\n            linewidth=1.8, zorder=2)\n\n# Gap annotations\ngap_4b = abs(cls_acc[0] - cwm_acc[0])\nmid_4b = (cls_acc[0] + cwm_acc[0]) / 2\nax.annotate(f'{gap_4b:.2f} pp', xy=(4, mid_4b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_8b = abs(cls_acc[1] - cwm_acc[1])\nmid_8b = (cls_acc[1] + cwm_acc[1]) / 2\nax.annotate(f'{gap_8b:.2f} pp', xy=(8, mid_8b), fontsize=7.5, fontweight='bold',\n            ha='center', va='center',\n            bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\ngap_14b = abs(cls_acc[2] - cwm_acc[2])\nmid_14b = (cls_acc[2] + cwm_acc[2]) / 2\nif CONFIRMED_14B:\n    ax.annotate(f'{gap_14b:.2f} pp', xy=(14, mid_14b), fontsize=7.5, fontweight='bold',\n                ha='center', va='center',\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\nelse:\n    ax.annotate('$\\\\approx$0 pp', xy=(14, mid_14b), xytext=(13.2, 90.15),\n                fontsize=7.5, fontweight='bold', ha='center', va='center',\n                arrowprops=dict(arrowstyle='->', color='#888888', lw=0.8),\n                bbox=dict(boxstyle='round,pad=0.2', fc='white', ec='#aaaaaa', lw=0.5))\n\nax.set_xlabel('Model Size', fontsize=10)\nax.set_ylabel('Accuracy (%)', fontsize=10)\nax.set_xticks(sizes)\nax.set_xticklabels(['4B', '8B', '14B'], fontsize=9)\nax.set_xlim(2.5, 15.5)\nax.set_ylim(86, 91)\nax.yaxis.set_major_locator(mticker.MultipleLocator(1))\nax.tick_params(axis='y', labelsize=9)\n\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\nax.grid(axis='y', linestyle='--', alpha=0.3, linewidth=0.5)\n\nax.legend(loc='lower right', fontsize=8.5, framealpha=0.9, edgecolor='#cccccc')\n\nfig.tight_layout(pad=0.4)\n\nout_dir = Path('/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper')\nfig.savefig(out_dir / 'figure2_v3.pdf', bbox_inches='tight', dpi=300)\nfig.savefig(out_dir / 'figure2_v3.png', bbox_inches='tight', dpi=300)\nplt.close()\nprint('Done.')\nPYEOF"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T08:06:21.307021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T08:06:21.307147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier/artifacts && python3 plot_figure2_v3.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T08:06:21.307275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T08:06:21.307448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -la /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.pdf /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.png"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T08:06:21.307578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 17983 May 23 16:06 /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.pdf\\\\n-rw-r--r-- 1 root root 81199 May 23 16:06 /home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T08:06:21.307765+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 v3 生成成功。\n\n- **PDF**: `/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.pdf` (18KB)\n- **PNG**: `/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.png` (81KB)\n\n使用的是更新后的 14B 数据：`CONFIRMED_14B=True`, `cls_acc_14b=89.93`, `cwm_acc_14b=89.50`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_14b-figure2-regen_20260523T080432"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-14b-figure2-regen.md"
+}

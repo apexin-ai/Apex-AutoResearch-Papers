@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "generated": "2026-05-16",
+    "test_set_n": 9784,
+    "majority_baseline": 72.96,
+    "data_sources": [
+      "artifacts/_project/data/cls4b_ckpt4600_test_mutation_breakdown.txt",
+      "artifacts/cls8b_s42_ckpt3600_per_mutation_pr.json",
+      "artifacts/mutation_type_accuracy.csv",
+      "artifacts/cwm4b_mutation_breakdown.json",
+      "task_context (CLS 8B seed123 ckpt-3000, CWM 8B interim)"
+    ]
+  },
+  "sample_counts_per_mutation": {
+    "gold": 4633,
+    "operator_swap": 3357,
+    "boundary_removal": 1049,
+    "return_value": 562,
+    "off_by_one": 183
+  },
+  "accuracy_matrix": {
+    "CLS_4B_s42_ckpt4600": {
+      "overall": 83.63,
+      "gold": 98.25,
+      "operator_swap": 78.91,
+      "return_value": 67.97,
+      "off_by_one": 58.47,
+      "boundary_removal": 46.90
+    },
+    "CLS_8B_s42_ckpt3600": {
+      "overall": 84.48,
+      "gold": 96.24,
+      "operator_swap": 81.38,
+      "return_value": 75.44,
+      "off_by_one": 86.89,
+      "boundary_removal": 46.90
+    },
+    "CLS_8B_seed123_ckpt3000": {
+      "overall": 85.60,
+      "gold": 99.57,
+      "operator_swap": 82.60,
+      "return_value": 66.37,
+      "off_by_one": 79.23,
+      "boundary_removal": 44.90
+    },
+    "CWM_4B_s42": {
+      "overall": 58.04,
+      "overall_parseable_only": 42.88,
+      "gold": 23.47,
+      "operator_swap": 63.06,
+      "return_value": 27.01,
+      "off_by_one": 0.0,
+      "boundary_removal": 59.19,
+      "note": "accuracies are parseable-only; overall inflated by unparseable→pass default"
+    },
+    "CWM_8B_s42": {
+      "overall": "TBD",
+      "overall_parseable_only": 38.5,
+      "gold": "TBD",
+      "operator_swap": "TBD",
+      "return_value": "TBD",
+      "off_by_one": "TBD",
+      "boundary_removal": "TBD",
+      "note": "pending eval; interim: unparseable=73.8%, parseable-only=38.5%"
+    }
+  },
+  "precision_recall_cls": {
+    "CLS_4B_s42_ckpt4600": {
+      "gold":              {"prec_pass": 100.00, "rec_pass": 98.25, "f1_pass": 99.12, "prec_fail": null, "rec_fail": null, "f1_fail": null},
+      "operator_swap":     {"prec_pass": 71.61, "rec_pass": 96.40, "f1_pass": 82.18, "prec_fail": 94.34, "rec_fail": 61.12, "f1_fail": 74.18},
+      "boundary_removal":  {"prec_pass": 43.44, "rec_pass": 90.85, "f1_pass": 58.77, "prec_fail": 70.37, "rec_fail": 15.52, "f1_fail": 25.44},
+      "return_value":      {"prec_pass": 59.59, "rec_pass": 83.33, "f1_pass": 69.49, "prec_fail": 81.19, "rec_fail": 56.01, "f1_fail": 66.29},
+      "off_by_one":        {"prec_pass": 66.46, "rec_pass": 82.95, "f1_pass": 73.79, "prec_fail": 0.00, "rec_fail": 0.00, "f1_fail": 0.00}
+    },
+    "CLS_8B_s42_ckpt3600": {
+      "gold":              {"prec_pass": 100.00, "rec_pass": 96.24, "f1_pass": 98.08, "prec_fail": null, "rec_fail": null, "f1_fail": null},
+      "operator_swap":     {"prec_pass": 75.70, "rec_pass": 92.91, "f1_pass": 83.43, "prec_fail": 90.62, "rec_fail": 69.65, "f1_fail": 78.76},
+      "boundary_removal":  {"prec_pass": 42.97, "rec_pass": 83.98, "f1_pass": 56.85, "prec_fail": 64.10, "rec_fail": 20.42, "f1_fail": 30.97},
+      "return_value":      {"prec_pass": 64.36, "rec_pass": 98.37, "f1_pass": 77.81, "prec_fail": 97.85, "rec_fail": 57.59, "f1_fail": 72.51},
+      "off_by_one":        {"prec_pass": 87.23, "rec_pass": 95.35, "f1_pass": 91.11, "prec_fail": 85.71, "rec_fail": 66.67, "f1_fail": 75.00}
+    }
+  },
+  "cwm_parse_breakdown": {
+    "CWM_4B_s42": {
+      "gold":              {"total": 4633, "parseable": 2015, "parse_rate": 43.50, "parseable_acc": 23.47},
+      "operator_swap":     {"total": 3357, "parseable": 1911, "parse_rate": 56.93, "parseable_acc": 63.06},
+      "boundary_removal":  {"total": 1049, "parseable": 321,  "parse_rate": 30.60, "parseable_acc": 59.19},
+      "return_value":      {"total": 562,  "parseable": 274,  "parse_rate": 48.75, "parseable_acc": 27.01},
+      "off_by_one":        {"total": 183,  "parseable": 8,    "parse_rate": 4.37,  "parseable_acc": 0.00}
+    },
+    "CWM_8B_s42": "pending eval"
+  },
+  "scaling_4b_to_8b_s42": {
+    "gold":              {"4b": 98.25, "8b": 96.24, "delta_pp": -2.01},
+    "operator_swap":     {"4b": 78.91, "8b": 81.38, "delta_pp": 2.47},
+    "return_value":      {"4b": 67.97, "8b": 75.44, "delta_pp": 7.47},
+    "off_by_one":        {"4b": 58.47, "8b": 86.89, "delta_pp": 28.42},
+    "boundary_removal":  {"4b": 46.90, "8b": 46.90, "delta_pp": 0.00},
+    "ranking_by_scaling_benefit": [
+      {"mutation": "off_by_one", "delta_pp": 28.42, "note": "largest gain; 4B fails entirely (rec_fail=0%), 8B learns the pattern"},
+      {"mutation": "return_value", "delta_pp": 7.47},
+      {"mutation": "operator_swap", "delta_pp": 2.47},
+      {"mutation": "boundary_removal", "delta_pp": 0.00, "note": "zero scaling benefit; task-intrinsic difficulty"},
+      {"mutation": "gold", "delta_pp": -2.01, "note": "slight regression, likely noise"}
+    ]
+  },
+  "boundary_removal_cross_model": {
+    "CLS_4B_s42":          {"acc": 46.90, "rec_fail": 15.52},
+    "CLS_8B_s42":          {"acc": 46.90, "rec_fail": 20.42},
+    "CLS_8B_seed123":      {"acc": 44.90, "rec_fail": null},
+    "CWM_4B_s42_parseable":{"acc": 59.19, "parse_rate": 30.60},
+    "CWM_8B_s42":          "pending eval",
+    "summary": "CLS accuracy locked at ~45-47% across all model sizes and seeds. rec_fail < 21% everywhere. This consistency across 4 independent configs is strong evidence of task-intrinsic difficulty rather than model limitation."
+  },
+  "predict_bias_comparison": {
+    "CLS_predict_pass_rate": {
+      "gold": {"4b": null, "8b": 96.24},
+      "operator_swap": {"4b": null, "8b": 61.90},
+      "boundary_removal": {"4b": null, "8b": 81.41},
+      "return_value": {"4b": null, "8b": 66.90},
+      "off_by_one": {"4b": null, "8b": 77.05},
+      "note": "CLS has strong predict-pass bias; boundary_removal predict_pass_rate=81.41% despite only ~35% being actually pass"
+    },
+    "CWM_predict_fail_bias": {
+      "operator_swap": {"fail_pred_rate_parseable": "861/1911=45.1%", "actual_fail_rate": "49.6%"},
+      "boundary_removal": {"fail_pred_rate_parseable": "190/321=59.2%", "actual_fail_rate": "81.4%"},
+      "return_value": {"fail_pred_rate_parseable": "77/274=28.1%", "actual_fail_rate": "43.8%"},
+      "note": "CWM parseable outputs skew toward fail predictions (opposite of CLS). But 54-67% unparseable→default pass overwhelms this, creating net pass bias at output level."
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "cls8b-seed123-ckpt3000-val-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:04:43.369Z",
+    "updated_at": "2026-05-14T21:29:31.520Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split val --max_new_tokens 512 --device cuda:0",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "289068",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-val-eval.log",
+      "submitted_at": "2026-05-14T21:04:43.150Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "val split",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B + CLS LoRA seed123",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000",
+      "eval_data": "val split 9335 samples",
+      "wall_clock_seconds": 1488.4,
+      "gpu_hours": 0.41
+    },
+    "hypothesis": "D063 val set checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估",
+    "parent": "repo-level-cls-8b-seed123-conda",
+    "notes": "缺少 --max_seq_length 参数（默认 2048），结果不可比。已 kill 并用 cls8b-seed123-ckpt3000-val8192-eval 替代。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T21:29:31.520Z"
+  },
+  "timestamp": "2026-05-14T21:29:31.713138+00:00",
+  "trigger": "update_registry"
+}

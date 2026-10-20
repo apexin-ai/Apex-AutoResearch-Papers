@@ -1,0 +1,32 @@
+{
+  "exp_id": "cls8b-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-12T09:23:37.452Z",
+    "updated_at": "2026-05-12T09:28:30.895Z",
+    "hypothesis": "验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性",
+    "reproduce": {
+      "finished_at": "2026-05-12T09:26:16.496Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 596.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 297.69 MiB is free. Process 21715 has 13.57 GiB memory in use. Including non-PyTorch memory, this process has 17.49 GiB memory in use. Of the allocated",
+    "completed_at": "2026-05-12T09:26:17.270Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T09:26:18.332729+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T09:28:30.971165+00:00",
+  "trigger": "update_registry"
+}

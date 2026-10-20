@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "049d2327b8d67c5662d1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra submit cwm8b seed456",
+  "task_key": "worker_infra_submit-cwm8b-seed456_20260512T131822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_submit-cwm8b-seed456_20260512T131822_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "d72b276ba4c4b0ff107c707d418225883ca31d66ccbcc7863c37b9e546eb1e10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认：\n\n- **PID**: 47236（子进程，父进程 47225）在 **物理 GPU 2** (`GPU-19c6fdd6...`)，占用 19672 MiB\n- **训练已开始**: `trainable params: 15,335,424 || all params: 8,206,070,784 || trainable%: 0.1869`，共 1434 steps\n- **超参**: 与 cwm8b-seed123 完全一致（`--batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456`），加了 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 防 OOM\n- **4 张 GPU 全部在用**: GPU0 (repo-level-cls), GPU1 (cwm-seed789), GPU2 (cwm8b-seed456), GPU3 (repo-level-cwm)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-submit-cwm8b-seed456.md"
+}

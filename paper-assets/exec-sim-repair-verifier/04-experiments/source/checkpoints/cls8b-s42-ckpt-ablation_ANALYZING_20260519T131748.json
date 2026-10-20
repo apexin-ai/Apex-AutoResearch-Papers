@@ -1,0 +1,37 @@
+{
+  "exp_id": "cls8b-s42-ckpt-ablation",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:03:31.233Z",
+    "updated_at": "2026-05-19T13:17:48.095Z",
+    "hypothesis": "Checkpoint selection bias quantification (N2): comparing epoch 1 (ckpt-2200) / val-selected (ckpt-3600, 84.48%) / final epoch (ckpt-6633) for Qwen3-8B CLS repo-level s42",
+    "spec": {
+      "command": "bash -c \"bash /home/sonny/exec-sim-repair-verifier/run_cls_ablation_chain.sh > /root/autodl-tmp/logs/cls8b_ablation_chain.log 2>&1\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "830917",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt-ablation.log",
+      "submitted_at": "2026-05-19T12:18:34.779Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "ckpt-2200_accuracy": 85.34,
+      "ckpt-2200_f1_macro": 79.04,
+      "note": "ckpt-3600 and ckpt-6633 still evaluating in tmux chain"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:09:55.556Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T13:17:48.542130+00:00",
+  "trigger": "update_registry"
+}

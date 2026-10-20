@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22a0ca92a63f57399a6c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778630539.md",
+  "task_key": "loop_4_1778630539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778630539.md",
+    "occurrence": 1,
+    "bytes": 5232,
+    "sha256": "6e753122575f8c81cbc464767d568e991afd3deea012c77af0c7e7dce16cbd47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T23:42:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-48478 = seetacloud-westd-4x5090 同一台机器**（D041 已确认），不要当两台服务器用，不要在上面启动\"第二组\"extra seed 实验\n- seetacloud cgroup 360GB RAM 限制，**禁止并行训练**——只能同时跑一个训练进程（v3 双进程 OOM SIGKILL 教训）\n- home-1x5090 账户是 **sonny**（非 root），项目路径 `/home/sonny/exec-sim-repair-verifier/`\n- seetacloud 账户是 **root**，模型缓存在 `/root/autodl-tmp/.hf_cache/`，checkpoint 写到 `/root/autodl-tmp/`\n- CWM repo-level 已连续失败 9 次（v1-v9），代码层面的 bug 在 v3 之后已修复，v6/v7 是平台 SIGTERM，v9 是 worker 多传 CLI 参数导致 argparse 语法错误。**下次提交务必用最简命令行，不要加未验证的 CLI flag**\n- repo-level-cls/cwm-seed123 实验已被 D041 撤回（因 westd-48478=seetacloud），**不要提交这两个实验**，除非 Director 重新分配独立服务器\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: 4×RTX 5090, root@seetacloud-westd-4x5090, 项目 `/home/sonny/exec-sim-repair-verifier/`, Python `/root/miniconda3/bin/python3`, conda base env, HF cache `/root/autodl-tmp/.hf_cache/`, 需 `source /etc/network_turbo` 启用代理。当前 **空闲**（CWM v9 已失败，无活跃训练）\n- **home-1x5090**: 1×RTX 5090, sonny@home-1x5090, 项目 `/home/sonny/exec-sim-repair-verifier/`, 62GB RAM, 非容器环境。CLS v4 训练中 PID=2885139\n- 模型：Qwen/Qwen3-4B（两台服务器都已缓存）\n- 数据：`/home/sonny/exec-sim-repair-verifier/data/swebench_full/`（70748 条 repo-level 数据）\n- 活跃进程：CLS v4 PID 2885139 (home cuda:0)，cron 监控中\n- 活跃 Worker：`worker_ssh_cwm-v9-final-submit` (running)——可能是 CWM v9 提交 worker，但 v9 已 DONE/failed，这个 worker 可能已完成或即将回调\n\n### 3. 📊 当前状态\n- **repo-level-cls-v4** (RUNNING, home cuda:0, PID 2885139): CLS v4 训练中，cron 活跃。预估 ~12h。save_steps=200, eval_steps=200。这是 CLS 的第 4 次尝试（前 3 次分别因 sample_weight bug / DataCollator bug / save_strategy 参数问题失败）\n- **repo-level-cwm-v9** (DONE/failed): 仅跑了 ~1.2h 就失败。EXIT_CODE=2，原因是 worker 在 submit 时多传了 `--eval_steps` 参数导致 argparse 报错。代码本身无 bug\n- **repo-level-cwm-v10** (PREPARING): 计划修复 v9 的提交命令后重新在 seetacloud cuda:2 提交。**seetacloud 当前空闲，这个实验应立即推进**\n- **repo-level-cwm-seed123 / cls-seed123** (PREPARING): 被 D041 撤回，状态冻结\n- 等待中：worker `cwm-v9-final-submit` 回调；CLS v4 cron 回调（训练完成时）\n\n### 4. 📋 待办（条件触发式）\n- **立即**：seetacloud 空闲 → 派 Worker 提交 CWM v10（复用 v9 代码，**只修 submit 命令：去掉多余的 --eval_steps flag**，用最简命令 `CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v10/ --no_wandb --save_steps 100`）\n- CLS v4 cron 回调（~12h 后）→ 分析 eval metrics → update_registry → 若 success 则等 CWM v10 完成做配对比较\n- CWM v10 cron 回调（~20h 后）→ 分析 eval metrics → 若 CLS v4 也已完成 → 跑 repo-level eval + paired bootstrap → Go/No-Go (D008)\n- D008 Go/No-Go 结果出来后：F1 diff ≥3pp → 全力 EMNLP Main；1-3pp → 加 seeds（需 Director 分配新 GPU）；<1pp → Kill C1, pivot\n- CLS v4 + CWM v10 都 success → 准备 repo-level eval 脚本 + paired bootstrap（CPU 任务，可提前派 Worker 准备）\n- 若 CWM v10 再次失败 → 这是第 10 次失败，必须向 Director 汇报并讨论是否放弃 CWM repo-level 实验\n\n### 5. 🎯 战略上下文\n- **核心论文故事**：execution simulation 从 generation → classification 的 reformulation。函数级两者等价，repo-level classification 有 complexity-dependent advantage。CLS v4 + CWM v10 是验证 C1 (Complexity-Dependent Advantage) 的决胜实验\n- **时间线紧**：ARR May 25 deadline，~13 天。训练 bottleneck ~20h（CWM），eval+stats ~3h，paper ~1-2d。总计 ~4-5d 如果一切顺利\n- **CWM 连续 9 次失败是最大风险**：代码 bug 在 v3 后已修复，v6/v7 是平台 SIGTERM，v8 是 OOM，v9 是 submit 命令错误。**v10 的成功概率取决于是否用最简命令提交**。如果 v10 仍失败，paper 需 pivot 到 \"efficiency framing\"（same accuracy, lower inference cost）\n- **已完成的强结果**：函数级 5-seed TOST 等价（p=0.007）、8B scaling gap 2.43pp (p=0.007)、Oracle ensemble 90.63%、error complementarity (CLS miss bugs 75.5%, CWM false alarms 83.1%)、zero-shot LLM-as-judge 远逊 fine-tuned\n- **易错点**：不要把 westd-48478 当独立服务器（=seetacloud）；不要在 seetacloud 并行跑两个训练（cgroup OOM）；submit 命令不要加脚本不支持的 CLI flag（v9 教训）\n- **决策链**：D008 (Go/No-Go) 待 repo-level 结果；D041 (撤回 extra seeds on westd-48478)；D043 (CWM v9 根因确认：worker 多传参数)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778630539.md"
+}

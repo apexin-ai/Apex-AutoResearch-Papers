@@ -1,0 +1,15 @@
+{
+  "exp_id": "D133-cwm-s42-e2-seq2048-home",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:53:25.046Z",
+    "updated_at": "2026-05-18T20:53:41.506Z",
+    "notes": "2026-05-18 13:52 UTC: Resumed after stuck kill. PID=4187955 (sonny@tmux:D133-resume). Resumed from 3039/9784 (31.1%). ~8s/sample, 剩余 6745 samples ≈ 15h. ETA ~May 19 05:00 UTC."
+  },
+  "timestamp": "2026-05-18T20:53:41.854468+00:00",
+  "trigger": "update_registry"
+}

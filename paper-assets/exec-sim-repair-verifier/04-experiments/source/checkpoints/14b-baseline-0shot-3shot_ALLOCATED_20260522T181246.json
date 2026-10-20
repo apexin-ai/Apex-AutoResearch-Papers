@@ -1,0 +1,15 @@
+{
+  "exp_id": "14b-baseline-0shot-3shot",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:12:28.307Z",
+    "updated_at": "2026-05-22T18:12:45.998Z",
+    "hypothesis": "Qwen3-14B 0-shot and 3-shot baselines on function-level CLS should be comparable to or below 8B baselines (0-shot ~52%, 3-shot ~60%), establishing that scale alone without fine-tuning does not close the gap to fine-tuned models."
+  },
+  "timestamp": "2026-05-22T18:12:46.453383+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,2106 @@
+{
+  "deepseek-traj-repo-8k-s123": {
+    "exp_id": "deepseek-traj-repo-8k-s123",
+    "status": "DONE",
+    "hypothesis": "TRAJ repo 8k seed 123 replication",
+    "conclusion": "success",
+    "f1_macro": 74.825,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "test_accuracy": 75,
+      "resolved_f1": 76.92,
+      "unresolved_f1": 72.73
+    }
+  },
+  "deepseek-traj-repo-8k": {
+    "exp_id": "deepseek-traj-repo-8k",
+    "status": "DONE",
+    "hypothesis": "TRAJ repo at seq_length=8192 (fair comparison with CLS/CWM repo) reduces unparseable rate and improves accuracy vs 2048 truncated version",
+    "conclusion": "success",
+    "f1_macro": 80.565,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "test_accuracy": 81.25,
+      "resolved_f1": 84.21,
+      "unresolved_f1": 76.92
+    }
+  },
+  "deepseek-traj-repo-s123": {
+    "exp_id": "deepseek-traj-repo-s123",
+    "status": "DONE",
+    "hypothesis": "Repo-level TRAJ verifier seed 123 replication for statistical significance",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "test_accuracy": 0.771,
+      "resolved_recall": 0.962,
+      "unresolved_recall": 0.545
+    }
+  },
+  "deepseek-traj-repo": {
+    "exp_id": "deepseek-traj-repo",
+    "status": "DONE",
+    "hypothesis": "Repo-level TRAJ (trajectory) verifier performs worse than per-test CLS/CWM, consistent with func-level finding that CLS≥CWM≥TRAJ",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "test_accuracy": 0.771,
+      "resolved_recall": 0.962,
+      "unresolved_recall": 0.545
+    }
+  },
+  "deepseek-traj-func-v2-s123": {
+    "exp_id": "deepseek-traj-func-v2-s123",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "test_accuracy": 0.8508
+    }
+  },
+  "deepseek-traj-func-v2": {
+    "exp_id": "deepseek-traj-func-v2",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "test_accuracy": 0.8324
+    }
+  },
+  "deepseek-traj-func": {
+    "exp_id": "deepseek-traj-func",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "deepseek-cls-func-s123": {
+    "exp_id": "deepseek-cls-func-s123",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 86.77,
+    "f1_macro_source": "direct:test_f1_macro",
+    "metrics": {
+      "test_accuracy": 86.77,
+      "test_f1_macro": 86.77,
+      "test_precision_pass": 88.56,
+      "test_precision_fail": 84.99,
+      "test_recall_pass": 85.48,
+      "test_recall_fail": 88.16
+    }
+  },
+  "re-repair-phase0": {
+    "exp_id": "re-repair-phase0",
+    "status": "DONE",
+    "hypothesis": "Per-test diagnostic information (from CLS verifier) improves LLM patch generation quality. Phase 0 uses oracle labels on 10 instances.",
+    "conclusion": "negative",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "deepseek-cwm-func-s123": {
+    "exp_id": "deepseek-cwm-func-s123",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 87.88,
+    "f1_macro_source": "direct:test_f1_macro",
+    "metrics": {
+      "test_accuracy": 87.88,
+      "test_f1_macro": 87.88,
+      "test_precision_pass": 92.61,
+      "test_precision_fail": 83.78,
+      "test_recall_pass": 83.23,
+      "test_recall_fail": 92.87
+    }
+  },
+  "deepseek-cwm-func": {
+    "exp_id": "deepseek-cwm-func",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 85.73,
+    "f1_macro_source": "direct:test_f1_macro",
+    "metrics": {
+      "test_accuracy": 85.77,
+      "test_f1_macro": 85.73,
+      "test_precision_pass": 93.18,
+      "test_precision_fail": 80.07,
+      "test_recall_pass": 78.22,
+      "test_recall_fail": 93.86
+    }
+  },
+  "deepseek-cls-func": {
+    "exp_id": "deepseek-cls-func",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 86.92,
+    "f1_macro_source": "direct:test_f1_macro",
+    "metrics": {
+      "test_accuracy": 86.93,
+      "test_f1_macro": 86.92,
+      "test_precision_pass": 87.41,
+      "test_precision_fail": 86.42,
+      "test_recall_pass": 87.32,
+      "test_recall_fail": 86.51
+    }
+  },
+  "cwm8b-ckpt400-test-eval-v3": {
+    "exp_id": "cwm8b-ckpt400-test-eval-v3",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm8b-ckpt400-test-eval-shard3": {
+    "exp_id": "cwm8b-ckpt400-test-eval-shard3",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm8b-ckpt400-test-eval-shard2": {
+    "exp_id": "cwm8b-ckpt400-test-eval-shard2",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm8b-ckpt400-test-eval-shard4": {
+    "exp_id": "cwm8b-ckpt400-test-eval-shard4",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm4b-s42-mutation-breakdown": {
+    "exp_id": "cwm4b-s42-mutation-breakdown",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "overall_accuracy": 58.04,
+      "parseable_only_accuracy": 42.9
+    }
+  },
+  "cls4b-ckpt4600-test-mutation-pr": {
+    "exp_id": "cls4b-ckpt4600-test-mutation-pr",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "accuracy": 83.63
+    }
+  },
+  "cls8b-seed123-ckpt3000-mutation": {
+    "exp_id": "cls8b-seed123-ckpt3000-mutation",
+    "status": "DONE",
+    "hypothesis": "CLS 8B seed123 ckpt-3000 test mutation breakdown — 跨 seed 验证 boundary_removal failure mode",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "accuracy": 85.6
+    }
+  },
+  "cls8b-s42-resume-ckpt3600-test-v2": {
+    "exp_id": "cls8b-s42-resume-ckpt3600-test-v2",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 78.17,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.48,
+      "f1_macro": 78.17,
+      "pass_recall": 94.8,
+      "fail_recall": 56.8
+    }
+  },
+  "cls8b-s42-ckpt1000-test-mutation": {
+    "exp_id": "cls8b-s42-ckpt1000-test-mutation",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-ckpt3600-mutation": {
+    "exp_id": "cls8b-s42-resume-ckpt3600-mutation",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "overall_accuracy": 84.4849,
+      "gold_accuracy": 96.2443
+    }
+  },
+  "cls8b-s42-resume-ckpt3600-test": {
+    "exp_id": "cls8b-s42-resume-ckpt3600-test",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-ckpt1000-test-mutation": {
+    "exp_id": "cls8b-s42-resume-ckpt1000-test-mutation",
+    "status": "DONE",
+    "hypothesis": "CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm8b-ckpt400-test-eval-v2": {
+    "exp_id": "cwm8b-ckpt400-test-eval-v2",
+    "status": "DONE",
+    "hypothesis": "CWM 8B ckpt-400 test eval resume (v1 在 1544/9784 被 SIGKILL, 实际已完成 5280)",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-8b-conda-v6": {
+    "exp_id": "repo-level-cwm-8b-conda-v6",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-8b-conda-v5": {
+    "exp_id": "repo-level-cwm-8b-conda-v5",
+    "status": "DONE",
+    "hypothesis": "CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps",
+    "conclusion": "negative",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt3600-seq2048-ablation": {
+    "exp_id": "cls8b-s42-ckpt3600-seq2048-ablation",
+    "status": "DONE",
+    "hypothesis": "CLS 8B ckpt-3600 @seq2048 ablation: 测试新 val-best 在短 context 下表现，与 ckpt-1000 @2048 (82.83%) 对比",
+    "conclusion": "success",
+    "f1_macro": 76.8,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.04,
+      "f1_macro": 76.8
+    }
+  },
+  "cwm8b-ckpt400-test-eval": {
+    "exp_id": "cwm8b-ckpt400-test-eval",
+    "status": "DONE",
+    "hypothesis": "CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-val-sweep-gpu1": {
+    "exp_id": "cls8b-s42-resume-val-sweep-gpu1",
+    "status": "DONE",
+    "hypothesis": "Parallel val sweep GPU 1 (ckpt-4000→5800, 10 checkpoints), complementing GPU 0 sweep (1800→3800) to halve total wall time from ~9h to ~4.5h",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-val-sweep-seq8192-v2": {
+    "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2",
+    "status": "DONE",
+    "hypothesis": "s42 resume val sweep (seq8192 bs=1): 21 checkpoints (1800-5800), 与 baseline 一致的 seq_length",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-extended-val-sweep": {
+    "exp_id": "cls8b-s42-extended-val-sweep",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-ckpt3000-test-eval": {
+    "exp_id": "cls8b-ckpt3000-test-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-ckpt3000-test-v2": {
+    "exp_id": "cls8b-ckpt3000-test-v2",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b-s42-ckpt200-val": {
+    "exp_id": "repo-level-cls-8b-s42-ckpt200-val",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b-s42-resume": {
+    "exp_id": "repo-level-cls-8b-s42-resume",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-8b-conda-v4": {
+    "exp_id": "repo-level-cwm-8b-conda-v4",
+    "status": "DONE",
+    "hypothesis": "8B CWM 训练（从 checkpoint-1600 resume，第四次追踪）。PID 266816 在 cuda:2 上运行中，step 1700/6633。与 v2/v3 同实验但修正了脚本和 resume 路径。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-val-sweep-seq4096": {
+    "exp_id": "cls8b-s42-resume-val-sweep-seq4096",
+    "status": "DONE",
+    "hypothesis": "s42 resume val sweep (seq4096): 21 checkpoints (1800-5800), bs=1",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-val-sweep-seq8192": {
+    "exp_id": "cls8b-s42-resume-val-sweep-seq8192",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-resume-val-sweep": {
+    "exp_id": "cls8b-s42-resume-val-sweep",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "s42-extended-val-sweep-v2": {
+    "exp_id": "s42-extended-val-sweep-v2",
+    "status": "DONE",
+    "hypothesis": "s42 resume extended val sweep: 18 checkpoints (1800-5200 步长200), 寻找 s42-resume 训练的最优 val checkpoint。前 8 个 ckpt (200-1600) 已在之前 sweep 完成 (peak=ckpt-1000 88.23%)，本轮覆盖后半段。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-rank32-alpha64-ablation": {
+    "exp_id": "cwm-rank32-alpha64-ablation",
+    "status": "DONE",
+    "hypothesis": "LoRA rank ablation 修正：CWM 4B rank=32, alpha=64 (alpha/rank=2，匹配 baseline ratio)。Reviewer 指出 cwm-rank32-ablation-v2 的 alpha=32 导致 effective scaling factor 减半（ratio=1 vs baseline ratio=2），构成混淆变量。本实验修正 alpha 使 ratio 一致，验证 rank=32 在公平 scaling 下是否仍与 rank=16 无差异。",
+    "conclusion": "success",
+    "f1_macro": 87.03,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.04,
+      "f1_macro": 87.03,
+      "pass_f1": 86.79,
+      "fail_f1": 87.27,
+      "pass_precision": 91.8,
+      "pass_recall": 82.3,
+      "fail_precision": 82.9,
+      "fail_recall": 92.1
+    }
+  },
+  "s42-extended-val-sweep": {
+    "exp_id": "s42-extended-val-sweep",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-rank64-ablation": {
+    "exp_id": "cwm-rank64-ablation",
+    "status": "DONE",
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=64 alpha=128 vs baseline rank=16 alpha=32。进一步验证 rank scaling 对 CWM 能力的影响。rank=32 结果为 87.0% (vs baseline 87.51%, -0.51pp)，rank=64 alpha=128 测试更高 rank 是否改变趋势。其余配置一致（lr=2e-4, epochs=3, seed=42, data=function-level）。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-4b-rank64-ablation": {
+    "exp_id": "cwm-4b-rank64-ablation",
+    "status": "DONE",
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=64 (alpha=128) vs rank=16 baseline (87.19%) vs rank=32 (87.0%)。构建 rank16→32→64 全平证据链，证明 CWM capacity 非瓶颈。其余配置完全一致（lr=2e-4, epochs=3, seed=42, data=function-level）。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-seed123-ckpt6200-test-eval-v2": {
+    "exp_id": "cls8b-seed123-ckpt6200-test-eval-v2",
+    "status": "DONE",
+    "hypothesis": "seed123 test curve 补点: ckpt-6200 test@full(n=9784)。修复 v1 的 --max_samples 8192 bug（只评了 8192/9784），改为全量评估。",
+    "conclusion": "success",
+    "f1_macro": 77.01,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.7,
+      "f1_macro": 77.01,
+      "f1_pass": 90.31,
+      "f1_fail": 63.71,
+      "precision_pass": 83.96,
+      "precision_fail": 88.84,
+      "recall_pass": 97.69,
+      "recall_fail": 49.66
+    }
+  },
+  "cwm-rank32-ablation-v2": {
+    "exp_id": "cwm-rank32-ablation-v2",
+    "status": "DONE",
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=32 vs baseline rank=16. 回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。PID 368823 在 GPU 0 上正常训练，step 324/1434 (22%)。注意：训练命令未串联 eval，完成后需单独触发 eval。",
+    "conclusion": "success",
+    "f1_macro": 87.0,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 87,
+      "pass_f1": 86.9,
+      "fail_f1": 87.1
+    }
+  },
+  "cwm-rank32-ablation": {
+    "exp_id": "cwm-rank32-ablation",
+    "status": "DONE",
+    "hypothesis": "LoRA rank=32 ablation (vs baseline rank=16) for CWM 4B function-level. Config: lr=2e-4, epochs=3, bs=2, ga=16, lora_rank=32, max_seq=2048, seed=42. NOTE: PID 368823 still RUNNING on GPU 0 as of 2026-05-15 20:49 (step 324/1434, ETA ~60min). Registry status 'killed' was incorrect.",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-4b-rank32-ablation": {
+    "exp_id": "cwm-4b-rank32-ablation",
+    "status": "DONE",
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=32 vs 原始 rank=16。回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-v5-ckpt4000-test5120-eval": {
+    "exp_id": "cls4b-v5-ckpt4000-test5120-eval",
+    "status": "DONE",
+    "hypothesis": "4B s42 test sweep 补点: ckpt-4000 test@5120。Supplementary val+test 双线图。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-seed123-ckpt200-test-eval": {
+    "exp_id": "cls8b-seed123-ckpt200-test-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 test curve 最后补点: ckpt-200 test@full(n=9784)。完成后 seed123 test curve 6/6 全齐。",
+    "conclusion": "success",
+    "f1_macro": 70.18,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 72.55,
+      "f1_macro": 70.18,
+      "pass_f1": 78.58,
+      "fail_f1": 61.78,
+      "pass_precision": 91.21,
+      "pass_recall": 69.02,
+      "fail_precision": 49.54,
+      "fail_recall": 82.05
+    }
+  },
+  "cls8b-s42-ckpt1000-test-seq2048-ablation": {
+    "exp_id": "cls8b-s42-ckpt1000-test-seq2048-ablation",
+    "status": "DONE",
+    "hypothesis": "Seq_length confound ablation: CLS 8B val-best (ckpt-1000) eval@max_seq_length=2048（与 CWM 训练配置对齐）。对比 CLS@8192=83.52%。如 CLS@2048 仍大幅超越 CWM，排除 seq_length confound。Reviewer critical 直接回应。",
+    "conclusion": "success",
+    "f1_macro": 76.88,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 82.83,
+      "f1_macro": 76.88,
+      "pass_f1": 88.6,
+      "fail_f1": 65.2,
+      "pass_precision": 85.9,
+      "pass_recall": 91.5,
+      "fail_precision": 72.2,
+      "fail_recall": 59.3
+    }
+  },
+  "cls8b-seed123-ckpt6633-test-eval": {
+    "exp_id": "cls8b-seed123-ckpt6633-test-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 test curve 补点: ckpt-6633 (final) test@full(n=9784)。Supplementary val+test 双线图。",
+    "conclusion": "success",
+    "f1_macro": 77.56,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.89,
+      "f1_macro": 77.56,
+      "f1_pass": 90.4,
+      "f1_fail": 64.7,
+      "precision_pass": 84.3,
+      "precision_fail": 87.8,
+      "recall_pass": 97.4,
+      "recall_fail": 51.2
+    }
+  },
+  "cls8b-seed123-ckpt6600-test-eval": {
+    "exp_id": "cls8b-seed123-ckpt6600-test-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 test curve 补点: ckpt-6600 test@full(n=9784)。Supplementary val+test 双线图。",
+    "conclusion": "success",
+    "f1_macro": 77.58,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.9,
+      "f1_macro": 77.58,
+      "pass_f1": 90.4,
+      "fail_f1": 64.8,
+      "pass_precision": 84.3,
+      "pass_recall": 97.4,
+      "fail_precision": 87.8,
+      "fail_recall": 51.3
+    }
+  },
+  "cls8b-s42-ckpt200-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt200-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "s42 test curve 补点: ckpt-200 test@full(n=9784)。补齐与 val curve 对齐的最后一个缺失点。",
+    "conclusion": "success",
+    "f1_macro": 68.18,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 70.07,
+      "f1_macro": 68.18,
+      "pass_f1": 75.9,
+      "fail_f1": 60.4,
+      "pass_precision": 91.8,
+      "pass_recall": 64.7,
+      "fail_precision": 47,
+      "fail_recall": 84.5
+    }
+  },
+  "cls4b-v5-ckpt600-test5120-eval": {
+    "exp_id": "cls4b-v5-ckpt600-test5120-eval",
+    "status": "DONE",
+    "hypothesis": "4B s42 test sweep 补点: ckpt-600 test@5120。与 val curve 对齐，supplementary val+test 双线图。",
+    "conclusion": "success",
+    "f1_macro": 74.74,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 77.74,
+      "f1_macro": 74.74,
+      "f1_pass": 83.44,
+      "f1_fail": 66.03,
+      "precision_fail": 56.21,
+      "recall_fail": 80.01
+    }
+  },
+  "cls8b-seed123-ckpt6400-test-eval-v2": {
+    "exp_id": "cls8b-seed123-ckpt6400-test-eval-v2",
+    "status": "DONE",
+    "hypothesis": "seed123 ckpt-6400 test eval（完整 n=9784，无 --max_samples），补充 test curve 数据点",
+    "conclusion": "success",
+    "f1_macro": 77.91,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 85.08,
+      "f1_macro": 77.91,
+      "f1_pass": 90.49,
+      "f1_fail": 65.32,
+      "precision_pass": 84.54,
+      "precision_fail": 87.92,
+      "recall_pass": 97.35,
+      "recall_fail": 51.97
+    }
+  },
+  "cls8b-seed123-ckpt6400-test8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6400-test8192-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-seed123-ckpt6200-test8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6200-test8192-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt200-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt200-val8192-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-seed123-ckpt800-test5120-eval-v2": {
+    "exp_id": "cls4b-seed123-ckpt800-test5120-eval-v2",
+    "status": "DONE",
+    "hypothesis": "CLS 4B seed123 val-best (ckpt-800) test@5120。v1 因 --max_new_tokens 参数不兼容失败，v2 去掉该参数。",
+    "conclusion": "negative",
+    "f1_macro": 67.03,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 75.33,
+      "f1_macro": 67.03,
+      "f1_pass": 83.6,
+      "f1_fail": 50.5,
+      "precision_pass": 81.3,
+      "precision_fail": 55.2,
+      "recall_pass": 86,
+      "recall_fail": 46.5
+    }
+  },
+  "repo-level-cls-8b-seed123-conda-v3": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v3",
+    "status": "DONE",
+    "hypothesis": "8B CLS seed123 训练重启（第三次提交，修正 resume 路径指向 checkpoint-3000）。与 v1/v2 同配置，num_workers=0。验证 8B CLS multi-seed robustness。",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-seed123-ckpt800-test5120-eval": {
+    "exp_id": "cls4b-seed123-ckpt800-test5120-eval",
+    "status": "DONE",
+    "hypothesis": "CLS 4B seed123 val-best (ckpt-800, val=87.92%) test@5120。补充 4B multi-seed repo-level test 数据。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-seed123-ckpt6633-val8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6633-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 val sweep: ckpt-6633 (最后一个 checkpoint) val@8192。确定 seed123 val-best。",
+    "conclusion": "success",
+    "f1_macro": 78.79,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.1,
+      "f1_macro": 78.79,
+      "f1_pass": 92.07,
+      "f1_fail": 65.52,
+      "precision_pass": 86.31,
+      "precision_fail": 92.26,
+      "recall_pass": 98.64,
+      "recall_fail": 50.8
+    }
+  },
+  "cls8b-seed123-ckpt3000-test8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt3000-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 val-best (ckpt-3000, val=88.69%) 的 test@8192。决定 seed123 multi-seed headline number。",
+    "conclusion": "success",
+    "f1_macro": 78.38,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 85.6,
+      "f1_macro": 78.38,
+      "f1_pass": 90.87,
+      "f1_fail": 65.89,
+      "precision_pass": 84.52,
+      "precision_fail": 91.65,
+      "recall_pass": 98.26,
+      "recall_fail": 51.44
+    }
+  },
+  "cls8b-seed123-ckpt3000-test8192-eval-v2": {
+    "exp_id": "cls8b-seed123-ckpt3000-test8192-eval-v2",
+    "status": "DONE",
+    "hypothesis": "seed123 ckpt-3000 (backup, val=88.69%) test@8192。v1 误标 RUNNING 未实际启动，此为重跑。等 cuda:3 ckpt-6400 val 完成后启动。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-v5-ckpt4400-test5120-eval": {
+    "exp_id": "cls4b-v5-ckpt4400-test5120-eval",
+    "status": "DONE",
+    "hypothesis": "4B test sweep 补点: ckpt-4400 test@5120。Supplementary val+test 双线图数据。",
+    "conclusion": "success",
+    "f1_macro": 74.44,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.24,
+      "f1_macro": 74.44,
+      "f1_pass": 89.44,
+      "f1_fail": 59.45,
+      "precision_pass": 82.78,
+      "precision_fail": 85.98,
+      "recall_pass": 97.25,
+      "recall_fail": 45.43
+    }
+  },
+  "cls8b-seed123-ckpt6400-val8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6400-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 val sweep: ckpt-6400 val@8192",
+    "conclusion": "success",
+    "f1_macro": 79.66,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.48,
+      "f1_macro": 79.66,
+      "f1_pass": 92.27,
+      "f1_fail": 67.04,
+      "precision_pass": 86.78,
+      "precision_fail": 91.81,
+      "recall_pass": 98.5,
+      "recall_fail": 52.8
+    }
+  },
+  "cls8b-seed123-ckpt6200-val8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6200-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 val sweep: ckpt-6200 val@8192（与 cuda:3 ckpt-6400 并行加速）",
+    "conclusion": "success",
+    "f1_macro": 79.26,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.52,
+      "f1_macro": 79.26,
+      "f1_pass": 92.35,
+      "f1_fail": 66.16,
+      "precision_pass": 86.33,
+      "precision_fail": 95.63,
+      "recall_pass": 99.27,
+      "recall_fail": 50.58
+    }
+  },
+  "cls4b-v5-val-sweep-ckpt4600": {
+    "exp_id": "cls4b-v5-val-sweep-ckpt4600",
+    "status": "DONE",
+    "hypothesis": "4B v5 val sweep 最后一个数据点: ckpt-4600 val@5120。确认 val-best 是否在 ckpt-4400(89.96%) 之后继续改善。",
+    "conclusion": "success",
+    "f1_macro": 85.04,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 90.07,
+      "f1_macro": 85.04,
+      "f1_pass": 93.71,
+      "f1_fail": 76.37,
+      "precision_pass": 90.16,
+      "precision_fail": 89.65,
+      "recall_pass": 97.56,
+      "recall_fail": 66.52
+    }
+  },
+  "cls8b-seed123-ckpt6600-val8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt6600-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "seed123 val sweep: ckpt-6600 val@8192。确定 seed123 val-best。",
+    "conclusion": "success",
+    "f1_macro": 79.02,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.23,
+      "f1_macro": 79.02,
+      "f1_pass": 92.14,
+      "f1_fail": 65.9,
+      "precision_pass": 86.4,
+      "precision_fail": 92.6,
+      "recall_pass": 98.7,
+      "recall_fail": 51.15
+    }
+  },
+  "cls8b-s42-ckpt1600-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1600-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "8B s42 test sweep 最后数据点: ckpt-1600 test@8192。完成 7-point test curve。",
+    "conclusion": "success",
+    "f1_macro": 78.94,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.99,
+      "f1_macro": 78.94,
+      "f1_pass": 90.22,
+      "f1_fail": 67.65,
+      "precision_pass": 85.93,
+      "precision_fail": 81.06,
+      "recall_pass": 94.97,
+      "recall_fail": 58.05
+    }
+  },
+  "cls4b-v5-ckpt4600-test-eval": {
+    "exp_id": "cls4b-v5-ckpt4600-test-eval",
+    "status": "DONE",
+    "hypothesis": "4B v5 val-best (ckpt-4600, val=90.07%) 的 test eval。D088 要求 val-best 必须有对应 test 数字。",
+    "conclusion": "success",
+    "f1_macro": 75.63,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.63,
+      "f1_macro": 75.63,
+      "f1_pass": 89.59,
+      "f1_fail": 61.67,
+      "precision_pass": 83.55,
+      "precision_fail": 84.03,
+      "recall_pass": 96.57,
+      "recall_fail": 48.72
+    }
+  },
+  "cls8b-s42-ckpt1400-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1400-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "D089: s42 ckpt-1400 test@8192。Val+test 双线 sweep，用于论文 supplementary。",
+    "conclusion": "success",
+    "f1_macro": 78.9,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 85.47,
+      "f1_macro": 78.9,
+      "f1_pass": 90.67,
+      "f1_fail": 67.13,
+      "precision_pass": 85.27,
+      "precision_fail": 86.43,
+      "recall_pass": 96.81,
+      "recall_fail": 54.88
+    }
+  },
+  "cls8b-s42-ckpt1200-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1200-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "补充 test curve 第五个数据点: 8B CLS s42 ckpt-1200 test@8192。与 ckpt-800 一起构成完整 5-point test curve 用于 supplementary",
+    "conclusion": "success",
+    "f1_macro": 77.47,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.84,
+      "f1_macro": 77.47,
+      "f1_pass": 89.45,
+      "f1_fail": 65.49,
+      "precision_pass": 85.4,
+      "precision_fail": 77.52,
+      "recall_pass": 93.91,
+      "recall_fail": 56.69
+    }
+  },
+  "cls8b-s42-ckpt800-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt800-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "补充 test curve 第四个数据点: 8B CLS s42 ckpt-800 test@8192。已有 400(84.79%)/600(79.05%)/1000(83.52%)，补 800 使 curve 更完整",
+    "conclusion": "success",
+    "f1_macro": 78.97,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.53,
+      "f1_macro": 78.97,
+      "f1_pass": 88.77,
+      "f1_fail": 69.17,
+      "precision_pass": 88.36,
+      "precision_fail": 70.07,
+      "recall_pass": 89.18,
+      "recall_fail": 68.29
+    }
+  },
+  "cls4b-v5-val-sweep-ckpt4200": {
+    "exp_id": "cls4b-v5-val-sweep-ckpt4200",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 83.07,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 89.06,
+      "f1_macro": 83.07,
+      "f1_pass": 93.1,
+      "f1_fail": 73,
+      "precision_pass": 88.8,
+      "precision_fail": 90.3,
+      "recall_pass": 97.9,
+      "recall_fail": 61.3
+    }
+  },
+  "cls8b-s42-ckpt1600-val8192-v2": {
+    "exp_id": "cls8b-s42-ckpt1600-val8192-v2",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 78.94,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 86.75,
+      "f1_macro": 78.94,
+      "f1_pass": 91.76,
+      "f1_fail": 66.12,
+      "precision_pass": 86.83,
+      "precision_fail": 86.28,
+      "recall_pass": 97.29,
+      "recall_fail": 53.6
+    }
+  },
+  "cls8b-s42-ckpt1600-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1600-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1600 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt1400-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "conclusion": "success",
+    "f1_macro": 77.15,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 85.97,
+      "f1_macro": 77.15,
+      "f1_pass": 91.34,
+      "f1_fail": 62.95,
+      "precision_pass": 85.85,
+      "precision_fail": 86.68,
+      "recall_pass": 97.59,
+      "recall_fail": 49.42
+    }
+  },
+  "cls4b-v5-val-sweep-ckpt4400-v3": {
+    "exp_id": "cls4b-v5-val-sweep-ckpt4400-v3",
+    "status": "DONE",
+    "hypothesis": "v1/v2 因 RTX 5090 间歇性 CUDA hang 卡死（详见 4b_eval_hang_analysis.md）。v3 未修改 watchdog，验证是否为低概率事件。SIGKILL + resume 修复待实施。",
+    "conclusion": "success",
+    "f1_macro": 84.94,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 89.96,
+      "f1_macro": 84.94,
+      "f1_pass": 93.64,
+      "f1_fail": 76.25,
+      "precision_pass": 90.21,
+      "precision_fail": 88.84,
+      "recall_pass": 97.33,
+      "recall_fail": 66.79
+    }
+  },
+  "cls8b-s42-ckpt1200-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1200-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt1200-val8192-v3": {
+    "exp_id": "cls8b-s42-ckpt1200-val8192-v3",
+    "status": "DONE",
+    "hypothesis": "D089 val sweep: ckpt-1200 val@8192。PID 316940 实际在跑（v1 OOM, v2 GPU冲突, 此条目追踪实际运行进程）。",
+    "conclusion": "success",
+    "f1_macro": 81.25,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.76,
+      "f1_macro": 81.25,
+      "f1_pass": 92.3,
+      "f1_fail": 70.2,
+      "precision_pass": 88.3,
+      "precision_fail": 85,
+      "recall_pass": 96.7,
+      "recall_fail": 59.8
+    }
+  },
+  "cls8b-s42-ckpt1200-val8192-v2": {
+    "exp_id": "cls8b-s42-ckpt1200-val8192-v2",
+    "status": "DONE",
+    "hypothesis": "D088/D089 val+test pipeline: s42 ckpt-1200 val@8192 (v1 OOM, 重提交)。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt1000-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1000-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "ckpt-1000 成为新 val-best (88.23% > 85%), 跑 test@8192 获取最终论文数字",
+    "conclusion": "success",
+    "f1_macro": 77.5,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 83.52,
+      "f1_macro": 77.5,
+      "f1_pass": 89.14,
+      "f1_fail": 65.85,
+      "precision_pass": 85.84,
+      "precision_fail": 74.93,
+      "recall_pass": 92.72,
+      "recall_fail": 58.73
+    }
+  },
+  "cls8b-s42-ckpt1200-val8192": {
+    "exp_id": "cls8b-s42-ckpt1200-val8192",
+    "status": "DONE",
+    "hypothesis": "D088 val sweep: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 val curve 数据点。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-v5-val-sweep-ckpt4400": {
+    "exp_id": "cls4b-v5-val-sweep-ckpt4400",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-v5-ckpt4400-val5120-eval-v2": {
+    "exp_id": "cls4b-v5-ckpt4400-val5120-eval-v2",
+    "status": "DONE",
+    "hypothesis": "D088 val sweep: 4B v5 ckpt-4400 val@5120 重跑（v1 因 Qwen3 thinking mode 卡死被 kill）。脚本已内置 enable_thinking=False + 180s watchdog。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls4b-v5-ckpt4400-val5120-eval": {
+    "exp_id": "cls4b-v5-ckpt4400-val5120-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {
+      "f1_macro_partial_70pct": 84.61
+    }
+  },
+  "cls8b-s42-ckpt1000-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt1000-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1000 val@8192 (resume 训练产出)。如 > 85.00% 需补跑 test@8192",
+    "conclusion": "success",
+    "f1_macro": 82.72,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 88.23,
+      "f1_macro": 82.72,
+      "f1_pass": 92.5,
+      "f1_fail": 73,
+      "precision_pass": 89.8,
+      "precision_fail": 81.8,
+      "recall_pass": 95.3,
+      "recall_fail": 65.8
+    }
+  },
+  "cls8b-s42-ckpt800-val8192-eval": {
+    "exp_id": "cls8b-s42-ckpt800-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D088 val pipeline: s42 ckpt-800 val@8192 (resume 训练产出)。如 > 85.00% (当前 val-best) 需补跑 test@8192",
+    "conclusion": "success",
+    "f1_macro": 79.2,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.5,
+      "f1_macro": 79.2
+    }
+  },
+  "cls4b-v5-ckpt4000-val5120-eval": {
+    "exp_id": "cls4b-v5-ckpt4000-val5120-eval",
+    "status": "DONE",
+    "hypothesis": "4B v5 ckpt-4000 val@5120 eval (supplementary data, D088)",
+    "conclusion": "success",
+    "f1_macro": 84.25,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 89.84,
+      "f1_macro": 84.25,
+      "f1_pass": 93.64,
+      "f1_fail": 74.85,
+      "precision_pass": 89.24,
+      "precision_fail": 92.95,
+      "recall_pass": 98.49,
+      "recall_fail": 62.66
+    }
+  },
+  "cls4b-v5-ckpt600-val5120-eval": {
+    "exp_id": "cls4b-v5-ckpt600-val5120-eval",
+    "status": "DONE",
+    "hypothesis": "Evaluate repo-level classification v5 checkpoint-600 on val split with max_seq_length=5120",
+    "conclusion": "success",
+    "f1_macro": 79.81,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 82.82,
+      "f1_macro": 79.81,
+      "f1_pass": 87.6,
+      "f1_fail": 72.03,
+      "precision_fail": 59.3,
+      "recall_fail": 91.7
+    }
+  },
+  "cls4b-v5-val5120-sweep-home": {
+    "exp_id": "cls4b-v5-val5120-sweep-home",
+    "status": "DONE",
+    "hypothesis": "D063 val sweep: 4B CLS v5 (s42) val@5120 sweep (ckpt-600/4000/4200/4400/4600)",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b-conda": {
+    "exp_id": "repo-level-cls-8b-conda",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt200-val8192-eval-v2": {
+    "exp_id": "cls8b-s42-ckpt200-val8192-eval-v2",
+    "status": "DONE",
+    "hypothesis": "D063 val sweep: 8B CLS s42 ckpt-200 val@8192，补全 val sweep 数据（之前 PID 死了标记 failed）",
+    "conclusion": "success",
+    "f1_macro": 61.17,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 63.52,
+      "f1_macro": 61.17,
+      "f1_pass": 70.7,
+      "f1_fail": 51.6
+    }
+  },
+  "cls4b-seed123-ckpt800-val5120-eval": {
+    "exp_id": "cls4b-seed123-ckpt800-val5120-eval",
+    "status": "DONE",
+    "hypothesis": "D063 val@5120: 4B CLS seed123 ckpt-800 在 val set 上评估",
+    "conclusion": "success",
+    "f1_macro": 81.95,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 87.92,
+      "f1_macro": 81.95,
+      "f1_pass": 92.33,
+      "f1_fail": 71.57
+    }
+  },
+  "repo-level-cls-seed123-home": {
+    "exp_id": "repo-level-cls-seed123-home",
+    "status": "DONE",
+    "hypothesis": "D053: CLS seed123 在 home 重跑（与 v5 同环境：transformers 4.57.6 + 相同数据）。验证 repo-level CLS multi-seed robustness，与 CWM seed123 配对。原 westd 训练因环境差异 (transformers 5.8.0) 无效。",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cls8b-s42-ckpt600-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt600-test8192-eval",
+    "status": "DONE",
+    "hypothesis": "CRITICAL D063: 8B CLS s42 ckpt-600 test@8192，消除 max_seq_length 混杂变量，与 ckpt-400 test@8192 比较",
+    "conclusion": "success",
+    "f1_macro": 75.12,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 79.05,
+      "f1_macro": 75.12,
+      "f1_pass": 85,
+      "f1_fail": 65.24,
+      "precision_pass": 88.95,
+      "precision_fail": 59.16,
+      "recall_pass": 81.4,
+      "recall_fail": 72.71
+    }
+  },
+  "cls8b-seed123-ckpt3000-val8192-eval": {
+    "exp_id": "cls8b-seed123-ckpt3000-val8192-eval",
+    "status": "DONE",
+    "hypothesis": "D063 val@8192 checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估。修复缺失 max_seq_length 问题。",
+    "conclusion": "success",
+    "f1_macro": 81.73,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 88.69,
+      "f1_macro": 81.73,
+      "f1_pass": 93,
+      "f1_fail": 70.5,
+      "precision_pass": 87.6,
+      "precision_fail": 95.2,
+      "recall_pass": 99.1,
+      "recall_fail": 55.9
+    }
+  },
+  "cls8b-s42-ckpt400-test8192-eval": {
+    "exp_id": "cls8b-s42-ckpt400-test8192-eval",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 81.18,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 84.79,
+      "f1_macro": 81.18,
+      "f1_pass": 89.43,
+      "f1_fail": 72.93,
+      "precision_pass": 90.74,
+      "precision_fail": 70.32,
+      "recall_pass": 88.15,
+      "recall_fail": 75.74
+    }
+  },
+  "cls8b-seed123-ckpt3000-val-eval": {
+    "exp_id": "cls8b-seed123-ckpt3000-val-eval",
+    "status": "DONE",
+    "hypothesis": "D063 val set checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-seed123-conda": {
+    "exp_id": "repo-level-cwm-seed123-conda",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "killed",
+    "f1_macro": 43.43,
+    "f1_macro_source": "direct:eval_test_f1_macro",
+    "metrics": {
+      "eval_test_accuracy": 59.09,
+      "eval_test_f1_macro": 43.43,
+      "eval_test_f1_pass": 73.19,
+      "eval_test_f1_fail": 13.67
+    }
+  },
+  "repo-level-cwm-v12": {
+    "exp_id": "repo-level-cwm-v12",
+    "status": "DONE",
+    "hypothesis": "D054: CWM v12 用 conda 环境 (transformers 4.57.6) 重训，与 CLS v5 同版本 transformers 做 apple-to-apple 对比。验证 repo-level CWM 在正确环境下的真实性能。",
+    "conclusion": "killed",
+    "f1_macro": 51.67,
+    "f1_macro_source": "direct:eval_test_f1_macro",
+    "metrics": {
+      "eval_test_accuracy": 58.04,
+      "eval_test_f1_macro": 51.67,
+      "eval_test_f1_pass": 69.22,
+      "eval_test_f1_fail": 34.12
+    }
+  },
+  "repo-level-cwm-8b-conda-v2": {
+    "exp_id": "repo-level-cwm-8b-conda-v2",
+    "status": "DONE",
+    "hypothesis": "8B CWM 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CWM repo-level 性能，与 8B CLS 对比 scaling effect。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b-seed123-conda-v2": {
+    "exp_id": "repo-level-cls-8b-seed123-conda-v2",
+    "status": "DONE",
+    "hypothesis": "8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-8b-conda-v3": {
+    "exp_id": "repo-level-cwm-8b-conda-v3",
+    "status": "DONE",
+    "hypothesis": "8B CWM 训练重启（第三次提交，修正 resume 路径）。从 checkpoint-1600 resume。与 v1/v2 同配置，num_workers=0。验证 8B CWM repo-level 性能。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b-seed123-conda": {
+    "exp_id": "repo-level-cls-8b-seed123-conda",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-8b-conda": {
+    "exp_id": "repo-level-cwm-8b-conda",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-v5": {
+    "exp_id": "repo-level-cls-v5",
+    "status": "DONE",
+    "hypothesis": "D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v4 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CLS verifier 在正确超参下的性能。",
+    "conclusion": "success",
+    "f1_macro": 74.74,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 82.35,
+      "f1_macro": 74.74,
+      "best_checkpoint_f1": "checkpoint-4600"
+    }
+  },
+  "repo-level-cls-v5-conda": {
+    "exp_id": "repo-level-cls-v5-conda",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "success",
+    "f1_macro": 71.17,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 78.43,
+      "f1_macro": 71.17,
+      "best_checkpoint_f1": "checkpoint-600"
+    }
+  },
+  "repo-level-cwm-v11": {
+    "exp_id": "repo-level-cwm-v11",
+    "status": "DONE",
+    "hypothesis": "D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v10 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CWM execution simulator 在正确超参下的性能。",
+    "conclusion": "killed",
+    "f1_macro": 52.99,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 66.6,
+      "f1_macro": 52.99,
+      "pass_f1": 78.3,
+      "fail_f1": 27.7,
+      "pass_precision": 74.5,
+      "pass_recall": 82.5,
+      "fail_precision": 33.3,
+      "fail_recall": 23.7
+    }
+  },
+  "repo-level-cwm-seed123": {
+    "exp_id": "repo-level-cwm-seed123",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM seed=123 extra seed on westd-48478 cuda:3. 复用 CWM v9 代码配置，对冲 D008 Go/No-Go。与 repo-level-cls-seed123 配对验证 complexity-dependent advantage。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-8b": {
+    "exp_id": "repo-level-cls-8b",
+    "status": "DONE",
+    "hypothesis": "Plan B: Qwen3-8B CLS verifier, D046 超参, seed=42。提前开跑，不等 D008。如果 4B 实验 eval 低于 baseline，零延迟切换到 8B 结果。",
+    "conclusion": "killed",
+    "f1_macro": 69.05,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 71.37,
+      "f1_macro": 69.05,
+      "pass_f1": 77.53,
+      "fail_f1": 60.57,
+      "pass_precision": 90.71,
+      "pass_recall": 67.69,
+      "fail_precision": 48.26,
+      "fail_recall": 81.29
+    }
+  },
+  "repo-level-cls-seed123": {
+    "exp_id": "repo-level-cls-seed123",
+    "status": "DONE",
+    "hypothesis": "Repo-level CLS seed=123 extra seed on westd-48478 cuda:2. 复用 CLS v4 代码配置，对冲 D008 Go/No-Go。与 repo-level-cwm-seed123 配对验证 complexity-dependent advantage。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v10": {
+    "exp_id": "repo-level-cwm-v10",
+    "status": "DONE",
+    "hypothesis": "CWM v10: 诊断 v9 EXIT_CODE=2 语法错误后修复重提交。seetacloud cuda:2。验证 repo-level complexity-dependent CWM 训练（C1 claim 必备对照组）。",
+    "conclusion": "success",
+    "f1_macro": 0.4671,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 0.6991,
+      "f1_macro": 0.4671,
+      "f1_pass": 0.8187,
+      "f1_fail": 0.1154,
+      "precision_pass": 0.7304,
+      "precision_fail": 0.2815,
+      "recall_pass": 0.9314,
+      "recall_fail": 0.0726
+    }
+  },
+  "repo-level-cls-v4": {
+    "exp_id": "repo-level-cls-v4",
+    "status": "DONE",
+    "hypothesis": "CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200, eval_steps=200。验证 repo-level complexity-dependent CLS advantage (C1 claim)。",
+    "conclusion": "success",
+    "f1_macro": 0.5661,
+    "f1_macro_source": "direct:f1_macro",
+    "metrics": {
+      "accuracy": 0.6611,
+      "f1_macro": 0.5661,
+      "f1_pass": 0.769,
+      "f1_fail": 0.363,
+      "precision_pass": 0.765,
+      "precision_fail": 0.369,
+      "recall_pass": 0.774,
+      "recall_fail": 0.357
+    }
+  },
+  "repo-level-cwm-v9": {
+    "exp_id": "repo-level-cwm-v9",
+    "status": "DONE",
+    "hypothesis": "CWM v9: 修复 eval_steps/save_steps 对齐 (both=100), 修复 compute_loss OOM (pop labels before model forward), nohup 启动防 tmux kill",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-v3": {
+    "exp_id": "repo-level-cls-v3",
+    "status": "DONE",
+    "hypothesis": "CLS v3: 修复 save_strategy=steps+save_steps=200, nohup 启动. 第四次重启, 必须一次做对.",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-v2": {
+    "exp_id": "repo-level-cls-v2",
+    "status": "DONE",
+    "hypothesis": "Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。验证 complexity-dependent CLS advantage。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v7": {
+    "exp_id": "repo-level-cwm-v7",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM v7 (= v6 restart with eval_steps=500 fix). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim).",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls-home": {
+    "exp_id": "repo-level-cls-home",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v8": {
+    "exp_id": "repo-level-cwm-v8",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM v8 (save_steps=100 + resume 支持). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim). 改进：更频繁 checkpoint 以抵御平台 kill。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v6": {
+    "exp_id": "repo-level-cwm-v6",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm8b-seed123": {
+    "exp_id": "cwm8b-seed123",
+    "status": "DONE",
+    "hypothesis": "验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性",
+    "conclusion": "success",
+    "f1_macro": 86.98,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 86.98,
+      "pass_f1": 86.83,
+      "fail_f1": 87.13,
+      "pass_precision": 91.12,
+      "pass_recall": 82.92,
+      "fail_precision": 83.3,
+      "fail_recall": 91.34
+    }
+  },
+  "cls8b-seed123": {
+    "exp_id": "cls8b-seed123",
+    "status": "DONE",
+    "hypothesis": "验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性",
+    "conclusion": "success",
+    "f1_macro": 89.35,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 89.4,
+      "pass_f1": 89.5,
+      "fail_f1": 89.2,
+      "pass_precision": 91.2,
+      "pass_recall": 87.9,
+      "fail_precision": 87.5,
+      "fail_recall": 90.9
+    }
+  },
+  "cls8b-eval-seed123": {
+    "exp_id": "cls8b-eval-seed123",
+    "status": "DONE",
+    "hypothesis": "生成 8B CLS seed123 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑",
+    "conclusion": "success",
+    "f1_macro": 89.365,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 89.37,
+      "pass_f1": 89.54,
+      "fail_f1": 89.19,
+      "pass_precision": 91.2,
+      "pass_recall": 87.93,
+      "fail_precision": 87.54,
+      "fail_recall": 90.9
+    }
+  },
+  "cls8b-eval-seed42": {
+    "exp_id": "cls8b-eval-seed42",
+    "status": "DONE",
+    "hypothesis": "生成 8B CLS seed42 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑",
+    "conclusion": "success",
+    "f1_macro": 90.46,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 90.48,
+      "pass_f1": 90.86,
+      "fail_f1": 90.06,
+      "pass_precision": 90.22,
+      "pass_recall": 91.51,
+      "fail_precision": 90.76,
+      "fail_recall": 89.36
+    }
+  },
+  "repo-level-cwm-v4": {
+    "exp_id": "repo-level-cwm-v4",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交。与 cls-v4 配对验证 complexity gap。",
+    "conclusion": "killed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v2": {
+    "exp_id": "repo-level-cwm-v2",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。与 repo-level-cls-v2 对比验证 complexity gap。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v5": {
+    "exp_id": "repo-level-cwm-v5",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM v5 (SWE-bench, Qwen3-4B LoRA). 修复 v4 argparse 错误（移除不支持的 --save_strategy 参数）。与 cls-home 配对验证 complexity gap。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "matched-seed-8b-predictions": {
+    "exp_id": "matched-seed-8b-predictions",
+    "status": "DONE",
+    "hypothesis": "在 home 服务器生成 matched-seed per-instance predictions（8B CWM eval JSONs 或 4B 补充分析），为 error overlap / oracle 分析提供数据",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm-v3": {
+    "exp_id": "repo-level-cwm-v3",
+    "status": "DONE",
+    "hypothesis": "Repo-level CWM (SWE-bench, Qwen3-4B LoRA). WeightedDataCollator 修复后 v3。与 cls-v3 配对验证 complexity gap。",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-seed789": {
+    "exp_id": "cwm-seed789",
+    "status": "DONE",
+    "hypothesis": "补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验",
+    "conclusion": "success",
+    "f1_macro": 86.67,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 86.67,
+      "pass_f1": 86.74,
+      "fail_f1": 86.6
+    }
+  },
+  "cls8b-seed456": {
+    "exp_id": "cls8b-seed456",
+    "status": "DONE",
+    "hypothesis": "8B CLS 第 3 个 seed，与 cwm8b-seed456 配对。完成后有 3 matched 8B pairs (seed42/123/456)，增强 scaling gap 证据",
+    "conclusion": "success",
+    "f1_macro": 88.305,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 88.31,
+      "pass_f1": 88.2,
+      "fail_f1": 88.41,
+      "pass_precision": 92.29,
+      "pass_recall": 84.46,
+      "fail_precision": 84.72,
+      "fail_recall": 92.43
+    }
+  },
+  "cwm8b-seed456": {
+    "exp_id": "cwm8b-seed456",
+    "status": "DONE",
+    "hypothesis": "8B CWM 第 3 个 seed，补强 scaling gap 证据。当前 8B cls-cwm gap 基于 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)，3 seeds 更稳健",
+    "conclusion": "success",
+    "f1_macro": 86.235,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 86.24,
+      "pass_f1": 85.96,
+      "fail_f1": 86.51,
+      "pass_precision": 91.08,
+      "pass_recall": 81.39,
+      "fail_precision": 82.09,
+      "fail_recall": 91.45
+    }
+  },
+  "5-paired-clustered-bootstrap": {
+    "exp_id": "5-paired-clustered-bootstrap",
+    "status": "DONE",
+    "hypothesis": "5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 variant 级别是否等价（扩展之前 3-paired 分析）",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cwm": {
+    "exp_id": "repo-level-cwm",
+    "status": "DONE",
+    "hypothesis": "Repo-level (SWE-bench) CWM generation baseline — 对比 classification 在 repo-level 的优势是否与函数级一致，验证 complexity hypothesis 跨粒度的稳健性",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "repo-level-cls": {
+    "exp_id": "repo-level-cls",
+    "status": "DONE",
+    "hypothesis": "Repo-level (SWE-bench) classification verifier — 验证 per-test classification 从函数级 (HumanEval/MBPP) 扩展到 repo-level 的泛化能力，使用 max_seq_length=4096 和 class weighting 处理 85/15 不平衡",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-seed0": {
+    "exp_id": "cwm-seed0",
+    "status": "DONE",
+    "hypothesis": "补充 4B CWM seed=0，凑齐 CWM 5-seed (42, 123, 456, 789, 0)，与 5-seed CLS 做完整 paired 统计分析",
+    "conclusion": "success",
+    "f1_macro": 87.555,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 87.57,
+      "pass_f1": 87.18,
+      "fail_f1": 87.93,
+      "pass_precision": 93.45,
+      "pass_recall": 81.7,
+      "fail_precision": 82.71,
+      "fail_recall": 93.86
+    }
+  },
+  "per-test-precision-recall": {
+    "exp_id": "per-test-precision-recall",
+    "status": "DONE",
+    "hypothesis": "Per-test 级别 precision/recall 诊断分析 — 按 mutation type 和 problem 粒度评估分类器的诊断质量",
+    "conclusion": "success",
+    "f1_macro": 87.505,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 87.51,
+      "pass_f1": 87.15,
+      "fail_f1": 87.86,
+      "pass_precision": 93.24,
+      "pass_recall": 81.8,
+      "fail_precision": 82.75,
+      "fail_recall": 93.64
+    }
+  },
+  "cwm-seed123": {
+    "exp_id": "cwm-seed123",
+    "status": "DONE",
+    "hypothesis": "补充 4B CWM seed=123，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，同时为 \"scaling widens gap\" 叙事提供更强 evidence",
+    "conclusion": "success",
+    "f1_macro": 87.195,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 87.2,
+      "pass_f1": 86.95,
+      "fail_f1": 87.44
+    }
+  },
+  "cwm-seed456": {
+    "exp_id": "cwm-seed456",
+    "status": "DONE",
+    "hypothesis": "补充 4B CWM seed=456，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，支撑 scaling widens gap 叙事",
+    "conclusion": "success",
+    "f1_macro": 86.975,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 86.98,
+      "pass_f1": 86.66,
+      "fail_f1": 87.29,
+      "pass_precision": 92.26,
+      "pass_recall": 81.7,
+      "fail_precision": 82.52,
+      "fail_recall": 92.65
+    }
+  },
+  "cls-seed0": {
+    "exp_id": "cls-seed0",
+    "status": "DONE",
+    "hypothesis": "补充 cls seed=0 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性",
+    "conclusion": "success",
+    "f1_macro": 87.935,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 87.94,
+      "pass_f1": 87.79,
+      "fail_f1": 88.08,
+      "pass_precision": 92.13,
+      "pass_recall": 83.84,
+      "fail_precision": 84.2,
+      "fail_recall": 92.32
+    }
+  },
+  "cls-seed789": {
+    "exp_id": "cls-seed789",
+    "status": "DONE",
+    "hypothesis": "补充 cls seed=789 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性",
+    "conclusion": "success",
+    "f1_macro": 89.0,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 89,
+      "pass_f1": 88.9,
+      "fail_f1": 89.1,
+      "pass_precision": 93.3,
+      "pass_recall": 84.9,
+      "fail_precision": 85.2,
+      "fail_recall": 93.4
+    }
+  },
+  "traj-level-finetuned": {
+    "exp_id": "traj-level-finetuned",
+    "status": "DONE",
+    "hypothesis": "Trajectory-level verifier (聚合 per-test → resolved/unresolved) 的 accuracy 低于 per-test classification 聚合后的准确率，验证 per-test granularity 的信息优势",
+    "conclusion": "success",
+    "f1_macro": 85.34,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "accuracy": 85.66,
+      "resolved_f1": 83.18,
+      "unresolved_f1": 87.5
+    }
+  },
+  "traj-level-seed456": {
+    "exp_id": "traj-level-seed456",
+    "status": "DONE",
+    "hypothesis": "验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性",
+    "conclusion": "success",
+    "f1_macro": 87.25,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "overall_accuracy": 87.4,
+      "resolved_f1": 85.8,
+      "unresolved_f1": 88.7,
+      "resolved_precision": 89.7,
+      "resolved_recall": 82.3,
+      "unresolved_precision": 85.7,
+      "unresolved_recall": 91.9
+    }
+  },
+  "traj-level-seed789": {
+    "exp_id": "traj-level-seed789",
+    "status": "DONE",
+    "hypothesis": "补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05",
+    "conclusion": "success",
+    "f1_macro": 87.22,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "overall_accuracy": 87.31,
+      "resolved_f1": 86.17,
+      "unresolved_f1": 88.27,
+      "resolved_precision": 87.18,
+      "resolved_recall": 85.18,
+      "unresolved_precision": 87.41,
+      "unresolved_recall": 89.15
+    }
+  },
+  "traj-level-seed0": {
+    "exp_id": "traj-level-seed0",
+    "status": "DONE",
+    "hypothesis": "补充第 5 seed (0) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05",
+    "conclusion": "success",
+    "f1_macro": 85.39,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "overall_accuracy": 85.66,
+      "resolved_f1": 83.41,
+      "unresolved_f1": 87.37,
+      "resolved_precision": 90.07,
+      "resolved_recall": 77.66,
+      "unresolved_precision": 82.71,
+      "unresolved_recall": 92.59
+    }
+  },
+  "per-test-majority-voting": {
+    "exp_id": "per-test-majority-voting",
+    "status": "DONE",
+    "hypothesis": "Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy",
+    "conclusion": "negative",
+    "f1_macro": 87.505,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "pass_f1_greedy": 87.15,
+      "fail_f1_greedy": 87.86,
+      "pass_f1_mv": 86.33,
+      "fail_f1_mv": 87.29,
+      "accuracy_greedy": 87.51,
+      "accuracy_majority_vote_K3": 86.83
+    }
+  },
+  "block-corr-empirical": {
+    "exp_id": "block-corr-empirical",
+    "status": "DONE",
+    "hypothesis": "训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的 block-correlation 假设",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "model-size-scaling-cwm8b": {
+    "exp_id": "model-size-scaling-cwm8b",
+    "status": "DONE",
+    "hypothesis": "Qwen3-8B CWM generation baseline 在函数级的 F1 与同尺寸 classification 的差距，相比 4B 尺度（差距 0.2pp）是否扩大或缩小",
+    "conclusion": "success",
+    "f1_macro": 87.67,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 87.67,
+      "pass_f1": 87.57,
+      "fail_f1": 87.77,
+      "pass_precision": 91.53,
+      "pass_recall": 83.95,
+      "fail_precision": 84.19,
+      "fail_recall": 91.67
+    }
+  },
+  "model-size-scaling-cls8b": {
+    "exp_id": "model-size-scaling-cls8b",
+    "status": "DONE",
+    "hypothesis": "Qwen3-8B classification 在函数级 per-test 任务上的 F1 高于 4B (87.5%)，且与 8B CWM 的差距大于 4B 尺度的差距（0.2pp），验证 classification 优势随模型增大扩大",
+    "conclusion": "success",
+    "f1_macro": 90.46,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "accuracy": 90.48,
+      "pass_f1": 90.86,
+      "fail_f1": 90.06,
+      "pass_precision": 90.22,
+      "pass_recall": 91.51,
+      "fail_precision": 90.76,
+      "fail_recall": 89.36
+    }
+  },
+  "llm-judge-32b-zeroshot": {
+    "exp_id": "llm-judge-32b-zeroshot",
+    "status": "DONE",
+    "hypothesis": "Qwen3-32B 4-bit 量化 zero-shot 是否可达 fine-tuned 4B 水平——若是则 fine-tuning 价值存疑，若否则确认小模型 fine-tuning 的 Pareto 优势",
+    "conclusion": "success",
+    "f1_macro": 70.795,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 71.69,
+      "pass_f1": 65.68,
+      "fail_f1": 75.91,
+      "pass_precision": 88.12,
+      "pass_recall": 52.35,
+      "fail_precision": 64.4,
+      "fail_recall": 92.43
+    }
+  },
+  "llm-judge-8b-zeroshot": {
+    "exp_id": "llm-judge-8b-zeroshot",
+    "status": "DONE",
+    "hypothesis": "Qwen3-8B zero-shot LLM-as-judge 在 per-test 和 trajectory-level 判别上均低于 fine-tuned 4B 模型，确认 fine-tuning 的必要性",
+    "conclusion": "success",
+    "f1_macro": 61.35,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 64.4,
+      "pass_f1": 50.5,
+      "fail_f1": 72.2,
+      "pass_precision": 90,
+      "pass_recall": 35.1,
+      "fail_precision": 57.9,
+      "fail_recall": 95.8
+    }
+  },
+  "traj-level-seed123": {
+    "exp_id": "traj-level-seed123",
+    "status": "DONE",
+    "hypothesis": "验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性",
+    "conclusion": "success",
+    "f1_macro": 85.26,
+    "f1_macro_source": "avg(resolved_f1, unresolved_f1)",
+    "metrics": {
+      "overall_accuracy": 85.47,
+      "resolved_f1": 83.52,
+      "unresolved_f1": 87,
+      "resolved_precision": 88.17,
+      "resolved_recall": 79.33,
+      "unresolved_precision": 83.53,
+      "unresolved_recall": 90.78
+    }
+  },
+  "oracle-f2p-stratified": {
+    "exp_id": "oracle-f2p-stratified",
+    "status": "DONE",
+    "hypothesis": "Per-test verifier 的优势集中在 F2P test count ≥2 的实例上，T=1 时退化为 trajectory-level（无信息增益）",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "trace-then-judge": {
+    "exp_id": "trace-then-judge",
+    "status": "DONE",
+    "hypothesis": "Trace-then-judge (生成 ~50 tokens reasoning trace 再判 pass/fail) 的 F1 与 direct classification 相当，排除 classification 优势来自跳过 reasoning 的可能",
+    "conclusion": "failed",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "mvp-b-train": {
+    "exp_id": "mvp-b-train",
+    "status": "DONE",
+    "hypothesis": "Qwen3-4B LoRA 在函数级 (code, test) → pass/fail 上可达 per-class F1 >65%, accuracy > majority+10pp",
+    "conclusion": "success",
+    "f1_macro": 0.875,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 0.875,
+      "pass_f1": 0.871,
+      "fail_f1": 0.879,
+      "pass_precision": 0.9324,
+      "pass_recall": 0.818,
+      "fail_precision": 0.8275,
+      "fail_recall": 0.9364
+    }
+  },
+  "multi-seed-core": {
+    "exp_id": "multi-seed-core",
+    "status": "DONE",
+    "hypothesis": "Classification verifier 在 3 seeds 下稳定达到 ~87% accuracy/F1，CWM ≈ classification 的 null result robust",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "cwm-baseline": {
+    "exp_id": "cwm-baseline",
+    "status": "DONE",
+    "hypothesis": "CWM generation baseline (预测 execution output) 的 per-class F1 显著低于 classification (87.1/87.9%)，验证 task reformulation (generation→classification) 的有效性",
+    "conclusion": "negative",
+    "f1_macro": 87.51,
+    "f1_macro_source": "avg(pass_f1, fail_f1)",
+    "metrics": {
+      "overall_accuracy": 87.51,
+      "pass_f1": 87.31,
+      "fail_f1": 87.71,
+      "pass_precision": 92.06,
+      "pass_recall": 83.03,
+      "fail_precision": 83.53,
+      "fail_recall": 92.32
+    }
+  },
+  "mvp-a-oracle-sim": {
+    "exp_id": "mvp-a-oracle-sim",
+    "status": "DONE",
+    "hypothesis": "Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "p2p-regression-rate": {
+    "exp_id": "p2p-regression-rate",
+    "status": "DONE",
+    "hypothesis": null,
+    "conclusion": "negative",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  },
+  "mvp-b-data-prep": {
+    "exp_id": "mvp-b-data-prep",
+    "status": "DONE",
+    "hypothesis": "HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot",
+    "conclusion": "success",
+    "f1_macro": null,
+    "f1_macro_source": null,
+    "metrics": {}
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "id": "1e1d010717bacabd8505",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "paper writing conclusion",
+  "task_key": "worker_paper_writing_conclusion_20260515T100823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_conclusion_20260515T100823.jsonl",
+    "occurrence": 1,
+    "bytes": 13081,
+    "sha256": "4017b50b0c8c760933e41a518586f776836ff86c30d39a9b1db30faad9a0f7b3"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T10:09:23.988411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T10:09:23.989347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T10:09:23.989839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T10:09:23.990036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe reformulated execution simulation for code repair verification from open-ended output generation to per-test binary classification, and characterized when this reformulation provides an advantage. At function level, \\cls{} and \\cwm{} are near-equivalent (gap 1.24\\pp{}, 5 seeds), confirming that generation is adequate when outputs are short and structurally simple. At 8B, the gap widens (raw 2.43\\pp{}; bootstrap mean 2.26\\pp{}, $p = 0.0066$, 3 matched seeds): \\cls{} gains +0.99\\pp{} while \\cwm{} loses $-$0.27\\pp{}, indicating that additional capacity benefits classification but not generation---consistent with the string-prediction bottleneck hypothesis. Per-test classification achieves statistically equivalent variant-level accuracy to trajectory-level scoring (TOST $p = 0.007$, $\\pm$2\\pp{} margin) while providing diagnostic per-test signals at no accuracy cost. Oracle analysis on SWE-bench Verified reveals that the per-test advantage concentrates in instances with $T \\geq 2$ F2P tests (31\\% of instances, contributing 55\\% of total advantage), establishing a practical decision boundary: per-test verification adds value only when multiple F2P tests are present.\n5\t\n6\tAt repo level on SWE-bench Verified, the gap amplifies substantially to 10.32\\pp{} (single seed): \\cwm{} falls below majority baseline (66.60\\% vs.\\ 72.96\\%) due to 75\\% unparseable outputs from format non-compliance despite sufficient token budget, while \\cls{} achieves 76.92\\% with only 1.3\\% unparseable. This provides empirical evidence that the generation formulation faces substantial challenges at repository scale.\n7\t\n8\t\\paragraph{Limitations.}\n9\tThe function-level near-equivalence (1.24\\pp{}) limits practical \\cls{} advantage at that scale. Repo-level results are currently from a single seed; multi-seed replication is in progress. All experiments use a single model family (Qwen3); scaling behavior may differ across architectures. The oracle ana\n…[truncated 661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T10:09:23.990265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex",
+              "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe reformulated execution simulation for code repair verification from open-ended output generation to per-test binary classification, and characterized when this reformulation provides an advantage. At function level, \\cls{} and \\cwm{} are near-equivalent (gap 1.24\\pp{}, 5 seeds), confirming that generation is adequate when outputs are short and structurally simple. At 8B, the gap widens (raw 2.43\\pp{}; bootstrap mean 2.26\\pp{}, $p = 0.0066$, 3 matched seeds): \\cls{} gains +0.96\\pp{} while \\cwm{} loses $-$0.27\\pp{}, indicating that additional capacity benefits classification but not generation---consistent with the generation bottleneck hypothesis. Per-test classification achieves statistically equivalent variant-level accuracy to trajectory-level scoring (TOST $p = 0.007$, $\\pm$2\\pp{} margin) while providing diagnostic per-test signals at no accuracy cost. Oracle analysis on SWE-bench Verified reveals that the per-test advantage concentrates in instances with $T \\geq 2$ F2P tests (31\\% of instances, contributing 55\\% of total advantage), establishing a practical decision boundary: per-test verification adds value only when multiple F2P tests are present.\n\nAt repo level on SWE-bench Verified, the gap amplifies to 25.59\\pp{} in same-size 4B--4B comparison (single seed): \\cwm{} falls to 58.04\\%, roughly 14\\pp{} below the majority baseline (72.96\\%), while \\cls{} reaches 83.63\\% with 0\\% unparseable outputs. \\cwm{} exhibits format compliance collapse---53.7--67.2\\% of outputs are unparseable across seeds despite sufficient token budget---and even among parseable outputs, accuracy is 42--43\\%, below random chance. The generation formulation thus suffers a compounding failure at repository scale: format non-compliance discards the majority of predictions, and the surviving predictions are themselves unreliable.\n\n\\paragraph{Limitations.}\nThe function-level near-equivalence (1.24\\pp{}) limits practical \\cls{} advantage at that scale. Repo-level same-size comparison (4B--4B) rests on a single seed; 8B--8B awaits \\cwm{} 8B training completion. All experiments use a single model family (Qwen3); scaling behavior may differ across architectures. Val/test distribution shift---zero problem overlap and mutation type composition shift---may affect generalization estimates. The oracle analysis assumes ground-truth test labels; real-world advantage is upper-bounded by classifier accuracy. No downstream re-repair experiment validates whether per-test diagnostic signals translate to actual fix improvements. P2P regression rates (${\\sim}$1\\% mean) are too low for per-test P2P signals to be useful---diagnostic advantage is limited to the F2P dimension.\n\n\\paragraph{Future work.}\n\\cls{}--\\cwm{} error complementarity motivates ensemble verification routing by predicted output complexity. Per-test failure signals enable diagnostic re-repair: localizing faults from per-test verdicts rather than discarding failed patches. Multi-model validation and integration with test-time scaling systems (best-of-$N$ with per-test reranking) are natural next steps.\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:09:23.990667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T10:09:23.990977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T10:09:23.991218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe reformulated execution simulation for code repair verification from open-ended output generation to per-test binary classification, and characterized when this reformulation provides an advantage. At function level, \\cls{} and \\cwm{} are near-equivalent (gap 1.24\\pp{}, 5 seeds), confirming that generation is adequate when outputs are short and structurally simple. At 8B, the gap widens (raw 2.43\\pp{}; bootstrap mean 2.26\\pp{}, $p = 0.0066$, 3 matched seeds): \\cls{} gains +0.96\\pp{} while \\cwm{} loses $-$0.27\\pp{}, indicating that additional capacity benefits classification but not generation---consistent with the generation bottleneck hypothesis. Per-test classification achieves statistically equivalent variant-level accuracy to trajectory-level scoring (TOST $p = 0.007$, $\\pm$2\\pp{} margin) while providing diagnostic per-test signals at no accuracy cost. Oracle analysis on SWE-bench Verified reveals that the per-test advantage concentrates in instances with $T \\geq 2$ F2P tests (31\\% of instances, contributing 55\\% of total advantage), establishing a practical decision boundary: per-test verification adds value only when multiple F2P tests are present.\n5\t\n6\tAt repo level on SWE-bench Verified, the gap amplifies to 25.59\\pp{} in same-size 4B--4B comparison (single seed): \\cwm{} falls to 58.04\\%, roughly 14\\pp{} below the majority baseline (72.96\\%), while \\cls{} reaches 83.63\\% with 0\\% unparseable outputs. \\cwm{} exhibits format compliance collapse---53.7--67.2\\% of outputs are unparseable across seeds despite sufficient token budget---and even among parseable outputs, accuracy is 42--43\\%, below random chance. The generation formulation thus suffers a compounding failure at repository scale: format non-compliance discards the majority of predictions, and the surviving predictions are themselves unreliable.\n7\t\n8\t\\paragraph{Limitations.}\n9\tThe function-level near-equivalence (1.24\\pp{}) limits practical \\cls{} \n…[truncated 1156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T10:09:23.991441+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。变更汇总：\n\n**第一段**：+0.99→+0.96pp，\"string-prediction bottleneck\"→\"generation bottleneck\"\n\n**第二段**（全面重写）：gap 25.59pp，CWM 58.04%（低于 majority ~14pp），CLS 83.63%/0% unparseable，引入 \"format compliance collapse\" 命名，新增 parseable-only 42–43% below random chance，compounding failure 论述\n\n**Limitations**：single seed 限定改为 4B-4B 具体说明 + 8B-8B 待训练；新增 val/test distribution shift；新增 no downstream re-repair experiment\n\n**Future work**：未改。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260515T100823"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-conclusion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a31f3c412ecd45d7a43",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls multiseed summary",
+  "task_key": "worker_analysis_cls-multiseed-summary_20260520T004621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-multiseed-summary_20260520T004621_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "375eba038534c8d94b79e05e74f213bbd4824c8e4f80c6cad6552009c0381eef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完成。两个文件已写入 `artifacts/` 并注册：\n\n**Table 3 聚合数据 (mean ± std)**:\n\n| Model | Form | n | Accuracy | F1_macro | F1_fail | F1_pass |\n|-------|------|---|----------|----------|---------|---------|\n| Qwen3-8B | CLS | 3 | 84.83±0.67 | 77.58±1.21 | 64.84±2.30 | 90.32±0.50 |\n| DeepSeek-6.7B | CLS | 2 | 84.38±2.50 | 77.75±3.79 | 65.59±6.00 | 89.90±1.58 |\n| Qwen3-8B | TRAJ | 3 | 73.61±3.18 | 73.37±3.01 | — | — |\n| Majority | — | — | 72.96 | — | — | — |\n\n**95% CI (Qwen3-8B CLS, n=3, t=4.303)**: Accuracy [83.16, 86.50], F1_macro [74.58, 80.58]\n\n**CLS vs TRAJ gap**: +11.22 pp accuracy, +4.21 pp F1_macro\n\n注意事项：\n- DeepSeek n=2 的 CI 极宽（t=12.706），基本无统计意义，建议论文中只报 mean±std\n- TRAJ s42 的 per-class F1 registry 中缺失，TRAJ F1_fail/F1_pass 按 2-seed 计算\n- Qwen CLS s42 用的是 val-selected ckpt-3600（84.48%），与 ablation 实验一致\n- LaTeX 行已在 `cls_multiseed_table.md` 底部，可直接复制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-multiseed-summary.md"
+}

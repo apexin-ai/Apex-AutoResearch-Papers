@@ -1,0 +1,19 @@
+{
+  "exp_id": "block-corr-empirical",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:20:56.388Z",
+    "updated_at": "2026-05-12T08:36:34.004Z",
+    "spec": {
+      "plan_id": "block-corr-empirical"
+    },
+    "hypothesis": "训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的 block-correlation 假设",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T08:36:34.048033+00:00",
+  "trigger": "update_registry"
+}

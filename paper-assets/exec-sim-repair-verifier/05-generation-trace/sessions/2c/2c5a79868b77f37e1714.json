@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c5a79868b77f37e1714",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 8b block correlation cuda1",
+  "task_key": "worker_analysis_8b-block-correlation-cuda1_20260516T020114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_8b-block-correlation-cuda1_20260516T020114_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "041f240b8233bdfe4a6e035d19eb46dc6fae6b07d1f55a6cbd46d2f293798af4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 4B vs 8B Block-Correlation 对比\n\n| 指标 | 4B (HumanEval/MBPP) | 8B (SWE-bench) | 变化 |\n|------|-----|-----|------|\n| ICC | 0.1909 | **0.3146** | +65% |\n| Design Effect | 3.97 | **114.41** | +28.8x |\n| Avg cluster size (k₀) | 16.54 | 361.42 | — |\n| Per-problem error rate std | 0.1531 | **0.2195** | +43% |\n| Expected std (i.i.d.) | 0.0812 | 0.0183 | — |\n| Std ratio (observed/expected) | 1.89x | **11.99x** | — |\n| N samples / K problems | 1890 / 114 | 9784 / 25 | — |\n| Overall accuracy | 87.51% | 84.48% | — |\n| p-value | 0.0000 | 0.0000 | — |\n\n**注意**：DEFF 巨大的主要原因是 SWE-bench 的 cluster size 远大于 HumanEval/MBPP（361 vs 16.5）。ICC 是 scale-invariant 的更公平指标——8B 的 ICC (0.31) 显著高于 4B (0.19)，说明 8B 在 SWE-bench 上的错误更聚集于特定 problem。\n\n### cuda:1 状态\n\n**cuda:1 正在使用**（88% GPU util, 21133/32607 MiB）——正在跑 CWM 8B eval shard2。cuda:0 和 cuda:2 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-8b-block-correlation-cuda1.md"
+}

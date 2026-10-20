@@ -1,0 +1,46 @@
+{
+  "exp_id": "cls8b-repo-s456-eval-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T23:19:25.850Z",
+    "updated_at": "2026-05-20T00:38:24.288Z",
+    "hypothesis": "Qwen3-8B CLS repo-level s456 eval: 用 val-best checkpoint 评估 test set accuracy。与 s42(84.48%)/s123(85.6%) 组成 3-seed coverage，回应 N1 审稿意见。",
+    "parent": "cls8b-repo-s456-train-v2",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output eval_summary.json",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "876205",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-repo-s456-eval-v2.log",
+      "submitted_at": "2026-05-19T23:20:06.318Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "checkpoints_repo_cls_8b_s456_v2/checkpoint-2200",
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 456,
+      "eval_data": "swebench_test",
+      "data_count": 9784,
+      "data_path": "data/swebench_full/swebench_test.jsonl"
+    },
+    "metrics": {
+      "accuracy": 84.4,
+      "f1_macro": 76.19,
+      "f1_fail": 62.21,
+      "f1_pass": 90.17,
+      "precision_fail": 90.23,
+      "recall_fail": 47.47,
+      "checkpoint": "checkpoint-2200",
+      "seq_length": 8192
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T00:38:24.701229+00:00",
+  "trigger": "update_registry"
+}

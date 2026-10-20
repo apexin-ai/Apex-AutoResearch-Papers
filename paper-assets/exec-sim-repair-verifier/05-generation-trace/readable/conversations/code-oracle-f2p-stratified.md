@@ -1,0 +1,842 @@
+# code oracle f2p stratified
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/chats/worker_code_oracle-f2p-stratified_20260512T050929.jsonl`
+- **Structured JSON:** [`b0f4cc9b73ae6ee95b68.json`](../../sessions/b0/b0f4cc9b73ae6ee95b68.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+27 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-12T05:13:17.029324+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-12T05:13:17.029663+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-12T05:13:17.029855+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/*.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "ls /home/sonny/exec-sim-repair-verifier/*.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T05:13:17.029994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -rl \"oracle\\|simulation\\|monte_carlo\\|block.correlated\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "grep -rl \"oracle\\|simulation\\|monte_carlo\\|block.correlated\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\"",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T05:13:17.030142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/analyze_p2p_regression.py\\n/home/sonny/exec-sim-repair-verifier/build_cwm_data.py\\n/home/sonny/exec-sim-repair-verifier/build_data.py\\n/home/sonny/exec-sim-repair-verifier/build_swebench_data.py\\n/home/sonny/exec-sim-repair-verifier/build_trace_data.py\\n/home/sonny/exec-sim-repair-verifier/build_traj_data.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\n/home/sonny/exec-sim-repair-verifier/measure_inference_cost.py\\n/home/sonny/exec-sim-repair-verifier/mvp_a_oracle_sim.py\\n/home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_sim.py\\n/home/sonny/exec-sim-repair-verifier/mvp_a_sensitivity.py\\n/home/sonny/exec-sim-repair-verifier/mvp_a_total_sim.py\\n/home/sonny/exec-sim-repair-verifier/swebench_test_dist.py\\n/home/sonny/exec-sim-repair-verifier/train_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/train_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/train_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/train_verifier.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T05:13:17.030273+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T05:13:17.030390+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_oracle_sim.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_oracle_sim.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-12T05:13:17.030505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_sim.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_sim.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T05:13:17.030755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nMVP-A Oracle Information Gain Monte Carlo Simulation\\n\\nCompares per-test verifier vs trajectory-level verifier for best-of-N\\npatch selection under i.i.d. and block-correlated noise models.\\n\\nSetup: N=16 candidate patches, 1 correct (all tests pass), N-1 wrong\\n(random subset of tests fail). T tests per instance sampled from\\nlognormal(2.5, 0.8) truncated to [2, 100].\\n\\nPer-test verifier: predicts each test pass/fail at accuracy p, ranks\\npatches by predicted pass count, selects highest.\\nTrajectory-level verifier: binary resolved/unresolved prediction at\\naccuracy p per patch, selects randomly from predicted-resolved set.\\n\\nBoth verifiers operate at the same per-prediction accuracy p. The\\nper-test advantage comes from having T observations per patch (ranking\\nby continuous score) vs 1 observation (binary classification).\\n\\nOutput: mvp_a_results.json (data), mvp_a_curves.pdf (visualization)\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport json\\nimport argparse\\nimport time\\nimport os\\n\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\n\\ndef sample_test_counts(rng, n):\\n    \\\"\\\"\\\"Sample test counts from lognormal(2.5, 0.8) truncated to [2, 100].\\\"\\\"\\\"\\n    raw = rng.lognormal(mean=2.5, sigma=0.8, size=n)\\n    return np.clip(raw, 2, 100).astype(int)\\n\\n\\ndef build_ground_truth(rng, n_trials, N, T_values, T_max):\\n    \\\"\\\"\\\"\\n    Build ground truth pass/fail for all trials.\\n    Patch 0 is correct (all pass). Others have random failures.\\n    Returns (n_trials, N, T_max) bool, True=pass.\\n    \\\"\\\"\\\"\\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\\n    for trial in range(n_trials):\\n        T = T_values[trial]\\n        for patch in range(1, N):\\n            fail_prob = rng.uniform(0.1, 0.8)\\n            fails = rng.random(T) < fail_prob\\n            if not fails.any():\\
+…[truncated 6899 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T05:13:17.030946+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/swebench_test_dist.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/swebench_test_dist.py",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T05:13:17.031222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MVP-A simulation with real SWE-bench FAIL_TO_PASS distribution.\\n69% of instances have T=1 (per-test = trajectory, zero advantage).\\n\\\"\\\"\\\"\\nimport numpy as np, json, time, os\\nimport matplotlib; matplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nDIR = os.path.dirname(os.path.abspath(__file__))\\n\\nwith open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\\n    RAW_F2P = np.array(json.load(f)['raw_f2p'])\\n\\ndef build_gt(rng, n_trials, N, T_vals, T_max):\\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\\n    for t in range(n_trials):\\n        T = T_vals[t]\\n        for p in range(1, N):\\n            fp = rng.uniform(0.1, 0.8)\\n            fails = rng.random(T) < fp\\n            if not fails.any():\\n                fails[rng.integers(T)] = True\\n            gt[t, p, :T] = ~fails\\n    return gt\\n\\ndef build_blocks(rng, T_vals, T_max):\\n    n = len(T_vals)\\n    bids = np.zeros((n, T_max), dtype=np.int32)\\n    nb = np.zeros(n, dtype=np.int32)\\n    for t in range(n):\\n        T = T_vals[t]; idx = bid = 0\\n        while idx < T:\\n            rem = T - idx\\n            if rem <= 8:\\n                bids[t, idx:T] = bid; bid += 1; break\\n            bs = min(int(rng.integers(2, 9)), rem)\\n            bids[t, idx:idx+bs] = bid; bid += 1; idx += bs\\n        nb[t] = max(bid, 1)\\n    return bids, nb\\n\\ndef best_patch(scores, rng):\\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\\n\\ndef from_resolved(preds, rng):\\n    tb = rng.random(preds.shape)\\n    ar = preds.any(axis=1, keepdims=True)\\n    m = np.where(preds, tb, -1.0)\\n    return np.where(ar, m, tb).argmax(axis=1)\\n\\ndef main():\\n    N, n_trials, seed = 16, 10000, 42\\n    acc_range = np.round(np.arange(0.55, 0.995, 0.01), 2)\\n    acc_list = [round(float(a), 2) for a in acc_range]\\n\\n    rng = np.random.default_rng(seed)\\n  
+…[truncated 6802 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T05:13:17.031461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Extract and analyze test count distribution from SWE-bench Verified.\\\"\\\"\\\"\\nimport numpy as np, json, os\\nimport matplotlib; matplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nfrom datasets import load_dataset\\n\\nDIR = os.path.dirname(os.path.abspath(__file__))\\n\\ndef main():\\n    print(\\\"Loading SWE-bench Verified from HuggingFace...\\\")\\n    ds = load_dataset(\\\"princeton-nlp/SWE-bench_Verified\\\", split=\\\"test\\\")\\n    print(f\\\"  {len(ds)} instances loaded\\\")\\n\\n    f2p_counts, p2p_counts = [], []\\n    for row in ds:\\n        f2p = json.loads(row['FAIL_TO_PASS'])\\n        p2p = json.loads(row['PASS_TO_PASS'])\\n        f2p_counts.append(len(f2p))\\n        p2p_counts.append(len(p2p))\\n\\n    f2p = np.array(f2p_counts)\\n    p2p = np.array(p2p_counts)\\n    total = f2p + p2p\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 75)\\n    print(\\\"SWE-bench Verified Test Count Distribution\\\")\\n    print(\\\"=\\\" * 75)\\n    stats = {}\\n    for name, arr in [(\\\"FAIL_TO_PASS\\\", f2p), (\\\"PASS_TO_PASS\\\", p2p), (\\\"Total\\\", total)]:\\n        s = {\\n            'min': int(arr.min()), 'P25': float(np.percentile(arr, 25)),\\n            'median': float(np.median(arr)), 'P75': float(np.percentile(arr, 75)),\\n            'P90': float(np.percentile(arr, 90)), 'max': int(arr.max()),\\n            'mean': round(float(arr.mean()), 2),\\n            'std': round(float(arr.std()), 2),\\n        }\\n        stats[name] = s\\n        print(f\\\"\\\\n{name} (n={len(arr)}):\\\")\\n        print(f\\\"  min={s['min']}, P25={s['P25']:.0f}, median={s['median']:.0f}, \\\"\\n              f\\\"P75={s['P75']:.0f}, P90={s['P90']:.0f}, max={s['max']}, mean={s['mean']:.1f}\\\")\\n    print(\\\"=\\\" * 75)\\n\\n    # Save raw counts for potential reuse\\n    stats['raw_f2p'] = f2p_counts\\n    stats['raw_p2p'] = p2p_counts\\n    stats_path = os.path.join(D
+…[truncated 1621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T05:13:17.031645+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "head -50 /home/sonny/exec-sim-repair-verifier/swebench_test_stats.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "head -50 /home/sonny/exec-sim-repair-verifier/swebench_test_stats.json",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T05:13:17.031772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/mvp_a_real_f2p_results.json",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T05:13:17.031953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"FAIL_TO_PASS\\\": {\\n    \\\"min\\\": 1,\\n    \\\"P25\\\": 1.0,\\n    \\\"median\\\": 1.0,\\n    \\\"P75\\\": 2.0,\\n    \\\"P90\\\": 3.0,\\n    \\\"max\\\": 438,\\n    \\\"mean\\\": 3.03,\\n    \\\"std\\\": 20.99\\n  },\\n  \\\"PASS_TO_PASS\\\": {\\n    \\\"min\\\": 0,\\n    \\\"P25\\\": 19.0,\\n    \\\"median\\\": 50.5,\\n    \\\"P75\\\": 111.25,\\n    \\\"P90\\\": 248.5000000000001,\\n    \\\"max\\\": 2476,\\n    \\\"mean\\\": 120.28,\\n    \\\"std\\\": 251.22\\n  },\\n  \\\"Total\\\": {\\n    \\\"min\\\": 1,\\n    \\\"P25\\\": 21.75,\\n    \\\"median\\\": 52.0,\\n    \\\"P75\\\": 113.25,\\n    \\\"P90\\\": 250.4000000000001,\\n    \\\"max\\\": 2488,\\n    \\\"mean\\\": 123.32,\\n    \\\"std\\\": 256.83\\n  },\\n  \\\"raw_f2p\\\": [\\n    2,\\n    1,\\n    2,\\n    4,\\n    1,\\n    1,\\n    20,\\n    1,\\n    1,\\n    1,\\n    1,\\n    3,\\n    1,\\n    2,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T05:13:17.032151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"params\\\": {\\n    \\\"N\\\": 16,\\n    \\\"n_trials\\\": 10000,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"result\\\": {\\n    \\\"T_median\\\": 1.0,\\n    \\\"T_mean\\\": 2.3,\\n    \\\"pct_T1\\\": 0.6869,\\n    \\\"pct_T2\\\": 0.1908,\\n    \\\"pct_T_ge3\\\": 0.1223,\\n    \\\"accuracy_range\\\": [\\n      0.55,\\n      0.56,\\n      0.57,\\n      0.58,\\n      0.59,\\n      0.6,\\n      0.61,\\n      0.62,\\n      0.63,\\n      0.64,\\n      0.65,\\n      0.66,\\n      0.67,\\n      0.68,\\n      0.69,\\n      0.7,\\n      0.71,\\n      0.72,\\n      0.73,\\n      0.74,\\n      0.75,\\n      0.76,\\n      0.77,\\n      0.78,\\n      0.79,\\n      0.8,\\n      0.81,\\n      0.82,\\n      0.83,\\n      0.84,\\n      0.85,\\n      0.86,\\n      0.87,\\n      0.88,\\n      0.89,\\n      0.9,\\n      0.91,\\n      0.92,\\n      0.93,\\n      0.94,\\n      0.95,\\n      0.96,\\n      0.97,\\n      0.98,\\n      0.99\\n    ],\\n    \\\"iid_pt\\\": [\\n      0.0806,\\n      0.0784,\\n      0.0925,\\n      0.0882,\\n      0.0958,\\n      0.0982,\\n      0.1024,\\n      0.1066,\\n      0.1155,\\n      0.118,\\n      0.1267,\\n      0.1327,\\n      0.1346,\\n      0.145,\\n      0.1533,\\n      0.1576,\\n      0.1765,\\n      0.176,\\n      0.1863,\\n      0.1949,\\n      0.207,\\n      0.2119,\\n      0.223,\\n      0.2408,\\n      0.2522,\\n      0.2642,\\n      0.2821,\\n      0.3005,\\n      0.3072,\\n      0.329,\\n      0.353,\\n      0.3736,\\n      0.3999,\\n      0.4224,\\n      0.4501,\\n      0.4781,\\n      0.5102,\\n      0.5535,\\n      0.5915,\\n      0.6323,\\n      0.6814,\\n      0.7302,\\n      0.7867,\\n      0.8557,\\n      0.9226\\n    ],\\n    \\\"block_pt\\\": [\\n      0.1514,\\n      0.1497,\\n      0.157,\\n      0.1618,\\n      0.1688,\\n      0.1755,\\n      0.1811,\\n      0.1863,\\n      0.1991,\\n      0.1977,\\n      0.2037,\\n      0.2094,\\n      0.2238,\\n      0.2348,\\n     
+…[truncated 3118 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T05:13:17.032402+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Stratified oracle simulation by F2P test count.\n\nRuns the same block-correlated Monte Carlo as mvp_a_real_f2p_sim.py,\nbut tracks per-trial outcomes to compute advantage per T-stratum:\nT=1, T=2, T=3-5, T=6+.\n\"\"\"\nimport numpy as np\nimport json\nimport time\nimport os\nimport argparse\n\nDIR = os.path.dirname(os.path.abspath(__file__))\n\nSTRATA = [\n    ('T=1',   lambda t: t == 1),\n    ('T=2',   lambda t: t == 2),\n    ('T=3-5', lambda t: (t >= 3) & (t <= 5)),\n    ('T=6+',  lambda t: t >= 6),\n]\n\n\ndef build_gt(rng, n_trials, N, T_vals, T_max):\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\n    for t in range(n_trials):\n        T = T_vals[t]\n        for p in range(1, N):\n            fp = rng.uniform(0.1, 0.8)\n            fails = rng.random(T) < fp\n            if not fails.any():\n                fails[rng.integers(T)] = True\n            gt[t, p, :T] = ~fails\n    return gt\n\n\ndef build_blocks(rng, T_vals, T_max):\n    n = len(T_vals)\n    bids = np.zeros((n, T_max), dtype=np.int32)\n    nb = np.zeros(n, dtype=np.int32)\n    for t in range(n):\n        T = T_vals[t]\n        idx = bid = 0\n        while idx < T:\n            rem = T - idx\n            if rem <= 8:\n                bids[t, idx:T] = bid\n                bid += 1\n                break\n            bs = min(int(rng.integers(2, 9)), rem)\n            bids[t, idx:idx + bs] = bid\n            bid += 1\n            idx += bs\n        nb[t] = max(bid, 1)\n    return bids, nb\n\n\ndef best_patch(scores, rng):\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\n\n\ndef from_resolved(preds, rng):\n    tb = rng.random(preds.shape)\n    ar = preds.any(axis=1, keepdims=True)\n    m = np.where(preds, tb, -1.0)\n    return np.where(ar, m, tb).argmax(axis=1)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--output', default='oracle_f2p_stratified_results.json')\n    parser.add_argument('--n-trials', type=int, default=10000)\n    parser.add_argument('--seed', type=int, default=42)\n    args = parser.parse_args()\n\n    N = 16\n    n_trials = args.n_trials\n    seed = args.seed\n    acc_range = np.round(np.arange(0.50, 1.005, 0.01), 2)\n    acc_list = [round(float(a), 2) for a in acc_range]\n    n_acc = len(acc_range)\n\n    with open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\n        RAW_F2P = np.array(json.load(f)['raw_f2p'])\n\n    rng = np.random.default_rng(seed)\n    T_vals = np.clip(rng.choice(RAW_F2P, size=n_trials), 1, 100)\n    T_max = int(T_vals.max())\n\n    strata_masks = [(name, fn(T_vals)) for name, fn in STRATA]\n\n    print(\"Oracle F2P Stratified Analysis\")\n    print(f\"  N={N}, trials={n_trials}, seed={seed}\")\n    print(f\"  T: median={np.median(T_vals):.0f}, mean={T_vals.mean():.1f}\")\n    for name, mask in strata_masks:\n        cnt = mask.sum()\n        print(f\"  {name}: {cnt} ({cnt/n_trials*100:.1f}%)\")\n\n    gt = build_gt(rng, n_trials, N, T_vals, T_max)\n    tmask = (np.arange(T_max)[None, :] < T_vals[:, None])[:, None, :]\n    bids, nb = build_blocks(rng, T_vals, T_max)\n    B_max = max(int(nb.max()), 1)\n\n    tax = np.arange(n_trials)[:, None, None]\n    pax = np.arange(N)[None, :, None]\n    bax = bids[:, None, :]\n\n    blk_correct = np.zeros((n_acc, n_trials), dtype=bool)\n    iid_correct = np.zeros((n_acc, n_trials), dtype=bool)\n    traj_correct = np.zeros((n_acc, n_trials), dtype=bool)\n\n    t0 = time.time()\n    for ai, acc in enumerate(acc_range):\n        fi = rng.random((n_trials, N, T_max)) >= acc\n        noisy_i = gt ^ fi\n        si = (noisy_i & tmask).sum(axis=2)\n        sel_i = best_patch(si, rng)\n        iid_correct[ai] = (sel_i == 0)\n\n        bf = rng.random((n_trials, N, B_max)) < (1.0 - acc)\n        tf = bf[tax, pax, bax]\n        noisy_b = gt ^ tf\n        sb = (noisy_b & tmask).sum(axis=2)\n        sel_b = best_patch(sb, rng)\n        blk_correct[ai] = (sel_b == 0)\n\n        tp = np.full((n_trials, N), 1.0 - acc)\n        tp[:, 0] = acc\n        tpreds = rng.random((n_trials, N)) < tp\n        sel_t = from_resolved(tpreds, rng)\n        traj_correct[ai] = (sel_t == 0)\n\n        if (ai + 1) % 10 == 0:\n            el = time.time() - t0\n            eta = el / (ai + 1) * (n_acc - ai - 1)\n            print(f\"  [{ai+1}/{n_acc}] p={acc:.2f} ({el:.0f}s, ~{eta:.0f}s remaining)\")\n\n    elapsed = time.time() - t0\n    print(f\"  Done in {elapsed:.1f}s\")\n\n    target_idx = [i for i, a in enumerate(acc_list) if 0.70 <= a <= 0.85]\n\n    results = {\n        'params': {'N': N, 'n_trials': n_trials, 'seed': seed,\n                    'accuracy_range': acc_list},\n        'T_distribution': {\n            'median': float(np.median(T_vals)),\n            'mean': round(float(T_vals.mean()), 2),\n        },\n        'strata': {},\n    }\n\n    print(\"\\n\" + \"=\" * 75)\n    print(\"STRATIFIED ORACLE RESULTS (block-correlated)\")\n    print(\"=\" * 75)\n    print(f\"\\n{'Stratum':<10} {'Count':>6} {'%':>6} \"\n          f\"{'Block Adv 70-85%':>18} {'IID Adv 70-85%':>16}\")\n    print(\"-\" * 60)\n\n    for sname, smask in strata_masks:\n        cnt = int(smask.sum())\n        if cnt == 0:\n            continue\n\n        blk_sr = blk_correct[:, smask].mean(axis=1)\n        iid_sr = iid_correct[:, smask].mean(axis=1)\n        traj_sr = traj_correct[:, smask].mean(axis=1)\n\n        blk_adv = blk_sr - traj_sr\n        iid_adv = iid_sr - traj_sr\n\n        blk_target = np.array([blk_adv[i] for i in target_idx])\n        iid_target = np.array([iid_adv[i] for i in target_idx])\n\n        blk_mean = float(blk_target.mean())\n        iid_mean = float(iid_target.mean())\n\n        print(f\"{sname:<10} {cnt:>6} {cnt/n_trials*100:>5.1f}% \"\n              f\"{blk_mean:>18.4f} {iid_mean:>16.4f}\")\n\n        results['strata'][sname] = {\n            'count': cnt,\n            'pct': round(cnt / n_trials, 4),\n            'T_range': [int(T_vals[smask].min()), int(T_vals[smask].max())],\n            'T_mean': round(float(T_vals[smask].mean()), 2),\n            'block_pt': [round(float(x), 4) for x in blk_sr],\n            'iid_pt': [round(float(x), 4) for x in iid_sr],\n            'trajectory': [round(float(x), 4) for x in traj_sr],\n            'block_advantage': [round(float(x), 4) for x in blk_adv],\n            'iid_advantage': [round(float(x), 4) for x in iid_adv],\n            'target_block': {\n                'mean': round(blk_mean, 4),\n                'min': round(float(blk_target.min()), 4),\n                'max': round(float(blk_target.max()), 4),\n            },\n            'target_iid': {\n                'mean': round(iid_mean, 4),\n                'min': round(float(iid_target.min()), 4),\n                'max': round(float(iid_target.max()), 4),\n            },\n        }\n\n    # Overall\n    blk_adv_all = blk_correct.mean(axis=1) - traj_correct.mean(axis=1)\n    iid_adv_all = iid_correct.mean(axis=1) - traj_correct.mean(axis=1)\n    blk_t_all = np.array([blk_adv_all[i] for i in target_idx])\n    iid_t_all = np.array([iid_adv_all[i] for i in target_idx])\n    print(f\"{'Overall':<10} {n_trials:>6} {100:>5.1f}% \"\n          f\"{float(blk_t_all.mean()):>18.4f} {float(iid_t_all.mean()):>16.4f}\")\n    print(\"=\" * 75)\n\n    results['overall'] = {\n        'target_block_mean': round(float(blk_t_all.mean()), 4),\n        'target_iid_mean': round(float(iid_t_all.mean()), 4),\n    }\n\n    # Detailed per-accuracy table for target range\n    print(f\"\\nDetailed block advantage by stratum (70-85%):\")\n    header = f\"  {'acc':>5}\"\n    for sname, _ in strata_masks:\n        header += f\"  {sname:>8}\"\n    header += f\"  {'Overall':>8}\"\n    print(header)\n\n    for i in target_idx:\n        a = acc_list[i]\n        line = f\"  {a:>5.2f}\"\n        for sname, smask in strata_masks:\n            if sname in results['strata']:\n                line += f\"  {results['strata'][sname]['block_advantage'][i]:>8.4f}\"\n        line += f\"  {float(blk_adv_all[i]):>8.4f}\"\n        print(line)\n\n    # Weighted-average decomposition\n    print(f\"\\nWeighted decomposition of overall block advantage:\")\n    total_adv = float(blk_t_all.mean())\n    for sname, smask in strata_masks:\n        if sname not in results['strata']:\n            continue\n        s = results['strata'][sname]\n        contribution = s['pct'] * s['target_block']['mean']\n        print(f\"  {sname}: weight={s['pct']:.1%} x adv={s['target_block']['mean']:.4f} \"\n              f\"= {contribution:.4f} ({contribution/total_adv*100:.1f}% of total)\")\n\n    json_path = os.path.join(DIR, args.output)\n    with open(json_path, 'w') as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved {json_path}\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat > /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Stratified oracle simulation by F2P test count.\n\nRuns the same block-correlated Monte Carlo as mvp_a_real_f2p_sim.py,\nbut tracks per-trial outcomes to compute advantage per T-stratum:\nT=1, T=2, T=3-5, T=6+.\n\"\"\"\nimport numpy as np\nimport json\nimport time\nimport os\nimport argparse\n\nDIR = os.path.dirname(os.path.abspath(__file__))\n\nSTRATA = [\n    ('T=1',   lambda t: t == 1),\n    ('T=2',   lambda t: t == 2),\n    ('T=3-5', lambda t: (t >= 3) & (t <= 5)),\n    ('T=6+',  lambda t: t >= 6),\n]\n\n\ndef build_gt(rng, n_trials, N, T_vals, T_max):\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\n    for t in range(n_trials):\n        T = T_vals[t]\n        for p in range(1, N):\n            fp = rng.uniform(0.1, 0.8)\n            fails = rng.random(T) < fp\n            if not fails.any():\n                fails[rng.integers(T)] = True\n            gt[t, p, :T] = ~fails\n    return gt\n\n\ndef build_blocks(rng, T_vals, T_max):\n    n = len(T_vals)\n    bids = np.zeros((n, T_max), dtype=np.int32)\n    nb = np.zeros(n, dtype=np.int32)\n    for t in range(n):\n        T = T_vals[t]\n        idx = bid = 0\n        while idx < T:\n            rem = T - idx\n            if rem <= 8:\n                bids[t, idx:T] = bid\n                bid += 1\n                break\n            bs = min(int(rng.integers(2, 9)), rem)\n            bids[t, idx:idx + bs] = bid\n            bid += 1\n            idx += bs\n        nb[t] = max(bid, 1)\n    return bids, nb\n\n\ndef best_patch(scores, rng):\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\n\n\ndef from_resolved(preds, rng):\n    tb = rng.random(preds.shape)\n    ar = preds.any(axis=1, keepdims=True)\n    m = np.where(preds, tb, -1.0)\n    return np.where(ar, m, tb).argmax(axis=1)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--output', default='oracle_f2p_stratified_results.json')\n    parser.add_argument('--n-trials', type=int, default=10000)\n    parser.add_argument('--seed', type=int, default=42)\n    args = parser.parse_args()\n\n    N = 16\n    n_trials = args.n_trials\n    seed = args.seed\n    acc_range = np.round(np.arange(0.50, 1.005, 0.01), 2)\n    acc_list = [round(float(a), 2) for a in acc_range]\n    n_acc = len(acc_range)\n\n    with open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\n        RAW_F2P = np.array(json.load(f)['raw_f2p'])\n\n    rng = np.random.default_rng(seed)\n    T_vals = np.clip(rng.choice(RAW_F2P, size=n_trials), 1, 100)\n    T_max = int(T_vals.max())\n\n    strata_masks = [(name, fn(T_vals)) for name, fn in STRATA]\n\n    print(\"Oracle F2P Stratified Analysis\")\n    print(f\"  N={N}, trials={n_trials}, seed={seed}\")\n    print(f\"  T: median={np.median(T_vals):.0f}, mean={T_vals.mean():.1f}\")\n    for name, mask in strata_masks:\n        cnt = mask.sum()\n        print(f\"  {name}: {cnt} ({cnt/n_trials*100:.1f}%)\")\n\n    gt = build_gt(rng, n_trials, N, T_vals, T_max)\n    tmask = (np.arange(T_max)[None, :] < T_vals[:, None])[:, None, :]\n    bids, nb = build_blocks(rng, T_vals, T_max)\n    B_max = max(int(nb.max()), 1)\n\n    tax = np.arange(n_trials)[:, None, None]\n    pax = np.arange(N)[None, :, None]\n    bax = bids[:, None, :]\n\n    blk_correct = np.zeros((n_acc, n_trials), dtype=bool)\n    iid_correct = np.zeros((n_acc, n_trials), dtype=bool)\n    traj_correct = np.zeros((n_acc, n_trials), dtype=bool)\n\n    t0 = time.time()\n    for ai, acc in enumerate(acc_range):\n        fi = rng.random((n_trials, N, T_max)) >= acc\n        noisy_i = gt ^ fi\n        si = (noisy_i & tmask).sum(axis=2)\n        sel_i = best_patch(si, rng)\n        iid_correct[ai] = (sel_i == 0)\n\n        bf = rng.random((n_trials, N, B_max)) < (1.0 - acc)\n        tf = bf[tax, pax, bax]\n        noisy_b = gt ^ tf\n        sb = (noisy_b & tmask).sum(axis=2)\n        sel_b = best_patch(sb, rng)\n        blk_correct[ai] = (sel_b == 0)\n\n        tp = np.full((n_trials, N), 1.0 - acc)\n        tp[:, 0] = acc\n        tpreds = rng.random((n_trials, N)) < tp\n        sel_t = from_resolved(tpreds, rng)\n        traj_correct[ai] = (sel_t == 0)\n\n        if (ai + 1) % 10 == 0:\n            el = time.time() - t0\n            eta = el / (ai + 1) * (n_acc - ai - 1)\n            print(f\"  [{ai+1}/{n_acc}] p={acc:.2f} ({el:.0f}s, ~{eta:.0f}s remaining)\")\n\n    elapsed = time.time() - t0\n    print(f\"  Done in {elapsed:.1f}s\")\n\n    target_idx = [i for i, a in enumerate(acc_list) if 0.70 <= a <= 0.85]\n\n    results = {\n        'params': {'N': N, 'n_trials': n_trials, 'seed': seed,\n                    'accuracy_range': acc_list},\n        'T_distribution': {\n            'median': float(np.median(T_vals)),\n            'mean': round(float(T_vals.mean()), 2),\n        },\n        'strata': {},\n    }\n\n    print(\"\\n\" + \"=\" * 75)\n    print(\"STRATIFIED ORACLE RESULTS (block-correlated)\")\n    print(\"=\" * 75)\n    print(f\"\\n{'Stratum':<10} {'Count':>6} {'%':>6} \"\n          f\"{'Block Adv 70-85%':>18} {'IID Adv 70-85%':>16}\")\n    print(\"-\" * 60)\n\n    for sname, smask in strata_masks:\n        cnt = int(smask.sum())\n        if cnt == 0:\n            continue\n\n        blk_sr = blk_correct[:, smask].mean(axis=1)\n        iid_sr = iid_correct[:, smask].mean(axis=1)\n        traj_sr = traj_correct[:, smask].mean(axis=1)\n\n        blk_adv = blk_sr - traj_sr\n        iid_adv = iid_sr - traj_sr\n\n        blk_target = np.array([blk_adv[i] for i in target_idx])\n        iid_target = np.array([iid_adv[i] for i in target_idx])\n\n        blk_mean = float(blk_target.mean())\n        iid_mean = float(iid_target.mean())\n\n        print(f\"{sname:<10} {cnt:>6} {cnt/n_trials*100:>5.1f}% \"\n              f\"{blk_mean:>18.4f} {iid_mean:>16.4f}\")\n\n        results['strata'][sname] = {\n            'count': cnt,\n            'pct': round(cnt / n_trials, 4),\n            'T_range': [int(T_vals[smask].min()), int(T_vals[smask].max())],\n            'T_mean': round(float(T_vals[smask].mean()), 2),\n            'block_pt': [round(float(x), 4) for x in blk_sr],\n            'iid_pt': [round(float(x), 4) for x in iid_sr],\n            'trajectory': [round(float(x), 4) for x in traj_sr],\n            'block_advantage': [round(float(x), 4) for x in blk_adv],\n            'iid_advantage': [round(float(x), 4) for x in iid_adv],\n            'target_block': {\n                'mean': round(blk_mean, 4),\n                'min': round(float(blk_target.min()), 4),\n                'max': round(float(blk_target.max()), 4),\n            },\n            'target_iid': {\n                'mean': round(iid_mean, 4),\n                'min': round(float(iid_target.min()), 4),\n                'max': round(float(iid_target.max()), 4),\n            },\n        }\n\n    # Overall\n    blk_adv_all = blk_correct.mean(axis=1) - traj_correct.mean(axis=1)\n    iid_adv_all = iid_correct.mean(axis=1) - traj_correct.mean(axis=1)\n    blk_t_all = np.array([blk_adv_all[i] for i in target_idx])\n    iid_t_all = np.array([iid_adv_all[i] for i in target_idx])\n    print(f\"{'Overall':<10} {n_trials:>6} {100:>5.1f}% \"\n          f\"{float(blk_t_all.mean()):>18.4f} {float(iid_t_all.mean()):>16.4f}\")\n    print(\"=\" * 75)\n\n    results['overall'] = {\n        'target_block_mean': round(float(blk_t_all.mean()), 4),\n        'target_iid_mean': round(float(iid_t_all.mean()), 4),\n    }\n\n    # Detailed per-accuracy table for target range\n    print(f\"\\nDetailed block advantage by stratum (70-85%):\")\n    header = f\"  {'acc':>5}\"\n    for sname, _ in strata_masks:\n        header += f\"  {sname:>8}\"\n    header += f\"  {'Overall':>8}\"\n    print(header)\n\n    for i in target_idx:\n        a = acc_list[i]\n        line = f\"  {a:>5.2f}\"\n        for sname, smask in strata_masks:\n            if sname in results['strata']:\n                line += f\"  {results['strata'][sname]['block_advantage'][i]:>8.4f}\"\n        line += f\"  {float(blk_adv_all[i]):>8.4f}\"\n        print(line)\n\n    # Weighted-average decomposition\n    print(f\"\\nWeighted decomposition of overall block advantage:\")\n    total_adv = float(blk_t_all.mean())\n    for sname, smask in strata_masks:\n        if sname not in results['strata']:\n            continue\n        s = results['strata'][sname]\n        contribution = s['pct'] * s['target_block']['mean']\n        print(f\"  {sname}: weight={s['pct']:.1%} x adv={s['target_block']['mean']:.4f} \"\n              f\"= {contribution:.4f} ({contribution/total_adv*100:.1f}% of total)\")\n\n    json_path = os.path.join(DIR, args.output)\n    with open(json_path, 'w') as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved {json_path}\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T05:13:17.032621+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T05:13:17.032764+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 oracle_f2p_stratified.py --output oracle_f2p_stratified_results.json 2>&1",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cd /home/sonny/exec-sim-repair-verifier && python3 oracle_f2p_stratified.py --output oracle_f2p_stratified_results.json 2>&1",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T05:13:17.032942+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Oracle F2P Stratified Analysis\\n  N=16, trials=10000, seed=42\\n  T: median=1, mean=2.3\\n  T=1: 6869 (68.7%)\\n  T=2: 1908 (19.1%)\\n  T=3-5: 712 (7.1%)\\n  T=6+: 511 (5.1%)\\n  [10/51] p=0.59 (1s, ~5s remaining)\\n  [20/51] p=0.69 (2s, ~3s remaining)\\n  [30/51] p=0.79 (3s, ~2s remaining)\\n  [40/51] p=0.89 (4s, ~1s remaining)\\n  [50/51] p=0.99 (5s, ~0s remaining)\\n  Done in 5.4s\\n\\n===========================================================================\\nSTRATIFIED ORACLE RESULTS (block-correlated)\\n===========================================================================\\n\\nStratum     Count      %   Block Adv 70-85%   IID Adv 70-85%\\n------------------------------------------------------------\\nT=1          6869  68.7%            -0.0009          -0.0011\\nT=2          1908  19.1%             0.3169           0.0388\\nT=3-5         712   7.1%             0.4074           0.0604\\nT=6+          511   5.1%             0.4006           0.1731\\nOverall     10000 100.0%             0.1093           0.0198\\n===========================================================================\\n\\nDetailed block advantage by stratum (70-85%):\\n    acc       T=1       T=2     T=3-5      T=6+   Overall\\n   0.70   -0.0012    0.2804    0.3933    0.3718    0.0997\\n   0.71    0.0092    0.2982    0.3975    0.3483    0.1093\\n   0.72   -0.0035    0.2783    0.3610    0.3894    0.0963\\n   0.73    0.0041    0.2809    0.3904    0.3855    0.1039\\n   0.74    0.0096    0.3003    0.4059    0.3699    0.1117\\n   0.75   -0.0028    0.3171    0.4228    0.4070    0.1095\\n   0.76   -0.0028    0.3265    0.3750    0.4266    0.1089\\n   0.77   -0.0095    0.3370    0.4213    0.4403    0.1103\\n   0.78   -0.0055    0.3134    0.4213    0.3796    0.1054\\n   0.79   -0.0179    0.3134    0.4059    0.3973    0.0967\\n   0.80   -0.0004    0.3265    0.4902    0.4560    0.1202\\n   0.81    0.0000    0.3297    0.4003    0.3777    0.11
+…[truncated 735 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-12T05:13:17.033127+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "oracle_f2p_stratified_results",
+  "type": "data",
+  "description": "Stratified oracle simulation results by F2P test count (T=1/2/3-5/6+), showing per-stratum block-correlated advantage",
+  "project": "exec-sim-repair-verifier",
+  "exp_id": "oracle-f2p-stratified",
+  "source_path": "/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+  "tags": "['oracle', 'simulation', 'stratified', 'f2p']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "oracle_f2p_stratified_results",
+    "type": "data",
+    "description": "Stratified oracle simulation results by F2P test count (T=1/2/3-5/6+), showing per-stratum block-correlated advantage",
+    "project": "exec-sim-repair-verifier",
+    "exp_id": "oracle-f2p-stratified",
+    "source_path": "/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+    "tags": "['oracle', 'simulation', 'stratified', 'f2p']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T05:13:17.033327+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T05:13:17.033537+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "home-1x5090",
+    "command": "cat /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+    "account": "sonny"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T05:13:17.033987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"params\\\": {\\n    \\\"N\\\": 16,\\n    \\\"n_trials\\\": 10000,\\n    \\\"seed\\\": 42,\\n    \\\"accuracy_range\\\": [\\n      0.5,\\n      0.51,\\n      0.52,\\n      0.53,\\n      0.54,\\n      0.55,\\n      0.56,\\n      0.57,\\n      0.58,\\n      0.59,\\n      0.6,\\n      0.61,\\n      0.62,\\n      0.63,\\n      0.64,\\n      0.65,\\n      0.66,\\n      0.67,\\n      0.68,\\n      0.69,\\n      0.7,\\n      0.71,\\n      0.72,\\n      0.73,\\n      0.74,\\n      0.75,\\n      0.76,\\n      0.77,\\n      0.78,\\n      0.79,\\n      0.8,\\n      0.81,\\n      0.82,\\n      0.83,\\n      0.84,\\n      0.85,\\n      0.86,\\n      0.87,\\n      0.88,\\n      0.89,\\n      0.9,\\n      0.91,\\n      0.92,\\n      0.93,\\n      0.94,\\n      0.95,\\n      0.96,\\n      0.97,\\n      0.98,\\n      0.99,\\n      1.0\\n    ]\\n  },\\n  \\\"T_distribution\\\": {\\n    \\\"median\\\": 1.0,\\n    \\\"mean\\\": 2.26\\n  },\\n  \\\"strata\\\": {\\n    \\\"T=1\\\": {\\n      \\\"count\\\": 6869,\\n      \\\"pct\\\": 0.6869,\\n      \\\"T_range\\\": [\\n        1,\\n        1\\n      ],\\n      \\\"T_mean\\\": 1.0,\\n      \\\"block_pt\\\": [\\n        0.0651,\\n        0.0646,\\n        0.0661,\\n        0.0681,\\n        0.0719,\\n        0.0728,\\n        0.0798,\\n        0.0841,\\n        0.0882,\\n        0.0901,\\n        0.0873,\\n        0.0914,\\n        0.108,\\n        0.1096,\\n        0.1205,\\n        0.1188,\\n        0.1219,\\n        0.1284,\\n        0.1313,\\n        0.1457,\\n        0.1441,\\n        0.1603,\\n        0.1584,\\n        0.1695,\\n        0.1801,\\n        0.1817,\\n        0.198,\\n        0.2059,\\n        0.216,\\n        0.2197,\\n        0.2411,\\n        0.2575,\\n        0.2798,\\n        0.2955,\\n        0.3088,\\n        0.3207,\\n        0.3481,\\n        0.3733,\\n        0.4053,\\n        0.4217,\\n        0.4526,\\n        0.4897,\\n        0.5333,\\n       
+…[truncated 7432 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T05:13:17.034274+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "oracle_f2p_stratified_results",
+  "type": "data",
+  "description": "Stratified oracle simulation: T=1 adv=-0.09%, T=2 adv=31.7%, T=3-5 adv=40.7%, T=6+ adv=40.1%",
+  "project": "exec-sim-repair-verifier",
+  "exp_id": "oracle-f2p-stratified",
+  "content": "See remote: /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+  "content_filename": "oracle_f2p_stratified_results.json",
+  "tags": "['oracle', 'simulation', 'stratified', 'f2p']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "oracle_f2p_stratified_results",
+    "type": "data",
+    "description": "Stratified oracle simulation: T=1 adv=-0.09%, T=2 adv=31.7%, T=3-5 adv=40.7%, T=6+ adv=40.1%",
+    "project": "exec-sim-repair-verifier",
+    "exp_id": "oracle-f2p-stratified",
+    "content": "See remote: /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json",
+    "content_filename": "oracle_f2p_stratified_results.json",
+    "tags": "['oracle', 'simulation', 'stratified', 'f2p']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T05:13:17.034507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_e6c9c8\", \"name\": \"oracle_f2p_stratified_results\", \"type\": \"data\", \"description\": \"Stratified oracle simulation: T=1 adv=-0.09%, T=2 adv=31.7%, T=3-5 adv=40.7%, T=6+ adv=40.1%\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/oracle-f2p-stratified/data/oracle_f2p_stratified_results.json\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": \"oracle-f2p-stratified\", \"skill\": \"\", \"created_at\": \"2026-05-12T05:12:59.868145+00:00\", \"tags\": [\"oracle\", \"simulation\", \"stratified\", \"f2p\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-12T05:13:17.034753+00:00_
+
+完成。结果汇总：
+
+### 分层 block-correlated advantage (70-85% accuracy)
+
+| 分层 | 实例占比 | Block Advantage | IID Advantage |
+|------|---------|-----------------|---------------|
+| **T=1** | 68.7% | **-0.09%** | -0.11% |
+| **T=2** | 19.1% | **31.69%** | 3.88% |
+| **T=3-5** | 7.1% | **40.74%** | 6.04% |
+| **T=6+** | 5.1% | **40.06%** | 17.31% |
+| Overall | 100% | **10.93%** | 1.98% |
+
+### 关键发现
+
+1. **T=1 advantage ≈ 0**：确认了预期——当只有 1 个 F2P test 时，per-test verifier 退化为 trajectory-level verifier（都是单个 binary prediction），无信息增益
+2. **T=2 即有 31.7% advantage**：仅 2 个测试就能产生巨大优势，因为 per-test 可以用连续评分（0/1/2）做排序
+3. **T≥3 趋于饱和**：T=3-5 (40.7%) 和 T=6+ (40.1%) 接近，说明 ~3 个测试后 advantage 就接近上限
+
+### 加权分解
+
+整体 10.93% advantage 的来源：
+- T=1 贡献 -0.6%（近零）
+- T=2 贡献 **55.3%**（最大贡献者）
+- T=3-5 贡献 26.5%
+- T=6+ 贡献 18.7%
+
+**结论**：per-test verifier 的优势完全来自 T≥2 的 31.3% 实例，在这些实例上 advantage 高达 30-40%。T=2 是性价比最高的分界点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_oracle-f2p-stratified_20260512T050929"
+}
+```
+
+</details>
+
+---

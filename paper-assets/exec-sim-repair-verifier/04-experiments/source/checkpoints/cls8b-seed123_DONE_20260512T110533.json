@@ -1,0 +1,56 @@
+{
+  "exp_id": "cls8b-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-12T09:23:37.452Z",
+    "updated_at": "2026-05-12T11:05:33.465Z",
+    "hypothesis": "验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性",
+    "reproduce": {
+      "finished_at": "2026-05-12T11:04:29.187Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 596.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 297.69 MiB is free. Process 21715 has 13.57 GiB memory in use. Including non-PyTorch memory, this process has 17.49 GiB memory in use. Of the allocated",
+    "completed_at": "2026-05-12T09:26:17.270Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T09:26:18.332729+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T11:04:31.005638+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "notes": "CUDA OOM: GPU 0 上有残留进程 (PID 21715) 占用 13.57 GiB 显存。cls8b-seed123 自身加载 8B 模型占 17.49 GiB，合计 ~31 GiB 超出 31.36 GiB 容量。已派 Worker 诊断清理 GPU 0，清理后可重试。这不是超参问题——单独跑 8B 在 5090 上显存足够（model-size-scaling-cls8b 同配置已成功完成）。",
+    "spec": {
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/best/",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123.log"
+    },
+    "metrics": {
+      "accuracy": 89.4,
+      "pass_f1": 89.5,
+      "fail_f1": 89.2,
+      "pass_precision": 91.2,
+      "pass_recall": 87.9,
+      "fail_precision": 87.5,
+      "fail_recall": 90.9,
+      "train_loss": 0.3087,
+      "eval_loss": 0.0848,
+      "train_runtime_sec": 5666,
+      "unparseable": 0
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T11:05:33.514361+00:00",
+  "trigger": "update_registry"
+}

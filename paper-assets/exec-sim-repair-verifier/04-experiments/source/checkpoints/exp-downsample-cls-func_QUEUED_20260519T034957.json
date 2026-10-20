@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp-downsample-cls-func",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:49:00.576Z",
+    "updated_at": "2026-05-19T03:49:57.376Z",
+    "hypothesis": "CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势",
+    "metrics": {
+      "data_prep": {
+        "original_cls_samples": 15290,
+        "original_cls_problems": 906,
+        "downsampled_samples": 8051,
+        "downsampled_problems": 475,
+        "target_traj_samples": 8052,
+        "label_pass": 4174,
+        "label_fail": 3877,
+        "data_file": "data/train_downsampled.jsonl"
+      },
+      "estimated_train_time_min": "30-50",
+      "gpu_blocker": "all 4 seetacloud GPUs occupied"
+    }
+  },
+  "timestamp": "2026-05-19T03:49:57.781406+00:00",
+  "trigger": "update_registry"
+}

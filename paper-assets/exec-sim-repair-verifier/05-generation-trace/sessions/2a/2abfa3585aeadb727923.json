@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2abfa3585aeadb727923",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home v5 sweep rerun",
+  "task_key": "worker_fix_home-v5-sweep-rerun_20260514T234104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-v5-sweep-rerun_20260514T234104_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "68ab3ef62b64e1baca4d370032d01c6ad306603b23cf23aaae84892f9b486f39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：ckpt-4000 val@5120 eval 已经在跑了，不需要重新提交。**\n\n- PID: 3186818\n- GPU: cuda:0，100% 利用率，31718 MiB\n- 进度: 832 / 9335（约 8.9%）\n- 输出: `results/repo_cls_v5_ckpt4000_val5120/eval_repo_cls_predictions.jsonl`\n\n看起来之前的崩溃已被修复并重启。当前任务正在正常执行，不需要干预。等它跑完后再提交 ckpt-4200。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-v5-sweep-rerun.md"
+}

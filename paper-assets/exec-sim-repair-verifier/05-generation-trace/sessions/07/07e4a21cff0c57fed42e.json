@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e4a21cff0c57fed42e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj v2 s42 check",
+  "task_key": "worker_ops_traj-v2-s42-check_20260516T141245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-v2-s42-check_20260516T141245_result.json",
+    "occurrence": 1,
+    "bytes": 207,
+    "sha256": "14f23c254f97df7ae2654a61f470a1acc1b67b8a380f5999d3102979a843a20e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成，关键数据：\n- best eval_loss = **0.0796** (step 504, epoch 2)\n- epoch 3 过拟合到 0.0891\n\nEval 在 GPU 2 上后台运行 (PID 516719)，约 2 分钟后检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-v2-s42-check.md"
+}

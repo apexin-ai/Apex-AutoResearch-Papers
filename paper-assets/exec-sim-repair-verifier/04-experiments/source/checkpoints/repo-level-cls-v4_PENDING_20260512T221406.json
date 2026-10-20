@@ -1,0 +1,23 @@
+{
+  "exp_id": "repo-level-cls-v4",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-12T17:17:08.066Z",
+    "updated_at": "2026-05-12T22:14:06.768Z",
+    "hypothesis": "CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200, eval_steps=200。验证 repo-level complexity-dependent CLS advantage (C1 claim)。",
+    "notes": "已被 repo-level-cls-home 替代（同实验，转至 home-1x5090 执行）。seetacloud 并行限制导致无法在该服务器提交。",
+    "completed_at": "2026-05-12T19:00:01.551Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "已被 repo-level-cls-home 替代（同实验，转至 home-1x5090 执行）。seetacloud 并行限制导致无法在该服务器提交。"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T22:14:06.894437+00:00",
+  "trigger": "update_registry"
+}

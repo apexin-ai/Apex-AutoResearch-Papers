@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fcda57ee2785d4408d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp inference efficiency benchmark",
+  "task_key": "worker_exp_inference-efficiency-benchmark_20260516T093627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_inference-efficiency-benchmark_20260516T093627_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "e92b48ef61d66f5d41b0ff56ffad90cbbd6d516cef5a02b63c69ba638e264917"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CWM benchmark still running — GPU 3 active at 38% util. I'll check back in ~4 minutes for completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-inference-efficiency-benchmark.md"
+}

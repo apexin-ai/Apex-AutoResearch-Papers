@@ -1,0 +1,14 @@
+{
+  "exp_id": "deepseek-traj-repo-8k-s999",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:01:18.947Z",
+    "updated_at": "2026-05-16T16:40:10.993Z"
+  },
+  "timestamp": "2026-05-16T16:40:11.312249+00:00",
+  "trigger": "update_registry"
+}

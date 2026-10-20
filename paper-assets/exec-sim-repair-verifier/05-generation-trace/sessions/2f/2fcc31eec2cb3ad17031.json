@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fcc31eec2cb3ad17031",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm8b v3 status",
+  "task_key": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm8b-v3-status_20260516T011031_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "8034b4b5ebceb41ed849494aa1e8326c71f6693679a80cd83515c2a85c4074f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### PID 443216：**存活，正常运行**\n- 已运行 24 分钟，进程是 submit_training_job 的 bash wrapper\n- 实际 eval 子进程 PID 443221（`python3 eval_repo_cwm.py`），CPU 102%，正常推理中\n\n### 进度\n- **5480 / 9784** 样本已完成（56%）\n- 其中 5287 条是从之前增量恢复的，新跑了 193 条\n- running_acc ≈ 60.1%（新样本上的准确率）\n- 每 batch（8 条）约 57 秒，预计剩余 ~50 分钟完成\n\n### GPU 占用\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 17609/32607 MiB | 77% | cls8b eval (ckpt1000 mutation) |\n| 1 | 17609/32607 MiB | 74% | cls8b eval (ckpt1000 mutation, resume) |\n| 2 | 29273/32607 MiB | 96% | train_repo_cwm.py (继续训练 ckpt-6100) |\n| 3 | 21133/32607 MiB | 92% | **cwm8b-ckpt400-test-eval-v3** ← 本任务 |\n\n### 其他 eval 进程\n- `eval_repo_cls.py` × 2（GPU 0 和 1，cls8b_s42 checkpoint-1000 test mutation）\n- `train_repo_cwm.py` × 1（GPU 2，从 checkpoint-6100 继续训练）\n\n### 结论\n进程正常运行，registry 状态卡在 ALLOCATED 可能是 agent-ml 框架未轮询到 exit code 文件（进程还没结束所以 exit 文件不存在）。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm8b-v3-status.md"
+}

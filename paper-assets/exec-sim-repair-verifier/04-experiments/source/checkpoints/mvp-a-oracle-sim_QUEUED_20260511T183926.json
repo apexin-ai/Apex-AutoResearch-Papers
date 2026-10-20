@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp-a-oracle-sim",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-11T18:02:03.506Z",
+    "updated_at": "2026-05-11T18:39:26.873Z",
+    "hypothesis": "Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）"
+  },
+  "timestamp": "2026-05-11T18:39:26.913508+00:00",
+  "trigger": "update_registry"
+}

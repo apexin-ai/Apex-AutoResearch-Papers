@@ -1,0 +1,68 @@
+{
+  "exp_id": "deepseek-cls-repo-v5-ckpt6315-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:58:30.134Z",
+    "updated_at": "2026-05-18T21:53:21.231Z",
+    "spec": {
+      "command": "bash -c \"mkdir -p /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192 && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/checkpoint-6315 --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/eval_summary.json --pred_output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/predictions.jsonl\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "763689",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-cls-repo-v5-ckpt6315-eval.log",
+      "submitted_at": "2026-05-18T21:21:48.318Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1892.9,
+      "gpu_hours": 0.53
+    },
+    "hypothesis": "CLS v5 epoch 3 final checkpoint (ckpt-6315) eval at seq8192: D140 checkpoint selection confound 对比数据。eval_loss epoch 3=0.1587 vs epoch 1=0.0886 (+79%)，预期 repo-level accuracy 低于 ckpt-2105。",
+    "parent": "deepseek-cls-repo-v5-ckpt2105-eval",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T21:21:44.467Z",
+      "command": "bash -c \"mkdir -p /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192 && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/checkpoint-6315 --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/eval_summary.json --pred_output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/predictions.jsonl\"",
+      "finished_at": "2026-05-18T21:52:04.878Z",
+      "training_hours": 0.51
+    },
+    "pid": "763689",
+    "log_path": "/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt6315_test_seq8192/eval_summary.json",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T21:52:10.294218+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 82.51,
+      "fail_recall": 38.47,
+      "pass_recall": 98.84,
+      "unparseable": 0,
+      "n_instances": 9784,
+      "confusion": {
+        "TN": 1018,
+        "FP": 1628,
+        "FN": 83,
+        "TP": 7055
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/checkpoint-6315",
+    "completed_at": "2026-05-18T21:53:21.231Z"
+  },
+  "timestamp": "2026-05-18T21:53:21.580153+00:00",
+  "trigger": "update_registry"
+}

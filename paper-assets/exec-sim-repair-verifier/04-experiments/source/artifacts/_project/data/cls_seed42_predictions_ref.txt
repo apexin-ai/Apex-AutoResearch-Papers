@@ -1,0 +1,3 @@
+Remote path: home-1x5090:/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json
+1890 samples, 87.8% accuracy
+Fields: idx, problem_id, mutation_type, source, true_label, predicted_label, correct, raw_output

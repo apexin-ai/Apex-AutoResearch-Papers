@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "175503416c79ff0308a3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix p0 val metrics truncation recompute",
+  "task_key": "worker_fix_p0-val-metrics-truncation-recompute_20260514T085057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_p0-val-metrics-truncation-recompute_20260514T085057_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "5ab17c6f5548bf4ef36e503b5ae3b41f0da6d6dbf5d171a1b0600a1f1d16216a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了，情况比预期更严重。\n\n## 结果摘要\n\n**截断样本分析**：1883 个截断样本中，全部被预测为 pass（majority class）。其中 697 个实际是 fail，被错误标为 pass。\n\n**排除截断后的 val metrics 与原始对比**：\n\n| Checkpoint | Val Acc(filt) | F1_macro(filt) | F1_fail(filt) | Orig Acc | Test Acc |\n|---|---|---|---|---|---|\n| ckpt-1000 | **87.18%** | 75.90 | 59.41 | 82.30% | 73.14% |\n| ckpt-800 | 86.57% | **77.08** | **62.33** | 81.81% | 74.27% |\n| ckpt-400 | 85.20% | 74.48 | 57.95 | 80.72% | 75.05% |\n| ckpt-600 | 80.26% | 72.66 | 58.25 | 76.78% | **80.73%** |\n\n**排序一致性**：\n\n- **Spearman(val_filtered acc → test acc) = -1.00** — 完全负相关\n- **Spearman(val_filtered f1_macro → test f1_macro) = -0.80**\n- 排除截断 **没有改善排序一致性**，filtered 和 original 的排序完全一样\n\n**根因**：问题不仅是截断。截断样本在所有 checkpoint 中数量相同（同一批样本被截断），排除后只是等比例去掉了同一批预测为 pass 的样本，不改变 checkpoint 间的相对排序。真正的问题是 **val 和 test 的分布差异** + **max_seq_length=2048 训练本身导致模型在长样本上行为异常**。\n\n**结论**：排除截断不够，需要 **max_seq_length=4096 重跑 val sweep**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-p0-val-metrics-truncation-recompute.md"
+}

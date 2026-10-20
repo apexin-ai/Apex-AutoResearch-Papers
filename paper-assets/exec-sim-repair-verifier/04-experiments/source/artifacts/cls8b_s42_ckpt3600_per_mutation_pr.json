@@ -1,0 +1,80 @@
+{
+  "model": "CLS 8B s42 ckpt-3600",
+  "mutation_breakdown": {
+    "gold": {
+      "n": 4633,
+      "accuracy": 96.24,
+      "tp": 4459,
+      "fp": 0,
+      "fn": 174,
+      "tn": 0,
+      "precision_pass": 100.0,
+      "recall_pass": 96.24,
+      "f1_pass": 98.08,
+      "precision_fail": 0.0,
+      "recall_fail": 0,
+      "f1_fail": 0,
+      "predict_pass_rate": 96.24
+    },
+    "boundary_removal": {
+      "n": 1049,
+      "accuracy": 46.9,
+      "tp": 367,
+      "fp": 487,
+      "fn": 70,
+      "tn": 125,
+      "precision_pass": 42.97,
+      "recall_pass": 83.98,
+      "f1_pass": 56.85,
+      "precision_fail": 64.1,
+      "recall_fail": 20.42,
+      "f1_fail": 30.97,
+      "predict_pass_rate": 81.41
+    },
+    "operator_swap": {
+      "n": 3357,
+      "accuracy": 81.38,
+      "tp": 1573,
+      "fp": 505,
+      "fn": 120,
+      "tn": 1159,
+      "precision_pass": 75.7,
+      "recall_pass": 92.91,
+      "f1_pass": 83.43,
+      "precision_fail": 90.62,
+      "recall_fail": 69.65,
+      "f1_fail": 78.76,
+      "predict_pass_rate": 61.9
+    },
+    "return_value": {
+      "n": 562,
+      "accuracy": 75.44,
+      "tp": 242,
+      "fp": 134,
+      "fn": 4,
+      "tn": 182,
+      "precision_pass": 64.36,
+      "recall_pass": 98.37,
+      "f1_pass": 77.81,
+      "precision_fail": 97.85,
+      "recall_fail": 57.59,
+      "f1_fail": 72.51,
+      "predict_pass_rate": 66.9
+    },
+    "off_by_one": {
+      "n": 183,
+      "accuracy": 86.89,
+      "tp": 123,
+      "fp": 18,
+      "fn": 6,
+      "tn": 36,
+      "precision_pass": 87.23,
+      "recall_pass": 95.35,
+      "f1_pass": 91.11,
+      "precision_fail": 85.71,
+      "recall_fail": 66.67,
+      "f1_fail": 75.0,
+      "predict_pass_rate": 77.05
+    }
+  }
+}

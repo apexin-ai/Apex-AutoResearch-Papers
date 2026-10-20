@@ -1,0 +1,16 @@
+{
+  "exp_id": "cls14b-func-s42-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T21:36:01.821Z",
+    "updated_at": "2026-05-22T21:53:33.836Z",
+    "hypothesis": "Qwen3-14B QLoRA CLS on function-level data (15K train.jsonl) should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend 4B→8B→14B. v2 fixes data bug: v1 used 70K repo-level swebench_full instead of 15K function-level train.jsonl.",
+    "parent": "cls14b-func-s42"
+  },
+  "timestamp": "2026-05-22T21:53:34.328141+00:00",
+  "trigger": "update_registry"
+}

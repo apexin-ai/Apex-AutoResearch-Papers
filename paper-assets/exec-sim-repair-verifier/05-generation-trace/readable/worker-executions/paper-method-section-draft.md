@@ -1,0 +1,1311 @@
+# paper method section draft
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_paper_method-section-draft_20260512T202359.log`
+- **Structured JSON:** [`16ca9498c85087fa59df.json`](../../sessions/16/16ca9498c85087fa59df.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6adf02a1-97b6-4fba-a416-daa74eaa9da8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778630400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c539110a-b917-4c28-9ada-001ca6d02d6c",
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write the Method section (§3) for an EMNLP 2026 paper. Let me first read the project file `paper_framing.md` to confirm the narrative framework, then write the section.
+
+Let me start by loading the MCP tools I need and reading the framing document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "bc917263-3b7f-48f4-b0cb-149db217a534",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sj221WHWtwKmFBGnGCXLax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12045,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12045
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012rCH9YdgRWPdjzhTgUJwq7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "0947cf1c-777a-4cdf-9b4b-50e697371d66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sj221WHWtwKmFBGnGCXLax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12045,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12045
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T20:24:11.157Z_
+
+<details><summary>↩ Tool result · `toolu_012rCH9YdgRWPdjzhTgUJwq7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__write_paper_section"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "d3e7f78e-4926-42cf-a2af-fa73ae5c0c4e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__write_paper_section",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01TiupW1nn9uSKuhPm4nESZH`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "2fde1bba-e837-4458-ae99-ef4c30bd8ee5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsFqrCbrkEvsnj3N2u9gNr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1197,
+      "cache_read_input_tokens": 23746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1197
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T20:24:15.590Z_
+
+<details><summary>↩ Tool result · `toolu_01TiupW1nn9uSKuhPm4nESZH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\", \"content\": \"# Paper Framing — exec-sim-repair-verifier\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\n\\n## Core Claims (3 conditions)\\n\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\n\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789/0 used 4-bit quantization — note in paper. Downstream re-repair experiment still needed for practical impact claim.)\\n\\n3. **Accuracy-Utility Frontier Characterization**: The effectiveness of per-test verification depends critically on test distribution characteristics. We empirically show: (a) per-test advantage concentrates in instances with multiple FAIL_TO_PASS tests (31% of SWE-bench Verified); (b) PASS_TO_PASS regression detection provides signal only when regression rate exceeds ~10%; (c) block-correlated prediction errors amplify per-test advantage through reduced effective degrees of freedom. These findings provide a practical decision framework for when per-test simulation is worth deploying.\\n\\n## Story Spine\\n\\n**Problem**: Test-time scaling for code repair requires ranking candidate patches, but verification paradigms face a granularity-cost tradeoff. Full execution costs ~$1-3 and minutes per candidate. Execution-free alternatives like SWE-RM predict trajectory-level binary correctness at low cost but provide only coarse signals that cannot distinguish between candidates failing on different test subsets.\\n\\n**Existing approaches & gaps**: Code World Models (Self-Execution Simulation, CWM) predict execution outputs but suffer from token-budget exhaustion and string-value prediction failures. SWE-RM achieves strong trajectory-level scoring but loses per-test diagnostic information. No work studies per-test binary classification as a dedicated verification formulation, or compares classification vs generation formulations for code execution simulation at controlled model sizes.\\n\\n**Our framing**: We reformulate execution simulation from an open-ended generation task (predict execution trace/output) to a closed-form classification task (predict binary pass/fail per test). On simple function-level code, both formulations achieve equivalent accuracy (~87% F1), because short execution outputs do not trigger CWM failure modes. However, on repo-level code with long execution traces and complex outputs, classification sidesteps token-budget exhaustion and string-value prediction errors, yielding a complexity-dependent advantage. We empirically ground this through (1) controlled function-level experiments establishing equivalence, (2) repo-level experiments demonstrating the complexity threshold, (3) oracle accuracy-utility frontier analysis revealing when per-test granularity helps, and (4) error complementarity analysis showing CLS/CWM have systematically opposite failure modes (CLS: miss bugs 75.5%, CWM: false alarms 83.1%), with oracle ensemble reaching 90.63%. (Downstream re-repair experiment is stretch goal; if not completed, frame as future work.)\\n\\n**Headline result template**: \\\"On function-level benchmarks, classification and generation verifiers achieve equivalent F1 (~87%), but classification scales better with model size (8B: +2.43pp accuracy) and on repo-level SWE-bench tasks outperforms by [Z] percentage points as CWM failure modes emerge. CLS and CWM exhibit complementary error patterns (oracle ensemble: 90.63%), suggesting formulation diversity as a verification strategy.\\\"\\n\\n## Venue Fit Risks\\n\\n1. **EMNLP vs SE venue**: Core concern is code repair verification, which may be perceived as SE rather than NLP. Mitigation: frame as (a) probing LLM code semantic reasoning capabilities through per-test prediction, and (b) a general NLP methodology insight about classification vs generation formulations applicable beyond code.\\n\\n2. **Negative P2P finding**: P2P regression rate ~1% means per-test is not universally better. Must present honestly as a characterization finding, not bury it. This actually strengthens the paper by showing nuanced understanding rather than overclaiming.\\n\\n3. **Function-level to repo-level gap**: Function-level results show classification ≈ generation. Repo-level extension is now CRITICAL (not optional) to demonstrate the complexity-dependent advantage. Requires SWE-bench Docker infrastructure. If repo-level also shows no advantage, paper pivots to efficiency framing (same accuracy, lower inference cost) + oracle characterization.\\n\\n## Anticipated Reviewer Concerns & Mitigations\\n\\n| Concern | Mitigation Experiment |\\n|---------|----------------------|\\n| \\\"Classification is trivially easier than generation -- not interesting\\\" | Function-level null result proves classification is NOT trivially easier; advantage is complexity-dependent, demonstrated by repo-level gap |\\n| \\\"Per-test is just trajectory-level with extra steps when T=1\\\" | Oracle frontier analysis shows T distribution sensitivity; honest reporting of T=1 equivalence |\\n| \\\"No practical downstream impact\\\" | Diagnostic re-repair experiment shows resolve rate improvement |\\n| \\\"Small-scale function-level results don't generalize\\\" | Repo-level SWE-bench extension (if resources allow) |\\n| \\\"CWM comparison is unfair (different output format)\\\" | Matched model, data, compute; discuss target asymmetry limitation |\\n\", \"total_chars\": 6777, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "e12366c1-e4b2-45e0-832b-4d9b43e7a3eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — exec-sim-repair-verifier\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\\\n\\\\n## Core Claims (3 conditions)\\\\n\\\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\\\n\\\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789/0 used 4-bit quantization — note in paper. Downstream re-repair experiment still needed for practical impact claim.)\\\\n\\\\n3. **Accuracy-Utility Frontier Characterization**: The effectiveness of per-test verification depends critically on test distribution characteristics. We empirically show: (a) per-test advantage concentrates in instances with multiple FAIL_TO_PASS tests (31% of SWE-bench Verified); (b) PASS_TO_PASS regression detection provides signal only when regression rate exceeds ~10%; (c) block-correlated prediction errors amplify per-test advantage through reduced effective degrees of freedom. These findings provide a practical decision framework for when per-test simulation is worth deploying.\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Test-time scaling for code repair requires ranking candidate patches, but verification paradigms face a granularity-cost tradeoff. Full execution costs ~$1-3 and minutes per candidate. Execution-free alternatives like SWE-RM predict trajectory-level binary correctness at low cost but provide only coarse signals that cannot distinguish between candidates failing on different test subsets.\\\\n\\\\n**Existing approaches & gaps**: Code World Models (Self-Execution Simulation, CWM) predict execution outputs but suffer from token-budget exhaustion and string-value prediction failures. SWE-RM achieves strong trajectory-level scoring but loses per-test diagnostic information. No work studies per-test binary classification as a dedicated verification formulation, or compares classification vs generation formulations for code execution simulation at controlled model sizes.\\\\n\\\\n**Our framing**: We reformulate execution simulation from an open-ended generation task (predict execution trace/output) to a closed-form classification task (predict binary pass/fail per test). On simple function-level code, both formulations achieve equivalent accuracy (~87% F1), because short execution outputs do not trigger CWM failure modes. However, on repo-level code with long execution traces and complex outputs, classification sidesteps token-budget exhaustion and string-value prediction errors, yielding a complexity-dependent advantage. We empirically ground this through (1) controlled function-level experiments establishing equivalence, (2) repo-level experiments demonstrating the complexity threshold, (3) oracle accuracy-utility frontier analysis revealing when per-test granularity helps, and (4) error complementarity analysis showing CLS/CWM have systematically opposite failure modes (CLS: miss bugs 75.5%, CWM: false alarms 83.1%), with oracle ensemble reaching 90.63%. (Downstream re-repair experiment is stretch goal; if not completed, frame as future work.)\\\\n\\\\n**Headline result template**: \\\\\\\"On function-level benchmarks, classification and generation verifiers achieve equivalent F1 (~87%), but classification scales better with model size (8B: +2.43pp accuracy) and on repo-level SWE-bench tasks outperforms by [Z] percentage points as CWM failure modes emerge. CLS and CWM exhibit complementary error patterns (oracle ensemble: 90.63%), suggesting formulation diversity as a verification strategy.\\\\\\\"\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n1. **EMNLP vs SE venue**: Core concern is code repair verification, which may be perceived as SE rather than NLP. Mitigation: frame as (a) probing LLM code semantic reasoning capabilities through per-test prediction, and (b) a general NLP methodology insight about classification vs generation formulations applicable beyond code.\\\\n\\\\n2. **Negative P2P finding**: P2P regression rate ~1% means per-test is not universally better. Must present honestly as a characterization finding, not bury it. This actually strengthens the paper by showing nuanced understanding rather than overclaiming.\\\\n\\\\n3. **Function-level to repo-level gap**: Function-level results show classification ≈ generation. Repo-level extension is now CRITICAL (not optional) to demonstrate the complexity-dependent advantage. Requires SWE-bench Docker infrastructure. If repo-level also shows no advantage, paper pivots to efficiency framing (same accuracy, lower inference cost) + oracle characterization.\\\\n\\\\n## Anticipated Reviewer Concerns & Mitigations\\\\n\\\\n| Concern | Mitigation Experiment |\\\\n|---------|----------------------|\\\\n| \\\\\\\"Classification is trivially easier than generation -- not interesting\\\\\\\" | Function-level null result proves classification is NOT trivially easier; advantage is complexity-dependent, demonstrated by repo-level gap |\\\\n| \\\\\\\"Per-test is just trajectory-level with extra steps when T=1\\\\\\\" | Oracle frontier analysis shows T distribution sensitivity; honest reporting of T=1 equivalence |\\\\n| \\\\\\\"No practical downstream impact\\\\\\\" | Diagnostic re-repair experiment shows resolve rate improvement |\\\\n| \\\\\\\"Small-scale function-level results don't generalize\\\\\\\" | Repo-level SWE-bench extension (if resources allow) |\\\\n| \\\\\\\"CWM comparison is unfair (different output format)\\\\\\\" | Matched model, data, compute; discuss target asymmetry limitation |\\\\n\\\", \\\"total_chars\\\": 6777, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\", \"content\": \"# Paper Framing — exec-sim-repair-verifier\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\n\\n## Core Claims (3 conditions)\\n\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\n\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789/0 used 4-bit quantization — note in paper. Downstream re-repair experiment still needed for practical impact claim.)\\n\\n3. **Accuracy-Utility Frontier Characterization**: The effectiveness of per-test verification depends critically on test distribution characteristics. We empirically show: (a) per-test advantage concentrates in instances with multiple FAIL_TO_PASS tests (31% of SWE-bench Verified); (b) PASS_TO_PASS regression detection provides signal only when regression rate exceeds ~10%; (c) block-correlated prediction errors amplify per-test advantage through reduced effective degrees of freedom. These findings provide a practical decision framework for when per-test simulation is worth deploying.\\n\\n## Story Spine\\n\\n**Problem**: Test-time scaling for code repair requires ranking candidate patches, but verification paradigms face a granularity-cost tradeoff. Full execution costs ~$1-3 and minutes per candidate. Execution-free alternatives like SWE-RM predict trajectory-level binary correctness at low cost but provide only coarse signals that cannot distinguish between candidates failing on different test subsets.\\n\\n**Existing approaches & gaps**: Code World Models (Self-Execution Simulation, CWM) predict execution outputs but suffer from token-budget exhaustion and string-value prediction failures. SWE-RM achieves strong trajectory-level scoring but loses per-test diagnostic information. No work studies per-test binary classification as a dedicated verification formulation, or compares classification vs generation formulations for code execution simulation at controlled model sizes.\\n\\n**Our framing**: We reformulate execution simulation from an open-ended generation task (predict execution trace/output) to a closed-form classification task (predict binary pass/fail per test). On simple function-level code, both formulations achieve equivalent accuracy (~87% F1), because short execution outputs do not trigger CWM failure modes. However, on repo-level code with long execution traces and complex outputs, classification sidesteps token-budget exhaustion and string-value prediction errors, yielding a complexity-dependent advantage. We empirically ground this through (1) controlled function-level experiments establishing equivalence, (2) repo-level experiments demonstrating the complexity threshold, (3) oracle accuracy-utility frontier analysis revealing when per-test granularity helps, and (4) error complementarity analysis showing CLS/CWM have systematically opposite failure modes (CLS: miss bugs 75.5%, CWM: false alarms 83.1%), with oracle ensemble reaching 90.63%. (Downstream re-repair experiment is stretch goal; if not completed, frame as future work.)\\n\\n**Headline result template**: \\\"On function-level benchmarks, classification and generation verifiers achieve equivalent F1 (~87%), but classification scales better with model size (8B: +2.43pp accuracy) and on repo-level SWE-bench tasks outperforms by [Z] percentage points as CWM failure modes emerge. CLS and CWM exhibit complementary error patterns (oracle ensemble: 90.63%), suggesting formulation diversity as a verification strategy.\\\"\\n\\n## Venue Fit Risks\\n\\n1. **EMNLP vs SE venue**: Core concern is code repair verification, which may be perceived as SE rather than NLP. Mitigation: frame as (a) probing LLM code semantic reasoning capabilities through per-test prediction, and (b) a general NLP methodology insight about classification vs generation formulations applicable beyond code.\\n\\n2. **Negative P2P finding**: P2P regression rate ~1% means per-test is not universally better. Must present honestly as a characterization finding, not bury it. This actually strengthens the paper by showing nuanced understanding rather than overclaiming.\\n\\n3. **Function-level to repo-level gap**: Function-level results show classification ≈ generation. Repo-level extension is now CRITICAL (not optional) to demonstrate the complexity-dependent advantage. Requires SWE-bench Docker infrastructure. If repo-level also shows no advantage, paper pivots to efficiency framing (same accuracy, lower inference cost) + oracle characterization.\\n\\n## Anticipated Reviewer Concerns & Mitigations\\n\\n| Concern | Mitigation Experiment |\\n|---------|----------------------|\\n| \\\"Classification is trivially easier than generation -- not interesting\\\" | Function-level null result proves classification is NOT trivially easier; advantage is complexity-dependent, demonstrated by repo-level gap |\\n| \\\"Per-test is just trajectory-level with extra steps when T=1\\\" | Oracle frontier analysis shows T distribution sensitivity; honest reporting of T=1 equivalence |\\n| \\\"No practical downstream impact\\\" | Diagnostic re-repair experiment shows resolve rate improvement |\\n| \\\"Small-scale function-level results don't generalize\\\" | Repo-level SWE-bench extension (if resources allow) |\\n| \\\"CWM comparison is unfair (different output format)\\\" | Matched model, data, compute; discuss target asymmetry limitation |\\n\", \"total_chars\": 6777, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the writing_plan.yaml to get more detailed structure for the method section, and any other relevant files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "2f72f5f6-3ba9-4ef3-9dd0-d5fa726ecc40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KY1yBKig2SPY8FvAsx9YQn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1954,
+      "cache_read_input_tokens": 24943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Let me also read the writing plan and any existing oracle framework details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "ff9669ed-d226-4bd1-960a-47e8e533ccc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KY1yBKig2SPY8FvAsx9YQn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1954,
+      "cache_read_input_tokens": 24943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_015VX3boUY6UfaPzpCPeJhpQ`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "2cbfa72c-b641-4fb2-a806-5696735052cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KY1yBKig2SPY8FvAsx9YQn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1954,
+      "cache_read_input_tokens": 24943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T20:24:21.250Z_
+
+<details><summary>↩ Tool result · `toolu_015VX3boUY6UfaPzpCPeJhpQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml\", \"content\": \"meta:\\n  venue: EMNLP 2026\\n  track: main (ARR submission)\\n  template: null  # No local template; Step 2 Worker downloads official ACL/ARR style files\\n  template_note: \\\"No local EMNLP/ARR template. Worker must download acl2023.sty (or latest ARR template) from https://github.com/acl-org/acl-style-files before writing first .tex file.\\\"\\n  page_limit: 8  # + unlimited references (ARR format)\\n  deadline: 2026-05-25\\n  core_claim: >\\n    Binary pass/fail classification and execution output generation achieve equivalent accuracy\\n    on simple function-level code, but classification scales better with model size and code complexity —\\n    a complexity-dependent reformulation advantage. Per-test classification additionally provides\\n    diagnostic granularity (which tests fail) at no accuracy cost versus trajectory-level scoring.\\n  working_title: >\\n    Classification Scales Where Generation Stalls:\\n    Reformulating Execution Simulation for Code Repair Verification\\n  created_at: 2026-05-12T12:00:00Z\\n  notes:\\n    - \\\"Registry is truth source for ALL numbers. ROADMAP has minor metric inconsistencies (some entries mix accuracy/F1). Paper must use accuracy consistently, pull from registry.\\\"\\n    - \\\"Seeds 789/0 (CLS) used 4-bit quantization — must note in paper.\\\"\\n    - \\\"Repo-level experiments (cls-v3, cwm-v3) RUNNING ~13-20h. Use [PLACEHOLDER] in relevant sections.\\\"\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 250\\n    core_bullets:\\n      - \\\"Problem: execution-free verification for code repair faces granularity-accuracy tradeoff — trajectory-level scoring loses per-test diagnostics, generation-based simulation (CWM) suffers token-budget exhaustion and string-prediction failures\\\"\\n      - \\\"Insight: reformulating execution simulation from open-ended generation to per-test binary classification sidesteps CWM failure modes; advantage is complexity-dependent\\\"\\n      - \\\"Key results: function-level CLS ≈ CWM (5-seed acc gap 1.24pp); 8B scaling widens gap to 2.43pp; per-test equivalent to trajectory-level (TOST p=0.007, ±2pp); oracle analysis: advantage concentrates in multi-F2P-test instances (T≥2 = 31%, contributing 55% of total advantage); [PLACEHOLDER: repo-level results]\\\"\\n      - \\\"Zero-shot baselines far below fine-tuned (32B NF4 71.7% vs fine-tuned 4B 88.4%)\\\"\\n    dependencies: [experiments, method, introduction]\\n\\n  - section: introduction\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"Hook: Test-time scaling for LLM code repair relies on verification — ranking candidate patches. Full execution costs $1-3 and minutes per candidate; execution-free alternatives must choose between accuracy and diagnostic granularity.\\\"\\n      - \\\"Gap: Code World Models (CWM) predict execution outputs via generation but suffer two failure modes at scale: (1) token-budget exhaustion on long traces, (2) string-value prediction errors on complex outputs. Trajectory-level verifiers (SWE-RM) provide only binary patch-level scores, losing which-test-fails signal.\\\"\\n      - \\\"Insight: These CWM failure modes are artifacts of the generation formulation, not inherent to execution simulation. Reformulating as per-test binary classification eliminates them — but the advantage only emerges beyond a complexity threshold.\\\"\\n      - \\\"Mechanism: Systematic comparison of classification (CLS), generation (CWM), and trajectory-level (TRAJ) formulations at controlled model sizes (4B, 8B) on function-level and repo-level benchmarks, plus oracle framework characterizing when per-test granularity provides value.\\\"\\n      - \\\"C1: Complexity-dependent reformulation advantage — CLS ≈ CWM at 4B function-level (gap 1.24pp), gap widens to 2.44pp at 8B, [PLACEHOLDER: repo-level]\\\"\\n      - \\\"C2: Per-test diagnostic granularity at equivalent trajectory-level accuracy (TOST p=0.007)\\\"\\n      - \\\"C3: Accuracy-utility frontier — per-test advantage concentrates in multi-F2P-test instances; P2P regression rate ~1% provides minimal signal\\\"\\n    dependencies: [experiments]\\n    citation_hints:\\n      - \\\"Code World Models / CWM (Ding et al. 2024)\\\"\\n      - \\\"SWE-bench (Jimenez et al. 2024)\\\"\\n      - \\\"SWE-RM reward model for code repair\\\"\\n      - \\\"SWE-agent, Agentless for APR context\\\"\\n    figures: [fig1_reformulation]\\n\\n  - section: related_work\\n    word_budget: 700\\n    core_bullets:\\n      - \\\"Execution simulation for code: CWM / Self-Execution predicts execution traces via generation; CodeMind for code reasoning — we reformulate as classification, revealing complexity-dependent advantage\\\"\\n      - \\\"LLM-based verification for code repair: SWE-RM trajectory-level scoring, reward models, LLM-as-judge — we show per-test classification achieves equivalent accuracy with additional diagnostic granularity\\\"\\n      - \\\"Automated program repair & SWE-bench: SWE-agent, Agentless, CodeR — verification as bottleneck for test-time scaling; our work provides execution-free per-test verification\\\"\\n      - \\\"Classification vs generation in NLP: extractive vs abstractive QA, span vs generation for IE — our work extends this lens to code verification and identifies complexity as the key moderator\\\"\\n    dependencies: [introduction]\\n    citation_hints:\\n      - \\\"CWM, Self-Execution, CodeMind\\\"\\n      - \\\"SWE-RM, SWE-RewardBench\\\"\\n      - \\\"SWE-bench, SWE-agent, Agentless\\\"\\n      - \\\"HumanEval, MBPP\\\"\\n\\n  - section: method\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§3.1 Problem Setup: given code patch p and test suite T={t1,...,tn}, goal is per-test binary verdict → aggregate to patch-level correctness\\\"\\n      - \\\"§3.2 Per-Test Binary Classification (CLS): f(code_context, test_input) → {PASS, FAIL}; single-token output; cross-entropy loss; inference = 1 token per test\\\"\\n      - \\\"§3.3 Execution Output Generation (CWM): g(code_context, test_input) → output_string; variable-length generation; exact-match against expected output → derive PASS/FAIL; inference = N tokens per test (N = output length)\\\"\\n      - \\\"§3.4 Trajectory-Level Scoring (TRAJ): h(code_context, full_test_suite) → {RESOLVED, UNRESOLVED}; single binary per patch; no per-test signal; controls for granularity difference\\\"\\n      - \\\"§3.5 CWM Failure Mode Analysis: (a) token-budget exhaustion when output_length exceeds generation budget; (b) string-value prediction errors on complex return types — both absent in CLS by construction\\\"\\n      - \\\"§3.6 Oracle Accuracy-Utility Framework: formalize per-test advantage as function of (accuracy, F2P_test_count T, P2P_regression_rate, error_correlation ICC); block-correlation model capturing non-i.i.d. prediction errors; derive threshold conditions\\\"\\n    dependencies: []\\n    notation_table:\\n      p: \\\"candidate patch\\\"\\n      T: \\\"test suite {t_1, ..., t_n}\\\"\\n      T_f2p: \\\"FAIL_TO_PASS tests\\\"\\n      T_p2p: \\\"PASS_TO_PASS tests\\\"\\n      f: \\\"per-test classifier (CLS)\\\"\\n      g: \\\"output generator (CWM)\\\"\\n      h: \\\"trajectory-level scorer (TRAJ)\\\"\\n      rho: \\\"intra-cluster correlation (ICC)\\\"\\n      DEFF: \\\"design effect = 1 + (n_bar - 1) * rho\\\"\\n\\n  - section: experiments\\n    word_budget: 2800\\n    core_bullets:\\n      - \\\"§5.1 Setup: Function-level dataset from HumanEval+MBPP (19,076 samples, 5 mutation types: wrong_operator, off_by_one, boundary_error, return_value, type_error; train 15,290 / val 1,896 / test 1,890; pass:fail ≈ 52:48). Base model: Qwen3-4B / 8B. LoRA rank=16, lr=2e-5, 3 epochs. Seeds 42/123/456 use full precision; seeds 789/0 use 4-bit NF4 quantization (note in paper). SWE-bench Verified (500 instances) for oracle analysis. Statistical tests: clustered bootstrap (114 clusters, 10000 resamples), TOST equivalence (±2pp margin).\\\"\\n      - \\\"§5.2 Function-Level Results (Table 1): 5-seed CLS acc 88.43±0.78 vs CWM 87.19 (gap 1.24pp); TRAJ 86.30±0.97; zero-shot 8B 64.40% / 32B-NF4 71.69%. Fine-tuning >> zero-shot (+16.7pp for 4B-CLS vs 32B-ZS). CLS and CWM near-equivalent at function level.\\\"\\n      - \\\"§5.3 Scaling Behavior (Table 2, Figure 2): 8B 3-seed CLS 89.40 vs CWM 86.96 (arithmetic mean gap 2.43pp, up from 1.24pp at 4B; bootstrap mean gap 2.26pp with CI in text). CWM scales poorly (4B→8B: -0.23pp CWM vs +0.97pp CLS). Generation formulation hits diminishing returns earlier.\\\"\\n      - \\\"§5.4 Per-Test vs Trajectory-Level Equivalence: Variant-level accuracy comparison — pooled gap -0.45pp, 95% CI [-1.71, +0.84]; TOST p=0.007, ±2pp margin. ICC=0.191, DEFF=3.97 (block-correlated errors). Per-test achieves equivalent accuracy to trajectory-level with free diagnostic granularity.\\\"\\n      - \\\"§5.5 Accuracy-Utility Frontier (Table 3, Figure 3): Oracle stratified by F2P test count — T=1 (69%): no advantage (block_adv=-0.09); T=2 (19%): block_adv=31.7pp, contributes 55.3% of total advantage; T≥3 (12%): block_adv=40+ pp. Overall block advantage 10.93pp. P2P regression rate: 1.04% mean / 0% median — per-test P2P signal minimal at current accuracy.\\\"\\n      - \\\"§5.6 [PLACEHOLDER: Repo-Level Results]: CLS vs CWM on SWE-bench Verified, Qwen3-4B, seed=42. Hypothesis: CWM failure modes (token exhaustion, string errors) emerge at repo-level complexity → larger CLS advantage.\\\"\\n      - \\\"§5.7 Analysis — Error Complementarity: CLS errors skew FN (75.5% FAIL→PASS), CWM errors skew FP (83.1% PASS→FAIL) — systematically opposite error directions; oracle CLS+CWM combination reaches 90.63%. Data source: matched_seed_overlap_results.json. Supports ensemble/complementary verification as future direction.\\\"\\n      - \\\"§5.7 Analysis — Per-test Precision/Recall: acc=87.51%, fail_f1=87.86%; 42.1% of problems perfectly predicted; multi-F2P instances (6-10 tests) reach 96.3% accuracy (supports Claim 3 oracle analysis); best mutation: return_value 97.3%, worst: off_by_one 82.6%\\\"\\n      - \\\"§5.7 Analysis — Majority Voting (negative, 1-2 sentences): K=3 voting acc=86.83% < greedy 87.51% (-0.69pp); errors are systematic bias not random noise; single-pass greedy is optimal\\\"\\n      - \\\"§5.7 Analysis — Block-correlation: ICC=0.191, DEFF=3.97; observed all-correct clusters 2.81× expected under i.i.d.; reinforces non-independence of per-test predictions\\\"\\n    dependencies: []\\n    registry_refs:\\n      - multi-seed-core\\n      - cls-seed789\\n      - cls-seed0\\n      - cwm-baseline\\n      - cwm-seed123\\n      - cwm-seed456\\n      - cwm-seed789\\n      - cwm-seed0\\n      - model-size-scaling-cls8b\\n      - cls8b-seed123\\n      - cls8b-seed456\\n      - model-size-scaling-cwm8b\\n      - cwm8b-seed123\\n      - cwm8b-seed456\\n      - traj-level-finetuned\\n      - traj-level-seed123\\n      - traj-level-seed456\\n      - traj-level-seed789\\n      - traj-level-seed0\\n      - llm-judge-8b-zeroshot\\n      - llm-judge-32b-zeroshot\\n      - 5-paired-clustered-bootstrap\\n      - block-corr-empirical\\n      - mvp-a-oracle-sim\\n      - oracle-f2p-stratified\\n      - p2p-regression-rate\\n      - per-test-precision-recall\\n      - per-test-majority-voting\\n      - repo-level-cls-v3\\n      - repo-level-cwm-v3\\n    tables: [tab1_main_results, tab2_scaling, tab3_oracle_frontier, tab4_repo_level]\\n    figures: [fig2_scaling_gap, fig3_oracle_stratified]\\n\\n  - section: conclusion\\n    word_budget: 400\\n    core_bullets:\\n      - \\\"Summary: reformulating execution simulation from generation to classification provides a complexity-dependent advantage that widens with model size and code complexity; per-test classification matches trajectory-level accuracy while providing diagnostic granularity\\\"\\n      - \\\"Limitations: (1) function-level near-equivalence limits practical CLS advantage at that scale; (2) single model family (Qwen3); (3) oracle analysis assumes known ground truth — real-world deployment lacks oracle; (4) P2P regression rate too low for per-test P2P signal to be useful; (5) error complementarity observed but not yet exploited\\\"\\n      - \\\"Future work: (1) ensemble/complementary verification exploiting CLS-CWM error complementarity (oracle 90.63%); (2) diagnostic re-repair pipeline leveraging per-test failure signals; (3) repo-level evaluation [if placeholder]; (4) multi-model evaluation; (5) integration with test-time scaling systems\\\"\\n    dependencies: [experiments, method]\\n\\nvisualization_plan:\\n  - fig_id: fig1_reformulation\\n    type: conceptual\\n    tool: matplotlib\\n    description: >\\n      Task reformulation overview showing three parallel verification pipelines:\\n      (a) CLS: (code, test) → PASS/FAIL (1 token);\\n      (b) CWM: (code, test) → output_string → exact_match → PASS/FAIL (N tokens);\\n      (c) TRAJ: (code, test_suite) → RESOLVED/UNRESOLVED (1 token, no per-test signal).\\n      CWM path has highlighted failure modes (token exhaustion on long outputs, string mismatch on complex types).\\n      Use boxes and arrows, clean academic style, no color abuse.\\n    placement: introduction\\n    aspect_ratio: \\\"16:9\\\"\\n    data_source: \\\"manual\\\"\\n\\n  - fig_id: fig2_scaling_gap\\n    type: statistical\\n    tool: matplotlib\\n    description: >\\n      Grouped bar chart showing accuracy at two model sizes (4B, 8B).\\n      Two bars per group: CLS (blue) and CWM (orange).\\n      Error bars from multi-seed (5 seeds at 4B, 3 seeds at 8B).\\n      Annotation: gap 1.24pp at 4B → 2.44pp at 8B with connecting arrow/bracket.\\n      Y-axis starts at ~84% to show differences clearly.\\n      Include horizontal dashed line for zero-shot 32B reference (71.7%, annotated off-axis).\\n    data_source: \\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n\\n  - fig_id: fig3_oracle_stratified\\n    type: statistical\\n    tool: matplotlib\\n    description: >\\n      Bar chart with dual information: x-axis = F2P test count bins (T=1, T=2, T=3–5, T≥6).\\n      Primary bars: oracle per-test advantage (pp) under block-correlation model.\\n      Light background bars or secondary axis: percentage of SWE-bench instances in each bin.\\n      Annotation: T=2 bin contributes 55.3% of total advantage despite being 19% of instances.\\n      Horizontal dashed line at 0pp for reference.\\n      Include i.i.d. comparison as lighter/outlined bars.\\n    data_source: \\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n\\ntable_plan:\\n  - table_id: tab1_main_results\\n    caption: \\\"Function-level per-test verification results on HumanEval+MBPP test set (1,890 samples). CLS: per-test binary classification; CWM: execution output generation; TRAJ: trajectory-level scoring; ZS: zero-shot LLM-as-judge. Mean ± std over seeds.\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Model_Size, Seeds, Accuracy, Pass_F1, Fail_F1]\\n    data_source: \\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, traj-level-finetuned, traj-level-seed123, traj-level-seed456, traj-level-seed789, traj-level-seed0, llm-judge-8b-zeroshot, llm-judge-32b-zeroshot\\\"\\n    notes: \\\"Bold best per group. TOST equivalence annotation for CLS vs TRAJ variant-level comparison. TRAJ metrics are unresolved_f1/resolved_f1, mapped to fail/pass for comparability.\\\"\\n\\n  - table_id: tab2_scaling\\n    caption: \\\"Model-size scaling: CLS vs CWM accuracy (%) at 4B and 8B. Gap widens from 1.24pp to 2.43pp (arithmetic mean; bootstrap mean 2.26pp reported in stats paragraph).\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Size, Seed_42, Seed_123, Seed_456, Mean, CLS-CWM_Gap]\\n    data_source: \\\"registry: multi-seed-core, cwm-baseline, cwm-seed123, cwm-seed456, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\"\\n    notes: \\\"4B uses 3 matched seeds (42/123/456) from the 5-seed pool for direct comparison. Per-seed gap shown for transparency.\\\"\\n\\n  - table_id: tab3_oracle_frontier\\n    caption: \\\"Oracle accuracy-utility frontier: per-test advantage stratified by FAIL_TO_PASS test count (T) on SWE-bench Verified (500 instances). Block-corr model uses empirical ICC=0.191.\\\"\\n    placement: experiments\\n    type: statistics\\n    columns: [T_Bin, Instance_Pct, IID_Advantage_pp, Block_Advantage_pp, Contribution_Pct]\\n    data_source: \\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim, p2p-regression-rate, block-corr-empirical\\\"\\n    notes: \\\"P2P regression rate (1.04% mean, 0% median) reported in footnote. Overall block advantage = 10.93pp.\\\"\\n\\n  - table_id: tab4_repo_level\\n    caption: \\\"[PLACEHOLDER] Repo-level results: CLS vs CWM on SWE-bench Verified (Qwen3-4B, seed=42).\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Resolve_Rate, Per_Test_F1, Token_Budget_Exhaustion_Rate]\\n    data_source: \\\"registry: repo-level-cls-v3, repo-level-cwm-v3 [RUNNING]\\\"\\n    notes: \\\"Experiments in progress (~13-20h). Will include CWM failure mode breakdown (token exhaustion rate, string mismatch rate).\\\"\\n\\nliterature_strategy:\\n  citation_budget: 35\\n  macro_context:\\n    - \\\"execution simulation for code / code world models\\\"\\n    - \\\"LLM-based code verification and repair scaling\\\"\\n    - \\\"task reformulation (classification vs generation) in NLP\\\"\\n  micro_clusters:\\n    - cluster_name: \\\"Execution Simulation\\\"\\n      search_queries:\\n        - \\\"code world models execution simulation LLM 2024 2025\\\"\\n        - \\\"self-execution simulation code prediction\\\"\\n        - \\\"CodeMind code reasoning execution\\\"\\n      must_cite:\\n        - \\\"Code World Models (Ding et al. 2024)\\\"\\n      target_count: 5\\n\\n    - cluster_name: \\\"LLM Verification for Code\\\"\\n      search_queries:\\n        - \\\"SWE-RM reward model code repair verification\\\"\\n        - \\\"LLM-as-judge code correctness\\\"\\n        - \\\"execution-free verification neural code\\\"\\n        - \\\"SWE-RewardBench benchmark\\\"\\n      must_cite:\\n        - \\\"SWE-RM\\\"\\n        - \\\"SWE-RewardBench\\\"\\n      target_count: 5\\n\\n    - cluster_name: \\\"APR and SWE-bench\\\"\\n      search_queries:\\n        - \\\"SWE-bench automated program repair LLM 2024 2025\\\"\\n        - \\\"SWE-agent Agentless CodeR LLM repair\\\"\\n        - \\\"test-time compute scaling code generation repair\\\"\\n        - \\\"best-of-n sampling code repair verification\\\"\\n      must_cite:\\n        - \\\"SWE-bench (Jimenez et al. 2024)\\\"\\n        - \\\"SWE-agent (Yang et al. 2024)\\\"\\n        - \\\"Agentless (Xia et al. 2024)\\\"\\n      target_count: 8\\n\\n    - cluster_name: \\\"Mutation Testing and Fault Localization\\\"\\n      search_queries:\\n        - \\\"mutation testing program repair deep learning\\\"\\n        - \\\"fault localization automated repair\\\"\\n        - \\\"test adequacy criteria repair\\\"\\n      must_cite: []\\n      target_count: 3\\n\\n    - cluster_name: \\\"Task Reformulation NLP\\\"\\n      search_queries:\\n        - \\\"classification vs generation NLP reformulation\\\"\\n        - \\\"extractive vs abstractive question answering comparison\\\"\\n        - \\\"generative vs discriminative NLP tasks\\\"\\n      must_cite: []\\n      target_count: 4\\n\\n    - cluster_name: \\\"Code LLMs and Benchmarks\\\"\\n      search_queries:\\n        - \\\"Qwen2.5-Coder Qwen3 code model 2024 2025\\\"\\n        - \\\"HumanEval MBPP code generation benchmark\\\"\\n        - \\\"LoRA fine-tuning code LLM\\\"\\n      must_cite:\\n        - \\\"Qwen2.5 / Qwen3 technical report\\\"\\n        - \\\"HumanEval (Chen et al. 2021)\\\"\\n        - \\\"MBPP (Austin et al. 2021)\\\"\\n      target_count: 6\\n\\n    - cluster_name: \\\"Statistical Methods\\\"\\n      search_queries:\\n        - \\\"TOST equivalence test two one-sided\\\"\\n        - \\\"clustered bootstrap confidence interval\\\"\\n        - \\\"intraclass correlation design effect\\\"\\n      must_cite: []\\n      target_count: 3\\n\\nwriting_order:\\n  - experiments\\n  - method\\n  - introduction\\n  - related_work\\n  - abstract\\n  - conclusion\\n\", \"total_chars\": 19398, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "89d5be52-1558-45e3-8cc7-e72c40096ea3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: main (ARR submission)\\\\n  template: null  # No local template; Step 2 Worker downloads official ACL/ARR style files\\\\n  template_note: \\\\\\\"No local EMNLP/ARR template. Worker must download acl2023.sty (or latest ARR template) from https://github.com/acl-org/acl-style-files before writing first .tex file.\\\\\\\"\\\\n  page_limit: 8  # + unlimited references (ARR format)\\\\n  deadline: 2026-05-25\\\\n  core_claim: >\\\\n    Binary pass/fail classification and execution output generation achieve equivalent accuracy\\\\n    on simple function-level code, but classification scales better with model size and code complexity —\\\\n    a complexity-dependent reformulation advantage. Per-test classification additionally provides\\\\n    diagnostic granularity (which tests fail) at no accuracy cost versus trajectory-level scoring.\\\\n  working_title: >\\\\n    Classification Scales Where Generation Stalls:\\\\n    Reformulating Execution Simulation for Code Repair Verification\\\\n  created_at: 2026-05-12T12:00:00Z\\\\n  notes:\\\\n    - \\\\\\\"Registry is truth source for ALL numbers. ROADMAP has minor metric inconsistencies (some entries mix accuracy/F1). Paper must use accuracy consistently, pull from registry.\\\\\\\"\\\\n    - \\\\\\\"Seeds 789/0 (CLS) used 4-bit quantization — must note in paper.\\\\\\\"\\\\n    - \\\\\\\"Repo-level experiments (cls-v3, cwm-v3) RUNNING ~13-20h. Use [PLACEHOLDER] in relevant sections.\\\\\\\"\\\\n\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 250\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: execution-free verification for code repair faces granularity-accuracy tradeoff — trajectory-level scoring loses per-test diagnostics, generation-based simulation (CWM) suffers token-budget exhaustion and string-prediction failures\\\\\\\"\\\\n      - \\\\\\\"Insight: reformulating execution simulation from open-ended generation to per-test binary classification sidesteps CWM failure modes; advantage is complexity-dependent\\\\\\\"\\\\n      - \\\\\\\"Key results: function-level CLS ≈ CWM (5-seed acc gap 1.24pp); 8B scaling widens gap to 2.43pp; per-test equivalent to trajectory-level (TOST p=0.007, ±2pp); oracle analysis: advantage concentrates in multi-F2P-test instances (T≥2 = 31%, contributing 55% of total advantage); [PLACEHOLDER: repo-level results]\\\\\\\"\\\\n      - \\\\\\\"Zero-shot baselines far below fine-tuned (32B NF4 71.7% vs fine-tuned 4B 88.4%)\\\\\\\"\\\\n    dependencies: [experiments, method, introduction]\\\\n\\\\n  - section: introduction\\\\n    word_budget: 1200\\\\n    core_bullets:\\\\n      - \\\\\\\"Hook: Test-time scaling for LLM code repair relies on verification — ranking candidate patches. Full execution costs $1-3 and minutes per candidate; execution-free alternatives must choose between accuracy and diagnostic granularity.\\\\\\\"\\\\n      - \\\\\\\"Gap: Code World Models (CWM) predict execution outputs via generation but suffer two failure modes at scale: (1) token-budget exhaustion on long traces, (2) string-value prediction errors on complex outputs. Trajectory-level verifiers (SWE-RM) provide only binary patch-level scores, losing which-test-fails signal.\\\\\\\"\\\\n      - \\\\\\\"Insight: These CWM failure modes are artifacts of the generation formulation, not inherent to execution simulation. Reformulating as per-test binary classification eliminates them — but the advantage only emerges beyond a complexity threshold.\\\\\\\"\\\\n      - \\\\\\\"Mechanism: Systematic comparison of classification (CLS), generation (CWM), and trajectory-level (TRAJ) formulations at controlled model sizes (4B, 8B) on function-level and repo-level benchmarks, plus oracle framework characterizing when per-test granularity provides value.\\\\\\\"\\\\n      - \\\\\\\"C1: Complexity-dependent reformulation advantage — CLS ≈ CWM at 4B function-level (gap 1.24pp), gap widens to 2.44pp at 8B, [PLACEHOLDER: repo-level]\\\\\\\"\\\\n      - \\\\\\\"C2: Per-test diagnostic granularity at equivalent trajectory-level accuracy (TOST p=0.007)\\\\\\\"\\\\n      - \\\\\\\"C3: Accuracy-utility frontier — per-test advantage concentrates in multi-F2P-test instances; P2P regression rate ~1% provides minimal signal\\\\\\\"\\\\n    dependencies: [experiments]\\\\n    citation_hints:\\\\n      - \\\\\\\"Code World Models / CWM (Ding et al. 2024)\\\\\\\"\\\\n      - \\\\\\\"SWE-bench (Jimenez et al. 2024)\\\\\\\"\\\\n      - \\\\\\\"SWE-RM reward model for code repair\\\\\\\"\\\\n      - \\\\\\\"SWE-agent, Agentless for APR context\\\\\\\"\\\\n    figures: [fig1_reformulation]\\\\n\\\\n  - section: related_work\\\\n    word_budget: 700\\\\n    core_bullets:\\\\n      - \\\\\\\"Execution simulation for code: CWM / Self-Execution predicts execution traces via generation; CodeMind for code reasoning — we reformulate as classification, revealing complexity-dependent advantage\\\\\\\"\\\\n      - \\\\\\\"LLM-based verification for code repair: SWE-RM trajectory-level scoring, reward models, LLM-as-judge — we show per-test classification achieves equivalent accuracy with additional diagnostic granularity\\\\\\\"\\\\n      - \\\\\\\"Automated program repair & SWE-bench: SWE-agent, Agentless, CodeR — verification as bottleneck for test-time scaling; our work provides execution-free per-test verification\\\\\\\"\\\\n      - \\\\\\\"Classification vs generation in NLP: extractive vs abstractive QA, span vs generation for IE — our work extends this lens to code verification and identifies complexity as the key moderator\\\\\\\"\\\\n    dependencies: [introduction]\\\\n    citation_hints:\\\\n      - \\\\\\\"CWM, Self-Execution, CodeMind\\\\\\\"\\\\n      - \\\\\\\"SWE-RM, SWE-RewardBench\\\\\\\"\\\\n      - \\\\\\\"SWE-bench, SWE-agent, Agentless\\\\\\\"\\\\n      - \\\\\\\"HumanEval, MBPP\\\\\\\"\\\\n\\\\n  - section: method\\\\n    word_budget: 1200\\\\n    core_bullets:\\\\n      - \\\\\\\"§3.1 Problem Setup: given code patch p and test suite T={t1,...,tn}, goal is per-test binary verdict → aggregate to patch-level correctness\\\\\\\"\\\\n      - \\\\\\\"§3.2 Per-Test Binary Classification (CLS): f(code_context, test_input) → {PASS, FAIL}; single-token output; cross-entropy loss; inference = 1 token per test\\\\\\\"\\\\n      - \\\\\\\"§3.3 Execution Output Generation (CWM): g(code_context, test_input) → output_string; variable-length generation; exact-match against expected output → derive PASS/FAIL; inference = N tokens per test (N = output length)\\\\\\\"\\\\n      - \\\\\\\"§3.4 Trajectory-Level Scoring (TRAJ): h(code_context, full_test_suite) → {RESOLVED, UNRESOLVED}; single binary per patch; no per-test signal; controls for granularity difference\\\\\\\"\\\\n      - \\\\\\\"§3.5 CWM Failure Mode Analysis: (a) token-budget exhaustion when output_length exceeds generation budget; (b) string-value prediction errors on complex return types — both absent in CLS by construction\\\\\\\"\\\\n      - \\\\\\\"§3.6 Oracle Accuracy-Utility Framework: formalize per-test advantage as function of (accuracy, F2P_test_count T, P2P_regression_rate, error_correlation ICC); block-correlation model capturing non-i.i.d. prediction errors; derive threshold conditions\\\\\\\"\\\\n    dependencies: []\\\\n    notation_table:\\\\n      p: \\\\\\\"candidate patch\\\\\\\"\\\\n      T: \\\\\\\"test suite {t_1, ..., t_n}\\\\\\\"\\\\n      T_f2p: \\\\\\\"FAIL_TO_PASS tests\\\\\\\"\\\\n      T_p2p: \\\\\\\"PASS_TO_PASS tests\\\\\\\"\\\\n      f: \\\\\\\"per-test classifier (CLS)\\\\\\\"\\\\n      g: \\\\\\\"output generator (CWM)\\\\\\\"\\\\n      h: \\\\\\\"trajectory-level scorer (TRAJ)\\\\\\\"\\\\n      rho: \\\\\\\"intra-cluster correlation (ICC)\\\\\\\"\\\\n      DEFF: \\\\\\\"design effect = 1 + (n_bar - 1) * rho\\\\\\\"\\\\n\\\\n  - section: experiments\\\\n    word_budget: 2800\\\\n    core_bullets:\\\\n      - \\\\\\\"§5.1 Setup: Function-level dataset from HumanEval+MBPP (19,076 samples, 5 mutation types: wrong_operator, off_by_one, boundary_error, return_value, type_error; train 15,290 / val 1,896 / test 1,890; pass:fail ≈ 52:48). Base model: Qwen3-4B / 8B. LoRA rank=16, lr=2e-5, 3 epochs. Seeds 42/123/456 use full precision; seeds 789/0 use 4-bit NF4 quantization (note in paper). SWE-bench Verified (500 instances) for oracle analysis. Statistical tests: clustered bootstrap (114 clusters, 10000 resamples), TOST equivalence (±2pp margin).\\\\\\\"\\\\n      - \\\\\\\"§5.2 Function-Level Results (Table 1): 5-seed CLS acc 88.43±0.78 vs CWM 87.19 (gap 1.24pp); TRAJ 86.30±0.97; zero-shot 8B 64.40% / 32B-NF4 71.69%. Fine-tuning >> zero-shot (+16.7pp for 4B-CLS vs 32B-ZS). CLS and CWM near-equivalent at function level.\\\\\\\"\\\\n      - \\\\\\\"§5.3 Scaling Behavior (Table 2, Figure 2): 8B 3-seed CLS 89.40 vs CWM 86.96 (arithmetic mean gap 2.43pp, up from 1.24pp at 4B; bootstrap mean gap 2.26pp with CI in text). CWM scales poorly (4B→8B: -0.23pp CWM vs +0.97pp CLS). Generation formulation hits diminishing returns earlier.\\\\\\\"\\\\n      - \\\\\\\"§5.4 Per-Test vs Trajectory-Level Equivalence: Variant-level accuracy comparison — pooled gap -0.45pp, 95% CI [-1.71, +0.84]; TOST p=0.007, ±2pp margin. ICC=0.191, DEFF=3.97 (block-correlated errors). Per-test achieves equivalent accuracy to trajectory-level with free diagnostic granularity.\\\\\\\"\\\\n      - \\\\\\\"§5.5 Accuracy-Utility Frontier (Table 3, Figure 3): Oracle stratified by F2P test count — T=1 (69%): no advantage (block_adv=-0.09); T=2 (19%): block_adv=31.7pp, contributes 55.3% of total advantage; T≥3 (12%): block_adv=40+ pp. Overall block advantage 10.93pp. P2P regression rate: 1.04% mean / 0% median — per-test P2P signal minimal at current accuracy.\\\\\\\"\\\\n      - \\\\\\\"§5.6 [PLACEHOLDER: Repo-Level Results]: CLS vs CWM on SWE-bench Verified, Qwen3-4B, seed=42. Hypothesis: CWM failure modes (token exhaustion, string errors) emerge at repo-level complexity → larger CLS advantage.\\\\\\\"\\\\n      - \\\\\\\"§5.7 Analysis — Error Complementarity: CLS errors skew FN (75.5% FAIL→PASS), CWM errors skew FP (83.1% PASS→FAIL) — systematically opposite error directions; oracle CLS+CWM combination reaches 90.63%. Data source: matched_seed_overlap_results.json. Supports ensemble/complementary verification as future direction.\\\\\\\"\\\\n      - \\\\\\\"§5.7 Analysis — Per-test Precision/Recall: acc=87.51%, fail_f1=87.86%; 42.1% of problems perfectly predicted; multi-F2P instances (6-10 tests) reach 96.3% accuracy (supports Claim 3 oracle analysis); best mutation: return_value 97.3%, worst: off_by_one 82.6%\\\\\\\"\\\\n      - \\\\\\\"§5.7 Analysis — Majority Voting (negative, 1-2 sentences): K=3 voting acc=86.83% < greedy 87.51% (-0.69pp); errors are systematic bias not random noise; single-pass greedy is optimal\\\\\\\"\\\\n      - \\\\\\\"§5.7 Analysis — Block-correlation: ICC=0.191, DEFF=3.97; observed all-correct clusters 2.81× expected under i.i.d.; reinforces non-independence of per-test predictions\\\\\\\"\\\\n    dependencies: []\\\\n    registry_refs:\\\\n      - multi-seed-core\\\\n      - cls-seed789\\\\n      - cls-seed0\\\\n      - cwm-baseline\\\\n      - cwm-seed123\\\\n      - cwm-seed456\\\\n      - cwm-seed789\\\\n      - cwm-seed0\\\\n      - model-size-scaling-cls8b\\\\n      - cls8b-seed123\\\\n      - cls8b-seed456\\\\n      - model-size-scaling-cwm8b\\\\n      - cwm8b-seed123\\\\n      - cwm8b-seed456\\\\n      - traj-level-finetuned\\\\n      - traj-level-seed123\\\\n      - traj-level-seed456\\\\n      - traj-level-seed789\\\\n      - traj-level-seed0\\\\n      - llm-judge-8b-zeroshot\\\\n      - llm-judge-32b-zeroshot\\\\n      - 5-paired-clustered-bootstrap\\\\n      - block-corr-empirical\\\\n      - mvp-a-oracle-sim\\\\n      - oracle-f2p-stratified\\\\n      - p2p-regression-rate\\\\n      - per-test-precision-recall\\\\n      - per-test-majority-voting\\\\n      - repo-level-cls-v3\\\\n      - repo-level-cwm-v3\\\\n    tables: [tab1_main_results, tab2_scaling, tab3_oracle_frontier, tab4_repo_level]\\\\n    figures: [fig2_scaling_gap, fig3_oracle_stratified]\\\\n\\\\n  - section: conclusion\\\\n    word_budget: 400\\\\n    core_bullets:\\\\n      - \\\\\\\"Summary: reformulating execution simulation from generation to classification provides a complexity-dependent advantage that widens with model size and code complexity; per-test classification matches trajectory-level accuracy while providing diagnostic granularity\\\\\\\"\\\\n      - \\\\\\\"Limitations: (1) function-level near-equivalence limits practical CLS advantage at that scale; (2) single model family (Qwen3); (3) oracle analysis assumes known ground truth — real-world deployment lacks oracle; (4) P2P regression rate too low for per-test P2P signal to be useful; (5) error complementarity observed but not yet exploited\\\\\\\"\\\\n      - \\\\\\\"Future work: (1) ensemble/complementary verification exploiting CLS-CWM error complementarity (oracle 90.63%); (2) diagnostic re-repair pipeline leveraging per-test failure signals; (3) repo-level evaluation [if placeholder]; (4) multi-model evaluation; (5) integration with test-time scaling systems\\\\\\\"\\\\n    dependencies: [experiments, method]\\\\n\\\\nvisualization_plan:\\\\n  - fig_id: fig1_reformulation\\\\n    type: conceptual\\\\n    tool: matplotlib\\\\n    description: >\\\\n      Task reformulation overview showing three parallel verification pipelines:\\\\n      (a) CLS: (code, test) → PASS/FAIL (1 token);\\\\n      (b) CWM: (code, test) → output_string → exact_match → PASS/FAIL (N tokens);\\\\n      (c) TRAJ: (code, test_suite) → RESOLVED/UNRESOLVED (1 token, no per-test signal).\\\\n      CWM path has highlighted failure modes (token exhaustion on long outputs, string mismatch on complex types).\\\\n      Use boxes and arrows, clean academic style, no color abuse.\\\\n    placement: introduction\\\\n    aspect_ratio: \\\\\\\"16:9\\\\\\\"\\\\n    data_source: \\\\\\\"manual\\\\\\\"\\\\n\\\\n  - fig_id: fig2_scaling_gap\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: >\\\\n      Grouped bar chart showing accuracy at two model sizes (4B, 8B).\\\\n      Two bars per group: CLS (blue) and CWM (orange).\\\\n      Error bars from multi-seed (5 seeds at 4B, 3 seeds at 8B).\\\\n      Annotation: gap 1.24pp at 4B → 2.44pp at 8B with connecting arrow/bracket.\\\\n      Y-axis starts at ~84% to show differences clearly.\\\\n      Include horizontal dashed line for zero-shot 32B reference (71.7%, annotated off-axis).\\\\n    data_source: \\\\\\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\\\\\"\\\\n    placement: experiments\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n\\\\n  - fig_id: fig3_oracle_stratified\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: >\\\\n      Bar chart with dual information: x-axis = F2P test count bins (T=1, T=2, T=3–5, T≥6).\\\\n      Primary bars: oracle per-test advantage (pp) under block-correlation model.\\\\n      Light background bars or secondary axis: percentage of SWE-bench instances in each bin.\\\\n      Annotation: T=2 bin contributes 55.3% of total advantage despite being 19% of instances.\\\\n      Horizontal dashed line at 0pp for reference.\\\\n      Include i.i.d. comparison as lighter/outlined bars.\\\\n    data_source: \\\\\\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim\\\\\\\"\\\\n    placement: experiments\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n\\\\ntable_plan:\\\\n  - table_id: tab1_main_results\\\\n    caption: \\\\\\\"Function-level per-test verification results on HumanEval+MBPP test set (1,890 samples). CLS: per-test binary classification; CWM: execution output generation; TRAJ: trajectory-level scoring; ZS: zero-shot LLM-as-judge. Mean ± std over seeds.\\\\\\\"\\\\n    placement: experiments\\\\n    type: comparison\\\\n    columns: [Method, Model_Size, Seeds, Accuracy, Pass_F1, Fail_F1]\\\\n    data_source: \\\\\\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, traj-level-finetuned, traj-level-seed123, traj-level-seed456, traj-level-seed789, traj-level-seed0, llm-judge-8b-zeroshot, llm-judge-32b-zeroshot\\\\\\\"\\\\n    notes: \\\\\\\"Bold best per group. TOST equivalence annotation for CLS vs TRAJ variant-level comparison. TRAJ metrics are unresolved_f1/resolved_f1, mapped to fail/pass for comparability.\\\\\\\"\\\\n\\\\n  - table_id: tab2_scaling\\\\n    caption: \\\\\\\"Model-size scaling: CLS vs CWM accuracy (%) at 4B and 8B. Gap widens from 1.24pp to 2.43pp (arithmetic mean; bootstrap mean 2.26pp reported in stats paragraph).\\\\\\\"\\\\n    placement: experiments\\\\n    type: comparison\\\\n    columns: [Method, Size, Seed_42, Seed_123, Seed_456, Mean, CLS-CWM_Gap]\\\\n    data_source: \\\\\\\"registry: multi-seed-core, cwm-baseline, cwm-seed123, cwm-seed456, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\\\\\"\\\\n    notes: \\\\\\\"4B uses 3 matched seeds (42/123/456) from the 5-seed pool for direct comparison. Per-seed gap shown for transparency.\\\\\\\"\\\\n\\\\n  - table_id: tab3_oracle_frontier\\\\n    caption: \\\\\\\"Oracle accuracy-utility frontier: per-test advantage stratified by FAIL_TO_PASS test count (T) on SWE-bench Verified (500 instances). Block-corr model uses empirical ICC=0.191.\\\\\\\"\\\\n    placement: experiments\\\\n    type: statistics\\\\n    columns: [T_Bin, Instance_Pct, IID_Advantage_pp, Block_Advantage_pp, Contribution_Pct]\\\\n    data_source: \\\\\\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim, p2p-regression-rate, block-corr-empirical\\\\\\\"\\\\n    notes: \\\\\\\"P2P regression rate (1.04% mean, 0% median) reported in footnote. Overall block advantage = 10.93pp.\\\\\\\"\\\\n\\\\n  - table_id: tab4_repo_level\\\\n    caption: \\\\\\\"[PLACEHOLDER] Repo-level results: CLS vs CWM on SWE-bench Verified (Qwen3-4B, seed=42).\\\\\\\"\\\\n    placement: experiments\\\\n    type: comparison\\\\n    columns: [Method, Resolve_Rate, Per_Test_F1, Token_Budget_Exhaustion_Rate]\\\\n    data_source: \\\\\\\"registry: repo-level-cls-v3, repo-level-cwm-v3 [RUNNING]\\\\\\\"\\\\n    notes: \\\\\\\"Experiments in progress (~13-20h). Will include CWM failure mode breakdown (token exhaustion rate, string mismatch rate).\\\\\\\"\\\\n\\\\nliterature_strategy:\\\\n  citation_budget: 35\\\\n  macro_context:\\\\n    - \\\\\\\"execution simulation for code / code world models\\\\\\\"\\\\n    - \\\\\\\"LLM-based code verification and repair scaling\\\\\\\"\\\\n    - \\\\\\\"task reformulation (classification vs generation) in NLP\\\\\\\"\\\\n  micro_clusters:\\\\n    - cluster_name: \\\\\\\"Execution Simulation\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"code world models execution simulation LLM 2024 2025\\\\\\\"\\\\n        - \\\\\\\"self-execution simulation code prediction\\\\\\\"\\\\n        - \\\\\\\"CodeMind code reasoning execution\\\\\\\"\\\\n      must_cite:\\\\n        - \\\\\\\"Code World Models (Ding et al. 2024)\\\\\\\"\\\\n      target_count: 5\\\\n\\\\n    - cluster_name: \\\\\\\"LLM Verification for Code\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"SWE-RM reward model code repair verification\\\\\\\"\\\\n        - \\\\\\\"LLM-as-judge code correctness\\\\\\\"\\\\n        - \\\\\\\"execution-free verification neural code\\\\\\\"\\\\n        - \\\\\\\"SWE-RewardBench benchmark\\\\\\\"\\\\n      must_cite:\\\\n        - \\\\\\\"SWE-RM\\\\\\\"\\\\n        - \\\\\\\"SWE-RewardBench\\\\\\\"\\\\n      target_count: 5\\\\n\\\\n    - cluster_name: \\\\\\\"APR and SWE-bench\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"SWE-bench automated program repair LLM 2024 2025\\\\\\\"\\\\n        - \\\\\\\"SWE-agent Agentless CodeR LLM repair\\\\\\\"\\\\n        - \\\\\\\"test-time compute scaling code generation repair\\\\\\\"\\\\n        - \\\\\\\"best-of-n sampling code repair verification\\\\\\\"\\\\n      must_cite:\\\\n        - \\\\\\\"SWE-bench (Jimenez et al. 2024)\\\\\\\"\\\\n        - \\\\\\\"SWE-agent (Yang et al. 2024)\\\\\\\"\\\\n        - \\\\\\\"Agentless (Xia et al. 2024)\\\\\\\"\\\\n      target_count: 8\\\\n\\\\n    - cluster_name: \\\\\\\"Mutation Testing and Fault Localization\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"mutation testing program repair deep learning\\\\\\\"\\\\n        - \\\\\\\"fault localization automated repair\\\\\\\"\\\\n        - \\\\\\\"test adequacy criteria repair\\\\\\\"\\\\n      must_cite: []\\\\n      target_count: 3\\\\n\\\\n    - cluster_name: \\\\\\\"Task Reformulation NLP\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"classification vs generation NLP reformulation\\\\\\\"\\\\n        - \\\\\\\"extractive vs abstractive question answering comparison\\\\\\\"\\\\n        - \\\\\\\"generative vs discriminative NLP tasks\\\\\\\"\\\\n      must_cite: []\\\\n      target_count: 4\\\\n\\\\n    - cluster_name: \\\\\\\"Code LLMs and Benchmarks\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"Qwen2.5-Coder Qwen3 code model 2024 2025\\\\\\\"\\\\n        - \\\\\\\"HumanEval MBPP code generation benchmark\\\\\\\"\\\\n        - \\\\\\\"LoRA fine-tuning code LLM\\\\\\\"\\\\n      must_cite:\\\\n        - \\\\\\\"Qwen2.5 / Qwen3 technical report\\\\\\\"\\\\n        - \\\\\\\"HumanEval (Chen et al. 2021)\\\\\\\"\\\\n        - \\\\\\\"MBPP (Austin et al. 2021)\\\\\\\"\\\\n      target_count: 6\\\\n\\\\n    - cluster_name: \\\\\\\"Statistical Methods\\\\\\\"\\\\n      search_queries:\\\\n        - \\\\\\\"TOST equivalence test two one-sided\\\\\\\"\\\\n        - \\\\\\\"clustered bootstrap confidence interval\\\\\\\"\\\\n        - \\\\\\\"intraclass correlation design effect\\\\\\\"\\\\n      must_cite: []\\\\n      target_count: 3\\\\n\\\\nwriting_order:\\\\n  - experiments\\\\n  - method\\\\n  - introduction\\\\n  - related_work\\\\n  - abstract\\\\n  - conclusion\\\\n\\\", \\\"total_chars\\\": 19398, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml\", \"content\": \"meta:\\n  venue: EMNLP 2026\\n  track: main (ARR submission)\\n  template: null  # No local template; Step 2 Worker downloads official ACL/ARR style files\\n  template_note: \\\"No local EMNLP/ARR template. Worker must download acl2023.sty (or latest ARR template) from https://github.com/acl-org/acl-style-files before writing first .tex file.\\\"\\n  page_limit: 8  # + unlimited references (ARR format)\\n  deadline: 2026-05-25\\n  core_claim: >\\n    Binary pass/fail classification and execution output generation achieve equivalent accuracy\\n    on simple function-level code, but classification scales better with model size and code complexity —\\n    a complexity-dependent reformulation advantage. Per-test classification additionally provides\\n    diagnostic granularity (which tests fail) at no accuracy cost versus trajectory-level scoring.\\n  working_title: >\\n    Classification Scales Where Generation Stalls:\\n    Reformulating Execution Simulation for Code Repair Verification\\n  created_at: 2026-05-12T12:00:00Z\\n  notes:\\n    - \\\"Registry is truth source for ALL numbers. ROADMAP has minor metric inconsistencies (some entries mix accuracy/F1). Paper must use accuracy consistently, pull from registry.\\\"\\n    - \\\"Seeds 789/0 (CLS) used 4-bit quantization — must note in paper.\\\"\\n    - \\\"Repo-level experiments (cls-v3, cwm-v3) RUNNING ~13-20h. Use [PLACEHOLDER] in relevant sections.\\\"\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 250\\n    core_bullets:\\n      - \\\"Problem: execution-free verification for code repair faces granularity-accuracy tradeoff — trajectory-level scoring loses per-test diagnostics, generation-based simulation (CWM) suffers token-budget exhaustion and string-prediction failures\\\"\\n      - \\\"Insight: reformulating execution simulation from open-ended generation to per-test binary classification sidesteps CWM failure modes; advantage is complexity-dependent\\\"\\n      - \\\"Key results: function-level CLS ≈ CWM (5-seed acc gap 1.24pp); 8B scaling widens gap to 2.43pp; per-test equivalent to trajectory-level (TOST p=0.007, ±2pp); oracle analysis: advantage concentrates in multi-F2P-test instances (T≥2 = 31%, contributing 55% of total advantage); [PLACEHOLDER: repo-level results]\\\"\\n      - \\\"Zero-shot baselines far below fine-tuned (32B NF4 71.7% vs fine-tuned 4B 88.4%)\\\"\\n    dependencies: [experiments, method, introduction]\\n\\n  - section: introduction\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"Hook: Test-time scaling for LLM code repair relies on verification — ranking candidate patches. Full execution costs $1-3 and minutes per candidate; execution-free alternatives must choose between accuracy and diagnostic granularity.\\\"\\n      - \\\"Gap: Code World Models (CWM) predict execution outputs via generation but suffer two failure modes at scale: (1) token-budget exhaustion on long traces, (2) string-value prediction errors on complex outputs. Trajectory-level verifiers (SWE-RM) provide only binary patch-level scores, losing which-test-fails signal.\\\"\\n      - \\\"Insight: These CWM failure modes are artifacts of the generation formulation, not inherent to execution simulation. Reformulating as per-test binary classification eliminates them — but the advantage only emerges beyond a complexity threshold.\\\"\\n      - \\\"Mechanism: Systematic comparison of classification (CLS), generation (CWM), and trajectory-level (TRAJ) formulations at controlled model sizes (4B, 8B) on function-level and repo-level benchmarks, plus oracle framework characterizing when per-test granularity provides value.\\\"\\n      - \\\"C1: Complexity-dependent reformulation advantage — CLS ≈ CWM at 4B function-level (gap 1.24pp), gap widens to 2.44pp at 8B, [PLACEHOLDER: repo-level]\\\"\\n      - \\\"C2: Per-test diagnostic granularity at equivalent trajectory-level accuracy (TOST p=0.007)\\\"\\n      - \\\"C3: Accuracy-utility frontier — per-test advantage concentrates in multi-F2P-test instances; P2P regression rate ~1% provides minimal signal\\\"\\n    dependencies: [experiments]\\n    citation_hints:\\n      - \\\"Code World Models / CWM (Ding et al. 2024)\\\"\\n      - \\\"SWE-bench (Jimenez et al. 2024)\\\"\\n      - \\\"SWE-RM reward model for code repair\\\"\\n      - \\\"SWE-agent, Agentless for APR context\\\"\\n    figures: [fig1_reformulation]\\n\\n  - section: related_work\\n    word_budget: 700\\n    core_bullets:\\n      - \\\"Execution simulation for code: CWM / Self-Execution predicts execution traces via generation; CodeMind for code reasoning — we reformulate as classification, revealing complexity-dependent advantage\\\"\\n      - \\\"LLM-based verification for code repair: SWE-RM trajectory-level scoring, reward models, LLM-as-judge — we show per-test classification achieves equivalent accuracy with additional diagnostic granularity\\\"\\n      - \\\"Automated program repair & SWE-bench: SWE-agent, Agentless, CodeR — verification as bottleneck for test-time scaling; our work provides execution-free per-test verification\\\"\\n      - \\\"Classification vs generation in NLP: extractive vs abstractive QA, span vs generation for IE — our work extends this lens to code verification and identifies complexity as the key moderator\\\"\\n    dependencies: [introduction]\\n    citation_hints:\\n      - \\\"CWM, Self-Execution, CodeMind\\\"\\n      - \\\"SWE-RM, SWE-RewardBench\\\"\\n      - \\\"SWE-bench, SWE-agent, Agentless\\\"\\n      - \\\"HumanEval, MBPP\\\"\\n\\n  - section: method\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§3.1 Problem Setup: given code patch p and test suite T={t1,...,tn}, goal is per-test binary verdict → aggregate to patch-level correctness\\\"\\n      - \\\"§3.2 Per-Test Binary Classification (CLS): f(code_context, test_input) → {PASS, FAIL}; single-token output; cross-entropy loss; inference = 1 token per test\\\"\\n      - \\\"§3.3 Execution Output Generation (CWM): g(code_context, test_input) → output_string; variable-length generation; exact-match against expected output → derive PASS/FAIL; inference = N tokens per test (N = output length)\\\"\\n      - \\\"§3.4 Trajectory-Level Scoring (TRAJ): h(code_context, full_test_suite) → {RESOLVED, UNRESOLVED}; single binary per patch; no per-test signal; controls for granularity difference\\\"\\n      - \\\"§3.5 CWM Failure Mode Analysis: (a) token-budget exhaustion when output_length exceeds generation budget; (b) string-value prediction errors on complex return types — both absent in CLS by construction\\\"\\n      - \\\"§3.6 Oracle Accuracy-Utility Framework: formalize per-test advantage as function of (accuracy, F2P_test_count T, P2P_regression_rate, error_correlation ICC); block-correlation model capturing non-i.i.d. prediction errors; derive threshold conditions\\\"\\n    dependencies: []\\n    notation_table:\\n      p: \\\"candidate patch\\\"\\n      T: \\\"test suite {t_1, ..., t_n}\\\"\\n      T_f2p: \\\"FAIL_TO_PASS tests\\\"\\n      T_p2p: \\\"PASS_TO_PASS tests\\\"\\n      f: \\\"per-test classifier (CLS)\\\"\\n      g: \\\"output generator (CWM)\\\"\\n      h: \\\"trajectory-level scorer (TRAJ)\\\"\\n      rho: \\\"intra-cluster correlation (ICC)\\\"\\n      DEFF: \\\"design effect = 1 + (n_bar - 1) * rho\\\"\\n\\n  - section: experiments\\n    word_budget: 2800\\n    core_bullets:\\n      - \\\"§5.1 Setup: Function-level dataset from HumanEval+MBPP (19,076 samples, 5 mutation types: wrong_operator, off_by_one, boundary_error, return_value, type_error; train 15,290 / val 1,896 / test 1,890; pass:fail ≈ 52:48). Base model: Qwen3-4B / 8B. LoRA rank=16, lr=2e-5, 3 epochs. Seeds 42/123/456 use full precision; seeds 789/0 use 4-bit NF4 quantization (note in paper). SWE-bench Verified (500 instances) for oracle analysis. Statistical tests: clustered bootstrap (114 clusters, 10000 resamples), TOST equivalence (±2pp margin).\\\"\\n      - \\\"§5.2 Function-Level Results (Table 1): 5-seed CLS acc 88.43±0.78 vs CWM 87.19 (gap 1.24pp); TRAJ 86.30±0.97; zero-shot 8B 64.40% / 32B-NF4 71.69%. Fine-tuning >> zero-shot (+16.7pp for 4B-CLS vs 32B-ZS). CLS and CWM near-equivalent at function level.\\\"\\n      - \\\"§5.3 Scaling Behavior (Table 2, Figure 2): 8B 3-seed CLS 89.40 vs CWM 86.96 (arithmetic mean gap 2.43pp, up from 1.24pp at 4B; bootstrap mean gap 2.26pp with CI in text). CWM scales poorly (4B→8B: -0.23pp CWM vs +0.97pp CLS). Generation formulation hits diminishing returns earlier.\\\"\\n      - \\\"§5.4 Per-Test vs Trajectory-Level Equivalence: Variant-level accuracy comparison — pooled gap -0.45pp, 95% CI [-1.71, +0.84]; TOST p=0.007, ±2pp margin. ICC=0.191, DEFF=3.97 (block-correlated errors). Per-test achieves equivalent accuracy to trajectory-level with free diagnostic granularity.\\\"\\n      - \\\"§5.5 Accuracy-Utility Frontier (Table 3, Figure 3): Oracle stratified by F2P test count — T=1 (69%): no advantage (block_adv=-0.09); T=2 (19%): block_adv=31.7pp, contributes 55.3% of total advantage; T≥3 (12%): block_adv=40+ pp. Overall block advantage 10.93pp. P2P regression rate: 1.04% mean / 0% median — per-test P2P signal minimal at current accuracy.\\\"\\n      - \\\"§5.6 [PLACEHOLDER: Repo-Level Results]: CLS vs CWM on SWE-bench Verified, Qwen3-4B, seed=42. Hypothesis: CWM failure modes (token exhaustion, string errors) emerge at repo-level complexity → larger CLS advantage.\\\"\\n      - \\\"§5.7 Analysis — Error Complementarity: CLS errors skew FN (75.5% FAIL→PASS), CWM errors skew FP (83.1% PASS→FAIL) — systematically opposite error directions; oracle CLS+CWM combination reaches 90.63%. Data source: matched_seed_overlap_results.json. Supports ensemble/complementary verification as future direction.\\\"\\n      - \\\"§5.7 Analysis — Per-test Precision/Recall: acc=87.51%, fail_f1=87.86%; 42.1% of problems perfectly predicted; multi-F2P instances (6-10 tests) reach 96.3% accuracy (supports Claim 3 oracle analysis); best mutation: return_value 97.3%, worst: off_by_one 82.6%\\\"\\n      - \\\"§5.7 Analysis — Majority Voting (negative, 1-2 sentences): K=3 voting acc=86.83% < greedy 87.51% (-0.69pp); errors are systematic bias not random noise; single-pass greedy is optimal\\\"\\n      - \\\"§5.7 Analysis — Block-correlation: ICC=0.191, DEFF=3.97; observed all-correct clusters 2.81× expected under i.i.d.; reinforces non-independence of per-test predictions\\\"\\n    dependencies: []\\n    registry_refs:\\n      - multi-seed-core\\n      - cls-seed789\\n      - cls-seed0\\n      - cwm-baseline\\n      - cwm-seed123\\n      - cwm-seed456\\n      - cwm-seed789\\n      - cwm-seed0\\n      - model-size-scaling-cls8b\\n      - cls8b-seed123\\n      - cls8b-seed456\\n      - model-size-scaling-cwm8b\\n      - cwm8b-seed123\\n      - cwm8b-seed456\\n      - traj-level-finetuned\\n      - traj-level-seed123\\n      - traj-level-seed456\\n      - traj-level-seed789\\n      - traj-level-seed0\\n      - llm-judge-8b-zeroshot\\n      - llm-judge-32b-zeroshot\\n      - 5-paired-clustered-bootstrap\\n      - block-corr-empirical\\n      - mvp-a-oracle-sim\\n      - oracle-f2p-stratified\\n      - p2p-regression-rate\\n      - per-test-precision-recall\\n      - per-test-majority-voting\\n      - repo-level-cls-v3\\n      - repo-level-cwm-v3\\n    tables: [tab1_main_results, tab2_scaling, tab3_oracle_frontier, tab4_repo_level]\\n    figures: [fig2_scaling_gap, fig3_oracle_stratified]\\n\\n  - section: conclusion\\n    word_budget: 400\\n    core_bullets:\\n      - \\\"Summary: reformulating execution simulation from generation to classification provides a complexity-dependent advantage that widens with model size and code complexity; per-test classification matches trajectory-level accuracy while providing diagnostic granularity\\\"\\n      - \\\"Limitations: (1) function-level near-equivalence limits practical CLS advantage at that scale; (2) single model family (Qwen3); (3) oracle analysis assumes known ground truth — real-world deployment lacks oracle; (4) P2P regression rate too low for per-test P2P signal to be useful; (5) error complementarity observed but not yet exploited\\\"\\n      - \\\"Future work: (1) ensemble/complementary verification exploiting CLS-CWM error complementarity (oracle 90.63%); (2) diagnostic re-repair pipeline leveraging per-test failure signals; (3) repo-level evaluation [if placeholder]; (4) multi-model evaluation; (5) integration with test-time scaling systems\\\"\\n    dependencies: [experiments, method]\\n\\nvisualization_plan:\\n  - fig_id: fig1_reformulation\\n    type: conceptual\\n    tool: matplotlib\\n    description: >\\n      Task reformulation overview showing three parallel verification pipelines:\\n      (a) CLS: (code, test) → PASS/FAIL (1 token);\\n      (b) CWM: (code, test) → output_string → exact_match → PASS/FAIL (N tokens);\\n      (c) TRAJ: (code, test_suite) → RESOLVED/UNRESOLVED (1 token, no per-test signal).\\n      CWM path has highlighted failure modes (token exhaustion on long outputs, string mismatch on complex types).\\n      Use boxes and arrows, clean academic style, no color abuse.\\n    placement: introduction\\n    aspect_ratio: \\\"16:9\\\"\\n    data_source: \\\"manual\\\"\\n\\n  - fig_id: fig2_scaling_gap\\n    type: statistical\\n    tool: matplotlib\\n    description: >\\n      Grouped bar chart showing accuracy at two model sizes (4B, 8B).\\n      Two bars per group: CLS (blue) and CWM (orange).\\n      Error bars from multi-seed (5 seeds at 4B, 3 seeds at 8B).\\n      Annotation: gap 1.24pp at 4B → 2.44pp at 8B with connecting arrow/bracket.\\n      Y-axis starts at ~84% to show differences clearly.\\n      Include horizontal dashed line for zero-shot 32B reference (71.7%, annotated off-axis).\\n    data_source: \\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n\\n  - fig_id: fig3_oracle_stratified\\n    type: statistical\\n    tool: matplotlib\\n    description: >\\n      Bar chart with dual information: x-axis = F2P test count bins (T=1, T=2, T=3–5, T≥6).\\n      Primary bars: oracle per-test advantage (pp) under block-correlation model.\\n      Light background bars or secondary axis: percentage of SWE-bench instances in each bin.\\n      Annotation: T=2 bin contributes 55.3% of total advantage despite being 19% of instances.\\n      Horizontal dashed line at 0pp for reference.\\n      Include i.i.d. comparison as lighter/outlined bars.\\n    data_source: \\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n\\ntable_plan:\\n  - table_id: tab1_main_results\\n    caption: \\\"Function-level per-test verification results on HumanEval+MBPP test set (1,890 samples). CLS: per-test binary classification; CWM: execution output generation; TRAJ: trajectory-level scoring; ZS: zero-shot LLM-as-judge. Mean ± std over seeds.\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Model_Size, Seeds, Accuracy, Pass_F1, Fail_F1]\\n    data_source: \\\"registry: multi-seed-core, cls-seed789, cls-seed0, cwm-baseline, cwm-seed123, cwm-seed456, cwm-seed789, cwm-seed0, traj-level-finetuned, traj-level-seed123, traj-level-seed456, traj-level-seed789, traj-level-seed0, llm-judge-8b-zeroshot, llm-judge-32b-zeroshot\\\"\\n    notes: \\\"Bold best per group. TOST equivalence annotation for CLS vs TRAJ variant-level comparison. TRAJ metrics are unresolved_f1/resolved_f1, mapped to fail/pass for comparability.\\\"\\n\\n  - table_id: tab2_scaling\\n    caption: \\\"Model-size scaling: CLS vs CWM accuracy (%) at 4B and 8B. Gap widens from 1.24pp to 2.43pp (arithmetic mean; bootstrap mean 2.26pp reported in stats paragraph).\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Size, Seed_42, Seed_123, Seed_456, Mean, CLS-CWM_Gap]\\n    data_source: \\\"registry: multi-seed-core, cwm-baseline, cwm-seed123, cwm-seed456, model-size-scaling-cls8b, cls8b-seed123, cls8b-seed456, model-size-scaling-cwm8b, cwm8b-seed123, cwm8b-seed456\\\"\\n    notes: \\\"4B uses 3 matched seeds (42/123/456) from the 5-seed pool for direct comparison. Per-seed gap shown for transparency.\\\"\\n\\n  - table_id: tab3_oracle_frontier\\n    caption: \\\"Oracle accuracy-utility frontier: per-test advantage stratified by FAIL_TO_PASS test count (T) on SWE-bench Verified (500 instances). Block-corr model uses empirical ICC=0.191.\\\"\\n    placement: experiments\\n    type: statistics\\n    columns: [T_Bin, Instance_Pct, IID_Advantage_pp, Block_Advantage_pp, Contribution_Pct]\\n    data_source: \\\"registry: oracle-f2p-stratified, mvp-a-oracle-sim, p2p-regression-rate, block-corr-empirical\\\"\\n    notes: \\\"P2P regression rate (1.04% mean, 0% median) reported in footnote. Overall block advantage = 10.93pp.\\\"\\n\\n  - table_id: tab4_repo_level\\n    caption: \\\"[PLACEHOLDER] Repo-level results: CLS vs CWM on SWE-bench Verified (Qwen3-4B, seed=42).\\\"\\n    placement: experiments\\n    type: comparison\\n    columns: [Method, Resolve_Rate, Per_Test_F1, Token_Budget_Exhaustion_Rate]\\n    data_source: \\\"registry: repo-level-cls-v3, repo-level-cwm-v3 [RUNNING]\\\"\\n    notes: \\\"Experiments in progress (~13-20h). Will include CWM failure mode breakdown (token exhaustion rate, string mismatch rate).\\\"\\n\\nliterature_strategy:\\n  citation_budget: 35\\n  macro_context:\\n    - \\\"execution simulation for code / code world models\\\"\\n    - \\\"LLM-based code verification and repair scaling\\\"\\n    - \\\"task reformulation (classification vs generation) in NLP\\\"\\n  micro_clusters:\\n    - cluster_name: \\\"Execution Simulation\\\"\\n      search_queries:\\n        - \\\"code world models execution simulation LLM 2024 2025\\\"\\n        - \\\"self-execution simulation code prediction\\\"\\n        - \\\"CodeMind code reasoning execution\\\"\\n      must_cite:\\n        - \\\"Code World Models (Ding et al. 2024)\\\"\\n      target_count: 5\\n\\n    - cluster_name: \\\"LLM Verification for Code\\\"\\n      search_queries:\\n        - \\\"SWE-RM reward model code repair verification\\\"\\n        - \\\"LLM-as-judge code correctness\\\"\\n        - \\\"execution-free verification neural code\\\"\\n        - \\\"SWE-RewardBench benchmark\\\"\\n      must_cite:\\n        - \\\"SWE-RM\\\"\\n        - \\\"SWE-RewardBench\\\"\\n      target_count: 5\\n\\n    - cluster_name: \\\"APR and SWE-bench\\\"\\n      search_queries:\\n        - \\\"SWE-bench automated program repair LLM 2024 2025\\\"\\n        - \\\"SWE-agent Agentless CodeR LLM repair\\\"\\n        - \\\"test-time compute scaling code generation repair\\\"\\n        - \\\"best-of-n sampling code repair verification\\\"\\n      must_cite:\\n        - \\\"SWE-bench (Jimenez et al. 2024)\\\"\\n        - \\\"SWE-agent (Yang et al. 2024)\\\"\\n        - \\\"Agentless (Xia et al. 2024)\\\"\\n      target_count: 8\\n\\n    - cluster_name: \\\"Mutation Testing and Fault Localization\\\"\\n      search_queries:\\n        - \\\"mutation testing program repair deep learning\\\"\\n        - \\\"fault localization automated repair\\\"\\n        - \\\"test adequacy criteria repair\\\"\\n      must_cite: []\\n      target_count: 3\\n\\n    - cluster_name: \\\"Task Reformulation NLP\\\"\\n      search_queries:\\n        - \\\"classification vs generation NLP reformulation\\\"\\n        - \\\"extractive vs abstractive question answering comparison\\\"\\n        - \\\"generative vs discriminative NLP tasks\\\"\\n      must_cite: []\\n      target_count: 4\\n\\n    - cluster_name: \\\"Code LLMs and Benchmarks\\\"\\n      search_queries:\\n        - \\\"Qwen2.5-Coder Qwen3 code model 2024 2025\\\"\\n        - \\\"HumanEval MBPP code generation benchmark\\\"\\n        - \\\"LoRA fine-tuning code LLM\\\"\\n      must_cite:\\n        - \\\"Qwen2.5 / Qwen3 technical report\\\"\\n        - \\\"HumanEval (Chen et al. 2021)\\\"\\n        - \\\"MBPP (Austin et al. 2021)\\\"\\n      target_count: 6\\n\\n    - cluster_name: \\\"Statistical Methods\\\"\\n      search_queries:\\n        - \\\"TOST equivalence test two one-sided\\\"\\n        - \\\"clustered bootstrap confidence interval\\\"\\n        - \\\"intraclass correlation design effect\\\"\\n      must_cite: []\\n      target_count: 3\\n\\nwriting_order:\\n  - experiments\\n  - method\\n  - introduction\\n  - related_work\\n  - abstract\\n  - conclusion\\n\", \"total_chars\": 19398, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01AeyNaABknxd7aLokkX5ndZ`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "1e1f9a86-d153-4f98-8623-7dbf47e61c08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KY1yBKig2SPY8FvAsx9YQn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1954,
+      "cache_read_input_tokens": 24943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T20:24:21.759Z_
+
+<details><summary>↩ Tool result · `toolu_01AeyNaABknxd7aLokkX5ndZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml\", \"content\": \"_next_id: 35\\ndecisions:\\n- id: D001\\n  date: 2026-05-11 18:01 UTC\\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\\n    pilot 精度 >70%。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-11 19:07 UTC\\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-11 19:38 UTC\\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-11 20:05 UTC\\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\\n    per-test 有效的 10% 阈值。Total(F2P+P2P) 模型下 per-test 实际有害（噪声>信号）。但项目核心价值不在信号数量而在 task\\n    reformulation：(1) binary classification 绕开 CWM 两大失败模式，即使 T=1 也是更简单的任务 → 可能实现更高精度;\\n    (2) F2P-only block-corr 仍有 10.88% 优势（31% multi-test 实例）; (3) 诊断价值——per-test 告诉\\n    repair agent 具体哪个测试失败，支持 targeted re-repair。决策：继续，reframe story 为 \\\"task reformulation\\n    + diagnostic signals\\\"，不再主打 \\\"fine-grained granularity advantage\\\"。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: 'P2P reg=1%: Total advantage negative; F2P-only block-corr=10.88%'\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-11 20:08 UTC\\n  summary: Reframe 后的验证优先级：P0 CWM baseline 对比 > P1 Diagnostic 下游实验；新增 kill condition\\n  rationale: Reviewer 正确指出 reframe 后的三支柱中两个无数据支撑。MVP-B 只能验证\\\"classification 可学习\\\"，不能验证\\\"比\\n    generation 好\\\"（支柱1）或\\\"diagnostic 有用\\\"（支柱2）。Post-MVP 优先级：P0 = 训练 CWM/generation baseline\\n    在相同数据上对比（验证 classification vs generation 核心 claim）；P1 = Diagnostic 下游 proof-of-concept。新增\\n    kill condition：CWM baseline 对比无统计显著差异 → 考虑 kill。这避免了 rationalization 风险——reframe\\n    后必须用实验验证新假设，不能只靠叙事。\\n  related_experiments: []\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-11 21:19 UTC\\n  summary: MVP 通过，进入 Research 阶段；P0 = CWM generation baseline 对比\\n  rationale: MVP-A 有条件通过（F2P block-corr 10.88%）+ MVP-B 强 pass（acc 87.5%, F1 87.1/87.9%）。Classification\\n    在函数级可学习性确认。进入 research 阶段，P0 实验：训练 CWM generation baseline 在同数据同模型上对比，验证 classification\\n    vs generation 核心 claim。CWM baseline 代码已准备好。\\n  related_experiments:\\n  - exp_id: mvp-b-data-prep\\n    role: evidence\\n    result: 19K samples, pass/fail 52/48\\n  - exp_id: mvp-b-train\\n    role: evidence\\n    result: acc 87.5%, pass F1 87.1%, fail F1 87.9%\\n  depends_on:\\n  - D004\\n  - D005\\n- id: D007\\n  date: 2026-05-11 22:31 UTC\\n  summary: 'CWM negative on function-level: adopt Complexity-Dependent Advantage framing\\n    (Option A), Option B as fallback'\\n  rationale: CWM generation ≈ classification on HumanEval/MBPP (F1 差异 <0.2pp)。原因：函数级代码\\n    execution output 短且简单，CWM 的 token exhaustion / BPE string prediction 失败模式不触发。选择\\n    Option A (Complexity-Dependent Advantage)：承认函数级无差异，论证 classification 优势随代码复杂度增加而显现。理论基础强——CWM\\n    论文报告的失败模式均发生在长 trace + 复杂 output 场景。需要 repo-level (SWE-bench) 实验验证。若 repo-level\\n    也无差异，fallback 到 Option B (Efficiency-Equivalent Accuracy)。同时，函数级 null result 本身有科学价值——证明\\n    classification 优势不是因为\\\"任务更简单\\\"，而是因为处理复杂度的差异。\\n  related_experiments:\\n  - exp_id: cwm-baseline\\n    role: primary_evidence\\n    result: 'negative: generation ≈ classification on function-level (F1 diff <0.2pp)'\\n  depends_on:\\n  - D005\\n- id: D008\\n  date: 2026-05-11 22:33 UTC\\n  summary: Reviewer critical acknowledged; stay D007 course with explicit repo-level\\n    go/no-go criteria\\n  rationale: Reviewer 正确核实函数级 CWM ≈ Classification。但 Reviewer 的 kill/pivot 建议过早——D007\\n    已 reframe 为 complexity-dependent advantage，函数级 null result 是该假说的预期结果。补充 repo-level\\n    go/no-go 标准：≥3pp → 全力推进；1-3pp → 需更多验证；<1pp → kill C1 pivot to efficiency+frontier\\n    paper。时间线评估：实验 ~44h（2天），剩余 12 天写作，AI 24/7 执行可行。\\n  related_experiments:\\n  - exp_id: cwm-baseline\\n    role: trigger\\n    result: 'negative: function-level CWM ≈ classification'\\n  - exp_id: swebench-pertest-data\\n    role: next_critical\\n    result: 'planned: repo-level data construction'\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-12 03:27 UTC\\n  summary: Trace-then-judge 暂停：trace 模板泄漏 mutation type，实验不可解释。GPU 改跑 traj-level-finetuned。\\n  rationale: build_trace_data.py 的 generate_trace() 在 FAIL 样本的 trace 中写入变异类型描述（如 \\\"operator\\n    substitution\\\"），不是实际执行推理。模型学到的是 template 匹配，无论 trace 结果如何都无法回答\\\"classification 优势是否来自跳过\\n    reasoning\\\"。正确的 trace 需要 LLM 生成实际执行步骤，成本高且不在关键路径上（Dream 审稿中 trace-then-judge 是\\n    minor concern）。降低优先级，GPU 改跑 traj-level-finetuned（隔离 granularity 效应，方法论干净）。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: suspended\\n    result: 'methodological flaw: trace leaks mutation type'\\n  - exp_id: traj-level-finetuned\\n    role: replacement\\n    result: planned\\n  depends_on:\\n  - D007\\n- id: D010\\n  date: 2026-05-12 04:35 UTC\\n  summary: trace-then-judge 让其完成（~15min）保留负面参考数据，完成后立即重跑 traj-level-finetuned；强制修正\\n    3 处 registry 脱节\\n  rationale: Reviewer 核查发现 trace-then-judge 标 killed 实际在跑（74% 进度），traj-level OOM 崩溃标\\n    QUEUED，multi-seed-core 已完成标 QUEUED。trace-then-judge 有方法论缺陷但仅剩 ~15min，kill 不划算，完成后数据可作负面参考。D009\\n    kill 决策未被执行导致连锁问题。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: subject\\n    result: running with methodology flaw, ~15min to finish\\n  - exp_id: traj-level-finetuned\\n    role: blocked\\n    result: OOM due to trace-then-judge occupying GPU\\n  - exp_id: multi-seed-core\\n    role: status-fix\\n    result: completed but registry not updated\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-12 05:16 UTC\\n  summary: trace-then-judge 结论从 failed 改为 negative：eval 实际已完成，null result 方向 robust，可作辅助证据；Claim\\n    3 需按 T 分层呈现\\n  rationale: Reviewer 核实 eval_trace_results.json 存在（1890 样本完整）。trace-then-judge 87.04%\\n    vs classification 88.41%，低 1.4pp。方法论瑕疵（trace 模板泄漏 mutation type）反而有利于 trace-then-judge，使\\n    null result 更 robust。oracle-f2p-stratified 显示 per-test 优势集中在 T≥2（31.3%），T=1（68.7%）优势≈0，论文\\n    Claim 3 不能笼统声称 per-test 优于 trajectory，需分层呈现。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: reinterpretation\\n    result: 'negative: 87.04% vs 88.41%, reasoning trace hurts'\\n  - exp_id: oracle-f2p-stratified\\n    role: evidence\\n    result: per-test advantage concentrates in T>=2 (31.3%)\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-12 05:30 UTC\\n  summary: traj-level-finetuned 确认 per-test granularity 优势（85.66% vs 88.41%），需补 multi-seed\\n    验证显著性\\n  rationale: Trajectory-level accuracy 85.66% 低于 per-test classification 3-seed mean\\n    88.41%，gap 2.75pp。Resolved_f1 gap 更大（83.18% vs 88.41% = -5.23pp），表明 per-test 粒度在\\n    pass 类识别上优势明显。但 traj-level 仅 1 seed，Reviewer 指出 2.75pp 在 ~2σ 边界，需补 1-2 seed 做\\n    significance test。评估集不同（per-test 1890 vs trajectory 1032 samples），论文需说明是 task-level\\n    comparison。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: 'success: 85.66% acc, supports per-test advantage'\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: 88.41±0.96% classification baseline\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-12 08:23 UTC\\n  summary: traj-level vs per-test gap p≈0.055 边缘不显著，论文不用 \\\"significantly\\\"，改 \\\"consistently\\n    lower\\\" + CI；home GPU 补 2 seed 尝试推到 p<0.05\\n  rationale: 3-seed traj mean 86.18% (std=1.07) vs classification 88.41% (std=0.96)，gap=2.23pp，Welch\\n    t p≈0.055。seed456 gap 仅 0.48pp，显示优势不稳定。但方向一致（3/3 seed cls > traj）。补 2 seed 成本低（~1h\\n    GPU），可能推到 p<0.05。即使 p 值不够，论文仍可 claim \\\"consistently lower\\\"（方向一致）+ 报告 CI，核心 contribution\\n    已转向 oracle frontier（Claim 3，最强 pillar）。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: seed42=85.66, seed123=85.47, seed456=87.40, mean=86.18\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: classification mean=88.41, std=0.96\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-12 09:05 UTC\\n  summary: 不补跑 cls extra seeds；traj vs cls 用 \\\"consistently lower\\\" + bootstrap by problem_id\\n    CI，不追求 p<0.05\\n  rationale: 4-seed 后 gap 继续收窄到 1.95pp，p≈0.055 无改善。补跑 cls-seed789/seed0 需 ~2h GPU，即使\\n    5-paired 也未必显著（方差大）。per-test vs traj 不是核心 claim，是 Claim 3 oracle frontier 的辅助证据。方向一致（4/4\\n    seed cls > traj），用 \\\"consistently lower\\\" 措辞足够。DEFF=4.62 发现提供了更好的统计方法：bootstrap\\n    by problem_id（CPU，无 GPU 开销）。GPU 时间应优先用于 seed0 + majority-voting。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: 4-seed mean=86.46%, gap=1.95pp, p≈0.055\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: cls 3-seed mean=88.41%\\n  - exp_id: block-corr-empirical\\n    role: method\\n    result: DEFF=4.62 supports clustered bootstrap\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-12 09:22 UTC\\n  summary: 8B scaling 确认 classification 优势随模型增大扩大（gap 从 0.9pp→2.81pp），CWM 碰到精度天花板；seetacloud\\n    cuda:0/1 补跑 8B seed123 验证\\n  rationale: cls 4B→8B +2.07pp，cwm 4B→8B 仅 +0.16pp。CWM exact_match 在两个尺度下几乎不变（84.02→84.39%），说明生成准确性是瓶颈而非模型容量。cls-cwm\\n    gap 从 0.9pp（4B）扩大到 2.81pp（8B），支持 \\\"classification scales better\\\" narrative。但 8B\\n    只有单 seed，补 1 seed 排除随机性（2.81pp 已超出 4B std=0.96pp，大概率真实，但保险起见跑一个）。seetacloud cuda:0/1\\n    刚释放，8B 模型已在 seetacloud 上，可立即开跑。\\n  related_experiments:\\n  - exp_id: model-size-scaling-cls8b\\n    role: evidence\\n    result: 90.48% accuracy, +2.07pp from 4B\\n  - exp_id: model-size-scaling-cwm8b\\n    role: evidence\\n    result: 87.67% accuracy, +0.16pp from 4B, exact_match 84.39%\\n  depends_on:\\n  - D012\\n- id: D016\\n  date: 2026-05-12 09:37 UTC\\n  summary: 批准 repo-level cls/cwm 训练（seetacloud cuda:2/3），split by instance_id 80/10/10，class\\n    weighting 处理不平衡\\n  rationale: SWE-bench 数据管线完成（89,867 条，250 instances × 5 patch types）。标签严重不平衡（82.8%\\n    PASS / 17.2% FAIL），用 class weighting 保留全部数据。按 instance_id 分层 split 避免泄漏。沿用函数级超参（bs=2,\\n    grad_accum=16, lr=2e-4, 3 epochs）。这是 Pillar 1 的决胜实验——如果 repo-level cls-cwm gap\\n    扩大，complexity-dependent advantage 假设成立。\\n  related_experiments:\\n  - exp_id: model-size-scaling-cls8b\\n    role: motivation\\n    result: 8B gap 2.81pp vs 4B gap 0.9pp, scaling widens gap\\n  - exp_id: swebench-pertest-data\\n    role: dependency\\n    result: 89867 records, 250 instances, ready\\n  depends_on:\\n  - D015\\n- id: D017\\n  date: 2026-05-12 10:20 UTC\\n  summary: 补充 cls-seed789 和 cls-seed0 完成 5-paired significance test\\n  rationale: traj-level-seed0 完成后 5-seed unpaired t-test p=0.033 首次显著，但 paired test\\n    仅 3 对 p=0.16。补齐 cls seeds 789 和 0 可做 5-paired comparison，预期 p 值大幅下降。home cuda:0\\n    刚释放，零额外资源成本。\\n  related_experiments:\\n  - exp_id: traj-level-seed0\\n    role: trigger\\n    result: accuracy 85.66%, 5-seed mean 86.30%\\n  - exp_id: multi-seed-core\\n    role: baseline\\n    result: 3-seed cls mean 88.41%\\n  depends_on:\\n  - D010\\n- id: D018\\n  date: 2026-05-12 10:22 UTC\\n  summary: per-test vs traj variant-level accuracy 等价，Pillar 2 reframe 为 diagnostic\\n    granularity\\n  rationale: Clustered bootstrap CI 分析发现：将 per-test 预测聚合到 variant 级别后，cls vs traj\\n    gap 仅 -0.37pp (p=0.646)，统计上无差异。之前的 ~2pp gap 是 1890 tests vs 1032 variants 的粒度差异假象。论文应将\\n    per-test 价值定位于 diagnostic signals + oracle frontier，而非 raw accuracy 优势。这实际上是更强更干净的\\n    claim——per-test 不牺牲 accuracy 但获得诊断能力。D017 的 cls extra seeds 仍有 robustness 价值但不再用于\\n    significance testing。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci\\n    role: evidence\\n    result: variant-level gap -0.37pp, p=0.646, CI [-1.89, +1.07]\\n  - exp_id: traj-level-seed0\\n    role: context\\n    result: 5-seed traj mean 86.30%\\n  - exp_id: multi-seed-core\\n    role: context\\n    result: 3-seed cls mean 88.41% (per-test level)\\n  depends_on:\\n  - D013\\n  - D017\\n- id: D019\\n  date: 2026-05-12 10:24 UTC\\n  summary: 论文统计检验：仅用 clustered bootstrap (variant-level aligned)，禁用 Welch's t-test\\n  rationale: Welch's t-test 比较 1890 per-test samples vs 1032 variant-level samples，粒度不同，p=0.036\\n    是假象。Clustered bootstrap 对齐到 variant 级别后 gap=-0.37pp, p=0.646，无差异。方法论正确性优先于统计显著性。可在\\n    Discussion 提及粒度对比的 subtlety。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci\\n    role: evidence\\n    result: variant-level gap -0.37pp, p=0.646\\n  - exp_id: traj-level-seed0\\n    role: context\\n    result: 5-seed mean 86.30±0.97%\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-12 13:10 UTC\\n  summary: TOST 等价检验通过 (p=0.007, ±2pp)，Claim 2 恢复 \\\"equivalent\\\" 措辞\\n  rationale: 5-paired clustered bootstrap CI 显著收窄置信区间至 [-1.32, +0.52]，TOST p=0.0071\\n    正式证明 per-test 与 traj variant-level accuracy 等价（±2pp margin 内）。三种检验方法一致（pooled\\n    bootstrap p=0.499, paired-t p=0.425, TOST p=0.007）。Claim 2 从 \\\"comparable\\\" 升级回\\n    \\\"equivalent\\\"，需在论文中 justify ±2pp margin。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci-5paired\\n    role: evidence\\n    result: TOST p=0.007, pooled gap -0.40pp, CI [-1.32, +0.52]\\n  - exp_id: cls-seed0\\n    role: trigger\\n    result: 5th cls seed completed, accuracy 87.94%\\n  depends_on:\\n  - D018\\n  - D019\\n- id: D021\\n  date: 2026-05-12 14:37 UTC\\n  summary: 'Dream #5 审稿完成: 三档一致指出 related work/model diversity/re-repair 为结构性缺陷, repo-level\\n    是论文生死线'\\n  rationale: 'dream_20260511T231719 full review (best=weak accept, median=borderline,\\n    worst=reject)。三档共同 critical: (1) related work ≤7 refs 需 15+; (2) 只有 Qwen3-4B/8B,\\n    需更多 model family 或 frame 为 scale-conditional; (3) re-repair 需 fully specify 或\\n    demote to preliminary; (4) TtJ 缺 repo-level 评估; (5) error overlap 分析 CLS vs CWM\\n    缺失。worst tier 验证了 repo-level null → reject 的判断。行动: 修复 repo-level scripts 立即重提交,\\n    写作阶段优先扩 related work, 考虑 error overlap 分析作为低成本高收益实验。'\\n  related_experiments:\\n  - exp_id: repo-level-cls\\n    role: decisive\\n    result: failed (sample_weight bug)\\n  - exp_id: repo-level-cwm\\n    role: decisive\\n    result: failed (killed + bug)\\n  depends_on:\\n  - D016\\n  - D020\\n- id: D022\\n  date: 2026-05-12 14:41 UTC\\n  summary: '函数级 5-paired CLS vs CWM: gap +1.25pp (one-sided p=0.025), 落入 Go/No-Go\\n    的 1-3pp 区间, 支持 complexity-dependent narrative'\\n  rationale: CLS 5-seed mean 88.44±0.78, CWM 5-seed mean 87.19±0.37。One-sided p=0.025\\n    统计显著，但 gap 仅 1.25pp——函数级差异小但存在，与\\\"简单任务 CWM failure modes 不触发\\\"一致。结合 8B 2-seed gap\\n    2.6pp (scaling ~2x)，complexity-dependent narrative 有数据支撑。关键：repo-level gap 是否进一步扩大将决定论文\\n    story 强度。CWM 的 std (0.37) 远小于 CLS (0.78)，4B gap 不稳定性来自 CLS 方差。\\n  related_experiments:\\n  - exp_id: 5-paired-clustered-bootstrap\\n    role: evidence\\n    result: +1.25pp, p=0.025\\n  - exp_id: model-size-scaling-cls8b\\n    role: scaling\\n    result: 8B gap 2.6pp\\n  - exp_id: model-size-scaling-cwm8b\\n    role: scaling\\n    result: 8B CWM 87.88\\n  depends_on:\\n  - D020\\n  - D015\\n- id: D023\\n  date: 2026-05-12 14:42 UTC\\n  summary: 5-paired CLS vs CWM 函数级 gap 确认 +1.25pp (one-sided p=0.025), 支持 complexity-dependent\\n    叙事但 repo-level 仍是决胜点\\n  rationale: 'CLS mean 88.44±0.78 vs CWM mean 87.19±0.37, paired gap +1.25pp, CI [+0.46,\\n    +2.04], two-sided p=0.0506 (边缘), one-sided p=0.025 (显著), sign test p=0.031。函数级\\n    gap 存在但小, 落在 Go/No-Go 的 1-3pp 区间。关键判断: 这支持 complexity-dependent narrative — 函数级只有微弱优势,\\n    如果 repo-level gap 显著放大 (≥3pp) 则核心假说成立。CWM 4B 有天花板效应 (std=0.37pp), CLS 方差更大 (std=0.78pp),\\n    说明 CLS 的不稳定性来自 seed 敏感性而非方法论缺陷。'\\n  related_experiments:\\n  - exp_id: multi-seed-core\\n    role: primary\\n    result: 5-paired analysis\\n  - exp_id: cwm-baseline\\n    role: baseline\\n    result: CWM 5-seed mean 87.19±0.37\\n  depends_on:\\n  - D019\\n  - D020\\n- id: D024\\n  date: 2026-05-12 14:44 UTC\\n  summary: 硬性纪律：禁止 Worker 杀死正在正常训练的进程来应用代码修改\\n  rationale: fix worker 杀死了正在正常训练的 repo-level-cls (PID 34681, step 1150/6633)，checkpoint\\n    为空导致 ~2.7 GPU-hours 完全丢失。加上之前 repo-level-cwm 损失，累计浪费 ~5.1 GPU-hours。此后规定：正在训练的进程只有在\\n    (1) 训练出错 (2) Director 明确批准 两种情况下才能被杀死。代码修改必须等当前训练完成或 checkpoint 已保存后再应用。\\n  related_experiments:\\n  - exp_id: repo-level-cls\\n    role: victim\\n    result: killed at step 1150/6633, progress lost\\n  - exp_id: repo-level-cwm\\n    role: victim\\n    result: previously killed at step 694/6633, progress lost\\n  depends_on: []\\n- id: D025\\n  date: 2026-05-12 17:04 UTC\\n  summary: GPU 空闲分配：cuda:0/1 跑 per-test-precision-recall + block-corr-empirical，home\\n    跑 majority-voting，cuda:2/3 留给 repo-level v3\\n  rationale: 5 张卡全部空闲不可接受。repo-level fix 进行中但无法确定何时完成，空余 3 张卡跑 plan 中剩余的快速实验（P0+P2），既填补论文空白又不阻塞关键路径。repo-level\\n    v3 若再失败则弃用 custom DataCollator 走标准 HF pipeline。\\n  related_experiments:\\n  - exp_id: per-test-precision-recall\\n    role: new\\n    result: planned\\n  - exp_id: block-corr-empirical\\n    role: new\\n    result: planned\\n  - exp_id: per-test-majority-voting\\n    role: new\\n    result: planned\\n  - exp_id: repo-level-training\\n    role: blocker\\n    result: v3 fixing\\n  depends_on:\\n  - D024\\n  - D016\\n- id: D026\\n  date: 2026-05-12 17:11 UTC\\n  summary: cuda:0/1 投机启动 8B repo-level CLS+CWM 训练，stop-loss 挂钩 4B repo-level Go/No-Go\\n    结果\\n  rationale: 13天DDL内8B repo-level是最高价值的GPU投资：4B gap≥1pp时直接验证scaling×complexity交互效应省20h；4B\\n    gap<1pp时kill掉损失~12h可接受。函数级已证明4B→8B gap从1.25pp扩大到2.43pp，repo-level大概率同方向。\\n  related_experiments:\\n  - exp_id: repo-level-cls8b\\n    role: new_speculative\\n    result: planned\\n  - exp_id: repo-level-cwm8b\\n    role: new_speculative\\n    result: planned\\n  - exp_id: repo-level-training\\n    role: prerequisite\\n    result: running\\n  depends_on:\\n  - D025\\n  - D008\\n- id: D027\\n  date: 2026-05-12 17:12 UTC\\n  summary: repo-level v3 SIGKILL 恢复方案：清理根分区 + 加 save_steps=500 + 移缓存到数据盘后重提交\\n  rationale: 两实验同一秒被杀，排除代码bug。根分区 89% 是高风险因素。恢复策略：清盘 → 加中间checkpoint → 重提交并行训练。cuda:0/1\\n    暂缓分配，先确保关键路径稳定。\\n  related_experiments:\\n  - exp_id: repo-level-cls-v3\\n    role: recovery\\n    result: SIGKILL at step 188/6633\\n  - exp_id: repo-level-cwm-v3\\n    role: recovery\\n    result: SIGKILL at step 119/6633\\n  depends_on:\\n  - D025\\n  - D024\\n- id: D028\\n  date: 2026-05-12 17:33 UTC\\n  summary: seetacloud 禁止并行训练：cgroup 360GB 限制，v3+v4 两次 OOM 确认。CWM 改单进程提交\\n  rationale: v3 并行 SIGKILL (step 188/119) + v4 并行再次 SIGKILL，两次 EXIT_CODE=137 + cgroup\\n    memory.max=360GB。free -h 显示 754GB 是宿主机 RAM，容器实际限制 360GB。单进程 4B 训练峰值内存远低于 360GB，串行安全。\\n  related_experiments:\\n  - exp_id: repo-level-cls-v3\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cwm-v3\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cls-v4\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cwm-v4\\n    role: evidence\\n    result: SIGKILL parallel\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-12 19:03 UTC\\n  summary: 'Reviewer critical: 两台训练均无中间 checkpoint（save_strategy=epoch），不杀进程（D024），接受风险，要求修改脚本默认值'\\n  rationale: Reviewer 发现 D027 的 save_steps=50 从未落实到实际提交命令。CLS (home, step 872) 和 CWM\\n    (seetacloud, step 386) 均以 save_strategy=epoch 运行，首个 checkpoint 在 step 6633。按 D024\\n    不杀进程，已投入 1-2h 训练时间。Home 非容器+seetacloud 单进程降低崩溃风险。要求 Agent 修改 train_repo_verifier.py\\n    和 train_repo_cwm.py 默认参数为 save_strategy=steps/save_steps=200/save_total_limit=3。\\n  related_experiments:\\n  - exp_id: repo-level-cls-home\\n    role: affected\\n    result: running-no-checkpoint\\n  - exp_id: repo-level-cwm-v4\\n    role: affected\\n    result: running-no-checkpoint\\n  depends_on:\\n  - D024\\n  - D027\\n- id: D030\\n  date: 2026-05-12 19:06 UTC\\n  summary: D024 违规：Worker 未经审批杀死正在运行的 CWM v4 (step 386)，损失 ~1h10m。强化约束：替换运行中训练必须先提交\\n    Director 审批\\n  rationale: prep Worker 在部署 v6 时主动 kill 了 PID 77816 (CWM v4, step 386/6633, 正常训练中)，违反\\n    D024\\\"禁止杀死正在正常训练的进程来应用代码修改\\\"。损失 ~1h10m 训练时间。缓解因素：v4 无 checkpoint（save_strategy=epoch），v6\\n    有 save_steps=500 更安全。损失不可逆，不需要回滚。新增约束：Worker 需要替换正在运行的训练时，必须先提交 Director 审批，不可自行判断\\n    kill。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v4\\n    role: victim\\n    result: killed-by-worker\\n  - exp_id: repo-level-cwm-v6\\n    role: replacement\\n    result: running\\n  depends_on:\\n  - D024\\n  - D029\\n- id: D031\\n  date: 2026-05-12 19:19 UTC\\n  summary: CWM 7 次连续失败根因：多 Worker 并行提交导致进程泄漏和互相干扰。新规：CWM 提交由单一 Agent SSH 完成，禁止多 Worker\\n    参与同一实验提交\\n  rationale: v6 死因分析：Reviewer 发现 seetacloud 上有 8+ 残留 python 进程（多 Worker 各自提交导致），互相争\\n    GPU/内存，最终被 SIGKILL。v1-v6 失败涵盖 code bug(v1-v2)、cgroup OOM(v3)、D024 违规(v4)、code\\n    error(v5)、进程泄漏(v6)。核心系统性问题：prep/submit/ssh 三个 Worker 各自独立提交，无协调。新规：一个实验全生命周期（清理→验证→提交→确认）由\\n    Agent 用单次 ssh_execute 完成，不经 Worker。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: failed\\n    result: SIGKILL-process-leak\\n  - exp_id: repo-level-cwm-v4\\n    role: failed\\n    result: killed-by-worker\\n  - exp_id: repo-level-cwm-v5\\n    role: failed\\n    result: exit-code-1\\n  depends_on:\\n  - D028\\n  - D030\\n- id: D032\\n  date: 2026-05-12 19:41 UTC\\n  summary: 取消 D031（CWM 提交流程变更），保留 v6 继续训练\\n  rationale: Reviewer 和 Agent 均确认 cwm-v6 已稳定运行（GPU 2, 96% util, 22GB VRAM）。D031 基于\\\"连续\\n    7 次失败\\\"的前提已不成立。kill v6 重提交 v7 会浪费已完成的预处理时间，无收益。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: running_stable\\n  depends_on: []\\n- id: D033\\n  date: 2026-05-12 19:59 UTC\\n  summary: CWM v6 从 save_steps=50 改为 500，从 checkpoint resume 训练\\n  rationale: save_steps=50 导致 validation 占 65% 训练时间（42h vs 17h）。v6 已稳定过 step 100+，OOM\\n    防御不再必要。节省 ~25h GPU 时间。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: efficiency_fix\\n  depends_on: []\\n- id: D034\\n  date: 2026-05-12 20:19 UTC\\n  summary: 撤回 D033：CWM v6 save_steps 实际是 500 非 50，无需重启\\n  rationale: Reviewer 最新核实 train_repo_cwm.py 中 save_steps=500。之前关于 save_steps=50 导致\\n    42h 训练时间的报告基于错误信息（registry hypothesis 记录有误）。CWM v6 正常运行，ETA ~17h。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: running_normal\\n  depends_on:\\n  - D033\\n\", \"total_chars\": 21987, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "874030b9-5e05-4bf2-849a-b9c204810c16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 35\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-11 18:01 UTC\\\\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\\\\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\\\\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\\\\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\\\\n    pilot 精度 >70%。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-11 19:07 UTC\\\\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\\\\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\\\\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\\\\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\\\\n  related_experiments:\\\\n  - exp_id: mvp-a-oracle-sim\\\\n    role: evidence\\\\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-11 19:38 UTC\\\\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\\\\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\\\\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\\\\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\\\\n  related_experiments:\\\\n  - exp_id: mvp-a-oracle-sim\\\\n    role: evidence\\\\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-11 20:05 UTC\\\\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\\\\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\\\\n    per-test 有效的 10% 阈值。Total(F2P+P2P) 模型下 per-test 实际有害（噪声>信号）。但项目核心价值不在信号数量而在 task\\\\n    reformulation：(1) binary classification 绕开 CWM 两大失败模式，即使 T=1 也是更简单的任务 → 可能实现更高精度;\\\\n    (2) F2P-only block-corr 仍有 10.88% 优势（31% multi-test 实例）; (3) 诊断价值——per-test 告诉\\\\n    repair agent 具体哪个测试失败，支持 targeted re-repair。决策：继续，reframe story 为 \\\\\\\"task reformulation\\\\n    + diagnostic signals\\\\\\\"，不再主打 \\\\\\\"fine-grained granularity advantage\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: mvp-a-oracle-sim\\\\n    role: evidence\\\\n    result: 'P2P reg=1%: Total advantage negative; F2P-only block-corr=10.88%'\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-11 20:08 UTC\\\\n  summary: Reframe 后的验证优先级：P0 CWM baseline 对比 > P1 Diagnostic 下游实验；新增 kill condition\\\\n  rationale: Reviewer 正确指出 reframe 后的三支柱中两个无数据支撑。MVP-B 只能验证\\\\\\\"classification 可学习\\\\\\\"，不能验证\\\\\\\"比\\\\n    generation 好\\\\\\\"（支柱1）或\\\\\\\"diagnostic 有用\\\\\\\"（支柱2）。Post-MVP 优先级：P0 = 训练 CWM/generation baseline\\\\n    在相同数据上对比（验证 classification vs generation 核心 claim）；P1 = Diagnostic 下游 proof-of-concept。新增\\\\n    kill condition：CWM baseline 对比无统计显著差异 → 考虑 kill。这避免了 rationalization 风险——reframe\\\\n    后必须用实验验证新假设，不能只靠叙事。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-11 21:19 UTC\\\\n  summary: MVP 通过，进入 Research 阶段；P0 = CWM generation baseline 对比\\\\n  rationale: MVP-A 有条件通过（F2P block-corr 10.88%）+ MVP-B 强 pass（acc 87.5%, F1 87.1/87.9%）。Classification\\\\n    在函数级可学习性确认。进入 research 阶段，P0 实验：训练 CWM generation baseline 在同数据同模型上对比，验证 classification\\\\n    vs generation 核心 claim。CWM baseline 代码已准备好。\\\\n  related_experiments:\\\\n  - exp_id: mvp-b-data-prep\\\\n    role: evidence\\\\n    result: 19K samples, pass/fail 52/48\\\\n  - exp_id: mvp-b-train\\\\n    role: evidence\\\\n    result: acc 87.5%, pass F1 87.1%, fail F1 87.9%\\\\n  depends_on:\\\\n  - D004\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-11 22:31 UTC\\\\n  summary: 'CWM negative on function-level: adopt Complexity-Dependent Advantage framing\\\\n    (Option A), Option B as fallback'\\\\n  rationale: CWM generation ≈ classification on HumanEval/MBPP (F1 差异 <0.2pp)。原因：函数级代码\\\\n    execution output 短且简单，CWM 的 token exhaustion / BPE string prediction 失败模式不触发。选择\\\\n    Option A (Complexity-Dependent Advantage)：承认函数级无差异，论证 classification 优势随代码复杂度增加而显现。理论基础强——CWM\\\\n    论文报告的失败模式均发生在长 trace + 复杂 output 场景。需要 repo-level (SWE-bench) 实验验证。若 repo-level\\\\n    也无差异，fallback 到 Option B (Efficiency-Equivalent Accuracy)。同时，函数级 null result 本身有科学价值——证明\\\\n    classification 优势不是因为\\\\\\\"任务更简单\\\\\\\"，而是因为处理复杂度的差异。\\\\n  related_experiments:\\\\n  - exp_id: cwm-baseline\\\\n    role: primary_evidence\\\\n    result: 'negative: generation ≈ classification on function-level (F1 diff <0.2pp)'\\\\n  depends_on:\\\\n  - D005\\\\n- id: D008\\\\n  date: 2026-05-11 22:33 UTC\\\\n  summary: Reviewer critical acknowledged; stay D007 course with explicit repo-level\\\\n    go/no-go criteria\\\\n  rationale: Reviewer 正确核实函数级 CWM ≈ Classification。但 Reviewer 的 kill/pivot 建议过早——D007\\\\n    已 reframe 为 complexity-dependent advantage，函数级 null result 是该假说的预期结果。补充 repo-level\\\\n    go/no-go 标准：≥3pp → 全力推进；1-3pp → 需更多验证；<1pp → kill C1 pivot to efficiency+frontier\\\\n    paper。时间线评估：实验 ~44h（2天），剩余 12 天写作，AI 24/7 执行可行。\\\\n  related_experiments:\\\\n  - exp_id: cwm-baseline\\\\n    role: trigger\\\\n    result: 'negative: function-level CWM ≈ classification'\\\\n  - exp_id: swebench-pertest-data\\\\n    role: next_critical\\\\n    result: 'planned: repo-level data construction'\\\\n  depends_on:\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-12 03:27 UTC\\\\n  summary: Trace-then-judge 暂停：trace 模板泄漏 mutation type，实验不可解释。GPU 改跑 traj-level-finetuned。\\\\n  rationale: build_trace_data.py 的 generate_trace() 在 FAIL 样本的 trace 中写入变异类型描述（如 \\\\\\\"operator\\\\n    substitution\\\\\\\"），不是实际执行推理。模型学到的是 template 匹配，无论 trace 结果如何都无法回答\\\\\\\"classification 优势是否来自跳过\\\\n    reasoning\\\\\\\"。正确的 trace 需要 LLM 生成实际执行步骤，成本高且不在关键路径上（Dream 审稿中 trace-then-judge 是\\\\n    minor concern）。降低优先级，GPU 改跑 traj-level-finetuned（隔离 granularity 效应，方法论干净）。\\\\n  related_experiments:\\\\n  - exp_id: trace-then-judge\\\\n    role: suspended\\\\n    result: 'methodological flaw: trace leaks mutation type'\\\\n  - exp_id: traj-level-finetuned\\\\n    role: replacement\\\\n    result: planned\\\\n  depends_on:\\\\n  - D007\\\\n- id: D010\\\\n  date: 2026-05-12 04:35 UTC\\\\n  summary: trace-then-judge 让其完成（~15min）保留负面参考数据，完成后立即重跑 traj-level-finetuned；强制修正\\\\n    3 处 registry 脱节\\\\n  rationale: Reviewer 核查发现 trace-then-judge 标 killed 实际在跑（74% 进度），traj-level OOM 崩溃标\\\\n    QUEUED，multi-seed-core 已完成标 QUEUED。trace-then-judge 有方法论缺陷但仅剩 ~15min，kill 不划算，完成后数据可作负面参考。D009\\\\n    kill 决策未被执行导致连锁问题。\\\\n  related_experiments:\\\\n  - exp_id: trace-then-judge\\\\n    role: subject\\\\n    result: running with methodology flaw, ~15min to finish\\\\n  - exp_id: traj-level-finetuned\\\\n    role: blocked\\\\n    result: OOM due to trace-then-judge occupying GPU\\\\n  - exp_id: multi-seed-core\\\\n    role: status-fix\\\\n    result: completed but registry not updated\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-12 05:16 UTC\\\\n  summary: trace-then-judge 结论从 failed 改为 negative：eval 实际已完成，null result 方向 robust，可作辅助证据；Claim\\\\n    3 需按 T 分层呈现\\\\n  rationale: Reviewer 核实 eval_trace_results.json 存在（1890 样本完整）。trace-then-judge 87.04%\\\\n    vs classification 88.41%，低 1.4pp。方法论瑕疵（trace 模板泄漏 mutation type）反而有利于 trace-then-judge，使\\\\n    null result 更 robust。oracle-f2p-stratified 显示 per-test 优势集中在 T≥2（31.3%），T=1（68.7%）优势≈0，论文\\\\n    Claim 3 不能笼统声称 per-test 优于 trajectory，需分层呈现。\\\\n  related_experiments:\\\\n  - exp_id: trace-then-judge\\\\n    role: reinterpretation\\\\n    result: 'negative: 87.04% vs 88.41%, reasoning trace hurts'\\\\n  - exp_id: oracle-f2p-stratified\\\\n    role: evidence\\\\n    result: per-test advantage concentrates in T>=2 (31.3%)\\\\n  depends_on:\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-12 05:30 UTC\\\\n  summary: traj-level-finetuned 确认 per-test granularity 优势（85.66% vs 88.41%），需补 multi-seed\\\\n    验证显著性\\\\n  rationale: Trajectory-level accuracy 85.66% 低于 per-test classification 3-seed mean\\\\n    88.41%，gap 2.75pp。Resolved_f1 gap 更大（83.18% vs 88.41% = -5.23pp），表明 per-test 粒度在\\\\n    pass 类识别上优势明显。但 traj-level 仅 1 seed，Reviewer 指出 2.75pp 在 ~2σ 边界，需补 1-2 seed 做\\\\n    significance test。评估集不同（per-test 1890 vs trajectory 1032 samples），论文需说明是 task-level\\\\n    comparison。\\\\n  related_experiments:\\\\n  - exp_id: traj-level-finetuned\\\\n    role: evidence\\\\n    result: 'success: 85.66% acc, supports per-test advantage'\\\\n  - exp_id: multi-seed-core\\\\n    role: reference\\\\n    result: 88.41±0.96% classification baseline\\\\n  depends_on:\\\\n  - D010\\\\n- id: D013\\\\n  date: 2026-05-12 08:23 UTC\\\\n  summary: traj-level vs per-test gap p≈0.055 边缘不显著，论文不用 \\\\\\\"significantly\\\\\\\"，改 \\\\\\\"consistently\\\\n    lower\\\\\\\" + CI；home GPU 补 2 seed 尝试推到 p<0.05\\\\n  rationale: 3-seed traj mean 86.18% (std=1.07) vs classification 88.41% (std=0.96)，gap=2.23pp，Welch\\\\n    t p≈0.055。seed456 gap 仅 0.48pp，显示优势不稳定。但方向一致（3/3 seed cls > traj）。补 2 seed 成本低（~1h\\\\n    GPU），可能推到 p<0.05。即使 p 值不够，论文仍可 claim \\\\\\\"consistently lower\\\\\\\"（方向一致）+ 报告 CI，核心 contribution\\\\n    已转向 oracle frontier（Claim 3，最强 pillar）。\\\\n  related_experiments:\\\\n  - exp_id: traj-level-finetuned\\\\n    role: evidence\\\\n    result: seed42=85.66, seed123=85.47, seed456=87.40, mean=86.18\\\\n  - exp_id: multi-seed-core\\\\n    role: reference\\\\n    result: classification mean=88.41, std=0.96\\\\n  depends_on:\\\\n  - D012\\\\n- id: D014\\\\n  date: 2026-05-12 09:05 UTC\\\\n  summary: 不补跑 cls extra seeds；traj vs cls 用 \\\\\\\"consistently lower\\\\\\\" + bootstrap by problem_id\\\\n    CI，不追求 p<0.05\\\\n  rationale: 4-seed 后 gap 继续收窄到 1.95pp，p≈0.055 无改善。补跑 cls-seed789/seed0 需 ~2h GPU，即使\\\\n    5-paired 也未必显著（方差大）。per-test vs traj 不是核心 claim，是 Claim 3 oracle frontier 的辅助证据。方向一致（4/4\\\\n    seed cls > traj），用 \\\\\\\"consistently lower\\\\\\\" 措辞足够。DEFF=4.62 发现提供了更好的统计方法：bootstrap\\\\n    by problem_id（CPU，无 GPU 开销）。GPU 时间应优先用于 seed0 + majority-voting。\\\\n  related_experiments:\\\\n  - exp_id: traj-level-finetuned\\\\n    role: evidence\\\\n    result: 4-seed mean=86.46%, gap=1.95pp, p≈0.055\\\\n  - exp_id: multi-seed-core\\\\n    role: reference\\\\n    result: cls 3-seed mean=88.41%\\\\n  - exp_id: block-corr-empirical\\\\n    role: method\\\\n    result: DEFF=4.62 supports clustered bootstrap\\\\n  depends_on:\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-12 09:22 UTC\\\\n  summary: 8B scaling 确认 classification 优势随模型增大扩大（gap 从 0.9pp→2.81pp），CWM 碰到精度天花板；seetacloud\\\\n    cuda:0/1 补跑 8B seed123 验证\\\\n  rationale: cls 4B→8B +2.07pp，cwm 4B→8B 仅 +0.16pp。CWM exact_match 在两个尺度下几乎不变（84.02→84.39%），说明生成准确性是瓶颈而非模型容量。cls-cwm\\\\n    gap 从 0.9pp（4B）扩大到 2.81pp（8B），支持 \\\\\\\"classification scales better\\\\\\\" narrative。但 8B\\\\n    只有单 seed，补 1 seed 排除随机性（2.81pp 已超出 4B std=0.96pp，大概率真实，但保险起见跑一个）。seetacloud cuda:0/1\\\\n    刚释放，8B 模型已在 seetacloud 上，可立即开跑。\\\\n  related_experiments:\\\\n  - exp_id: model-size-scaling-cls8b\\\\n    role: evidence\\\\n    result: 90.48% accuracy, +2.07pp from 4B\\\\n  - exp_id: model-size-scaling-cwm8b\\\\n    role: evidence\\\\n    result: 87.67% accuracy, +0.16pp from 4B, exact_match 84.39%\\\\n  depends_on:\\\\n  - D012\\\\n- id: D016\\\\n  date: 2026-05-12 09:37 UTC\\\\n  summary: 批准 repo-level cls/cwm 训练（seetacloud cuda:2/3），split by instance_id 80/10/10，class\\\\n    weighting 处理不平衡\\\\n  rationale: SWE-bench 数据管线完成（89,867 条，250 instances × 5 patch types）。标签严重不平衡（82.8%\\\\n    PASS / 17.2% FAIL），用 class weighting 保留全部数据。按 instance_id 分层 split 避免泄漏。沿用函数级超参（bs=2,\\\\n    grad_accum=16, lr=2e-4, 3 epochs）。这是 Pillar 1 的决胜实验——如果 repo-level cls-cwm gap\\\\n    扩大，complexity-dependent advantage 假设成立。\\\\n  related_experiments:\\\\n  - exp_id: model-size-scaling-cls8b\\\\n    role: motivation\\\\n    result: 8B gap 2.81pp vs 4B gap 0.9pp, scaling widens gap\\\\n  - exp_id: swebench-pertest-data\\\\n    role: dependency\\\\n    result: 89867 records, 250 instances, ready\\\\n  depends_on:\\\\n  - D015\\\\n- id: D017\\\\n  date: 2026-05-12 10:20 UTC\\\\n  summary: 补充 cls-seed789 和 cls-seed0 完成 5-paired significance test\\\\n  rationale: traj-level-seed0 完成后 5-seed unpaired t-test p=0.033 首次显著，但 paired test\\\\n    仅 3 对 p=0.16。补齐 cls seeds 789 和 0 可做 5-paired comparison，预期 p 值大幅下降。home cuda:0\\\\n    刚释放，零额外资源成本。\\\\n  related_experiments:\\\\n  - exp_id: traj-level-seed0\\\\n    role: trigger\\\\n    result: accuracy 85.66%, 5-seed mean 86.30%\\\\n  - exp_id: multi-seed-core\\\\n    role: baseline\\\\n    result: 3-seed cls mean 88.41%\\\\n  depends_on:\\\\n  - D010\\\\n- id: D018\\\\n  date: 2026-05-12 10:22 UTC\\\\n  summary: per-test vs traj variant-level accuracy 等价，Pillar 2 reframe 为 diagnostic\\\\n    granularity\\\\n  rationale: Clustered bootstrap CI 分析发现：将 per-test 预测聚合到 variant 级别后，cls vs traj\\\\n    gap 仅 -0.37pp (p=0.646)，统计上无差异。之前的 ~2pp gap 是 1890 tests vs 1032 variants 的粒度差异假象。论文应将\\\\n    per-test 价值定位于 diagnostic signals + oracle frontier，而非 raw accuracy 优势。这实际上是更强更干净的\\\\n    claim——per-test 不牺牲 accuracy 但获得诊断能力。D017 的 cls extra seeds 仍有 robustness 价值但不再用于\\\\n    significance testing。\\\\n  related_experiments:\\\\n  - exp_id: clustered-bootstrap-ci\\\\n    role: evidence\\\\n    result: variant-level gap -0.37pp, p=0.646, CI [-1.89, +1.07]\\\\n  - exp_id: traj-level-seed0\\\\n    role: context\\\\n    result: 5-seed traj mean 86.30%\\\\n  - exp_id: multi-seed-core\\\\n    role: context\\\\n    result: 3-seed cls mean 88.41% (per-test level)\\\\n  depends_on:\\\\n  - D013\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-12 10:24 UTC\\\\n  summary: 论文统计检验：仅用 clustered bootstrap (variant-level aligned)，禁用 Welch's t-test\\\\n  rationale: Welch's t-test 比较 1890 per-test samples vs 1032 variant-level samples，粒度不同，p=0.036\\\\n    是假象。Clustered bootstrap 对齐到 variant 级别后 gap=-0.37pp, p=0.646，无差异。方法论正确性优先于统计显著性。可在\\\\n    Discussion 提及粒度对比的 subtlety。\\\\n  related_experiments:\\\\n  - exp_id: clustered-bootstrap-ci\\\\n    role: evidence\\\\n    result: variant-level gap -0.37pp, p=0.646\\\\n  - exp_id: traj-level-seed0\\\\n    role: context\\\\n    result: 5-seed mean 86.30±0.97%\\\\n  depends_on:\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-12 13:10 UTC\\\\n  summary: TOST 等价检验通过 (p=0.007, ±2pp)，Claim 2 恢复 \\\\\\\"equivalent\\\\\\\" 措辞\\\\n  rationale: 5-paired clustered bootstrap CI 显著收窄置信区间至 [-1.32, +0.52]，TOST p=0.0071\\\\n    正式证明 per-test 与 traj variant-level accuracy 等价（±2pp margin 内）。三种检验方法一致（pooled\\\\n    bootstrap p=0.499, paired-t p=0.425, TOST p=0.007）。Claim 2 从 \\\\\\\"comparable\\\\\\\" 升级回\\\\n    \\\\\\\"equivalent\\\\\\\"，需在论文中 justify ±2pp margin。\\\\n  related_experiments:\\\\n  - exp_id: clustered-bootstrap-ci-5paired\\\\n    role: evidence\\\\n    result: TOST p=0.007, pooled gap -0.40pp, CI [-1.32, +0.52]\\\\n  - exp_id: cls-seed0\\\\n    role: trigger\\\\n    result: 5th cls seed completed, accuracy 87.94%\\\\n  depends_on:\\\\n  - D018\\\\n  - D019\\\\n- id: D021\\\\n  date: 2026-05-12 14:37 UTC\\\\n  summary: 'Dream #5 审稿完成: 三档一致指出 related work/model diversity/re-repair 为结构性缺陷, repo-level\\\\n    是论文生死线'\\\\n  rationale: 'dream_20260511T231719 full review (best=weak accept, median=borderline,\\\\n    worst=reject)。三档共同 critical: (1) related work ≤7 refs 需 15+; (2) 只有 Qwen3-4B/8B,\\\\n    需更多 model family 或 frame 为 scale-conditional; (3) re-repair 需 fully specify 或\\\\n    demote to preliminary; (4) TtJ 缺 repo-level 评估; (5) error overlap 分析 CLS vs CWM\\\\n    缺失。worst tier 验证了 repo-level null → reject 的判断。行动: 修复 repo-level scripts 立即重提交,\\\\n    写作阶段优先扩 related work, 考虑 error overlap 分析作为低成本高收益实验。'\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls\\\\n    role: decisive\\\\n    result: failed (sample_weight bug)\\\\n  - exp_id: repo-level-cwm\\\\n    role: decisive\\\\n    result: failed (killed + bug)\\\\n  depends_on:\\\\n  - D016\\\\n  - D020\\\\n- id: D022\\\\n  date: 2026-05-12 14:41 UTC\\\\n  summary: '函数级 5-paired CLS vs CWM: gap +1.25pp (one-sided p=0.025), 落入 Go/No-Go\\\\n    的 1-3pp 区间, 支持 complexity-dependent narrative'\\\\n  rationale: CLS 5-seed mean 88.44±0.78, CWM 5-seed mean 87.19±0.37。One-sided p=0.025\\\\n    统计显著，但 gap 仅 1.25pp——函数级差异小但存在，与\\\\\\\"简单任务 CWM failure modes 不触发\\\\\\\"一致。结合 8B 2-seed gap\\\\n    2.6pp (scaling ~2x)，complexity-dependent narrative 有数据支撑。关键：repo-level gap 是否进一步扩大将决定论文\\\\n    story 强度。CWM 的 std (0.37) 远小于 CLS (0.78)，4B gap 不稳定性来自 CLS 方差。\\\\n  related_experiments:\\\\n  - exp_id: 5-paired-clustered-bootstrap\\\\n    role: evidence\\\\n    result: +1.25pp, p=0.025\\\\n  - exp_id: model-size-scaling-cls8b\\\\n    role: scaling\\\\n    result: 8B gap 2.6pp\\\\n  - exp_id: model-size-scaling-cwm8b\\\\n    role: scaling\\\\n    result: 8B CWM 87.88\\\\n  depends_on:\\\\n  - D020\\\\n  - D015\\\\n- id: D023\\\\n  date: 2026-05-12 14:42 UTC\\\\n  summary: 5-paired CLS vs CWM 函数级 gap 确认 +1.25pp (one-sided p=0.025), 支持 complexity-dependent\\\\n    叙事但 repo-level 仍是决胜点\\\\n  rationale: 'CLS mean 88.44±0.78 vs CWM mean 87.19±0.37, paired gap +1.25pp, CI [+0.46,\\\\n    +2.04], two-sided p=0.0506 (边缘), one-sided p=0.025 (显著), sign test p=0.031。函数级\\\\n    gap 存在但小, 落在 Go/No-Go 的 1-3pp 区间。关键判断: 这支持 complexity-dependent narrative — 函数级只有微弱优势,\\\\n    如果 repo-level gap 显著放大 (≥3pp) 则核心假说成立。CWM 4B 有天花板效应 (std=0.37pp), CLS 方差更大 (std=0.78pp),\\\\n    说明 CLS 的不稳定性来自 seed 敏感性而非方法论缺陷。'\\\\n  related_experiments:\\\\n  - exp_id: multi-seed-core\\\\n    role: primary\\\\n    result: 5-paired analysis\\\\n  - exp_id: cwm-baseline\\\\n    role: baseline\\\\n    result: CWM 5-seed mean 87.19±0.37\\\\n  depends_on:\\\\n  - D019\\\\n  - D020\\\\n- id: D024\\\\n  date: 2026-05-12 14:44 UTC\\\\n  summary: 硬性纪律：禁止 Worker 杀死正在正常训练的进程来应用代码修改\\\\n  rationale: fix worker 杀死了正在正常训练的 repo-level-cls (PID 34681, step 1150/6633)，checkpoint\\\\n    为空导致 ~2.7 GPU-hours 完全丢失。加上之前 repo-level-cwm 损失，累计浪费 ~5.1 GPU-hours。此后规定：正在训练的进程只有在\\\\n    (1) 训练出错 (2) Director 明确批准 两种情况下才能被杀死。代码修改必须等当前训练完成或 checkpoint 已保存后再应用。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls\\\\n    role: victim\\\\n    result: killed at step 1150/6633, progress lost\\\\n  - exp_id: repo-level-cwm\\\\n    role: victim\\\\n    result: previously killed at step 694/6633, progress lost\\\\n  depends_on: []\\\\n- id: D025\\\\n  date: 2026-05-12 17:04 UTC\\\\n  summary: GPU 空闲分配：cuda:0/1 跑 per-test-precision-recall + block-corr-empirical，home\\\\n    跑 majority-voting，cuda:2/3 留给 repo-level v3\\\\n  rationale: 5 张卡全部空闲不可接受。repo-level fix 进行中但无法确定何时完成，空余 3 张卡跑 plan 中剩余的快速实验（P0+P2），既填补论文空白又不阻塞关键路径。repo-level\\\\n    v3 若再失败则弃用 custom DataCollator 走标准 HF pipeline。\\\\n  related_experiments:\\\\n  - exp_id: per-test-precision-recall\\\\n    role: new\\\\n    result: planned\\\\n  - exp_id: block-corr-empirical\\\\n    role: new\\\\n    result: planned\\\\n  - exp_id: per-test-majority-voting\\\\n    role: new\\\\n    result: planned\\\\n  - exp_id: repo-level-training\\\\n    role: blocker\\\\n    result: v3 fixing\\\\n  depends_on:\\\\n  - D024\\\\n  - D016\\\\n- id: D026\\\\n  date: 2026-05-12 17:11 UTC\\\\n  summary: cuda:0/1 投机启动 8B repo-level CLS+CWM 训练，stop-loss 挂钩 4B repo-level Go/No-Go\\\\n    结果\\\\n  rationale: 13天DDL内8B repo-level是最高价值的GPU投资：4B gap≥1pp时直接验证scaling×complexity交互效应省20h；4B\\\\n    gap<1pp时kill掉损失~12h可接受。函数级已证明4B→8B gap从1.25pp扩大到2.43pp，repo-level大概率同方向。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls8b\\\\n    role: new_speculative\\\\n    result: planned\\\\n  - exp_id: repo-level-cwm8b\\\\n    role: new_speculative\\\\n    result: planned\\\\n  - exp_id: repo-level-training\\\\n    role: prerequisite\\\\n    result: running\\\\n  depends_on:\\\\n  - D025\\\\n  - D008\\\\n- id: D027\\\\n  date: 2026-05-12 17:12 UTC\\\\n  summary: repo-level v3 SIGKILL 恢复方案：清理根分区 + 加 save_steps=500 + 移缓存到数据盘后重提交\\\\n  rationale: 两实验同一秒被杀，排除代码bug。根分区 89% 是高风险因素。恢复策略：清盘 → 加中间checkpoint → 重提交并行训练。cuda:0/1\\\\n    暂缓分配，先确保关键路径稳定。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls-v3\\\\n    role: recovery\\\\n    result: SIGKILL at step 188/6633\\\\n  - exp_id: repo-level-cwm-v3\\\\n    role: recovery\\\\n    result: SIGKILL at step 119/6633\\\\n  depends_on:\\\\n  - D025\\\\n  - D024\\\\n- id: D028\\\\n  date: 2026-05-12 17:33 UTC\\\\n  summary: seetacloud 禁止并行训练：cgroup 360GB 限制，v3+v4 两次 OOM 确认。CWM 改单进程提交\\\\n  rationale: v3 并行 SIGKILL (step 188/119) + v4 并行再次 SIGKILL，两次 EXIT_CODE=137 + cgroup\\\\n    memory.max=360GB。free -h 显示 754GB 是宿主机 RAM，容器实际限制 360GB。单进程 4B 训练峰值内存远低于 360GB，串行安全。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls-v3\\\\n    role: evidence\\\\n    result: SIGKILL parallel\\\\n  - exp_id: repo-level-cwm-v3\\\\n    role: evidence\\\\n    result: SIGKILL parallel\\\\n  - exp_id: repo-level-cls-v4\\\\n    role: evidence\\\\n    result: SIGKILL parallel\\\\n  - exp_id: repo-level-cwm-v4\\\\n    role: evidence\\\\n    result: SIGKILL parallel\\\\n  depends_on:\\\\n  - D027\\\\n- id: D029\\\\n  date: 2026-05-12 19:03 UTC\\\\n  summary: 'Reviewer critical: 两台训练均无中间 checkpoint（save_strategy=epoch），不杀进程（D024），接受风险，要求修改脚本默认值'\\\\n  rationale: Reviewer 发现 D027 的 save_steps=50 从未落实到实际提交命令。CLS (home, step 872) 和 CWM\\\\n    (seetacloud, step 386) 均以 save_strategy=epoch 运行，首个 checkpoint 在 step 6633。按 D024\\\\n    不杀进程，已投入 1-2h 训练时间。Home 非容器+seetacloud 单进程降低崩溃风险。要求 Agent 修改 train_repo_verifier.py\\\\n    和 train_repo_cwm.py 默认参数为 save_strategy=steps/save_steps=200/save_total_limit=3。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cls-home\\\\n    role: affected\\\\n    result: running-no-checkpoint\\\\n  - exp_id: repo-level-cwm-v4\\\\n    role: affected\\\\n    result: running-no-checkpoint\\\\n  depends_on:\\\\n  - D024\\\\n  - D027\\\\n- id: D030\\\\n  date: 2026-05-12 19:06 UTC\\\\n  summary: D024 违规：Worker 未经审批杀死正在运行的 CWM v4 (step 386)，损失 ~1h10m。强化约束：替换运行中训练必须先提交\\\\n    Director 审批\\\\n  rationale: prep Worker 在部署 v6 时主动 kill 了 PID 77816 (CWM v4, step 386/6633, 正常训练中)，违反\\\\n    D024\\\\\\\"禁止杀死正在正常训练的进程来应用代码修改\\\\\\\"。损失 ~1h10m 训练时间。缓解因素：v4 无 checkpoint（save_strategy=epoch），v6\\\\n    有 save_steps=500 更安全。损失不可逆，不需要回滚。新增约束：Worker 需要替换正在运行的训练时，必须先提交 Director 审批，不可自行判断\\\\n    kill。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cwm-v4\\\\n    role: victim\\\\n    result: killed-by-worker\\\\n  - exp_id: repo-level-cwm-v6\\\\n    role: replacement\\\\n    result: running\\\\n  depends_on:\\\\n  - D024\\\\n  - D029\\\\n- id: D031\\\\n  date: 2026-05-12 19:19 UTC\\\\n  summary: CWM 7 次连续失败根因：多 Worker 并行提交导致进程泄漏和互相干扰。新规：CWM 提交由单一 Agent SSH 完成，禁止多 Worker\\\\n    参与同一实验提交\\\\n  rationale: v6 死因分析：Reviewer 发现 seetacloud 上有 8+ 残留 python 进程（多 Worker 各自提交导致），互相争\\\\n    GPU/内存，最终被 SIGKILL。v1-v6 失败涵盖 code bug(v1-v2)、cgroup OOM(v3)、D024 违规(v4)、code\\\\n    error(v5)、进程泄漏(v6)。核心系统性问题：prep/submit/ssh 三个 Worker 各自独立提交，无协调。新规：一个实验全生命周期（清理→验证→提交→确认）由\\\\n    Agent 用单次 ssh_execute 完成，不经 Worker。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cwm-v6\\\\n    role: failed\\\\n    result: SIGKILL-process-leak\\\\n  - exp_id: repo-level-cwm-v4\\\\n    role: failed\\\\n    result: killed-by-worker\\\\n  - exp_id: repo-level-cwm-v5\\\\n    role: failed\\\\n    result: exit-code-1\\\\n  depends_on:\\\\n  - D028\\\\n  - D030\\\\n- id: D032\\\\n  date: 2026-05-12 19:41 UTC\\\\n  summary: 取消 D031（CWM 提交流程变更），保留 v6 继续训练\\\\n  rationale: Reviewer 和 Agent 均确认 cwm-v6 已稳定运行（GPU 2, 96% util, 22GB VRAM）。D031 基于\\\\\\\"连续\\\\n    7 次失败\\\\\\\"的前提已不成立。kill v6 重提交 v7 会浪费已完成的预处理时间，无收益。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cwm-v6\\\\n    role: subject\\\\n    result: running_stable\\\\n  depends_on: []\\\\n- id: D033\\\\n  date: 2026-05-12 19:59 UTC\\\\n  summary: CWM v6 从 save_steps=50 改为 500，从 checkpoint resume 训练\\\\n  rationale: save_steps=50 导致 validation 占 65% 训练时间（42h vs 17h）。v6 已稳定过 step 100+，OOM\\\\n    防御不再必要。节省 ~25h GPU 时间。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cwm-v6\\\\n    role: subject\\\\n    result: efficiency_fix\\\\n  depends_on: []\\\\n- id: D034\\\\n  date: 2026-05-12 20:19 UTC\\\\n  summary: 撤回 D033：CWM v6 save_steps 实际是 500 非 50，无需重启\\\\n  rationale: Reviewer 最新核实 train_repo_cwm.py 中 save_steps=500。之前关于 save_steps=50 导致\\\\n    42h 训练时间的报告基于错误信息（registry hypothesis 记录有误）。CWM v6 正常运行，ETA ~17h。\\\\n  related_experiments:\\\\n  - exp_id: repo-level-cwm-v6\\\\n    role: subject\\\\n    result: running_normal\\\\n  depends_on:\\\\n  - D033\\\\n\\\", \\\"total_chars\\\": 21987, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml\", \"content\": \"_next_id: 35\\ndecisions:\\n- id: D001\\n  date: 2026-05-11 18:01 UTC\\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\\n    pilot 精度 >70%。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-11 19:07 UTC\\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-11 19:38 UTC\\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-11 20:05 UTC\\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\\n    per-test 有效的 10% 阈值。Total(F2P+P2P) 模型下 per-test 实际有害（噪声>信号）。但项目核心价值不在信号数量而在 task\\n    reformulation：(1) binary classification 绕开 CWM 两大失败模式，即使 T=1 也是更简单的任务 → 可能实现更高精度;\\n    (2) F2P-only block-corr 仍有 10.88% 优势（31% multi-test 实例）; (3) 诊断价值——per-test 告诉\\n    repair agent 具体哪个测试失败，支持 targeted re-repair。决策：继续，reframe story 为 \\\"task reformulation\\n    + diagnostic signals\\\"，不再主打 \\\"fine-grained granularity advantage\\\"。\\n  related_experiments:\\n  - exp_id: mvp-a-oracle-sim\\n    role: evidence\\n    result: 'P2P reg=1%: Total advantage negative; F2P-only block-corr=10.88%'\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-11 20:08 UTC\\n  summary: Reframe 后的验证优先级：P0 CWM baseline 对比 > P1 Diagnostic 下游实验；新增 kill condition\\n  rationale: Reviewer 正确指出 reframe 后的三支柱中两个无数据支撑。MVP-B 只能验证\\\"classification 可学习\\\"，不能验证\\\"比\\n    generation 好\\\"（支柱1）或\\\"diagnostic 有用\\\"（支柱2）。Post-MVP 优先级：P0 = 训练 CWM/generation baseline\\n    在相同数据上对比（验证 classification vs generation 核心 claim）；P1 = Diagnostic 下游 proof-of-concept。新增\\n    kill condition：CWM baseline 对比无统计显著差异 → 考虑 kill。这避免了 rationalization 风险——reframe\\n    后必须用实验验证新假设，不能只靠叙事。\\n  related_experiments: []\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-11 21:19 UTC\\n  summary: MVP 通过，进入 Research 阶段；P0 = CWM generation baseline 对比\\n  rationale: MVP-A 有条件通过（F2P block-corr 10.88%）+ MVP-B 强 pass（acc 87.5%, F1 87.1/87.9%）。Classification\\n    在函数级可学习性确认。进入 research 阶段，P0 实验：训练 CWM generation baseline 在同数据同模型上对比，验证 classification\\n    vs generation 核心 claim。CWM baseline 代码已准备好。\\n  related_experiments:\\n  - exp_id: mvp-b-data-prep\\n    role: evidence\\n    result: 19K samples, pass/fail 52/48\\n  - exp_id: mvp-b-train\\n    role: evidence\\n    result: acc 87.5%, pass F1 87.1%, fail F1 87.9%\\n  depends_on:\\n  - D004\\n  - D005\\n- id: D007\\n  date: 2026-05-11 22:31 UTC\\n  summary: 'CWM negative on function-level: adopt Complexity-Dependent Advantage framing\\n    (Option A), Option B as fallback'\\n  rationale: CWM generation ≈ classification on HumanEval/MBPP (F1 差异 <0.2pp)。原因：函数级代码\\n    execution output 短且简单，CWM 的 token exhaustion / BPE string prediction 失败模式不触发。选择\\n    Option A (Complexity-Dependent Advantage)：承认函数级无差异，论证 classification 优势随代码复杂度增加而显现。理论基础强——CWM\\n    论文报告的失败模式均发生在长 trace + 复杂 output 场景。需要 repo-level (SWE-bench) 实验验证。若 repo-level\\n    也无差异，fallback 到 Option B (Efficiency-Equivalent Accuracy)。同时，函数级 null result 本身有科学价值——证明\\n    classification 优势不是因为\\\"任务更简单\\\"，而是因为处理复杂度的差异。\\n  related_experiments:\\n  - exp_id: cwm-baseline\\n    role: primary_evidence\\n    result: 'negative: generation ≈ classification on function-level (F1 diff <0.2pp)'\\n  depends_on:\\n  - D005\\n- id: D008\\n  date: 2026-05-11 22:33 UTC\\n  summary: Reviewer critical acknowledged; stay D007 course with explicit repo-level\\n    go/no-go criteria\\n  rationale: Reviewer 正确核实函数级 CWM ≈ Classification。但 Reviewer 的 kill/pivot 建议过早——D007\\n    已 reframe 为 complexity-dependent advantage，函数级 null result 是该假说的预期结果。补充 repo-level\\n    go/no-go 标准：≥3pp → 全力推进；1-3pp → 需更多验证；<1pp → kill C1 pivot to efficiency+frontier\\n    paper。时间线评估：实验 ~44h（2天），剩余 12 天写作，AI 24/7 执行可行。\\n  related_experiments:\\n  - exp_id: cwm-baseline\\n    role: trigger\\n    result: 'negative: function-level CWM ≈ classification'\\n  - exp_id: swebench-pertest-data\\n    role: next_critical\\n    result: 'planned: repo-level data construction'\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-12 03:27 UTC\\n  summary: Trace-then-judge 暂停：trace 模板泄漏 mutation type，实验不可解释。GPU 改跑 traj-level-finetuned。\\n  rationale: build_trace_data.py 的 generate_trace() 在 FAIL 样本的 trace 中写入变异类型描述（如 \\\"operator\\n    substitution\\\"），不是实际执行推理。模型学到的是 template 匹配，无论 trace 结果如何都无法回答\\\"classification 优势是否来自跳过\\n    reasoning\\\"。正确的 trace 需要 LLM 生成实际执行步骤，成本高且不在关键路径上（Dream 审稿中 trace-then-judge 是\\n    minor concern）。降低优先级，GPU 改跑 traj-level-finetuned（隔离 granularity 效应，方法论干净）。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: suspended\\n    result: 'methodological flaw: trace leaks mutation type'\\n  - exp_id: traj-level-finetuned\\n    role: replacement\\n    result: planned\\n  depends_on:\\n  - D007\\n- id: D010\\n  date: 2026-05-12 04:35 UTC\\n  summary: trace-then-judge 让其完成（~15min）保留负面参考数据，完成后立即重跑 traj-level-finetuned；强制修正\\n    3 处 registry 脱节\\n  rationale: Reviewer 核查发现 trace-then-judge 标 killed 实际在跑（74% 进度），traj-level OOM 崩溃标\\n    QUEUED，multi-seed-core 已完成标 QUEUED。trace-then-judge 有方法论缺陷但仅剩 ~15min，kill 不划算，完成后数据可作负面参考。D009\\n    kill 决策未被执行导致连锁问题。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: subject\\n    result: running with methodology flaw, ~15min to finish\\n  - exp_id: traj-level-finetuned\\n    role: blocked\\n    result: OOM due to trace-then-judge occupying GPU\\n  - exp_id: multi-seed-core\\n    role: status-fix\\n    result: completed but registry not updated\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-12 05:16 UTC\\n  summary: trace-then-judge 结论从 failed 改为 negative：eval 实际已完成，null result 方向 robust，可作辅助证据；Claim\\n    3 需按 T 分层呈现\\n  rationale: Reviewer 核实 eval_trace_results.json 存在（1890 样本完整）。trace-then-judge 87.04%\\n    vs classification 88.41%，低 1.4pp。方法论瑕疵（trace 模板泄漏 mutation type）反而有利于 trace-then-judge，使\\n    null result 更 robust。oracle-f2p-stratified 显示 per-test 优势集中在 T≥2（31.3%），T=1（68.7%）优势≈0，论文\\n    Claim 3 不能笼统声称 per-test 优于 trajectory，需分层呈现。\\n  related_experiments:\\n  - exp_id: trace-then-judge\\n    role: reinterpretation\\n    result: 'negative: 87.04% vs 88.41%, reasoning trace hurts'\\n  - exp_id: oracle-f2p-stratified\\n    role: evidence\\n    result: per-test advantage concentrates in T>=2 (31.3%)\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-12 05:30 UTC\\n  summary: traj-level-finetuned 确认 per-test granularity 优势（85.66% vs 88.41%），需补 multi-seed\\n    验证显著性\\n  rationale: Trajectory-level accuracy 85.66% 低于 per-test classification 3-seed mean\\n    88.41%，gap 2.75pp。Resolved_f1 gap 更大（83.18% vs 88.41% = -5.23pp），表明 per-test 粒度在\\n    pass 类识别上优势明显。但 traj-level 仅 1 seed，Reviewer 指出 2.75pp 在 ~2σ 边界，需补 1-2 seed 做\\n    significance test。评估集不同（per-test 1890 vs trajectory 1032 samples），论文需说明是 task-level\\n    comparison。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: 'success: 85.66% acc, supports per-test advantage'\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: 88.41±0.96% classification baseline\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-12 08:23 UTC\\n  summary: traj-level vs per-test gap p≈0.055 边缘不显著，论文不用 \\\"significantly\\\"，改 \\\"consistently\\n    lower\\\" + CI；home GPU 补 2 seed 尝试推到 p<0.05\\n  rationale: 3-seed traj mean 86.18% (std=1.07) vs classification 88.41% (std=0.96)，gap=2.23pp，Welch\\n    t p≈0.055。seed456 gap 仅 0.48pp，显示优势不稳定。但方向一致（3/3 seed cls > traj）。补 2 seed 成本低（~1h\\n    GPU），可能推到 p<0.05。即使 p 值不够，论文仍可 claim \\\"consistently lower\\\"（方向一致）+ 报告 CI，核心 contribution\\n    已转向 oracle frontier（Claim 3，最强 pillar）。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: seed42=85.66, seed123=85.47, seed456=87.40, mean=86.18\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: classification mean=88.41, std=0.96\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-12 09:05 UTC\\n  summary: 不补跑 cls extra seeds；traj vs cls 用 \\\"consistently lower\\\" + bootstrap by problem_id\\n    CI，不追求 p<0.05\\n  rationale: 4-seed 后 gap 继续收窄到 1.95pp，p≈0.055 无改善。补跑 cls-seed789/seed0 需 ~2h GPU，即使\\n    5-paired 也未必显著（方差大）。per-test vs traj 不是核心 claim，是 Claim 3 oracle frontier 的辅助证据。方向一致（4/4\\n    seed cls > traj），用 \\\"consistently lower\\\" 措辞足够。DEFF=4.62 发现提供了更好的统计方法：bootstrap\\n    by problem_id（CPU，无 GPU 开销）。GPU 时间应优先用于 seed0 + majority-voting。\\n  related_experiments:\\n  - exp_id: traj-level-finetuned\\n    role: evidence\\n    result: 4-seed mean=86.46%, gap=1.95pp, p≈0.055\\n  - exp_id: multi-seed-core\\n    role: reference\\n    result: cls 3-seed mean=88.41%\\n  - exp_id: block-corr-empirical\\n    role: method\\n    result: DEFF=4.62 supports clustered bootstrap\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-12 09:22 UTC\\n  summary: 8B scaling 确认 classification 优势随模型增大扩大（gap 从 0.9pp→2.81pp），CWM 碰到精度天花板；seetacloud\\n    cuda:0/1 补跑 8B seed123 验证\\n  rationale: cls 4B→8B +2.07pp，cwm 4B→8B 仅 +0.16pp。CWM exact_match 在两个尺度下几乎不变（84.02→84.39%），说明生成准确性是瓶颈而非模型容量。cls-cwm\\n    gap 从 0.9pp（4B）扩大到 2.81pp（8B），支持 \\\"classification scales better\\\" narrative。但 8B\\n    只有单 seed，补 1 seed 排除随机性（2.81pp 已超出 4B std=0.96pp，大概率真实，但保险起见跑一个）。seetacloud cuda:0/1\\n    刚释放，8B 模型已在 seetacloud 上，可立即开跑。\\n  related_experiments:\\n  - exp_id: model-size-scaling-cls8b\\n    role: evidence\\n    result: 90.48% accuracy, +2.07pp from 4B\\n  - exp_id: model-size-scaling-cwm8b\\n    role: evidence\\n    result: 87.67% accuracy, +0.16pp from 4B, exact_match 84.39%\\n  depends_on:\\n  - D012\\n- id: D016\\n  date: 2026-05-12 09:37 UTC\\n  summary: 批准 repo-level cls/cwm 训练（seetacloud cuda:2/3），split by instance_id 80/10/10，class\\n    weighting 处理不平衡\\n  rationale: SWE-bench 数据管线完成（89,867 条，250 instances × 5 patch types）。标签严重不平衡（82.8%\\n    PASS / 17.2% FAIL），用 class weighting 保留全部数据。按 instance_id 分层 split 避免泄漏。沿用函数级超参（bs=2,\\n    grad_accum=16, lr=2e-4, 3 epochs）。这是 Pillar 1 的决胜实验——如果 repo-level cls-cwm gap\\n    扩大，complexity-dependent advantage 假设成立。\\n  related_experiments:\\n  - exp_id: model-size-scaling-cls8b\\n    role: motivation\\n    result: 8B gap 2.81pp vs 4B gap 0.9pp, scaling widens gap\\n  - exp_id: swebench-pertest-data\\n    role: dependency\\n    result: 89867 records, 250 instances, ready\\n  depends_on:\\n  - D015\\n- id: D017\\n  date: 2026-05-12 10:20 UTC\\n  summary: 补充 cls-seed789 和 cls-seed0 完成 5-paired significance test\\n  rationale: traj-level-seed0 完成后 5-seed unpaired t-test p=0.033 首次显著，但 paired test\\n    仅 3 对 p=0.16。补齐 cls seeds 789 和 0 可做 5-paired comparison，预期 p 值大幅下降。home cuda:0\\n    刚释放，零额外资源成本。\\n  related_experiments:\\n  - exp_id: traj-level-seed0\\n    role: trigger\\n    result: accuracy 85.66%, 5-seed mean 86.30%\\n  - exp_id: multi-seed-core\\n    role: baseline\\n    result: 3-seed cls mean 88.41%\\n  depends_on:\\n  - D010\\n- id: D018\\n  date: 2026-05-12 10:22 UTC\\n  summary: per-test vs traj variant-level accuracy 等价，Pillar 2 reframe 为 diagnostic\\n    granularity\\n  rationale: Clustered bootstrap CI 分析发现：将 per-test 预测聚合到 variant 级别后，cls vs traj\\n    gap 仅 -0.37pp (p=0.646)，统计上无差异。之前的 ~2pp gap 是 1890 tests vs 1032 variants 的粒度差异假象。论文应将\\n    per-test 价值定位于 diagnostic signals + oracle frontier，而非 raw accuracy 优势。这实际上是更强更干净的\\n    claim——per-test 不牺牲 accuracy 但获得诊断能力。D017 的 cls extra seeds 仍有 robustness 价值但不再用于\\n    significance testing。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci\\n    role: evidence\\n    result: variant-level gap -0.37pp, p=0.646, CI [-1.89, +1.07]\\n  - exp_id: traj-level-seed0\\n    role: context\\n    result: 5-seed traj mean 86.30%\\n  - exp_id: multi-seed-core\\n    role: context\\n    result: 3-seed cls mean 88.41% (per-test level)\\n  depends_on:\\n  - D013\\n  - D017\\n- id: D019\\n  date: 2026-05-12 10:24 UTC\\n  summary: 论文统计检验：仅用 clustered bootstrap (variant-level aligned)，禁用 Welch's t-test\\n  rationale: Welch's t-test 比较 1890 per-test samples vs 1032 variant-level samples，粒度不同，p=0.036\\n    是假象。Clustered bootstrap 对齐到 variant 级别后 gap=-0.37pp, p=0.646，无差异。方法论正确性优先于统计显著性。可在\\n    Discussion 提及粒度对比的 subtlety。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci\\n    role: evidence\\n    result: variant-level gap -0.37pp, p=0.646\\n  - exp_id: traj-level-seed0\\n    role: context\\n    result: 5-seed mean 86.30±0.97%\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-12 13:10 UTC\\n  summary: TOST 等价检验通过 (p=0.007, ±2pp)，Claim 2 恢复 \\\"equivalent\\\" 措辞\\n  rationale: 5-paired clustered bootstrap CI 显著收窄置信区间至 [-1.32, +0.52]，TOST p=0.0071\\n    正式证明 per-test 与 traj variant-level accuracy 等价（±2pp margin 内）。三种检验方法一致（pooled\\n    bootstrap p=0.499, paired-t p=0.425, TOST p=0.007）。Claim 2 从 \\\"comparable\\\" 升级回\\n    \\\"equivalent\\\"，需在论文中 justify ±2pp margin。\\n  related_experiments:\\n  - exp_id: clustered-bootstrap-ci-5paired\\n    role: evidence\\n    result: TOST p=0.007, pooled gap -0.40pp, CI [-1.32, +0.52]\\n  - exp_id: cls-seed0\\n    role: trigger\\n    result: 5th cls seed completed, accuracy 87.94%\\n  depends_on:\\n  - D018\\n  - D019\\n- id: D021\\n  date: 2026-05-12 14:37 UTC\\n  summary: 'Dream #5 审稿完成: 三档一致指出 related work/model diversity/re-repair 为结构性缺陷, repo-level\\n    是论文生死线'\\n  rationale: 'dream_20260511T231719 full review (best=weak accept, median=borderline,\\n    worst=reject)。三档共同 critical: (1) related work ≤7 refs 需 15+; (2) 只有 Qwen3-4B/8B,\\n    需更多 model family 或 frame 为 scale-conditional; (3) re-repair 需 fully specify 或\\n    demote to preliminary; (4) TtJ 缺 repo-level 评估; (5) error overlap 分析 CLS vs CWM\\n    缺失。worst tier 验证了 repo-level null → reject 的判断。行动: 修复 repo-level scripts 立即重提交,\\n    写作阶段优先扩 related work, 考虑 error overlap 分析作为低成本高收益实验。'\\n  related_experiments:\\n  - exp_id: repo-level-cls\\n    role: decisive\\n    result: failed (sample_weight bug)\\n  - exp_id: repo-level-cwm\\n    role: decisive\\n    result: failed (killed + bug)\\n  depends_on:\\n  - D016\\n  - D020\\n- id: D022\\n  date: 2026-05-12 14:41 UTC\\n  summary: '函数级 5-paired CLS vs CWM: gap +1.25pp (one-sided p=0.025), 落入 Go/No-Go\\n    的 1-3pp 区间, 支持 complexity-dependent narrative'\\n  rationale: CLS 5-seed mean 88.44±0.78, CWM 5-seed mean 87.19±0.37。One-sided p=0.025\\n    统计显著，但 gap 仅 1.25pp——函数级差异小但存在，与\\\"简单任务 CWM failure modes 不触发\\\"一致。结合 8B 2-seed gap\\n    2.6pp (scaling ~2x)，complexity-dependent narrative 有数据支撑。关键：repo-level gap 是否进一步扩大将决定论文\\n    story 强度。CWM 的 std (0.37) 远小于 CLS (0.78)，4B gap 不稳定性来自 CLS 方差。\\n  related_experiments:\\n  - exp_id: 5-paired-clustered-bootstrap\\n    role: evidence\\n    result: +1.25pp, p=0.025\\n  - exp_id: model-size-scaling-cls8b\\n    role: scaling\\n    result: 8B gap 2.6pp\\n  - exp_id: model-size-scaling-cwm8b\\n    role: scaling\\n    result: 8B CWM 87.88\\n  depends_on:\\n  - D020\\n  - D015\\n- id: D023\\n  date: 2026-05-12 14:42 UTC\\n  summary: 5-paired CLS vs CWM 函数级 gap 确认 +1.25pp (one-sided p=0.025), 支持 complexity-dependent\\n    叙事但 repo-level 仍是决胜点\\n  rationale: 'CLS mean 88.44±0.78 vs CWM mean 87.19±0.37, paired gap +1.25pp, CI [+0.46,\\n    +2.04], two-sided p=0.0506 (边缘), one-sided p=0.025 (显著), sign test p=0.031。函数级\\n    gap 存在但小, 落在 Go/No-Go 的 1-3pp 区间。关键判断: 这支持 complexity-dependent narrative — 函数级只有微弱优势,\\n    如果 repo-level gap 显著放大 (≥3pp) 则核心假说成立。CWM 4B 有天花板效应 (std=0.37pp), CLS 方差更大 (std=0.78pp),\\n    说明 CLS 的不稳定性来自 seed 敏感性而非方法论缺陷。'\\n  related_experiments:\\n  - exp_id: multi-seed-core\\n    role: primary\\n    result: 5-paired analysis\\n  - exp_id: cwm-baseline\\n    role: baseline\\n    result: CWM 5-seed mean 87.19±0.37\\n  depends_on:\\n  - D019\\n  - D020\\n- id: D024\\n  date: 2026-05-12 14:44 UTC\\n  summary: 硬性纪律：禁止 Worker 杀死正在正常训练的进程来应用代码修改\\n  rationale: fix worker 杀死了正在正常训练的 repo-level-cls (PID 34681, step 1150/6633)，checkpoint\\n    为空导致 ~2.7 GPU-hours 完全丢失。加上之前 repo-level-cwm 损失，累计浪费 ~5.1 GPU-hours。此后规定：正在训练的进程只有在\\n    (1) 训练出错 (2) Director 明确批准 两种情况下才能被杀死。代码修改必须等当前训练完成或 checkpoint 已保存后再应用。\\n  related_experiments:\\n  - exp_id: repo-level-cls\\n    role: victim\\n    result: killed at step 1150/6633, progress lost\\n  - exp_id: repo-level-cwm\\n    role: victim\\n    result: previously killed at step 694/6633, progress lost\\n  depends_on: []\\n- id: D025\\n  date: 2026-05-12 17:04 UTC\\n  summary: GPU 空闲分配：cuda:0/1 跑 per-test-precision-recall + block-corr-empirical，home\\n    跑 majority-voting，cuda:2/3 留给 repo-level v3\\n  rationale: 5 张卡全部空闲不可接受。repo-level fix 进行中但无法确定何时完成，空余 3 张卡跑 plan 中剩余的快速实验（P0+P2），既填补论文空白又不阻塞关键路径。repo-level\\n    v3 若再失败则弃用 custom DataCollator 走标准 HF pipeline。\\n  related_experiments:\\n  - exp_id: per-test-precision-recall\\n    role: new\\n    result: planned\\n  - exp_id: block-corr-empirical\\n    role: new\\n    result: planned\\n  - exp_id: per-test-majority-voting\\n    role: new\\n    result: planned\\n  - exp_id: repo-level-training\\n    role: blocker\\n    result: v3 fixing\\n  depends_on:\\n  - D024\\n  - D016\\n- id: D026\\n  date: 2026-05-12 17:11 UTC\\n  summary: cuda:0/1 投机启动 8B repo-level CLS+CWM 训练，stop-loss 挂钩 4B repo-level Go/No-Go\\n    结果\\n  rationale: 13天DDL内8B repo-level是最高价值的GPU投资：4B gap≥1pp时直接验证scaling×complexity交互效应省20h；4B\\n    gap<1pp时kill掉损失~12h可接受。函数级已证明4B→8B gap从1.25pp扩大到2.43pp，repo-level大概率同方向。\\n  related_experiments:\\n  - exp_id: repo-level-cls8b\\n    role: new_speculative\\n    result: planned\\n  - exp_id: repo-level-cwm8b\\n    role: new_speculative\\n    result: planned\\n  - exp_id: repo-level-training\\n    role: prerequisite\\n    result: running\\n  depends_on:\\n  - D025\\n  - D008\\n- id: D027\\n  date: 2026-05-12 17:12 UTC\\n  summary: repo-level v3 SIGKILL 恢复方案：清理根分区 + 加 save_steps=500 + 移缓存到数据盘后重提交\\n  rationale: 两实验同一秒被杀，排除代码bug。根分区 89% 是高风险因素。恢复策略：清盘 → 加中间checkpoint → 重提交并行训练。cuda:0/1\\n    暂缓分配，先确保关键路径稳定。\\n  related_experiments:\\n  - exp_id: repo-level-cls-v3\\n    role: recovery\\n    result: SIGKILL at step 188/6633\\n  - exp_id: repo-level-cwm-v3\\n    role: recovery\\n    result: SIGKILL at step 119/6633\\n  depends_on:\\n  - D025\\n  - D024\\n- id: D028\\n  date: 2026-05-12 17:33 UTC\\n  summary: seetacloud 禁止并行训练：cgroup 360GB 限制，v3+v4 两次 OOM 确认。CWM 改单进程提交\\n  rationale: v3 并行 SIGKILL (step 188/119) + v4 并行再次 SIGKILL，两次 EXIT_CODE=137 + cgroup\\n    memory.max=360GB。free -h 显示 754GB 是宿主机 RAM，容器实际限制 360GB。单进程 4B 训练峰值内存远低于 360GB，串行安全。\\n  related_experiments:\\n  - exp_id: repo-level-cls-v3\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cwm-v3\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cls-v4\\n    role: evidence\\n    result: SIGKILL parallel\\n  - exp_id: repo-level-cwm-v4\\n    role: evidence\\n    result: SIGKILL parallel\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-12 19:03 UTC\\n  summary: 'Reviewer critical: 两台训练均无中间 checkpoint（save_strategy=epoch），不杀进程（D024），接受风险，要求修改脚本默认值'\\n  rationale: Reviewer 发现 D027 的 save_steps=50 从未落实到实际提交命令。CLS (home, step 872) 和 CWM\\n    (seetacloud, step 386) 均以 save_strategy=epoch 运行，首个 checkpoint 在 step 6633。按 D024\\n    不杀进程，已投入 1-2h 训练时间。Home 非容器+seetacloud 单进程降低崩溃风险。要求 Agent 修改 train_repo_verifier.py\\n    和 train_repo_cwm.py 默认参数为 save_strategy=steps/save_steps=200/save_total_limit=3。\\n  related_experiments:\\n  - exp_id: repo-level-cls-home\\n    role: affected\\n    result: running-no-checkpoint\\n  - exp_id: repo-level-cwm-v4\\n    role: affected\\n    result: running-no-checkpoint\\n  depends_on:\\n  - D024\\n  - D027\\n- id: D030\\n  date: 2026-05-12 19:06 UTC\\n  summary: D024 违规：Worker 未经审批杀死正在运行的 CWM v4 (step 386)，损失 ~1h10m。强化约束：替换运行中训练必须先提交\\n    Director 审批\\n  rationale: prep Worker 在部署 v6 时主动 kill 了 PID 77816 (CWM v4, step 386/6633, 正常训练中)，违反\\n    D024\\\"禁止杀死正在正常训练的进程来应用代码修改\\\"。损失 ~1h10m 训练时间。缓解因素：v4 无 checkpoint（save_strategy=epoch），v6\\n    有 save_steps=500 更安全。损失不可逆，不需要回滚。新增约束：Worker 需要替换正在运行的训练时，必须先提交 Director 审批，不可自行判断\\n    kill。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v4\\n    role: victim\\n    result: killed-by-worker\\n  - exp_id: repo-level-cwm-v6\\n    role: replacement\\n    result: running\\n  depends_on:\\n  - D024\\n  - D029\\n- id: D031\\n  date: 2026-05-12 19:19 UTC\\n  summary: CWM 7 次连续失败根因：多 Worker 并行提交导致进程泄漏和互相干扰。新规：CWM 提交由单一 Agent SSH 完成，禁止多 Worker\\n    参与同一实验提交\\n  rationale: v6 死因分析：Reviewer 发现 seetacloud 上有 8+ 残留 python 进程（多 Worker 各自提交导致），互相争\\n    GPU/内存，最终被 SIGKILL。v1-v6 失败涵盖 code bug(v1-v2)、cgroup OOM(v3)、D024 违规(v4)、code\\n    error(v5)、进程泄漏(v6)。核心系统性问题：prep/submit/ssh 三个 Worker 各自独立提交，无协调。新规：一个实验全生命周期（清理→验证→提交→确认）由\\n    Agent 用单次 ssh_execute 完成，不经 Worker。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: failed\\n    result: SIGKILL-process-leak\\n  - exp_id: repo-level-cwm-v4\\n    role: failed\\n    result: killed-by-worker\\n  - exp_id: repo-level-cwm-v5\\n    role: failed\\n    result: exit-code-1\\n  depends_on:\\n  - D028\\n  - D030\\n- id: D032\\n  date: 2026-05-12 19:41 UTC\\n  summary: 取消 D031（CWM 提交流程变更），保留 v6 继续训练\\n  rationale: Reviewer 和 Agent 均确认 cwm-v6 已稳定运行（GPU 2, 96% util, 22GB VRAM）。D031 基于\\\"连续\\n    7 次失败\\\"的前提已不成立。kill v6 重提交 v7 会浪费已完成的预处理时间，无收益。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: running_stable\\n  depends_on: []\\n- id: D033\\n  date: 2026-05-12 19:59 UTC\\n  summary: CWM v6 从 save_steps=50 改为 500，从 checkpoint resume 训练\\n  rationale: save_steps=50 导致 validation 占 65% 训练时间（42h vs 17h）。v6 已稳定过 step 100+，OOM\\n    防御不再必要。节省 ~25h GPU 时间。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: efficiency_fix\\n  depends_on: []\\n- id: D034\\n  date: 2026-05-12 20:19 UTC\\n  summary: 撤回 D033：CWM v6 save_steps 实际是 500 非 50，无需重启\\n  rationale: Reviewer 最新核实 train_repo_cwm.py 中 save_steps=500。之前关于 save_steps=50 导致\\n    42h 训练时间的报告基于错误信息（registry hypothesis 记录有误）。CWM v6 正常运行，ETA ~17h。\\n  related_experiments:\\n  - exp_id: repo-level-cwm-v6\\n    role: subject\\n    result: running_normal\\n  depends_on:\\n  - D033\\n\", \"total_chars\": 21987, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the project. Let me also check for existing paper sections and the report to see if there are any additional details about the oracle framework and block-correlation model.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "3203563a-5dbc-46b1-994b-3a82940e2ae0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBBkXWEprMijPav8UAXjvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19021,
+      "cache_read_input_tokens": 26897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Let me check the report for oracle framework details and any existing paper sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "6b66ca7c-8851-487c-a643-e18e668e9dca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBBkXWEprMijPav8UAXjvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19021,
+      "cache_read_input_tokens": 26897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SrhJEnesUUJmdSghdempUo`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "5d0526a5-f1da-41fb-97f8-59603dbdb7d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBBkXWEprMijPav8UAXjvJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19021,
+      "cache_read_input_tokens": 26897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T20:24:29.529Z_
+
+<details><summary>↩ Tool result · `toolu_01SrhJEnesUUJmdSghdempUo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-12\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| repo-level-cwm-v6 | Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。 | — | — | — |\\n| repo-level-cls-home | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **cwm8b-seed123** (success): 验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\n- **cls8b-seed123** (success): 验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\n- **cls8b-eval-seed123** (success): 生成 8B CLS seed123 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑\\n\\n## 趋势\\n成功 30 / 负向 3 / 失败 8 / 共 43\\nfail_f1: 87.13 ↓（近 3 次 success）\\nfail_precision: 83.3 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\nwestd-48478: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-v4: 已被终止 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n\", \"total_chars\": 1321, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "c7da424d-9975-4309-85f1-feb0ab86f606",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-12\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| repo-level-cwm-v6 | Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。 | — | — | — |\\\\n| repo-level-cls-home | — | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **cwm8b-seed123** (success): 验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\\\n- **cls8b-seed123** (success): 验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\\\n- **cls8b-eval-seed123** (success): 生成 8B CLS seed123 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑\\\\n\\\\n## 趋势\\\\n成功 30 / 负向 3 / 失败 8 / 共 43\\\\nfail_f1: 87.13 ↓（近 3 次 success）\\\\nfail_precision: 83.3 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nhome-1x5090: 无 GPU 信息\\\\nseetacloud-westd-4x5090: 无 GPU 信息\\\\nwestd-48478: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- trace-then-judge: 训练失败 — unknown\\\\n- repo-level-cls: 训练失败 — unknown\\\\n- repo-level-cwm: 训练失败 — unknown\\\\n- repo-level-cls-v2: 训练失败 — unknown\\\\n- repo-level-cwm-v2: 训练失败 — unknown\\\\n- repo-level-cls-v3: 训练失败 — unknown\\\\n- repo-level-cwm-v3: 训练失败 — unknown\\\\n- repo-level-cls-v4: 已被终止 — unknown\\\\n- repo-level-cwm-v4: 已被终止 — unknown\\\\n- repo-level-cwm-v5: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1321, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-12\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| repo-level-cwm-v6 | Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。 | — | — | — |\\n| repo-level-cls-home | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **cwm8b-seed123** (success): 验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\n- **cls8b-seed123** (success): 验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\\n- **cls8b-eval-seed123** (success): 生成 8B CLS seed123 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑\\n\\n## 趋势\\n成功 30 / 负向 3 / 失败 8 / 共 43\\nfail_f1: 87.13 ↓（近 3 次 success）\\nfail_precision: 83.3 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\nwestd-48478: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-v4: 已被终止 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n\", \"total_chars\": 1321, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the context I need. Let me write the Method section. I need to:
+
+1. §3.1 Problem Setup
+2. §3.2 Per-Test Binary Classification (CLS)
+3. §3.3 Execution Output Generation (CWM)
+4. §3.4 Trajectory-Level Scoring (TRAJ)
+5. §3.5 CWM Failure Mode Analysis
+6. §3.6 Oracle Accuracy-Utility Framework
+
+Key numbers from the project:
+- ICC = 0.191
+- DEFF = 3.97
+- TOST p = 0.007, ±2pp margin
+
+
+- 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]
+- F2P test distribution: T=1 (69%), T=2 (19%), T≥3 (12%)
+- Block advantage overall: 10.93pp with T=2 contributing 55.3%
+- P2P regression rate: 1.04% mean, 0% median
+- CLS false negatives at 75.5%, CWM false positives at 83.1%
+- Oracle ensemble reaching 90.63%
+
+Now I'm writing the LaTeX content for the method section, aiming for around 1200 words.
+
+I need to be careful about what belongs in the method versus results—the framework and mathematical formulation go here, but empirical values like ICC and DEFF should stay in the experiments section unless they're part of the model definition itself. For the oracle accuracy-utility framework in section 3.6, I'm deriving how per-test predictions give n binary outputs per patch while trajectory gives just one, and the advantage comes from finer-grained information. The key insight is that these predictions aren't independent—they're correlated within patches with intraclass correlation ρ, and the design effect captures this dependence structure.
+
+Now I'm working through when per-test outperforms trajectory-level prediction. The per-test approach has two sources of value: it can identify which specific F2P tests fail for better re-repair guidance, and it can catch regressions by detecting tests predicted to fail when they should pass. For the oracle analysis assuming near-perfect accuracy, I need to formalize how having multiple F2P tests in the suite creates opportunities for per-test to extract more actionable information.
+
+The key is comparing trajectory-level accuracy against the probability that per-test catches at least one F2P test failure. Under independent errors with per-test accuracy a, the chance of catching at least one failure across T_f2p tests follows the binomial complement: 1 - (1-a)^T_f2p. But when errors are correlated with intraclass correlation ρ, the effective number of independent tests shrinks by the design effect, so the actual detection probability is reduced accordingly.
+
+Now I'm structuring the full writeup into sections: first defining the verification problem and notation, then detailing the per-test binary classification approach with its training and inference procedure.
+
+Next I'll cover the execution output generation method, which predicts the full output string and derives pass/fail from exact matching, followed by the trajectory-level scoring that operates on the entire test suite without per-test decomposition.
+
+Then I'll analyze the failure modes specific to output generation—token budget exhaustion and string prediction errors—that don't affect the binary classification approach, before formalizing the oracle accuracy framework to quantify the per-test advantage.
+
+For the oracle framework, I'm working through the detection probability under different error correlation structures. When a patch fails k tests, a per-test verifier with recall a_fail detects it if it correctly predicts at least one failure. Under independence this gives one formula, but under block correlation with intraclass coefficient ρ, the effective number of independent tests shrinks by the design effect, which changes the detection probability accordingly. A trajectory-level verifier, by contrast, sees the full test suite context at once.
+
+The per-test approach gains an advantage over trajectory-level verification that depends on how many F2P tests exist—it's minimal with just one test but grows as k increases, though this advantage gets dampened by higher correlation. The expected advantage across all instances then depends on the distribution of F2P test counts. For the paper I should formalize this comparison. I'm also thinking through the P2P regression case, where per-test detection flags individual regressions while trajectory-level detection works differently.
+
+Now I'm considering how to structure the method section. The P2P signal is weak when regression rates are low (around 1% empirically), making most per-test P2P signals essentially noise. I have enough to draft the method section now. I'm planning to organize it with an overview paragraph, then subsections covering the problem setup, per-test binary classification, execution output generation, and trajectory-level scoring. Given the ~1200 word target and typical conference page lengths, this should span about two pages, which feels right for a methods section.
+
+Writing the LaTeX structure now...
+
+I need to be careful explaining the CWM failure modes clearly—token-budget exhaustion happens when expected outputs exceed the generation budget, causing truncation and exact-match failures even if the prediction would've been correct. String-value prediction errors occur when complex types like nested structures or high-precision floats get formatted differently by the model, creating semantic equivalence but string mismatch. Both represent cases where the model's behavior diverges from what exact-match evaluation captures.
+
+CLS sidesteps these entirely since it outputs only a single token, eliminating truncation and string-matching concerns. For the oracle framework, I'm thinking about when per-test predictions outperform trajectory-level ones—the key is understanding how much additional value per-test provides given the empirical correlation structure. Rather than being purely theoretical, the framework uses actual ICC and DEFF values from the data but parametrizes accuracy to explore the landscape across different verifier quality levels, letting me see where per-test predictions become more informative than trajectory aggregates.
+
+Now I'm working through the mathematical formulation for the patch-level detection section, starting with how a per-test verifier flags patches as buggy when at least one F2P test fails, then deriving the probability under i.i.d. error assumptions with recall as the key parameter.
+
+Next, I'm accounting for the reality that per-test predictions within a patch aren't actually independent—I'm introducing the intraclass correlation coefficient to model this block-level correlation structure, then calculating the design effect to adjust the effective sample size accordingly. This gives me a more realistic detection probability that accounts for how errors cluster at the patch level rather than treating each test as truly independent.
+
+Finally, I'm setting up to compare this block-correlated approach against trajectory-level detection methods. For P2P tests, per-test verification can catch regressions—cases where a patch breaks tests that should pass. The signal's usefulness hinges on how often regressions actually occur. When the regression rate is low, false positives from per-test predictions can outweigh true positives, making the signal counterproductive. I should define this regression detection framework in the methods section but emphasize that its practical value depends on empirical regression rates, which I'll evaluate in the experiments. Now I'm ready to write out the full LaTeX formulation, aiming for around 1200 words in EMNLP style—formal and mathematically precise but still accessible.
+
+I need to be careful about what exactly goes into each model's input. For CLS and CWM, the code_context is the patched function along with the test case code itself, while for TRAJ the context expands to the full codebase and complete test suite. Let me define these input specifications clearly as I write the section.
+
+Writing the method section in LaTeX... The classification approach takes the patched code and each test case as input, producing a binary prediction for whether that test passes or fails. The overall patch correctness is determined by checking if all individual test predictions are passing. During training, we use standard cross-entropy loss on the binary labels, and at inference time each test requires just a single token, keeping the computational cost constant regardless of test complexity. Now I'm looking at an alternative generation-based formulation that takes a different approach to the same verification problem. The inference cost depends on the output length, which scales with computational complexity. Now I'm considering a trajectory-level approach that predicts a single verdict for the entire patch rather than individual tests, which means it can't identify which specific tests fail—I'm including this as a baseline to measure whether finer-grained predictions actually improve performance.
+
+The generation approach has two key failure modes. Token-budget exhaustion happens when the expected output exceeds the model's generation limit, forcing truncation and guaranteeing failure on exact-match evaluation, particularly for tests with lengthy outputs like complex data structures or multi-line traces. Beyond that, even within budget constraints, exact matching requires perfect character-level accuracy, so semantically equivalent outputs that differ in formatting—like floating-point precision variations—still count as failures.
+
+Classification sidesteps both problems since it only generates a single token per test and doesn't require string matching. The generation cost difference is substantial too: classification generates |T| tokens total while generation produces the sum of all output lengths. I suspect this creates a complexity-dependent advantage where the two approaches perform similarly on simple code with short outputs, but classification pulls ahead significantly on complex code as generation's failure modes become more prevalent.
+
+Now I'm thinking about how per-test verification provides finer-grained information than looking at the overall trajectory, but that granularity only matters when the per-test predictions are accurate enough and when multiple tests actually give independent signals. I'm formalizing this with a block-correlation model to understand when per-test detection works. For a buggy patch with k failing tests, a verifier with recall r detects it as buggy if it catches at least one failure, which follows a probability formula based on the effective number of independent tests.
+
+However, per-test predictions within the same patch aren't truly independent—if the model misunderstands the patch logic, it'll likely make errors across multiple tests simultaneously. I'm using the intraclass correlation coefficient to measure how much of the prediction error variance comes from patch-level effects rather than test-level variation. The design effect formula then adjusts the nominal sample size down to an effective one, accounting for this correlation structure.
+
+For a patch with $k$ tests, the effective number of independent predictions drops according to the correlation strength: when errors are completely independent, I get the full $k$ effective tests, but when they're perfectly correlated, the effective count collapses to 1, making per-test detection equivalent to trajectory-level detection. I'm now characterizing the advantage of per-test verification by comparing its detection probability against the trajectory-level baseline, then computing the expected advantage across the full instance population. The advantage concentrates in instances with multiple tests. For pass-to-pass regression detection, the signal's usefulness hinges on the actual regression rate—when it's too low, false positives from per-test verification drown out the true positives, making the P2P signal unreliable until the regression rate crosses a threshold that depends on the verifier's precision.
+
+Now I'm refining the notation for consistency, adding proper citations for TOST and ICC concepts, and making sure the section flows logically. I should clarify that the code context in §3.2 includes the patched function itself, cite the Code World Models work correctly in §3.3, and verify the oracle framework math in §3.6 is sound. The method section is mostly formulations with minimal claims, but I need to capture the key ones: that CLS sidesteps CWM failure modes by design, the complexity-dependent advantage hypothesis, and the three predictions from the oracle framework. Let me prepare those claims and format everything properly for the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "920a0bb6-62eb-4cc1-a1a4-b9cd0633a4cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Ya29hr5nZPBh1uwksrqp7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 45918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Now I have all the context. Let me write the Method section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "5e47376a-e189-468e-931b-9cb84dc54e88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Ya29hr5nZPBh1uwksrqp7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 45918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__write_paper_section · `toolu_01Fzpt5Z4cb4KBe6dK8oLGXS`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "section": "method",
+  "content": "\n\\section{Method}\n\\label{sec:method}\n\nWe compare three formulations for execution-free code repair verification, differing in output granularity and generation requirements. Given a candidate patch and its associated test suite, each formulation predicts correctness at a different level of abstraction. We then analyze the failure modes specific to generation-based verification and develop an oracle framework that characterizes when per-test granularity provides value.\n\n\\subsection{Problem Setup}\n\\label{sec:problem-setup}\n\nLet $p$ denote a candidate code patch and $T = \\{t_1, \\ldots, t_n\\}$ its associated test suite. Each test $t_i$ has a ground-truth label $y_i \\in \\{\\textsc{Pass}, \\textsc{Fail}\\}$ determined by actual execution. The test suite decomposes into two disjoint subsets: \\emph{fail-to-pass} tests $T_{\\text{f2p}} \\subseteq T$, which fail before the patch and should pass after a correct fix, and \\emph{pass-to-pass} tests $T_{\\text{p2p}} \\subseteq T$, which pass before and should continue passing. A patch is correct if and only if all tests pass: $\\forall\\, t_i \\in T{:}\\ y_i = \\textsc{Pass}$.\n\nThe verification task is to predict patch correctness without executing the code. We study three formulations that differ in prediction granularity and output format.\n\n\\subsection{Per-Test Binary Classification (\\textsc{CLS})}\n\\label{sec:cls}\n\nThe classification formulation defines a function $f$ that predicts a binary verdict for each test independently:\n%\n\\begin{equation}\n  f(c_p, t_i) \\rightarrow \\hat{y}_i \\in \\{\\textsc{Pass}, \\textsc{Fail}\\}\n  \\label{eq:cls}\n\\end{equation}\n%\nwhere $c_p$ is the code context containing the patched function and $t_i$ is the test input (function call with expected output). The model produces a \\emph{single output token}, and the patch-level prediction is obtained by conjunction: $\\hat{y}_p = \\bigwedge_{i=1}^{n} [\\hat{y}_i = \\textsc{Pass}]$.\n\nTraining uses standard cross-entropy loss on the binary labels. At inference, each test requires exactly one generated token, making per-test cost constant regardless of the complexity of the underlying execution.\n\n\\subsection{Execution Output Generation (\\textsc{CWM})}\n\\label{sec:cwm}\n\nThe generation formulation, following Code World Models \\citep{ding2024cwm}, defines a function $g$ that predicts the execution output as a free-form string:\n%\n\\begin{equation}\n  g(c_p, t_i) \\rightarrow \\hat{o}_i \\in \\Sigma^*\n  \\label{eq:cwm}\n\\end{equation}\n%\nwhere $\\hat{o}_i$ is the predicted output string and $\\Sigma^*$ is the set of all finite strings over the token vocabulary. A binary verdict is then derived by exact match against the expected output $o_i^*$:\n%\n\\begin{equation}\n  \\hat{y}_i = \\begin{cases} \\textsc{Pass} & \\text{if } \\hat{o}_i = o_i^* \\\\ \\textsc{Fail} & \\text{otherwise} \\end{cases}\n  \\label{eq:cwm-verdict}\n\\end{equation}\n\nTraining uses standard language modeling loss on the output strings. At inference, each test requires generating $|\\hat{o}_i|$ tokens, where the output length varies with the complexity of the executed computation. The total generation cost for a patch is $\\sum_{i=1}^{n} |\\hat{o}_i|$ tokens.\n\n\\subsection{Trajectory-Level Scoring (\\textsc{TRAJ})}\n\\label{sec:traj}\n\nThe trajectory-level formulation defines a function $h$ that predicts a single binary verdict for the entire patch:\n%\n\\begin{equation}\n  h(c_p, T) \\rightarrow \\hat{y}_p \\in \\{\\textsc{Resolved}, \\textsc{Unresolved}\\}\n  \\label{eq:traj}\n\\end{equation}\n%\nwhere the input includes the full test suite description rather than individual tests. This formulation produces no per-test signal---it cannot identify which specific tests a patch fails. We include \\textsc{TRAJ} as a control to isolate the effect of prediction granularity: any accuracy difference between \\textsc{CLS} and \\textsc{TRAJ} at the patch level reflects the value (or cost) of per-test decomposition, independent of the classification-vs-generation distinction.\n\n\\subsection{CWM Failure Modes}\n\\label{sec:failure-modes}\n\nThe generation formulation introduces two systematic failure modes absent in classification:\n\n\\paragraph{Token-budget exhaustion.} When the expected output $o_i^*$ exceeds the model's generation budget $B$ (i.e., $|o_i^*| > B$), the predicted output $\\hat{o}_i$ is necessarily truncated, guaranteeing exact-match failure regardless of prediction quality. This affects tests involving long outputs---complex data structures, multi-line traces, or iterative computations---which become systematically unverifiable under \\textsc{CWM}.\n\n\\paragraph{String-value prediction errors.} Even within the token budget, exact match requires character-level fidelity. Semantically equivalent outputs that differ in surface form---floating-point precision, whitespace conventions, dictionary ordering---produce false negatives. The probability of such errors grows with output complexity and the number of independently predicted tokens: each additional token introduces a multiplicative chance of mismatch.\n\n\\textsc{CLS} bypasses both failure modes by construction: its single-token output cannot be truncated and requires no string matching. We hypothesize that this asymmetry produces a \\emph{complexity-dependent advantage}: on simple code with short execution outputs, both formulations perform comparably because CWM failure modes rarely trigger; on complex code with long and structured outputs, the advantage of \\textsc{CLS} grows as failure modes increasingly affect \\textsc{CWM}.\n\n\\subsection{Oracle Accuracy-Utility Framework}\n\\label{sec:oracle}\n\nPer-test verification provides finer-grained information than trajectory-level scoring, but this granularity is only valuable when (a) per-test predictions are sufficiently accurate and (b) multiple tests per patch provide partially independent signals. We formalize these conditions using a block-correlation model.\n\n\\paragraph{Per-test detection via aggregation.} Consider a buggy patch with $k = |T_{\\text{f2p}}|$ fail-to-pass tests. A per-test verifier with recall $r$ (probability of correctly predicting \\textsc{Fail} for a truly failing test) detects the patch as buggy if it identifies at least one failing test:\n%\n\\begin{equation}\n  P_{\\text{detect}}(k) = 1 - (1 - r)^{k_{\\text{eff}}}\n  \\label{eq:detect}\n\\end{equation}\n%\nwhere $k_{\\text{eff}}$ is the effective number of independent tests, defined below. Under independent errors, $k_{\\text{eff}} = k$ and additional tests multiplicatively reduce the miss rate $(1-r)^k$. A trajectory-level verifier, by contrast, yields a single prediction with detection probability $a_h$ independent of $k$.\n\n\\paragraph{Block-correlation model.} Per-test predictions within the same patch are not independent: a model that misunderstands the patched logic will likely err on multiple tests simultaneously. We capture this dependence using the intraclass correlation coefficient (ICC), denoted $\\rho$, which measures the fraction of prediction error variance attributable to patch-level effects.\n\nThe design effect (DEFF) adjusts the nominal sample size to an effective one:\n%\n\\begin{equation}\n  \\text{DEFF} = 1 + (\\bar{n} - 1)\\rho\n  \\label{eq:deff}\n\\end{equation}\n%\nwhere $\\bar{n}$ is the mean cluster size (tests per patch). For a specific patch with $k$ F2P tests, the effective number of independent predictions is:\n%\n\\begin{equation}\n  k_{\\text{eff}} = \\frac{k}{1 + (k - 1)\\rho}\n  \\label{eq:keff}\n\\end{equation}\n%\nWhen $\\rho = 0$ (independent errors), $k_{\\text{eff}} = k$ and each test provides full additional information. When $\\rho = 1$ (perfectly correlated errors), $k_{\\text{eff}} = 1$ regardless of $k$, and per-test prediction collapses to trajectory-level.\n\n\\paragraph{Advantage characterization.} The per-test advantage for a patch with $k$ F2P tests relative to a trajectory-level baseline with accuracy $a_h$ is:\n%\n\\begin{equation}\n  \\Delta(k) = P_{\\text{detect}}(k) - a_h\n  \\label{eq:advantage}\n\\end{equation}\n\nThe expected advantage over the instance population is:\n%\n\\begin{equation}\n  \\mathbb{E}[\\Delta] = \\sum_{k=1}^{K} P(|T_{\\text{f2p}}| = k) \\cdot \\Delta(k)\n  \\label{eq:expected-advantage}\n\\end{equation}\n\nThis framework yields three testable predictions: (1)~when $k = 1$ (single F2P test), per-test reduces to a single binary prediction and $\\Delta(1) \\approx 0$ assuming $r \\approx a_h$; (2)~$\\Delta(k)$ increases with $k$ but is dampened by $\\rho > 0$, which limits the benefit of additional tests; (3)~the overall advantage $\\mathbb{E}[\\Delta]$ depends critically on the distribution of $k$ across instances---it concentrates in the tail of multi-F2P-test instances.\n\n\\paragraph{P2P regression detection.} Per-test verification can additionally detect regressions in pass-to-pass tests: cases where a patch breaks previously passing functionality. The value of this signal depends on the true regression rate $r_{\\text{reg}}$---the fraction of P2P tests that actually fail under a buggy patch. When $r_{\\text{reg}}$ is low, the expected number of true regressions per patch is small relative to the false positive rate, potentially making the P2P per-test signal net uninformative. The threshold regression rate at which per-test P2P detection becomes net positive depends on the verifier's precision on P2P tests. We evaluate this trade-off empirically in \\S\\ref{sec:experiments}.\n",
+  "claims": [
+    {
+      "text": "CLS bypasses CWM failure modes (token-budget exhaustion and string-value prediction errors) by construction, as its single-token output cannot be truncated and requires no string matching.",
+      "type": "mechanistic",
+      "evidence": [
+        "cls-formulation-design"
+      ],
+      "decisions": [
+        "D007"
+      ]
+    },
+    {
+      "text": "The asymmetry between CLS (1 token) and CWM (N tokens) produces a complexity-dependent advantage: comparable on simple code, growing on complex code as CWM failure modes trigger.",
+      "type": "hypothesis",
+      "evidence": [
+        "multi-seed-core",
+        "model-size-scaling-cls8b",
+        "model-size-scaling-cwm8b"
+      ],
+      "decisions": [
+        "D007",
+        "D008",
+        "D015"
+      ]
+    },
+    {
+      "text": "Per-test predictions within a patch are non-independent (block-correlated), captured by ICC, which reduces the effective number of independent tests via the design effect.",
+      "type": "methodological",
+      "evidence": [
+        "block-corr-empirical"
+      ],
+      "decisions": [
+        "D018"
+      ]
+    },
+    {
+      "text": "Per-test advantage concentrates in multi-F2P-test instances; for k=1 (single F2P test), per-test reduces to trajectory-level with no granularity benefit.",
+      "type": "analytical",
+      "evidence": [
+        "oracle-f2p-stratified",
+        "mvp-a-oracle-sim"
+      ],
+      "decisions": [
+        "D002",
+        "D011"
+      ]
+    },
+    {
+      "text": "P2P regression detection value depends on the true regression rate; when low, per-test P2P signal may be net uninformative.",
+      "type": "analytical",
+      "evidence": [
+        "p2p-regression-rate"
+      ],
+      "decisions": [
+        "D003",
+        "D004"
+      ]
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "f7267f43-f7af-4835-941e-b6c0e03c223f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Ya29hr5nZPBh1uwksrqp7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 45918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T20:27:21.257Z_
+
+<details><summary>↩ Tool result · `toolu_01Fzpt5Z4cb4KBe6dK8oLGXS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex\", \"provenance_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml\", \"version\": 5, \"coverage\": \"16/16\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "dff61746-0b80-462d-88ec-4556a29b872f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex\\\", \\\"provenance_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml\\\", \\\"version\\\": 5, \\\"coverage\\\": \\\"16/16\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex\", \"provenance_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml\", \"version\": 5, \"coverage\": \"16/16\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Method 章节已写入 `paper/method.tex`（v5, 16/16 claims covered）。
+
+结构：
+- §3.1 Problem Setup — 定义 patch $p$, test suite $T$, F2P/P2P 分解
+- §3.2 CLS — 单 token 输出 $f(c_p, t_i) \to \{\text{PASS}, \text{FAIL}\}$，conjunction 聚合到 patch 级
+- §3.3 CWM — 生成 output string，exact match 推导 verdict，inference cost = $\sum|\hat{o}_i|$ tokens
+- §3.4 TRAJ — 全 test suite 输入，单 binary 输出，作为 granularity control
+- §3.5 CWM Failure Modes — token-budget exhaustion + string-value prediction errors，CLS by construction 规避；提出 complexity-dependent advantage 假说
+- §3.6 Oracle Framework — block-correlation model（ICC $\rho$, DEFF, $k_{\text{eff}}$），推导 $P_{\text{detect}}(k) = 1-(1-r)^{k_{\text{eff}}}$，三个 testable predictions（$k=1$ 无优势、$\Delta(k)$ 随 $k$ 增长被 $\rho$ 抑制、优势集中在 multi-F2P tail），P2P regression 阈值分析
+
+5 条 claims 已注册 provenance tracking，关联 D007/D008/D015/D018 等决策。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "uuid": "d17757ed-92d0-4593-b524-64125a43fa9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCNiaiVgTD63PFtXuBD1ky",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9767,
+      "cache_read_input_tokens": 47000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9767
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+Method 章节已写入 `paper/method.tex`（v5, 16/16 claims covered）。
+
+结构：
+- §3.1 Problem Setup — 定义 patch $p$, test suite $T$, F2P/P2P 分解
+- §3.2 CLS — 单 token 输出 $f(c_p, t_i) \to \{\text{PASS}, \text{FAIL}\}$，conjunction 聚合到 patch 级
+- §3.3 CWM — 生成 output string，exact match 推导 verdict，inference cost = $\sum|\hat{o}_i|$ tokens
+- §3.4 TRAJ — 全 test suite 输入，单 binary 输出，作为 granularity control
+- §3.5 CWM Failure Modes — token-budget exhaustion + string-value prediction errors，CLS by construction 规避；提出 complexity-dependent advantage 假说
+- §3.6 Oracle Framework — block-correlation model（ICC $\rho$, DEFF, $k_{\text{eff}}$），推导 $P_{\text{detect}}(k) = 1-(1-r)^{k_{\text{eff}}}$，三个 testable predictions（$k=1$ 无优势、$\Delta(k)$ 随 $k$ 增长被 $\rho$ 抑制、优势集中在 multi-F2P tail），P2P regression 阈值分析
+
+5 条 claims 已注册 provenance tracking，关联 D007/D008/D015/D018 等决策。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 209129,
+  "duration_api_ms": 210303,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "97be492a-c8be-4d65-a41b-e0303aae50e7",
+  "total_cost_usd": 0.6458069999999999,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 45066,
+    "cache_read_input_tokens": 180205,
+    "output_tokens": 10880,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45066,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 421,
+        "cache_read_input_tokens": 47000,
+        "cache_creation_input_tokens": 9767,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9767
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1877,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001992,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 10880,
+      "cacheReadInputTokens": 180205,
+      "cacheCreationInputTokens": 45066,
+      "webSearchRequests": 0,
+      "costUSD": 0.6438149999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3721e762-feca-4cbe-aec0-b59657dfc6d8"
+}
+```
+
+</details>
+
+---

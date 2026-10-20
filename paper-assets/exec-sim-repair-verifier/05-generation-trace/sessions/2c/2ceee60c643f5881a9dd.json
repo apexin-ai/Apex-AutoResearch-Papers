@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ceee60c643f5881a9dd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor val sweep seq4096 check",
+  "task_key": "worker_monitor_val-sweep-seq4096-check_20260515T174024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_val-sweep-seq4096-check_20260515T174024_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "2adb7ca0d27cf1bcde0df264b6b454c4565b094af7dff85baf55ddc27eacb8fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**进程状态：RUNNING** (PID 397645, 已运行 ~11 分钟)\n\n**当前进度：**\n- 正在评估第 1 个 checkpoint: `checkpoint-1800`\n- 进度: 3630/9335 样本 (38.9%)，running_acc = 85.2%\n- 尚无 checkpoint 完成评估\n- 总共需要 sweep 28 个 checkpoint (800 → 6200, 步长 200)\n\n**GPU 利用率：**\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 98% | 17.4 GB |\n| cuda:1 | 92% | 27.3 GB |\n| cuda:2 | 94% | 30.7 GB |\n| cuda:3 | 88% | 22.5 GB |\n\n4 张卡都在高负载工作。cuda:0 被该 sweep 进程占用，其余 3 张卡有其他任务在跑。\n\n**预估时间：** 当前 checkpoint 约需 ~18 分钟完成 (按 3630 样本/11 分钟推算)，28 个 checkpoint 全部 sweep 约需 **~8.5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-val-sweep-seq4096-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35c4a4c60ddb716c5a58",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b shard2 status check",
+  "task_key": "worker_ops_cwm8b-shard2-status-check_20260516T023528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-shard2-status-check_20260516T023528_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "b3871f9d40bf55e5e9cc250fddf8bec783e2912fd22013b7dc2e7704051d20ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### shard2 (cuda:1) — 运行中\n- **PID 448094** 活着，`--start_idx 7680`，输出到 `cwm_8b_ckpt400_test_shard2/`\n- **进度**: 608 / 2104 samples (**28.9%**)，当前处理到 idx ~8287\n- GPU 1: 21133 MiB, 88% 利用率\n\n### v3 主跑 (cuda:3) — 运行中\n- **PID 443221** 活着，已运行 ~1h49m\n- **进度**: 6216 / 9784 samples (**63.5%**)\n- GPU 3: 21133 MiB, 88% 利用率\n\n### GPU 空闲情况\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 MiB | 0% | **空闲** |\n| 1 | 21133 MiB | 88% | shard2 |\n| 2 | 0 MiB | 0% | **空闲** |\n| 3 | 21133 MiB | 88% | v3 主跑 |\n\n另外发现 PID 194398 是一个 `eval_cwm_seed123`（4B 模型，CUDA_VISIBLE_DEVICES=0）的 tmux session，但 GPU 0 显存为 0，可能已完成或未实际占用 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-shard2-status-check.md"
+}

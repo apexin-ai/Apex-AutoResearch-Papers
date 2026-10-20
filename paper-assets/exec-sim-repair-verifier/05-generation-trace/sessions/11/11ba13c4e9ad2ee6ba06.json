@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11ba13c4e9ad2ee6ba06",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek cls repo",
+  "task_key": "worker_diagnose_deepseek-cls-repo_20260516T182905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-cls-repo_20260516T182905_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "406c2cbfb48e2fca96c6883d07c8a220624ba250d2ba0d7401c0b63f00da8cb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结论\n\n| 项目 | 结果 |\n|------|------|\n| **失败根因** | SIGHUP（tmux session 被杀或 SSH 连接断开）。日志在 step 3747/6633 (56%) 突然中断，无 OOM/CUDA 错误。磁盘充足（68G 可用），GPU 无异常。 |\n| **最新 checkpoint** | `/root/autodl-tmp/checkpoints_deepseek_cls_repo/checkpoint-2211/` (step 2211，约 epoch 1 结束，33% 总进度) |\n| **cuda:0 状态** | **空闲可用**，0MiB 占用，0% 利用率 |\n| **磁盘** | 68G 可用，无问题 |\n\n## Resume 建议\n\n可以从 checkpoint-2211 恢复训练。在原命令基础上加 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_deepseek_cls_repo/checkpoint-2211/`，并确保在 tmux 中运行（`tmux new -s deepseek`）防止再次 SIGHUP。\n\n注意：日志显示实际跑到了 step 3747 但只保存了 step 2211 的 checkpoint，意味着 step 2211→3747 之间约 1536 步（~23%）的计算会被重做。建议恢复时增加 checkpoint 保存频率（如 `--save_steps 500`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-cls-repo.md"
+}

@@ -1,0 +1,16 @@
+Function-level CWM 8B Overfitting Comparison (Qwen3-8B, seed 42)
+
+Test set: data/cwm_test.jsonl (n=1890)
+
+Step 956 (epoch 2, best eval_loss=0.0512):
+  accuracy: 87.67%, pass_f1: 87.57, fail_f1: 87.77, exact_match: 84.39%, unparseable: 0
+
+Step 1434 (epoch 3, final):
+  accuracy: 86.72%, pass_f1: 86.44, fail_f1: 86.99, exact_match: 83.76%, unparseable: 0
+
+Delta (epoch 3 - epoch 2):
+  accuracy: -0.95pp, pass_f1: -1.13, fail_f1: -0.78, exact_match: -0.63pp
+
+Conclusion: Epoch 3 is 0.95pp worse than epoch 2 (best), confirming mild function-level overfitting.
+
+Eval output: /root/autodl-tmp/eval_results/cwm8b_func_step1434.json

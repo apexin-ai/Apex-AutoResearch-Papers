@@ -1,0 +1,14 @@
+{
+  "exp_id": "deepseek-cls-repo-resume",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:30:19.540Z",
+    "updated_at": "2026-05-16T18:30:36.316Z"
+  },
+  "timestamp": "2026-05-16T18:30:37.971143+00:00",
+  "trigger": "update_registry"
+}

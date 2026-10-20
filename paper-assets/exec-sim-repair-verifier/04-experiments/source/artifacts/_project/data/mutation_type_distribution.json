@@ -1,0 +1,55 @@
+{
+  "distribution": {
+    "gold": {"val_count": 4223, "val_pct": 45.2, "test_count": 4633, "test_pct": 47.4},
+    "boundary_removal": {"val_count": 1401, "val_pct": 15.0, "test_count": 1049, "test_pct": 10.7},
+    "off_by_one": {"val_count": 929, "val_pct": 10.0, "test_count": 183, "test_pct": 1.9},
+    "operator_swap": {"val_count": 1783, "val_pct": 19.1, "test_count": 3357, "test_pct": 34.3},
+    "return_value": {"val_count": 999, "val_pct": 10.7, "test_count": 562, "test_pct": 5.7}
+  },
+  "distribution_totals": {"val": 9335, "test": 9784},
+  "per_type_accuracy_test": {
+    "Qwen3-4B_s42": {
+      "gold": 98.25, "boundary_removal": 46.90, "off_by_one": 58.47,
+      "operator_swap": 78.91, "return_value": 67.97, "overall": 83.63
+    },
+    "Qwen3-4B_s123": {
+      "gold": 88.58, "boundary_removal": 56.15, "off_by_one": 66.12,
+      "operator_swap": 64.88, "return_value": 67.26, "overall": 75.33
+    },
+    "Qwen3-8B_s42": {
+      "gold": 96.24, "boundary_removal": 46.90, "off_by_one": 86.89,
+      "operator_swap": 81.38, "return_value": 75.44, "overall": 84.48
+    },
+    "Qwen3-8B_s123": {
+      "gold": 99.57, "boundary_removal": 44.90, "off_by_one": 79.23,
+      "operator_swap": 82.60, "return_value": 66.37, "overall": 85.60
+    }
+  },
+  "per_type_accuracy_val": {
+    "Qwen3-4B_s42": {
+      "gold": 98.82, "boundary_removal": 62.67, "off_by_one": 79.87,
+      "operator_swap": 97.08, "return_value": 88.49, "overall": 90.07
+    },
+    "Qwen3-4B_s123": {
+      "gold": 98.25, "boundary_removal": 57.39, "off_by_one": 80.09,
+      "operator_swap": 94.62, "return_value": 82.38, "overall": 87.92
+    },
+    "Qwen3-8B_s42": {
+      "gold": 98.39, "boundary_removal": 67.17, "off_by_one": 79.87,
+      "operator_swap": 95.18, "return_value": 89.39, "overall": 90.28
+    }
+  },
+  "key_observations": {
+    "operator_swap_shift": "19.1% val -> 34.3% test (+15.2pp), accuracy drops ~15pp (97% val -> 79-83% test)",
+    "off_by_one_shift": "10.0% val -> 1.9% test (-8.1pp), too few test samples (n=183) for reliable estimates",
+    "boundary_removal_ceiling": "~46% accuracy across all seeds/sizes on test, ~60% on val, scale-invariant difficulty ceiling",
+    "gold_stable": "45.2% val -> 47.4% test, accuracy stable at 96-99%"
+  },
+  "prediction_file_mapping": {
+    "Qwen3-4B_s42_test": "home:/home/sonny/exec-sim-repair-verifier/results/repo_cls_v5_ckpt4600_test/eval_repo_cls_predictions.jsonl",
+    "Qwen3-4B_s123_test": "home:/home/sonny/exec-sim-repair-verifier/results/cls4b_seed123_ckpt800_test5120_v2/eval_repo_cls_predictions.jsonl",
+    "Qwen3-8B_s42_test": "seetacloud:/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_v2/eval_repo_cls_predictions.jsonl",
+    "Qwen3-8B_s123_test": "seetacloud:/root/autodl-tmp/eval_results/cls8b_seed123_ckpt3000_test_mutation/eval_repo_cls_predictions.jsonl"
+  },
+  "latex_table": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Mutation type distribution and per-type \\cls{} accuracy (\\%) on SWE-bench Verified val and test splits. The test set over-represents \\texttt{operator\\_swap} (34.3\\% vs.\\ 19.1\\% in val) and under-represents \\texttt{off\\_by\\_one} (1.9\\% vs.\\ 10.0\\%), creating a distribution shift between checkpoint selection (val) and evaluation (test).}\n\\label{tab:mutation_breakdown}\n\\resizebox{\\columnwidth}{!}{%\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{lrrrrrrr}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{Val}} & \\multicolumn{2}{c}{\\textbf{Test}} & \\multicolumn{3}{c}{\\textbf{Test Accuracy (\\%)}}\\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-8}\n\\textbf{Mutation Type} & \\textbf{$n$} & \\textbf{\\%} & \\textbf{$n$} & \\textbf{\\%} & \\textbf{4B\\textsuperscript{s42}} & \\textbf{8B\\textsuperscript{s42}} & \\textbf{8B\\textsuperscript{s123}} \\\\\n\\midrule\ngold               & 4,223 & 45.2 & 4,633 & 47.4 & 98.3 & 96.2 & 99.6 \\\\\noperator\\_swap      & 1,783 & 19.1 & 3,357 & 34.3 & 78.9 & 81.4 & 82.6 \\\\\nboundary\\_removal   & 1,401 & 15.0 & 1,049 & 10.7 & 46.9 & 46.9 & 44.9 \\\\\nreturn\\_value       &   999 & 10.7 &   562 &  5.7 & 68.0 & 75.4 & 66.4 \\\\\noff\\_by\\_one         &   929 & 10.0 &   183 &  1.9 & 58.5 & 86.9 & 79.2 \\\\\n\\midrule\n\\textbf{Overall}    & 9,335 &      & 9,784 &      & 83.6 & 84.5 & 85.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}"
+}

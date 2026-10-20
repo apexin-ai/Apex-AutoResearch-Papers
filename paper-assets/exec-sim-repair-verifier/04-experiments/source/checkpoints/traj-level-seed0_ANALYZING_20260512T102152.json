@@ -1,0 +1,48 @@
+{
+  "exp_id": "traj-level-seed0",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:23:47.402Z",
+    "updated_at": "2026-05-12T10:21:52.594Z",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed0/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 0 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed0/best --model_name Qwen/Qwen3-4B --output eval_traj_seed0.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2611195",
+      "log_path": "~/runs/exec-sim-repair-verifier/traj-level-seed0.log",
+      "submitted_at": "2026-05-12T09:07:53.148Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "hypothesis": "补充第 5 seed (0) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05",
+    "parent": "traj-level-finetuned",
+    "reproduce": {
+      "finished_at": "2026-05-12T10:17:50.011Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T10:17:51.159128+00:00"
+        }
+      ]
+    },
+    "notes": "clustered bootstrap CI 分析（跨 3 seeds）发现：将 cls 预测聚合到 variant 级别后，cls vs traj gap 消失。Pooled gap = -0.37pp, 95% CI [-1.89, +1.07], p=0.646。原先 per-test accuracy (88.41%) vs traj accuracy (86.46%) 的 2.23pp gap 是苹果橘子比较——前者评估 1890 个测试，后者评估 1032 个变体。方法论重要发现：per-test 的优势不在 variant-level accuracy，而在 diagnostic granularity（知道哪个测试失败）。",
+    "metrics": {
+      "overall_accuracy": 85.66,
+      "unresolved_f1": 87.37,
+      "resolved_f1": 83.41
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T10:21:52.645359+00:00",
+  "trigger": "update_registry"
+}

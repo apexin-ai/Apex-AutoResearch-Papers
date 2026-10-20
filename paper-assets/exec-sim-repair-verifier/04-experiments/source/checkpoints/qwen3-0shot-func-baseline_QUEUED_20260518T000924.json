@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen3-0shot-func-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:30:53.841Z",
+    "updated_at": "2026-05-18T00:09:24.226Z",
+    "hypothesis": "Qwen3-8B 0-shot instruction 在 func-level 的基准表现，预期优于 repo-level 0-shot (49.9%) 因为 func-level 上下文更短更清晰",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T00:09:24.546016+00:00",
+  "trigger": "update_registry"
+}

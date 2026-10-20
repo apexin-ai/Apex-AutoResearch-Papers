@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "211cc0743a94d4f46944",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm8b merge script",
+  "task_key": "worker_code_cwm8b-merge-script_20260516T043013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm8b-merge-script_20260516T043013_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "bb039741905763048a3b01b78d4d978134ccb8a759ec59e2fa7f2b446d7a25b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好。关键逻辑：\n\n- **去重优先级**: shard4(4) > shard3(3) > shard2(2) > v3(1)，每个 index 保留优先级最高的 shard 结果\n- **Unparseable 处理**: overall accuracy 中 unparseable 样本默认用 majority class 预测\n- **Mutation type**: 从 `swebench_test.jsonl` 按 index 对齐补入\n- **Coverage check**: 验证 0-9783 全覆盖\n\n服务器上运行：\n```bash\ncd /home/sonny/exec-sim-repair-verifier\npython3 merge_cwm8b_shards.py\n```\n\n输出到 `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/`，包含 `results_merged.jsonl` 和 `metrics.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm8b-merge-script.md"
+}

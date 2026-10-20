@@ -1,0 +1,28 @@
+{
+  "exp_id": "cls4b-v5-ckpt4000-test5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:46:00.819Z",
+    "updated_at": "2026-05-15T10:46:15.612Z",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4000 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/cls4b_v5_ckpt4000_test5120 --output eval_summary.json --pred_output eval_predictions.jsonl\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3274167",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-v5-ckpt4000-test5120-eval.log",
+      "submitted_at": "2026-05-15T10:46:00.336Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "hypothesis": "4B s42 test sweep 补点: ckpt-4000 test@5120。Supplementary val+test 双线图。"
+  },
+  "timestamp": "2026-05-15T10:46:15.891129+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08cfbbd80c3a9f931e4a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778596343.md",
+  "task_key": "loop_2_1778596343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778596343.md",
+    "occurrence": 1,
+    "bytes": 5140,
+    "sha256": "6c1bde474745f67104d722fc710bd54726694c425f6e244c927887f0152a17de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T14:09:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 的 GPU 白名单是 cuda:0/1/2/3，但 cuda:2/3 对应物理机 westd-48478（不同 SSH host），提交时注意区分 server 名\n- 8B 模型在 5090 上单卡刚好够（~31GB），**同一张卡不能跑两个 8B 实验**（cls8b-seed123 之前就是因为 GPU 0 上有残留进程 OOM 过）\n- cls-seed0 状态是 PREPARING，**未获 GPU 分配，不得直接提交**——需等 cls-seed789 完成释放 home cuda:0 后再提交\n- submit_training_job 的 command 必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（seetacloud）或直接 `cd /home/sonny/exec-sim-repair-verifier`（home-1x5090，sonny 账户 PATH 已包含 conda）\n- 模型路径：seetacloud 上是 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`；home 上是 `Qwen/Qwen3-4B`（HF cache 自动解析）\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**（account: root）\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`，conda base\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n  - 4B 模型: `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`（注意路径不同）\n  - 活跃进程: cls8b-seed123 PID 23655 cuda:0（RUNNING，第 2 次重试）\n- **home-1x5090**（account: sonny）\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - 活跃进程: cls-seed789 PID 2748645 cuda:0（RUNNING）\n- **westd-48478**（account: sonny）\n  - cuda:2/3 分配给本项目但当前空闲，ROADMAP 提到要跑 repo-level cls/cwm（D016），等 SWE-bench 数据 pipeline 就绪\n- W&B: 实验用 `--no_wandb`，metrics 全靠 eval JSON 文件提取\n\n### 3. 📊 当前状态\n**刚做完**：收到 cwm8b-seed123 的 CRON 回调（进程正常退出，ANALYZING），已派 Worker `worker_analysis_cwm8b-seed123_20260512T110030` 去 seetacloud 读取 eval_cwm8b_seed123.json 和日志。**Worker 尚未回调**。\n\n**Registry 活跃实验**：\n| exp_id | 状态 | server | gpu | 摘要 |\n|--------|------|--------|-----|------|\n| cwm8b-seed123 | ANALYZING | seetacloud | cuda:1 | 8B CWM seed123 复现，等 Worker 读结果 |\n| cls8b-seed123 | RUNNING | seetacloud | cuda:0 | 8B cls seed123 复现（第 2 次重试，第 1 次 OOM） |\n| cls-seed789 | RUNNING | home | cuda:0 | 4B cls seed789，5-paired comparison |\n| cls-seed0 | PREPARING | — | — | 4B cls seed0，等 GPU 释放 |\n\n**等待中**：\n- Worker `worker_analysis_cwm8b-seed123` 回调 → 拿到 metrics 后更新 registry 为 DONE，汇报 Director\n- cls8b-seed123 cron 回调（仍在跑）\n- cls-seed789 cron 回调（仍在跑）\n- cls-seed0 需要排队等 home cuda:0 空闲\n\n### 4. 📋 待办（条件触发式）\n- **Worker cwm8b-seed123 回调** → 提取 metrics → `update_registry(status=DONE, conclusion=success/negative)` → 更新 report.md → 汇报 Director（带 [资源] 行）\n- **cls8b-seed123 cron 回调** → 同上分析流程；与 seed=42 的 90.48% 对比确认稳定性\n- **cls-seed789 cron 回调** → 分析完成后，home cuda:0 释放 → 立即提交 cls-seed0（PREPARING → PENDING → submit）\n- **cls-seed0 完成** → 5 seeds 的 cls 全部就绪 → 可做 5-paired bootstrap (cls vs traj 各 5 seeds) 的统计检验\n- **5-paired 统计结果出来** → 汇报 Director，结合 D018/D019 决策确认 per-test vs traj 的最终结论\n- **westd-48478 cuda:2/3 空闲** → 这两张卡等 SWE-bench per-test 数据 pipeline（D016），数据就绪后提交 repo-level cls/cwm 训练——这是 ROADMAP 关键路径\n\n### 5. 🎯 战略上下文\n- **核心 narrative**：函数级 cls ≈ cwm（null result），但 8B scaling 显示 cls-cwm gap 从 4B 的 0.9pp 扩大到 8B 的 2.81pp → complexity-dependent advantage hypothesis。**Repo-level 是决胜战场**（D008 go/no-go）\n- **关键数据点**：per-test vs traj 的 variant-level accuracy 实际等价（gap=-0.37pp, p=0.646），per-test 的优势在 diagnostic granularity 而非 raw accuracy（D018/D019）\n- **Majority voting 已证伪**（per-test-majority-voting, negative）：模型错误是系统性偏差非随机噪声，single-pass greedy 最优\n- **零-shot 对比已完成**：8B zero-shot 64.4%、32B zero-shot 71.69%，远低于 fine-tuned 4B 的 88.41%，fine-tuning 必要性已确认\n- **易错点**：\n  1. per-test accuracy (1890 tests) 与 traj accuracy (1032 variants) **不能直接比较**——粒度不同，必须用 clustered bootstrap 在 variant 级别对齐\n  2. cwm-baseline 的 conclusion 是 negative（函数级 cls ≈ cwm），但 model-size-scaling 的 conclusion 是 success（8B 级别 gap 扩大）——这两个不矛盾，是 complexity-dependent 假说的两面\n  3. trace-then-judge 标记为 failed 但实际 eval 已部分完成（D011 改为 negative），不要重跑\n- **时间压力**：ARR May 25 deadline，13 天。关键路径是 SWE-bench Docker + 数据构建 + repo-level 训练。函数级实验基本收官，重心应转向 repo-level\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778596343.md"
+}

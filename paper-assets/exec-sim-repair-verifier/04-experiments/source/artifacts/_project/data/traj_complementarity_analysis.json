@@ -1,0 +1,37 @@
+{
+  "pairs": {
+    "CLS_vs_CWM": {
+      "method_A": "CLS",
+      "method_B": "CWM",
+      "n_instances": 1890,
+      "accuracy_A": 86.93,
+      "accuracy_B": 85.77,
+      "both_correct": 1534,
+      "A_only_correct": 109,
+      "B_only_correct": 87,
+      "both_wrong": 160,
+      "oracle_ensemble": 1730,
+      "oracle_accuracy_pct": 91.53,
+      "complementarity_pct": 10.37,
+      "error_complementarity_pct": 55.06,
+      "error_complementarity_definition": "fraction of error-instance union where one model is correct and the other is wrong",
+      "verified_55_1_pct": true
+    }
+  },
+  "traj_status": {
+    "available": false,
+    "reason": "Cannot reproduce TRAJ per-instance predictions. The LoRA adapter at checkpoints_deepseek_traj_func/best loads correctly (verified: non-zero weights, active adapter, correct scaling=2.0) but does not sufficiently shift the output distribution from the base DeepSeek-coder-6.7b model. Top prediction is 'False' (68.75%) instead of 'resolved' (3.4%). Only 39% of outputs parse as resolved/unresolved, yielding ~67% accuracy on parseable subset vs reported 83.14%. Root cause: the eval_traj_verifier.py script that produced the original 83.14% result was created AFTER the eval results file (script: May 17 00:27, results: May 16 21:02), suggesting a different script or method was used. The original eval method could not be determined from available logs or bash history.",
+    "CLS_vs_TRAJ": "not_computed",
+    "CWM_vs_TRAJ": "not_computed",
+    "three_way_oracle": "not_computed"
+  },
+  "metadata": {
+    "model_base": "deepseek-coder-6.7b-instruct",
+    "cls_checkpoint": "checkpoints_deepseek_cls_func/best",
+    "cwm_checkpoint": "checkpoints_deepseek_cwm_func/best",
+    "traj_checkpoint": "checkpoints_deepseek_traj_func/best",
+    "test_set_size_cls_cwm": 1890,
+    "test_set_size_traj": 1032,
+    "traj_is_subset_of_cls_cwm": true
+  }
+}

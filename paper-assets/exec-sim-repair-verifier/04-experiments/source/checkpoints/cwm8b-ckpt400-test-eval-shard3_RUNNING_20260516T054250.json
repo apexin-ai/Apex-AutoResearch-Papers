@@ -1,0 +1,34 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval-shard3",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:38:24.004Z",
+    "updated_at": "2026-05-16T05:42:49.895Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --max_samples 7680 --start_idx 6200 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full",
+      "data_count": 1480,
+      "model_name": "Qwen3-8B + LoRA ckpt-400",
+      "seed": null,
+      "checkpoint_source": "cwm8b-ckpt400",
+      "eval_data": "test[6200:7680]",
+      "gpu": "cuda:0",
+      "pid": 453335,
+      "start_idx": 6200,
+      "end_idx": 7680,
+      "tmux_session": "shard3"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T05:42:48.470Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T05:42:50.208106+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,71 @@
+{
+  "exp_id": "cwm8b-seed456",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:18:05.040Z",
+    "updated_at": "2026-05-12T15:00:28.433Z",
+    "hypothesis": "8B CWM 第 3 个 seed，补强 scaling gap 证据。当前 8B cls-cwm gap 基于 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)，3 seeds 更稳健",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed456/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm8b_seed456/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cwm8b_seed456.json\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": 47236,
+      "log_path": "/root/runs/exec-sim-repair-verifier/cwm8b-seed456.log",
+      "submitted_at": "2026-05-12T13:19:20.937Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 456,
+      "hyperparams": {
+        "batch_size": 2,
+        "grad_accumulation": 16,
+        "lr": "2e-4",
+        "epochs": 3,
+        "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+        "trainable_params": "15.3M/8.2B (0.19%)"
+      },
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/best/",
+      "eval_output_path": "/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T14:57:01.804Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T14:57:03.276321+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_accuracy": 86.24,
+      "pass_f1": 85.96,
+      "fail_f1": 86.51,
+      "pass_precision": 91.08,
+      "pass_recall": 81.39,
+      "fail_precision": 82.09,
+      "fail_recall": 91.45,
+      "exact_match_rate": 82.8,
+      "train_loss": 0.2279,
+      "eval_loss": 0.0583,
+      "unparseable": 0,
+      "test_set_size": 1890,
+      "majority_baseline_accuracy": 51.75,
+      "accuracy_vs_baseline_gap_pp": 34.5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T15:00:28.515139+00:00",
+  "trigger": "update_registry"
+}

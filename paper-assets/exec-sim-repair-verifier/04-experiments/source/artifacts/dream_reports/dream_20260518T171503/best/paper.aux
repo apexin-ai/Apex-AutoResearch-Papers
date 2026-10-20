@@ -1,0 +1,79 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{chen2023codet,ni2023lever}
+\citation{gu2024cwm}
+\citation{zhang2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{chen2023codet}
+\citation{ni2023lever}
+\citation{gu2024cwm}
+\citation{zhang2024swebench}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{le2022coderl}
+\citation{li2022alphacode}
+\citation{shinn2023reflexion}
+\citation{zhang2018predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ Outcome Supervision.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification in Code Repair.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Predictive Mutation Testing.}{2}{section*.4}\protected@file@percent }
+\citation{gu2024cwm}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Formulation 1: Per-Test Classification (CLS)}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Formulation 2: Execution Output Prediction (CWM)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Formulation 3: Trajectory-Level Scoring (TRAJ)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Training Setup}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}SWE-bench-PerTest Dataset}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:dataset}{{4.1}{3}{SWE-bench-PerTest Dataset}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench-PerTest dataset statistics.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:dataset}{{1}{4}{SWE-bench-PerTest dataset statistics}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Function-level accuracy (\%) across formulations and models. All formulations achieve statistically equivalent accuracy (TOST $p{=}0.007$, $\pm $2pp margin). CWM unparseable rate is 0\% at this complexity level.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:func}{{2}{4}{Function-level accuracy (\%) across formulations and models. All formulations achieve statistically equivalent accuracy (TOST $p{=}0.007$, $\pm $2pp margin). CWM unparseable rate is 0\% at this complexity level}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Function-Level Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:func}{{4.2}{4}{Function-Level Results}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Repository-Level Results}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:repo}{{4.3}{4}{Repository-Level Results}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Unparseable Rate Analysis: Tokenizer, Not Formulation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:unparseable}{{4.4}{4}{Unparseable Rate Analysis: Tokenizer, Not Formulation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Repository-level results. DeepSeek CLS reports mean $\pm $ std over two seeds. CWM accuracy counts unparseable outputs as incorrect. The cross-model reversal (CLS wins on Qwen3; CWM wins on DeepSeek) is the central finding.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:repo}{{3}{5}{Repository-level results. DeepSeek CLS reports mean $\pm $ std over two seeds. CWM accuracy counts unparseable outputs as incorrect. The cross-model reversal (CLS wins on Qwen3; CWM wins on DeepSeek) is the central finding}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CWM unparseable rate (\%) across complexity levels and models. The order-of-magnitude difference at repository-level demonstrates tokenizer-specific failure, not formulation-inherent failure.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:unparseable}{{4}{5}{CWM unparseable rate (\%) across complexity levels and models. The order-of-magnitude difference at repository-level demonstrates tokenizer-specific failure, not formulation-inherent failure}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Error Complementarity and Oracle Ensemble}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ensemble}{{4.5}{5}{Error Complementarity and Oracle Ensemble}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Downstream Application: Diagnostic Re-Repair}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:rerepair}{{4.6}{5}{Downstream Application: Diagnostic Re-Repair}{subsection.4.6}{}}
+\citation{gu2024cwm}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle ensemble analysis on DeepSeek repository-level data. The +2.8pp gain over the best individual formulation confirms error complementarity between CLS and CWM.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:ensemble}{{5}{6}{Oracle ensemble analysis on DeepSeek repository-level data. The +2.8pp gain over the best individual formulation confirms error complementarity between CLS and CWM}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Re-repair proof-of-concept on 200 SWE-bench instances. Predicted per-test labels yield a +4pp improvement over the control, but the difference is not statistically significant ($p{=}0.18$). Oracle labels establish a +8pp ceiling.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:rerepair}{{6}{6}{Re-repair proof-of-concept on 200 SWE-bench instances. Predicted per-test labels yield a +4pp improvement over the control, but the difference is not statistically significant ($p{=}0.18$). Oracle labels establish a +8pp ceiling}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The formulation design space is model-contingent.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM failure is an engineering problem, not a fundamental limitation.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complementarity as a practical takeaway.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.14}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{chen2023codet}{{1}{2023}{{Chen et~al.}}{{}}}
+\bibcite{gu2024cwm}{{2}{2024}{{Gu et~al.}}{{}}}
+\bibcite{le2022coderl}{{3}{2022}{{Le et~al.}}{{}}}
+\bibcite{li2022alphacode}{{4}{2022}{{Li et~al.}}{{}}}
+\bibcite{lightman2023lets}{{5}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{ni2023lever}{{6}{2023}{{Ni et~al.}}{{}}}
+\bibcite{shinn2023reflexion}{{7}{2023}{{Shinn et~al.}}{{}}}
+\bibcite{uesato2022solving}{{8}{2022}{{Uesato et~al.}}{{}}}
+\bibcite{zhang2018predictive}{{9}{2018}{{Zhang et~al.}}{{}}}
+\bibcite{zhang2024swebench}{{10}{2024}{{Zhang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{7}

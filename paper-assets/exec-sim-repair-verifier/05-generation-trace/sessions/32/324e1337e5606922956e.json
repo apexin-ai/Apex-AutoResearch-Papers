@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "324e1337e5606922956e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905803.md",
+  "task_key": "loop_19_1778905803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905803.md",
+    "occurrence": 1,
+    "bytes": 4395,
+    "sha256": "5141c635094d1d6d7b67652c7d9e6bec19b55bbc42246593df46b5bb0656e99f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:30:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3，home:0。用其他卡必须 Director 审批扩配额\n- **D088 检查点规则**: 所有论文数字必须用 val-selected checkpoint，不准用 test-best（cherry-picking）。即使 val-selected 不是 test-best 也必须用\n- **环境一致性**: transformers 版本差异导致过 22pp 精度偏移（D053 教训）。所有最终数字必须来自同一 env（westd conda base）\n- **D103 参数锁**: seq_length/batch_size/precision/lr 变更需 Director 审批，不准自行降级\n- **test eval 必须用全量 n=9784**: 不准 --max_samples 截断，截断过的数字不可进论文\n- **CWM seq_length=2048 + 1024 token budget**: CLS 用 5120/8192，这个不对称是实验设计的一部分（D094 确认 gap 不受影响）\n\n### 2. 🖥️ 基础设施快照\n- **服务器 westd**: 工作目录 `/root/autodl-tmp/exec-sim-repair-verifier`（推测，需 Worker 确认）；Python 路径 `/root/miniconda3/bin/python`；conda base 环境\n- **服务器 home-1x5090**: 5090 单卡，home:0\n- **模型路径**: 8B CLS ckpt-1000（s42 val-best）、ckpt-3000（seed123 val-best）；CWM 4B；CWM 8B ckpt-400\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（westd）\n- **活跃进程**:\n  - `cwm8b-ckpt400-test-eval-shard3`: RUNNING, cuda:0, idx 6200-7680\n  - `cwm8b-ckpt400-test-eval-shard4`: RUNNING, cuda:2, idx 9100-9784\n  - 可能有 shard2 在 cuda:1（需 reconcile 确认）\n- **Cron**: 上述 eval shards 应有 cron 监控，需 `reconcile_crons` 确认\n- **Paper 文件**: `docs/paper/` 下有 main.tex + 各 section .tex 文件，ACL 模板\n\n### 3. 📊 当前状态\n- **刚完成**: CWM 4B mutation breakdown (D104)、CLS 4B/8B per-mutation P/R 分析 (D105)、multi-seed repo-level 数字锁定 (D093: CLS 84.56% vs CWM 58.57%, gap 25.99pp)\n- **正在跑**: CWM 8B ckpt-400 test eval（3 shard 并行，shard3 cuda:0, shard4 cuda:2），预计 5/16 晚间完成\n- **等待中**:\n  - CWM 8B eval 完成 → 需做 8B mutation breakdown + 锁定 8B-8B gap\n  - Paper Agent Full Draft (D064) 可能有 Worker 在写，需确认\n  - Oracle ICC sensitivity analysis (D107) 待执行\n- **Registry**: 绝大部分实验 DONE，仅 CWM 8B eval shards 为 RUNNING\n- **DDL**: EMNLP ARR 2026-05-25，剩 9 天\n\n### 4. 📋 待办（条件触发式）\n- CWM 8B eval shard3/4 cron 回调到达 → spawn Worker 合并 shard 结果 → 计算 8B 整体 accuracy + unparseable rate → update_registry → 锁定 8B-8B gap 数字\n- CWM 8B 整体数字锁定 → spawn Worker 做 CWM 8B mutation breakdown（与 CLS 8B 对比）→ 更新 D105 scaling table\n- CWM 8B mutation 完成 → 所有实验数据齐全 → 全力推 paper writing\n- Oracle ICC sensitivity (D107) → spawn Worker 计算 repo-level ICC → 与 function-level 0.191 对比\n- Paper draft 各 section 就绪 → reference-audit skill 审查引用 → paper-visual-review 检查排版\n- cuda:3 当前空闲 → 如果有可并行的 eval 任务应立即占用（如 CWM 8B 额外 shard 或 ablation）\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: \"Classification Scales Where Generation Stalls\"——task reformulation 从 output generation (CWM) 到 binary pass/fail (CLS)，复杂度越高优势越大（function-level +1.24pp → 8B +2.43pp → repo-level +25.99pp）\n- **决策链关键节点**: D004（reframe to task reformulation）→ D007（CWM function-level negative → complexity-dependent advantage）→ D052（GO decision, CLS 76.92% vs CWM 66.6%）→ D088（val-selected checkpoint 标准）→ D093（multi-seed 锁定）\n- **最容易判断错的事**:\n  1. CWM 8B 比 4B **更差**（unparseable 73.8% vs 53.7%）——这不是 bug，是 generation bottleneck 的核心证据，scaling 让 CWM 恶化\n  2. Val-test reversal 是真实的（D087: 0 problem overlap）——不要因为 test 数字不是 val-best 就怀疑实验有错\n  3. boundary_removal mutation 对 CLS 是 scale-invariant (~45% 不论 4B/8B)——这是 task-intrinsic difficulty，不是 bug\n  4. CWM \"58%\" 是 inflated（unparseable default to majority pass），parseable-only 仅 42.9%——论文必须两个数字都报\n- **Paper 写作陷阱**: 不可说 \"consistently\" 除非多数据集验证；所有定量 claim 必须附 exp_id；强度词需统计检验支撑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905803.md"
+}

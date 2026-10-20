@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01581bb8ff2ee83b0d6a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor home 4b val sweep loop14",
+  "task_key": "worker_monitor_home-4b-val-sweep-loop14_20260515T021156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_home-4b-val-sweep-loop14_20260515T021156_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "e217c487c829716a39dbe0c2cb543da71ed371d1ab940a562e22e9e49ceb469a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-4400 v3 eval 正在跑，464/9335 samples，running_acc=91.2%。预计还需约 70 分钟。2 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-home-4b-val-sweep-loop14.md"
+}

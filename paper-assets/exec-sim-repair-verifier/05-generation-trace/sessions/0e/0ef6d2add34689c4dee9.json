@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef6d2add34689c4dee9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d153 gpu3 deepseek cls s456 train",
+  "task_key": "worker_d153-gpu3-deepseek-cls-s456-train_20260519T115739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu3-deepseek-cls-s456-train_20260519T115739_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "602278cab20ddb2d6528dd22a0475ebe989c3dbc59197589bc66e575c3f81ccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正式开始。\n\n- **PID**: 828872\n- **tmux session**: `deepseek-cls-repo-s456-train`\n- **log**: `~/runs/exec-sim-repair-verifier/deepseek-cls-repo-s456-train.log`\n- **数据**: train=5829 (40 dropped), val=0\n- **LoRA**: 16.7M trainable params (0.25%)\n- **进度**: 0/549 steps, ~11.8s/it → 预计约 1.8 小时完成\n- **GPU**: cuda:3, bf16, LoRA rank 16"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d153-gpu3-deepseek-cls-s456-train.md"
+}

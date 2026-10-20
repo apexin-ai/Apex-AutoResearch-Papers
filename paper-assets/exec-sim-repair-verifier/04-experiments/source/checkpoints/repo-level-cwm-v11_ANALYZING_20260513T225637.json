@@ -1,0 +1,50 @@
+{
+  "exp_id": "repo-level-cwm-v11",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:42:42.615Z",
+    "updated_at": "2026-05-13T22:56:37.191Z",
+    "hypothesis": "D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v10 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CWM execution simulator 在正确超参下的性能。",
+    "spec": {
+      "pid": 145692,
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:2",
+      "command": "CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /usr/bin/python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v11/ --seed 42 --no_wandb --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_v11/checkpoint-500",
+      "log_path": "/tmp/cwm_v11_restart.log"
+    },
+    "notes": "D008 GO。全量 eval 启动: PID 174009, westd cuda:2 独占, 9784 样本 tok1024。model_name=/root/.cache/huggingface/hub/Qwen/Qwen3-4B。预计 8-12h。500 样本 subset: acc=66.6%, fail_f1=27.7, unparseable=75.2%。",
+    "metrics": {
+      "eval_checkpoint": "checkpoint-600",
+      "eval_samples": 500,
+      "eval_type": "subset500_tok1024",
+      "accuracy": 66.6,
+      "fail_f1": 27.7,
+      "pass_f1": 78.3,
+      "f1_macro": 52.99,
+      "fail_precision": 33.3,
+      "fail_recall": 23.7,
+      "pass_precision": 74.5,
+      "pass_recall": 82.5,
+      "unparseable": 376,
+      "unparseable_pct": 75.2,
+      "majority_baseline": 73,
+      "gap_vs_baseline": -6.4,
+      "gen_length_mean": 3398.1,
+      "gen_length_median": 3307.5,
+      "gen_length_max": 7582,
+      "confusion": {
+        "TP": 301,
+        "TN": 32,
+        "FP": 103,
+        "FN": 64
+      }
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-13T22:56:37.318272+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28619177cb477bc24ee9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek traj func home",
+  "task_key": "worker_eval_deepseek-traj-func-home_20260517T170705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-traj-func-home_20260517T170705_result.json",
+    "occurrence": 1,
+    "bytes": 71,
+    "sha256": "db531f57bcf745b19b37ff238a0041ce17041bb62deabeef6e26020e09d79ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Model loading. Will wake up in ~4 min to check progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-traj-func-home.md"
+}

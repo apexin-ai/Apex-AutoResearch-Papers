@@ -1,0 +1,32 @@
+{
+  "exp_id": "deepseek-traj-repo-8k-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:24:57.265Z",
+    "updated_at": "2026-05-16T15:36:54.443Z",
+    "hypothesis": "TRAJ repo 8k seed 123 replication",
+    "spec": {
+      "command": "python3 train_traj_verifier.py --model_name deepseek-coder-6.7b-instruct --max_seq_length 8192 --epochs 3 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --seed 123",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "525539",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-traj-repo-8k-s123.log",
+      "submitted_at": "2026-05-16T15:26:36.984Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/traj_train.jsonl",
+      "data_count": 386,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 123
+    }
+  },
+  "timestamp": "2026-05-16T15:36:54.777346+00:00",
+  "trigger": "update_registry"
+}

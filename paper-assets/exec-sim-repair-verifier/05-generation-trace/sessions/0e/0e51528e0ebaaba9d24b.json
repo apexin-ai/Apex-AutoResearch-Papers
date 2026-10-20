@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e51528e0ebaaba9d24b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix 8b save total limit check",
+  "task_key": "worker_fix_8b-save-total-limit-check_20260514T105744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_8b-save-total-limit-check_20260514T105744_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "5a9963292216c5f37f9f716066c1b169bc938bb0b0d63eceb167ee355b07f5f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### CLS 8B seed123\n- **save_total_limit: 5**（已经足够）\n- save_steps: 200, eval_steps: 200\n- 现有 checkpoint: 200, 800, 1000, 1200, 1400\n- best_model_checkpoint: checkpoint-200 (best eval_loss: 0.0862)\n- global_step: 1400\n- ckpt-400 和 ckpt-600 已被删除（save_total_limit=5 在累积到 >5 个时删了最旧的非 best checkpoint）\n\n### CWM 8B\n- **save_total_limit: 5**（没问题）\n- save_steps: 100, eval_steps: 100\n- 现有 checkpoint: 300, 400, 500, 600, 700\n\n### CLS 8B seed42\n- 现有 checkpoint: 200, 400, 600（训练已结束，3 个 checkpoint）\n\n**结论**：两个正在运行的训练（CLS 8B seed123 和 CWM 8B）的 save_total_limit 都已经是 5，无需修改。\n\nseed123 的 best checkpoint 是 ckpt-200（eval_loss=0.0862），目前还保留着。由于 load_best_model_at_end=True 且 metric_for_best_model=eval_loss，Trainer 删除 checkpoint 时会保护 best checkpoint，所以 ckpt-200 不会被删除。当前无需额外备份操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-8b-save-total-limit-check.md"
+}

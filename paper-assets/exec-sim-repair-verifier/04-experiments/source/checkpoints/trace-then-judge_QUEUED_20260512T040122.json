@@ -1,0 +1,30 @@
+{
+  "exp_id": "trace-then-judge",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T03:19:47.150Z",
+    "updated_at": "2026-05-12T04:01:22.879Z",
+    "hypothesis": "Trace-then-judge (生成 ~50 tokens reasoning trace 再判 pass/fail) 的 F1 与 direct classification 相当，排除 classification 优势来自跳过 reasoning 的可能",
+    "parent": "multi-seed-core",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_trace_judge.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_trace/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb && python3 eval_trace_judge.py --data_dir data/ --checkpoint_dir checkpoints_trace/best/ --model_name Qwen/Qwen3-4B --output eval_trace_results.json --max_new_tokens 150\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2310152",
+      "log_path": "~/runs/exec-sim-repair-verifier/trace-then-judge.log",
+      "submitted_at": "2026-05-12T03:41:58.309Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-12T04:01:22.941506+00:00",
+  "trigger": "update_registry"
+}

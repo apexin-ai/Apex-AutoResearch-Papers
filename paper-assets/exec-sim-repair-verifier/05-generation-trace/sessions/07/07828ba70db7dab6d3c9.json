@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07828ba70db7dab6d3c9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train s42 8b cls resume cuda1",
+  "task_key": "worker_train_s42-8b-cls-resume-cuda1_20260514T214716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s42-8b-cls-resume-cuda1_20260514T214716_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "358bda1d44712313e43570d854a0ef09393108d4eafdb7688f40c5b2cefa4dc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活（PID 295789，运行 1分48秒）。tokenize 70k 条 2048 长度样本预计需要 3-5 分钟。之后加载 8B 模型到 cuda:1 显存会升到 ~17GB。\n\n**任务完成：**\n\n| 项目 | 状态 |\n|------|------|\n| ckpt-600 | 存在 ✓ |\n| cuda:1 | 空闲，已分配 ✓ |\n| PID | 295789，运行中 ✓ |\n| Registry | `repo-level-cls-8b-s42-resume` → RUNNING ✓ |\n| 参数修正 | `--epochs 3`、`--dataloader_num_workers 0`、`--save_total_limit 35` ✓ |\n| output_dir | `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（独立于原始训练）✓ |\n| 日志 | `~/runs/exec-sim-repair-verifier/repo-level-cls-8b-s42-resume.log` |\n\n当前正在 tokenize 数据，预计几分钟后模型加载上 GPU 开始从 step 600 resume 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s42-8b-cls-resume-cuda1.md"
+}

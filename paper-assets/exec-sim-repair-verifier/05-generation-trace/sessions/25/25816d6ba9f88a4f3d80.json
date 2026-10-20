@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25816d6ba9f88a4f3d80",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check eval status all servers",
+  "task_key": "worker_check_eval-status-all-servers_20260514T225345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-status-all-servers_20260514T225345_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "15e454caed3fa72741113477add900087e213f1ba19d598cb4f69ed08c74f5c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验的状态：\n\n**1. cls8b-s42-ckpt800-val8192-eval (westd)** — RUNNING, PID 300321\n- 进度: 5110/9335 (54.7%), running acc **84.6%**\n- 预计 ~11 min 后完成\n\n**2. cls4b-v5-ckpt600-val5120-eval (home)** — RUNNING, PID 3179262\n- 进度: 4000/9335 (42.9%), running acc **82.8%**\n- 预计 ~42 min 后完成\n\n**3. cls4b-v5-val5120-sweep (home)** — WAITING, PID 3180425\n- 正在等 ckpt-600 eval 完成（每 30s 轮询）\n- ckpt-600 完成后依次跑 4000 → 4200 → 4400 → 4600，每个 ~70 min，全部完成约 5-6 小时\n\n报告已写入 `artifacts/eval_status_check_20260514.md`。三个 PID 均可用于注册 cron 监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-status-all-servers.md"
+}

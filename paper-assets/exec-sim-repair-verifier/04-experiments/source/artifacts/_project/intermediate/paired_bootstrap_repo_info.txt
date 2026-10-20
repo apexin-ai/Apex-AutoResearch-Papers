@@ -1,0 +1,3 @@
+Location: home-1x5090:/home/sonny/exec-sim-repair-verifier/paired_bootstrap_repo.py
+Input: --cls_preds + --cwm_preds (JSONL from eval_repo_level.py --save_predictions)
+Output: gap, 95% CI, one-sided p-value, D008 decision

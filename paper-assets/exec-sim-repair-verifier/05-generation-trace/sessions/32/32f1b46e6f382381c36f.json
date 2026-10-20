@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32f1b46e6f382381c36f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778617288.md",
+  "task_key": "loop_3_1778617288",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778617288.md",
+    "occurrence": 1,
+    "bytes": 4473,
+    "sha256": "f770e8efeb58882798f678b9bf479689208c0e465ad0b50ea45ca851a95a6586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T20:20:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单来自 `load_project_config` 的 `execution.gpu_ids`: cuda:0, cuda:1, cuda:2, cuda:3（均在 seetacloud-westd-4x5090 上）\n- report.md 显示实际分配 GPU 为 home-1x5090:cuda:0, westd-48478:cuda:2, westd-48478:cuda:3——与 config 存在不一致，**下一个\"你\"务必先用 `load_project_config` 确认真实分配再提交实验**\n- seetacloud-westd-4x5090 用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv 存在\n- 训练必须用 `submit_training_job`，禁止 nohup\n- repo-level 实验是关键路径（Pillar 1），距 ARR May 25 仅 13 天，不能再拖\n\n### 2. 🖥️ 基础设施快照\n- **服务器 1**: seetacloud-westd-4x5090 (4× RTX 5090), account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **服务器 2**: home-1x5090 (1× RTX 5090), account=sonny\n- **服务器 3**: westd-48478, account=sonny\n- Python: `/root/miniconda3/bin/python`（seetacloud）\n- 模型: Qwen/Qwen3-4B (HF hub，训练用 LoRA)\n- 数据: `/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/` (70748 samples)\n- Checkpoint 目录: `/root/autodl-tmp/checkpoints_repo_cls` (CLS), `/root/autodl-tmp/checkpoints_repo_cwm` (CWM)\n- 训练日志: `~/runs/exec-sim-repair-verifier/repo-level-{cls,cwm}-v3.log`\n- W&B: 两个 v3 实验用了 `--no_wandb`\n- **活跃进程**: 无（两个训练均已被 SIGKILL）\n- **活跃 cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n刚收到 cron 回调：`repo-level-cwm-v3` 和 `repo-level-cls-v3` 同时失败（EXIT_CODE=137, SIGKILL, 运行约 38 分钟）。\n\n**已派发 Worker**:\n- `worker_diag_repo-level-v3-failure_20260512T171113` (running) — SSH 到 seetacloud 诊断 OOM/kill 根因（dmesg、日志尾部、GPU/CPU/磁盘状态、训练参数）\n- `worker_code_home-repo-level-backup_20260512T170111` (running) — 用途未确认，启动于失败之前\n\n**已汇报 Director**: 通知两实验同时失败，等诊断结果后制定修复方案。\n\n**Registry**: 37 个实验，DONE 35 (success 27, negative 3, failed 5), PREPARING 2 (repo-level-cls-v2, repo-level-cwm-v2 — 这是 v3 之前的版本，可能已过时)。无 RUNNING 实验。\n\n### 4. 📋 待办\n- Worker `diag:repo-level-v3-failure` 回调 → 读诊断结论，判断根因（OOM/实例回收/手动kill），更新 registry notes，向 Director 汇报修复方案\n- 如果根因是 CPU OOM → 降低 dataloader num_workers 或 batch_size，修改脚本后重新 `submit_training_job`\n- 如果根因是 GPU OOM → 降低 per_device_train_batch_size 或 max_seq_length，重新提交\n- 如果根因是实例被回收/重启 → 向 Director 汇报基础设施问题，申请稳定实例或切换服务器\n- 修复后需要同时重新提交 CLS 和 CWM（配对实验，必须同批跑）\n- Worker `code:home-repo-level-backup` 回调 → 确认备份结果\n- 所有 3 张分配 GPU 空闲 → 修复后立即重提交，不能让 GPU 空转\n\n### 5. 🎯 战略上下文\n- **核心假说**: 函数级 CLS≈CWM（TOST 等价 p=0.007），但 repo-level 复杂度下 CLS 应显著优于 CWM（Pillar 1: Complexity-Dependent Advantage）。repo-level 实验是唯一未验证的 pillar，是论文能否投 EMNLP Main 的决定性实验。\n- **Go/No-Go 标准** (D008): F1 diff ≥3pp → EMNLP Main; 1-3pp → 加 seeds; <1pp → Kill C1, pivot to Plan B\n- **Plan B**: 论文收缩为 Oracle frontier + empirical null results + efficiency comparison → EMNLP Findings 或 workshop\n- **时间线**: 关键路径 repo-level 训练(~15-20h) → eval(2h) → stats(1h) → paper patch(1d) → 终审(1d) ≈ 5 天，ARR 截止 May 25（剩 13 天）\n- **易错点 1**: repo-level-v3 是第三次尝试，前两次也失败——v1 是代码 bug（sample_weight KeyError），v2 修了但有 WeightedDataCollator 问题，v3 修了 DataCollator 但被 OOM kill。如果诊断后需要降参数，注意不要改动到影响实验有效性的参数（如 seq_length 不能太短导致 repo-level context 被截断）\n- **易错点 2**: report.md 的 GPU 分配列表和 config 的 gpu_ids 可能不一致，以 `load_project_config` 为准\n- **已完成关键实验**: 4B 5-seed CLS/CWM (equivalent), 8B 3-seed scaling (gap=2.43pp), precision-recall, block-corr-empirical, majority-voting, matched-seed error overlap (Oracle 90.63%)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778617288.md"
+}

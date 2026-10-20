@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "142564e641f245044547",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm8b ckpt400 test resume",
+  "task_key": "worker_eval_cwm8b-ckpt400-test-resume_20260516T004144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm8b-ckpt400-test-resume_20260516T004144_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "32836d789359cceaaad7bb46c1fe7940b51e0b393f0ab9875900b2433bc61e76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态汇报：**\n- CWM 8B ckpt-400 test eval 已成功 resume，PID 442562，运行在 GPU3\n- 已跳过先前完成的 5280/9784 样本（54%），从第 5281 个开始继续评估\n- 剩余 4504 样本，按 ~37s/sample 估算约 46 小时完成\n- Registry 已更新：`cwm8b-ckpt400-test-eval-v2` → RUNNING\n- 日志：`/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/eval_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm8b-ckpt400-test-resume.md"
+}

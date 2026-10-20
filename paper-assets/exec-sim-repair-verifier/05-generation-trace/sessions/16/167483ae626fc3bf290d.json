@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "167483ae626fc3bf290d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops data recovery symlink fix",
+  "task_key": "worker_ops_data-recovery-symlink-fix_20260519T135535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-recovery-symlink-fix_20260519T135535_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "c01d4907a6fd1705dc24197d9554c0d239993529dda803276dfa01be82cbfcae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 文件 | 行数 | md5 |\n|------|------|-----|\n| train 源 → 目标 | 70748 → 70748 | `e25e2c88f86bdd9dabdb5d77394f5e0c` 一致 |\n| val 源 → 目标 | 9335 → 9335 | `bab83e17cbed30b2e5eef13f16d1be36` 一致 |\n\n数据文件已正确覆盖到 `data/swebench_full/`，训练脚本现在会读到正确数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-data-recovery-symlink-fix.md"
+}

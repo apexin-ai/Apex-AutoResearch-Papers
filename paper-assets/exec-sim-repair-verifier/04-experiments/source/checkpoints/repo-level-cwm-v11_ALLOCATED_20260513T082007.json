@@ -1,0 +1,15 @@
+{
+  "exp_id": "repo-level-cwm-v11",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:42:42.615Z",
+    "updated_at": "2026-05-13T08:20:07.089Z",
+    "hypothesis": "D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v10 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CWM execution simulator 在正确超参下的性能。"
+  },
+  "timestamp": "2026-05-13T08:20:07.193544+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "model_family": "Qwen3-4B",
+    "note": "Func-level error analysis using Qwen3-4B CLS and CWM predictions",
+    "source": "home-1x5090 analysis, seed pairs: (seed0 CLS, seed123 CWM) + cross-validation"
+  },
+  "overall": {
+    "cls_acc": 87.78,
+    "cwm_acc": 87.30,
+    "oracle_ensemble_acc": 89.84,
+    "complementarity": 31.2,
+    "error_overlap": 68.8,
+    "agreement": 95.4
+  },
+  "by_mutation_type": {
+    "return_value": {"n": 402, "cls_acc": 97.5, "cwm_acc": 98.0, "oracle_acc": 98.8, "complementarity": 61.5},
+    "variable_swap": {"n": 85, "cls_acc": 94.1, "cwm_acc": 88.2, "oracle_acc": 94.1, "complementarity": 50.0},
+    "original": {"n": 398, "cls_acc": 86.4, "cwm_acc": 87.2, "oracle_acc": 89.7, "complementarity": 35.9},
+    "operator_swap": {"n": 298, "cls_acc": 86.2, "cwm_acc": 86.9, "oracle_acc": 88.9, "complementarity": 29.8},
+    "off_by_one": {"n": 671, "cls_acc": 82.4, "cwm_acc": 80.8, "oracle_acc": 84.4, "complementarity": 26.1},
+    "boundary_removal": {"n": 36, "cls_acc": 91.7, "cwm_acc": 91.7, "oracle_acc": 91.7, "complementarity": 0.0}
+  },
+  "cross_seed_validation": {
+    "oracle_range": [89.8, 90.3],
+    "complementarity_range": [31, 40],
+    "note": "4 seed pairs, patterns stable"
+  }
+}

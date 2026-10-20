@@ -1,0 +1,16 @@
+{
+  "exp_id": "cls8b-s42-ckpt1000-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:40:01.711Z",
+    "updated_at": "2026-05-15T01:40:33.145Z",
+    "hypothesis": "ckpt-1000 成为新 val-best (88.23% > 85%), 跑 test@8192 获取最终论文数字",
+    "parent": "repo-level-cls-8b-conda"
+  },
+  "timestamp": "2026-05-15T01:40:33.637487+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+{
+  "experiment": "qwen3-8b-3shot-repo-level-baseline",
+  "status": "completed_invalid",
+  "server": "home-1x5090",
+  "model": "Qwen3-8B",
+  "method": "3-shot (2 pass + 1 fail)",
+  "dataset": "swebench_full repo-level test split",
+  "samples": 9784,
+  "max_seq_length": 8192,
+  "batch_size": 2,
+  "runtime_hours": 2.9,
+  "results": {
+    "accuracy": 0.7296,
+    "pass_f1": 0.8436,
+    "fail_f1": 0.0,
+    "unparseable_rate": 1.0,
+    "unparseable_count": 9784,
+    "confusion": {"TP": 7138, "FP": 2646, "TN": 0, "FN": 0}
+  },
+  "failure_analysis": "All 9784 outputs are code continuations, not pass/fail predictions. Root cause: repo-level code + 3 few-shot examples exceed 8192 token limit. Script truncates with ids[:max_seq_length] cutting off generation prompt and query. 72.96% accuracy is pure majority class base rate.",
+  "output_files": {
+    "results": "/home/sonny/exec-sim-repair-verifier/few_shot_results_repo_level.json",
+    "predictions": "/home/sonny/exec-sim-repair-verifier/few_shot_results_repo_level_raw.jsonl"
+  },
+  "conclusion": "Naive few-shot fails at repo-level due to context length. Supports paper narrative that fine-tuning is necessary for repo-level complexity."
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0da2bcc05ab64af14a31",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_10_1778773303.md",
+  "task_key": "loop_10_1778773303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778773303.md",
+    "occurrence": 1,
+    "bytes": 4615,
+    "sha256": "ccffe17ce8c2d7524171874fa8e67e7dc76ed244924b14b5633a4f1f99f3171f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-14T15:38:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd GPU 白名单 cuda:0-3，home GPU 白名单 cuda:0（config 已确认）\n- **CWM v11 数字已废止（D057）**——论文/汇报中不可引用 v11 的 66.6%\n- **D063: checkpoint 选择必须在 val set (9335 samples) 上做**，test set (9784) 只报最终数字。之前所有 checkpoint sweep 都在 test set 上，属于 cherry-picking，数字需要在 val sweep 后可能变化\n- **禁止跨服务器 apple-to-apple 对比**——home transformers=4.57.6 vs westd 原生=5.8.0，差距 22pp。唯一合法跨服务器对比：两边都用 conda 4.57.6\n- Val set 有 20.2% unparseable 问题（D076/D077 确认根因=截断），必须先修截断逻辑再做 val sweep\n\n### 2. 🖥️ 基础设施快照\n- **westd**: seetacloud-westd-4x5090, root@, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **home**: home-1x5090, sonny@, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: westd conda base `/root/miniconda3/bin/python` (transformers 4.57.6 via conda)\n- **Checkpoints**: westd `/root/autodl-tmp/checkpoints_repo_{cls,cwm}_*`\n- **活跃 cron 4 个**（reconcile 确认 PID 存活）:\n  - `repo-level-cwm-seed123-conda` PID=195531 (westd cuda:0, CWM seed123 eval ~25%)\n  - `repo-level-cwm-v12` PID=195668 (westd cuda:1, CWM v12 eval ~25%)\n  - `repo-level-cwm-8b-conda` PID=245775 (westd cuda:2, 8B CWM 训练重启后)\n  - `repo-level-cls-8b-seed123-conda` PID=248041 (westd cuda:3, 8B CLS seed123 训练重启后)\n- **⚠️ Registry/Cron 不一致**: registry 显示以上 4 个实验均 DONE (killed/failed)，但 cron 确认 PID 仍在跑。原因：D072/D073 后重启了进程但 registry 未更新回 RUNNING。下一个你首要任务是 SSH 确认进程状态并修正 registry\n\n### 3. 📊 当前状态\n- **Registry**: 61 个实验全标 DONE（success 36, failed 15, killed 7, negative 3），0 个 RUNNING——但实际 4 个进程在跑（见上）\n- **CWM 全量 eval 进行中**: v12 和 seed123 各 ~25% 完成，running acc 57-58%（远低于 majority baseline 72.96%）。ETA ~02:20-02:30 UTC May 15。这两个 eval 完成后解除 D057 论文阻塞\n- **8B 训练进行中**: CWM 8B 和 CLS 8B seed123 在 D072/D073 崩溃后用 num_workers=0 重启，PID 已变（245775/248041）\n- **D063 val sweep**: 被 D077 truncation fix 阻塞，fix 方案已确认（100% 截断样本导致 unparseable），需要 Worker 改 eval 脚本加 --split 参数 + 增大 max_length\n- **Worker 池**: 0 个 running Worker——失职状态，需要立即派 Worker 处理 registry 修正和 D077 fix\n- **EMNLP DDL**: ARR May 25，剩 11 天\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 检查 4 个 PID 状态 → 修正 registry 为 RUNNING + 正确 PID/server/gpu → 汇报 Director\n- **立即**: 派 Worker 实现 D077 truncation fix（eval 脚本加 --split val 参数 + 修改截断逻辑）\n- CWM v12 eval 完成（cron 回调）→ 记录最终 accuracy/F1 → 计算 CLS-CWM gap → 解除 D057 → 汇报 Director\n- CWM seed123 eval 完成 → paired bootstrap CLS seed123 vs CWM seed123 → 统计显著性\n- D077 fix 完成 → val set checkpoint sweep（所有 CLS 模型：v5, v5-conda, seed123, 8B-conda）\n- Val sweep 完成 → 用 val-selected checkpoint 跑 test set 最终 eval → paper 数字定稿\n- 8B CWM/CLS 训练完成 → 8B checkpoint sweep + eval pipeline\n- 所有数字定稿 → paper writing sprint（C1 narrative: gap 从函数级 1-2pp 放大到 repo-level 20+pp）\n\n### 5. 🎯 战略上下文\n- **核心 thesis**: Execution Simulation 用 Classification（CLS）比 Code-Writing Model（CWM）更好，且优势随代码复杂度增长而急剧放大\n- **三个 Claims**: C1 complexity-dependent advantage ✅极稳固, C2 diagnostic granularity ✅(TOST p=0.007), C3 accuracy-utility frontier ✅\n- **关键数字链**: 函数级 CLS-CWM gap = 1.24pp (4B) / 2.43pp (8B, p=0.008) → repo-level gap 预估 20-27pp（CLS 78-84% vs CWM 57-58%）→ 这个 16-22x 放大是论文核心卖点\n- **最容易判断错的事**: \n  1. CWM running acc 57-58% 是 25% 进度的数字，最终可能略变，但大趋势（远低于 baseline）不会翻转\n  2. 现在 ROADMAP 里的 accuracy 数字（84.52% 8B, 81.51% 4B best）都是 test set 上选的 checkpoint——val sweep 后可能下降几个点，这是 D063 的核心风险\n  3. 8B 过拟合极快（peak at ckpt-400），不要期待长训练带来更好 checkpoint\n  4. D072/D073 教训：不要 kill DataLoader 子进程，会导致主训练进程崩溃\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778773303.md"
+}

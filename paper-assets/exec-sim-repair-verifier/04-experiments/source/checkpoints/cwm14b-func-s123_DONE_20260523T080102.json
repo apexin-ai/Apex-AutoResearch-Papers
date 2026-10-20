@@ -1,0 +1,45 @@
+{
+  "exp_id": "cwm14b-func-s123",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:44:09.178Z",
+    "updated_at": "2026-05-23T08:01:01.936Z",
+    "spec": {
+      "command": "python3 train_unified.py --task cwm --seed 123",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "241378",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm14b-func-s123.log",
+      "submitted_at": "2026-05-23T04:44:08.472Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/cwm_train.jsonl",
+      "data_count": 0,
+      "model_name": "Qwen3-14B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/cwm14b-func-s123/best",
+      "eval_predictions": "/root/autodl-tmp/eval_results/cwm14b_func_s123/eval_cwm_results_predictions.json",
+      "wall_clock_seconds": 11813.5,
+      "gpu_hours": 3.28
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 88.99,
+      "unparseable": 0,
+      "best_checkpoint": "best",
+      "dtype": "bf16",
+      "n_test": 1890
+    },
+    "hypothesis": "Qwen3-14B CWM (seed 123) should remain equivalent to CLS within ±2pp SESOI at function level, consistent with 4B/8B equivalence. Multi-seed replication (3 seeds) enables clustered bootstrap TOST to confirm capacity-dependent convergence.",
+    "completed_at": "2026-05-23T08:01:01.936Z"
+  },
+  "timestamp": "2026-05-23T08:01:02.600853+00:00",
+  "trigger": "update_registry"
+}

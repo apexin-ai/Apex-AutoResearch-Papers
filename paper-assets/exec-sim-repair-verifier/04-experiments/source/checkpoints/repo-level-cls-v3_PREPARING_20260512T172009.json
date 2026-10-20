@@ -1,0 +1,34 @@
+{
+  "exp_id": "repo-level-cls-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-12T16:30:58.016Z",
+    "updated_at": "2026-05-12T17:20:08.919Z",
+    "hypothesis": "Repo-level CLS (SWE-bench, Qwen3-4B LoRA). WeightedDataCollator 修复后 v3。验证 complexity-dependent CLS advantage。",
+    "notes": "v3 WeightedDataCollator 修复已生效。训练至 step 188/6633 (~22min) 后被 OOM killer SIGKILL。与 cwm-v3 同时被杀，初判系统 RAM OOM（两个 4B 模型 + 各 70k repo-level 数据同时加载）。fix_worker_id: worker_diagnose_repo-level-oom-v3_20260512T171155",
+    "reproduce": {
+      "finished_at": "2026-05-12T17:09:15.584Z"
+    },
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "completed_at": "2026-05-12T17:09:16.204Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-12T17:09:17.719497+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v3 WeightedDataCollator 修复已生效。训练至 step 188/6633 (~22min) 后被 OOM killer SIGKILL。与 cwm-v3 同时被杀，初判系统 RAM OOM（两个 4B 模型 + 各 70k repo-level 数据同时加载）。fix_worker_id: worker_diagnose_repo-level-oom-v3_20260512T171155"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T17:20:09.159603+00:00",
+  "trigger": "update_registry"
+}

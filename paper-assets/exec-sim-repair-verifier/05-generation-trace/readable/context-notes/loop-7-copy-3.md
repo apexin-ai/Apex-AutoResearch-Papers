@@ -1,0 +1,83 @@
+# reviewer / loop_7.md
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_7.md`
+- **Structured JSON:** [`b02410487f9a0e66c81d.json`](../../sessions/b0/b02410487f9a0e66c81d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: max_wall_time
+updated: '2026-05-14T05:19:47+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- westd-48478 用 `root` 账号，home-1x5090 用 `sonny` 账号。搞反会 SSH 失败。
+- westd-48478 和 seetacloud-westd-4x5090 是**同一台机器**（D041 确认），不要当两台用。
+- CWM v11 数据已被 D055 废弃（混合 transformers 4.57.6→5.8.0 checkpoint），论文中引用的 CWM 66.6% / 75.2% unparseable **不可信**，必须用 CWM v12 替代。
+- 训练数据行顺序在 westd 和 home 不同（首行分别是 django/scikit-learn），同 seed 跨服务器结果不可直接对比——只有 within-server apple-to-apple 对比有效。
+- eval_loss "best" checkpoint（通常 ckpt-200）的 test accuracy 远低于后续 checkpoint（差 16-25pp），**不要信 eval_loss 选 checkpoint**。
+
+### 2. 🖥️ 基础设施快照
+- **home-1x5090** (sonny): 工作目录 `/home/sonny/exec-sim-repair-verifier`，系统 Python，1×RTX 5090
+  - CLS v5 checkpoints: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/` (ckpt-600, 4000, 4200, 4400, 4600)
+  - CLS seed123 checkpoints: `checkpoints_repo_cls_seed123_home/` (ckpt-200~1000)
+  - 结果目录: `results/repo_cls_seed123_ckpt{400,600,800,1000}/`, `results/repo_cls_v5_ckpt{600,...}/`
+  - 活跃进程: seed123 ckpt-800 eval (PID 3027230, cuda:0)，v5 sweep 排队等 GPU (PID 3029049, conda shortcut)
+- **westd-48478** (root): 工作目录 `/home/sonny/exec-sim-repair-verifier`，conda base (`/root/miniconda3/`)，4×RTX 5090
+  - 模型缓存: `/root/autodl-tmp/.hf_cache/Qwen/`
+  - Checkpoints: `/root/autodl-tmp/checkpoints_repo_{cls_v5_conda,cls_8b_conda,cwm_conda_v12,cwm_seed123_conda}/`
+  - 结果: `/home/sonny/exec-sim-repair-verifier/results/` + `/root/autodl-tmp/results/`
+  - 活跃进程: CWM seed123 eval (GPU 0, PID 195531), CWM v12 eval (GPU 1, PID 195668), GPU 2/3 刚完成 CLS sweep
+- W&B: 未配置（no_wandb）
+- 数据: 两台均 `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (train 70748, test 9784)
+
+### 3. 📊 当前状态
+**刚完成：**
+- 系统性分析报告（westd conda 环境正常，checkpoint 选择是主因）
+- Phase E 论文 patch 审查（2 critical + 3 warning，核心：CWM v11 数据无效 + 论文数字即将大幅变化）
+- Westd CLS v5-conda checkpoint sweep 结果确认：ckpt-200=52.96%, **ckpt-400=78.43%**, ckpt-600=76.37%
+- Home CLS seed123 ckpt-600=**80.73%**（最高 CLS 准确率）
+
+**Registry ANALYZING:**
+- `repo-level-cls-v5-conda`: westd, seed42, killed — 需用 ckpt-400(78.43%) 更新 metrics
+- `repo-level-cwm-seed123-conda`: westd, seed123, killed — eval 进行中
+
+**进行中的 eval:**
+- Home: seed123 ckpt-800 eval (~74.1% at 7040/9784, ~30min 完成), 之后跑 ckpt-1000, 之后跑 v5 sweep
+- Westd GPU 0: CWM seed123 ckpt-500 eval (56.5% at 1192/9784, ETA ~9h)
+- Westd GPU 1: CWM v12 ckpt-500 eval (57.3% at 1200/9784, ETA ~9h)
+- Westd GPU 2/3: 空闲（刚完成 CLS sweep）
+
+### 4. 📋 待办（条件触发式）
+- CWM v12 eval 完成 → 核对 unparseable rate：>60% 则论文 "format non-compliance" 诊断成立；<30% 则 D055 混合版本是主因，需重写 failure mode 分析
+- CWM v12 + CWM seed123 完成 → 发布 apple-to-apple 审查报告：westd CLS ckpt-400(78.43%) vs CWM v12(~57%) = ~21pp gap，远大于论文当前的 10.32pp
+- Home seed123 全 sweep 完成 → 确认 ckpt-600 是最优（ckpt-800 ~74% 已下降），发布 multi-seed CLS 结论
+- Home v5 sweep 完成 → 验证 ckpt-600(76.92%) 是否为 v5 最优，后续 ckpt-4000+ 预期更差
+- 论文更新请求到达 → 用新数据重做 Phase E 审查：重点检查 CWM v12 数字是否与 registry 一致、apple-to-apple gap 是否正确引用
+- Westd GPU 2/3 空闲 → 建议 Director 安排 CLS 8B-conda ckpt-400/600 sweep（当前只有 ckpt-200=70.22%）
+
+### 5. 🎯 战略上下文
+- **核心结论链**: D007(CWM null at func-level) → D008(repo-level go/no-go) → D046(超参修正) → D052(GO: 10.3pp gap) → D054(apple-to-apple) → D055(v11 废弃) → D056(early stop) → **checkpoint sweep 揭示真实 gap ~21pp**
+- **C1 比 D052 判决时更强**: CLS 78-81% vs CWM ~57% = 21-24pp gap（within-server），远超 D008 的 3pp 门槛
+- **最容易判断错的事**: (1) 不要用 eval_loss 选 checkpoint，必须做 test accuracy sweep；(2) 不要把 westd 和 home 的绝对数字直接对比（数据顺序不同）；(3) CWM v11 的 66.6%/75.2% unparseable 是废弃数据，等 v12
+- **deadline**: EMNLP ARR May 25（11 天），论文结构和 narrative 已成型，等 CWM v12 eval (~9h) 完成后可一次性更新所有 repo-level 数字
+- **CLS 8B-conda ckpt-200 = 70.22%** 可能也有 checkpoint 选择问题，如果 GPU 空闲应做 sweep
+
+
+---

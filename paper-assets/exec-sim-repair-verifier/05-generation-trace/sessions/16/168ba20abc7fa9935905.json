@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "168ba20abc7fa9935905",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778605176.md",
+  "task_key": "loop_2_1778605176",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778605176.md",
+    "occurrence": 1,
+    "bytes": 3928,
+    "sha256": "599ccb195ec3400db39a4775f10834e1043b0cc82a64acb10d8dcdf65c0e2e5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T16:30:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：home-1x5090 cuda:0, westd-48478 cuda:2, westd-48478 cuda:3。seetacloud-westd-4x5090 cuda:0/1/2/3 是借用，非长期分配\n- seetacloud 上 repo-level 实验（cls/cwm）是决胜实验，**不得中断或抢占其 GPU**\n- cwm-seed123 刚完成释放了 seetacloud cuda:2，但该卡上还有 cwm-seed789 在 cuda:1 跑——不要混淆卡号\n- westd-48478 cuda:2/3 分配但空闲，已向 Director 请示安排什么实验，**等 Director 回复再启动 GPU 任务**\n- 统计检验用 clustered bootstrap（按 problem_id 聚类），不是独立 bootstrap——之前 D019 已明确\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (account: root): 工作目录 `/home/sonny/exec-sim-repair-verifier/`，Python `/root/miniconda3/bin/python`，conda base env，HF cache `/root/autodl-tmp/.hf_cache`\n- **home-1x5090** (account: sonny): 工作目录 `/home/sonny/exec-sim-repair-verifier/`\n- 模型：Qwen3-4B (`/root/.cache/huggingface/hub/Qwen/Qwen3-4B`)，Qwen3-8B 同目录\n- 活跃进程（seetacloud）：repo-level-cls (PID unknown, cuda:0)，cwm-seed789 (PID 42227, cuda:1)，repo-level-cwm (PID 38925, cuda:3)\n- 活跃进程（home）：cwm-seed0 (PID 2764835, cuda:0)\n- Cron 监控：repo-level-cwm, cwm-seed789, cwm-seed0 三个 active cron\n\n### 3. 📊 当前状态\n**刚完成**: cwm-seed123 从 ANALYZING → DONE (success, acc=87.2%, pass_f1=86.95, fail_f1=87.44)。已更新 registry、memory.md，已汇报 Director。\n\n**RUNNING 实验**:\n- `repo-level-cls` — seetacloud cuda:0，Repo-level classification baseline（决胜战场）\n- `repo-level-cwm` — seetacloud cuda:3，Repo-level CWM generation baseline\n- `cwm-seed789` — seetacloud cuda:1，CWM 4B seed=789（5-seed 第 4 个）\n- `cwm-seed0` — home cuda:0，CWM 4B seed=0（5-seed 第 5 个）\n\n**等待中**:\n- 2 个 Worker 刚 spawn：`analysis:5paired-bootstrap-prep`（准备 5-seed 统计分析代码）和 `code:pertest-precision-recall-prep`（准备 Pillar 2 评估代码）——等 [WORKER DONE] 回调\n- 等 Director 回复：westd-48478 cuda:2/3 空闲 GPU 安排什么实验 + per-test-precision-recall 是否可自主启动\n\n### 4. 📋 待办\n- cwm-seed789 cron 回调 → 分析结果 → update_registry DONE → 检查是否 5-seed CWM 全齐\n- cwm-seed0 cron 回调 → 同上 → 若 5-seed 全齐 → 立即用 `analysis_5paired_bootstrap.py` 跑 5-paired clustered bootstrap + TOST\n- repo-level-cls/cwm cron 回调 → **这是最关键实验**，按 ROADMAP D008 Go/No-Go 标准判断：F1 diff ≥3pp → 全力推 EMNLP Main；1-3pp → 加 seeds；<1pp → Kill C1, pivot Plan B\n- Worker 回调（5paired-bootstrap-prep）→ 审查代码质量 → 用已有 3 seeds dry-run 验证\n- Worker 回调（pertest-precision-recall-prep）→ 审查代码 → 等 Director 批准后在空闲 GPU 上跑\n- Director 批准 per-test-precision-recall → 在 westd-48478 或 seetacloud cuda:2 提交\n\n### 5. 🎯 战略上下文\n- **核心叙事已 pivot 三次**（granularity → reformulation → complexity-dependent advantage），repo-level 是最后机会。Reviewer 已标记高风险\n- 函数级 CLS ≈ CWM（gap <0.2pp），但 8B scaling 扩大 gap 到 2.9pp → \"scaling widens gap\" 是可辩护的\n- Pillar 1 (Complexity-Dependent Advantage): 函数级 null result，全看 repo-level\n- Pillar 2 (Diagnostic Signals): **零数据**，per-test-precision-recall 是填补它的唯一实验\n- Pillar 3 (Oracle Frontier): ✅ 完成\n- **ARR May 25 deadline，剩 13 天，0 容错**。关键路径 = repo-level 结果 → 写作\n- CLS seed789 (89%) 是异常高值，5-paired 分析时注意此 seed 可能过度放大 paired difference\n- 易错：不要混淆 seetacloud（借用，跑 repo-level + multi-seed）和 westd-48478（分配但空闲）的 GPU 归属\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778605176.md"
+}

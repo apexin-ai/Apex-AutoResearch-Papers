@@ -1,0 +1,41 @@
+{
+  "model": "Qwen3-8B",
+  "formulation": "TRAJ",
+  "seed": 123,
+  "training_status": "success",
+  "checkpoint": "checkpoints_traj_8b_seed123/best",
+  "best_source_checkpoint": "checkpoints_traj_8b_seed123/checkpoint-504",
+  "training_steps": 756,
+  "training_epochs": 3,
+  "best_eval_loss": 0.07821311056613922,
+  "test_set_size": 1032,
+  "accuracy": 87.79,
+  "pass_f1": 86.74,
+  "fail_f1": 88.69,
+  "unparseable_rate": 0,
+  "per_test_consistency": 76.07,
+  "class_balance": {
+    "resolved": 479,
+    "unresolved": 553
+  },
+  "confusion_matrix": {
+    "tn": 494,
+    "fp": 59,
+    "fn": 67,
+    "tp": 412
+  },
+  "per_class": {
+    "unresolved": {
+      "precision": 88.06,
+      "recall": 89.33,
+      "f1": 88.69
+    },
+    "resolved": {
+      "precision": 87.47,
+      "recall": 86.01,
+      "f1": 86.74
+    }
+  },
+  "majority_baseline_accuracy": 53.59,
+  "accuracy_vs_baseline_gap_pp": 34.21
+}

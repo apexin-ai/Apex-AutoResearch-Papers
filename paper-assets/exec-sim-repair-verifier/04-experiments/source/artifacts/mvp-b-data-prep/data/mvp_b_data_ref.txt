@@ -1,0 +1,1 @@
+Remote path: home-1x5090:/home/sonny/exec-sim-repair-verifier/data/\nFiles: train.jsonl, val.jsonl, test.jsonl, stats.json\nTotal: 19,076 samples (HumanEval 5,575 + MBPP 13,501)\nClass balance: pass 52.0% / fail 48.0%\nMajority baseline: 52.0%\nMutation types: operator_swap (66.1% fail), return_value (87.5%), boundary_removal (72.3%), variable_swap (51.6%), off_by_one (42.5%)

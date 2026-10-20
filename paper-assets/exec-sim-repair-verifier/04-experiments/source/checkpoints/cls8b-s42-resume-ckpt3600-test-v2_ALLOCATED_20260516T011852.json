@@ -1,0 +1,18 @@
+{
+  "exp_id": "cls8b-s42-resume-ckpt3600-test-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:18:39.982Z",
+    "updated_at": "2026-05-16T01:18:52.532Z",
+    "spec": {
+      "hypothesis": "CLS 8B s42 resume ckpt-3600 (val-best 90.28%) 完整 test eval (n=9784)",
+      "parent": "cls8b-s42-resume-ckpt3600-test"
+    }
+  },
+  "timestamp": "2026-05-16T01:18:52.823593+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "repo-level-cls-v5-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:55:01.260Z",
+    "updated_at": "2026-05-14T01:18:22.440Z",
+    "spec": {
+      "hypothesis": "CLS seed42 conda 重训 (westd, transformers 4.57.6)，与 CWM v12 同服务器+同环境 apple-to-apple 对比。消除 CLS v5 (home) vs CWM v12 (westd) 的跨服务器差异。",
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 train_repo_verifier.py --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_v5_conda/",
+      "server": "westd-48478",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 2,
+      "grad_accumulation": 16,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_v5_conda/",
+      "log_path": "/root/autodl-tmp/checkpoints_repo_cls_v5_conda/train.log",
+      "env": "conda base, transformers 4.57.6",
+      "tmux_session": "cls-v5-conda",
+      "gpu": "cuda:2"
+    },
+    "notes": "D056 early stop. Best checkpoint-200 (eval_loss=0.0829). 训练已过拟合。Eval启动: tmux eval_cls_v5, GPU 2, batch_size=16."
+  },
+  "timestamp": "2026-05-14T01:18:22.588024+00:00",
+  "trigger": "update_registry"
+}

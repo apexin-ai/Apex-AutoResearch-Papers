@@ -1,0 +1,32 @@
+{
+  "exp_id": "model-size-scaling-cls8b",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T05:08:43.293Z",
+    "updated_at": "2026-05-12T07:50:12.904Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cls8b/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cls8b_results.json\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "11443",
+      "log_path": "~/runs/exec-sim-repair-verifier/model-size-scaling-cls8b.log",
+      "submitted_at": "2026-05-12T07:45:42.174Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42
+    },
+    "hypothesis": "Qwen3-8B classification 在函数级 per-test 任务上的 F1 高于 4B (87.5%)，且与 8B CWM 的差距大于 4B 尺度的差距（0.2pp），验证 classification 优势随模型增大扩大"
+  },
+  "timestamp": "2026-05-12T07:50:12.935278+00:00",
+  "trigger": "update_registry"
+}

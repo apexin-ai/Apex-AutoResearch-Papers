@@ -1,0 +1,646 @@
+# diagnose cwm8b v3 status
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_diagnose_cwm8b-v3-status_20260516T011031.jsonl`
+- **Structured JSON:** [`1c59dd7629a4571cdde0.json`](../../sessions/1c/1c59dd7629a4571cdde0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T01:11:28.178081+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T01:11:28.178424+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T01:11:28.178607+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps -p 443216 -o pid,etime,pcpu,rss,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ps -p 443216 -o pid,etime,pcpu,rss,args",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T01:11:28.178742+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T01:11:28.178943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED %CPU   RSS COMMAND\\n443216       24:03  0.0  3552 bash -c rm -f /tmp/agent-ml-exit/cwm8b-ckpt400-test-eval-v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v3.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/cwm8b-ckpt400-test-eval-v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /home/sonny/exec-sim-repair-verifier && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/\\\"'; } > ~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v3.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T01:11:28.179104+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T01:11:28.179232+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T01:11:28.179360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 17609 MiB, 32607 MiB, 77 %\\n1, 17609 MiB, 32607 MiB, 74 %\\n2, 29273 MiB, 32607 MiB, 96 %\\n3, 21133 MiB, 32607 MiB, 92 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T01:11:28.179563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_v3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_v3/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T01:11:28.179727+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_v3/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T01:11:28.179903+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -30 /root/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "tail -30 /root/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T01:11:28.180077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 08:47:03,255 INFO [CWM] 5256/9784  (skipped, already in incremental)\\n2026-05-16 08:47:03,255 INFO [CWM] 5264/9784  (skipped, already in incremental)\\n2026-05-16 08:47:03,256 INFO [CWM] 5272/9784  (skipped, already in incremental)\\n2026-05-16 08:47:03,256 INFO [CWM] 5280/9784  (skipped, already in incremental)\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-16 08:48:00,414 INFO [CWM] 5288/9784  running_acc=100.0%  (new=1 resumed=5287)\\n2026-05-16 08:48:56,939 INFO [CWM] 5296/9784  running_acc=55.6%  (new=9 resumed=5287)\\n2026-05-16 08:49:53,495 INFO [CWM] 5304/9784  running_acc=70.6%  (new=17 resumed=5287)\\n2026-05-16 08:50:50,269 INFO [CWM] 5312/9784  running_acc=72.0%  (new=25 resumed=5287)\\n2026-05-16 08:51:46,848 INFO [CWM] 5320/9784  running_acc=69.7%  (new=33 resumed=5287)\\n2026-05-16 08:52:43,457 INFO [CWM] 5328/9784  running_acc=65.9%  (new=41 resumed=5287)\\n2026-05-16 08:53:40,052 INFO [CWM] 5336/9784  running_acc=59.2%  (new=49 resumed=5287)\\n2026-05-16 08:54:36,636 INFO [CWM] 5344/9784  running_acc=64.9%  (new=57 resumed=5287)\\n2026-05-16 08:55:33,240 INFO [CWM] 5352/9784  running_acc=67.7%  (new=65 resumed=5287)\\n2026-05-16 08:56:29,783 INFO [CWM] 5360/9784  running_acc=67.1%  (new=73 resumed=5287)\\n2026-05-16 08:57:26,562 INFO [CWM] 5368/9784  running_acc=67.9%  (new=81 resumed=5287)\\n2026-05-16 08:58:23,110 INFO [CWM] 5376/9784  running_acc=67.4%  (new=89 resumed=5287)\\n2026-05-16 08:59:19,589 INFO [CWM] 5384/9784  running_acc=67.0%  (new=97 resumed=5287)\\n2026-05-16 09:00:16,325 INFO [CWM] 5392/9784  running_acc=66.7%  (new=105 resumed=5287)\\n2026-05-16 09:01:12,779 INFO [CWM] 5400/9784  running_acc=64.6%  (new=113 resumed=5287)\\n2026-05-16 09:02:09,391 INFO [CWM] 5408/9784  running_acc=64.5%  (new=121 resumed=5287)\\n2026-05-16 09:02:56,498 INFO [CWM] 5
+…[truncated 878 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T01:11:28.180227+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps aux --sort=-pcpu",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ps aux --sort=-pcpu",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T01:11:28.180431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     444502  104  0.2 51202712 2094736 ?    Rl   08:54  17:22 python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_ckpt1000_test_mutation/\\nroot     444130  103  0.2 51187028 2072280 ?    Rl   08:53  17:37 python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt1000_test_mutation/\\nroot     443221  102  0.2 55056188 2143932 pts/1 Rl  08:46  24:45 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/\\nroot     442200  102  0.6 67745884 5298180 ?    Rl   08:41  30:20 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100 --save_total_limit 5 --dataloader_num_workers 0 --epochs 3\\nroot     446037  2.7  0.0  16692 11040 ?        Ss   09:10   0:00 sshd: root@notty\\nroot     446035  2.2  0.0  16692 10576 ?        Ss   09:10   0:00 sshd: root@notty\\nroot        917  1.7  0.0 720096 20444 ?        Sl   May12  94:37 /bin/supervisord -c /init/supervisor/supervi
+…[truncated 6300 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T01:11:28.180608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "ls -la /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T01:11:28.180745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 35752\\ndrwxr-xr-x  2 root root       70 May 16 08:42 .\\ndrwxr-xr-x 20 root root     4096 May 16 08:53 ..\\n-rw-r--r--  1 root root   423317 May 16 08:45 eval_v2.log\\n-rw-r--r--  1 root root 19336071 May 16 09:10 results_incremental.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T01:11:28.180894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "find /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/ -name \"predictions*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "find /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/ -name \"predictions*.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T01:11:28.181042+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T01:11:28.181221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-westd-4x5090",
+    "command": "wc -l /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T01:11:28.181365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5480 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T01:11:28.181535+00:00_
+
+## 状态汇报
+
+### PID 443216：**存活，正常运行**
+- 已运行 24 分钟，进程是 submit_training_job 的 bash wrapper
+- 实际 eval 子进程 PID 443221（`python3 eval_repo_cwm.py`），CPU 102%，正常推理中
+
+### 进度
+- **5480 / 9784** 样本已完成（56%）
+- 其中 5287 条是从之前增量恢复的，新跑了 193 条
+- running_acc ≈ 60.1%（新样本上的准确率）
+- 每 batch（8 条）约 57 秒，预计剩余 ~50 分钟完成
+
+### GPU 占用
+
+| GPU | 显存占用 | 利用率 | 任务 |
+|-----|---------|--------|------|
+| 0 | 17609/32607 MiB | 77% | cls8b eval (ckpt1000 mutation) |
+| 1 | 17609/32607 MiB | 74% | cls8b eval (ckpt1000 mutation, resume) |
+| 2 | 29273/32607 MiB | 96% | train_repo_cwm.py (继续训练 ckpt-6100) |
+| 3 | 21133/32607 MiB | 92% | **cwm8b-ckpt400-test-eval-v3** ← 本任务 |
+
+### 其他 eval 进程
+- `eval_repo_cls.py` × 2（GPU 0 和 1，cls8b_s42 checkpoint-1000 test mutation）
+- `train_repo_cwm.py` × 1（GPU 2，从 checkpoint-6100 继续训练）
+
+### 结论
+进程正常运行，registry 状态卡在 ALLOCATED 可能是 agent-ml 框架未轮询到 exit code 文件（进程还没结束所以 exit 文件不存在）。无需干预。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_cwm8b-v3-status_20260516T011031"
+}
+```
+
+</details>
+
+---

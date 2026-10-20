@@ -1,0 +1,33 @@
+{
+  "exp_id": "deepseek-cwm-repo-s123-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:12:03.909Z",
+    "updated_at": "2026-05-20T04:56:17.480Z",
+    "hypothesis": "Eval DeepSeek CWM repo-level s123 训练产出的 best checkpoint，验证 CWM repo-level 跨 seed 一致性。与 s42 (61.49% @seq4096) 对比。",
+    "parent": "deepseek-cwm-repo-s123-train",
+    "spec": {
+      "command": "/root/miniconda3/bin/python eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/best/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --split test --device cuda:0 --max_seq_length 4096 --max_new_tokens 512 --batch_size 4 --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "893823",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/best/",
+      "eval_data": "repo-level test set (9784 instances)",
+      "max_seq_length": 4096,
+      "output_dir": "/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T04:56:17.929539+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "155093dd531c8d050446",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval ckpt1400 test rerun",
+  "task_key": "worker_eval_ckpt1400-test-rerun_20260515T053023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt1400-test-rerun_20260515T053023_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "a1f3b27e09ba6e85962f7ea0dd3f2a265f5f32e9ffe92758a3db001ffbaef6bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已提交，PID 335070，cuda:0。3 分钟后检查首批推理是否正常启动。\n\n当前状态：\n- **Partial predictions**：无文件保存。旧 run 在 8420/9784 (86.1%) 被杀，running_acc=85.4%\n- **纠正**：checkpoint 路径是 `checkpoints_repo_cls_8b_s42_resume/checkpoint-1400`（不是 `_conda`）\n- **命令参数**：`--model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --max_new_tokens 8 --batch_size 1 --max_seq_length 8192`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt1400-test-rerun.md"
+}

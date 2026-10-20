@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0a3b1ef2838fe22b74ba",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh cls14b bf16 eval",
+  "task_key": "worker_ssh_cls14b-bf16-eval_20260523T023042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls14b-bf16-eval_20260523T023042.log",
+    "occurrence": 1,
+    "bytes": 609406,
+    "sha256": "f43cc48a5263f16a9ecc1e521ec4ec9e4555f1d49c47d5d4b8e6c4433a4be8c6"
+  },
+  "statistics": {
+    "messages": 455,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 199,
+      "tool_result": 199,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 455,
+      "chunks": [
+        {
+          "path": "0a3b1ef2838fe22b74ba-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0a3b1ef2838fe22b74ba-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0a3b1ef2838fe22b74ba-part-0003.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cls14b-bf16-eval.md"
+}

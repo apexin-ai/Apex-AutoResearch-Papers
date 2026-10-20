@@ -1,0 +1,133 @@
+# ops cwm eval bs upgrade
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_cwm-eval-bs-upgrade_20260523T200824_result.json`
+- **Structured JSON:** [`1e7c4c8cdc2e51fdb7a5.json`](../../sessions/1e/1e7c4c8cdc2e51fdb7a5.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有信息已收集完毕。
+
+## 调查结果
+
+### 1. 完整命令行
+
+**GPU 0 — s123 (PID 278348)**:
+```bash
+python3 eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-300 \
+  --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B \
+  --max_seq_length 2048 --max_new_tokens 1024 \
+  --batch_size 1 --device cuda:0 \
+  --output_dir /root/autodl-tmp/eval_results/cwm_8b_s123_ckpt300_reeval
+```
+
+**GPU 1 — s456 (PID 278746)**:
+```bash
+python3 eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-300 \
+  --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B \
+  --max_seq_length 2048 --max_new_tokens 1024 \
+  --batch_size 1 --device cuda:0 \
+  --output_dir /root/autodl-tmp/eval_results/cwm_8b_s456_ckpt300_reeval
+```
+
+注意：两个都写了 `--device cuda:0`，实际分别在 GPU 0/1 上，应该是通过 `CUDA_VISIBLE_DEVICES` 分配的。
+
+### 2. batch_size 支持
+
+**完全支持。** 脚本第 361 行 `--batch_size` 是标准 argparse 参数，默认值 1。推理函数 `run_inference()` (L194-277) 实现了完整的 batch 推理：左填充 padding、attention mask、batch 循环。
+
+### 3. 断点续传
+
+**支持。** 脚本会将结果增量写入 `results_incremental.jsonl`，重启时自动加载已完成的样本跳过。当前进度：
+
+| 实验 | 已完成 | 总量 | 进度 |
+|------|--------|------|------|
+| s123 | 1,156 | 9,784 | 11.8% |
+| s456 | 1,298 | 9,784 | 13.3% |
+
+### 4. 显存估算
+
+| GPU | batch_size | 显存占用 |
+|-----|-----------|---------|
+| GPU 0 (bs=1) | 1 | 17,013 MiB |
+| GPU 1 (bs=1) | 1 | 17,011 MiB |
+| GPU 3 (bs=8) | 8 | 27,883 MiB |
+
+- 模型基础显存 ≈ 17 GB
+- 每增加 1 个 batch sample ≈ +1.6 GB
+- **bs=8 预计 ≈ 28 GB，32 GB 的 5090 放得下**（GPU 3 已验证）
+- bs=4 预计 ≈ 22 GB，也没问题
+
+### 5. ETA 估算
+
+| 方案 | 剩余样本 | 速度 | 耗时 | ETA |
+|------|---------|------|------|-----|
+| s123 bs=1 (现状) | 8,628 | ~131/h | 65.9h | 05-26 22:00 ❌ |
+| s123 bs=8 (重启) | 8,628 | ~616/h | 14.0h | **05-24 02:00** ✅ |
+| s456 bs=1 (现状) | 8,486 | ~147/h | 57.7h | 05-26 14:00 ❌ |
+| s456 bs=8 (重启) | 8,486 | ~616/h | 13.8h | **05-24 02:00** ✅ |
+
+### 6. 建议
+
+**方案 A（最小操作）**：只 kill s123，cuda:2 用 bs=8 重启。s456 继续在 GPU 1 跑 bs=1。
+
+```bash
+# 1. Kill s123
+kill 278348
+
+# 2. 在 cuda:2 重启 s123，bs=8，nohup 后台运行
+cd /home/sonny/exec-sim-repair-verifier && \
+nohup python3 eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-300 \
+  --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B \
+  --max_seq_length 2048 --max_new_tokens 1024 \
+  --batch_size 8 --device cuda:2 \
+  --output_dir /root/autodl-tmp/eval_results/cwm_8b_s123_ckpt300_reeval \
+  > /root/autodl-tmp/eval_results/cwm_8b_s123_ckpt300_reeval/nohup.log 2>&1 &
+```
+
+**方案 B（推荐，两个都救）**：kill 掉 s123 和 s456，分别在 cuda:0 和 cuda:2 用 bs=8 重启。GPU 1 腾空。两个都能在 05-24 凌晨跑完，DDL 前 ~24 小时余量。
+
+```bash
+# 1. Kill both
+kill 278348 278746
+
+# 2. s123 → cuda:2, bs=8
+cd /home/sonny/exec-sim-repair-verifier && \
+nohup python3 eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-300 \
+  --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B \
+  --max_seq_length 2048 --max_new_tokens 1024 \
+  --batch_size 8 --device cuda:2 \
+  --output_dir /root/autodl-tmp/eval_results/cwm_8b_s123_ckpt300_reeval \
+  > /root/autodl-tmp/eval_results/cwm_8b_s123_ckpt300_reeval/nohup.log 2>&1 &
+
+# 3. s456 → cuda:0, bs=8（GPU 0 被 kill 后空出）
+nohup python3 eval_repo_cwm.py \
+  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-300 \
+  --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B \
+  --max_seq_length 2048 --max_new_tokens 1024 \
+  --batch_size 8 --device cuda:0 \
+  --output_dir /root/autodl-tmp/eval_results/cwm_8b_s456_ckpt300_reeval \
+  > /root/autodl-tmp/eval_results/cwm_8b_s456_ckpt300_reeval/nohup.log 2>&1 &
+```
+
+方案 B 需要 GPU 0 + GPU 2 各 ~28 GB，加上 GPU 3 的 ckpt6100 在 GPU 3，三路互不冲突。GPU 1 完全空闲可做他用。
+
+---

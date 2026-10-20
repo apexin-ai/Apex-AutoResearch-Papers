@@ -1,0 +1,17 @@
+{
+  "exp_id": "cwm8b-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T09:23:40.894Z",
+    "updated_at": "2026-05-12T09:23:40.895Z",
+    "spec": {
+      "plan_id": "model-size-scaling"
+    }
+  },
+  "timestamp": "2026-05-12T09:23:40.994850+00:00",
+  "trigger": "update_registry"
+}

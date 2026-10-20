@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d19743826ada830d7ce",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 8b ckpt3000 val wait submit",
+  "task_key": "worker_eval_seed123-8b-ckpt3000-val-wait-submit_20260514T204124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-8b-ckpt3000-val-wait-submit_20260514T204124_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "3ee2001ae35400be2ecb21b4c48ecf3e757909ac3f028c30929e87bb382450a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 上 PID 281646 仍在运行。已设置 3 分钟后自动轮询，空闲后立即提交 seed123 8B ckpt-3000 val eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-8b-ckpt3000-val-wait-submit.md"
+}

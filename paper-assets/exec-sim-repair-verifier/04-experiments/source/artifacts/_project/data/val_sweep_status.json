@@ -1,0 +1,72 @@
+{
+  "sweep_config": {
+    "model": "CLS 8B s42 resume",
+    "eval_set": "val (n=9335)",
+    "seq_length": 8192,
+    "batch_size": 1,
+    "majority_baseline": 75.88,
+    "training_exp_id": "repo-level-cls-8b-s42-resume",
+    "resume_from": "original ckpt-600 (repo-level-cls-8b-conda/checkpoint-600)",
+    "resume_checkpoint_range": "600-5800 (step=200, 27 checkpoints)",
+    "original_training_exp_id": "repo-level-cls-8b-conda"
+  },
+  "existing_points": [
+    {"ckpt": 200, "val_acc": 63.52, "f1_macro": 61.17, "f1_pass": 70.7, "f1_fail": 51.6, "source": "cls8b-s42-ckpt200-val8192-eval-v2", "is_resume": false, "in_resume_range": false, "note": "original-only checkpoint, not in resume range"},
+    {"ckpt": 400, "val_acc": 80.96, "f1_macro": null, "f1_pass": null, "f1_fail": null, "source": "repo-level-cls-8b-conda", "is_resume": false, "in_resume_range": false, "note": "original-only checkpoint, not in resume range, partial metrics"},
+    {"ckpt": 600, "val_acc": 85.00, "f1_macro": null, "f1_pass": null, "f1_fail": null, "source": "repo-level-cls-8b-conda", "is_resume": false, "in_resume_range": true, "note": "resume starting point = original ckpt-600 (identical weights), partial metrics"},
+    {"ckpt": 800, "val_acc": 84.50, "f1_macro": 79.20, "f1_pass": null, "f1_fail": null, "source": "cls8b-s42-ckpt800-val8192-eval", "is_resume": false, "in_resume_range": true, "note": "original training data; resume ckpt-800 may differ (needs verification)"},
+    {"ckpt": 1000, "val_acc": 88.23, "f1_macro": 82.72, "f1_pass": 92.5, "f1_fail": 73.0, "source": "cls8b-s42-ckpt1000-val8192-eval", "is_resume": false, "in_resume_range": true, "note": "original val-best; resume ckpt-1000 may differ (needs verification)"},
+    {"ckpt": 1200, "val_acc": 87.76, "f1_macro": 81.25, "f1_pass": 92.3, "f1_fail": 70.2, "source": "cls8b-s42-ckpt1200-val8192-v3", "is_resume": false, "in_resume_range": true, "note": "original training data; resume ckpt-1200 may differ"},
+    {"ckpt": 1400, "val_acc": 85.97, "f1_macro": 77.15, "f1_pass": 91.34, "f1_fail": 62.95, "source": "cls8b-s42-ckpt1400-val8192-eval", "is_resume": false, "in_resume_range": true, "note": "original training data; resume ckpt-1400 may differ"},
+    {"ckpt": 1600, "val_acc": 86.75, "f1_macro": 78.94, "f1_pass": 91.76, "f1_fail": 66.12, "source": "cls8b-s42-ckpt1600-val8192-v2", "is_resume": false, "in_resume_range": true, "note": "original training data; resume ckpt-1600 may differ"}
+  ],
+  "pending_points": [
+    {"ckpt": 1800, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 2000, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 2200, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 2400, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 2600, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 2800, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 3000, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 3200, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 3400, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 3600, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 3800, "exp_id": "cls8b-s42-resume-val-sweep-seq8192-v2", "status": "running", "gpu": "cuda:0", "pid": 398981},
+    {"ckpt": 4000, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 4200, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 4400, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 4600, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 4800, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 5000, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 5200, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 5400, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 5600, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526},
+    {"ckpt": 5800, "exp_id": "cls8b-s42-resume-val-sweep-gpu1", "status": "running", "gpu": "cuda:1", "pid": 405526}
+  ],
+  "unverified_overlap": [
+    {"ckpt": 800, "original_val_acc": 84.50, "resume_val_acc": null, "status": "not_evaluated", "note": "resume ckpt-800 exists but has no val eval; original data used as proxy"},
+    {"ckpt": 1000, "original_val_acc": 88.23, "resume_val_acc": null, "status": "not_evaluated", "note": "resume ckpt-1000 exists but has no val eval; original data used as proxy"},
+    {"ckpt": 1200, "original_val_acc": 87.76, "resume_val_acc": null, "status": "not_evaluated", "note": "resume ckpt-1200 exists but has no val eval"},
+    {"ckpt": 1400, "original_val_acc": 85.97, "resume_val_acc": null, "status": "not_evaluated", "note": "resume ckpt-1400 exists but has no val eval"},
+    {"ckpt": 1600, "original_val_acc": 86.75, "resume_val_acc": null, "status": "not_evaluated", "note": "resume ckpt-1600 exists but has no val eval"}
+  ],
+  "coverage": {
+    "resume_checkpoints_total": 27,
+    "with_val_data_original": 6,
+    "with_val_data_resume_verified": 1,
+    "currently_evaluating": 21,
+    "not_evaluated_resume_specific": 5,
+    "breakdown": {
+      "ckpt_200_400": "original-only (2 points), not in resume range",
+      "ckpt_600": "shared starting point, original val data = resume val data (identical weights)",
+      "ckpt_800_to_1600": "5 points with original val data only; resume checkpoints exist but unevaluated; original≈resume likely but unverified",
+      "ckpt_1800_to_5800": "21 points currently running (2 GPU parallel sweep)"
+    }
+  },
+  "data_consistency": {
+    "resume_ckpt_600_vs_original": "IDENTICAL — resume started from original ckpt-600, same weights",
+    "resume_ckpt_800_1600_vs_original": "UNVERIFIED — HF Trainer resume restores optimizer + data loader state (same seed=42), so training should be nearly deterministic. However, original used conda env (repo-level-cls-8b-conda) and resume may have different env. CUDA non-determinism also possible. Recommend: eval 1-2 resume overlap checkpoints to verify.",
+    "recommendation": "After sweep completes, spot-check resume ckpt-1000 val acc against original 88.23%. If within 0.5pp, treat original ckpt-800-1600 data as valid for resume curve. Otherwise, evaluate all 5 overlap checkpoints separately."
+  },
+  "notes": "8 original val data points (ckpt-200→1600, peak=ckpt-1000@88.23%) from repo-level-cls-8b-conda. Resume training (repo-level-cls-8b-s42-resume) resumed from original ckpt-600, total 6633 steps, 32 checkpoints saved. Currently running 2-GPU parallel val sweep covering ckpt-1800→5800 (21 checkpoints). After completion, the resume val curve will have 22 verified points (ckpt-600 + ckpt-1800→5800) plus 5 unverified proxy points (ckpt-800→1600 from original). Resume training showed severe overfitting after epoch 2 (best resume eval_loss at ckpt-4200), so the val accuracy peak may shift from original ckpt-1000. Expected ETA: ~May 16 05:00-10:00 UTC based on ~6 samples/sec rate."
+}

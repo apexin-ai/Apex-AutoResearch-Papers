@@ -1,0 +1,28 @@
+{
+  "exp_id": "cls8b-s42-ckpt1000-test-mutation",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:05:40.602Z",
+    "updated_at": "2026-05-16T01:08:26.115Z",
+    "spec": {
+      "description": "CLS 8B s42 ckpt-1000 (val-best) test eval with per-mutation-type accuracy breakdown",
+      "hypothesis": "CLS 8B s42 原始训练 ckpt-1000 test eval + mutation-type breakdown (主表模型)",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "model_name": "Qwen3-8B",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/",
+      "eval_data": "swebench_full test split",
+      "command": "eval_repo_cls.py + mutation_breakdown",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "seed": 42,
+      "data_count": "test split"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T01:08:26.392082+00:00",
+  "trigger": "update_registry"
+}

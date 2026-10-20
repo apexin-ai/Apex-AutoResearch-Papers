@@ -1,0 +1,23 @@
+{
+  "exp_id": "repo-level-cls-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-12T14:41:27.833Z",
+    "updated_at": "2026-05-12T21:27:37.635Z",
+    "hypothesis": "Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。验证 complexity-dependent CLS advantage。",
+    "notes": "ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。Dataset.__getitem__ 返回的数据格式有问题。",
+    "completed_at": "2026-05-12T18:57:16.615Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。Dataset.__getitem__ 返回的数据格式有问题。"
+      }
+    }
+  },
+  "timestamp": "2026-05-12T21:27:37.727672+00:00",
+  "trigger": "update_registry"
+}

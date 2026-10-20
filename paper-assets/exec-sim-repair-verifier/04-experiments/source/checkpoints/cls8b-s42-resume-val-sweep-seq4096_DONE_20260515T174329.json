@@ -1,0 +1,31 @@
+{
+  "exp_id": "cls8b-s42-resume-val-sweep-seq4096",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:30:21.415Z",
+    "updated_at": "2026-05-15T17:43:29.189Z",
+    "spec": {
+      "command": "bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep.sh",
+      "server": "seetacloud-westd-4x5090",
+      "pid": 397645,
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume",
+      "data_count": 9335,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "/root/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq4096.log",
+      "batch_size": 1,
+      "max_seq_length": 4096
+    },
+    "hypothesis": "s42 resume val sweep (seq4096): 21 checkpoints (1800-5800), bs=1",
+    "notes": "Director 决策 kill：seq4096 导致 3.8pp 精度下降不可用，恢复 seq8192",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T17:43:29.189Z"
+  },
+  "timestamp": "2026-05-15T17:43:29.457387+00:00",
+  "trigger": "update_registry"
+}

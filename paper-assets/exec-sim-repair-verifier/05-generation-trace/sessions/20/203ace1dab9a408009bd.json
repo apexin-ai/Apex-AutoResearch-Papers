@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "203ace1dab9a408009bd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd val sweep diagnosis",
+  "task_key": "worker_monitor_westd-val-sweep-diagnosis_20260515T172009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-val-sweep-diagnosis_20260515T172009_result.json",
+    "occurrence": 1,
+    "bytes": 2366,
+    "sha256": "66f456a3974677a6f9c9e6114132078b64e3038397b9c6f5fe44a2c61af17c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 1. cls8b-s42-resume-val-sweep (PID 388791, GPU 0) — 已死\n\n| 项目 | 详情 |\n|------|------|\n| **进程** | 不存在，GPU 0 空闲（0MiB, 0%） |\n| **退出码** | 1，退出时间 2026-05-16 00:03:21 CST |\n| **最后日志** | 评估 checkpoint-1800 到 560/9335 (6.0%)，running_acc=87.7%，时间 22:16:22 |\n| **结果保存** | 无。输出目录为空 |\n\n**死亡原因**：日志无 Traceback/Error/OOM 信息，直接中断。最后日志行到退出文件时间戳间隔 ~1h47m。最可能是评估 seq_length=8192 时触发了 CUDA OOM（8B 模型 + 8192 seq 在单卡 32GB 上紧张），进程被 kill 但 stderr 未写入日志文件。\n\n**修复方案**：GPU 0 现在空闲，可直接重启。建议修改脚本跳过已完成的 step（CSV 已有 1800 的 seq2048 结果），从 step 1800 seq8192 开始。若 OOM 复现，降 batch_size 到 4 或降 max_seq_length 到 4096。\n\n---\n\n### 2. CWM 8B training (PID 266816, GPU 2) — 运行中\n\n| 项目 | 详情 |\n|------|------|\n| **运行时长** | 23h36m |\n| **GPU** | GPU 2, 30733MiB/32607MiB, **98% util** |\n| **最新 checkpoint** | step 5100 (May 16 00:50) |\n| **保存速度** | ~40 min / 100 steps |\n\nCheckpoint 历史：400 → 4800 → 4900 → 5000 → 5100（中间的被清理了）。\n\n---\n\n### 3. CLS 8B s42 resume training (PID 295794, GPU 1) — 运行中\n\n| 项目 | 详情 |\n|------|------|\n| **运行时长** | 19h32m |\n| **GPU** | GPU 1, 27313MiB/32607MiB, **48% util** |\n| **最新 checkpoint** | step 6200 (May 16 01:07) |\n| **保存速度** | ~41 min / 200 steps |\n\n已保存 28 个 checkpoints（800 → 6200），全部保留。\n\n---\n\n### 4. CWM 8B ckpt-400 test eval (PID 381618, GPU 3) — 运行中\n\n| 项目 | 详情 |\n|------|------|\n| **运行时长** | 2h42m |\n| **GPU** | GPU 3, 22527MiB/32607MiB, **87% util** |\n| **进度** | 1760/9784 (18.0%) |\n| **速度** | ~10.9 samples/min |\n| **ETA** | ~12.3 小时（约 May 16 13:30 完成） |\n\n---\n\n### GPU 概览\n\n| GPU | 状态 | 显存 | 利用率 | 任务 |\n|-----|------|------|--------|------|\n| 0 | **空闲** | 0/32GB | 0% | val-sweep 已死 |\n| 1 | 运行 | 27.3/32GB | 48% | CLS 8B s42 训练 |\n| 2 | 运行 | 30.7/32GB | 98% | CWM 8B 训练 |\n| 3 | 运行 | 22.5/32GB | 87% | CWM 8B ckpt400 eval |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-val-sweep-diagnosis.md"
+}

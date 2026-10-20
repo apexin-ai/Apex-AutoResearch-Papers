@@ -1,0 +1,48 @@
+{
+  "exp_id": "deepseek-traj-repo-8k",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:24:55.739Z",
+    "updated_at": "2026-05-16T15:37:40.913Z",
+    "hypothesis": "TRAJ repo at seq_length=8192 (fair comparison with CLS/CWM repo) reduces unparseable rate and improves accuracy vs 2048 truncated version",
+    "spec": {
+      "command": "python3 train_traj_verifier.py --model_name deepseek-coder-6.7b-instruct --max_seq_length 8192 --epochs 3 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --seed 42",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "525459",
+      "log_path": "~/runs/exec-sim-repair-verifier/deepseek-traj-repo-8k.log",
+      "submitted_at": "2026-05-16T15:26:34.475Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/traj_train.jsonl",
+      "data_count": 386,
+      "model_name": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "wall_clock_seconds": 666.4,
+      "gpu_hours": 0.19
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k/best",
+    "log_path": "~/runs/exec-sim-repair-verifier/deepseek-traj-repo-8k.log",
+    "conclusion": "success",
+    "metrics": {
+      "test_accuracy": 81.25,
+      "unparseable": 0,
+      "best_eval_loss": 0.1216,
+      "best_epoch": 2,
+      "train_truncated_pct": 2.1,
+      "gpu_mem_mib": 22475,
+      "resolved_f1": 84.21,
+      "unresolved_f1": 76.92
+    },
+    "completed_at": "2026-05-16T15:37:40.913Z"
+  },
+  "timestamp": "2026-05-16T15:37:41.232985+00:00",
+  "trigger": "update_registry"
+}

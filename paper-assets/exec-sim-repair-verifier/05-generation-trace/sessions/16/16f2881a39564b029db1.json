@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "16f2881a39564b029db1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code clustered bootstrap ci",
+  "task_key": "worker_code_clustered-bootstrap-ci_20260512T090633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clustered-bootstrap-ci_20260512T090633.log",
+    "occurrence": 1,
+    "bytes": 1809675,
+    "sha256": "58514cc60b2b809232fd9f0a3185d444b9fcd777b45e4d0e8b84568fe15296e2"
+  },
+  "statistics": {
+    "messages": 1420,
+    "user_turns": 1,
+    "tool_calls": 638,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 136,
+      "tool_call": 638,
+      "tool_result": 638,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 468,
+      "chunks": [
+        {
+          "path": "16f2881a39564b029db1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0003.json",
+          "message_count": 108
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 952,
+      "chunks": [
+        {
+          "path": "16f2881a39564b029db1-part-0003.json",
+          "message_count": 72
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "16f2881a39564b029db1-part-0008.json",
+          "message_count": 160
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-clustered-bootstrap-ci.md"
+}

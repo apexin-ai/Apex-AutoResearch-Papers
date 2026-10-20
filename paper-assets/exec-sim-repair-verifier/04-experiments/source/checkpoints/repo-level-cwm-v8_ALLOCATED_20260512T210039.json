@@ -1,0 +1,28 @@
+{
+  "exp_id": "repo-level-cwm-v8",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:56:38.805Z",
+    "updated_at": "2026-05-12T21:00:39.469Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/ --no_wandb --save_steps 100",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "note": "v8: save_steps reduced 500->100 to survive kills. Added --resume_from_checkpoint support. All 8 prior runs died before step 500 = zero checkpoints ever. History: v1=SIGTERM(143), v2=code error, v3=SIGKILL(137/OOM), v4=died at step 386, v5=CUDA OOM wrong GPU, v6-v7=killed before checkpoint.",
+      "gpu": [
+        "cuda:2"
+      ],
+      "account": "root"
+    },
+    "hypothesis": "Repo-level CWM v8 (save_steps=100 + resume 支持). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim). 改进：更频繁 checkpoint 以抵御平台 kill。"
+  },
+  "timestamp": "2026-05-12T21:00:39.561375+00:00",
+  "trigger": "update_registry"
+}

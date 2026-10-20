@@ -1,0 +1,63 @@
+{
+  "cls_8b_s42": [
+    {"checkpoint": "ckpt-200", "step": 200, "test_acc": 70.07, "f1_macro": 68.18},
+    {"checkpoint": "ckpt-400", "step": 400, "test_acc": 84.79, "f1_macro": 81.18},
+    {"checkpoint": "ckpt-600", "step": 600, "test_acc": 79.05, "f1_macro": 75.12},
+    {"checkpoint": "ckpt-800", "step": 800, "test_acc": 83.53, "f1_macro": 78.97},
+    {"checkpoint": "ckpt-1000", "step": 1000, "test_acc": 83.52, "f1_macro": 77.50},
+    {"checkpoint": "ckpt-1200", "step": 1200, "test_acc": 83.84, "f1_macro": 77.47},
+    {"checkpoint": "ckpt-1400", "step": 1400, "test_acc": 85.47, "f1_macro": 78.90},
+    {"checkpoint": "ckpt-1600", "step": 1600, "test_acc": 84.99, "f1_macro": 78.94}
+  ],
+  "cls_8b_s42_val": [
+    {"checkpoint": "ckpt-200", "step": 200, "val_acc": 63.52, "f1_macro": 61.17},
+    {"checkpoint": "ckpt-400", "step": 400, "val_acc": 80.96},
+    {"checkpoint": "ckpt-800", "step": 800, "val_acc": 84.50, "f1_macro": 79.20},
+    {"checkpoint": "ckpt-1000", "step": 1000, "val_acc": 88.23, "f1_macro": 82.72},
+    {"checkpoint": "ckpt-1200", "step": 1200, "val_acc": 87.76, "f1_macro": 81.25},
+    {"checkpoint": "ckpt-1400", "step": 1400, "val_acc": 85.97, "f1_macro": 77.15},
+    {"checkpoint": "ckpt-1600", "step": 1600, "val_acc": 86.75, "f1_macro": 78.94}
+  ],
+  "cls_8b_seed123": [
+    {"checkpoint": "ckpt-200", "step": 200, "test_acc": 72.55, "f1_macro": 70.18},
+    {"checkpoint": "ckpt-3000", "step": 3000, "test_acc": 85.60, "f1_macro": 78.38},
+    {"checkpoint": "ckpt-6200", "step": 6200, "test_acc": 84.70, "f1_macro": 77.01},
+    {"checkpoint": "ckpt-6400", "step": 6400, "test_acc": 85.08, "f1_macro": 77.91},
+    {"checkpoint": "ckpt-6600", "step": 6600, "test_acc": 84.90, "f1_macro": 77.58},
+    {"checkpoint": "ckpt-6633", "step": 6633, "test_acc": 84.89, "f1_macro": 77.56}
+  ],
+  "cls_8b_seed123_val": [
+    {"checkpoint": "ckpt-3000", "step": 3000, "val_acc": 88.69, "f1_macro": 81.73},
+    {"checkpoint": "ckpt-6200", "step": 6200, "val_acc": 87.52, "f1_macro": 79.26},
+    {"checkpoint": "ckpt-6400", "step": 6400, "val_acc": 87.48, "f1_macro": 79.66},
+    {"checkpoint": "ckpt-6600", "step": 6600, "val_acc": 87.23, "f1_macro": 79.02},
+    {"checkpoint": "ckpt-6633", "step": 6633, "val_acc": 87.10, "f1_macro": 78.79}
+  ],
+  "cls_4b_s42": [
+    {"checkpoint": "ckpt-4400", "step": 4400, "test_acc": 83.24, "f1_macro": 74.44},
+    {"checkpoint": "ckpt-4600", "step": 4600, "test_acc": 83.63, "f1_macro": 75.63}
+  ],
+  "cls_4b_s42_val": [
+    {"checkpoint": "ckpt-600", "step": 600, "val_acc": 82.82, "f1_macro": 79.81},
+    {"checkpoint": "ckpt-4000", "step": 4000, "val_acc": 89.84, "f1_macro": 84.25},
+    {"checkpoint": "ckpt-4200", "step": 4200, "val_acc": 89.06, "f1_macro": 83.07},
+    {"checkpoint": "ckpt-4400", "step": 4400, "val_acc": 89.96, "f1_macro": 84.94},
+    {"checkpoint": "ckpt-4600", "step": 4600, "val_acc": 90.07, "f1_macro": 85.04}
+  ],
+  "cls_4b_seed123": [
+    {"checkpoint": "ckpt-800", "step": 800, "test_acc": 75.33, "f1_macro": 67.03}
+  ],
+  "cwm_4b_s42": [
+    {"checkpoint": "final", "test_acc": 58.04, "f1_macro": 51.67, "unparseable_rate": 53.7}
+  ],
+  "cwm_4b_seed123": [
+    {"checkpoint": "final", "test_acc": 59.09, "f1_macro": 43.43, "unparseable_rate": 67.2}
+  ],
+  "cls_8b_s42_seq2048_ablation": [
+    {"checkpoint": "ckpt-1000", "step": 1000, "test_acc": 82.83, "f1_macro": 76.88, "note": "seq_length=2048 ablation"}
+  ],
+  "majority_baseline": {
+    "val": 75.88,
+    "test": 72.96
+  }
+}

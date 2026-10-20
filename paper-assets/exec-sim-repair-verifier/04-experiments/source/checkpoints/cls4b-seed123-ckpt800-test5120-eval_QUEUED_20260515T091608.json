@@ -1,0 +1,24 @@
+{
+  "exp_id": "cls4b-seed123-ckpt800-test5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:16:07.798Z",
+    "updated_at": "2026-05-15T09:16:07.798Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120",
+      "server": "home-1x5090",
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 123,
+      "checkpoint_source": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+      "eval_data": "test",
+      "data_path": "repo-level-cls-test",
+      "data_count": 9784
+    }
+  },
+  "timestamp": "2026-05-15T09:16:08.098856+00:00",
+  "trigger": "update_registry"
+}

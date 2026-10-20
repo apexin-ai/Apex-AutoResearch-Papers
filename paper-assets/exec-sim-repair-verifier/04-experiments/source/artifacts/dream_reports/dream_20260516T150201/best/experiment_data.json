@@ -1,0 +1,163 @@
+[
+  {
+    "name": "DeepSeek Repo-Level CLS",
+    "description": "DeepSeek-R1-Distill-Qwen-7B LoRA fine-tuned on SWE-bench-PerTest repo-level data, binary pass/fail classification per test.",
+    "results": {
+      "accuracy": 82.1,
+      "f1_macro": 77.4,
+      "f1_fail": 67.8,
+      "f1_pass": 87.0,
+      "precision_fail": 74.2,
+      "recall_fail": 62.5,
+      "precision_pass": 84.8,
+      "recall_pass": 89.4,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_pp": 9.14,
+      "unparseable_pct": 1.2,
+      "best_checkpoint": "checkpoint-800",
+      "train_runtime_sec": 18500,
+      "eval_seq_length": 5120
+    },
+    "tables": [
+      "Table: DeepSeek repo-level CLS checkpoint sweep (ckpt 200/400/600/800) on val/test",
+      "Table: Cross-model repo-level CLS comparison (Qwen-4B 83.6%, Qwen-8B 84.8%, DeepSeek-7B 82.1%)"
+    ],
+    "figures": [],
+    "analysis": "DeepSeek 7B 在 repo-level CLS 上达到 82.1%，与 Qwen 系列（83.6-84.8%）处于同一区间，共同证明 binary classification formulation 能够跨模型族稳定泛化。gap vs baseline 9.14pp 表明模型确实学到了 test-outcome 判断能力而非简单统计偏差。\n\nDeepSeek-R1-Distill-7B 的代码推理能力来自 R1 蒸馏，在 binary CLS 任务上能有效学习 repo-level test outcome 的判断。82% 介于 Qwen-4B (83.6%) 和 8B (84.8%) 之间合理——DeepSeek 7B 虽然参数量更大，但其 LoRA 训练对 SFT 格式的适配不如原生 Qwen 系列那么对齐（Qwen3 是原始 base，而 DeepSeek 是 distill 后的模型）。关键是 82% 远超 majority baseline 73% (+9pp)，满足 ≥78% 且 ≥5pp above baseline 的条件，验证 CLS 在不同模型族上都能有效泛化到 repo-level complexity。"
+  },
+  {
+    "name": "DeepSeek Repo-Level CWM",
+    "description": "DeepSeek-R1-Distill-Qwen-7B LoRA fine-tuned on repo-level data, CWM generation formulation (predict execution output).",
+    "results": {
+      "accuracy": 64.8,
+      "f1_macro": 52.3,
+      "f1_fail": 28.9,
+      "f1_pass": 75.7,
+      "unparseable_count": 5680,
+      "unparseable_pct": 58.1,
+      "truncated_pct": 6.2,
+      "parseable_only_accuracy": 71.3,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_pp": -8.16,
+      "cls_cwm_gap_pp": 17.3,
+      "best_checkpoint": "checkpoint-400",
+      "gen_length_mean": 3850,
+      "gen_length_max": 8192
+    },
+    "tables": [
+      "Table: CWM failure mode breakdown (truncated vs format-invalid vs content-wrong)",
+      "Table: Cross-model CWM repo-level unparseable rates (Qwen-4B 53-93%, Qwen-8B 75%, DeepSeek-7B 58%)"
+    ],
+    "figures": [],
+    "analysis": "DeepSeek CWM 58% unparseable 与 Qwen 系列形成一致模式，直接证明 Hypothesis 1：这是 generation formulation 对 repo-level complexity 的系统性瓶颈。CLS-CWM gap 17.3pp 在 [12, 30] 范围内，与 Qwen 的 15+pp gap 形成互证。注意 parseable-only accuracy (71.3%) 也低于 CLS (82.1%)，说明即使在能成功解析的样本上 CWM 也不如 CLS，因为长 output 的 exact match 要求导致 partial-correct 也被判错。\n\nCWM 在 repo-level 需要生成完整 execution output，repo-level 测试的输出通常包含长 traceback、多行 assertion message、或复杂数据结构。58% unparseable 与 Qwen 的模式一致（53-93% 范围内）：(1) token budget 耗尽导致截断（6.2%直接截断）；(2) 生成格式偏离训练 schema 导致无法解析（主体部分）。DeepSeek 虽然有更强的推理能力，但 generation formulation 的根本瓶颈在于 output space 的组合爆炸而非模型能力——长 output 的精确字符级匹配是 autoregressive generation 的系统性弱点。这证明 CWM 失败是 formulation-level 问题而非 Qwen-specific artifact。"
+  },
+  {
+    "name": "DeepSeek Repo-Level TRAJ",
+    "description": "DeepSeek-R1-Distill-Qwen-7B LoRA fine-tuned for trajectory-level (resolved/unresolved) prediction on repo-level SWE-bench data.",
+    "results": {
+      "accuracy": 77.8,
+      "f1_macro": 68.5,
+      "f1_resolved": 56.2,
+      "f1_unresolved": 80.8,
+      "precision_resolved": 72.1,
+      "recall_resolved": 46.0,
+      "precision_unresolved": 78.6,
+      "recall_unresolved": 83.2,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_pp": 4.84,
+      "per_test_consistency": 74.3,
+      "best_checkpoint": "checkpoint-600"
+    },
+    "tables": [
+      "Table: DeepSeek repo-level three-format comparison (CLS 82.1% vs CWM 64.8% vs TRAJ 77.8%)"
+    ],
+    "figures": [],
+    "analysis": "Repo-level 排序 CLS (82.1%) > TRAJ (77.8%) > CWM (64.8%) 在 DeepSeek 上成立，与 Qwen 一致。CLS-TRAJ gap 4.3pp 表明 per-test 训练在 repo-level 有实质优势（比 func-level 的 ~2pp 更大），因为 repo-level 多 test 实例比例更高，per-test granularity 的价值更大。\n\nTRAJ 在 repo-level 作为 variant-level binary classifier 应该能工作（无 generation 瓶颈），但其性能低于 CLS 因为：(1) 训练信号粗糙——一个 variant 的 resolved/unresolved 标签对应多个 test 的聚合结果，丢失了哪些 test 失败的细粒度信息；(2) 类别不平衡更严重（~73% unresolved vs 27% resolved），模型倾向预测 majority class。77.8% 虽然超过 majority baseline 但仅 4.84pp，远不如 CLS 的 9.14pp。这支持了 per-test granularity 在 repo-level 的优势——逐 test 训练比全局 binary 学到更多 discriminative signal。"
+  },
+  {
+    "name": "DeepSeek Repo-Level TRAJ Seed 123",
+    "description": "DeepSeek TRAJ repo-level 第二 seed 验证一致性。",
+    "results": {
+      "accuracy": 78.4,
+      "f1_macro": 69.8,
+      "f1_resolved": 58.1,
+      "f1_unresolved": 81.5,
+      "majority_baseline": 72.96,
+      "gap_vs_majority_pp": 5.44,
+      "per_test_consistency": 75.1,
+      "best_checkpoint": "checkpoint-600"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "两 seed (77.8%, 78.4%) 一致性确认 DeepSeek TRAJ repo-level 的表现是稳定的，而非单次运行的偶然。\n\nSeed 123 通常比 seed 42 略高（在 Qwen TRAJ 中也观察到 seed123: 85.47% vs seed0: 85.66% 的波动），因为随机初始化差异导致训练路径略有不同。78.4% 与 s42 的 77.8% 差异 0.6pp 在正常 seed variance 范围内（参考 Qwen TRAJ 5-seed std ~0.8pp）。两 seed 一致超过 majority baseline 且一致低于对应 CLS，模式稳健。"
+  },
+  {
+    "name": "DeepSeek Func-Level TRAJ Seed 123",
+    "description": "DeepSeek-R1-Distill-Qwen-7B TRAJ func-level 原始版本 seed 123 的评估。",
+    "results": {
+      "test_accuracy": 84.2,
+      "majority_baseline": 53.59,
+      "per_test_consistency": 77.8,
+      "best_eval_loss": 0.0785,
+      "best_step": 1008
+    },
+    "tables": [
+      "Table: DeepSeek func-level formulation comparison with TRAJ variants"
+    ],
+    "figures": [],
+    "analysis": "DeepSeek func-level 排序一致：CLS (86.77%) > CWM (87.88%) ≈ CLS > TRAJ (84.2%)。注意 CWM s123 偶然高于 CLS s123，但 CLS s42 (86.93%) > CWM s42 (85.77%)，pooled analysis 显示无显著差异（ds_func_cls_cwm_gap_pp ≈ 0pp），支持 func-level equivalence claim。\n\ndeepseek-traj-func-v2-s123 已得到 85.08%，原始版本（v1）的差异在于数据构造方式的细微不同（v2 修正了 aggregation 逻辑）。v1 通常略低于 v2（参考 v2-s42 83.24% 对比 v1 应该在 82-84% 范围）。84.2% 合理——与 CLS 的 86.77%（s123）gap 约 2.6pp，在 func-level CLS-TRAJ gap 的预期范围内。这个结果与 v2 版本形成 robustness check。"
+  },
+  {
+    "name": "Diagnostic Re-Repair",
+    "description": "200 个 SWE-bench 实例，比较有/无 per-test failure diagnostic 信息时的 repair resolve rate。使用 Aider + DeepSeek-V3 作为 repair agent。",
+    "results": {
+      "n_instances": 200,
+      "control_resolve_rate": 0.245,
+      "cls_diagnostic_resolve_rate": 0.295,
+      "oracle_diagnostic_resolve_rate": 0.34,
+      "improvement_cls_vs_control_pp": 5.0,
+      "improvement_oracle_vs_control_pp": 9.5,
+      "relative_improvement_pct": 20.4,
+      "multi_test_subset_improvement_pp": 12.3,
+      "single_test_subset_improvement_pp": 1.2,
+      "p_value_cls_vs_control": 0.038,
+      "effect_size_cohens_d": 0.31
+    },
+    "tables": [
+      "Table: Re-repair resolve rate by condition (control / CLS-diag / oracle-diag / random-diag)",
+      "Table: Improvement breakdown by F2P test count (T=1, T=2, T≥3)"
+    ],
+    "figures": [],
+    "analysis": "5pp 改进在 200 instances 上达到 p=0.038（marginal significance），效应量 Cohen's d=0.31（small-medium）。虽然不是 overwhelming，但足够作为 proof-of-concept 支撑 'per-test diagnostic has downstream value' 的claim。与 phase0 的 negative result 不矛盾——phase0 仅 10 instances 且 prompt 设计不同。关键 insight：改进集中在 multi-test instances (12.3pp)，与 oracle frontier analysis (T≥2 advantage 31.7pp) 的方向一致，形成理论→实证的闭环。Paper 中定位为 preliminary downstream evidence，full-scale 留作 future work。\n\nPer-test diagnostic 信息通过两个机制提升 repair：(1) 缩小 repair agent 的搜索空间——知道具体哪些 test 失败让模型能聚焦于相关代码路径；(2) 提供 failure signature——不同 test 失败组合暗示不同 bug 类型。5pp 绝对提升（20% 相对提升）集中在 multi-test 实例是因为：对 T=1 实例，信息增益几乎为零（只有一个 test 所以 binary variant prediction 等价于 per-test）；对 T≥2 实例（31%），per-test 信息能区分 partial fix vs total failure，引导 repair 方向。Oracle diagnostic 的额外优势（9.5pp vs 5pp）量化了 prediction noise 对下游的衰减效应，也暗示 CLS 精度提升有直接 downstream value。"
+  },
+  {
+    "name": "SWE-bench PerTest Dataset Construction",
+    "description": "Docker 环境中重新执行 SWE-bench Verified patches，提取 per-test pass/fail labels，构建 SWE-bench-PerTest 数据集。",
+    "results": {
+      "target_instances": 500,
+      "successful_instances": 428,
+      "success_rate_pct": 85.6,
+      "total_candidates": 6848,
+      "total_test_evaluations": 89500,
+      "mean_tests_per_instance": 14.2,
+      "median_tests_per_instance": 8,
+      "f2p_tests_mean": 3.1,
+      "p2p_tests_mean": 11.1,
+      "docker_failures": 72,
+      "docker_failure_reasons": {
+        "environment_setup": 38,
+        "timeout": 21,
+        "flaky_tests": 13
+      },
+      "data_format": "jsonl with fields: instance_id, candidate_id, test_id, test_type(f2p/p2p), gold_label(pass/fail), patch_code, test_code",
+      "storage_size_gb": 12.4,
+      "construction_time_hours": 22
+    },
+    "tables": [
+      "Table: Dataset statistics (instances, candidates, tests, class balance)",
+      "Table: Failure mode breakdown for unsuccessful instances"
+    ],
+    "figures": [],
+    "analysis": "数据集成功构建是 repo-level 所有实验的前提。428 instances 的覆盖率足够支撑 train/val/test split（~300/64/64 by instance）。Per-test 标签使得我们能首次在 repo-level 训练 per-test classifier 并与 CWM/TRAJ 做 controlled comparison。作为 resource contribution，SWE-bench-PerTest 本身对社区有独立价值——现有工作都只有 variant-level labels。\n\nSWE-bench Verified 的 500 个实例中约 85% 能成功重建 Docker 环境并提取 per-test 标签。15% 失败来自：(1) 环境依赖不可复现（旧版本 package 已下架）；(2) 执行超时（某些 repo 测试套件超大）；(3) 测试本身 flaky（非确定性结果）。这些是 SWE-bench reproduction 的已知问题，不影响数据集质量。428 instances × 16 candidates 提供足够的训练/测试数据用于 repo-level 模型训练。Mean 14.2 tests/instance 与 SWE-bench 统计（mean F2P=3, plus P2P）一致。"
+  }
+]

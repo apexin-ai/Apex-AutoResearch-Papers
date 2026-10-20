@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0267a78a8175cdf062dd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cls repo nan diagnose",
+  "task_key": "worker_ops_cls-repo-nan-diagnose_20260516T164100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cls-repo-nan-diagnose_20260516T164100_result.json",
+    "occurrence": 1,
+    "bytes": 1719,
+    "sha256": "1193d8bcb46ab92c2ad1208d48941a4f5bebc1eb55b425af366f5c6f31aa04a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls-repo nan 诊断报告\n\n**train_loss 状态**: 正常。从 3.33 (step 50) 稳步降至 0.0146 (step 2200)，grad_norm 始终在合理范围。\n\n**当前 step**: ~3177/6633 (48%)，仍在正常推进，~10-11s/it\n\n**checkpoint 状态**: `checkpoint-2211`（epoch 1 完整，含 adapter_model.safetensors 64MB + optimizer.pt 128MB）\n\n**eval_loss nan 原因**: **数据截断导致 labels 全为 -100 的空标签 batch。**\n\n具体机制：\n- max_seq_length=2048，val 集有 21/9335 条样本被截断\n- cls 任务的 target 只有 \"pass\"/\"fail\"（1-2 token）。当某条样本的 prompt 部分（system + user 含长 patch/test）≥ 2048 token 时，`full_ids[:2048]` 完全是 prompt token，target 被完全截掉\n- 此时 `labels = [-100] * 2048`，全部被 mask\n- eval_batch_size=2，如果一个 batch 里两条样本的 labels 全为 -100 → CrossEntropyLoss 在 0 个有效 token 上算 loss → NaN\n- HF Trainer 对 eval_loss 取 mean，任何一个 batch NaN → 整体 NaN\n- 训练不受影响，因为 train 的 1559 条截断样本中 target 只是被截短（不是完全消失），仍有有效 label token\n\n**潜在风险**: `load_best_model_at_end=True` + `metric_for_best_model=\"eval_loss\"`，但 `best_model_checkpoint=null`（因为 NaN 无法比较）。如果后续 epoch eval 仍是 NaN（大概率），训练结束时 Trainer 尝试 load best model 可能出错。\n\n**建议**: **继续跑，不要 kill。** 模型完全没有崩溃。训练结束后直接用最后一个 checkpoint（或 checkpoint-2211），不依赖 Trainer 自动选 best。后续如需修复，在 `preprocess_split` 中过滤掉 `labels` 全为 -100 的样本即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cls-repo-nan-diagnose.md"
+}

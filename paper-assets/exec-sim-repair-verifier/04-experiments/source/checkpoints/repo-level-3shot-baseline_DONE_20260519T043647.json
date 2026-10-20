@@ -1,0 +1,39 @@
+{
+  "exp_id": "repo-level-3shot-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:08:27.137Z",
+    "updated_at": "2026-05-19T04:36:46.284Z",
+    "hypothesis": "3-shot few-shot 在 repo-level 能否作为 baseline，预期因 context 长度限制表现差于 fine-tuned models",
+    "conclusion": "success",
+    "failure_reason": "Context length overflow: repo code + 3 few-shot examples exceed max_seq=8192, right-truncation cuts query/prompt, 100% unparseable output (all code completions). Accuracy 72.96% = majority class base rate.",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_3shot_baseline.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --device cuda:0 --max_seq_length 4096 --output_dir artifacts/eval_3shot_deepseek\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "788567",
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-3shot-baseline.log",
+      "submitted_at": "2026-05-19T02:53:00.493Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "checkpoint_source": "base model (no fine-tuning)",
+      "eval_data": "swebench_test.jsonl (9784 per-test, 48 variants)",
+      "wall_clock_seconds": 3414.8,
+      "gpu_hours": 0.95
+    },
+    "completed_at": "2026-05-19T03:49:55.284Z"
+  },
+  "timestamp": "2026-05-19T04:36:47.037165+00:00",
+  "trigger": "update_registry"
+}

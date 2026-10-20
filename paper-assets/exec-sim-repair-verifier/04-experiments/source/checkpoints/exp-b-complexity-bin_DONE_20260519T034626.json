@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-b-complexity-bin",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:20:07.634Z",
+    "updated_at": "2026-05-19T03:46:26.036Z",
+    "hypothesis": "不同 formulation 的 accuracy 优劣与 variant 复杂度（test count）相关：TRAJ 在低 test-count variants 更优，CLS 在高 test-count variants 更优",
+    "spec": {
+      "command": "python complexity_bin_analysis.py",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "eval_results/ (CLS + CWM predictions)",
+      "data_count": 9784,
+      "model_name": "N/A (post-processing)",
+      "seed": 42,
+      "checkpoint_path": "artifacts/complexity_bin_analysis.json",
+      "log_path": "artifacts/complexity_bin_analysis.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "bins": {
+        "23-70": {
+          "n_variants": 12,
+          "n_tests": 538,
+          "cls_qwen3_8b_s123": 83.3,
+          "cls_ds_v5": 91.7,
+          "cwm_qwen3_8b": 66.7
+        },
+        "71-150": {
+          "n_variants": 14,
+          "n_tests": 1282,
+          "cls_qwen3_8b_s123": 64.3,
+          "cls_ds_v5": 71.4,
+          "cwm_qwen3_8b": 42.9
+        },
+        "151-250": {
+          "n_variants": 15,
+          "n_tests": 2999,
+          "cls_qwen3_8b_s123": 93.3,
+          "cls_ds_v5": 80,
+          "cwm_qwen3_8b": 53.3
+        },
+        "251+": {
+          "n_variants": 7,
+          "n_tests": 4965,
+          "cls_ds_v5": 85.7,
+          "cls_qwen3_8b_s123": 85.7,
+          "cwm_qwen3_8b": 42.9
+        }
+      },
+      "overall_cls_qwen3_8b": 81.2,
+      "overall_cls_ds_v5": 81.2,
+      "overall_cwm_qwen3_8b": 52.1,
+      "cls_cwm_gap_simple": 16.7,
+      "cls_cwm_gap_complex": 42.9,
+      "traj_per_bin": "unavailable — per-variant predictions not saved"
+    },
+    "completed_at": "2026-05-19T03:46:26.036Z"
+  },
+  "timestamp": "2026-05-19T03:46:26.708470+00:00",
+  "trigger": "update_registry"
+}

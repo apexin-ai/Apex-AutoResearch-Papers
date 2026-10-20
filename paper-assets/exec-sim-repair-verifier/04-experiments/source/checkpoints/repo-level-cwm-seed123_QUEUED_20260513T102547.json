@@ -1,0 +1,16 @@
+{
+  "exp_id": "repo-level-cwm-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T22:36:34.770Z",
+    "updated_at": "2026-05-13T10:25:47.286Z",
+    "hypothesis": "Repo-level CWM seed=123 extra seed on westd-48478 cuda:3. 复用 CWM v9 代码配置，对冲 D008 Go/No-Go。与 repo-level-cls-seed123 配对验证 complexity-dependent advantage。",
+    "notes": "D049 重启：D046 修正超参（lr=5e-5, wd=0.01, warmup=0.05），westd-48478 cuda:1, seed=123。之前 D046 取消是因为旧超参无效，现在用修正超参重新启动。"
+  },
+  "timestamp": "2026-05-13T10:25:47.397330+00:00",
+  "trigger": "update_registry"
+}

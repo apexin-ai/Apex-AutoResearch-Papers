@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "130fbdbd6641f4991c43",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh d045 seetacloud cwm earlystop eval seed123",
+  "task_key": "worker_ssh_d045-seetacloud-cwm-earlystop-eval-seed123_20260513T062229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d045-seetacloud-cwm-earlystop-eval-seed123_20260513T062229.log",
+    "occurrence": 1,
+    "bytes": 836339,
+    "sha256": "abf27841ab2e63c5361d1cf6532c38569d2796531a6866f5b3e9dcb7696d9512"
+  },
+  "statistics": {
+    "messages": 589,
+    "user_turns": 0,
+    "tool_calls": 252,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 252,
+      "tool_result": 252,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 589,
+      "chunks": [
+        {
+          "path": "130fbdbd6641f4991c43-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "130fbdbd6641f4991c43-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "130fbdbd6641f4991c43-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "130fbdbd6641f4991c43-part-0004.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d045-seetacloud-cwm-earlystop-eval-seed123.md"
+}

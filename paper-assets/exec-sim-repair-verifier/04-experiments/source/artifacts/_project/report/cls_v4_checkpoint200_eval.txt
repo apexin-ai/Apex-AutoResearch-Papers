@@ -1,0 +1,11 @@
+Checkpoint: checkpoint-200
+Model: Qwen/Qwen3-4B + LoRA
+Eval instances: 9784
+Accuracy: 66.11% (majority baseline: 72.96%, gap: -6.85pp)
+F1 macro: 56.61%
+F1 fail: 36.3% (P=36.9%, R=35.7%)
+F1 pass: 76.9% (P=76.5%, R=77.4%)
+Confusion: TP=5523, TN=945, FP=1701, FN=1615
+Unparseable: 132
+Eval JSON: /home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval/eval_repo_cls.json
+Predictions: /home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval/eval_repo_cls_predictions.jsonl

@@ -1,0 +1,28 @@
+{
+  "exp_id": "repo-level-cls-v4",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:17:08.066Z",
+    "updated_at": "2026-05-12T19:00:01.551Z",
+    "hypothesis": "Repo-level CLS v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交（根分区 89%→64%，cache 移至数据盘）。验证 complexity-dependent CLS advantage。",
+    "spec": {
+      "command": "bash -c 'export HF_HOME=/root/autodl-tmp/.hf_cache && export TORCH_HOME=/root/autodl-tmp/.torch_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B'",
+      "server": "seetacloud-westd-4x5090",
+      "gpu_id": "cuda:2",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70000,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42,
+      "notes": "v4: 磁盘修复后重提交。HF_HOME/TORCH_HOME 指向数据盘避免根分区写满。与 cwm-v4 并行（RAM 621G 充足）"
+    },
+    "notes": "已被 repo-level-cls-home 替代（同实验，转至 home-1x5090 执行）。seetacloud 并行限制导致无法在该服务器提交。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-12T19:00:01.551Z"
+  },
+  "timestamp": "2026-05-12T19:00:01.886302+00:00",
+  "trigger": "update_registry"
+}

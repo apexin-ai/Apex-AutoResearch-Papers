@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30084dba68bd7a419c0e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 test curve ",
+  "task_key": "worker_eval_cls8b-s42-test-curve-___20260515T042234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-test-curve-___20260515T042234_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "84280b44e14f977e549b9734acc8123ef973126dc367528eaba7eace59c94a73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-800 test eval 已在 cuda:0 上启动：\n- **tmux session**: `eval_ckpt800`\n- **日志**: `/tmp/eval_cls8b_ckpt800_test8192.log`\n- **状态**: 模型已加载，正在推理 9784 个 test 样本\n- **预计**: ~20 分钟完成\n\n4.5 分钟后第一次检查进度。完成后自动启动 ckpt-1200 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-test-curve.md"
+}

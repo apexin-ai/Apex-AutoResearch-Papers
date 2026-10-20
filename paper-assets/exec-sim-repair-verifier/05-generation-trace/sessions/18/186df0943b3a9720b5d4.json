@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "186df0943b3a9720b5d4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home val sweep final",
+  "task_key": "worker_check_home-val-sweep-final_20260514T083021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-val-sweep-final_20260514T083021_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "d31616c0b8c947fd25994fa3d10b0eaa4a212baaec41fb2023fcfe8373521258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sweep 状态：正在运行，即将完成\n\n**GPU 0**: 占用中 — RTX 5090, 100% utilization, 81°C, 12336MiB/32607MiB\n\n**进度**: 5 个 checkpoint 中已完成 4 个，第 5 个 (checkpoint-1000) 正在跑 (5440/9335, ~58%)。不是 13 个 checkpoint — 目录里只有 5 个 (200/400/600/800/1000)。\n\n**ETA**: checkpoint-1000 约 01:15 开始，按当前速度 ~01:42 完成（约 12 分钟后）。\n\n### 已完成 checkpoint 的 val 指标\n\n| Checkpoint | Accuracy | F1 macro | fail F1 | fail Recall | pass F1 | Unparseable |\n|-----------|----------|----------|---------|-------------|---------|-------------|\n| 200 | 62.51% | 55.54% | 37.94% | 47.51% | 73.14% | 1883 |\n| 400 | 80.72% | 67.03% | 45.78% | 33.75% | 88.27% | 1883 |\n| 600 | 76.78% | 66.81% | 48.63% | 45.56% | 85.00% | 1883 |\n| **800** | **81.81%** | **69.14%** | **49.37%** | 36.77% | **88.91%** | 1883 |\n| 1000 | running... | — | — | — | — | — |\n\n**checkpoint-800 目前最优**（accuracy 81.81%, f1_macro 69.14%, fail_f1 49.37%）。checkpoint-1000 running_acc 暂时 81.8%，与 800 持平。\n\n所有 checkpoint unparseable 数量一致 (1883/9335 = 20.2%)，说明这是数据问题而非模型问题。\n\nMajority baseline 75.88%，checkpoint-800 超出 +5.9pp。主要瓶颈在 fail recall（36.77%），precision 很高 (75.14%) 但漏检严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-val-sweep-final.md"
+}

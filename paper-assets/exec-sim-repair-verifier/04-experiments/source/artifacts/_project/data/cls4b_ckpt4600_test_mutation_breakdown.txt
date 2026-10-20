@@ -1,0 +1,10 @@
+See full JSON at home server: /home/sonny/exec-sim-repair-verifier/results/cls4b_ckpt4600_test_mutation_breakdown.json
+
+Summary (CLS-4B-v5, checkpoint-4600, test split, N=9784):
+
+mutation_type           |    N | acc%  | prec_pass | rec_pass | f1_pass | prec_fail | rec_fail | f1_fail
+gold                    | 4633 | 98.25 | 100.00    | 98.25    | 99.12   |   -       |   -      |   -
+mutation_operator_swap  | 3357 | 78.91 |  71.61    | 96.40    | 82.18   | 94.34     | 61.12    | 74.18
+mutation_boundary_removal| 1049| 46.90 |  43.44    | 90.85    | 58.77   | 70.37     | 15.52    | 25.44
+mutation_return_value   |  562 | 67.97 |  59.59    | 83.33    | 69.49   | 81.19     | 56.01    | 66.29
+mutation_off_by_one     |  183 | 58.47 |  66.46    | 82.95    | 73.79   |  0.00     |  0.00    |  0.00

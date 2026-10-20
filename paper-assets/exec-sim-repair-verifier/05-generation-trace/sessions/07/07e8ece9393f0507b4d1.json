@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e8ece9393f0507b4d1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh pipeline dry run",
+  "task_key": "worker_ssh_pipeline-dry-run_20260520T102359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_pipeline-dry-run_20260520T102359_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "daea5d8de04d285cb7ff790a3847635a82bce7532b41f6b7187c1e7ef0b278ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n### Task B: plot_figure2_v2.py — PASS\n- 输出: `artifacts/figure2_v2.png` (97KB)\n- 无报错，脚本用硬编码数据直接绘图\n\n### Task A: w5_mixed_effects_v2.py — PASS (修了一个 bug)\n\n**发现的 bug**: `formulation × mutation_type` 交互项导致设计矩阵奇异（`LinAlgError: Singular matrix`）。原因是数据不平衡——CWM repo 数据 mutation_type 全是 `unknown`，TRAJ 只有 func 级数据，交叉表有大量结构性空格。\n\n**修复**: 在 `fit_mixed_lm` 中捕获 `LinAlgError`，自动回退为无交互的主效应模型（`*` → `+`）。修复已应用到本地和服务器。\n\n**运行结果** (51,842 obs, 139 problems, 3 formulations, 2 models):\n- Model 1 (cross-complexity): 回退到 `C(formulation) + C(mutation_type)`，收敛有 warning（`unknown` 类别的系数 SE 为 NaN），但输出完整\n- Model 2 (cross-model): 回退到 `C(formulation) + C(model)`，正常收敛。CWM 比 CLS 低 -10.65pp，TRAJ 低 -31.48pp，Qwen 比 DeepSeek 低 -9.41pp\n- 输出: `artifacts/w5_dryrun/w5_mixed_effects_results.json` + `w5_latex_tables.tex`\n\n**预期**: 正式数据（CLS/TRAJ/CWM 各 3 seed，所有 repo 级）将不会触发 singular matrix，因为 formulation × complexity 不会有空格。convergence warnings 也应消失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pipeline-dry-run.md"
+}

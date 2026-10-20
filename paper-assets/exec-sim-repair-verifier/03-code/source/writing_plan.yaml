@@ -1,0 +1,293 @@
+meta:
+  venue: EMNLP 2026
+  track: main (ARR submission)
+  template: docs/paper/  # Existing ACL/ARR template already in place
+  template_note: "Reusing existing acl2023.sty template from prior draft. Already configured with \\usepackage[review]{acl}."
+  page_limit: 8  # + unlimited references/appendix (ARR format)
+  deadline: 2026-05-25
+  core_claim: >
+    Binary pass/fail classification and execution output generation achieve equivalent accuracy
+    on simple function-level code (~88% vs ~87%), but classification yields 19-26pp same-size
+    advantage at repo-level complexity (4B-4B=25.59pp, 8B-8B=19.31pp) where CWM suffers format
+    compliance collapse (54-74% unparseable, parseable-only accuracy 38-43% — below random).
+    The advantage is complexity-dependent: from near-null at function level to critical at
+    repository level. CWM generation quality uniformly degrades with scale (parseable-only
+    42.9%→38.5%, unparseable 53.7%→73.8%). The apparent overall accuracy "improvement" is a
+    default-assignment artifact. Function-level gap widening (1.18→2.43pp, p=0.0066) provides
+    controlled scaling evidence; CLS +0.99pp vs CWM -0.27pp = generation bottleneck not capacity.
+  working_title: >
+    Classification Scales Where Generation Stalls:
+    Reformulating Execution Simulation for Code Repair Verification
+  created_at: 2026-05-15T18:00:00Z
+  notes:
+    - "Registry is truth source for ALL numbers."
+    - "Seeds 789/0 (CLS function-level) used 4-bit NF4 quantization — must note in paper."
+    - "C1 structure: (1) absolute gap magnitude (4B-4B=25.59pp, 8B-8B=19.31pp) >> function-level (1-2pp); (2) function-level scaling (CLS +0.99pp, CWM -0.27pp); (3) CWM generation degradation (parseable-only 42.9→38.5%, unparse 53.7→73.8%). Cross-size 8B-CLS vs 4B-CWM (26.44-26.51pp, 2 seeds) disclosed as secondary."
+    - "CLS 4B s123 test eval not yet run — 4B-4B currently single-seed."
+    - "CWM 8B DONE (D109): 65.17% overall, 73.8% unparse, 38.52% parseable-only. Repo-level overall accuracy 'improvement' is default-assignment artifact — do NOT claim 'gap narrows with scale'."
+    - "Existing .tex files form the base — Workers should rewrite from existing structure, not from scratch."
+    - "D088 protocol: val-selected checkpoint as primary metric. Appendix: full val+test sweep curves."
+    - "Val/test have zero problem overlap + mutation type composition shift (D087). Must disclose."
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: execution-free verification for code repair faces granularity-accuracy tradeoff"
+      - "Insight: reformulating from generation to per-test binary classification; advantage is complexity-dependent"
+      - "Function-level: CLS ≈ CWM (gap 1.24pp, 5 seeds); 8B gap widens to 2.43pp (p=0.008)"
+      - "Per-test ≡ trajectory-level (TOST p=0.007); oracle ensemble 90.63%; advantage concentrates at T≥2 (31% instances, 55% advantage)"
+      - "Repo-level: same-size 4B-4B CLS 83.63% vs CWM 58.04% = 25.59pp (s42); CWM below majority baseline (72.96%); 53-67% unparseable from format non-compliance; parseable-only acc 42-43% (below random). Cross-size 8B-CLS vs 4B-CWM = 26.44-26.51pp (2 seeds) disclosed separately."
+      - "Zero-shot 32B (71.7%) far below fine-tuned 4B (88.4%)"
+    dependencies: [experiments, method, introduction]
+
+  - section: introduction
+    word_budget: 1000
+    core_bullets:
+      - "Hook: Test-time scaling for LLM code repair relies on verification. Full execution costs $1-3 per candidate. Execution-free alternatives must choose between accuracy and diagnostic granularity."
+      - "Gap: CWM predicts execution outputs via generation — suffers format compliance collapse at repo-level complexity. Trajectory-level verifiers lose per-test diagnostics."
+      - "Insight: CWM failure modes are artifacts of the generation formulation. Classification eliminates them — but the advantage only emerges beyond a complexity threshold."
+      - "C1: Complexity-dependent advantage — near-null at function level (1.24pp), amplifies to 25.59pp same-size at repo level (4B-4B, s42). Two layers: (a) same-size gap grows with complexity; (b) CLS scaling gain (+0.99pp) vs CWM no gain (-0.27pp) = generation bottleneck evidence."
+      - "C2: Per-test diagnostic granularity at equivalent trajectory-level accuracy (TOST p=0.007)"
+      - "C3: Accuracy-utility frontier — advantage concentrates in multi-F2P instances"
+    dependencies: [experiments]
+    citation_hints:
+      - "Code World Models (Ding et al. 2024; Meta 2025)"
+      - "SWE-bench (Jimenez et al. 2024)"
+      - "SWE-RM, SWE-agent, Agentless"
+    figures: [fig1_reformulation]
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "Execution simulation: CWM, Self-Execution, CodeMind — we reformulate as classification"
+      - "LLM verification for code: SWE-RM, reward models, LLM-as-judge — we show per-test classification achieves equivalent accuracy with diagnostic granularity"
+      - "APR and SWE-bench: SWE-agent, Agentless — verification as bottleneck for test-time scaling"
+      - "Classification vs generation in NLP: extractive vs abstractive QA — our work extends this lens to code verification"
+    dependencies: [introduction]
+    citation_hints:
+      - "CWM, Self-Execution, CodeMind"
+      - "SWE-RM, SWE-RewardBench"
+      - "SWE-bench, SWE-agent, Agentless"
+
+  - section: method
+    word_budget: 1000
+    core_bullets:
+      - "§2.1 Problem Setup: given code patch p and test suite T, goal is per-test binary verdict"
+      - "§2.2 Verification Formulations: CLS (1-token binary), CWM (variable-length generation + exact match), TRAJ (patch-level binary, no per-test signal)"
+      - "§2.3 CWM Failure Modes: (a) token-budget exhaustion, (b) string-value prediction errors, (c) format compliance collapse at repo-level — all absent in CLS by construction"
+      - "§2.4 Oracle Framework: formalize per-test advantage as f(accuracy, T, regression_rate, ICC)"
+    dependencies: []
+
+  - section: experiments
+    word_budget: 2800
+    core_bullets:
+      - "§3.1 Setup: Function-level: HumanEval+MBPP mutants (19,076 samples, 5 mutation types, train/val/test 15,290/1,896/1,890). Repo-level: SWE-bench Verified mutants (train ~70K, val 9,335, test 9,784). Models: Qwen3-4B/8B, LoRA rank=16. Seeds 42/123/456 bfloat16; seeds 789/0 NF4. Checkpoint selection: val-best (D088 protocol). Statistics: clustered bootstrap (114 clusters, 10K resamples), TOST (±2pp)."
+      - "§3.2 Function-Level Results (Table 1): CLS 88.43±0.78 vs CWM 87.19±0.37 (gap 1.24pp, 5 seeds); TRAJ 86.30±0.97; ZS 8B 64.40% / 32B 71.69%. Near-equivalent at function level."
+      - "§3.3 Scaling Behavior (Table 2): 8B CLS 89.39 vs CWM 86.96 (gap 2.43pp, 3 seeds, p=0.008). CLS gains +0.99pp scaling; CWM loses -0.27pp. Generation bottleneck, not capacity."
+      - "§3.4 Per-Test vs Trajectory-Level Equivalence: pooled gap -0.45pp, TOST p=0.007, ±2pp. ICC=0.191, DEFF=3.97. Equivalent accuracy with free diagnostic granularity."
+      - "§3.5 Accuracy-Utility Frontier (Table 3): T=1 (69%): no advantage; T=2 (19%): block advantage 31.7pp, 55% contribution. P2P regression ~1% = honest negative."
+      - "§3.6 Repo-Level Results (Table 4): TWO-LAYER C1 STRUCTURE. Primary: same-size 4B-4B CLS 83.63% vs CWM 58.04% = 25.59pp (s42, val-selected). Secondary: cross-size 8B CLS vs 4B CWM = 26.44-26.51pp (2 seeds). 8B-8B placeholder pending CWM 8B. CWM below majority baseline (72.96%) by ~14pp. Unparseable 53.7-67.2%. Parseable-only acc 42-43% (below random). Scaling evidence: CLS 4B→8B at repo level (83.63→83.52% s42, noise-level); CWM 8B TBD — if CWM 8B ≈ 4B, confirms generation bottleneck. Disclose: val-selected checkpoints, val/test zero-overlap, CLS 4B-4B single seed."
+      - "§3.7 Analysis: (a) Error complementarity (CLS: 75.5% FN, CWM: 83.1% FP, oracle 90.63%); (b) CWM error mode breakdown (77% no-keyword/token-exhaustion, 23% ambiguous, parseable-only 42.88%); (c) Variance compression (CWM std 0.37 < CLS 0.78); (d) Per-repo variation (scikit-learn ~0% unparse vs sphinx 100%); (e) Block correlation ICC=0.191"
+    dependencies: []
+    registry_refs:
+      - multi-seed-core
+      - cls-seed789
+      - cls-seed0
+      - cwm-baseline
+      - cwm-seed123
+      - cwm-seed456
+      - cwm-seed789
+      - cwm-seed0
+      - model-size-scaling-cls8b
+      - cls8b-seed123
+      - cls8b-seed456
+      - model-size-scaling-cwm8b
+      - cwm8b-seed123
+      - cwm8b-seed456
+      - traj-level-finetuned
+      - traj-level-seed123
+      - traj-level-seed456
+      - traj-level-seed789
+      - traj-level-seed0
+      - llm-judge-8b-zeroshot
+      - llm-judge-32b-zeroshot
+      - 5-paired-clustered-bootstrap
+      - block-corr-empirical
+      - oracle-f2p-stratified
+      - p2p-regression-rate
+      - per-test-precision-recall
+      - per-test-majority-voting
+      - repo-level-cls-v5
+      - repo-level-cwm-v12
+      - repo-level-cwm-seed123-conda
+      - cls8b-s42-ckpt1000-test8192-eval
+      - cls8b-seed123-ckpt3000-test8192-eval-v2
+    tables: [tab1_main_results, tab2_scaling, tab3_oracle_frontier, tab4_repo_level]
+    figures: [fig2_gap_amplification, fig3_oracle_stratified]
+
+  - section: conclusion
+    word_budget: 400
+    core_bullets:
+      - "Summary: reformulating execution simulation from generation to classification provides a complexity-dependent advantage — near-null at function level (1.24pp), critical at repository level (25.59pp same-size 4B-4B)"
+      - "CWM failure at repo-level is format compliance collapse, not resource insufficiency — parseable-only accuracy below random. CLS scaling gain (+0.99pp) vs CWM no gain (-0.27pp) further supports generation bottleneck hypothesis."
+      - "Limitations: (1) single model family (Qwen3); (2) repo-level 4B-4B single seed, 8B-8B pending CWM 8B; (3) val/test distribution shift; (4) P2P regression too low for per-test signal; (5) no downstream re-repair experiment"
+      - "Future: ensemble verification, diagnostic re-repair, CWM 8B repo-level, multi-model validation"
+    dependencies: [experiments, method]
+
+visualization_plan:
+  - fig_id: fig1_reformulation
+    type: conceptual
+    tool: matplotlib
+    description: >
+      Task reformulation overview: three pipelines — CLS (1 token), CWM (N tokens + exact match),
+      TRAJ (1 token, no per-test). Highlight CWM failure modes. Clean academic style.
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "manual"
+
+  - fig_id: fig2_gap_amplification
+    type: statistical
+    tool: matplotlib
+    description: >
+      Gap amplification visualization. X-axis: complexity levels (Function 4B, Function 8B, Repo-level 4B-4B).
+      Y-axis: CLS-CWM accuracy gap (pp). Values: 1.24, 2.43, 25.59.
+      Error bars where multi-seed available. Log-scale Y or broken axis to show both small and large gaps.
+      Key message: gap explodes with complexity. Use same-size comparison for repo-level bar.
+    data_source: "registry: multi-seed-core, model-size-scaling-cls8b, cls4b-v5-ckpt4600-test-eval, repo-level-cwm-v12"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  - fig_id: fig3_oracle_stratified
+    type: statistical
+    tool: matplotlib
+    description: >
+      Oracle per-test advantage stratified by F2P test count (T=1, T=2, T=3-5, T≥6).
+      Primary bars: block advantage (pp). Secondary: instance percentage.
+      T=2 contributes 55.3% of total. Include i.i.d. comparison.
+    data_source: "registry: oracle-f2p-stratified"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+table_plan:
+  - table_id: tab1_main_results
+    caption: "Function-level per-test verification on HumanEval+MBPP (1,890 test samples). Mean ± std over seeds."
+    placement: experiments
+    type: comparison
+    columns: [Method, Model, Seeds, Accuracy]
+    data_source: "registry: multi-seed-core, cls-seed789, cls-seed0, cwm-*, traj-level-*, llm-judge-*"
+    notes: "Compact 4-column format for 8-page budget. F1 details in appendix."
+
+  - table_id: tab2_scaling
+    caption: "Model-size scaling: CLS vs CWM accuracy (%) at 4B and 8B. Three matched bfloat16 seeds."
+    placement: experiments
+    type: comparison
+    columns: [Method, Size, s42, s123, s456, Mean, Gap]
+    data_source: "registry: multi-seed-core, cwm-*, model-size-scaling-*, cls8b-*, cwm8b-*"
+
+  - table_id: tab3_oracle_frontier
+    caption: "Oracle per-test advantage by F2P test count on SWE-bench Verified (500 instances). Block model uses ICC=0.191."
+    placement: experiments
+    type: statistics
+    columns: [T, Inst_Pct, IID_pp, Block_pp, Contrib_Pct]
+    data_source: "registry: oracle-f2p-stratified"
+
+  - table_id: tab4_repo_level
+    caption: "Repo-level per-test verification on SWE-bench Verified (val-selected checkpoints). Same-size comparisons primary; cross-size disclosed."
+    placement: experiments
+    type: comparison
+    columns: [Method, Size, Seed, Accuracy, F1_Macro, Unparseable_Pct, vs_Majority]
+    rows_structure: >
+      Row 1: CLS 4B s42 — 83.63%, 75.63, 0%, +10.67pp (cls4b-v5-ckpt4600-test-eval)
+      Row 2: CWM 4B s42 — 58.04%, 51.67, 53.7%, -14.92pp (repo-level-cwm-v12)
+      Row 3: CWM 4B s123 — 59.09%, 43.43, 67.2%, -13.87pp (repo-level-cwm-seed123-conda)
+      Row 4: CLS 8B s42 — 84.48%, 77.50, 0%, +11.52pp (cls8b-s42-ckpt3600-test8192-eval)
+      Row 5: CLS 8B s123 — 85.60%, 78.38, 0%, +12.64pp (cls8b-seed123-ckpt3000-test8192-eval)
+      Row 6: CWM 8B s42 — TBD (repo-level-cwm-8b-conda-v4, in progress)
+      Same-size gap: 4B-4B = 25.59pp (s42); 8B-8B = TBD
+    data_source: "registry: cls4b-v5-ckpt4600-test-eval, cls8b-s42-ckpt1000-test8192-eval, cls8b-seed123-ckpt3000-test8192-eval-v2, repo-level-cwm-v12, repo-level-cwm-seed123-conda"
+    notes: >
+      Val-selected checkpoints (D088). Test set n=9,784. Majority baseline 72.96%.
+      Primary comparison: same-size 4B-4B (25.59pp, single seed). 8B-8B pending CWM 8B.
+      Cross-size 8B CLS vs 4B CWM (26.44-26.51pp, 2 seeds) disclosed as secondary.
+      Parseable-only CWM accuracy (42-43%) reported in text. Val/test zero-overlap disclosed.
+      CLS 4B s123 test eval not yet available — note single-seed limitation for 4B-4B.
+
+literature_strategy:
+  citation_budget: 30
+  macro_context:
+    - "execution simulation for code / code world models"
+    - "LLM-based code verification and repair scaling"
+    - "task reformulation (classification vs generation) in NLP"
+  micro_clusters:
+    - cluster_name: "Execution Simulation"
+      search_queries:
+        - "code world models execution simulation LLM 2024 2025"
+        - "self-execution simulation code prediction"
+      must_cite:
+        - "Code World Models (Ding et al. 2024)"
+        - "Meta CWM (2025)"
+      target_count: 4
+
+    - cluster_name: "LLM Verification for Code"
+      search_queries:
+        - "SWE-RM reward model code repair verification"
+        - "LLM-as-judge code correctness"
+        - "SWE-RewardBench"
+      must_cite:
+        - "SWE-RM (Zhang et al. 2025)"
+      target_count: 4
+
+    - cluster_name: "APR and SWE-bench"
+      search_queries:
+        - "SWE-bench automated program repair LLM 2024 2025"
+        - "SWE-agent Agentless repair"
+        - "test-time compute scaling code repair"
+      must_cite:
+        - "SWE-bench (Jimenez et al. 2024)"
+        - "SWE-agent (Yang et al. 2024)"
+        - "Agentless (Xia et al. 2024)"
+      target_count: 6
+
+    - cluster_name: "Task Reformulation NLP"
+      search_queries:
+        - "classification vs generation NLP reformulation"
+        - "extractive vs abstractive comparison"
+      must_cite: []
+      target_count: 3
+
+    - cluster_name: "Code LLMs and Benchmarks"
+      search_queries:
+        - "Qwen2.5 Qwen3 code model 2025"
+        - "HumanEval MBPP benchmark"
+      must_cite:
+        - "Qwen2.5 (Yang et al. 2024)"
+        - "HumanEval (Chen et al. 2021)"
+        - "MBPP (Austin et al. 2021)"
+      target_count: 5
+
+    - cluster_name: "Statistical Methods"
+      search_queries:
+        - "TOST equivalence test"
+        - "clustered bootstrap"
+      must_cite:
+        - "TOST (Schuirmann 1987)"
+        - "Bootstrap (Davison & Hinkley 1997)"
+      target_count: 3
+
+    - cluster_name: "LoRA and Efficient Fine-tuning"
+      search_queries:
+        - "LoRA low-rank adaptation fine-tuning"
+        - "QLoRA quantized fine-tuning"
+      must_cite:
+        - "LoRA (Hu et al. 2022)"
+        - "QLoRA (Dettmers et al. 2024)"
+      target_count: 2
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion

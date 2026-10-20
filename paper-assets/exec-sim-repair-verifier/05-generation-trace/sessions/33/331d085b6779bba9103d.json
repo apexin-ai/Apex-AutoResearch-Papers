@@ -1,0 +1,474 @@
+{
+  "schema_version": "1.0",
+  "id": "331d085b6779bba9103d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "write 14b insertion audit",
+  "task_key": "worker_write_14b-insertion-audit_20260522T191841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_14b-insertion-audit_20260522T191841.jsonl",
+    "occurrence": 1,
+    "bytes": 31033,
+    "sha256": "2802d4840c9d7d9283359fbd7c8a29da05c02acf3cb52fe94b5a8b98c65bbfd2"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T19:20:36.026104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T19:20:36.026425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/method.tex\ndocs/paper/checklist.tex\ndocs/paper/abstract.tex\ndocs/paper/related_work.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/main.tex\ndocs/paper/experiments.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T19:20:36.026594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T19:20:36.026734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T19:20:36.026915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T19:20:36.027062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLLM-based program repair increasingly leverages test-time compute scaling, generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\\cls{}), execution output generation (\\cwm{}), and trajectory-level patch scoring (\\traj{}). No prior work compares these formulations under matched conditions.\n3\t\n4\tWe present the first systematic comparison across two representative code LLM families (Qwen3, DeepSeek-Coder), two complexity levels, and multiple seeds under ${\\leq}$8B LoRA fine-tuning. At function level, \\cls{} and \\cwm{} are statistically equivalent across both families (TOST, 5 seeds): classification is not inherently easier than generation when outputs are short. \\traj{} parity is model-dependent and not confirmed after multiple comparison correction. At repository level, a significant interaction ($z{=}-23.7$, DeepSeek-Coder) confirms this equivalence collapses: the \\cls{}--\\cwm{} gap widens to 18--26\\pp{} across 3 seeds per model under our ${\\leq}$8B LoRA protocol in variant-level evaluation, driven by format collapse in generation-based simulation. Gap magnitude depends on multiple confounds.\n5\t\n6\tError complementarity and a failure mode taxonomy motivate complexity-aware formulation routing over uniform selection.\n7\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T19:20:36.027199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T19:20:36.027365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLLM-based automated program repair systems increasingly rely on test-time compute scaling: generating $K$ candidate patches and selecting the best via a verifier~\\cite{snell2024scaling}. Full execution verification is reliable but expensive (\\$1--3 per candidate at repository scale\\footnote{Based on per-instance costs reported by \\citet{yang2024sweagent} and \\citet{xia2024agentless}.}), driving demand for execution-free alternatives. Three distinct formulations have emerged for this task: \\textbf{generation-based simulation}~\\cite{meta2025cwm,maimon2026selfexecution} predicts execution output strings per test; \\textbf{trajectory-level scoring}~\\cite{shum2025swerm} predicts a binary patch verdict without per-test decomposition; and \\textbf{per-test classification}~\\cite{ni2023lever,chen2023codet} predicts a pass/fail token per test. Each makes different tradeoffs between diagnostic granularity, output complexity, and inference cost.\n5\t\n6\tDespite active development along each axis, no prior work provides a systematic comparison holding model capacity, training data, and compute constant. Practitioners choosing a formulation for their verification pipeline must rely on results from different models, different datasets, and different evaluation protocols. Whether one formulation is uniformly preferable, or whether the choice depends on properties of the code being verified, remains an open empirical question. A related question is whether formulation choice matters at all relative to more basic decisions: at what complexity level does fine-tuning become necessary, and does formulation selection add value beyond what fine-tuning alone provides?\n7\t\n8\tWe present the first systematic empirical comparison across two representative code LLM families (Qwen3, DeepSeek-Coder), two complexity levels (function-level and repository-level), and multiple seeds. Our contribution is primarily methodological: a matched experimenta\n…[truncated 2383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T19:20:36.027530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T19:20:36.027698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tLet $p$ denote a candidate patch and $T = \\{t_1, \\ldots, t_n\\}$ its test suite, where each $t_i$ has label $y_i \\in \\{\\text{\\textsc{Pass}}, \\text{\\textsc{Fail}}\\}$ from execution. Tests decompose into \\emph{fail-to-pass} ($T_{\\text{f2p}}$) and \\emph{pass-to-pass} ($T_{\\text{p2p}}$) subsets; a patch is correct iff $\\forall\\, t_i{:}\\ y_i = \\text{\\textsc{Pass}}$. We compare three formulations for predicting correctness without execution.\n5\t\n6\t\\subsection{Verification Formulations}\n7\t\\label{sec:formulations}\n8\t\n9\tLet $c_p$ denote the code context (unified diff) of patch $p$.\n10\t\n11\t\\paragraph{\\cls{} (per-test classification).} $f(c_p, t_i) \\rightarrow \\hat{y}_i \\in \\{\\text{\\textsc{Pass}}, \\text{\\textsc{Fail}}\\}$ predicts a single binary token per test (cross-entropy loss). Patch verdict: $\\hat{y}_p = \\bigwedge_{i} [\\hat{y}_i = \\text{\\textsc{Pass}}]$. Output cost: one token per test.\n12\t\n13\t\\paragraph{\\cwm{} (output generation).} $g(c_p, t_i) \\rightarrow \\hat{o}_i \\in \\Sigma^*$ generates the execution output string (language modeling loss). Verdict by exact match: $\\hat{y}_i = \\text{\\textsc{Pass}}$ iff $\\hat{o}_i = o_i^*$.\\footnote{Exact string matching is conservative, consistent with \\citet{meta2025cwm}. Semantic equivalences are not counted.} When the generated output is unparseable (i.e., does not conform to the expected structured format), the prediction defaults to the majority class verdict. Output cost: $\\sum_i |\\hat{o}_i|$ tokens.\n14\t\n15\t\\paragraph{\\traj{} (trajectory-level).} $h(c_p, T) \\rightarrow \\hat{y}_p \\in \\{\\text{\\textsc{Resolved}}, \\text{\\textsc{Unresolved}}\\}$ predicts a single patch verdict from all tests and provides no per-test signal. \\traj{} serves as a granularity control: \\cls{}--\\traj{} differences isolate the value of per-test decomposition independent of the classification formulation itself.\n16\t\n17\t\\subsection{Formulation-Specific Failure Modes}\n18\t\\label{sec:failure-modes}\n19\t\n20\tEach formulation\n…[truncated 3353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T19:20:36.027862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T19:20:36.028133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation landscape for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench} where validation loss is computable; runs using truncate preprocessing produce NaN validation loss because repo-level execution traces often exceed the 2,048-token sequence length limit; after truncation, many samples have all target tokens removed (labels entirely $-$100), producing degenerate loss---a formulation-inherent weakness that classification and trajectory formulations avoid by design. NaN loss defaults to the final epoch checkpoint (affects DeepSeek \\cls{} s123, all \\cwm{} runs, and Qwen3 \\traj{} runs; see Appendix~\\ref{app:hyperparams}).\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency chec\n…[truncated 20991 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T19:20:36.028288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T19:20:36.028441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Execution Simulation and Verification.}\n5\tExecution trace generation improves code reasoning~\\cite{nye2021scratchpad}, with extensions to output prediction~\\cite{meta2025cwm,maimon2026selfexecution,liu2024codemind,liu2023codeexecutor,lee2026solidcoder}, failure analysis~\\cite{abdollahi2025demystifying}, and error detection~\\cite{li2024redo}. CRUXEval~\\citep{gu2024cruxeval} benchmarks code execution prediction at function level; RepoExec~\\citep{nam2025repoexec} evaluates repo-level code generation with execution-based correctness checks. Our work extends execution prediction to repo-level repair verification. CodeScaler~\\cite{zhu2026codescaler} trains execution-free reward models for both RL and test-time scaling. Verification formulations span trajectory-level reward~\\cite{shum2025swerm}, process-level feedback~\\cite{li2025codeprm,xu2025patchreasoner}, per-test classification~\\cite{ni2023lever,chen2023codet}, learned metrics~\\cite{zhuo2024icescore,dong2024codescore,zhou2023codebertscore}, and RL with execution-based rewards~\\cite{wang2026verpo,tang2026execverify}. Aletheia~\\cite{venkatkrishna2026aletheia} compares training recipes; we compare \\emph{formulations}. Test-time scaling~\\cite{snell2024scaling,li2025sstar,chen2025vgsearch} and self-consistency~\\cite{wang2023selfconsistency} demonstrate verification value; none compare formulations at matched capacity.\n6\t\n7\t\\paragraph{Process vs.\\ Outcome Supervision.}\n8\tPRMs outperform ORMs for math reasoning~\\cite{lightman2023letsverify,uesato2022solving}, with automated annotation~\\cite{wang2024mathshepherd,luo2024omegaprm} and code-specific extensions~\\cite{dreamprm2025code,ye2025prlcoder,zhang2026funprm,jiang2025coderlplus}. GenRM~\\cite{hosseini2025genrm} and GenPRM~\\cite{zhao2026genprm} show that generative verifiers outperform discriminative ones for math reasoning; our results reveal a domain difference---in code verification, the generative formula\n…[truncated 2025 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T19:20:36.028586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T19:20:36.028728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic comparison of three execution-free verification formulations (\\cls{}, \\cwm{}, \\traj{}). At function level, \\cls{} and \\cwm{} are statistically equivalent (TOST $p{=}0.007$, 5 seeds); \\traj{} equivalence is not confirmed after multiple comparison correction. Per-test classification achieves 217$\\times$ higher throughput while providing diagnostic signal. Complementary errors (oracle: 90.63\\%/95.83\\%; single-seed) motivate complexity-aware routing. At repository level under ${\\leq}$8B LoRA, divergence reaches 18--26\\pp{} ($z{=}-23.7$, 3 seeds per model), with \\cwm{} falling below majority baseline---consistent across families but dependent on multiple confounds (\\S\\ref{sec:threats}). Three failure modes (format collapse, decision collapse, aggregation penalty) are consistent across families. \\cls{} is recommended primarily for its throughput advantage and diagnostic capability; the accuracy advantage over \\traj{} is directional but underpowered ($n{=}48$, MDE${\\approx}$25\\pp{}; Appendix~\\ref{app:power}). All findings are conditioned on ${\\leq}$8B LoRA fine-tuning; at larger scale, the generation bottleneck may diminish (\\S\\ref{sec:threats}).\n5\t\n6\tThree directions follow: (1)~oracle gains motivate complexity-aware routing using the failure mode taxonomy as routing features; (2)~the semantic generation bottleneck (four interventions fail; Appendix~\\ref{app:extended_analysis}(g)) suggests capacity scaling or execution trace pretraining~\\cite{meta2025cwm} is needed---testing at 32B+ would resolve the primary open question; (3)~larger-scale evaluation of per-test diagnostics for downstream repair ($n{=}44$ in our pilot) would test whether \\cls{}'s throughput advantage extends to repair pipelines.\n7\t\n8\t\\section*{Limitations}\n9\t\n10\tRepo-level \\cwm{} uses 3 seeds per model; the gap (18--26\\pp{}) exceeds any single confound (\\S\\ref{sec:threats}), but correlated confounds require further repl\n…[truncated 840 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T19:20:36.028890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T19:20:36.029318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\noindent\\textbf{Appendix overview.} A: Oracle resolve advantage. B: Ablation studies. C-F: Extended analysis (error complementarity, parseable accuracy, forced parsing, qualitative errors, failed interventions, mutation scaling, inference efficiency, re-repair, chain-of-thought). G: TOST sensitivity. G$'$: Bayesian ROPE. H: Effect sizes. I: Holm-Bonferroni. J: Mixed-effects regression. K: Parseable bias. L: CWM convergence. M: Few-shot. N: Threats. O: Downsample. P: Limitations.\n4\t\n5\t\\section{Oracle Accuracy-Utility Analysis}\n6\t\\label{app:oracle}\n7\t\n8\tWe stratify SWE-bench Verified instances by F2P test count $T$, comparing per-test vs.\\ trajectory-level oracle resolve rates under i.i.d.\\ and block-correlated error models (ICC $= 0.191$, from function-level analysis; \\S\\ref{sec:equivalence}).\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\small\n13\t\\caption{Oracle accuracy-utility frontier: per-test advantage stratified by F2P test count ($T$) on SWE-bench Verified (500 instances). Block-correlated model uses function-level ICC $= 0.191$ (from function-level analysis, \\S\\ref{sec:equivalence}). P2P regression rate: 1.04\\% mean, 0\\% median.}\n14\t\\label{tab:oracle}\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\setlength{\\tabcolsep}{3pt}\n17\t\\begin{tabular}{lcccc}\n18\t\\toprule\n19\t\\textbf{$T$} & \\textbf{Inst.\\%} & \\textbf{i.i.d.\\ (\\pp{})} & \\textbf{Block (\\pp{})} & \\textbf{Contrib.\\%} \\\\\n20\t\\midrule\n21\t$1$ & 68.7 & $-$0.04 & $-$0.09 & $\\approx$0 \\\\\n22\t$2$ & 19.1 & 18.49 & 31.69 & 55.3 \\\\\n23\t$3$--$5$ & 7.1 & 25.00 & 40.74 & $\\approx$26 \\\\\n24\t$\\geq 6$ & 5.1 & 30.00 & 40.06 & $\\approx$19 \\\\\n25\t\\midrule\n26\t\\textbf{All} & 100.0 & --- & \\textbf{10.93} & 100.0 \\\\\n27\t\\bottomrule\n28\t\\end{tabular}}\n29\t\\end{table}\n30\t\n31\t\\begin{figure}[h]\n32\t\\centering\n33\t\\includegraphics[width=\\columnwidth]{figures/paper/fig3_oracle_stratified.pdf}\n34\t\\caption{Oracle per-test advantage by F2P test count $T$. Advantage is zero at $T{=}1$ (68.7\\%) and concentrates at $T{=}2$ (19.1\\%, contributing 55.\n…[truncated 55682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T19:20:36.029482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T19:20:36.029643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t% ACL style (review mode for anonymous ARR submission)\n4\t\\usepackage[review]{acl}\n5\t\n6\t% Fonts — Times Roman (required by ACL/ARR template)\n7\t\\usepackage{times}\n8\t\n9\t% Math\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\n13\t% Tables\n14\t\\usepackage{booktabs}\n15\t\\usepackage{multirow}\n16\t\\usepackage{tabularx}\n17\t\n18\t% Graphics\n19\t\\usepackage{graphicx}\n20\t\\graphicspath{{../../artifacts/}}\n21\t\n22\t% Lists\n23\t\\usepackage{enumitem}\n24\t\n25\t% Custom commands\n26\t\\newcommand{\\cls}{\\textsc{Cls}}\n27\t\\newcommand{\\cwm}{\\textsc{Cwm}}\n28\t\\newcommand{\\traj}{\\textsc{Traj}}\n29\t\\newcommand{\\fone}{F\\textsubscript{1}}\n30\t\\newcommand{\\pp}{\\,\\text{pp}}\n31\t\\newcommand{\\tbd}{\\textsc{tbd}}\n32\t\n33\t\\title{A Systematic Comparison of Execution-Free Verification Formulations for Code Repair}\n34\t\\author{Anonymous}\n35\t\n36\t\\begin{document}\n37\t\\maketitle\n38\t\n39\t\\input{abstract}\n40\t\n41\t\\input{introduction}\n42\t\n43\t\\begin{figure*}[t]\n44\t\\centering\n45\t\\includegraphics[width=\\textwidth]{figures/paper/fig1_reformulation.pdf}\n46\t\\caption{Three verification formulations. \\textbf{Left:} \\cls{} predicts binary pass/fail per test (1 output token). \\textbf{Center:} \\cwm{} generates execution output, derives verdict by exact match ($O(L)$ tokens). \\textbf{Right:} Trajectory-level scoring predicts patch-level resolved/unresolved (1 token, no per-test signal). Each formulation makes different tradeoffs between output complexity, diagnostic granularity, and inference cost.}\n47\t\\label{fig:reformulation}\n48\t\\end{figure*}\n49\t\n50\t\\input{method}\n51\t\n52\t\\input{experiments}\n53\t\n54\t\\begin{figure}[t]\n55\t\\centering\n56\t\\includegraphics[width=\\columnwidth]{figures/paper/fig2_scaling_gap.pdf}\n57\t\\caption{Gap amplification from function to repo level. At function level, the \\cls{}--\\cwm{} gap is 1--3\\pp{}; at repo level, it widens to 18--26\\pp{} with \\cwm{} falling below majority baseline.}\n58\t\\label{fig:scaling_gap}\n59\t\\end{figure}\n60\t\n61\t\n62\t\\input{related_work}\n63\t\n64\t\\input{conclusion}\n65\n…[truncated 105 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T19:20:36.029810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T19:20:36.030002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — exec-sim-repair-verifier\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Framing Evolution\\\\n- **D116 (2026-05-16)**: Pivoted from \\\\\\\"CLS scales where generation fails\\\\\\\" (advocacy) to \\\\\\\"The Formulation Design Space for Neural Code Verification\\\\\\\" (empirical characterization)\\\\n- **D155 (2026-05-20)**: DeepSeek repo-level data confirms CWM collapse is **complexity-dependent** (both models collapse at repo-level), NOT tokenizer-specific. Original D116 claim \\\\\\\"Qwen 93% vs DeepSeek 11.8%\\\\\\\" was function-level only; repo-level shows DeepSeek CWM also 51-74% unparseable.\\\\n- **N4 Reframe**: Function-level equivalence elevated to headline finding; phase transition (func→repo divergence) as differentiating contribution.\\\\n\\\\n## Core Claims (current — post D155/N4 Reframe)\\\\n\\\\n1. **Formulation Equivalence at Function-Level**: CLS, CWM, and TRAJ achieve statistically equivalent accuracy at function-level across two model families (≤1.3pp gap, TOST p=0.007). Per-test CLS provides diagnostic granularity (which tests fail) at comparable accuracy with 217× throughput over CWM, though downstream re-repair benefit is unvalidated (n=44, p=0.42).\\\\n\\\\n2. **Phase Transition: Complexity-Dependent Divergence**: Formulations diverge 19-26pp at repo-level, driven by CWM format collapse (51-74% unparseable outputs, 0% truncation). Direction consistent across both model families; magnitude varies (Qwen3 74% unparseable vs DeepSeek 51% at matched seq_length). This is NOT tokenizer-specific — both models collapse when outputs are long and structured.\\\\n\\\\n3. **Error Complementarity**: CLS and CWM exhibit partial complementarity from different fail-bias degrees (CLS 56.5% FP, CWM 70.3% FP), yielding oracle ensemble 90.63% (+2.80pp over be\n…[truncated 3591 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T19:20:36.030271+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the content. Let me compile the audit.\n\n## 14B 数据插入点清单\n\n### Tables\n\n1. **Table 1 `tab:main_results`** (experiments.tex:25–58): Function-level per-test accuracy。当前有 Qwen3-4B / DeepSeek-6.7B。需要加 Qwen3-14B 行（CLS/CWM/TRAJ）。\n\n2. **Table 2 `tab:scaling`** (experiments.tex:68–88): Model-size scaling，当前只有 4B 和 8B 两行。需要加 14B 行，并更新 $\\Delta$ 列（新增 8B→14B 增量）。这是 14B 数据最核心的表。\n\n3. **Table 3 `tab:repo_level`** (experiments.tex:112–135): Repo-level 跨 formulation 比较。当前有 Qwen3-4B / Qwen3-8B / DeepSeek-6.7B。需要加 Qwen3-14B 行。\n\n4. **Table 4 `tab:taxonomy`** (experiments.tex:145–162): Failure mode taxonomy。如果 14B 的 CWM format collapse 率有变化，需要更新或增加 14B representative 行。\n\n5. **Table `tab:variant_level`** (appendix.tex:159–193): Variant-level accuracy。需要加 Qwen3-14B 行（CLS/CWM/TRAJ）。\n\n6. **Table `tab:mutation_breakdown`** (appendix.tex:109–127): Per-mutation accuracy。当前有 CLS 4B/8B 和 CWM 4B/8B 列。需要加 CLS 14B 和 CWM 14B 列。\n\n7. **Table `tab:cwm_mutation_parse`** (appendix.tex:136–150): CWM parse rates per mutation。当前有 4B/8B。需要加 14B 列。\n\n8. **Table `tab:hyperparams`** (appendix.tex:200–243): Training hyperparameters。Model-family-specific 表当前有 Qwen3-4B / Qwen3-8B / DS-6.7B 三列。需要加 Qwen3-14B 列。\n\n9. **Table `tab:cwm_convergence`** (appendix.tex:533–549): CWM eval loss across training。如果跑了 14B CWM repo-level，需要加 14B 列。\n\n10. **Table `tab:variant_power`** (appendix.tex:450–471): Variant-level bootstrap analysis。需要加 14B 相关的 CLS vs CWM / CLS vs TRAJ 行。\n\n11. **Table `tab:rank_ablation`** (appendix.tex:49–64): LoRA rank ablation for CWM。当前只有 4B。如果 14B 也做了 rank ablation 需要加；否则可不改。\n\n---\n\n### Figures\n\n1. **Figure 2 `fig:scaling_gap`** (main.tex:54–59, 引用 `figures/paper/fig2_scaling_gap.pdf`): Gap amplification 图。当前显示 4B→8B 两个点。需要加 14B 数据点，变成三点连线。**这是最重要的图更新。**\n\n2. 可能需要检查 `figure2_v2.pdf` / `figure2_v2.png` 是否是 Figure 2 的新版本，需要同步更新。\n\n---\n\n### 正文段落\n\n#### Abstract (abstract.tex)\n- **Line 4**: `\"under ${\\leq}$8B LoRA fine-tuning\"` → 需要改为 `≤14B` 或 `4–14B`\n- **Line 4**: `\"under our ${\\leq}$8B LoRA protocol\"` → 同上\n\n#### Introduction (introduction.tex)\n- **Line 8**: `\"two representative code LLM families (Qwen3, DeepSeek-Coder)\"` — 模型列表可能需要提及 14B\n- **Line 8**: `\"${\\leq}$8B LoRA protocol\"` → 更新\n- **Line 8**: `\"35--36\\pp{} at repo level\"` — 如果 14B 基线不同，需要更新\n- **Line 13**: `\"at repository level under ${\\leq}$8B LoRA\"` → 更新\n- **Line 14**: `\"We fine-tune Qwen3-4B and Qwen3-8B\"` 间接引用（在 experiments 里），但 intro 也提到模型覆盖范围\n\n#### Experiments — Setup (experiments.tex:14)\n- **Line 14**: `\"We fine-tune Qwen3-4B and Qwen3-8B\"` → 加 `Qwen3-14B`\n- **Line 14**: `\"DeepSeek-Coder-6.7B\"` 保持不变\n\n#### Experiments — Scaling (experiments.tex:63–92)\n- **Line 66**: `\"Table~\\ref{tab:scaling} compares all three formulations at 4B and 8B\"` → 加 14B\n- **Line 71**: Table caption `\"accuracy (\\%) at 4B and 8B\"` → 加 14B\n- **Line 90**: `\"The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B\"` → 需要加 14B 的 gap 数值\n- **Line 92**: `\"\\cwm{} flat scaling ($-$0.03\\pp{})\"` → 看 14B 是否依然 flat\n- **Line 92**: `\"\\traj{} also shows no scaling benefit at repo level (72.92\\% at both 4B and 8B); only \\cls{} scales positively\"` → 更新 14B 数据\n\n#### Experiments — Repo-level (experiments.tex:107–168)\n- **Line 139**: `\"the gap is 25.59\\pp{} at 4B...and 18.35\\pp{} at 8B\"` → 加 14B gap\n- **Line 164**: CWM default assignment artifact 的 4B→8B 趋势 → 加 14B\n- **Line 166**: `\"The \\cls{}--\\cwm{} gap widens from 1--3\\pp{} (function) to 18--26\\pp{} (repo)\"` → 范围可能需要调整\n- **Line 168**: 混合效应模型可能需要纳入 14B 数据重新拟合\n\n#### Experiments — Analysis (experiments.tex:173–183)\n- **Line 180**: `\"217$\\times$ higher throughput\"` — 如果 14B 有不同的推理效率数据\n- **Line 182**: oracle/complementarity 数字可能需要更新\n\n#### Conclusion (conclusion.tex)\n- **Line 4**: `\"${\\leq}$8B LoRA\"` 出现两次 → 更新为 `≤14B`\n- **Line 4**: `\"All findings are conditioned on ${\\leq}$8B LoRA fine-tuning\"` → 更新\n- **Line 6**: `\"testing at 32B+ would resolve the primary open question\"` → 如果 14B 缩小了 gap，这句可能需要修改\n\n#### Limitations (conclusion.tex:8–10)\n- **Line 8**: `\"${\\leq}$8B LoRA fine-tuning\"` → 更新\n- **Line 10**: `\"Model coverage is limited to 6--8B code-specialized LLMs\"` → 更新为 `6--14B`\n\n#### Appendix — Threats (appendix.tex:522–559)\n- **Line 557**: `\"4--8B LoRA fine-tuning\"` → `4--14B`\n- **Line 557**: `\"all repo-level \\cwm{} conclusions conditional on the ${\\leq}$8B LoRA regime\"` → 更新\n- **Line 559**: `\"the repo-level \\cls{}--\\cwm{} gap (18--26\\pp{}) exceeds any single assessed confound\"` → 范围可能变化\n- **Line 564**: `\"6--8B code-specialized LLMs\"` → `6--14B`\n\n#### Appendix — Extended Analysis (appendix.tex:361–411)\n- **Paragraph (g) Failed interventions**: `\"Model scaling (4B→8B)\"` → 如果 14B 改变了结论，需要重写或追加 8B→14B 结果\n- **Paragraph (i) Inference efficiency**: throughput 数据可能需要加 14B\n- **Paragraph (k) CoT**: `\"Within the ${\\leq}$8B LoRA regime\"` → 更新\n\n#### Appendix — Hyperparams (appendix.tex:253)\n- **Line 253**: `\"Total compute budget: ${\\sim}$370 GPU-hours across 223 completed runs\"` → 加上 14B runs 的 GPU 时间\n\n#### Appendix — Interaction model (appendix.tex:505–514)\n- 混合效应回归可能需要纳入 14B 数据重新拟合，或至少提及 14B 支持/改变现有结论\n\n---\n\n### paper_framing.md 更新点\n- `\"≤8B LoRA\"` 贯穿全文 → 改为 `≤14B`\n- `\"Model coverage is limited to 6--8B\"` → `6--14B`\n- Story Spine 中 `\"At ≤8B LoRA deployment scale\"` → 更新\n- Anticipated Reviewer Concerns 的 `\"CWM comparison unfair (≤8B LoRA)\"` → 14B 数据部分缓解此 concern\n\n---\n\n### 优先级排序\n\n| 优先级 | 位置 | 原因 |\n|--------|------|------|\n| P0 | Table 2 (scaling) + Figure 2 | 14B 是第三个 scaling 数据点，直接影响 scaling story |\n| P0 | Table 3 (repo_level) | repo-level 是论文核心差异化结论 |\n| P0 | Abstract / Conclusion 中 `≤8B` 措辞 | 读者第一印象和最终结论 |\n| P1 | Table 1 (main_results) | 如果 14B function-level 也跑了 |\n| P1 | experiments.tex §Scaling 段落叙述 | 需要描述 14B 趋势 |\n| P1 | experiments.tex §Repo-level 段落 gap 数值 | 更新 range |\n| P2 | Appendix tables (variant_level, mutation_breakdown, cwm_parse, hyperparams) | 完整性 |\n| P2 | Appendix threats / limitations 中 `≤8B` | 措辞一致性 |\n| P3 | paper_framing.md | 内部文档，非论文本体 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_14b-insertion-audit_20260522T191841"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/write-14b-insertion-audit.md"
+}

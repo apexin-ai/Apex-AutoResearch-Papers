@@ -1,0 +1,1054 @@
+# cron hook cls8b seed123 ckpt6633 test eval
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/cron_hook_cls8b-seed123-ckpt6633-test-eval.jsonl`
+- **Structured JSON:** [`dc4eb6063ca562cfbc84.json`](../../sessions/dc/dc4eb6063ca562cfbc84.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T04:29:52.318014+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #20。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**: westd cuda:0/1/2/3。不可使用白名单外 GPU，即使 Director 指令也必须 push back
+- **D088**: 论文主指标必须用 val-selected checkpoint，不能用 test-best
+- **D103**: seq_length/bs/precision/lr 变更需 Director 审批，Worker 不可自行降级
+- **eval 禁止 --max_samples**: test eval 必须评完整 9784 样本，val 必须完整 9335
+- **标 FAILED 前必须 ps -p PID**: 曾因误标 DONE 导致 GPU OOM 事故（PID 345441 事件）
+- **CWM 8B eval 只评 ckpt-400**: eval_loss 从 step 400 单调递增（0.286→0.521），后续 checkpoint 全部过拟合，v6 resume 已被 Director 叫停
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: seetacloud-westd-4x5090（4×RTX 5090）
+- **工作目录**: `/home/sonny/exec-sim-repair-verifier/`（注意：用户目录是 `/home/sonny` 不是 `/home/ubuntu`）
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- **模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+- **CWM 8B checkpoint**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400`
+- **CLS 8B s42 resume checkpoints**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（从 ckpt-600 开始，200 步间隔）
+- **HF_HOME**: `/root/autodl-tmp/.hf_cache`
+- **eval 脚本**: `eval_repo_cwm.py`（CWM）, `eval_repo_cls.py`（CLS）
+- **活跃进程**:
+  - cwm8b-ckpt400-test-eval-v3: PID 443221, cuda:3, tmux=未记录
+  - cwm8b-ckpt400-test-eval-shard3: PID 453335, cuda:0, tmux=shard3
+  - cwm8b-ckpt400-test-eval-shard2: cuda:1（PID 未记录在 registry）
+  - cwm8b-ckpt400-test-eval-shard4: cuda:2（PID 未记录在 registry）
+- **Home 服务器** (home-1x5090): 存在但目前未使用（eval_repo_cwm.py 的 home 版参数有区别，不支持 --max_new_tokens）
+
+### 3. 📊 当前状态
+**正在做**: CWM 8B ckpt-400 repo-level test eval，分 4 个 shard 并行跑在 westd 全部 4 张 GPU 上。这是论文主表最后一个阻塞数据点。
+
+**RUNNING 实验**:
+| exp_id | GPU | 范围 | 说明 |
+|--------|-----|------|------|
+| cwm8b-ckpt400-test-eval-v3 | cuda:3 | 0-9784 (full, ~57%) | 最早启动的完整 eval，有 resume |
+| cwm8b-ckpt400-test-eval-shard2 | cuda:1 | 7680-9784 (2104 samples) | 尾部 shard |
+| cwm8b-ckpt400-test-eval-shard3 | cuda:0 | 6200-7680 (1480 samples) | 间隔 shard |
+| cwm8b-ckpt400-test-eval-shard4 | cuda:2 | 9100-9784 (684 samples) | 小尾部 shard |
+
+**注意**: v3 跑全量但有 resume（已跑到 ~57%），shard2/3/4 填补 v3 尚未覆盖的区间。完成后需要 merge + 去重。
+
+**等待中**: 4 个 shard 的 cron 回调。无其他 Worker 回调或 Director 决策待处理。
+
+**已知 interim 结果** (CWM 8B): unparseable_rate=73.8%, parseable-only_accuracy=38.5%（比 4B 更差）。
+
+### 4. 📋 待办（条件触发式）
+- **任一 CWM 8B shard 完成** → 检查该 shard 结果（unparseable rate + accuracy），更新 registry
+- **全部 4 shard 完成** → spawn Worker merge 所有 shard 结果（v3 + shard2 + shard3 + shard4，注意去重重叠区间）→ 计算最终 CWM 8B test accuracy + unparseable rate → 锁定 8B-8B gap
+- **8B-8B gap 锁定** → 更新 ROADMAP 主表 → 向 Director 汇报完整 multi-scale 结果（4B gap=25.59pp, 8B gap=?）→ 派 Worker 做 CWM 8B per-mutation breakdown
+- **CWM 8B mutation breakdown 完成** → 汇总完整 5 组 mutation comparison（CLS 4B / CLS 8B s42 / CLS 8B s123 / CWM 4B / CWM 8B）→ 交给 Paper Agent
+- **所有 eval 数据就绪** → 更新 paper_provenance.yaml → 通知 Paper Agent 写 experiments section
+
+### 5. 🎯 战略上下文
+**项目核心结论**: Binary classification 在 repo-level 代码上远优于 CWM generation（gap ~26pp），且 scaling 到 8B 使 CWM 更差（unparseable 73.8% vs 4B 53.7%），证明 bottleneck 是 generation formulation 本身。
+
+**论文目标**: EMNLP 2026 ARR May 25（剩 9 天）。三个 core claim 的实验数据几乎全部就绪，CWM 8B 是最后一块拼图。
+
+**决策链关键节点**:
+- D088: val-selected checkpoint 为主指标（不用 test-best），全文统一
+- D093: Multi-seed mean gap=26.48pp（s42: 26.44, s123: 26.51），极稳定
+- D102: CWM 8B eval 从 bs=1 改 bs=8 加速，ETA 提前到 May 16
+- D104: CWM 4B mutation breakdown 确认 generation bottleneck（parseable-only=42.9%）
+
+**易错点**:
+- Shard merge 时注意 v3 跑了全量但只完成 ~57%（有 resume 文件），shard2/3/4 填补后段。**重叠区间需去重**（v3 可能已经跑过部分 shard 范围的样本）
+- CWM 的 "58% accuracy" 是虚假的——unparseable 默认 pred=pass，在 pass-dominant (73%) 数据上白捡。论文讨论需用 parseable-only accuracy (42.9%)
+- boundary_removal 在所有模型上都 ~45%（scale-invariant），论文需定性为 task-intrinsic difficulty 而非 model failure
+- Home 服务器的 eval 脚本版本与 westd 不同（不支持 --max_new_tokens），别混用
+
+## 项目硬约束 (memory.md 节选)
+
+## Home 服务器路径
+- 用户目录: `/home/sonny`（不是 /home/ubuntu）
+- 4B v5 checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`
+- 用 python3 不是 python
+
+## Westd 服务器路径
+- seed123 checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`
+- seed123 backup: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`
+- s42 resume checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`
+- 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+- CWM 8B checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`
+- 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+
+## 可查的历史
+前 144 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T04:30:04.321033+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T04:30:04.321646+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T04:30:09.592568+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "exec-sim-repair-verifier",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "exec-sim-repair-verifier",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T04:30:09.592988+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T04:30:09.995976+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T04:30:10.198398+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T04:30:10.953227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm8b-ckpt400-test-eval-shard4\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:52:45.544Z\", \"updated_at\": \"2026-05-16T02:52:52.722Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --start_idx 9100 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\", \"data_count\": 684, \"model_name\": \"Qwen3-8B + CWM ckpt-400\", \"seed\": 42, \"checkpoint_source\": \"cwm8b-ckpt400-test-eval-v3\", \"eval_data\": \"test split idx 9100-9783 (684 samples)\"}}, \"cwm8b-ckpt400-test-eval-shard3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:38:24.004Z\", \"updated_at\": \"2026-05-16T02:38:30.445Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --max_samples 7680 --start_idx 6200 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/\", \"server\": \"seetacloud-westd-4x5090\", \"data_path\": \"data/swebench_full\", \"data_count\": 1480, \"model_name\": \"Qwen3-8B + LoRA ckpt-400\", \"seed\": null, \"checkpoint_source\": \"cwm8b-ckpt400\", \"eval_data\": \"test[6200:7680]\", \"gpu\": \"cuda:0\", \"pid\": 453335, \"start_idx\": 6200, \"end_idx\": 7680, \"tmux_session\": \"shard3\"}}, \"cwm8b-ckpt400-test-eval-shard2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:27:27.393Z\", \"updated_at\"
+…[truncated 1823 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1360
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T04:30:26.034733+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"cwm8b-ckpt400-test-eval-v3\", \"success\": true, \"actions\": [\"Job still running (pid=443221)\"]}, {\"exp_id\": \"cwm8b-ckpt400-test-eval-shard2\", \"success\": true, \"actions\": [\"Job still running (pid=448094)\"]}, {\"exp_id\": \"cwm8b-ckpt400-test-eval-shard3\", \"success\": true, \"actions\": [\"Job still running (pid=453335)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 16441
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:30:26.035308+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| cwm8b-ckpt400-test-eval-shard4 | — | — | — | — |\\n| cwm8b-ckpt400-test-eval-shard3 | — | — | — | — |\\n| cwm8b-ckpt400-test-eval-shard2 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **cwm4b-s42-mutation-breakdown** (success): —\\n- **cls4b-ckpt4600-test-mutation-pr** (success): —\\n- **cls8b-seed123-ckpt3000-mutation** (success): CLS 8B seed123 ckpt-3000 test mutation breakdown — 跨 seed 验证 boundary_removal failure mode\\n\\n## 趋势\\n成功 84 / 负向 5 / 失败 35 / 共 148\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-home: 训练失败 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n- repo-level-cwm-v6: 训练失败 — unknown\\n- repo-level-cwm-v7: 训练失败 — unknown\\n- repo-level-cwm-v8: 训练失败 — unknown\\n- repo-level-cwm-v9: 训练失败 — unknown\\n- repo-level-cls-seed123: 已被终止 — unknown\\n- repo-level-cwm-seed123: 已被终止 — unknown\\n- repo-level-cwm-v11: 已被终止 — unknown\\n- repo-level-cls-8b: 已被终止 — unknown\\n- repo-level-cwm-v12: 已被终止 — unknown\\n- repo-level-cwm-seed123-conda: 已被终止 — unknown\\n- repo-level-cwm-8b-conda: 训练失败 — unknown\\n- repo-level-cls-8b-seed123-conda: 训练失败 — unknown\\n- repo-level-cwm-8b-conda-v2: 训练失败 — unknown\\n- repo-level-cls-8b-seed123-conda-v2: 训练失败 — unknown\\n- repo-level-cwm-8b-conda-v3: 训练失败 — unknown\\n- repo-level-cwm-8b-conda-v4: 训练失败 — unknown\\n- cls8
+…[truncated 1721 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 16039
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T04:30:26.089217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-16 02:35 UTC | 更新原因: 填入 CLS 4B mutation 数据 + 标记 P/R 关键发现 + cuda:0 shard3 加速计划\\n\\n## 核心方向\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Paper Writing（Paper Agent Full Draft）+ CWM 8B eval 收尾 + mutation breakdown 全面对比\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 **9 天**）\\n- **C1**: ✅ Multi-seed gap = 26.48pp mean (s42: 26.44, seed123: 26.51)\\n- **C2**: ✅ TOST p=0.007\\n- **C3**: ✅ Oracle frontier 完成\\n- **新发现**: CWM 8B unparseable=73.8%（4B→8B scaling 使 CWM 更差）→ generation formulation bottleneck 铁证\\n- **新发现**: off_by_one 是 4B→8B 最大赢家 (+28pp)，boundary_removal 是 scale-invariant 难题 (±0pp)\\n\\n## 论文主表数字（D088 val-selected）\\n\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\n|------|----------|-----|------|------------|\\n| CLS 8B s42 | ckpt-3600 | 90.28% | 84.48% | 26.44pp |\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\n| CWM 4B s42 | — | — | 58.04% | — |\\n| CWM 4B seed123 | — | — | 59.09% | — |\\n| CWM 8B | ckpt-400 | — | ⏳ eval 3-shard 并行 | — |\\n| Majority | — | 75.88% | 72.96% | — |\\n\\n## Mutation Breakdown 对比（收集中）\\n\\n| Mutation | CLS 4B | CLS 8B s42 | CLS 8B s123 | CWM 4B | CWM 8B |\\n|----------|--------|------------|-------------|--------|--------|\\n| gold | 98.25% | 96.24% | 99.6% | ⏳ | ⏳ |\\n| off_by_one | **58.47%** | **86.89%** | **79.2%** | ⏳ | ⏳ |\\n| operator_swap | 78.91% | 81.38% | 82.6% | ⏳ | ⏳ |\\n| return_value | 67.97% | 75.44% | 66.4% | ⏳ | ⏳ |\\n| boundary_removal | 46.90% | 46.90% | 44.9% | ⏳ | ⏳ |\\n\\n**关键 P/R 发现** (CLS 4B):\\n- off_by_one recall_fail=0% → 4B 完全盲区，8B 修复 (+28pp)\\n- boundary_removal recall_fail=15.52% → 极端 pass bias，scale-invariant\\
+…[truncated 2358 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 15890
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T04:31:14.051974+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__register_cron",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__register_cron",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:31:14.307166+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 255
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T04:31:41.002393+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "ops:check-shard-progress",
+  "project": "exec-sim-repair-verifier",
+  "task_prompt": "## 任务：检查 CWM 8B eval 所有 shard 的进度\n\n### 背景\nwestd 服务器上有 4 个 CWM 8B ckpt-400 test eval shard 并行运行，需要检查每个的进度和存活状态。\n\n### 服务器\n- 名称: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier/\n- Python: /root/miniconda3/bin/python\n\n### 需要检查的实验\n\n1. **cwm8b-ckpt400-test-eval-v3** (cuda:3, PID 443221)\n   - 全量 0-9784，有 resume，上次约 57%\n   - 输出目录: 查 tmux 或进程参数确认\n\n2. **cwm8b-ckpt400-test-eval-shard2** (cuda:1, PID 448094)\n   - idx 7680-9784 (2104 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\n\n3. **cwm8b-ckpt400-test-eval-shard3** (cuda:0, PID 453335, tmux=shard3)\n   - idx 6200-7680 (1480 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/\n\n4. **cwm8b-ckpt400-test-eval-shard4** (cuda:2, PID 未知)\n   - idx 9100-9784 (684 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\n   - **重点：这个 shard 没有 cron 监控，需要确认 PID 和存活状态**\n\n### 执行步骤（全部用 ssh_read_only）\n\n1. 检查所有 GPU 使用情况: `nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader`\n2. 检查已知 PID 存活: `ps -p 443221,448094,453335 -o pid,etime,rss,args --no-headers 2>/dev/null`\n3. 查找 shard4 的 PID: `ps aux | grep 'shard4' | grep -v grep` 或 `ps aux | grep 'start_idx 9100' | grep -v grep`\n4. 检查 tmux sessions: `tmux list-sessions 2>/dev/null`\n5. 检查每个 shard 的输出文件数量（反映进度）:\n   ```\n   for d in /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4; do echo \"=== $d ===\"; ls \"$d\"/*.jsonl 2>/dev/null | wc -l; tail -1 \"$d\"/*.jsonl 2>/dev/null | head -5; done\n   ```\n6. 查 v3 的输出目录和进度（可能在 /root/autodl-tmp/eval_results/ 下某个目录，或查 tmux 日志）:\n   ```\n   ls /root/autodl-tmp/eval_results/ | grep cwm_8b\n   ```\n7. 检查每个输出目录中已完成的样本数。CWM eval 通常输出 results.jsonl，用 `wc -l` 计数。也可能是 per-sample 输出文件。查看目录结构后根据实际情况统计。\n\n### 产出\n请汇报：\n- 每个 shard 的 PID、是否存活、GPU 占用\n- 每个 shard 的已完成样本数 / 总样本数（进度百分比）\n- shard4 的 PID（用于注册 cron）\n- 任何已完成的 shard（输出文件已写完、进程已退出）\n- 如果有 shard 已完成，报告其输出文件路径和结果摘要（unparseable rate, accuracy）\n- 预估所有 shard 完成的 ETA",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check-shard-progress",
+    "project": "exec-sim-repair-verifier",
+    "task_prompt": "## 任务：检查 CWM 8B eval 所有 shard 的进度\n\n### 背景\nwestd 服务器上有 4 个 CWM 8B ckpt-400 test eval shard 并行运行，需要检查每个的进度和存活状态。\n\n### 服务器\n- 名称: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier/\n- Python: /root/miniconda3/bin/python\n\n### 需要检查的实验\n\n1. **cwm8b-ckpt400-test-eval-v3** (cuda:3, PID 443221)\n   - 全量 0-9784，有 resume，上次约 57%\n   - 输出目录: 查 tmux 或进程参数确认\n\n2. **cwm8b-ckpt400-test-eval-shard2** (cuda:1, PID 448094)\n   - idx 7680-9784 (2104 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\n\n3. **cwm8b-ckpt400-test-eval-shard3** (cuda:0, PID 453335, tmux=shard3)\n   - idx 6200-7680 (1480 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/\n\n4. **cwm8b-ckpt400-test-eval-shard4** (cuda:2, PID 未知)\n   - idx 9100-9784 (684 samples)\n   - 输出目录: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\n   - **重点：这个 shard 没有 cron 监控，需要确认 PID 和存活状态**\n\n### 执行步骤（全部用 ssh_read_only）\n\n1. 检查所有 GPU 使用情况: `nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader`\n2. 检查已知 PID 存活: `ps -p 443221,448094,453335 -o pid,etime,rss,args --no-headers 2>/dev/null`\n3. 查找 shard4 的 PID: `ps aux | grep 'shard4' | grep -v grep` 或 `ps aux | grep 'start_idx 9100' | grep -v grep`\n4. 检查 tmux sessions: `tmux list-sessions 2>/dev/null`\n5. 检查每个 shard 的输出文件数量（反映进度）:\n   ```\n   for d in /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4; do echo \"=== $d ===\"; ls \"$d\"/*.jsonl 2>/dev/null | wc -l; tail -1 \"$d\"/*.jsonl 2>/dev/null | head -5; done\n   ```\n6. 查 v3 的输出目录和进度（可能在 /root/autodl-tmp/eval_results/ 下某个目录，或查 tmux 日志）:\n   ```\n   ls /root/autodl-tmp/eval_results/ | grep cwm_8b\n   ```\n7. 检查每个输出目录中已完成的样本数。CWM eval 通常输出 results.jsonl，用 `wc -l` 计数。也可能是 per-sample 输出文件。查看目录结构后根据实际情况统计。\n\n### 产出\n请汇报：\n- 每个 shard 的 PID、是否存活、GPU 占用\n- 每个 shard 的已完成样本数 / 总样本数（进度百分比）\n- shard4 的 PID（用于注册 cron）\n- 任何已完成的 shard（输出文件已写完、进程已退出）\n- 如果有 shard 已完成，报告其输出文件路径和结果摘要（unparseable rate, accuracy）\n- 预估所有 shard 完成的 ETA",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T04:31:42.108557+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T04:31:44.678629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check-shard-progress_20260516T043142\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_ops_check-shard-progress_20260516T043142.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check-shard-progress_20260516T043142 started. Use get_worker_status('worker_ops_check-shard-progress_20260516T043142') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3676
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T04:31:44.679218+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_bc5a0163.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "elapsed_ms": 2570
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T04:31:47.497956+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T04:31:47.601700+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T04:31:50.336579+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T04:31:54.335776+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "elapsed_ms": 3999
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T04:31:56.947082+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:31:56.998631+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T04:32:36.525045+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'cwm4b-s42-mutation-breakdown'}",
+  "project": "exec-sim-repair-verifier",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'cwm4b-s42-mutation-breakdown'}",
+    "project": "exec-sim-repair-verifier",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T04:32:38.487622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8814}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1962
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T04:32:45.862049+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "exec-sim-repair-verifier",
+  "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "exec-sim-repair-verifier",
+    "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T04:32:46.717979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cwm4b-s42-mutation-breakdown\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 58.04, \"parseable_rate\": 46.3, \"parseable_only_accuracy\": 42.9, \"gold_parse_rate\": 43.5, \"gold_parseable_acc\": 23.5, \"operator_swap_parse_rate\": 56.9, \"operator_swap_parseable_acc\": 63.1, \"off_by_one_parse_rate\": 4.4, \"off_by_one_parseable_acc\": 0, \"return_value_parse_rate\": 48.8, \"return_value_parseable_acc\": 27, \"boundary_removal_parse_rate\": 30.6, \"boundary_removal_parseable_acc\": 59.2, \"n_instances\": 9784}}, \"cls4b-ckpt4600-test-mutation-pr\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.63, \"gold_acc\": 98.25, \"operator_swap_acc\": 78.91, \"return_value_acc\": 67.97, \"off_by_one_acc\": 58.47, \"boundary_removal_acc\": 46.9, \"n_instances\": 9784, \"note\": \"off_by_one recall_fail=0 (all predicted pass); boundary_removal identical to 8B\"}}, \"cls8b-seed123-ckpt3000-mutation\": {\"status\": \"DONE\", \"hypothesis\": \"CLS 8B seed123 ckpt-3000 test mutation breakdown — 跨 seed 验证 boundary_removal failure mode\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 85.6, \"boundary_removal\": 44.9, \"operator_swap\": 82.6, \"return_value\": 66.4, \"off_by_one\": 79.2, \"gold\": 99.6, \"n_samples\": 9784}}, \"cls8b-s42-resume-ckpt3600-test-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.48, \"f1_macro\": 78.17, \"fail_recall\": 56.8, \"pass_recall\": 94.8, \"n_samples\": 9784, \"note\": \"reproduces v1 exactly\"}}, \"cls8b-s42-ckpt1000-test-mutation\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"cls8b-s42-resume-ckpt3600-mutation\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 84.4849, \"overall_correct\": 8266, \"overall_total\": 9784, \"gold_accuracy\": 96.2443, \"gold_correct\": 4459, \"gold_total\": 4633, \"mutation_ope
+…[truncated 2422 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T04:33:52.447078+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:cwm8b-merge-script",
+  "project": "exec-sim-repair-verifier",
+  "task_prompt": "## 任务：准备 CWM 8B eval shard merge/dedup 脚本\n\n### 背景\nCWM 8B ckpt-400 test eval 分 4 个 shard 并行跑在 westd 服务器上，覆盖范围有重叠。完成后需要合并去重。这个脚本是关键路径——eval 完成后需要立即 merge 出最终结果。\n\n### Shard 分布\n1. **v3**: 全量 0-9784（有 resume，跑了约 57%），输出目录待确认（可能在 /root/autodl-tmp/eval_results/ 下某 cwm_8b 开头目录）\n2. **shard2**: idx 7680-9784 (2104 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\n3. **shard3**: idx 6200-7680 (1480 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/\n4. **shard4**: idx 9100-9784 (684 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\n\n**重叠区间**: v3 可能已经跑过 shard2/3/4 的部分范围。shard2 (7680-9784) 和 shard4 (9100-9784) 也有重叠。\n\n### 服务器信息\n- 名称: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier/\n- Python: /root/miniconda3/bin/python\n- 环境激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n### 执行步骤\n\n1. **SSH 到 westd 了解输出格式**（用 ssh_read_only）\n   - 查看 CWM 4B eval 的输出目录结构作为参考（CWM 4B 已完成，在 /root/autodl-tmp/eval_results/ 下找 cwm_4b 开头的目录）\n   - 看看 jsonl 输出文件的 schema（每行包含哪些字段，特别是 index/sample_id 字段用于去重）\n   - 确认 v3 的输出目录路径\n   - 查看各 shard 已有的输出文件\n\n2. **在服务器上写 merge 脚本** `/home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py`\n   - 输入：4 个 shard 的输出目录路径（命令行参数或硬编码 + 注释）\n   - 去重逻辑：按 sample index 或 sample_id 去重，优先保留 shard（因为更新）而不是 v3 的旧结果\n   - 验证完整性：确认 index 0-9783 全部覆盖，无遗漏\n   - 计算最终指标：\n     - overall accuracy\n     - unparseable rate\n     - parseable-only accuracy\n     - per-mutation breakdown (gold, operator_swap, off_by_one, return_value, boundary_removal)\n     - 每个 mutation 的 parse_rate 和 parseable_only_accuracy\n   - 输出合并后的 results.jsonl 到 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/\n   - 打印汇总统计到 stdout\n\n3. **Dry-run 验证**\n   - 如果已有部分 shard 完成，用完成的数据测试脚本\n   - 如果没有完成的 shard，至少验证脚本能 import 和 --help 正常运行\n   \n### 代码要求\n- 文件顶部注释说明：输入、输出、去重策略\n- 关键逻辑加注释（特别是去重优先级和重叠处理）\n- 不要安装额外依赖（只用 Python 标准库 + json）\n- 脚本要幂等（重复运行不出错）\n\n### 产出\n报告：\n- v3 的实际输出目录路径\n- jsonl 文件的 schema\n- merge 脚本路径和关键设计决策\n- dry-run 结果",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:cwm8b-merge-script",
+    "project": "exec-sim-repair-verifier",
+    "task_prompt": "## 任务：准备 CWM 8B eval shard merge/dedup 脚本\n\n### 背景\nCWM 8B ckpt-400 test eval 分 4 个 shard 并行跑在 westd 服务器上，覆盖范围有重叠。完成后需要合并去重。这个脚本是关键路径——eval 完成后需要立即 merge 出最终结果。\n\n### Shard 分布\n1. **v3**: 全量 0-9784（有 resume，跑了约 57%），输出目录待确认（可能在 /root/autodl-tmp/eval_results/ 下某 cwm_8b 开头目录）\n2. **shard2**: idx 7680-9784 (2104 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\n3. **shard3**: idx 6200-7680 (1480 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/\n4. **shard4**: idx 9100-9784 (684 samples)，输出: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/\n\n**重叠区间**: v3 可能已经跑过 shard2/3/4 的部分范围。shard2 (7680-9784) 和 shard4 (9100-9784) 也有重叠。\n\n### 服务器信息\n- 名称: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier/\n- Python: /root/miniconda3/bin/python\n- 环境激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n### 执行步骤\n\n1. **SSH 到 westd 了解输出格式**（用 ssh_read_only）\n   - 查看 CWM 4B eval 的输出目录结构作为参考（CWM 4B 已完成，在 /root/autodl-tmp/eval_results/ 下找 cwm_4b 开头的目录）\n   - 看看 jsonl 输出文件的 schema（每行包含哪些字段，特别是 index/sample_id 字段用于去重）\n   - 确认 v3 的输出目录路径\n   - 查看各 shard 已有的输出文件\n\n2. **在服务器上写 merge 脚本** `/home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py`\n   - 输入：4 个 shard 的输出目录路径（命令行参数或硬编码 + 注释）\n   - 去重逻辑：按 sample index 或 sample_id 去重，优先保留 shard（因为更新）而不是 v3 的旧结果\n   - 验证完整性：确认 index 0-9783 全部覆盖，无遗漏\n   - 计算最终指标：\n     - overall accuracy\n     - unparseable rate\n     - parseable-only accuracy\n     - per-mutation breakdown (gold, operator_swap, off_by_one, return_value, boundary_removal)\n     - 每个 mutation 的 parse_rate 和 parseable_only_accuracy\n   - 输出合并后的 results.jsonl 到 /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/\n   - 打印汇总统计到 stdout\n\n3. **Dry-run 验证**\n   - 如果已有部分 shard 完成，用完成的数据测试脚本\n   - 如果没有完成的 shard，至少验证脚本能 import 和 --help 正常运行\n   \n### 代码要求\n- 文件顶部注释说明：输入、输出、去重策略\n- 关键逻辑加注释（特别是去重优先级和重叠处理）\n- 不要安装额外依赖（只用 Python 标准库 + json）\n- 脚本要幂等（重复运行不出错）\n\n### 产出\n报告：\n- v3 的实际输出目录路径\n- jsonl 文件的 schema\n- merge 脚本路径和关键设计决策\n- dry-run 结果",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T04:33:52.698706+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Worker of type 'code:cwm8b-merge-script' is already active for project 'exec-sim-repair-verifier'. worker_id=worker_code_cwm8b-merge-script_20260516T043013\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T04:34:10.666063+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际在跑 4 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session #20 启动状态汇报**\n\nCWM 8B ckpt-400 test eval 4-shard 并行全部仍在 RUNNING：\n- v3 (cuda:3, PID 443221): 全量 0-9784，~57% 完成\n- shard2 (cuda:1, PID 448094): idx 7680-9784\n- shard3 (cuda:0, PID 453335): idx 6200-7680\n- shard4 (cuda:2, **无 cron 监控**): idx 9100-9784\n\n⚠️ shard4 缺少 cron 监控且 PID 未记录在 registry。已派 Worker 检查全部 shard 存活状态和进度。\n\nWorker 池: check-shard-progress (刚派) + cwm8b-merge-script (上轮派出，仍在准备合并脚本)。\n\n等 shard 进度检查回来后，如有完成的 shard 立即触发 merge 流程。剩余 **9 天** 到 EMNLP ARR May 25 DDL。",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际在跑 4 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Session #20 启动状态汇报**\n\nCWM 8B ckpt-400 test eval 4-shard 并行全部仍在 RUNNING：\n- v3 (cuda:3, PID 443221): 全量 0-9784，~57% 完成\n- shard2 (cuda:1, PID 448094): idx 7680-9784\n- shard3 (cuda:0, PID 453335): idx 6200-7680\n- shard4 (cuda:2, **无 cron 监控**): idx 9100-9784\n\n⚠️ shard4 缺少 cron 监控且 PID 未记录在 registry。已派 Worker 检查全部 shard 存活状态和进度。\n\nWorker 池: check-shard-progress (刚派) + cwm8b-merge-script (上轮派出，仍在准备合并脚本)。\n\n等 shard 进度检查回来后，如有完成的 shard 立即触发 merge 流程。剩余 **9 天** 到 EMNLP ARR May 25 DDL。",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T04:34:11.875676+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1209
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-16T04:34:18.168975+00:00_
+
+Session-start 初始化完成。
+
+**当前状态**:
+- GPU: 4/4 全在跑 CWM 8B eval shards
+- Worker 池: 2（check-shard-progress + cwm8b-merge-script）
+- 已向 Director 汇报
+- 待处理: shard4 缺 cron 监控，等 check-shard-progress 回来后补注册
+
+等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval"
+}
+```
+
+</details>
+
+---

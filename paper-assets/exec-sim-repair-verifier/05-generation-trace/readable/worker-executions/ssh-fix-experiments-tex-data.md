@@ -1,0 +1,3879 @@
+# ssh fix experiments tex data
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_ssh_fix-experiments-tex-data_20260512T224037.log`
+- **Structured JSON:** [`4a320dccb05d483cf498.json`](../../sessions/4a/4a320dccb05d483cf498.json)
+
+## Before a recorded user message
+
+81 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2faa8803-8c67-4097-9b66-dff8085c24fe",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779159600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.27,
+    "isUsingOverage": false
+  },
+  "uuid": "819c5393-37e5-431f-bd04-d61e5e74b9e3",
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to investigate two data discrepancies in their paper's experiments.tex. I need to SSH to servers to find scripts and results. Let me start by searching on both servers in parallel.
+
+Let me load the SSH tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "090bdda1-83b4-493d-a7a7-19ad8577acd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqCSrRNVepxs8tcLKZcGvs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11886,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11886
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载 SSH 工具，然后并行在两台服务器上搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "51e07602-e867-4f1b-98a4-b2ec009b92c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqCSrRNVepxs8tcLKZcGvs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11886,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11886
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GAHecf5Dehc2MrL9xMgKnz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "7f2c7aed-063d-4b90-853d-1317a3f5f42d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqCSrRNVepxs8tcLKZcGvs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11886,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11886
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T22:40:54.904Z_
+
+<details><summary>↩ Tool result · `toolu_01GAHecf5Dehc2MrL9xMgKnz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "874b638a-4067-476a-aded-81d0b366126b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search on both servers in parallel for the relevant files and data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "9b2213dc-c054-4da6-907a-dcc73ce9f367",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qfjNtBqhW5L5QQ6DguAq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 23587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+并行搜索两台服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "5bdb0c70-11fd-4d2b-82ea-34ae2df2de45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qfjNtBqhW5L5QQ6DguAq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 23587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K5grv1NJPmhX228eAgYH3J`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*block*corr*\" -o -name \"*empirical*\" -o -name \"*complementarity*\" 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "edef98d2-fb95-4262-b609-6ab470a7dcbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qfjNtBqhW5L5QQ6DguAq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 23587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T22:41:00.698Z_
+
+<details><summary>↩ Tool result · `toolu_01K5grv1NJPmhX228eAgYH3J`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "f9c88181-9371-424c-8b03-6fd0acd6b179",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FxWFiJ4JMqEhTAL2HnVg1u`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -r \"75.5\\|83.1\\|90.63\\|oracle\\|all_correct_observed\\|complementarity\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\" --include=\"*.json\" -l 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "850606bb-acd5-4473-94d1-e70735fba9f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qfjNtBqhW5L5QQ6DguAq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 23587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T22:41:02.568Z_
+
+<details><summary>↩ Tool result · `toolu_01FxWFiJ4JMqEhTAL2HnVg1u`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "6ab0a249-72aa-43e5-b2ce-ffa5b59696a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UnHvRA9Mmze1ogwsHxKR7J`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -r \"75.5\\|83.1\\|90.63\\|oracle\\|all_correct_observed\\|complementarity\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\" --include=\"*.json\" -l 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "4eca63d3-fdc8-427b-98eb-7c46e377e086",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qfjNtBqhW5L5QQ6DguAq3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 23587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T22:41:03.617Z_
+
+<details><summary>↩ Tool result · `toolu_01UnHvRA9Mmze1ogwsHxKR7J`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "56ff1f44-7a48-47c6-9bfc-deba614ba993",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The shell metacharacters are blocked. I need to avoid `-o` in find (it uses shell parsing) and `|` in grep. Let me restructure the commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "b9e64e07-1302-46ba-a14a-ea5319acb8cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Shell 元字符被拦截，拆分命令重试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "3779362c-ba6c-4001-b259-d22b55f7250b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jztu3Ztq9ZTKozwEPoCm1B`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*block*corr*\" 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "8c22bbd6-2f7f-4045-ab50-c3434de9bcfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T22:41:08.708Z_
+
+<details><summary>↩ Tool result · `toolu_01Jztu3Ztq9ZTKozwEPoCm1B`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "785b8a8a-568a-47d3-be34-7ba56bab3cbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H3vT4d6YdBRtaa8TMWUrp7`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*empirical*\" 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "f3159f87-36f0-4a57-a8bb-5ecee5c37daa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T22:41:09.191Z_
+
+<details><summary>↩ Tool result · `toolu_01H3vT4d6YdBRtaa8TMWUrp7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "30fe93b1-2f9a-4bfb-8e28-4e6f63e4387f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nt4t9f2HkDseV6fRs7SLEL`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*complementarity*\" 2>/dev/null",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "0e3ac1e7-5b3f-438b-a24e-9f91a9da8916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T22:41:10.137Z_
+
+<details><summary>↩ Tool result · `toolu_01Nt4t9f2HkDseV6fRs7SLEL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "9d8f1425-6126-4847-81e7-6d1c1f26afe5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MahG7poC1hN7aG1CzZX5wK`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -rl \"all_correct_observed\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\" --include=\"*.json\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "cbba2f9f-20b4-4f0a-893e-64e237812723",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BQsWp4Zyw8GbVWXH8JTeL1`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -rl \"oracle\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "a6166575-307f-4b67-8d63-560c30492d8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019uQDtVRDxeHQrT2d5gdi2h`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -rl \"all_correct_observed\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\" --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "88ac4459-b032-4dd0-94bf-270dfdc35c9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T22:41:13.774Z_
+
+<details><summary>↩ Tool result · `toolu_01MahG7poC1hN7aG1CzZX5wK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "dde66b28-6dc4-4b02-94f3-ae9e22dce85b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XmTD6Nyy7WXkS9qb2W3i16`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -rl \"oracle\" /home/sonny/exec-sim-repair-verifier/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "2b93d52c-4644-48ea-8e68-24799f79a363",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTNLHjKrrY34QS4gx4VQc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 871,
+      "cache_read_input_tokens": 24550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T22:41:15.008Z_
+
+<details><summary>↩ Tool result · `toolu_01BQsWp4Zyw8GbVWXH8JTeL1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py\\n/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py\\n/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "0d6ff21b-f248-4002-81aa-341885fb0ac5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py\\\\n/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py\\\\n/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py\\n/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py\\n/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T22:41:16.211Z_
+
+<details><summary>↩ Tool result · `toolu_019uQDtVRDxeHQrT2d5gdi2h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "43e1b81f-2661-4b28-b803-6cd463771ce7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T22:41:16.754Z_
+
+<details><summary>↩ Tool result · `toolu_01XmTD6Nyy7WXkS9qb2W3i16`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "4a355bef-6ce5-426b-ac5e-21cb79cb8d15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` is being blocked because `>` is a shell metacharacter. Let me remove the redirection. Also, the find commands with `-o` flag are being blocked because it thinks the flag is a shell metacharacter? Actually wait, `-o` isn't a metacharacter. Let me re-check - the error says `>` is blocked. The `2>/dev/null` contains `>`. Let me remove that.
+
+Found on home-1x5090:
+- `/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py`
+
+
+- `/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py`
+- `/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py`
+
+No match on seetacloud for "all_correct_observed" or "oracle". Now I need to read those three Python files, search for block_corr related files without the redirection, and look for complementarity and empirical files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "276782ee-8a10-4710-bf33-00eaedcbff3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+找到三个相关脚本。继续读取它们，同时搜索 block-corr 相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "e073a4e5-c7a5-41ea-b485-654aacf786b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KG3nTcC9MURscNTy8XTqTa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "549369ba-b507-499c-bf83-ae1c18cd8339",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PS7kWB1wV7GKkfA7wjiivh`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "4e4a4574-327d-486d-bf58-f6c649fb1207",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T22:41:28.329Z_
+
+<details><summary>↩ Tool result · `toolu_01KG3nTcC9MURscNTy8XTqTa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"CLS vs CWM per-instance error overlap analysis.\\\"\\\"\\\"\\nimport json\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\ndef load_cls_predictions(path):\\n    preds = []\\n    with open(path) as f:\\n        for line in f:\\n            preds.append(json.loads(line))\\n    return preds\\n\\ndef load_cwm_predictions(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    return data[\\\"predictions\\\"]\\n\\ndef cohens_kappa(y1, y2):\\n    n = len(y1)\\n    assert n == len(y2)\\n    cats = sorted(set(y1) | set(y2))\\n    confusion = Counter()\\n    for a, b in zip(y1, y2):\\n        confusion[(a, b)] += 1\\n    po = sum(confusion[(c, c)] for c in cats) / n\\n    pe = sum(\\n        (sum(confusion[(c, c2)] for c2 in cats) / n) *\\n        (sum(confusion[(c2, c)] for c2 in cats) / n)\\n        for c in cats\\n    )\\n    if pe == 1.0:\\n        return 1.0\\n    return (po - pe) / (1.0 - pe)\\n\\ndef compute_f1_prec_rec(labels, preds, pos_label):\\n    tp = sum(1 for l, p in zip(labels, preds) if l == pos_label and p == pos_label)\\n    fp = sum(1 for l, p in zip(labels, preds) if l != pos_label and p == pos_label)\\n    fn = sum(1 for l, p in zip(labels, preds) if l == pos_label and p != pos_label)\\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return {\\\"precision\\\": round(prec * 100, 2), \\\"recall\\\": round(rec * 100, 2), \\\"f1\\\": round(f1 * 100, 2), \\\"support\\\": tp + fn}\\n\\ndef main():\\n    cls_path = \\\"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\"\\n    cwm_path = \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\"\\n    out_path = \\\"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\"\\n\\n    cls_preds = load_cls_predictions(cls_path)\\n    cwm_preds = load_cwm_predictions(cwm_path)\\n\\n    assert len(cls_preds) == len(cwm_preds), f\\\"Size mismatch: CLS={len(cls_preds)}, CWM={len(cwm_preds)}\\\"\\n    n = len(cls_preds)\\n\\n    # Build lookup by index\\n    cwm_by_idx = {p[\\\"idx\\\"]: p for p in cwm_preds}\\n\\n    both_correct = []\\n    cls_only_correct = []\\n    cwm_only_correct = []\\n    both_wrong = []\\n\\n    by_mutation = defaultdict(lambda: {\\\"both_correct\\\": 0, \\\"cls_only\\\": 0, \\\"cwm_only\\\": 0, \\\"both_wrong\\\": 0, \\\"total\\\": 0})\\n    by_problem = defaultdict(lambda: {\\\"both_correct\\\": 0, \\\"cls_only\\\": 0, \\\"cwm_only\\\": 0, \\\"both_wrong\\\": 0, \\\"total\\\": 0})\\n\\n    cls_correct_list = []\\n    cwm_correct_list = []\\n\\n    cwm_labels = []\\n    cwm_pred_labels = []\\n    cwm_mutation_data = defaultdict(lambda: {\\\"labels\\\": [], \\\"preds\\\": [], \\\"exact_matches\\\": []})\\n\\n    for cls_p in cls_preds:\\n        idx = cls_p[\\\"index\\\"]\\n        cwm_p = cwm_by_idx[idx]\\n        \\n        cls_correct = (cls_p[\\\"pred\\\"] == cls_p[\\\"label\\\"])\\n        cwm_pred_val = 1 if cwm_p[\\\"predicted_label\\\"] == \\\"PASS\\\" else 0\\n        cwm_label_val = 1 if cwm_p[\\\"true_label\\\"] == \\\"PASS\\\" else 0\\n        cwm_correct_val = (cwm_pred_val == cwm_label_val)\\n\\n        cls_correct_list.append(1 if cls_correct else 0)\\n        cwm_correct_list.append(1 if cwm_correct_val else 0)\\n\\n        mt = cls_p[\\\"mutation_type\\\"]\\n        pid = cls_p[\\\"problem_id\\\"]\\n\\n        cwm_labels.append(cwm_label_val)\\n        cwm_pred_labels.append(cwm_pred_val)\\n        cwm_mutation_data[mt][\\\"labels\\\"].append(cwm_label_val)\\n        cwm_mutation_data[mt][\\\"preds\\\"].append(cwm_pred_val)\\n        cwm_mutation_data[mt][\\\"exact_matches\\\"].append(1 if cwm_p.get(\\\"exact_match\\\", False) else 0)\\n\\n        item = {\\\"index\\\": idx, \\\"problem_id\\\": pid, \\\"mutation_type\\\": mt}\\n\\n        if cls_correct and cwm_correct_val:\\n            both_correct.append(item)\\n            cat = \\\"both_correct\\\"\\n        elif cls_correct and not cwm_correct_val:\\n            cls_only_correct.append(item)\\n            cat = \\\"cls_only\\\"\\n        elif not cls_correct and cwm_correct_val:\\n            cwm_only_correct.append(item)\\n            cat = \\\"cwm_only\\\"\\n        else:\\n            both_wrong.append(item)\\n            cat = \\\"both_wrong\\\"\\n\\n        by_mutation[mt][cat] += 1\\n        by_mutation[mt][\\n\\n... [截断: 输出过长，省略 332 字符] ...\\n\\ndx[p[\\\"index\\\"]][\\\"predicted_label\\\"] == \\\"PASS\\\" else 0 for p in cls_preds]\\n    kappa_predictions = cohens_kappa(cls_pred_binary, cwm_pred_binary)\\n\\n    # CWM per-class F1 by mutation type\\n    cwm_per_mutation_f1 = {}\\n    for mt, data in sorted(cwm_mutation_data.items()):\\n        labels = data[\\\"labels\\\"]\\n        preds = data[\\\"preds\\\"]\\n        em = data[\\\"exact_matches\\\"]\\n        pass_metrics = compute_f1_prec_rec(labels, preds, 1)\\n        fail_metrics = compute_f1_prec_rec(labels, preds, 0)\\n        acc = sum(1 for l, p in zip(labels, preds) if l == p) / len(labels) * 100\\n        em_rate = sum(em) / len(em) * 100\\n        cwm_per_mutation_f1[mt] = {\\n            \\\"total\\\": len(labels),\\n            \\\"accuracy\\\": round(acc, 2),\\n            \\\"exact_match_rate\\\": round(em_rate, 2),\\n            \\\"pass_f1\\\": pass_metrics,\\n            \\\"fail_f1\\\": fail_metrics,\\n        }\\n\\n    # Problems where only one method succeeds\\n    cls_only_problems = set()\\n    cwm_only_problems = set()\\n    for pid, counts in by_problem.items():\\n        if counts[\\\"cls_only\\\"] > 0 and counts[\\\"cwm_only\\\"] == 0:\\n            cls_only_problems.add(pid)\\n        elif counts[\\\"cwm_only\\\"] > 0 and counts[\\\"cls_only\\\"] == 0:\\n            cwm_only_problems.add(pid)\\n\\n    # Sort mutation breakdown\\n    mutation_breakdown = {}\\n    for mt in sorted(by_mutation.keys()):\\n        d = by_mutation[mt]\\n        t = d[\\\"total\\\"]\\n        mutation_breakdown[mt] = {\\n            \\\"total\\\": t,\\n            \\\"both_correct\\\": d[\\\"both_correct\\\"],\\n            \\\"both_correct_pct\\\": round(d[\\\"both_correct\\\"] / t * 100, 1),\\n            \\\"cls_only_correct\\\": d[\\\"cls_only\\\"],\\n            \\\"cls_only_correct_pct\\\": round(d[\\\"cls_only\\\"] / t * 100, 1),\\n            \\\"cwm_only_correct\\\": d[\\\"cwm_only\\\"],\\n            \\\"cwm_only_correct_pct\\\": round(d[\\\"cwm_only\\\"] / t * 100, 1),\\n            \\\"both_wrong\\\": d[\\\"both_wrong\\\"],\\n            \\\"both_wrong_pct\\\": round(d[\\\"both_wrong\\\"] / t * 100, 1),\\n        }\\n\\n    # Find CWM weakest mutation types (by accuracy)\\n    cwm_weakest = sorted(cwm_per_mutation_f1.items(), key=lambda x: x[1][\\\"accuracy\\\"])[:3]\\n\\n    results = {\\n        \\\"total_samples\\\": n,\\n        \\\"overlap_summary\\\": {\\n            \\\"both_correct\\\": len(both_correct),\\n            \\\"both_correct_pct\\\": round(len(both_correct) / n * 100, 2),\\n            \\\"cls_only_correct\\\": len(cls_only_correct),\\n            \\\"cls_only_correct_pct\\\": round(len(cls_only_correct) / n * 100, 2),\\n            \\\"cwm_only_correct\\\": len(cwm_only_correct),\\n            \\\"cwm_only_correct_pct\\\": round(len(cwm_only_correct) / n * 100, 2),\\n            \\\"both_wrong\\\": len(both_wrong),\\n            \\\"both_wrong_pct\\\": round(len(both_wrong) / n * 100, 2),\\n        },\\n        \\\"complementarity\\\": {\\n            \\\"cls_unique_correct\\\": len(cls_only_correct),\\n            \\\"cwm_unique_correct\\\": len(cwm_only_correct),\\n            \\\"union_correct\\\": len(both_correct) + len(cls_only_correct) + len(cwm_only_correct),\\n            \\\"union_accuracy_pct\\\": round((len(both_correct) + len(cls_only_correct) + len(cwm_only_correct)) / n * 100, 2),\\n            \\\"oracle_gain_over_cls_pp\\\": round(len(cwm_only_correct) / n * 100, 2),\\n            \\\"oracle_gain_over_cwm_pp\\\": round(len(cls_only_correct) / n * 100, 2),\\n        },\\n        \\\"cohens_kappa\\\": {\\n            \\\"on_correctness\\\": round(kappa_correctness, 4),\\n            \\\"on_predictions\\\": round(kappa_predictions, 4),\\n        },\\n        \\\"mutation_type_breakdown\\\": mutation_breakdown,\\n        \\\"cwm_per_mutation_f1\\\": cwm_per_mutation_f1,\\n        \\\"cwm_weakest_mutation_types\\\": [{\\\"mutation_type\\\": mt, \\\"accuracy\\\": d[\\\"accuracy\\\"], \\\"exact_match_rate\\\": d[\\\"exact_match_rate\\\"]} for mt, d in cwm_weakest],\\n        \\\"problems_cls_only_succeeds\\\": sorted(list(cls_only_problems))[:20],\\n        \\\"problems_cwm_only_succeeds\\\": sorted(list(cwm_only_problems))[:20],\\n        \\\"n_problems_cls_only\\\": len(cls_only_problems),\\n        \\\"n_problems_cwm_only\\\": len(cwm_only_problems),\\n    }\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(json.dumps(results, indent=2))\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "8e6406aa-8e9e-4681-849e-a998be5425fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"CLS vs CWM per-instance error overlap analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\n\\\\ndef load_cls_predictions(path):\\\\n    preds = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            preds.append(json.loads(line))\\\\n    return preds\\\\n\\\\ndef load_cwm_predictions(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    return data[\\\\\\\"predictions\\\\\\\"]\\\\n\\\\ndef cohens_kappa(y1, y2):\\\\n    n = len(y1)\\\\n    assert n == len(y2)\\\\n    cats = sorted(set(y1) | set(y2))\\\\n    confusion = Counter()\\\\n    for a, b in zip(y1, y2):\\\\n        confusion[(a, b)] += 1\\\\n    po = sum(confusion[(c, c)] for c in cats) / n\\\\n    pe = sum(\\\\n        (sum(confusion[(c, c2)] for c2 in cats) / n) *\\\\n        (sum(confusion[(c2, c)] for c2 in cats) / n)\\\\n        for c in cats\\\\n    )\\\\n    if pe == 1.0:\\\\n        return 1.0\\\\n    return (po - pe) / (1.0 - pe)\\\\n\\\\ndef compute_f1_prec_rec(labels, preds, pos_label):\\\\n    tp = sum(1 for l, p in zip(labels, preds) if l == pos_label and p == pos_label)\\\\n    fp = sum(1 for l, p in zip(labels, preds) if l != pos_label and p == pos_label)\\\\n    fn = sum(1 for l, p in zip(labels, preds) if l == pos_label and p != pos_label)\\\\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\\\n    return {\\\\\\\"precision\\\\\\\": round(prec * 100, 2), \\\\\\\"recall\\\\\\\": round(rec * 100, 2), \\\\\\\"f1\\\\\\\": round(f1 * 100, 2), \\\\\\\"support\\\\\\\": tp + fn}\\\\n\\\\ndef main():\\\\n    cls_path = \\\\\\\"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\\\\\"\\\\n    cwm_path = \\\\\\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\\\\\"\\\\n    out_path = \\\\\\\"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\\\\\"\\\\n\\\\n    cls_preds = load_cls_predictions(cls_path)\\\\n    cwm_preds = load_cwm_predictions(cwm_path)\\\\n\\\\n    assert len(cls_preds) == len(cwm_preds), f\\\\\\\"Size mismatch: CLS={len(cls_preds)}, CWM={len(cwm_preds)}\\\\\\\"\\\\n    n = len(cls_preds)\\\\n\\\\n    # Build lookup by index\\\\n    cwm_by_idx = {p[\\\\\\\"idx\\\\\\\"]: p for p in cwm_preds}\\\\n\\\\n    both_correct = []\\\\n    cls_only_correct = []\\\\n    cwm_only_correct = []\\\\n    both_wrong = []\\\\n\\\\n    by_mutation = defaultdict(lambda: {\\\\\\\"both_correct\\\\\\\": 0, \\\\\\\"cls_only\\\\\\\": 0, \\\\\\\"cwm_only\\\\\\\": 0, \\\\\\\"both_wrong\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0})\\\\n    by_problem = defaultdict(lambda: {\\\\\\\"both_correct\\\\\\\": 0, \\\\\\\"cls_only\\\\\\\": 0, \\\\\\\"cwm_only\\\\\\\": 0, \\\\\\\"both_wrong\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0})\\\\n\\\\n    cls_correct_list = []\\\\n    cwm_correct_list = []\\\\n\\\\n    cwm_labels = []\\\\n    cwm_pred_labels = []\\\\n    cwm_mutation_data = defaultdict(lambda: {\\\\\\\"labels\\\\\\\": [], \\\\\\\"preds\\\\\\\": [], \\\\\\\"exact_matches\\\\\\\": []})\\\\n\\\\n    for cls_p in cls_preds:\\\\n        idx = cls_p[\\\\\\\"index\\\\\\\"]\\\\n        cwm_p = cwm_by_idx[idx]\\\\n        \\\\n        cls_correct = (cls_p[\\\\\\\"pred\\\\\\\"] == cls_p[\\\\\\\"label\\\\\\\"])\\\\n        cwm_pred_val = 1 if cwm_p[\\\\\\\"predicted_label\\\\\\\"] == \\\\\\\"PASS\\\\\\\" else 0\\\\n        cwm_label_val = 1 if cwm_p[\\\\\\\"true_label\\\\\\\"] == \\\\\\\"PASS\\\\\\\" else 0\\\\n        cwm_correct_val = (cwm_pred_val == cwm_label_val)\\\\n\\\\n        cls_correct_list.append(1 if cls_correct else 0)\\\\n        cwm_correct_list.append(1 if cwm_correct_val else 0)\\\\n\\\\n        mt = cls_p[\\\\\\\"mutation_type\\\\\\\"]\\\\n        pid = cls_p[\\\\\\\"problem_id\\\\\\\"]\\\\n\\\\n        cwm_labels.append(cwm_label_val)\\\\n        cwm_pred_labels.append(cwm_pred_val)\\\\n        cwm_mutation_data[mt][\\\\\\\"labels\\\\\\\"].append(cwm_label_val)\\\\n        cwm_mutation_data[mt][\\\\\\\"preds\\\\\\\"].append(cwm_pred_val)\\\\n        cwm_mutation_data[mt][\\\\\\\"exact_matches\\\\\\\"].append(1 if cwm_p.get(\\\\\\\"exact_match\\\\\\\", False) else 0)\\\\n\\\\n        item = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"problem_id\\\\\\\": pid, \\\\\\\"mutation_type\\\\\\\": mt}\\\\n\\\\n        if cls_correct and cwm_correct_val:\\\\n            both_correct.append(item)\\\\n            cat = \\\\\\\"both_correct\\\\\\\"\\\\n        elif cls_correct and not cwm_correct_val:\\\\n            cls_only_correct.append(item)\\\\n            cat = \\\\\\\"cls_only\\\\\\\"\\\\n        elif not cls_correct and cwm_correct_val:\\\\n            cwm_only_correct.append(item)\\\\n            cat = \\\\\\\"cwm_only\\\\\\\"\\\\n        else:\\\\n            both_wrong.append(item)\\\\n            cat = \\\\\\\"both_wrong\\\\\\\"\\\\n\\\\n        by_mutation[mt][cat] += 1\\\\n        by_mutation[mt][\\\\n\\\\n... [截断: 输出过长，省略 332 字符] ...\\\\n\\\\ndx[p[\\\\\\\"index\\\\\\\"]][\\\\\\\"predicted_label\\\\\\\"] == \\\\\\\"PASS\\\\\\\" else 0 for p in cls_preds]\\\\n    kappa_predictions = cohens_kappa(cls_pred_binary, cwm_pred_binary)\\\\n\\\\n    # CWM per-class F1 by mutation type\\\\n    cwm_per_mutation_f1 = {}\\\\n    for mt, data in sorted(cwm_mutation_data.items()):\\\\n        labels = data[\\\\\\\"labels\\\\\\\"]\\\\n        preds = data[\\\\\\\"preds\\\\\\\"]\\\\n        em = data[\\\\\\\"exact_matches\\\\\\\"]\\\\n        pass_metrics = compute_f1_prec_rec(labels, preds, 1)\\\\n        fail_metrics = compute_f1_prec_rec(labels, preds, 0)\\\\n        acc = sum(1 for l, p in zip(labels, preds) if l == p) / len(labels) * 100\\\\n        em_rate = sum(em) / len(em) * 100\\\\n        cwm_per_mutation_f1[mt] = {\\\\n            \\\\\\\"total\\\\\\\": len(labels),\\\\n            \\\\\\\"accuracy\\\\\\\": round(acc, 2),\\\\n            \\\\\\\"exact_match_rate\\\\\\\": round(em_rate, 2),\\\\n            \\\\\\\"pass_f1\\\\\\\": pass_metrics,\\\\n            \\\\\\\"fail_f1\\\\\\\": fail_metrics,\\\\n        }\\\\n\\\\n    # Problems where only one method succeeds\\\\n    cls_only_problems = set()\\\\n    cwm_only_problems = set()\\\\n    for pid, counts in by_problem.items():\\\\n        if counts[\\\\\\\"cls_only\\\\\\\"] > 0 and counts[\\\\\\\"cwm_only\\\\\\\"] == 0:\\\\n            cls_only_problems.add(pid)\\\\n        elif counts[\\\\\\\"cwm_only\\\\\\\"] > 0 and counts[\\\\\\\"cls_only\\\\\\\"] == 0:\\\\n            cwm_only_problems.add(pid)\\\\n\\\\n    # Sort mutation breakdown\\\\n    mutation_breakdown = {}\\\\n    for mt in sorted(by_mutation.keys()):\\\\n        d = by_mutation[mt]\\\\n        t = d[\\\\\\\"total\\\\\\\"]\\\\n        mutation_breakdown[mt] = {\\\\n            \\\\\\\"total\\\\\\\": t,\\\\n            \\\\\\\"both_correct\\\\\\\": d[\\\\\\\"both_correct\\\\\\\"],\\\\n            \\\\\\\"both_correct_pct\\\\\\\": round(d[\\\\\\\"both_correct\\\\\\\"] / t * 100, 1),\\\\n            \\\\\\\"cls_only_correct\\\\\\\": d[\\\\\\\"cls_only\\\\\\\"],\\\\n            \\\\\\\"cls_only_correct_pct\\\\\\\": round(d[\\\\\\\"cls_only\\\\\\\"] / t * 100, 1),\\\\n            \\\\\\\"cwm_only_correct\\\\\\\": d[\\\\\\\"cwm_only\\\\\\\"],\\\\n            \\\\\\\"cwm_only_correct_pct\\\\\\\": round(d[\\\\\\\"cwm_only\\\\\\\"] / t * 100, 1),\\\\n            \\\\\\\"both_wrong\\\\\\\": d[\\\\\\\"both_wrong\\\\\\\"],\\\\n            \\\\\\\"both_wrong_pct\\\\\\\": round(d[\\\\\\\"both_wrong\\\\\\\"] / t * 100, 1),\\\\n        }\\\\n\\\\n    # Find CWM weakest mutation types (by accuracy)\\\\n    cwm_weakest = sorted(cwm_per_mutation_f1.items(), key=lambda x: x[1][\\\\\\\"accuracy\\\\\\\"])[:3]\\\\n\\\\n    results = {\\\\n        \\\\\\\"total_samples\\\\\\\": n,\\\\n        \\\\\\\"overlap_summary\\\\\\\": {\\\\n            \\\\\\\"both_correct\\\\\\\": len(both_correct),\\\\n            \\\\\\\"both_correct_pct\\\\\\\": round(len(both_correct) / n * 100, 2),\\\\n            \\\\\\\"cls_only_correct\\\\\\\": len(cls_only_correct),\\\\n            \\\\\\\"cls_only_correct_pct\\\\\\\": round(len(cls_only_correct) / n * 100, 2),\\\\n            \\\\\\\"cwm_only_correct\\\\\\\": len(cwm_only_correct),\\\\n            \\\\\\\"cwm_only_correct_pct\\\\\\\": round(len(cwm_only_correct) / n * 100, 2),\\\\n            \\\\\\\"both_wrong\\\\\\\": len(both_wrong),\\\\n            \\\\\\\"both_wrong_pct\\\\\\\": round(len(both_wrong) / n * 100, 2),\\\\n        },\\\\n        \\\\\\\"complementarity\\\\\\\": {\\\\n            \\\\\\\"cls_unique_correct\\\\\\\": len(cls_only_correct),\\\\n            \\\\\\\"cwm_unique_correct\\\\\\\": len(cwm_only_correct),\\\\n            \\\\\\\"union_correct\\\\\\\": len(both_correct) + len(cls_only_correct) + len(cwm_only_correct),\\\\n            \\\\\\\"union_accuracy_pct\\\\\\\": round((len(both_correct) + len(cls_only_correct) + len(cwm_only_correct)) / n * 100, 2),\\\\n            \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": round(len(cwm_only_correct) / n * 100, 2),\\\\n            \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": round(len(cls_only_correct) / n * 100, 2),\\\\n        },\\\\n        \\\\\\\"cohens_kappa\\\\\\\": {\\\\n            \\\\\\\"on_correctness\\\\\\\": round(kappa_correctness, 4),\\\\n            \\\\\\\"on_predictions\\\\\\\": round(kappa_predictions, 4),\\\\n        },\\\\n        \\\\\\\"mutation_type_breakdown\\\\\\\": mutation_breakdown,\\\\n        \\\\\\\"cwm_per_mutation_f1\\\\\\\": cwm_per_mutation_f1,\\\\n        \\\\\\\"cwm_weakest_mutation_types\\\\\\\": [{\\\\\\\"mutation_type\\\\\\\": mt, \\\\\\\"accuracy\\\\\\\": d[\\\\\\\"accuracy\\\\\\\"], \\\\\\\"exact_match_rate\\\\\\\": d[\\\\\\\"exact_match_rate\\\\\\\"]} for mt, d in cwm_weakest],\\\\n        \\\\\\\"problems_cls_only_succeeds\\\\\\\": sorted(list(cls_only_problems))[:20],\\\\n        \\\\\\\"problems_cwm_only_succeeds\\\\\\\": sorted(list(cwm_only_problems))[:20],\\\\n        \\\\\\\"n_problems_cls_only\\\\\\\": len(cls_only_problems),\\\\n        \\\\\\\"n_problems_cwm_only\\\\\\\": len(cwm_only_problems),\\\\n    }\\\\n\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(json.dumps(results, indent=2))\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"CLS vs CWM per-instance error overlap analysis.\\\"\\\"\\\"\\nimport json\\nimport sys\\nfrom collections import Counter, defaultdict\\n\\ndef load_cls_predictions(path):\\n    preds = []\\n    with open(path) as f:\\n        for line in f:\\n            preds.append(json.loads(line))\\n    return preds\\n\\ndef load_cwm_predictions(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    return data[\\\"predictions\\\"]\\n\\ndef cohens_kappa(y1, y2):\\n    n = len(y1)\\n    assert n == len(y2)\\n    cats = sorted(set(y1) | set(y2))\\n    confusion = Counter()\\n    for a, b in zip(y1, y2):\\n        confusion[(a, b)] += 1\\n    po = sum(confusion[(c, c)] for c in cats) / n\\n    pe = sum(\\n        (sum(confusion[(c, c2)] for c2 in cats) / n) *\\n        (sum(confusion[(c2, c)] for c2 in cats) / n)\\n        for c in cats\\n    )\\n    if pe == 1.0:\\n        return 1.0\\n    return (po - pe) / (1.0 - pe)\\n\\ndef compute_f1_prec_rec(labels, preds, pos_label):\\n    tp = sum(1 for l, p in zip(labels, preds) if l == pos_label and p == pos_label)\\n    fp = sum(1 for l, p in zip(labels, preds) if l != pos_label and p == pos_label)\\n    fn = sum(1 for l, p in zip(labels, preds) if l == pos_label and p != pos_label)\\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\\n    return {\\\"precision\\\": round(prec * 100, 2), \\\"recall\\\": round(rec * 100, 2), \\\"f1\\\": round(f1 * 100, 2), \\\"support\\\": tp + fn}\\n\\ndef main():\\n    cls_path = \\\"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\"\\n    cwm_path = \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\"\\n    out_path = \\\"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\"\\n\\n    cls_preds = load_cls_predictions(cls_path)\\n    cwm_preds = load_cwm_predictions(cwm_path)\\n\\n    assert len(cls_preds) == len(cwm_preds), f\\\"Size mismatch: CLS={len(cls_preds)}, CWM={len(cwm_preds)}\\\"\\n    n = len(cls_preds)\\n\\n    # Build lookup by index\\n    cwm_by_idx = {p[\\\"idx\\\"]: p for p in cwm_preds}\\n\\n    both_correct = []\\n    cls_only_correct = []\\n    cwm_only_correct = []\\n    both_wrong = []\\n\\n    by_mutation = defaultdict(lambda: {\\\"both_correct\\\": 0, \\\"cls_only\\\": 0, \\\"cwm_only\\\": 0, \\\"both_wrong\\\": 0, \\\"total\\\": 0})\\n    by_problem = defaultdict(lambda: {\\\"both_correct\\\": 0, \\\"cls_only\\\": 0, \\\"cwm_only\\\": 0, \\\"both_wrong\\\": 0, \\\"total\\\": 0})\\n\\n    cls_correct_list = []\\n    cwm_correct_list = []\\n\\n    cwm_labels = []\\n    cwm_pred_labels = []\\n    cwm_mutation_data = defaultdict(lambda: {\\\"labels\\\": [], \\\"preds\\\": [], \\\"exact_matches\\\": []})\\n\\n    for cls_p in cls_preds:\\n        idx = cls_p[\\\"index\\\"]\\n        cwm_p = cwm_by_idx[idx]\\n        \\n        cls_correct = (cls_p[\\\"pred\\\"] == cls_p[\\\"label\\\"])\\n        cwm_pred_val = 1 if cwm_p[\\\"predicted_label\\\"] == \\\"PASS\\\" else 0\\n        cwm_label_val = 1 if cwm_p[\\\"true_label\\\"] == \\\"PASS\\\" else 0\\n        cwm_correct_val = (cwm_pred_val == cwm_label_val)\\n\\n        cls_correct_list.append(1 if cls_correct else 0)\\n        cwm_correct_list.append(1 if cwm_correct_val else 0)\\n\\n        mt = cls_p[\\\"mutation_type\\\"]\\n        pid = cls_p[\\\"problem_id\\\"]\\n\\n        cwm_labels.append(cwm_label_val)\\n        cwm_pred_labels.append(cwm_pred_val)\\n        cwm_mutation_data[mt][\\\"labels\\\"].append(cwm_label_val)\\n        cwm_mutation_data[mt][\\\"preds\\\"].append(cwm_pred_val)\\n        cwm_mutation_data[mt][\\\"exact_matches\\\"].append(1 if cwm_p.get(\\\"exact_match\\\", False) else 0)\\n\\n        item = {\\\"index\\\": idx, \\\"problem_id\\\": pid, \\\"mutation_type\\\": mt}\\n\\n        if cls_correct and cwm_correct_val:\\n            both_correct.append(item)\\n            cat = \\\"both_correct\\\"\\n        elif cls_correct and not cwm_correct_val:\\n            cls_only_correct.append(item)\\n            cat = \\\"cls_only\\\"\\n        elif not cls_correct and cwm_correct_val:\\n            cwm_only_correct.append(item)\\n            cat = \\\"cwm_only\\\"\\n        else:\\n            both_wrong.append(item)\\n            cat = \\\"both_wrong\\\"\\n\\n        by_mutation[mt][cat] += 1\\n        by_mutation[mt][\\n\\n... [截断: 输出过长，省略 332 字符] ...\\n\\ndx[p[\\\"index\\\"]][\\\"predicted_label\\\"] == \\\"PASS\\\" else 0 for p in cls_preds]\\n    kappa_predictions = cohens_kappa(cls_pred_binary, cwm_pred_binary)\\n\\n    # CWM per-class F1 by mutation type\\n    cwm_per_mutation_f1 = {}\\n    for mt, data in sorted(cwm_mutation_data.items()):\\n        labels = data[\\\"labels\\\"]\\n        preds = data[\\\"preds\\\"]\\n        em = data[\\\"exact_matches\\\"]\\n        pass_metrics = compute_f1_prec_rec(labels, preds, 1)\\n        fail_metrics = compute_f1_prec_rec(labels, preds, 0)\\n        acc = sum(1 for l, p in zip(labels, preds) if l == p) / len(labels) * 100\\n        em_rate = sum(em) / len(em) * 100\\n        cwm_per_mutation_f1[mt] = {\\n            \\\"total\\\": len(labels),\\n            \\\"accuracy\\\": round(acc, 2),\\n            \\\"exact_match_rate\\\": round(em_rate, 2),\\n            \\\"pass_f1\\\": pass_metrics,\\n            \\\"fail_f1\\\": fail_metrics,\\n        }\\n\\n    # Problems where only one method succeeds\\n    cls_only_problems = set()\\n    cwm_only_problems = set()\\n    for pid, counts in by_problem.items():\\n        if counts[\\\"cls_only\\\"] > 0 and counts[\\\"cwm_only\\\"] == 0:\\n            cls_only_problems.add(pid)\\n        elif counts[\\\"cwm_only\\\"] > 0 and counts[\\\"cls_only\\\"] == 0:\\n            cwm_only_problems.add(pid)\\n\\n    # Sort mutation breakdown\\n    mutation_breakdown = {}\\n    for mt in sorted(by_mutation.keys()):\\n        d = by_mutation[mt]\\n        t = d[\\\"total\\\"]\\n        mutation_breakdown[mt] = {\\n            \\\"total\\\": t,\\n            \\\"both_correct\\\": d[\\\"both_correct\\\"],\\n            \\\"both_correct_pct\\\": round(d[\\\"both_correct\\\"] / t * 100, 1),\\n            \\\"cls_only_correct\\\": d[\\\"cls_only\\\"],\\n            \\\"cls_only_correct_pct\\\": round(d[\\\"cls_only\\\"] / t * 100, 1),\\n            \\\"cwm_only_correct\\\": d[\\\"cwm_only\\\"],\\n            \\\"cwm_only_correct_pct\\\": round(d[\\\"cwm_only\\\"] / t * 100, 1),\\n            \\\"both_wrong\\\": d[\\\"both_wrong\\\"],\\n            \\\"both_wrong_pct\\\": round(d[\\\"both_wrong\\\"] / t * 100, 1),\\n        }\\n\\n    # Find CWM weakest mutation types (by accuracy)\\n    cwm_weakest = sorted(cwm_per_mutation_f1.items(), key=lambda x: x[1][\\\"accuracy\\\"])[:3]\\n\\n    results = {\\n        \\\"total_samples\\\": n,\\n        \\\"overlap_summary\\\": {\\n            \\\"both_correct\\\": len(both_correct),\\n            \\\"both_correct_pct\\\": round(len(both_correct) / n * 100, 2),\\n            \\\"cls_only_correct\\\": len(cls_only_correct),\\n            \\\"cls_only_correct_pct\\\": round(len(cls_only_correct) / n * 100, 2),\\n            \\\"cwm_only_correct\\\": len(cwm_only_correct),\\n            \\\"cwm_only_correct_pct\\\": round(len(cwm_only_correct) / n * 100, 2),\\n            \\\"both_wrong\\\": len(both_wrong),\\n            \\\"both_wrong_pct\\\": round(len(both_wrong) / n * 100, 2),\\n        },\\n        \\\"complementarity\\\": {\\n            \\\"cls_unique_correct\\\": len(cls_only_correct),\\n            \\\"cwm_unique_correct\\\": len(cwm_only_correct),\\n            \\\"union_correct\\\": len(both_correct) + len(cls_only_correct) + len(cwm_only_correct),\\n            \\\"union_accuracy_pct\\\": round((len(both_correct) + len(cls_only_correct) + len(cwm_only_correct)) / n * 100, 2),\\n            \\\"oracle_gain_over_cls_pp\\\": round(len(cwm_only_correct) / n * 100, 2),\\n            \\\"oracle_gain_over_cwm_pp\\\": round(len(cls_only_correct) / n * 100, 2),\\n        },\\n        \\\"cohens_kappa\\\": {\\n            \\\"on_correctness\\\": round(kappa_correctness, 4),\\n            \\\"on_predictions\\\": round(kappa_predictions, 4),\\n        },\\n        \\\"mutation_type_breakdown\\\": mutation_breakdown,\\n        \\\"cwm_per_mutation_f1\\\": cwm_per_mutation_f1,\\n        \\\"cwm_weakest_mutation_types\\\": [{\\\"mutation_type\\\": mt, \\\"accuracy\\\": d[\\\"accuracy\\\"], \\\"exact_match_rate\\\": d[\\\"exact_match_rate\\\"]} for mt, d in cwm_weakest],\\n        \\\"problems_cls_only_succeeds\\\": sorted(list(cls_only_problems))[:20],\\n        \\\"problems_cwm_only_succeeds\\\": sorted(list(cwm_only_problems))[:20],\\n        \\\"n_problems_cls_only\\\": len(cls_only_problems),\\n        \\\"n_problems_cwm_only\\\": len(cwm_only_problems),\\n    }\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(json.dumps(results, indent=2))\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PKeQW4r13tDXUBpNGnKN6A`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "2cf102f0-4f35-45ac-a027-3fe662789d9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T22:41:29.445Z_
+
+<details><summary>↩ Tool result · `toolu_01PS7kWB1wV7GKkfA7wjiivh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified oracle simulation by F2P test count.\\n\\nRuns the same block-correlated Monte Carlo as mvp_a_real_f2p_sim.py,\\nbut tracks per-trial outcomes to compute advantage per T-stratum:\\nT=1, T=2, T=3-5, T=6+.\\n\\\"\\\"\\\"\\nimport numpy as np\\nimport json\\nimport time\\nimport os\\nimport argparse\\n\\nDIR = os.path.dirname(os.path.abspath(__file__))\\n\\nSTRATA = [\\n    ('T=1',   lambda t: t == 1),\\n    ('T=2',   lambda t: t == 2),\\n    ('T=3-5', lambda t: (t >= 3) & (t <= 5)),\\n    ('T=6+',  lambda t: t >= 6),\\n]\\n\\n\\ndef build_gt(rng, n_trials, N, T_vals, T_max):\\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\\n    for t in range(n_trials):\\n        T = T_vals[t]\\n        for p in range(1, N):\\n            fp = rng.uniform(0.1, 0.8)\\n            fails = rng.random(T) < fp\\n            if not fails.any():\\n                fails[rng.integers(T)] = True\\n            gt[t, p, :T] = ~fails\\n    return gt\\n\\n\\ndef build_blocks(rng, T_vals, T_max):\\n    n = len(T_vals)\\n    bids = np.zeros((n, T_max), dtype=np.int32)\\n    nb = np.zeros(n, dtype=np.int32)\\n    for t in range(n):\\n        T = T_vals[t]\\n        idx = bid = 0\\n        while idx < T:\\n            rem = T - idx\\n            if rem <= 8:\\n                bids[t, idx:T] = bid\\n                bid += 1\\n                break\\n            bs = min(int(rng.integers(2, 9)), rem)\\n            bids[t, idx:idx + bs] = bid\\n            bid += 1\\n            idx += bs\\n        nb[t] = max(bid, 1)\\n    return bids, nb\\n\\n\\ndef best_patch(scores, rng):\\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\\n\\n\\ndef from_resolved(preds, rng):\\n    tb = rng.random(preds.shape)\\n    ar = preds.any(axis=1, keepdims=True)\\n    m = np.where(preds, tb, -1.0)\\n    return np.where(ar, m, tb).argmax(axis=1)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--output', default='oracle_f2p_stratified_results.json')\\n    parser.add_argument('--n-trials', type=int, default=10000)\\n    parser.add_argument('--seed', type=int, default=42)\\n    args = parser.parse_args()\\n\\n    N = 16\\n    n_trials = args.n_trials\\n    seed = args.seed\\n    acc_range = np.round(np.arange(0.50, 1.005, 0.01), 2)\\n    acc_list = [round(float(a), 2) for a in acc_range]\\n    n_acc = len(acc_range)\\n\\n    with open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\\n        RAW_F2P = np.array(json.load(f)['raw_f2p'])\\n\\n    rng = np.random.default_rng(seed)\\n    T_vals = np.clip(rng.choice(RAW_F2P, size=n_trials), 1, 100)\\n    T_max = int(T_vals.max())\\n\\n    strata_masks = [(name, fn(T_vals)) for name, fn in STRATA]\\n\\n    print(\\\"Oracle F2P Stratified Analysis\\\")\\n    print(f\\\"  N={N}, trials={n_trials}, seed={seed}\\\")\\n    print(f\\\"  T: median={np.median(T_vals):.0f}, mean={T_vals.mean():.1f}\\\")\\n    for name, mask in strata_masks:\\n        cnt = mask.sum()\\n        print(f\\\"  {name}: {cnt} ({cnt/n_trials*100:.1f}%)\\\")\\n\\n    gt = build_gt(rng, n_trials, N, T_vals, T_max)\\n    tmask = (np.arange(T_max)[None, :] < T_vals[:, None])[:, None, :]\\n    bids, nb = build_blocks(rng, T_vals, T_max)\\n    B_max = max(int(nb.max()), 1)\\n\\n    tax = np.arange(n_trials)[:, None, None]\\n    pax = np.arange(N)[None, :, None]\\n    bax = bids[:, None, :]\\n\\n    blk_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n    iid_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n    traj_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n\\n    t0 = time.time()\\n    for ai, acc in enumerate(acc_range):\\n        fi = rng.random((n_trials, N, T_max)) >= acc\\n        noisy_i = gt ^ fi\\n        si = (noisy_i & tmask).sum(axis=2)\\n        sel_i = best_patch(si, rng)\\n        iid_correct[ai] = (sel_i == 0)\\n\\n        bf = rng.random((n_trials, N, B_max)) < (1.0 - acc)\\n        tf = bf[tax, pax, bax]\\n        noisy_b = gt ^ tf\\n        sb = (noisy_b & tmask).sum(axis=2)\\n        sel_b = best_patch(sb, rng)\\n        blk_correct[ai] = (sel_b == 0)\\n\\n        tp = np.full((n_trials, N), 1.0 - acc)\\n        tp[:, 0] = acc\\n        tpreds = rng.random((n_trials, N)) < tp\\n        sel_t = from_resolved(tpr\\n\\n... [截断: 输出过长，省略 507 字符] ...\\n\\nacy_range': acc_list},\\n        'T_distribution': {\\n            'median': float(np.median(T_vals)),\\n            'mean': round(float(T_vals.mean()), 2),\\n        },\\n        'strata': {},\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 75)\\n    print(\\\"STRATIFIED ORACLE RESULTS (block-correlated)\\\")\\n    print(\\\"=\\\" * 75)\\n    print(f\\\"\\\\n{'Stratum':<10} {'Count':>6} {'%':>6} \\\"\\n          f\\\"{'Block Adv 70-85%':>18} {'IID Adv 70-85%':>16}\\\")\\n    print(\\\"-\\\" * 60)\\n\\n    for sname, smask in strata_masks:\\n        cnt = int(smask.sum())\\n        if cnt == 0:\\n            continue\\n\\n        blk_sr = blk_correct[:, smask].mean(axis=1)\\n        iid_sr = iid_correct[:, smask].mean(axis=1)\\n        traj_sr = traj_correct[:, smask].mean(axis=1)\\n\\n        blk_adv = blk_sr - traj_sr\\n        iid_adv = iid_sr - traj_sr\\n\\n        blk_target = np.array([blk_adv[i] for i in target_idx])\\n        iid_target = np.array([iid_adv[i] for i in target_idx])\\n\\n        blk_mean = float(blk_target.mean())\\n        iid_mean = float(iid_target.mean())\\n\\n        print(f\\\"{sname:<10} {cnt:>6} {cnt/n_trials*100:>5.1f}% \\\"\\n              f\\\"{blk_mean:>18.4f} {iid_mean:>16.4f}\\\")\\n\\n        results['strata'][sname] = {\\n            'count': cnt,\\n            'pct': round(cnt / n_trials, 4),\\n            'T_range': [int(T_vals[smask].min()), int(T_vals[smask].max())],\\n            'T_mean': round(float(T_vals[smask].mean()), 2),\\n            'block_pt': [round(float(x), 4) for x in blk_sr],\\n            'iid_pt': [round(float(x), 4) for x in iid_sr],\\n            'trajectory': [round(float(x), 4) for x in traj_sr],\\n            'block_advantage': [round(float(x), 4) for x in blk_adv],\\n            'iid_advantage': [round(float(x), 4) for x in iid_adv],\\n            'target_block': {\\n                'mean': round(blk_mean, 4),\\n                'min': round(float(blk_target.min()), 4),\\n                'max': round(float(blk_target.max()), 4),\\n            },\\n            'target_iid': {\\n                'mean': round(iid_mean, 4),\\n                'min': round(float(iid_target.min()), 4),\\n                'max': round(float(iid_target.max()), 4),\\n            },\\n        }\\n\\n    # Overall\\n    blk_adv_all = blk_correct.mean(axis=1) - traj_correct.mean(axis=1)\\n    iid_adv_all = iid_correct.mean(axis=1) - traj_correct.mean(axis=1)\\n    blk_t_all = np.array([blk_adv_all[i] for i in target_idx])\\n    iid_t_all = np.array([iid_adv_all[i] for i in target_idx])\\n    print(f\\\"{'Overall':<10} {n_trials:>6} {100:>5.1f}% \\\"\\n          f\\\"{float(blk_t_all.mean()):>18.4f} {float(iid_t_all.mean()):>16.4f}\\\")\\n    print(\\\"=\\\" * 75)\\n\\n    results['overall'] = {\\n        'target_block_mean': round(float(blk_t_all.mean()), 4),\\n        'target_iid_mean': round(float(iid_t_all.mean()), 4),\\n    }\\n\\n    # Detailed per-accuracy table for target range\\n    print(f\\\"\\\\nDetailed block advantage by stratum (70-85%):\\\")\\n    header = f\\\"  {'acc':>5}\\\"\\n    for sname, _ in strata_masks:\\n        header += f\\\"  {sname:>8}\\\"\\n    header += f\\\"  {'Overall':>8}\\\"\\n    print(header)\\n\\n    for i in target_idx:\\n        a = acc_list[i]\\n        line = f\\\"  {a:>5.2f}\\\"\\n        for sname, smask in strata_masks:\\n            if sname in results['strata']:\\n                line += f\\\"  {results['strata'][sname]['block_advantage'][i]:>8.4f}\\\"\\n        line += f\\\"  {float(blk_adv_all[i]):>8.4f}\\\"\\n        print(line)\\n\\n    # Weighted-average decomposition\\n    print(f\\\"\\\\nWeighted decomposition of overall block advantage:\\\")\\n    total_adv = float(blk_t_all.mean())\\n    for sname, smask in strata_masks:\\n        if sname not in results['strata']:\\n            continue\\n        s = results['strata'][sname]\\n        contribution = s['pct'] * s['target_block']['mean']\\n        print(f\\\"  {sname}: weight={s['pct']:.1%} x adv={s['target_block']['mean']:.4f} \\\"\\n              f\\\"= {contribution:.4f} ({contribution/total_adv*100:.1f}% of total)\\\")\\n\\n    json_path = os.path.join(DIR, args.output)\\n    with open(json_path, 'w') as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved {json_path}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "9222b1fa-2896-4475-8597-6f03aaa3f485",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Stratified oracle simulation by F2P test count.\\\\n\\\\nRuns the same block-correlated Monte Carlo as mvp_a_real_f2p_sim.py,\\\\nbut tracks per-trial outcomes to compute advantage per T-stratum:\\\\nT=1, T=2, T=3-5, T=6+.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport numpy as np\\\\nimport json\\\\nimport time\\\\nimport os\\\\nimport argparse\\\\n\\\\nDIR = os.path.dirname(os.path.abspath(__file__))\\\\n\\\\nSTRATA = [\\\\n    ('T=1',   lambda t: t == 1),\\\\n    ('T=2',   lambda t: t == 2),\\\\n    ('T=3-5', lambda t: (t >= 3) & (t <= 5)),\\\\n    ('T=6+',  lambda t: t >= 6),\\\\n]\\\\n\\\\n\\\\ndef build_gt(rng, n_trials, N, T_vals, T_max):\\\\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\\\\n    for t in range(n_trials):\\\\n        T = T_vals[t]\\\\n        for p in range(1, N):\\\\n            fp = rng.uniform(0.1, 0.8)\\\\n            fails = rng.random(T) < fp\\\\n            if not fails.any():\\\\n                fails[rng.integers(T)] = True\\\\n            gt[t, p, :T] = ~fails\\\\n    return gt\\\\n\\\\n\\\\ndef build_blocks(rng, T_vals, T_max):\\\\n    n = len(T_vals)\\\\n    bids = np.zeros((n, T_max), dtype=np.int32)\\\\n    nb = np.zeros(n, dtype=np.int32)\\\\n    for t in range(n):\\\\n        T = T_vals[t]\\\\n        idx = bid = 0\\\\n        while idx < T:\\\\n            rem = T - idx\\\\n            if rem <= 8:\\\\n                bids[t, idx:T] = bid\\\\n                bid += 1\\\\n                break\\\\n            bs = min(int(rng.integers(2, 9)), rem)\\\\n            bids[t, idx:idx + bs] = bid\\\\n            bid += 1\\\\n            idx += bs\\\\n        nb[t] = max(bid, 1)\\\\n    return bids, nb\\\\n\\\\n\\\\ndef best_patch(scores, rng):\\\\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\\\\n\\\\n\\\\ndef from_resolved(preds, rng):\\\\n    tb = rng.random(preds.shape)\\\\n    ar = preds.any(axis=1, keepdims=True)\\\\n    m = np.where(preds, tb, -1.0)\\\\n    return np.where(ar, m, tb).argmax(axis=1)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument('--output', default='oracle_f2p_stratified_results.json')\\\\n    parser.add_argument('--n-trials', type=int, default=10000)\\\\n    parser.add_argument('--seed', type=int, default=42)\\\\n    args = parser.parse_args()\\\\n\\\\n    N = 16\\\\n    n_trials = args.n_trials\\\\n    seed = args.seed\\\\n    acc_range = np.round(np.arange(0.50, 1.005, 0.01), 2)\\\\n    acc_list = [round(float(a), 2) for a in acc_range]\\\\n    n_acc = len(acc_range)\\\\n\\\\n    with open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\\\\n        RAW_F2P = np.array(json.load(f)['raw_f2p'])\\\\n\\\\n    rng = np.random.default_rng(seed)\\\\n    T_vals = np.clip(rng.choice(RAW_F2P, size=n_trials), 1, 100)\\\\n    T_max = int(T_vals.max())\\\\n\\\\n    strata_masks = [(name, fn(T_vals)) for name, fn in STRATA]\\\\n\\\\n    print(\\\\\\\"Oracle F2P Stratified Analysis\\\\\\\")\\\\n    print(f\\\\\\\"  N={N}, trials={n_trials}, seed={seed}\\\\\\\")\\\\n    print(f\\\\\\\"  T: median={np.median(T_vals):.0f}, mean={T_vals.mean():.1f}\\\\\\\")\\\\n    for name, mask in strata_masks:\\\\n        cnt = mask.sum()\\\\n        print(f\\\\\\\"  {name}: {cnt} ({cnt/n_trials*100:.1f}%)\\\\\\\")\\\\n\\\\n    gt = build_gt(rng, n_trials, N, T_vals, T_max)\\\\n    tmask = (np.arange(T_max)[None, :] < T_vals[:, None])[:, None, :]\\\\n    bids, nb = build_blocks(rng, T_vals, T_max)\\\\n    B_max = max(int(nb.max()), 1)\\\\n\\\\n    tax = np.arange(n_trials)[:, None, None]\\\\n    pax = np.arange(N)[None, :, None]\\\\n    bax = bids[:, None, :]\\\\n\\\\n    blk_correct = np.zeros((n_acc, n_trials), dtype=bool)\\\\n    iid_correct = np.zeros((n_acc, n_trials), dtype=bool)\\\\n    traj_correct = np.zeros((n_acc, n_trials), dtype=bool)\\\\n\\\\n    t0 = time.time()\\\\n    for ai, acc in enumerate(acc_range):\\\\n        fi = rng.random((n_trials, N, T_max)) >= acc\\\\n        noisy_i = gt ^ fi\\\\n        si = (noisy_i & tmask).sum(axis=2)\\\\n        sel_i = best_patch(si, rng)\\\\n        iid_correct[ai] = (sel_i == 0)\\\\n\\\\n        bf = rng.random((n_trials, N, B_max)) < (1.0 - acc)\\\\n        tf = bf[tax, pax, bax]\\\\n        noisy_b = gt ^ tf\\\\n        sb = (noisy_b & tmask).sum(axis=2)\\\\n        sel_b = best_patch(sb, rng)\\\\n        blk_correct[ai] = (sel_b == 0)\\\\n\\\\n        tp = np.full((n_trials, N), 1.0 - acc)\\\\n        tp[:, 0] = acc\\\\n        tpreds = rng.random((n_trials, N)) < tp\\\\n        sel_t = from_resolved(tpr\\\\n\\\\n... [截断: 输出过长，省略 507 字符] ...\\\\n\\\\nacy_range': acc_list},\\\\n        'T_distribution': {\\\\n            'median': float(np.median(T_vals)),\\\\n            'mean': round(float(T_vals.mean()), 2),\\\\n        },\\\\n        'strata': {},\\\\n    }\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 75)\\\\n    print(\\\\\\\"STRATIFIED ORACLE RESULTS (block-correlated)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 75)\\\\n    print(f\\\\\\\"\\\\\\\\n{'Stratum':<10} {'Count':>6} {'%':>6} \\\\\\\"\\\\n          f\\\\\\\"{'Block Adv 70-85%':>18} {'IID Adv 70-85%':>16}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n\\\\n    for sname, smask in strata_masks:\\\\n        cnt = int(smask.sum())\\\\n        if cnt == 0:\\\\n            continue\\\\n\\\\n        blk_sr = blk_correct[:, smask].mean(axis=1)\\\\n        iid_sr = iid_correct[:, smask].mean(axis=1)\\\\n        traj_sr = traj_correct[:, smask].mean(axis=1)\\\\n\\\\n        blk_adv = blk_sr - traj_sr\\\\n        iid_adv = iid_sr - traj_sr\\\\n\\\\n        blk_target = np.array([blk_adv[i] for i in target_idx])\\\\n        iid_target = np.array([iid_adv[i] for i in target_idx])\\\\n\\\\n        blk_mean = float(blk_target.mean())\\\\n        iid_mean = float(iid_target.mean())\\\\n\\\\n        print(f\\\\\\\"{sname:<10} {cnt:>6} {cnt/n_trials*100:>5.1f}% \\\\\\\"\\\\n              f\\\\\\\"{blk_mean:>18.4f} {iid_mean:>16.4f}\\\\\\\")\\\\n\\\\n        results['strata'][sname] = {\\\\n            'count': cnt,\\\\n            'pct': round(cnt / n_trials, 4),\\\\n            'T_range': [int(T_vals[smask].min()), int(T_vals[smask].max())],\\\\n            'T_mean': round(float(T_vals[smask].mean()), 2),\\\\n            'block_pt': [round(float(x), 4) for x in blk_sr],\\\\n            'iid_pt': [round(float(x), 4) for x in iid_sr],\\\\n            'trajectory': [round(float(x), 4) for x in traj_sr],\\\\n            'block_advantage': [round(float(x), 4) for x in blk_adv],\\\\n            'iid_advantage': [round(float(x), 4) for x in iid_adv],\\\\n            'target_block': {\\\\n                'mean': round(blk_mean, 4),\\\\n                'min': round(float(blk_target.min()), 4),\\\\n                'max': round(float(blk_target.max()), 4),\\\\n            },\\\\n            'target_iid': {\\\\n                'mean': round(iid_mean, 4),\\\\n                'min': round(float(iid_target.min()), 4),\\\\n                'max': round(float(iid_target.max()), 4),\\\\n            },\\\\n        }\\\\n\\\\n    # Overall\\\\n    blk_adv_all = blk_correct.mean(axis=1) - traj_correct.mean(axis=1)\\\\n    iid_adv_all = iid_correct.mean(axis=1) - traj_correct.mean(axis=1)\\\\n    blk_t_all = np.array([blk_adv_all[i] for i in target_idx])\\\\n    iid_t_all = np.array([iid_adv_all[i] for i in target_idx])\\\\n    print(f\\\\\\\"{'Overall':<10} {n_trials:>6} {100:>5.1f}% \\\\\\\"\\\\n          f\\\\\\\"{float(blk_t_all.mean()):>18.4f} {float(iid_t_all.mean()):>16.4f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 75)\\\\n\\\\n    results['overall'] = {\\\\n        'target_block_mean': round(float(blk_t_all.mean()), 4),\\\\n        'target_iid_mean': round(float(iid_t_all.mean()), 4),\\\\n    }\\\\n\\\\n    # Detailed per-accuracy table for target range\\\\n    print(f\\\\\\\"\\\\\\\\nDetailed block advantage by stratum (70-85%):\\\\\\\")\\\\n    header = f\\\\\\\"  {'acc':>5}\\\\\\\"\\\\n    for sname, _ in strata_masks:\\\\n        header += f\\\\\\\"  {sname:>8}\\\\\\\"\\\\n    header += f\\\\\\\"  {'Overall':>8}\\\\\\\"\\\\n    print(header)\\\\n\\\\n    for i in target_idx:\\\\n        a = acc_list[i]\\\\n        line = f\\\\\\\"  {a:>5.2f}\\\\\\\"\\\\n        for sname, smask in strata_masks:\\\\n            if sname in results['strata']:\\\\n                line += f\\\\\\\"  {results['strata'][sname]['block_advantage'][i]:>8.4f}\\\\\\\"\\\\n        line += f\\\\\\\"  {float(blk_adv_all[i]):>8.4f}\\\\\\\"\\\\n        print(line)\\\\n\\\\n    # Weighted-average decomposition\\\\n    print(f\\\\\\\"\\\\\\\\nWeighted decomposition of overall block advantage:\\\\\\\")\\\\n    total_adv = float(blk_t_all.mean())\\\\n    for sname, smask in strata_masks:\\\\n        if sname not in results['strata']:\\\\n            continue\\\\n        s = results['strata'][sname]\\\\n        contribution = s['pct'] * s['target_block']['mean']\\\\n        print(f\\\\\\\"  {sname}: weight={s['pct']:.1%} x adv={s['target_block']['mean']:.4f} \\\\\\\"\\\\n              f\\\\\\\"= {contribution:.4f} ({contribution/total_adv*100:.1f}% of total)\\\\\\\")\\\\n\\\\n    json_path = os.path.join(DIR, args.output)\\\\n    with open(json_path, 'w') as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved {json_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified oracle simulation by F2P test count.\\n\\nRuns the same block-correlated Monte Carlo as mvp_a_real_f2p_sim.py,\\nbut tracks per-trial outcomes to compute advantage per T-stratum:\\nT=1, T=2, T=3-5, T=6+.\\n\\\"\\\"\\\"\\nimport numpy as np\\nimport json\\nimport time\\nimport os\\nimport argparse\\n\\nDIR = os.path.dirname(os.path.abspath(__file__))\\n\\nSTRATA = [\\n    ('T=1',   lambda t: t == 1),\\n    ('T=2',   lambda t: t == 2),\\n    ('T=3-5', lambda t: (t >= 3) & (t <= 5)),\\n    ('T=6+',  lambda t: t >= 6),\\n]\\n\\n\\ndef build_gt(rng, n_trials, N, T_vals, T_max):\\n    gt = np.ones((n_trials, N, T_max), dtype=bool)\\n    for t in range(n_trials):\\n        T = T_vals[t]\\n        for p in range(1, N):\\n            fp = rng.uniform(0.1, 0.8)\\n            fails = rng.random(T) < fp\\n            if not fails.any():\\n                fails[rng.integers(T)] = True\\n            gt[t, p, :T] = ~fails\\n    return gt\\n\\n\\ndef build_blocks(rng, T_vals, T_max):\\n    n = len(T_vals)\\n    bids = np.zeros((n, T_max), dtype=np.int32)\\n    nb = np.zeros(n, dtype=np.int32)\\n    for t in range(n):\\n        T = T_vals[t]\\n        idx = bid = 0\\n        while idx < T:\\n            rem = T - idx\\n            if rem <= 8:\\n                bids[t, idx:T] = bid\\n                bid += 1\\n                break\\n            bs = min(int(rng.integers(2, 9)), rem)\\n            bids[t, idx:idx + bs] = bid\\n            bid += 1\\n            idx += bs\\n        nb[t] = max(bid, 1)\\n    return bids, nb\\n\\n\\ndef best_patch(scores, rng):\\n    return (scores.astype(np.float64) + rng.random(scores.shape) * 1e-6).argmax(axis=1)\\n\\n\\ndef from_resolved(preds, rng):\\n    tb = rng.random(preds.shape)\\n    ar = preds.any(axis=1, keepdims=True)\\n    m = np.where(preds, tb, -1.0)\\n    return np.where(ar, m, tb).argmax(axis=1)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--output', default='oracle_f2p_stratified_results.json')\\n    parser.add_argument('--n-trials', type=int, default=10000)\\n    parser.add_argument('--seed', type=int, default=42)\\n    args = parser.parse_args()\\n\\n    N = 16\\n    n_trials = args.n_trials\\n    seed = args.seed\\n    acc_range = np.round(np.arange(0.50, 1.005, 0.01), 2)\\n    acc_list = [round(float(a), 2) for a in acc_range]\\n    n_acc = len(acc_range)\\n\\n    with open(os.path.join(DIR, 'swebench_test_stats.json')) as f:\\n        RAW_F2P = np.array(json.load(f)['raw_f2p'])\\n\\n    rng = np.random.default_rng(seed)\\n    T_vals = np.clip(rng.choice(RAW_F2P, size=n_trials), 1, 100)\\n    T_max = int(T_vals.max())\\n\\n    strata_masks = [(name, fn(T_vals)) for name, fn in STRATA]\\n\\n    print(\\\"Oracle F2P Stratified Analysis\\\")\\n    print(f\\\"  N={N}, trials={n_trials}, seed={seed}\\\")\\n    print(f\\\"  T: median={np.median(T_vals):.0f}, mean={T_vals.mean():.1f}\\\")\\n    for name, mask in strata_masks:\\n        cnt = mask.sum()\\n        print(f\\\"  {name}: {cnt} ({cnt/n_trials*100:.1f}%)\\\")\\n\\n    gt = build_gt(rng, n_trials, N, T_vals, T_max)\\n    tmask = (np.arange(T_max)[None, :] < T_vals[:, None])[:, None, :]\\n    bids, nb = build_blocks(rng, T_vals, T_max)\\n    B_max = max(int(nb.max()), 1)\\n\\n    tax = np.arange(n_trials)[:, None, None]\\n    pax = np.arange(N)[None, :, None]\\n    bax = bids[:, None, :]\\n\\n    blk_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n    iid_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n    traj_correct = np.zeros((n_acc, n_trials), dtype=bool)\\n\\n    t0 = time.time()\\n    for ai, acc in enumerate(acc_range):\\n        fi = rng.random((n_trials, N, T_max)) >= acc\\n        noisy_i = gt ^ fi\\n        si = (noisy_i & tmask).sum(axis=2)\\n        sel_i = best_patch(si, rng)\\n        iid_correct[ai] = (sel_i == 0)\\n\\n        bf = rng.random((n_trials, N, B_max)) < (1.0 - acc)\\n        tf = bf[tax, pax, bax]\\n        noisy_b = gt ^ tf\\n        sb = (noisy_b & tmask).sum(axis=2)\\n        sel_b = best_patch(sb, rng)\\n        blk_correct[ai] = (sel_b == 0)\\n\\n        tp = np.full((n_trials, N), 1.0 - acc)\\n        tp[:, 0] = acc\\n        tpreds = rng.random((n_trials, N)) < tp\\n        sel_t = from_resolved(tpr\\n\\n... [截断: 输出过长，省略 507 字符] ...\\n\\nacy_range': acc_list},\\n        'T_distribution': {\\n            'median': float(np.median(T_vals)),\\n            'mean': round(float(T_vals.mean()), 2),\\n        },\\n        'strata': {},\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 75)\\n    print(\\\"STRATIFIED ORACLE RESULTS (block-correlated)\\\")\\n    print(\\\"=\\\" * 75)\\n    print(f\\\"\\\\n{'Stratum':<10} {'Count':>6} {'%':>6} \\\"\\n          f\\\"{'Block Adv 70-85%':>18} {'IID Adv 70-85%':>16}\\\")\\n    print(\\\"-\\\" * 60)\\n\\n    for sname, smask in strata_masks:\\n        cnt = int(smask.sum())\\n        if cnt == 0:\\n            continue\\n\\n        blk_sr = blk_correct[:, smask].mean(axis=1)\\n        iid_sr = iid_correct[:, smask].mean(axis=1)\\n        traj_sr = traj_correct[:, smask].mean(axis=1)\\n\\n        blk_adv = blk_sr - traj_sr\\n        iid_adv = iid_sr - traj_sr\\n\\n        blk_target = np.array([blk_adv[i] for i in target_idx])\\n        iid_target = np.array([iid_adv[i] for i in target_idx])\\n\\n        blk_mean = float(blk_target.mean())\\n        iid_mean = float(iid_target.mean())\\n\\n        print(f\\\"{sname:<10} {cnt:>6} {cnt/n_trials*100:>5.1f}% \\\"\\n              f\\\"{blk_mean:>18.4f} {iid_mean:>16.4f}\\\")\\n\\n        results['strata'][sname] = {\\n            'count': cnt,\\n            'pct': round(cnt / n_trials, 4),\\n            'T_range': [int(T_vals[smask].min()), int(T_vals[smask].max())],\\n            'T_mean': round(float(T_vals[smask].mean()), 2),\\n            'block_pt': [round(float(x), 4) for x in blk_sr],\\n            'iid_pt': [round(float(x), 4) for x in iid_sr],\\n            'trajectory': [round(float(x), 4) for x in traj_sr],\\n            'block_advantage': [round(float(x), 4) for x in blk_adv],\\n            'iid_advantage': [round(float(x), 4) for x in iid_adv],\\n            'target_block': {\\n                'mean': round(blk_mean, 4),\\n                'min': round(float(blk_target.min()), 4),\\n                'max': round(float(blk_target.max()), 4),\\n            },\\n            'target_iid': {\\n                'mean': round(iid_mean, 4),\\n                'min': round(float(iid_target.min()), 4),\\n                'max': round(float(iid_target.max()), 4),\\n            },\\n        }\\n\\n    # Overall\\n    blk_adv_all = blk_correct.mean(axis=1) - traj_correct.mean(axis=1)\\n    iid_adv_all = iid_correct.mean(axis=1) - traj_correct.mean(axis=1)\\n    blk_t_all = np.array([blk_adv_all[i] for i in target_idx])\\n    iid_t_all = np.array([iid_adv_all[i] for i in target_idx])\\n    print(f\\\"{'Overall':<10} {n_trials:>6} {100:>5.1f}% \\\"\\n          f\\\"{float(blk_t_all.mean()):>18.4f} {float(iid_t_all.mean()):>16.4f}\\\")\\n    print(\\\"=\\\" * 75)\\n\\n    results['overall'] = {\\n        'target_block_mean': round(float(blk_t_all.mean()), 4),\\n        'target_iid_mean': round(float(iid_t_all.mean()), 4),\\n    }\\n\\n    # Detailed per-accuracy table for target range\\n    print(f\\\"\\\\nDetailed block advantage by stratum (70-85%):\\\")\\n    header = f\\\"  {'acc':>5}\\\"\\n    for sname, _ in strata_masks:\\n        header += f\\\"  {sname:>8}\\\"\\n    header += f\\\"  {'Overall':>8}\\\"\\n    print(header)\\n\\n    for i in target_idx:\\n        a = acc_list[i]\\n        line = f\\\"  {a:>5.2f}\\\"\\n        for sname, smask in strata_masks:\\n            if sname in results['strata']:\\n                line += f\\\"  {results['strata'][sname]['block_advantage'][i]:>8.4f}\\\"\\n        line += f\\\"  {float(blk_adv_all[i]):>8.4f}\\\"\\n        print(line)\\n\\n    # Weighted-average decomposition\\n    print(f\\\"\\\\nWeighted decomposition of overall block advantage:\\\")\\n    total_adv = float(blk_t_all.mean())\\n    for sname, smask in strata_masks:\\n        if sname not in results['strata']:\\n            continue\\n        s = results['strata'][sname]\\n        contribution = s['pct'] * s['target_block']['mean']\\n        print(f\\\"  {sname}: weight={s['pct']:.1%} x adv={s['target_block']['mean']:.4f} \\\"\\n              f\\\"= {contribution:.4f} ({contribution/total_adv*100:.1f}% of total)\\\")\\n\\n    json_path = os.path.join(DIR, args.output)\\n    with open(json_path, 'w') as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved {json_path}\\\")\\n\\n\\nif __name__ == '__main__':\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CjguuEKNoAzuBXqjrZYbJL`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*block*corr*\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "16dfe2d8-e653-42ed-a935-c52ba17b6214",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T22:41:30.254Z_
+
+<details><summary>↩ Tool result · `toolu_01PKeQW4r13tDXUBpNGnKN6A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nfrom collections import Counter, defaultdict\\nfrom scipy.stats import chi2_contingency\\nfrom sklearn.metrics import cohen_kappa_score, f1_score\\n\\nwith open(\\\"/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\\") as f:\\n    cls_data = json.load(f)[\\\"predictions\\\"]\\nwith open(\\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\") as f:\\n    cwm_data = json.load(f)[\\\"predictions\\\"]\\n\\nassert len(cls_data) == len(cwm_data) == 1890\\n\\ncls_by_idx = {d[\\\"idx\\\"]: d for d in cls_data}\\ncwm_by_idx = {d[\\\"idx\\\"]: d for d in cwm_data}\\n\\nresults = {}\\nN = 1890\\n\\n# ============ 1. Agreement/Disagreement ============\\nboth_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] and cwm_by_idx[i][\\\"correct\\\"])\\nboth_wrong = sum(1 for i in range(N) if not cls_by_idx[i][\\\"correct\\\"] and not cwm_by_idx[i][\\\"correct\\\"])\\ncls_only = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] and not cwm_by_idx[i][\\\"correct\\\"])\\ncwm_only = sum(1 for i in range(N) if not cls_by_idx[i][\\\"correct\\\"] and cwm_by_idx[i][\\\"correct\\\"])\\n\\ncls_preds = [cls_by_idx[i][\\\"predicted_label\\\"] for i in range(N)]\\ncwm_preds = [cwm_by_idx[i][\\\"predicted_label\\\"] for i in range(N)]\\ncls_correct = [int(cls_by_idx[i][\\\"correct\\\"]) for i in range(N)]\\ncwm_correct = [int(cwm_by_idx[i][\\\"correct\\\"]) for i in range(N)]\\n\\nkappa_pred = cohen_kappa_score(cls_preds, cwm_preds)\\nkappa_correct = cohen_kappa_score(cls_correct, cwm_correct)\\n\\ncls_acc = sum(cls_correct) / N\\ncwm_acc = sum(cwm_correct) / N\\n\\nresults[\\\"agreement\\\"] = {\\n    \\\"total_samples\\\": N,\\n    \\\"cls_accuracy\\\": round(cls_acc * 100, 2),\\n    \\\"cwm_accuracy\\\": round(cwm_acc * 100, 2),\\n    \\\"both_correct\\\": both_correct,\\n    \\\"both_correct_pct\\\": round(both_correct / N * 100, 2),\\n    \\\"both_wrong\\\": both_wrong,\\n    \\\"both_wrong_pct\\\": round(both_wrong / N * 100, 2),\\n    \\\"cls_only_correct\\\": cls_only,\\n    \\\"cls_only_correct_pct\\\": round(cls_only / N * 100, 2),\\n    \\\"cwm_only_correct\\\": cwm_only,\\n    \\\"cwm_only_correct_pct\\\": round(cwm_only / N * 100, 2),\\n    \\\"cohen_kappa_prediction\\\": round(kappa_pred, 4),\\n    \\\"cohen_kappa_correctness\\\": round(kappa_correct, 4),\\n}\\n\\n# ============ 2. Oracle combination ============\\noracle_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] or cwm_by_idx[i][\\\"correct\\\"])\\noracle_acc = oracle_correct / N\\ncomplementarity = oracle_acc - max(cls_acc, cwm_acc)\\n\\nresults[\\\"oracle\\\"] = {\\n    \\\"oracle_correct\\\": oracle_correct,\\n    \\\"oracle_accuracy_pct\\\": round(oracle_acc * 100, 2),\\n    \\\"complementarity_pct\\\": round(complementarity * 100, 2),\\n    \\\"better_model\\\": \\\"CLS\\\" if cls_acc >= cwm_acc else \\\"CWM\\\",\\n    \\\"better_model_accuracy_pct\\\": round(max(cls_acc, cwm_acc) * 100, 2),\\n}\\n\\n# ============ 3. Per mutation_type analysis ============\\nmutation_types = sorted(set(d[\\\"mutation_type\\\"] for d in cls_data))\\ntrue_labels = [cls_by_idx[i][\\\"true_label\\\"] for i in range(N)]\\n\\nmut_results = {}\\nfor mt in mutation_types:\\n    idxs = [i for i in range(N) if cls_by_idx[i][\\\"mutation_type\\\"] == mt]\\n    n = len(idxs)\\n    cls_c = sum(cls_by_idx[i][\\\"correct\\\"] for i in idxs)\\n    cwm_c = sum(cwm_by_idx[i][\\\"correct\\\"] for i in idxs)\\n    cls_a = cls_c / n if n > 0 else 0\\n    cwm_a = cwm_c / n if n > 0 else 0\\n\\n    cls_p = [cls_by_idx[i][\\\"predicted_label\\\"] for i in idxs]\\n    cwm_p = [cwm_by_idx[i][\\\"predicted_label\\\"] for i in idxs]\\n    tl = [cls_by_idx[i][\\\"true_label\\\"] for i in idxs]\\n    labels = sorted(set(tl + cls_p + cwm_p))\\n\\n    cls_f1 = f1_score(tl, cls_p, average=\\\"macro\\\", labels=labels, zero_division=0)\\n    cwm_f1 = f1_score(tl, cwm_p, average=\\\"macro\\\", labels=labels, zero_division=0)\\n\\n    # Chi-squared: 2x2 contingency table of correct/wrong for CLS vs CWM\\n    table = np.array([\\n        [cls_c, n - cls_c],\\n        [cwm_c, n - cwm_c]\\n    ])\\n    try:\\n        if table.min() >= 0 and table.sum() > 0:\\n            chi2, p_val, _, _ = chi2_contingency(table, correction=True)\\n        else:\\n            chi2, p_val = 0, 1.0\\n    except:\\n        chi2, p_val = 0, 1.0\\n\\n    oracle_mt = sum(1 for i in idxs if cls_by_idx[i][\\\"correct\\\"] \\n\\n... [截断: 输出过长，省略 4971 字符] ...\\n\\n summary ============\\nprint(\\\"=\\\" * 70)\\nprint(\\\"MATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\\")\\nprint(\\\"=\\\" * 70)\\n\\na = results[\\\"agreement\\\"]\\nprint(f\\\"\\\\n--- 1. Agreement/Disagreement ---\\\")\\nprint(f\\\"CLS accuracy: {a['cls_accuracy']}%  |  CWM accuracy: {a['cwm_accuracy']}%\\\")\\nprint(f\\\"Both correct:     {a['both_correct']} ({a['both_correct_pct']}%)\\\")\\nprint(f\\\"Both wrong:        {a['both_wrong']} ({a['both_wrong_pct']}%)\\\")\\nprint(f\\\"CLS-only correct:  {a['cls_only_correct']} ({a['cls_only_correct_pct']}%)\\\")\\nprint(f\\\"CWM-only correct:  {a['cwm_only_correct']} ({a['cwm_only_correct_pct']}%)\\\")\\nprint(f\\\"Cohen's Kappa (prediction): {a['cohen_kappa_prediction']}\\\")\\nprint(f\\\"Cohen's Kappa (correctness): {a['cohen_kappa_correctness']}\\\")\\n\\no = results[\\\"oracle\\\"]\\nprint(f\\\"\\\\n--- 2. Oracle Combination ---\\\")\\nprint(f\\\"Oracle accuracy: {o['oracle_accuracy_pct']}% ({o['oracle_correct']}/{N})\\\")\\nprint(f\\\"Better model: {o['better_model']} at {o['better_model_accuracy_pct']}%\\\")\\nprint(f\\\"Complementarity: +{o['complementarity_pct']}%\\\")\\n\\nprint(f\\\"\\\\n--- 3. By Mutation Type ---\\\")\\nprint(f\\\"{'Type':<25} {'N':>5} {'CLS%':>7} {'CWM%':>7} {'Diff':>7} {'CLS_F1':>7} {'CWM_F1':>7} {'p-val':>8} {'Sig':>4}\\\")\\nfor mt in mutation_types:\\n    v = mut_results[mt]\\n    sig = \\\"*\\\" if v[\\\"significant\\\"] else \\\"\\\"\\n    print(f\\\"{mt:<25} {v['n']:>5} {v['cls_accuracy_pct']:>7.2f} {v['cwm_accuracy_pct']:>7.2f} {v['diff_pct']:>+7.2f} {v['cls_f1']:>7.4f} {v['cwm_f1']:>7.4f} {v['p_value']:>8.4f} {sig:>4}\\\")\\n\\nprint(f\\\"\\\\nCLS stronger: {list(results['mutation_type_summary']['cls_stronger'].keys())}\\\")\\nprint(f\\\"CWM stronger: {list(results['mutation_type_summary']['cwm_stronger'].keys())}\\\")\\n\\nprint(f\\\"\\\\n--- 4. By Problem ID ---\\\")\\nprint(f\\\"Total problems: {results['by_problem_id']['total_problems']}\\\")\\nprint(f\\\"CLS-strong problems (>10% diff): {results['by_problem_id']['n_cls_strong']}\\\")\\nprint(f\\\"CWM-strong problems (>10% diff): {results['by_problem_id']['n_cwm_strong']}\\\")\\nif cls_strong_probs:\\n    print(f\\\"\\\\nTop CLS-strong problems:\\\")\\n    for k, v in list(cls_strong_probs.items())[:5]:\\n        print(f\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\")\\nif cwm_strong_probs:\\n    print(f\\\"\\\\nTop CWM-strong problems:\\\")\\n    for k, v in list(cwm_strong_probs.items())[:5]:\\n        print(f\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\")\\n\\nprint(f\\\"\\\\n--- 5. Error Patterns ---\\\")\\nep = results[\\\"error_patterns\\\"]\\nprint(f\\\"CLS-only errors (CLS wrong, CWM right): {ep['cls_only_errors']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['cls_only_errors']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['cls_only_errors']['true_label_distribution']}\\\")\\nprint(f\\\"CWM-only errors (CWM wrong, CLS right): {ep['cwm_only_errors']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['cwm_only_errors']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['cwm_only_errors']['true_label_distribution']}\\\")\\nprint(f\\\"Both wrong: {ep['both_wrong']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['both_wrong']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['both_wrong']['true_label_distribution']}\\\")\\nif \\\"cwm_only_correct_exact_match\\\" in ep:\\n    em = ep[\\\"cwm_only_correct_exact_match\\\"]\\n    print(f\\\"\\\\nCWM-only correct samples exact_match rate: {em['exact_match']}/{em['total']} = {em['exact_match_rate_pct']}%\\\")\\nif \\\"cls_only_correct_cwm_error_types\\\" in ep:\\n    print(f\\\"CLS-only correct → CWM error_type distribution: {ep['cls_only_correct_cwm_error_types']}\\\")\\n\\nprint(f\\\"\\\\n--- 6. Cross-seed Comparison ---\\\")\\ncs = results[\\\"cross_seed_comparison\\\"]\\nprint(f\\\"Prior cross-seed: Oracle={cs['prior_cross_seed_oracle_pct']}%, Complementarity={cs['prior_cross_seed_complementarity_pct']}%\\\")\\nprint(f\\\"Matched-seed:     Oracle={cs['matched_seed_oracle_pct']}%, Complementarity={cs['matched_seed_complementarity_pct']}%\\\")\\nprint(f\\\"Difference:       Oracle={cs['oracle_difference_pct']:+.2f}%, Complementarity={cs['complementarity_difference_pct']:+.2f}%\\\")\\n\\nprint(f\\\"\\\\nResults saved to matched_seed_overlap_results.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "35423668-5411-4d21-b6e4-7de5951b58c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nfrom collections import Counter, defaultdict\\\\nfrom scipy.stats import chi2_contingency\\\\nfrom sklearn.metrics import cohen_kappa_score, f1_score\\\\n\\\\nwith open(\\\\\\\"/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\\\\\\") as f:\\\\n    cls_data = json.load(f)[\\\\\\\"predictions\\\\\\\"]\\\\nwith open(\\\\\\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\\\\\") as f:\\\\n    cwm_data = json.load(f)[\\\\\\\"predictions\\\\\\\"]\\\\n\\\\nassert len(cls_data) == len(cwm_data) == 1890\\\\n\\\\ncls_by_idx = {d[\\\\\\\"idx\\\\\\\"]: d for d in cls_data}\\\\ncwm_by_idx = {d[\\\\\\\"idx\\\\\\\"]: d for d in cwm_data}\\\\n\\\\nresults = {}\\\\nN = 1890\\\\n\\\\n# ============ 1. Agreement/Disagreement ============\\\\nboth_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\\\\\"correct\\\\\\\"] and cwm_by_idx[i][\\\\\\\"correct\\\\\\\"])\\\\nboth_wrong = sum(1 for i in range(N) if not cls_by_idx[i][\\\\\\\"correct\\\\\\\"] and not cwm_by_idx[i][\\\\\\\"correct\\\\\\\"])\\\\ncls_only = sum(1 for i in range(N) if cls_by_idx[i][\\\\\\\"correct\\\\\\\"] and not cwm_by_idx[i][\\\\\\\"correct\\\\\\\"])\\\\ncwm_only = sum(1 for i in range(N) if not cls_by_idx[i][\\\\\\\"correct\\\\\\\"] and cwm_by_idx[i][\\\\\\\"correct\\\\\\\"])\\\\n\\\\ncls_preds = [cls_by_idx[i][\\\\\\\"predicted_label\\\\\\\"] for i in range(N)]\\\\ncwm_preds = [cwm_by_idx[i][\\\\\\\"predicted_label\\\\\\\"] for i in range(N)]\\\\ncls_correct = [int(cls_by_idx[i][\\\\\\\"correct\\\\\\\"]) for i in range(N)]\\\\ncwm_correct = [int(cwm_by_idx[i][\\\\\\\"correct\\\\\\\"]) for i in range(N)]\\\\n\\\\nkappa_pred = cohen_kappa_score(cls_preds, cwm_preds)\\\\nkappa_correct = cohen_kappa_score(cls_correct, cwm_correct)\\\\n\\\\ncls_acc = sum(cls_correct) / N\\\\ncwm_acc = sum(cwm_correct) / N\\\\n\\\\nresults[\\\\\\\"agreement\\\\\\\"] = {\\\\n    \\\\\\\"total_samples\\\\\\\": N,\\\\n    \\\\\\\"cls_accuracy\\\\\\\": round(cls_acc * 100, 2),\\\\n    \\\\\\\"cwm_accuracy\\\\\\\": round(cwm_acc * 100, 2),\\\\n    \\\\\\\"both_correct\\\\\\\": both_correct,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": round(both_correct / N * 100, 2),\\\\n    \\\\\\\"both_wrong\\\\\\\": both_wrong,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": round(both_wrong / N * 100, 2),\\\\n    \\\\\\\"cls_only_correct\\\\\\\": cls_only,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": round(cls_only / N * 100, 2),\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": cwm_only,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": round(cwm_only / N * 100, 2),\\\\n    \\\\\\\"cohen_kappa_prediction\\\\\\\": round(kappa_pred, 4),\\\\n    \\\\\\\"cohen_kappa_correctness\\\\\\\": round(kappa_correct, 4),\\\\n}\\\\n\\\\n# ============ 2. Oracle combination ============\\\\noracle_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\\\\\"correct\\\\\\\"] or cwm_by_idx[i][\\\\\\\"correct\\\\\\\"])\\\\noracle_acc = oracle_correct / N\\\\ncomplementarity = oracle_acc - max(cls_acc, cwm_acc)\\\\n\\\\nresults[\\\\\\\"oracle\\\\\\\"] = {\\\\n    \\\\\\\"oracle_correct\\\\\\\": oracle_correct,\\\\n    \\\\\\\"oracle_accuracy_pct\\\\\\\": round(oracle_acc * 100, 2),\\\\n    \\\\\\\"complementarity_pct\\\\\\\": round(complementarity * 100, 2),\\\\n    \\\\\\\"better_model\\\\\\\": \\\\\\\"CLS\\\\\\\" if cls_acc >= cwm_acc else \\\\\\\"CWM\\\\\\\",\\\\n    \\\\\\\"better_model_accuracy_pct\\\\\\\": round(max(cls_acc, cwm_acc) * 100, 2),\\\\n}\\\\n\\\\n# ============ 3. Per mutation_type analysis ============\\\\nmutation_types = sorted(set(d[\\\\\\\"mutation_type\\\\\\\"] for d in cls_data))\\\\ntrue_labels = [cls_by_idx[i][\\\\\\\"true_label\\\\\\\"] for i in range(N)]\\\\n\\\\nmut_results = {}\\\\nfor mt in mutation_types:\\\\n    idxs = [i for i in range(N) if cls_by_idx[i][\\\\\\\"mutation_type\\\\\\\"] == mt]\\\\n    n = len(idxs)\\\\n    cls_c = sum(cls_by_idx[i][\\\\\\\"correct\\\\\\\"] for i in idxs)\\\\n    cwm_c = sum(cwm_by_idx[i][\\\\\\\"correct\\\\\\\"] for i in idxs)\\\\n    cls_a = cls_c / n if n > 0 else 0\\\\n    cwm_a = cwm_c / n if n > 0 else 0\\\\n\\\\n    cls_p = [cls_by_idx[i][\\\\\\\"predicted_label\\\\\\\"] for i in idxs]\\\\n    cwm_p = [cwm_by_idx[i][\\\\\\\"predicted_label\\\\\\\"] for i in idxs]\\\\n    tl = [cls_by_idx[i][\\\\\\\"true_label\\\\\\\"] for i in idxs]\\\\n    labels = sorted(set(tl + cls_p + cwm_p))\\\\n\\\\n    cls_f1 = f1_score(tl, cls_p, average=\\\\\\\"macro\\\\\\\", labels=labels, zero_division=0)\\\\n    cwm_f1 = f1_score(tl, cwm_p, average=\\\\\\\"macro\\\\\\\", labels=labels, zero_division=0)\\\\n\\\\n    # Chi-squared: 2x2 contingency table of correct/wrong for CLS vs CWM\\\\n    table = np.array([\\\\n        [cls_c, n - cls_c],\\\\n        [cwm_c, n - cwm_c]\\\\n    ])\\\\n    try:\\\\n        if table.min() >= 0 and table.sum() > 0:\\\\n            chi2, p_val, _, _ = chi2_contingency(table, correction=True)\\\\n        else:\\\\n            chi2, p_val = 0, 1.0\\\\n    except:\\\\n        chi2, p_val = 0, 1.0\\\\n\\\\n    oracle_mt = sum(1 for i in idxs if cls_by_idx[i][\\\\\\\"correct\\\\\\\"] \\\\n\\\\n... [截断: 输出过长，省略 4971 字符] ...\\\\n\\\\n summary ============\\\\nprint(\\\\\\\"=\\\\\\\" * 70)\\\\nprint(\\\\\\\"MATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\na = results[\\\\\\\"agreement\\\\\\\"]\\\\nprint(f\\\\\\\"\\\\\\\\n--- 1. Agreement/Disagreement ---\\\\\\\")\\\\nprint(f\\\\\\\"CLS accuracy: {a['cls_accuracy']}%  |  CWM accuracy: {a['cwm_accuracy']}%\\\\\\\")\\\\nprint(f\\\\\\\"Both correct:     {a['both_correct']} ({a['both_correct_pct']}%)\\\\\\\")\\\\nprint(f\\\\\\\"Both wrong:        {a['both_wrong']} ({a['both_wrong_pct']}%)\\\\\\\")\\\\nprint(f\\\\\\\"CLS-only correct:  {a['cls_only_correct']} ({a['cls_only_correct_pct']}%)\\\\\\\")\\\\nprint(f\\\\\\\"CWM-only correct:  {a['cwm_only_correct']} ({a['cwm_only_correct_pct']}%)\\\\\\\")\\\\nprint(f\\\\\\\"Cohen's Kappa (prediction): {a['cohen_kappa_prediction']}\\\\\\\")\\\\nprint(f\\\\\\\"Cohen's Kappa (correctness): {a['cohen_kappa_correctness']}\\\\\\\")\\\\n\\\\no = results[\\\\\\\"oracle\\\\\\\"]\\\\nprint(f\\\\\\\"\\\\\\\\n--- 2. Oracle Combination ---\\\\\\\")\\\\nprint(f\\\\\\\"Oracle accuracy: {o['oracle_accuracy_pct']}% ({o['oracle_correct']}/{N})\\\\\\\")\\\\nprint(f\\\\\\\"Better model: {o['better_model']} at {o['better_model_accuracy_pct']}%\\\\\\\")\\\\nprint(f\\\\\\\"Complementarity: +{o['complementarity_pct']}%\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- 3. By Mutation Type ---\\\\\\\")\\\\nprint(f\\\\\\\"{'Type':<25} {'N':>5} {'CLS%':>7} {'CWM%':>7} {'Diff':>7} {'CLS_F1':>7} {'CWM_F1':>7} {'p-val':>8} {'Sig':>4}\\\\\\\")\\\\nfor mt in mutation_types:\\\\n    v = mut_results[mt]\\\\n    sig = \\\\\\\"*\\\\\\\" if v[\\\\\\\"significant\\\\\\\"] else \\\\\\\"\\\\\\\"\\\\n    print(f\\\\\\\"{mt:<25} {v['n']:>5} {v['cls_accuracy_pct']:>7.2f} {v['cwm_accuracy_pct']:>7.2f} {v['diff_pct']:>+7.2f} {v['cls_f1']:>7.4f} {v['cwm_f1']:>7.4f} {v['p_value']:>8.4f} {sig:>4}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nCLS stronger: {list(results['mutation_type_summary']['cls_stronger'].keys())}\\\\\\\")\\\\nprint(f\\\\\\\"CWM stronger: {list(results['mutation_type_summary']['cwm_stronger'].keys())}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- 4. By Problem ID ---\\\\\\\")\\\\nprint(f\\\\\\\"Total problems: {results['by_problem_id']['total_problems']}\\\\\\\")\\\\nprint(f\\\\\\\"CLS-strong problems (>10% diff): {results['by_problem_id']['n_cls_strong']}\\\\\\\")\\\\nprint(f\\\\\\\"CWM-strong problems (>10% diff): {results['by_problem_id']['n_cwm_strong']}\\\\\\\")\\\\nif cls_strong_probs:\\\\n    print(f\\\\\\\"\\\\\\\\nTop CLS-strong problems:\\\\\\\")\\\\n    for k, v in list(cls_strong_probs.items())[:5]:\\\\n        print(f\\\\\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\\\\\")\\\\nif cwm_strong_probs:\\\\n    print(f\\\\\\\"\\\\\\\\nTop CWM-strong problems:\\\\\\\")\\\\n    for k, v in list(cwm_strong_probs.items())[:5]:\\\\n        print(f\\\\\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- 5. Error Patterns ---\\\\\\\")\\\\nep = results[\\\\\\\"error_patterns\\\\\\\"]\\\\nprint(f\\\\\\\"CLS-only errors (CLS wrong, CWM right): {ep['cls_only_errors']['count']}\\\\\\\")\\\\nprint(f\\\\\\\"  mutation types: {ep['cls_only_errors']['mutation_type_distribution']}\\\\\\\")\\\\nprint(f\\\\\\\"  true labels: {ep['cls_only_errors']['true_label_distribution']}\\\\\\\")\\\\nprint(f\\\\\\\"CWM-only errors (CWM wrong, CLS right): {ep['cwm_only_errors']['count']}\\\\\\\")\\\\nprint(f\\\\\\\"  mutation types: {ep['cwm_only_errors']['mutation_type_distribution']}\\\\\\\")\\\\nprint(f\\\\\\\"  true labels: {ep['cwm_only_errors']['true_label_distribution']}\\\\\\\")\\\\nprint(f\\\\\\\"Both wrong: {ep['both_wrong']['count']}\\\\\\\")\\\\nprint(f\\\\\\\"  mutation types: {ep['both_wrong']['mutation_type_distribution']}\\\\\\\")\\\\nprint(f\\\\\\\"  true labels: {ep['both_wrong']['true_label_distribution']}\\\\\\\")\\\\nif \\\\\\\"cwm_only_correct_exact_match\\\\\\\" in ep:\\\\n    em = ep[\\\\\\\"cwm_only_correct_exact_match\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nCWM-only correct samples exact_match rate: {em['exact_match']}/{em['total']} = {em['exact_match_rate_pct']}%\\\\\\\")\\\\nif \\\\\\\"cls_only_correct_cwm_error_types\\\\\\\" in ep:\\\\n    print(f\\\\\\\"CLS-only correct → CWM error_type distribution: {ep['cls_only_correct_cwm_error_types']}\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n--- 6. Cross-seed Comparison ---\\\\\\\")\\\\ncs = results[\\\\\\\"cross_seed_comparison\\\\\\\"]\\\\nprint(f\\\\\\\"Prior cross-seed: Oracle={cs['prior_cross_seed_oracle_pct']}%, Complementarity={cs['prior_cross_seed_complementarity_pct']}%\\\\\\\")\\\\nprint(f\\\\\\\"Matched-seed:     Oracle={cs['matched_seed_oracle_pct']}%, Complementarity={cs['matched_seed_complementarity_pct']}%\\\\\\\")\\\\nprint(f\\\\\\\"Difference:       Oracle={cs['oracle_difference_pct']:+.2f}%, Complementarity={cs['complementarity_difference_pct']:+.2f}%\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nResults saved to matched_seed_overlap_results.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nfrom collections import Counter, defaultdict\\nfrom scipy.stats import chi2_contingency\\nfrom sklearn.metrics import cohen_kappa_score, f1_score\\n\\nwith open(\\\"/home/sonny/exec-sim-repair-verifier/eval_cls_seed42_with_preds_predictions.json\\\") as f:\\n    cls_data = json.load(f)[\\\"predictions\\\"]\\nwith open(\\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\") as f:\\n    cwm_data = json.load(f)[\\\"predictions\\\"]\\n\\nassert len(cls_data) == len(cwm_data) == 1890\\n\\ncls_by_idx = {d[\\\"idx\\\"]: d for d in cls_data}\\ncwm_by_idx = {d[\\\"idx\\\"]: d for d in cwm_data}\\n\\nresults = {}\\nN = 1890\\n\\n# ============ 1. Agreement/Disagreement ============\\nboth_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] and cwm_by_idx[i][\\\"correct\\\"])\\nboth_wrong = sum(1 for i in range(N) if not cls_by_idx[i][\\\"correct\\\"] and not cwm_by_idx[i][\\\"correct\\\"])\\ncls_only = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] and not cwm_by_idx[i][\\\"correct\\\"])\\ncwm_only = sum(1 for i in range(N) if not cls_by_idx[i][\\\"correct\\\"] and cwm_by_idx[i][\\\"correct\\\"])\\n\\ncls_preds = [cls_by_idx[i][\\\"predicted_label\\\"] for i in range(N)]\\ncwm_preds = [cwm_by_idx[i][\\\"predicted_label\\\"] for i in range(N)]\\ncls_correct = [int(cls_by_idx[i][\\\"correct\\\"]) for i in range(N)]\\ncwm_correct = [int(cwm_by_idx[i][\\\"correct\\\"]) for i in range(N)]\\n\\nkappa_pred = cohen_kappa_score(cls_preds, cwm_preds)\\nkappa_correct = cohen_kappa_score(cls_correct, cwm_correct)\\n\\ncls_acc = sum(cls_correct) / N\\ncwm_acc = sum(cwm_correct) / N\\n\\nresults[\\\"agreement\\\"] = {\\n    \\\"total_samples\\\": N,\\n    \\\"cls_accuracy\\\": round(cls_acc * 100, 2),\\n    \\\"cwm_accuracy\\\": round(cwm_acc * 100, 2),\\n    \\\"both_correct\\\": both_correct,\\n    \\\"both_correct_pct\\\": round(both_correct / N * 100, 2),\\n    \\\"both_wrong\\\": both_wrong,\\n    \\\"both_wrong_pct\\\": round(both_wrong / N * 100, 2),\\n    \\\"cls_only_correct\\\": cls_only,\\n    \\\"cls_only_correct_pct\\\": round(cls_only / N * 100, 2),\\n    \\\"cwm_only_correct\\\": cwm_only,\\n    \\\"cwm_only_correct_pct\\\": round(cwm_only / N * 100, 2),\\n    \\\"cohen_kappa_prediction\\\": round(kappa_pred, 4),\\n    \\\"cohen_kappa_correctness\\\": round(kappa_correct, 4),\\n}\\n\\n# ============ 2. Oracle combination ============\\noracle_correct = sum(1 for i in range(N) if cls_by_idx[i][\\\"correct\\\"] or cwm_by_idx[i][\\\"correct\\\"])\\noracle_acc = oracle_correct / N\\ncomplementarity = oracle_acc - max(cls_acc, cwm_acc)\\n\\nresults[\\\"oracle\\\"] = {\\n    \\\"oracle_correct\\\": oracle_correct,\\n    \\\"oracle_accuracy_pct\\\": round(oracle_acc * 100, 2),\\n    \\\"complementarity_pct\\\": round(complementarity * 100, 2),\\n    \\\"better_model\\\": \\\"CLS\\\" if cls_acc >= cwm_acc else \\\"CWM\\\",\\n    \\\"better_model_accuracy_pct\\\": round(max(cls_acc, cwm_acc) * 100, 2),\\n}\\n\\n# ============ 3. Per mutation_type analysis ============\\nmutation_types = sorted(set(d[\\\"mutation_type\\\"] for d in cls_data))\\ntrue_labels = [cls_by_idx[i][\\\"true_label\\\"] for i in range(N)]\\n\\nmut_results = {}\\nfor mt in mutation_types:\\n    idxs = [i for i in range(N) if cls_by_idx[i][\\\"mutation_type\\\"] == mt]\\n    n = len(idxs)\\n    cls_c = sum(cls_by_idx[i][\\\"correct\\\"] for i in idxs)\\n    cwm_c = sum(cwm_by_idx[i][\\\"correct\\\"] for i in idxs)\\n    cls_a = cls_c / n if n > 0 else 0\\n    cwm_a = cwm_c / n if n > 0 else 0\\n\\n    cls_p = [cls_by_idx[i][\\\"predicted_label\\\"] for i in idxs]\\n    cwm_p = [cwm_by_idx[i][\\\"predicted_label\\\"] for i in idxs]\\n    tl = [cls_by_idx[i][\\\"true_label\\\"] for i in idxs]\\n    labels = sorted(set(tl + cls_p + cwm_p))\\n\\n    cls_f1 = f1_score(tl, cls_p, average=\\\"macro\\\", labels=labels, zero_division=0)\\n    cwm_f1 = f1_score(tl, cwm_p, average=\\\"macro\\\", labels=labels, zero_division=0)\\n\\n    # Chi-squared: 2x2 contingency table of correct/wrong for CLS vs CWM\\n    table = np.array([\\n        [cls_c, n - cls_c],\\n        [cwm_c, n - cwm_c]\\n    ])\\n    try:\\n        if table.min() >= 0 and table.sum() > 0:\\n            chi2, p_val, _, _ = chi2_contingency(table, correction=True)\\n        else:\\n            chi2, p_val = 0, 1.0\\n    except:\\n        chi2, p_val = 0, 1.0\\n\\n    oracle_mt = sum(1 for i in idxs if cls_by_idx[i][\\\"correct\\\"] \\n\\n... [截断: 输出过长，省略 4971 字符] ...\\n\\n summary ============\\nprint(\\\"=\\\" * 70)\\nprint(\\\"MATCHED-SEED CLS vs CWM ANALYSIS (seed=42)\\\")\\nprint(\\\"=\\\" * 70)\\n\\na = results[\\\"agreement\\\"]\\nprint(f\\\"\\\\n--- 1. Agreement/Disagreement ---\\\")\\nprint(f\\\"CLS accuracy: {a['cls_accuracy']}%  |  CWM accuracy: {a['cwm_accuracy']}%\\\")\\nprint(f\\\"Both correct:     {a['both_correct']} ({a['both_correct_pct']}%)\\\")\\nprint(f\\\"Both wrong:        {a['both_wrong']} ({a['both_wrong_pct']}%)\\\")\\nprint(f\\\"CLS-only correct:  {a['cls_only_correct']} ({a['cls_only_correct_pct']}%)\\\")\\nprint(f\\\"CWM-only correct:  {a['cwm_only_correct']} ({a['cwm_only_correct_pct']}%)\\\")\\nprint(f\\\"Cohen's Kappa (prediction): {a['cohen_kappa_prediction']}\\\")\\nprint(f\\\"Cohen's Kappa (correctness): {a['cohen_kappa_correctness']}\\\")\\n\\no = results[\\\"oracle\\\"]\\nprint(f\\\"\\\\n--- 2. Oracle Combination ---\\\")\\nprint(f\\\"Oracle accuracy: {o['oracle_accuracy_pct']}% ({o['oracle_correct']}/{N})\\\")\\nprint(f\\\"Better model: {o['better_model']} at {o['better_model_accuracy_pct']}%\\\")\\nprint(f\\\"Complementarity: +{o['complementarity_pct']}%\\\")\\n\\nprint(f\\\"\\\\n--- 3. By Mutation Type ---\\\")\\nprint(f\\\"{'Type':<25} {'N':>5} {'CLS%':>7} {'CWM%':>7} {'Diff':>7} {'CLS_F1':>7} {'CWM_F1':>7} {'p-val':>8} {'Sig':>4}\\\")\\nfor mt in mutation_types:\\n    v = mut_results[mt]\\n    sig = \\\"*\\\" if v[\\\"significant\\\"] else \\\"\\\"\\n    print(f\\\"{mt:<25} {v['n']:>5} {v['cls_accuracy_pct']:>7.2f} {v['cwm_accuracy_pct']:>7.2f} {v['diff_pct']:>+7.2f} {v['cls_f1']:>7.4f} {v['cwm_f1']:>7.4f} {v['p_value']:>8.4f} {sig:>4}\\\")\\n\\nprint(f\\\"\\\\nCLS stronger: {list(results['mutation_type_summary']['cls_stronger'].keys())}\\\")\\nprint(f\\\"CWM stronger: {list(results['mutation_type_summary']['cwm_stronger'].keys())}\\\")\\n\\nprint(f\\\"\\\\n--- 4. By Problem ID ---\\\")\\nprint(f\\\"Total problems: {results['by_problem_id']['total_problems']}\\\")\\nprint(f\\\"CLS-strong problems (>10% diff): {results['by_problem_id']['n_cls_strong']}\\\")\\nprint(f\\\"CWM-strong problems (>10% diff): {results['by_problem_id']['n_cwm_strong']}\\\")\\nif cls_strong_probs:\\n    print(f\\\"\\\\nTop CLS-strong problems:\\\")\\n    for k, v in list(cls_strong_probs.items())[:5]:\\n        print(f\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\")\\nif cwm_strong_probs:\\n    print(f\\\"\\\\nTop CWM-strong problems:\\\")\\n    for k, v in list(cwm_strong_probs.items())[:5]:\\n        print(f\\\"  {k}: CLS={v['cls_accuracy_pct']}% CWM={v['cwm_accuracy_pct']}% diff={v['diff_pct']:+.1f}%\\\")\\n\\nprint(f\\\"\\\\n--- 5. Error Patterns ---\\\")\\nep = results[\\\"error_patterns\\\"]\\nprint(f\\\"CLS-only errors (CLS wrong, CWM right): {ep['cls_only_errors']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['cls_only_errors']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['cls_only_errors']['true_label_distribution']}\\\")\\nprint(f\\\"CWM-only errors (CWM wrong, CLS right): {ep['cwm_only_errors']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['cwm_only_errors']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['cwm_only_errors']['true_label_distribution']}\\\")\\nprint(f\\\"Both wrong: {ep['both_wrong']['count']}\\\")\\nprint(f\\\"  mutation types: {ep['both_wrong']['mutation_type_distribution']}\\\")\\nprint(f\\\"  true labels: {ep['both_wrong']['true_label_distribution']}\\\")\\nif \\\"cwm_only_correct_exact_match\\\" in ep:\\n    em = ep[\\\"cwm_only_correct_exact_match\\\"]\\n    print(f\\\"\\\\nCWM-only correct samples exact_match rate: {em['exact_match']}/{em['total']} = {em['exact_match_rate_pct']}%\\\")\\nif \\\"cls_only_correct_cwm_error_types\\\" in ep:\\n    print(f\\\"CLS-only correct → CWM error_type distribution: {ep['cls_only_correct_cwm_error_types']}\\\")\\n\\nprint(f\\\"\\\\n--- 6. Cross-seed Comparison ---\\\")\\ncs = results[\\\"cross_seed_comparison\\\"]\\nprint(f\\\"Prior cross-seed: Oracle={cs['prior_cross_seed_oracle_pct']}%, Complementarity={cs['prior_cross_seed_complementarity_pct']}%\\\")\\nprint(f\\\"Matched-seed:     Oracle={cs['matched_seed_oracle_pct']}%, Complementarity={cs['matched_seed_complementarity_pct']}%\\\")\\nprint(f\\\"Difference:       Oracle={cs['oracle_difference_pct']:+.2f}%, Complementarity={cs['complementarity_difference_pct']:+.2f}%\\\")\\n\\nprint(f\\\"\\\\nResults saved to matched_seed_overlap_results.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UpcbMvnZYP9H8bf3LnjTqa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*empirical*\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "ac3f1c19-4be5-449a-af14-78882b60537a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T22:41:31.299Z_
+
+<details><summary>↩ Tool result · `toolu_01CjguuEKNoAzuBXqjrZYbJL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\n/home/sonny/exec-sim-repair-verifier/block_correlation_analysis.py\\n/home/sonny/exec-sim-repair-verifier/block_corr_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "4900ce55-b184-4cec-81c1-802b689f9f2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\\\n/home/sonny/exec-sim-repair-verifier/block_correlation_analysis.py\\\\n/home/sonny/exec-sim-repair-verifier/block_corr_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\n/home/sonny/exec-sim-repair-verifier/block_correlation_analysis.py\\n/home/sonny/exec-sim-repair-verifier/block_corr_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013bKxE5HCY7tJmLWvVhWAoP`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"*complementarity*\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "0590f428-b491-4422-b592-55b0aec85afb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176gARYoVjjgKRCREzMShD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1863,
+      "cache_read_input_tokens": 25421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1863
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-12T22:41:32.525Z_
+
+<details><summary>↩ Tool result · `toolu_01UpcbMvnZYP9H8bf3LnjTqa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "05425355-c603-416b-af17-0da56a9f60b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-12T22:41:33.631Z_
+
+<details><summary>↩ Tool result · `toolu_013bKxE5HCY7tJmLWvVhWAoP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "00e45be0-9b87-4401-89f2-fba5d8b2deee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I found the key files. Let me now:
+
+1. Read `block_corr_results.json` for the `all_correct_observed` value
+2. Read the `error_overlap_analysis.json` output for the complementarity data
+3. Read `matched_seed_overlap_results.json` for oracle data
+4. Read `block_correlation_analysis.py` to understand the block-corr analysis
+
+Let me also check if there's the error_overlap_analysis.json and matched_seed_overlap_results.json result files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "ef374d05-e337-4bf6-a501-388187523ab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+找到关键文件。现在读取结果 JSON 和分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "b30cb385-6d6c-486a-b4be-3bd1a0831372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UJEWKPFVUYw1kN7adEPjDc`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/block_corr_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "5c8eea72-7e30-4412-aa22-eb0448a73333",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-12T22:41:47.475Z_
+
+<details><summary>↩ Tool result · `toolu_01UJEWKPFVUYw1kN7adEPjDc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_samples\\\": 1890,\\n    \\\"n_problems\\\": 114,\\n    \\\"overall_error_rate\\\": 0.1407,\\n    \\\"unparseable_predictions\\\": 0\\n  },\\n  \\\"icc_permutation_test\\\": {\\n    \\\"observed_icc\\\": 0.232878,\\n    \\\"shuffle_mean\\\": 0.000231,\\n    \\\"shuffle_std\\\": 0.00863,\\n    \\\"shuffle_p95\\\": 0.014841,\\n    \\\"shuffle_p99\\\": 0.021448,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n_permutations\\\": 2000\\n  },\\n  \\\"design_effect\\\": {\\n    \\\"design_effect\\\": 4.6197,\\n    \\\"avg_cluster_size_k0\\\": 16.54,\\n    \\\"icc\\\": 0.232878\\n  },\\n  \\\"block_stats\\\": {\\n    \\\"n_groups\\\": 114,\\n    \\\"observed_all_correct\\\": 46,\\n    \\\"observed_all_wrong\\\": 0,\\n    \\\"expected_all_correct_iid\\\": 12.76,\\n    \\\"expected_all_wrong_iid\\\": 0.0,\\n    \\\"ratio_all_correct\\\": 3.6,\\n    \\\"ratio_all_wrong\\\": 0.0\\n  },\\n  \\\"error_rate_distribution\\\": {\\n    \\\"mean\\\": 0.1371,\\n    \\\"std\\\": 0.1747,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.7143,\\n    \\\"q25\\\": 0.0,\\n    \\\"q50\\\": 0.0667,\\n    \\\"q75\\\": 0.2107,\\n    \\\"expected_std_iid\\\": 0.0854\\n  },\\n  \\\"per_problem_detail\\\": [\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/104\\\",\\n      \\\"n_tests\\\": 20,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/127\\\",\\n      \\\"n_tests\\\": 40,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.1,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/130\\\",\\n      \\\"n_tests\\\": 50,\\n      \\\"n_errors\\\": 34,\\n      \\\"error_rate\\\": 0.68,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/136\\\",\\n      \\\"n_tests\\\": 55,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.0364,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/37\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/44\\\",\\n      \\\"n_tests\\\": 30,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/51\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/60\\\",\\n      \\\"n_tests\\\": 25,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/64\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.2571,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/67\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/74\\\",\\n      \\\"n_tests\\\": 45,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/76\\\",\\n      \\\"n_tests\\\": 48,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/85\\\",\\n      \\\"n_tests\\\": 20,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.05,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/103\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/119\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/123\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 10,\\n      \\\"error_rate\\\": 0.7143,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/125\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MB\\n\\n... [截断: 输出过长，省略 12366 字符] ...\\n\\nrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/75\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/765\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/781\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.6,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/79\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/793\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.1429,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/797\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.1333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/830\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.2667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/831\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/835\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/836\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 8,\\n      \\\"error_rate\\\": 0.5333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/855\\\",\\n      \\\"n_tests\\\": 12,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/86\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/869\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/872\\\",\\n      \\\"n_tests\\\": 9,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/876\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2143,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/891\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/90\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/907\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.2667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/922\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/934\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/957\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    }\\n  ],\\n  \\\"conclusion\\\": {\\n    \\\"block_correlated\\\": true,\\n    \\\"icc\\\": 0.2329,\\n    \\\"icc_p_value\\\": 0.0,\\n    \\\"design_effect\\\": 4.6197,\\n    \\\"all_correct_ratio_vs_iid\\\": 3.6,\\n    \\\"all_wrong_ratio_vs_iid\\\": 0.0,\\n    \\\"interpretation\\\": \\\"ICC=0.2329 (p=0.0000), DEFF=4.62. All-correct: 46 observed vs 12.8 expected under i.i.d. (ratio=3.6x). All-wrong: 0 observed vs 0.0 expected (ratio=0.0x). Error rate std across problems: 0.1747 vs 0.0854 expected under i.i.d. => Strong evidence of block correlation.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "ea42c546-81a6-4052-816d-bfd9f4e0cf5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 1890,\\\\n    \\\\\\\"n_problems\\\\\\\": 114,\\\\n    \\\\\\\"overall_error_rate\\\\\\\": 0.1407,\\\\n    \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"icc_permutation_test\\\\\\\": {\\\\n    \\\\\\\"observed_icc\\\\\\\": 0.232878,\\\\n    \\\\\\\"shuffle_mean\\\\\\\": 0.000231,\\\\n    \\\\\\\"shuffle_std\\\\\\\": 0.00863,\\\\n    \\\\\\\"shuffle_p95\\\\\\\": 0.014841,\\\\n    \\\\\\\"shuffle_p99\\\\\\\": 0.021448,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n_permutations\\\\\\\": 2000\\\\n  },\\\\n  \\\\\\\"design_effect\\\\\\\": {\\\\n    \\\\\\\"design_effect\\\\\\\": 4.6197,\\\\n    \\\\\\\"avg_cluster_size_k0\\\\\\\": 16.54,\\\\n    \\\\\\\"icc\\\\\\\": 0.232878\\\\n  },\\\\n  \\\\\\\"block_stats\\\\\\\": {\\\\n    \\\\\\\"n_groups\\\\\\\": 114,\\\\n    \\\\\\\"observed_all_correct\\\\\\\": 46,\\\\n    \\\\\\\"observed_all_wrong\\\\\\\": 0,\\\\n    \\\\\\\"expected_all_correct_iid\\\\\\\": 12.76,\\\\n    \\\\\\\"expected_all_wrong_iid\\\\\\\": 0.0,\\\\n    \\\\\\\"ratio_all_correct\\\\\\\": 3.6,\\\\n    \\\\\\\"ratio_all_wrong\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"error_rate_distribution\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1371,\\\\n    \\\\\\\"std\\\\\\\": 0.1747,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.7143,\\\\n    \\\\\\\"q25\\\\\\\": 0.0,\\\\n    \\\\\\\"q50\\\\\\\": 0.0667,\\\\n    \\\\\\\"q75\\\\\\\": 0.2107,\\\\n    \\\\\\\"expected_std_iid\\\\\\\": 0.0854\\\\n  },\\\\n  \\\\\\\"per_problem_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 35,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/104\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 20,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/127\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 40,\\\\n      \\\\\\\"n_errors\\\\\\\": 4,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/130\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 50,\\\\n      \\\\\\\"n_errors\\\\\\\": 34,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.68,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/136\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 55,\\\\n      \\\\\\\"n_errors\\\\\\\": 2,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0364,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/37\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 1,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0667,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/44\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 30,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/51\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 35,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/60\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 25,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/64\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 35,\\\\n      \\\\\\\"n_errors\\\\\\\": 9,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2571,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/67\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 35,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/74\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 45,\\\\n      \\\\\\\"n_errors\\\\\\\": 9,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/76\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 48,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/85\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 20,\\\\n      \\\\\\\"n_errors\\\\\\\": 1,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.05,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/103\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 5,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.3333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/119\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/123\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 14,\\\\n      \\\\\\\"n_errors\\\\\\\": 10,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.7143,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/125\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 5,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.3333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MB\\\\n\\\\n... [截断: 输出过长，省略 12366 字符] ...\\\\n\\\\nrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/75\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/765\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 5,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.3333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/781\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 9,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/79\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 5,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.3333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/793\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 14,\\\\n      \\\\\\\"n_errors\\\\\\\": 2,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.1429,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/797\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 2,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.1333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/830\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 4,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2667,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/831\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/835\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 1,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0667,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/836\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 8,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.5333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/855\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 12,\\\\n      \\\\\\\"n_errors\\\\\\\": 4,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.3333,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/86\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 3,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/869\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 3,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/872\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 9,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/876\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 14,\\\\n      \\\\\\\"n_errors\\\\\\\": 3,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2143,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/891\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/90\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 0,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"all_correct\\\\\\\": true,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/907\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 4,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2667,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/922\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 1,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.0667,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/934\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 3,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"MBPP/957\\\\\\\",\\\\n      \\\\\\\"n_tests\\\\\\\": 15,\\\\n      \\\\\\\"n_errors\\\\\\\": 3,\\\\n      \\\\\\\"error_rate\\\\\\\": 0.2,\\\\n      \\\\\\\"all_correct\\\\\\\": false,\\\\n      \\\\\\\"all_wrong\\\\\\\": false\\\\n    }\\\\n  ],\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"block_correlated\\\\\\\": true,\\\\n    \\\\\\\"icc\\\\\\\": 0.2329,\\\\n    \\\\\\\"icc_p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"design_effect\\\\\\\": 4.6197,\\\\n    \\\\\\\"all_correct_ratio_vs_iid\\\\\\\": 3.6,\\\\n    \\\\\\\"all_wrong_ratio_vs_iid\\\\\\\": 0.0,\\\\n    \\\\\\\"interpretation\\\\\\\": \\\\\\\"ICC=0.2329 (p=0.0000), DEFF=4.62. All-correct: 46 observed vs 12.8 expected under i.i.d. (ratio=3.6x). All-wrong: 0 observed vs 0.0 expected (ratio=0.0x). Error rate std across problems: 0.1747 vs 0.0854 expected under i.i.d. => Strong evidence of block correlation.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_samples\\\": 1890,\\n    \\\"n_problems\\\": 114,\\n    \\\"overall_error_rate\\\": 0.1407,\\n    \\\"unparseable_predictions\\\": 0\\n  },\\n  \\\"icc_permutation_test\\\": {\\n    \\\"observed_icc\\\": 0.232878,\\n    \\\"shuffle_mean\\\": 0.000231,\\n    \\\"shuffle_std\\\": 0.00863,\\n    \\\"shuffle_p95\\\": 0.014841,\\n    \\\"shuffle_p99\\\": 0.021448,\\n    \\\"p_value\\\": 0.0,\\n    \\\"n_permutations\\\": 2000\\n  },\\n  \\\"design_effect\\\": {\\n    \\\"design_effect\\\": 4.6197,\\n    \\\"avg_cluster_size_k0\\\": 16.54,\\n    \\\"icc\\\": 0.232878\\n  },\\n  \\\"block_stats\\\": {\\n    \\\"n_groups\\\": 114,\\n    \\\"observed_all_correct\\\": 46,\\n    \\\"observed_all_wrong\\\": 0,\\n    \\\"expected_all_correct_iid\\\": 12.76,\\n    \\\"expected_all_wrong_iid\\\": 0.0,\\n    \\\"ratio_all_correct\\\": 3.6,\\n    \\\"ratio_all_wrong\\\": 0.0\\n  },\\n  \\\"error_rate_distribution\\\": {\\n    \\\"mean\\\": 0.1371,\\n    \\\"std\\\": 0.1747,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 0.7143,\\n    \\\"q25\\\": 0.0,\\n    \\\"q50\\\": 0.0667,\\n    \\\"q75\\\": 0.2107,\\n    \\\"expected_std_iid\\\": 0.0854\\n  },\\n  \\\"per_problem_detail\\\": [\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/104\\\",\\n      \\\"n_tests\\\": 20,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/127\\\",\\n      \\\"n_tests\\\": 40,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.1,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/130\\\",\\n      \\\"n_tests\\\": 50,\\n      \\\"n_errors\\\": 34,\\n      \\\"error_rate\\\": 0.68,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/136\\\",\\n      \\\"n_tests\\\": 55,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.0364,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/37\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/44\\\",\\n      \\\"n_tests\\\": 30,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/51\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/60\\\",\\n      \\\"n_tests\\\": 25,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/64\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.2571,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/67\\\",\\n      \\\"n_tests\\\": 35,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/74\\\",\\n      \\\"n_tests\\\": 45,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/76\\\",\\n      \\\"n_tests\\\": 48,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"HumanEval/85\\\",\\n      \\\"n_tests\\\": 20,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.05,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/103\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/119\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/123\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 10,\\n      \\\"error_rate\\\": 0.7143,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/125\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MB\\n\\n... [截断: 输出过长，省略 12366 字符] ...\\n\\nrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/75\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/765\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/781\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 9,\\n      \\\"error_rate\\\": 0.6,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/79\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 5,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/793\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.1429,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/797\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 2,\\n      \\\"error_rate\\\": 0.1333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/830\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.2667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/831\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/835\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/836\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 8,\\n      \\\"error_rate\\\": 0.5333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/855\\\",\\n      \\\"n_tests\\\": 12,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.3333,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/86\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/869\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/872\\\",\\n      \\\"n_tests\\\": 9,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/876\\\",\\n      \\\"n_tests\\\": 14,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2143,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/891\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/90\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 0,\\n      \\\"error_rate\\\": 0.0,\\n      \\\"all_correct\\\": true,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/907\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 4,\\n      \\\"error_rate\\\": 0.2667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/922\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 1,\\n      \\\"error_rate\\\": 0.0667,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/934\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    },\\n    {\\n      \\\"problem_id\\\": \\\"MBPP/957\\\",\\n      \\\"n_tests\\\": 15,\\n      \\\"n_errors\\\": 3,\\n      \\\"error_rate\\\": 0.2,\\n      \\\"all_correct\\\": false,\\n      \\\"all_wrong\\\": false\\n    }\\n  ],\\n  \\\"conclusion\\\": {\\n    \\\"block_correlated\\\": true,\\n    \\\"icc\\\": 0.2329,\\n    \\\"icc_p_value\\\": 0.0,\\n    \\\"design_effect\\\": 4.6197,\\n    \\\"all_correct_ratio_vs_iid\\\": 3.6,\\n    \\\"all_wrong_ratio_vs_iid\\\": 0.0,\\n    \\\"interpretation\\\": \\\"ICC=0.2329 (p=0.0000), DEFF=4.62. All-correct: 46 observed vs 12.8 expected under i.i.d. (ratio=3.6x). All-wrong: 0 observed vs 0.0 expected (ratio=0.0x). Error rate std across problems: 0.1747 vs 0.0854 expected under i.i.d. => Strong evidence of block correlation.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DNLeQDk7VhUQNWdHXrNtwv`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"error_overlap*\" -name \"*.json\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "78c36c02-5a8d-4764-a8a8-d120e57b76ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015cHrrsbvfFSLKk2rWkhMmq`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "find /home/sonny/exec-sim-repair-verifier/ -name \"matched_seed*\" -name \"*.json\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "d3945e16-5e31-4d99-90e3-2a4d82b4e435",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-12T22:41:48.691Z_
+
+<details><summary>↩ Tool result · `toolu_01DNLeQDk7VhUQNWdHXrNtwv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\n/home/sonny/exec-sim-repair-verifier/error_overlap_matched_seed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "8d4a09c4-668a-4d5f-9cf9-7bc1c068cbc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\\n/home/sonny/exec-sim-repair-verifier/error_overlap_matched_seed.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\n/home/sonny/exec-sim-repair-verifier/error_overlap_matched_seed.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JieENS7Sqs4FELDPPmJzbB`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/block_correlation_analysis.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "12d32f50-4151-47a5-a640-242ab9da06b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEs7oPSsqea8dAGkydtvhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12602,
+      "cache_read_input_tokens": 27284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-12T22:41:49.626Z_
+
+<details><summary>↩ Tool result · `toolu_015cHrrsbvfFSLKk2rWkhMmq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "7558881e-cde4-4ea3-b3bf-e4e8d62e7569",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-12T22:41:50.620Z_
+
+<details><summary>↩ Tool result · `toolu_01JieENS7Sqs4FELDPPmJzbB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# block_correlation_analysis.py — Verify that per-test classifier errors are\\n# block-correlated (within problem_id) rather than i.i.d.\\n# Computes: ICC, permutation test, all-correct/all-wrong rates, design effect.\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef compute_icc(errors_by_group):\\n    \\\"\\\"\\\"One-way random effects ICC for unbalanced groups.\\\"\\\"\\\"\\n    groups = list(errors_by_group.values())\\n    K = len(groups)\\n    if K < 2:\\n        return float(\\\"nan\\\")\\n\\n    N = sum(len(g) for g in groups)\\n    grand_mean = sum(sum(g) for g in groups) / N\\n\\n    ss_between = sum(len(g) * (np.mean(g) - grand_mean) ** 2 for g in groups)\\n    ss_within = sum(sum((x - np.mean(g)) ** 2 for x in g) for g in groups)\\n\\n    ms_between = ss_between / (K - 1)\\n    ms_within = ss_within / (N - K)\\n\\n    # Adjusted group size for unbalanced design\\n    n_sq_sum = sum(len(g) ** 2 for g in groups)\\n    k0 = (N - n_sq_sum / N) / (K - 1)\\n\\n    denom = ms_between + (k0 - 1) * ms_within\\n    if denom == 0:\\n        return 0.0\\n\\n    icc = (ms_between - ms_within) / denom\\n    return float(icc)\\n\\n\\ndef permutation_test_icc(errors, problem_ids, n_permutations=2000):\\n    \\\"\\\"\\\"Permutation test: shuffle problem_id assignments, recompute ICC.\\\"\\\"\\\"\\n    observed_groups = defaultdict(list)\\n    for e, pid in zip(errors, problem_ids):\\n        observed_groups[pid].append(e)\\n    observed_icc = compute_icc(observed_groups)\\n\\n    rng = np.random.default_rng(42)\\n    shuffled_iccs = []\\n    pid_array = np.array(problem_ids)\\n\\n    for _ in range(n_permutations):\\n        shuffled_pids = rng.permutation(pid_array)\\n        shuffled_groups = defaultdict(list)\\n        for e, pid in zip(errors, shuffled_pids):\\n            shuffled_groups[pid].append(e)\\n        shuffled_iccs.append(compute_icc(shuffled_groups))\\n\\n    shuffled_iccs = np.array(shuffled_iccs)\\n    p_value = float(np.mean(shuffled_iccs >= observed_icc))\\n\\n    return {\\n        \\\"observed_icc\\\": round(observed_icc, 6),\\n        \\\"shuffle_mean\\\": round(float(np.mean(shuffled_iccs)), 6),\\n        \\\"shuffle_std\\\": round(float(np.std(shuffled_iccs)), 6),\\n        \\\"shuffle_p95\\\": round(float(np.percentile(shuffled_iccs, 95)), 6),\\n        \\\"shuffle_p99\\\": round(float(np.percentile(shuffled_iccs, 99)), 6),\\n        \\\"p_value\\\": round(p_value, 6),\\n        \\\"n_permutations\\\": n_permutations,\\n    }\\n\\n\\ndef compute_block_stats(errors_by_group, ov\\n\\n... [截断: 输出过长，省略 6263 字符] ...\\n\\n,\\n        \\\"min\\\": round(float(np.min(group_error_rates)), 4),\\n        \\\"max\\\": round(float(np.max(group_error_rates)), 4),\\n        \\\"q25\\\": round(float(np.percentile(group_error_rates, 25)), 4),\\n        \\\"q50\\\": round(float(np.percentile(group_error_rates, 50)), 4),\\n        \\\"q75\\\": round(float(np.percentile(group_error_rates, 75)), 4),\\n        \\\"expected_std_iid\\\": round(float(np.sqrt(overall_error_rate * (1 - overall_error_rate) / avg_group_size)), 4),\\n    }\\n\\n    results = {\\n        \\\"summary\\\": {\\n            \\\"n_samples\\\": len(all_errors),\\n            \\\"n_problems\\\": len(errors_by_group),\\n            \\\"overall_error_rate\\\": round(float(overall_error_rate), 4),\\n            \\\"unparseable_predictions\\\": n_unparseable,\\n        },\\n        \\\"icc_permutation_test\\\": perm_results,\\n        \\\"design_effect\\\": deff_results,\\n        \\\"block_stats\\\": {k: v for k, v in block_stats.items() if k != \\\"per_problem\\\"},\\n        \\\"error_rate_distribution\\\": error_rate_dist,\\n        \\\"per_problem_detail\\\": block_stats[\\\"per_problem\\\"],\\n    }\\n\\n    icc = perm_results[\\\"observed_icc\\\"]\\n    p_val = perm_results[\\\"p_value\\\"]\\n    deff = deff_results[\\\"design_effect\\\"]\\n    obs_ac = block_stats[\\\"observed_all_correct\\\"]\\n    exp_ac = block_stats[\\\"expected_all_correct_iid\\\"]\\n    obs_aw = block_stats[\\\"observed_all_wrong\\\"]\\n    exp_aw = block_stats[\\\"expected_all_wrong_iid\\\"]\\n\\n    block_correlated = icc > 0 and p_val < 0.05\\n    results[\\\"conclusion\\\"] = {\\n        \\\"block_correlated\\\": block_correlated,\\n        \\\"icc\\\": round(icc, 4),\\n        \\\"icc_p_value\\\": p_val,\\n        \\\"design_effect\\\": deff,\\n        \\\"all_correct_ratio_vs_iid\\\": block_stats[\\\"ratio_all_correct\\\"],\\n        \\\"all_wrong_ratio_vs_iid\\\": block_stats[\\\"ratio_all_wrong\\\"],\\n        \\\"interpretation\\\": (\\n            f\\\"ICC={icc:.4f} (p={p_val:.4f}), DEFF={deff:.2f}. \\\"\\n            f\\\"All-correct: {obs_ac} observed vs {exp_ac:.1f} expected under i.i.d. (ratio={block_stats['ratio_all_correct']:.1f}x). \\\"\\n            f\\\"All-wrong: {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x). \\\"\\n            f\\\"Error rate std across problems: {error_rate_dist['std']:.4f} vs {error_rate_dist['expected_std_iid']:.4f} expected under i.i.d. \\\"\\n            + (\\\"=> Strong evidence of block correlation.\\\" if block_correlated else \\\"=> No significant block correlation detected.\\\")\\n        ),\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"BLOCK CORRELATION ANALYSIS REPORT\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"\\\\nTest set: {len(all_errors)} samples, {len(errors_by_group)} problems\\\")\\n    print(f\\\"Overall error rate: {overall_error_rate:.4f}\\\")\\n    print(f\\\"\\\\n--- ICC (Intra-class Correlation Coefficient) ---\\\")\\n    print(f\\\"  Observed ICC:     {icc:.6f}\\\")\\n    print(f\\\"  Shuffle mean:     {perm_results['shuffle_mean']:.6f}\\\")\\n    print(f\\\"  Shuffle p95:      {perm_results['shuffle_p95']:.6f}\\\")\\n    print(f\\\"  p-value:          {p_val:.4f}\\\")\\n    print(f\\\"  Significant:      {'YES' if p_val < 0.05 else 'NO'} (alpha=0.05)\\\")\\n    print(f\\\"\\\\n--- Design Effect ---\\\")\\n    print(f\\\"  DEFF:             {deff:.4f}\\\")\\n    print(f\\\"  Avg cluster k0:   {deff_results['avg_cluster_size_k0']:.2f}\\\")\\n    print(f\\\"\\\\n--- All-Correct / All-Wrong Rates ---\\\")\\n    print(f\\\"  All-correct: {obs_ac} observed vs {exp_ac:.1f} expected (ratio={block_stats['ratio_all_correct']:.1f}x)\\\")\\n    print(f\\\"  All-wrong:   {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x)\\\")\\n    print(f\\\"\\\\n--- Error Rate Distribution Across Problems ---\\\")\\n    print(f\\\"  Observed std: {error_rate_dist['std']:.4f}\\\")\\n    print(f\\\"  Expected std (i.i.d.): {error_rate_dist['expected_std_iid']:.4f}\\\")\\n    print(f\\\"  Ratio: {error_rate_dist['std'] / max(error_rate_dist['expected_std_iid'], 1e-9):.2f}x\\\")\\n    print(f\\\"\\\\n--- Conclusion ---\\\")\\n    print(f\\\"  {'BLOCK-CORRELATED' if block_correlated else 'NOT SIGNIFICANTLY BLOCK-CORRELATED'}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "903118ae-a469-4d82-81fa-31d753697d9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# block_correlation_analysis.py — Verify that per-test classifier errors are\\\\n# block-correlated (within problem_id) rather than i.i.d.\\\\n# Computes: ICC, permutation test, all-correct/all-wrong rates, design effect.\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom collections import defaultdict\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n    \\\\\\\"predict whether the test will pass or fail.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = f\\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWill this test pass or fail?\\\\\\\"\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if len(ids) > max_len:\\\\n        ids = ids[:max_len]\\\\n    return ids\\\\n\\\\n\\\\ndef parse_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text = text.strip().lower()\\\\n    if text.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    if \\\\\\\"pass\\\\\\\" in text and \\\\\\\"fail\\\\\\\" not in text:\\\\n        return 1\\\\n    if \\\\\\\"fail\\\\\\\" in text and \\\\\\\"pass\\\\\\\" not in text:\\\\n        return 0\\\\n    return -1\\\\n\\\\n\\\\ndef compute_icc(errors_by_group):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"One-way random effects ICC for unbalanced groups.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    groups = list(errors_by_group.values())\\\\n    K = len(groups)\\\\n    if K < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    N = sum(len(g) for g in groups)\\\\n    grand_mean = sum(sum(g) for g in groups) / N\\\\n\\\\n    ss_between = sum(len(g) * (np.mean(g) - grand_mean) ** 2 for g in groups)\\\\n    ss_within = sum(sum((x - np.mean(g)) ** 2 for x in g) for g in groups)\\\\n\\\\n    ms_between = ss_between / (K - 1)\\\\n    ms_within = ss_within / (N - K)\\\\n\\\\n    # Adjusted group size for unbalanced design\\\\n    n_sq_sum = sum(len(g) ** 2 for g in groups)\\\\n    k0 = (N - n_sq_sum / N) / (K - 1)\\\\n\\\\n    denom = ms_between + (k0 - 1) * ms_within\\\\n    if denom == 0:\\\\n        return 0.0\\\\n\\\\n    icc = (ms_between - ms_within) / denom\\\\n    return float(icc)\\\\n\\\\n\\\\ndef permutation_test_icc(errors, problem_ids, n_permutations=2000):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Permutation test: shuffle problem_id assignments, recompute ICC.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    observed_groups = defaultdict(list)\\\\n    for e, pid in zip(errors, problem_ids):\\\\n        observed_groups[pid].append(e)\\\\n    observed_icc = compute_icc(observed_groups)\\\\n\\\\n    rng = np.random.default_rng(42)\\\\n    shuffled_iccs = []\\\\n    pid_array = np.array(problem_ids)\\\\n\\\\n    for _ in range(n_permutations):\\\\n        shuffled_pids = rng.permutation(pid_array)\\\\n        shuffled_groups = defaultdict(list)\\\\n        for e, pid in zip(errors, shuffled_pids):\\\\n            shuffled_groups[pid].append(e)\\\\n        shuffled_iccs.append(compute_icc(shuffled_groups))\\\\n\\\\n    shuffled_iccs = np.array(shuffled_iccs)\\\\n    p_value = float(np.mean(shuffled_iccs >= observed_icc))\\\\n\\\\n    return {\\\\n        \\\\\\\"observed_icc\\\\\\\": round(observed_icc, 6),\\\\n        \\\\\\\"shuffle_mean\\\\\\\": round(float(np.mean(shuffled_iccs)), 6),\\\\n        \\\\\\\"shuffle_std\\\\\\\": round(float(np.std(shuffled_iccs)), 6),\\\\n        \\\\\\\"shuffle_p95\\\\\\\": round(float(np.percentile(shuffled_iccs, 95)), 6),\\\\n        \\\\\\\"shuffle_p99\\\\\\\": round(float(np.percentile(shuffled_iccs, 99)), 6),\\\\n        \\\\\\\"p_value\\\\\\\": round(p_value, 6),\\\\n        \\\\\\\"n_permutations\\\\\\\": n_permutations,\\\\n    }\\\\n\\\\n\\\\ndef compute_block_stats(errors_by_group, ov\\\\n\\\\n... [截断: 输出过长，省略 6263 字符] ...\\\\n\\\\n,\\\\n        \\\\\\\"min\\\\\\\": round(float(np.min(group_error_rates)), 4),\\\\n        \\\\\\\"max\\\\\\\": round(float(np.max(group_error_rates)), 4),\\\\n        \\\\\\\"q25\\\\\\\": round(float(np.percentile(group_error_rates, 25)), 4),\\\\n        \\\\\\\"q50\\\\\\\": round(float(np.percentile(group_error_rates, 50)), 4),\\\\n        \\\\\\\"q75\\\\\\\": round(float(np.percentile(group_error_rates, 75)), 4),\\\\n        \\\\\\\"expected_std_iid\\\\\\\": round(float(np.sqrt(overall_error_rate * (1 - overall_error_rate) / avg_group_size)), 4),\\\\n    }\\\\n\\\\n    results = {\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": len(all_errors),\\\\n            \\\\\\\"n_problems\\\\\\\": len(errors_by_group),\\\\n            \\\\\\\"overall_error_rate\\\\\\\": round(float(overall_error_rate), 4),\\\\n            \\\\\\\"unparseable_predictions\\\\\\\": n_unparseable,\\\\n        },\\\\n        \\\\\\\"icc_permutation_test\\\\\\\": perm_results,\\\\n        \\\\\\\"design_effect\\\\\\\": deff_results,\\\\n        \\\\\\\"block_stats\\\\\\\": {k: v for k, v in block_stats.items() if k != \\\\\\\"per_problem\\\\\\\"},\\\\n        \\\\\\\"error_rate_distribution\\\\\\\": error_rate_dist,\\\\n        \\\\\\\"per_problem_detail\\\\\\\": block_stats[\\\\\\\"per_problem\\\\\\\"],\\\\n    }\\\\n\\\\n    icc = perm_results[\\\\\\\"observed_icc\\\\\\\"]\\\\n    p_val = perm_results[\\\\\\\"p_value\\\\\\\"]\\\\n    deff = deff_results[\\\\\\\"design_effect\\\\\\\"]\\\\n    obs_ac = block_stats[\\\\\\\"observed_all_correct\\\\\\\"]\\\\n    exp_ac = block_stats[\\\\\\\"expected_all_correct_iid\\\\\\\"]\\\\n    obs_aw = block_stats[\\\\\\\"observed_all_wrong\\\\\\\"]\\\\n    exp_aw = block_stats[\\\\\\\"expected_all_wrong_iid\\\\\\\"]\\\\n\\\\n    block_correlated = icc > 0 and p_val < 0.05\\\\n    results[\\\\\\\"conclusion\\\\\\\"] = {\\\\n        \\\\\\\"block_correlated\\\\\\\": block_correlated,\\\\n        \\\\\\\"icc\\\\\\\": round(icc, 4),\\\\n        \\\\\\\"icc_p_value\\\\\\\": p_val,\\\\n        \\\\\\\"design_effect\\\\\\\": deff,\\\\n        \\\\\\\"all_correct_ratio_vs_iid\\\\\\\": block_stats[\\\\\\\"ratio_all_correct\\\\\\\"],\\\\n        \\\\\\\"all_wrong_ratio_vs_iid\\\\\\\": block_stats[\\\\\\\"ratio_all_wrong\\\\\\\"],\\\\n        \\\\\\\"interpretation\\\\\\\": (\\\\n            f\\\\\\\"ICC={icc:.4f} (p={p_val:.4f}), DEFF={deff:.2f}. \\\\\\\"\\\\n            f\\\\\\\"All-correct: {obs_ac} observed vs {exp_ac:.1f} expected under i.i.d. (ratio={block_stats['ratio_all_correct']:.1f}x). \\\\\\\"\\\\n            f\\\\\\\"All-wrong: {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x). \\\\\\\"\\\\n            f\\\\\\\"Error rate std across problems: {error_rate_dist['std']:.4f} vs {error_rate_dist['expected_std_iid']:.4f} expected under i.i.d. \\\\\\\"\\\\n            + (\\\\\\\"=> Strong evidence of block correlation.\\\\\\\" if block_correlated else \\\\\\\"=> No significant block correlation detected.\\\\\\\")\\\\n        ),\\\\n    }\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"BLOCK CORRELATION ANALYSIS REPORT\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {len(all_errors)} samples, {len(errors_by_group)} problems\\\\\\\")\\\\n    print(f\\\\\\\"Overall error rate: {overall_error_rate:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n--- ICC (Intra-class Correlation Coefficient) ---\\\\\\\")\\\\n    print(f\\\\\\\"  Observed ICC:     {icc:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  Shuffle mean:     {perm_results['shuffle_mean']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  Shuffle p95:      {perm_results['shuffle_p95']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"  p-value:          {p_val:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Significant:      {'YES' if p_val < 0.05 else 'NO'} (alpha=0.05)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n--- Design Effect ---\\\\\\\")\\\\n    print(f\\\\\\\"  DEFF:             {deff:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Avg cluster k0:   {deff_results['avg_cluster_size_k0']:.2f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n--- All-Correct / All-Wrong Rates ---\\\\\\\")\\\\n    print(f\\\\\\\"  All-correct: {obs_ac} observed vs {exp_ac:.1f} expected (ratio={block_stats['ratio_all_correct']:.1f}x)\\\\\\\")\\\\n    print(f\\\\\\\"  All-wrong:   {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n--- Error Rate Distribution Across Problems ---\\\\\\\")\\\\n    print(f\\\\\\\"  Observed std: {error_rate_dist['std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Expected std (i.i.d.): {error_rate_dist['expected_std_iid']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Ratio: {error_rate_dist['std'] / max(error_rate_dist['expected_std_iid'], 1e-9):.2f}x\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n--- Conclusion ---\\\\\\\")\\\\n    print(f\\\\\\\"  {'BLOCK-CORRELATED' if block_correlated else 'NOT SIGNIFICANTLY BLOCK-CORRELATED'}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    log.info(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# block_correlation_analysis.py — Verify that per-test classifier errors are\\n# block-correlated (within problem_id) rather than i.i.d.\\n# Computes: ICC, permutation test, all-correct/all-wrong rates, design effect.\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef compute_icc(errors_by_group):\\n    \\\"\\\"\\\"One-way random effects ICC for unbalanced groups.\\\"\\\"\\\"\\n    groups = list(errors_by_group.values())\\n    K = len(groups)\\n    if K < 2:\\n        return float(\\\"nan\\\")\\n\\n    N = sum(len(g) for g in groups)\\n    grand_mean = sum(sum(g) for g in groups) / N\\n\\n    ss_between = sum(len(g) * (np.mean(g) - grand_mean) ** 2 for g in groups)\\n    ss_within = sum(sum((x - np.mean(g)) ** 2 for x in g) for g in groups)\\n\\n    ms_between = ss_between / (K - 1)\\n    ms_within = ss_within / (N - K)\\n\\n    # Adjusted group size for unbalanced design\\n    n_sq_sum = sum(len(g) ** 2 for g in groups)\\n    k0 = (N - n_sq_sum / N) / (K - 1)\\n\\n    denom = ms_between + (k0 - 1) * ms_within\\n    if denom == 0:\\n        return 0.0\\n\\n    icc = (ms_between - ms_within) / denom\\n    return float(icc)\\n\\n\\ndef permutation_test_icc(errors, problem_ids, n_permutations=2000):\\n    \\\"\\\"\\\"Permutation test: shuffle problem_id assignments, recompute ICC.\\\"\\\"\\\"\\n    observed_groups = defaultdict(list)\\n    for e, pid in zip(errors, problem_ids):\\n        observed_groups[pid].append(e)\\n    observed_icc = compute_icc(observed_groups)\\n\\n    rng = np.random.default_rng(42)\\n    shuffled_iccs = []\\n    pid_array = np.array(problem_ids)\\n\\n    for _ in range(n_permutations):\\n        shuffled_pids = rng.permutation(pid_array)\\n        shuffled_groups = defaultdict(list)\\n        for e, pid in zip(errors, shuffled_pids):\\n            shuffled_groups[pid].append(e)\\n        shuffled_iccs.append(compute_icc(shuffled_groups))\\n\\n    shuffled_iccs = np.array(shuffled_iccs)\\n    p_value = float(np.mean(shuffled_iccs >= observed_icc))\\n\\n    return {\\n        \\\"observed_icc\\\": round(observed_icc, 6),\\n        \\\"shuffle_mean\\\": round(float(np.mean(shuffled_iccs)), 6),\\n        \\\"shuffle_std\\\": round(float(np.std(shuffled_iccs)), 6),\\n        \\\"shuffle_p95\\\": round(float(np.percentile(shuffled_iccs, 95)), 6),\\n        \\\"shuffle_p99\\\": round(float(np.percentile(shuffled_iccs, 99)), 6),\\n        \\\"p_value\\\": round(p_value, 6),\\n        \\\"n_permutations\\\": n_permutations,\\n    }\\n\\n\\ndef compute_block_stats(errors_by_group, ov\\n\\n... [截断: 输出过长，省略 6263 字符] ...\\n\\n,\\n        \\\"min\\\": round(float(np.min(group_error_rates)), 4),\\n        \\\"max\\\": round(float(np.max(group_error_rates)), 4),\\n        \\\"q25\\\": round(float(np.percentile(group_error_rates, 25)), 4),\\n        \\\"q50\\\": round(float(np.percentile(group_error_rates, 50)), 4),\\n        \\\"q75\\\": round(float(np.percentile(group_error_rates, 75)), 4),\\n        \\\"expected_std_iid\\\": round(float(np.sqrt(overall_error_rate * (1 - overall_error_rate) / avg_group_size)), 4),\\n    }\\n\\n    results = {\\n        \\\"summary\\\": {\\n            \\\"n_samples\\\": len(all_errors),\\n            \\\"n_problems\\\": len(errors_by_group),\\n            \\\"overall_error_rate\\\": round(float(overall_error_rate), 4),\\n            \\\"unparseable_predictions\\\": n_unparseable,\\n        },\\n        \\\"icc_permutation_test\\\": perm_results,\\n        \\\"design_effect\\\": deff_results,\\n        \\\"block_stats\\\": {k: v for k, v in block_stats.items() if k != \\\"per_problem\\\"},\\n        \\\"error_rate_distribution\\\": error_rate_dist,\\n        \\\"per_problem_detail\\\": block_stats[\\\"per_problem\\\"],\\n    }\\n\\n    icc = perm_results[\\\"observed_icc\\\"]\\n    p_val = perm_results[\\\"p_value\\\"]\\n    deff = deff_results[\\\"design_effect\\\"]\\n    obs_ac = block_stats[\\\"observed_all_correct\\\"]\\n    exp_ac = block_stats[\\\"expected_all_correct_iid\\\"]\\n    obs_aw = block_stats[\\\"observed_all_wrong\\\"]\\n    exp_aw = block_stats[\\\"expected_all_wrong_iid\\\"]\\n\\n    block_correlated = icc > 0 and p_val < 0.05\\n    results[\\\"conclusion\\\"] = {\\n        \\\"block_correlated\\\": block_correlated,\\n        \\\"icc\\\": round(icc, 4),\\n        \\\"icc_p_value\\\": p_val,\\n        \\\"design_effect\\\": deff,\\n        \\\"all_correct_ratio_vs_iid\\\": block_stats[\\\"ratio_all_correct\\\"],\\n        \\\"all_wrong_ratio_vs_iid\\\": block_stats[\\\"ratio_all_wrong\\\"],\\n        \\\"interpretation\\\": (\\n            f\\\"ICC={icc:.4f} (p={p_val:.4f}), DEFF={deff:.2f}. \\\"\\n            f\\\"All-correct: {obs_ac} observed vs {exp_ac:.1f} expected under i.i.d. (ratio={block_stats['ratio_all_correct']:.1f}x). \\\"\\n            f\\\"All-wrong: {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x). \\\"\\n            f\\\"Error rate std across problems: {error_rate_dist['std']:.4f} vs {error_rate_dist['expected_std_iid']:.4f} expected under i.i.d. \\\"\\n            + (\\\"=> Strong evidence of block correlation.\\\" if block_correlated else \\\"=> No significant block correlation detected.\\\")\\n        ),\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"BLOCK CORRELATION ANALYSIS REPORT\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"\\\\nTest set: {len(all_errors)} samples, {len(errors_by_group)} problems\\\")\\n    print(f\\\"Overall error rate: {overall_error_rate:.4f}\\\")\\n    print(f\\\"\\\\n--- ICC (Intra-class Correlation Coefficient) ---\\\")\\n    print(f\\\"  Observed ICC:     {icc:.6f}\\\")\\n    print(f\\\"  Shuffle mean:     {perm_results['shuffle_mean']:.6f}\\\")\\n    print(f\\\"  Shuffle p95:      {perm_results['shuffle_p95']:.6f}\\\")\\n    print(f\\\"  p-value:          {p_val:.4f}\\\")\\n    print(f\\\"  Significant:      {'YES' if p_val < 0.05 else 'NO'} (alpha=0.05)\\\")\\n    print(f\\\"\\\\n--- Design Effect ---\\\")\\n    print(f\\\"  DEFF:             {deff:.4f}\\\")\\n    print(f\\\"  Avg cluster k0:   {deff_results['avg_cluster_size_k0']:.2f}\\\")\\n    print(f\\\"\\\\n--- All-Correct / All-Wrong Rates ---\\\")\\n    print(f\\\"  All-correct: {obs_ac} observed vs {exp_ac:.1f} expected (ratio={block_stats['ratio_all_correct']:.1f}x)\\\")\\n    print(f\\\"  All-wrong:   {obs_aw} observed vs {exp_aw:.1f} expected (ratio={block_stats['ratio_all_wrong']:.1f}x)\\\")\\n    print(f\\\"\\\\n--- Error Rate Distribution Across Problems ---\\\")\\n    print(f\\\"  Observed std: {error_rate_dist['std']:.4f}\\\")\\n    print(f\\\"  Expected std (i.i.d.): {error_rate_dist['expected_std_iid']:.4f}\\\")\\n    print(f\\\"  Ratio: {error_rate_dist['std'] / max(error_rate_dist['expected_std_iid'], 1e-9):.2f}x\\\")\\n    print(f\\\"\\\\n--- Conclusion ---\\\")\\n    print(f\\\"  {'BLOCK-CORRELATED' if block_correlated else 'NOT SIGNIFICANTLY BLOCK-CORRELATED'}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have:
+
+**Task 1**: `block_corr_results.json` clearly shows `observed_all_correct: 46` out of 114 problems. That's 46/114 = 40.35%. The paper says 48 (42.1%), so the paper is wrong.
+
+Let me also verify by counting the `all_correct: true` entries in the per_problem_detail. The JSON was truncated but let me count from what I can see. Actually, the summary `block_stats.observed_all_correct: 46` is definitive.
+
+**Task 2**: I need to read the `error_overlap_analysis.json` and `matched_seed_overlap_results.json` to get the complementarity data.
+
+
+Now I'm checking the evaluation script and the matched seed overlap results to understand the complementarity metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "eae77e7d-e592-43f9-9f1a-8197c32ca4c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176r86dvChEdoyxedf9SMuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9806,
+      "cache_read_input_tokens": 39886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+任务 1 已有结论：`block_corr_results.json` 明确记录 `observed_all_correct = 46`。继续读取任务 2 的结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "ce78e1b8-d0b3-45db-99b5-2f03a11c5153",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176r86dvChEdoyxedf9SMuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9806,
+      "cache_read_input_tokens": 39886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012kXnQzgUi77LVc3bR3kX2B`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "4f48a36f-7443-4d05-934b-4f01d5da7f8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176r86dvChEdoyxedf9SMuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9806,
+      "cache_read_input_tokens": 39886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-12T22:42:03.766Z_
+
+<details><summary>↩ Tool result · `toolu_012kXnQzgUi77LVc3bR3kX2B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "87a1236e-7dac-44e2-9820-2b1df0906097",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_samples\\\\\\\": 1890,\\\\n  \\\\\\\"overlap_summary\\\\\\\": {\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37\\\\n  },\\\\n  \\\\\\\"complementarity\\\\\\\": {\\\\n    \\\\\\\"cls_unique_correct\\\\\\\": 59,\\\\n    \\\\\\\"cwm_unique_correct\\\\\\\": 53,\\\\n    \\\\\\\"union_correct\\\\\\\": 1713,\\\\n    \\\\\\\"union_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": 3.12\\\\n  },\\\\n  \\\\\\\"cohens_kappa\\\\\\\": {\\\\n    \\\\\\\"on_correctness\\\\\\\": 0.7259,\\\\n    \\\\\\\"on_predictions\\\\\\\": 0.8815\\\\n  },\\\\n  \\\\\\\"mutation_type_breakdown\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"both_correct\\\\\\\": 31,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 86.1,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 2,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 5.6,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 5.6\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"both_correct\\\\\\\": 517,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 77.0,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 22,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.3,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 32,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 4.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 100,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 14.9\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"both_correct\\\\\\\": 247,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 82.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 9,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.0,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 17,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 5.7,\\\\n      \\\\\\\"both_wrong\\\\\\\": 25,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 8.4\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"both_correct\\\\\\\": 338,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 84.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 18,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 4.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.3,\\\\n      \\\\\\\"both_wrong\\\\\\\": 41,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 10.3\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"both_correct\\\\\\\": 389,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 96.8,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 5,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 7,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 1.7\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"both_correct\\\\\\\": 79,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 92.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 3,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 2.4\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_per_mutation_f1\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.89,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 80.56,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 69.23,\\\\n        \\\\\\\"f1\\\\\\\": 81.82,\\\\n        \\\\\\\"support\\\\\\\": 13\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 85.19,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 92.0,\\\\n        \\\\\\\"support\\\\\\\": 23\\\\n      }\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 87.22,\\\\n        \\\\\\\"recall\\\\\\\": 79.95,\\\\n        \\\\\\\"f1\\\\\\\": 83.42,\\\\n        \\\\\\\"support\\\\\\\": 384\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 75.86,\\\\n        \\\\\\\"recall\\\\\\\": 84.32,\\\\n        \\\\\\\"f1\\\\\\\": 79.87,\\\\n        \\\\\\\"support\\\\\\\": 287\\\\n      }\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 80.73,\\\\n        \\\\\\\"recall\\\\\\\": 87.13,\\\\n        \\\\\\\"f1\\\\\\\": 83.81,\\\\n        \\\\\\\"support\\\\\\\": 101\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.12,\\\\n        \\\\\\\"recall\\\\\\\": 89.34,\\\\n        \\\\\\\"f1\\\\\\\": 91.19,\\\\n        \\\\\\\"support\\\\\\\": 197\\\\n      }\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 85.18,\\\\n        \\\\\\\"f1\\\\\\\": 91.99,\\\\n        \\\\\\\"support\\\\\\\": 398\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0,\\\\n        \\\\\\\"f1\\\\\\\": 0.0,\\\\n        \\\\\\\"support\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"accuracy\\\\\\\": 97.01,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 94.78,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.19,\\\\n        \\\\\\\"recall\\\\\\\": 80.49,\\\\n        \\\\\\\"f1\\\\\\\": 84.62,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 97.81,\\\\n        \\\\\\\"recall\\\\\\\": 98.89,\\\\n        \\\\\\\"f1\\\\\\\": 98.35,\\\\n        \\\\\\\"support\\\\\\\": 361\\\\n      }\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"accuracy\\\\\\\": 94.12,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 88.24,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 87.8,\\\\n        \\\\\\\"f1\\\\\\\": 93.51,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.8,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 94.62,\\\\n        \\\\\\\"support\\\\\\\": 44\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_weakest_mutation_types\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91\\\\n    }\\\\n  ],\\\\n  \\\\\\\"problems_cls_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"HumanEval/74\\\\\\\",\\\\n    \\\\\\\"MBPP/123\\\\\\\",\\\\n    \\\\\\\"MBPP/134\\\\\\\",\\\\n    \\\\\\\"MBPP/148\\\\\\\",\\\\n    \\\\\\\"MBPP/270\\\\\\\",\\\\n    \\\\\\\"MBPP/288\\\\\\\",\\\\n    \\\\\\\"MBPP/304\\\\\\\",\\\\n    \\\\\\\"MBPP/380\\\\\\\",\\\\n    \\\\\\\"MBPP/397\\\\\\\",\\\\n    \\\\\\\"MBPP/429\\\\\\\",\\\\n    \\\\\\\"MBPP/468\\\\\\\",\\\\n    \\\\\\\"MBPP/54\\\\\\\",\\\\n    \\\\\\\"MBPP/71\\\\\\\",\\\\n    \\\\\\\"MBPP/781\\\\\\\",\\\\n    \\\\\\\"MBPP/79\\\\\\\",\\\\n    \\\\\\\"MBPP/830\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"problems_cwm_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"MBPP/103\\\\\\\",\\\\n    \\\\\\\"MBPP/160\\\\\\\",\\\\n    \\\\\\\"MBPP/316\\\\\\\",\\\\n    \\\\\\\"MBPP/339\\\\\\\",\\\\n    \\\\\\\"MBPP/375\\\\\\\",\\\\n    \\\\\\\"MBPP/487\\\\\\\",\\\\n    \\\\\\\"MBPP/492\\\\\\\",\\\\n    \\\\\\\"MBPP/556\\\\\\\",\\\\n    \\\\\\\"MBPP/561\\\\\\\",\\\\n    \\\\\\\"MBPP/575\\\\\\\",\\\\n    \\\\\\\"MBPP/67\\\\\\\",\\\\n    \\\\\\\"MBPP/685\\\\\\\",\\\\n    \\\\\\\"MBPP/831\\\\\\\",\\\\n    \\\\\\\"MBPP/855\\\\\\\",\\\\n    \\\\\\\"MBPP/86\\\\\\\",\\\\n    \\\\\\\"MBPP/922\\\\\\\",\\\\n    \\\\\\\"MBPP/957\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_problems_cls_only\\\\\\\": 16,\\\\n  \\\\\\\"n_problems_cwm_only\\\\\\\": 17\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CXScxfwKfkqnTJ9aZMdqRv`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "9afe2bdf-bde3-45ba-89e5-38e67a204717",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176r86dvChEdoyxedf9SMuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9806,
+      "cache_read_input_tokens": 39886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XSQ93KSvPF1u3jfijkHRD6`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/error_overlap_matched_seed.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "7c08069e-ad35-4114-8160-47fd7d31ec48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176r86dvChEdoyxedf9SMuC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9806,
+      "cache_read_input_tokens": 39886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9806
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T22:42:05.164Z_
+
+<details><summary>↩ Tool result · `toolu_01CXScxfwKfkqnTJ9aZMdqRv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"agreement\\\": {\\n    \\\"total_samples\\\": 1890,\\n    \\\"cls_accuracy\\\": 87.83,\\n    \\\"cwm_accuracy\\\": 87.51,\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"cohen_kappa_prediction\\\": 0.8815,\\n    \\\"cohen_kappa_correctness\\\": 0.7259\\n  },\\n  \\\"oracle\\\": {\\n    \\\"oracle_correct\\\": 1713,\\n    \\\"oracle_accuracy_pct\\\": 90.63,\\n    \\\"complementarity_pct\\\": 2.8,\\n    \\\"better_model\\\": \\\"CLS\\\",\\n    \\\"better_model_accuracy_pct\\\": 87.83\\n  },\\n  \\\"by_mutation_type\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"n\\\": 36,\\n      \\\"cls_accuracy_pct\\\": 91.67,\\n      \\\"cwm_accuracy_pct\\\": 88.89,\\n      \\\"diff_pct\\\": 2.78,\\n      \\\"cls_f1\\\": 0.9042,\\n      \\\"cwm_f1\\\": 0.8691,\\n      \\\"chi2\\\": 0.0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 94.44\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"n\\\": 671,\\n      \\\"cls_accuracy_pct\\\": 80.33,\\n      \\\"cwm_accuracy_pct\\\": 81.82,\\n      \\\"diff_pct\\\": -1.49,\\n      \\\"cls_f1\\\": 0.7999,\\n      \\\"cwm_f1\\\": 0.8165,\\n      \\\"chi2\\\": 0.3933,\\n      \\\"p_value\\\": 0.5305,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 85.1\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"n\\\": 298,\\n      \\\"cls_accuracy_pct\\\": 85.91,\\n      \\\"cwm_accuracy_pct\\\": 88.59,\\n      \\\"diff_pct\\\": -2.68,\\n      \\\"cls_f1\\\": 0.8513,\\n      \\\"cwm_f1\\\": 0.875,\\n      \\\"chi2\\\": 0.739,\\n      \\\"p_value\\\": 0.39,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 91.61\\n    },\\n    \\\"original\\\": {\\n      \\\"n\\\": 398,\\n      \\\"cls_accuracy_pct\\\": 89.45,\\n      \\\"cwm_accuracy_pct\\\": 85.18,\\n      \\\"diff_pct\\\": 4.27,\\n      \\\"cls_f1\\\": 0.4721,\\n      \\\"cwm_f1\\\": 0.46,\\n      \\\"chi2\\\": 2.903,\\n      \\\"p_value\\\": 0.0884,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 89.7\\n    },\\n    \\\"return_value\\\": {\\n      \\\"n\\\": 402,\\n      \\\"cls_accuracy_pct\\\": 98.01,\\n      \\\"cwm_accuracy_pct\\\": 97.01,\\n      \\\"diff_pct\\\": 1.0,\\n      \\\"cls_f1\\\": 0.9457,\\n      \\\"cwm_f1\\\": 0.9148,\\n      \\\"chi2\\\": 0.4615,\\n      \\\"p_value\\\": 0.4969,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 98.26\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"n\\\": 85,\\n      \\\"cls_accuracy_pct\\\": 96.47,\\n      \\\"cwm_accuracy_pct\\\": 94.12,\\n      \\\"diff_pct\\\": 2.35,\\n      \\\"cls_f1\\\": 0.9645,\\n      \\\"cwm_f1\\\": 0.9407,\\n      \\\"chi2\\\": 0.1312,\\n      \\\"p_value\\\": 0.7172,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 97.65\\n    }\\n  },\\n  \\\"mutation_type_summary\\\": {\\n    \\\"cls_stronger\\\": {\\n      \\\"original\\\": {\\n        \\\"diff\\\": 4.27,\\n        \\\"sig\\\": false\\n      },\\n      \\\"boundary_removal\\\": {\\n        \\\"diff\\\": 2.78,\\n        \\\"sig\\\": false\\n      },\\n      \\\"variable_swap\\\": {\\n        \\\"diff\\\": 2.35,\\n        \\\"sig\\\": false\\n      },\\n      \\\"return_value\\\": {\\n        \\\"diff\\\": 1.0,\\n        \\\"sig\\\": false\\n      }\\n    },\\n    \\\"cwm_stronger\\\": {\\n      \\\"operator_swap\\\": {\\n        \\\"diff\\\": -2.68,\\n        \\\"sig\\\": false\\n      },\\n      \\\"off_by_one\\\": {\\n        \\\"diff\\\": -1.49,\\n        \\\"sig\\\": false\\n      }\\n    }\\n  },\\n  \\\"by_problem_id\\\": {\\n    \\\"total_problems\\\": 114,\\n    \\\"scatter_data\\\": [\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        97.5,\\n        97.5\\n      ],\\n      [\\n        38.0,\\n        38.0\\n      ],\\n      [\\n        96.36,\\n        96.36\\n      ],\\n      [\\n        93.33,\\n        93.33\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        82.86,\\n        91.43\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        77.78,\\n        75.56\\n      ],\\n      [\\n        97.92,\\n        97.92\\n      ],\\n      [\\n        95.0,\\n        95.0\\n      ],\\n      [\\n        80.0,\\n        86.67\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        64.29\\n      ],\\n      [\\n        60.0,\\n        46.67\\n      ],\\n      [\\n        86.67,\\n        66.67\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        93.33\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100\\n\\n... [截断: 输出过长，省略 5146 字符] ...\\n\\n       \\\"cwm_accuracy_pct\\\": 46.67,\\n        \\\"diff_pct\\\": 13.33\\n      },\\n      \\\"MBPP/270\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 93.33,\\n        \\\"cwm_accuracy_pct\\\": 80.0,\\n        \\\"diff_pct\\\": 13.33\\n      },\\n      \\\"MBPP/71\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 66.67,\\n        \\\"cwm_accuracy_pct\\\": 53.33,\\n        \\\"diff_pct\\\": 13.33\\n      }\\n    },\\n    \\\"cwm_strong_problems_gt10pct\\\": {\\n      \\\"MBPP/487\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 66.67,\\n        \\\"cwm_accuracy_pct\\\": 93.33,\\n        \\\"diff_pct\\\": -26.67\\n      },\\n      \\\"MBPP/957\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 60.0,\\n        \\\"cwm_accuracy_pct\\\": 86.67,\\n        \\\"diff_pct\\\": -26.67\\n      },\\n      \\\"MBPP/556\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 80.0,\\n        \\\"cwm_accuracy_pct\\\": 100.0,\\n        \\\"diff_pct\\\": -20.0\\n      },\\n      \\\"MBPP/922\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 73.33,\\n        \\\"cwm_accuracy_pct\\\": 93.33,\\n        \\\"diff_pct\\\": -20.0\\n      },\\n      \\\"MBPP/855\\\": {\\n        \\\"n\\\": 12,\\n        \\\"cls_accuracy_pct\\\": 41.67,\\n        \\\"cwm_accuracy_pct\\\": 58.33,\\n        \\\"diff_pct\\\": -16.67\\n      },\\n      \\\"MBPP/685\\\": {\\n        \\\"n\\\": 14,\\n        \\\"cls_accuracy_pct\\\": 78.57,\\n        \\\"cwm_accuracy_pct\\\": 92.86,\\n        \\\"diff_pct\\\": -14.29\\n      },\\n      \\\"MBPP/339\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 86.67,\\n        \\\"cwm_accuracy_pct\\\": 100.0,\\n        \\\"diff_pct\\\": -13.33\\n      },\\n      \\\"MBPP/442\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 73.33,\\n        \\\"cwm_accuracy_pct\\\": 86.67,\\n        \\\"diff_pct\\\": -13.33\\n      }\\n    },\\n    \\\"n_cls_strong\\\": 9,\\n    \\\"n_cwm_strong\\\": 8\\n  },\\n  \\\"error_patterns\\\": {\\n    \\\"cls_only_errors\\\": {\\n      \\\"count\\\": 53,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 32,\\n        \\\"operator_swap\\\": 17,\\n        \\\"return_value\\\": 1,\\n        \\\"original\\\": 1,\\n        \\\"boundary_removal\\\": 1,\\n        \\\"variable_swap\\\": 1\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"PASS\\\": 13,\\n        \\\"FAIL\\\": 40\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"HumanEval/64\\\": 4,\\n        \\\"MBPP/957\\\": 4,\\n        \\\"MBPP/442\\\": 4,\\n        \\\"MBPP/487\\\": 4,\\n        \\\"MBPP/922\\\": 3,\\n        \\\"MBPP/556\\\": 3,\\n        \\\"MBPP/685\\\": 2,\\n        \\\"MBPP/836\\\": 2,\\n        \\\"MBPP/855\\\": 2,\\n        \\\"MBPP/891\\\": 2\\n      }\\n    },\\n    \\\"cwm_only_errors\\\": {\\n      \\\"count\\\": 59,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 22,\\n        \\\"original\\\": 18,\\n        \\\"operator_swap\\\": 9,\\n        \\\"return_value\\\": 5,\\n        \\\"variable_swap\\\": 3,\\n        \\\"boundary_removal\\\": 2\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"PASS\\\": 49,\\n        \\\"FAIL\\\": 10\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"MBPP/397\\\": 9,\\n        \\\"MBPP/429\\\": 6,\\n        \\\"MBPP/123\\\": 5,\\n        \\\"MBPP/20\\\": 4,\\n        \\\"MBPP/125\\\": 4,\\n        \\\"MBPP/79\\\": 3,\\n        \\\"MBPP/134\\\": 3,\\n        \\\"MBPP/71\\\": 2,\\n        \\\"MBPP/270\\\": 2,\\n        \\\"MBPP/442\\\": 2\\n      }\\n    },\\n    \\\"both_wrong\\\": {\\n      \\\"count\\\": 177,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 100,\\n        \\\"original\\\": 41,\\n        \\\"operator_swap\\\": 25,\\n        \\\"return_value\\\": 7,\\n        \\\"boundary_removal\\\": 2,\\n        \\\"variable_swap\\\": 2\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"FAIL\\\": 60,\\n        \\\"PASS\\\": 117\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"HumanEval/130\\\": 31,\\n        \\\"HumanEval/74\\\": 10,\\n        \\\"MBPP/781\\\": 9,\\n        \\\"MBPP/256\\\": 6,\\n        \\\"MBPP/765\\\": 5,\\n        \\\"MBPP/855\\\": 5,\\n        \\\"MBPP/67\\\": 5,\\n        \\\"MBPP/71\\\": 5,\\n        \\\"MBPP/836\\\": 4,\\n        \\\"MBPP/907\\\": 4\\n      }\\n    },\\n    \\\"cwm_only_correct_exact_match\\\": {\\n      \\\"total\\\": 53,\\n      \\\"exact_match\\\": 50,\\n      \\\"exact_match_rate_pct\\\": 94.34\\n    },\\n    \\\"cls_only_correct_cwm_error_types\\\": {\\n      \\\"PASS\\\": 49,\\n      \\\"AssertionError\\\": 7,\\n      \\\"OverflowError\\\": 2,\\n      \\\"TypeError\\\": 1\\n    }\\n  },\\n  \\\"cross_seed_comparison\\\": {\\n    \\\"prior_cross_seed_oracle_pct\\\": 90.63,\\n    \\\"prior_cross_seed_complementarity_pct\\\": 5.9,\\n    \\\"matched_seed_oracle_pct\\\": 90.63,\\n    \\\"matched_seed_complementarity_pct\\\": 2.8,\\n    \\\"oracle_difference_pct\\\": 0.0,\\n    \\\"complementarity_difference_pct\\\": -3.1\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "7be20d2d-5b92-4d9d-bcb3-d092f47bae31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"agreement\\\\\\\": {\\\\n    \\\\\\\"total_samples\\\\\\\": 1890,\\\\n    \\\\\\\"cls_accuracy\\\\\\\": 87.83,\\\\n    \\\\\\\"cwm_accuracy\\\\\\\": 87.51,\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"cohen_kappa_prediction\\\\\\\": 0.8815,\\\\n    \\\\\\\"cohen_kappa_correctness\\\\\\\": 0.7259\\\\n  },\\\\n  \\\\\\\"oracle\\\\\\\": {\\\\n    \\\\\\\"oracle_correct\\\\\\\": 1713,\\\\n    \\\\\\\"oracle_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"complementarity_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"better_model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n    \\\\\\\"better_model_accuracy_pct\\\\\\\": 87.83\\\\n  },\\\\n  \\\\\\\"by_mutation_type\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 36,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 91.67,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 88.89,\\\\n      \\\\\\\"diff_pct\\\\\\\": 2.78,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.9042,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.8691,\\\\n      \\\\\\\"chi2\\\\\\\": 0.0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 94.44\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 671,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 80.33,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 81.82,\\\\n      \\\\\\\"diff_pct\\\\\\\": -1.49,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.7999,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.8165,\\\\n      \\\\\\\"chi2\\\\\\\": 0.3933,\\\\n      \\\\\\\"p_value\\\\\\\": 0.5305,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 85.1\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 298,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 85.91,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 88.59,\\\\n      \\\\\\\"diff_pct\\\\\\\": -2.68,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.8513,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.875,\\\\n      \\\\\\\"chi2\\\\\\\": 0.739,\\\\n      \\\\\\\"p_value\\\\\\\": 0.39,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 91.61\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 398,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 89.45,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 85.18,\\\\n      \\\\\\\"diff_pct\\\\\\\": 4.27,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.4721,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.46,\\\\n      \\\\\\\"chi2\\\\\\\": 2.903,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0884,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 89.7\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 402,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 98.01,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 97.01,\\\\n      \\\\\\\"diff_pct\\\\\\\": 1.0,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.9457,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.9148,\\\\n      \\\\\\\"chi2\\\\\\\": 0.4615,\\\\n      \\\\\\\"p_value\\\\\\\": 0.4969,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 98.26\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 85,\\\\n      \\\\\\\"cls_accuracy_pct\\\\\\\": 96.47,\\\\n      \\\\\\\"cwm_accuracy_pct\\\\\\\": 94.12,\\\\n      \\\\\\\"diff_pct\\\\\\\": 2.35,\\\\n      \\\\\\\"cls_f1\\\\\\\": 0.9645,\\\\n      \\\\\\\"cwm_f1\\\\\\\": 0.9407,\\\\n      \\\\\\\"chi2\\\\\\\": 0.1312,\\\\n      \\\\\\\"p_value\\\\\\\": 0.7172,\\\\n      \\\\\\\"significant\\\\\\\": false,\\\\n      \\\\\\\"oracle_accuracy_pct\\\\\\\": 97.65\\\\n    }\\\\n  },\\\\n  \\\\\\\"mutation_type_summary\\\\\\\": {\\\\n    \\\\\\\"cls_stronger\\\\\\\": {\\\\n      \\\\\\\"original\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": 4.27,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"boundary_removal\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": 2.78,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"variable_swap\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": 2.35,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"return_value\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": 1.0,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"cwm_stronger\\\\\\\": {\\\\n      \\\\\\\"operator_swap\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": -2.68,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"off_by_one\\\\\\\": {\\\\n        \\\\\\\"diff\\\\\\\": -1.49,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"by_problem_id\\\\\\\": {\\\\n    \\\\\\\"total_problems\\\\\\\": 114,\\\\n    \\\\\\\"scatter_data\\\\\\\": [\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        97.5,\\\\n        97.5\\\\n      ],\\\\n      [\\\\n        38.0,\\\\n        38.0\\\\n      ],\\\\n      [\\\\n        96.36,\\\\n        96.36\\\\n      ],\\\\n      [\\\\n        93.33,\\\\n        93.33\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        82.86,\\\\n        91.43\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        77.78,\\\\n        75.56\\\\n      ],\\\\n      [\\\\n        97.92,\\\\n        97.92\\\\n      ],\\\\n      [\\\\n        95.0,\\\\n        95.0\\\\n      ],\\\\n      [\\\\n        80.0,\\\\n        86.67\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        64.29\\\\n      ],\\\\n      [\\\\n        60.0,\\\\n        46.67\\\\n      ],\\\\n      [\\\\n        86.67,\\\\n        66.67\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        93.33\\\\n      ],\\\\n      [\\\\n        100.0,\\\\n        100.0\\\\n      ],\\\\n      [\\\\n        100\\\\n\\\\n... [截断: 输出过长，省略 5146 字符] ...\\\\n\\\\n       \\\\\\\"cwm_accuracy_pct\\\\\\\": 46.67,\\\\n        \\\\\\\"diff_pct\\\\\\\": 13.33\\\\n      },\\\\n      \\\\\\\"MBPP/270\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 93.33,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 80.0,\\\\n        \\\\\\\"diff_pct\\\\\\\": 13.33\\\\n      },\\\\n      \\\\\\\"MBPP/71\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 66.67,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 53.33,\\\\n        \\\\\\\"diff_pct\\\\\\\": 13.33\\\\n      }\\\\n    },\\\\n    \\\\\\\"cwm_strong_problems_gt10pct\\\\\\\": {\\\\n      \\\\\\\"MBPP/487\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 66.67,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 93.33,\\\\n        \\\\\\\"diff_pct\\\\\\\": -26.67\\\\n      },\\\\n      \\\\\\\"MBPP/957\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 60.0,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 86.67,\\\\n        \\\\\\\"diff_pct\\\\\\\": -26.67\\\\n      },\\\\n      \\\\\\\"MBPP/556\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 80.0,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 100.0,\\\\n        \\\\\\\"diff_pct\\\\\\\": -20.0\\\\n      },\\\\n      \\\\\\\"MBPP/922\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 73.33,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 93.33,\\\\n        \\\\\\\"diff_pct\\\\\\\": -20.0\\\\n      },\\\\n      \\\\\\\"MBPP/855\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 12,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 41.67,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 58.33,\\\\n        \\\\\\\"diff_pct\\\\\\\": -16.67\\\\n      },\\\\n      \\\\\\\"MBPP/685\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 14,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 78.57,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 92.86,\\\\n        \\\\\\\"diff_pct\\\\\\\": -14.29\\\\n      },\\\\n      \\\\\\\"MBPP/339\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 86.67,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 100.0,\\\\n        \\\\\\\"diff_pct\\\\\\\": -13.33\\\\n      },\\\\n      \\\\\\\"MBPP/442\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 15,\\\\n        \\\\\\\"cls_accuracy_pct\\\\\\\": 73.33,\\\\n        \\\\\\\"cwm_accuracy_pct\\\\\\\": 86.67,\\\\n        \\\\\\\"diff_pct\\\\\\\": -13.33\\\\n      }\\\\n    },\\\\n    \\\\\\\"n_cls_strong\\\\\\\": 9,\\\\n    \\\\\\\"n_cwm_strong\\\\\\\": 8\\\\n  },\\\\n  \\\\\\\"error_patterns\\\\\\\": {\\\\n    \\\\\\\"cls_only_errors\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 53,\\\\n      \\\\\\\"mutation_type_distribution\\\\\\\": {\\\\n        \\\\\\\"off_by_one\\\\\\\": 32,\\\\n        \\\\\\\"operator_swap\\\\\\\": 17,\\\\n        \\\\\\\"return_value\\\\\\\": 1,\\\\n        \\\\\\\"original\\\\\\\": 1,\\\\n        \\\\\\\"boundary_removal\\\\\\\": 1,\\\\n        \\\\\\\"variable_swap\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"true_label_distribution\\\\\\\": {\\\\n        \\\\\\\"PASS\\\\\\\": 13,\\\\n        \\\\\\\"FAIL\\\\\\\": 40\\\\n      },\\\\n      \\\\\\\"top_problem_ids\\\\\\\": {\\\\n        \\\\\\\"HumanEval/64\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/957\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/442\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/487\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/922\\\\\\\": 3,\\\\n        \\\\\\\"MBPP/556\\\\\\\": 3,\\\\n        \\\\\\\"MBPP/685\\\\\\\": 2,\\\\n        \\\\\\\"MBPP/836\\\\\\\": 2,\\\\n        \\\\\\\"MBPP/855\\\\\\\": 2,\\\\n        \\\\\\\"MBPP/891\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"cwm_only_errors\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 59,\\\\n      \\\\\\\"mutation_type_distribution\\\\\\\": {\\\\n        \\\\\\\"off_by_one\\\\\\\": 22,\\\\n        \\\\\\\"original\\\\\\\": 18,\\\\n        \\\\\\\"operator_swap\\\\\\\": 9,\\\\n        \\\\\\\"return_value\\\\\\\": 5,\\\\n        \\\\\\\"variable_swap\\\\\\\": 3,\\\\n        \\\\\\\"boundary_removal\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"true_label_distribution\\\\\\\": {\\\\n        \\\\\\\"PASS\\\\\\\": 49,\\\\n        \\\\\\\"FAIL\\\\\\\": 10\\\\n      },\\\\n      \\\\\\\"top_problem_ids\\\\\\\": {\\\\n        \\\\\\\"MBPP/397\\\\\\\": 9,\\\\n        \\\\\\\"MBPP/429\\\\\\\": 6,\\\\n        \\\\\\\"MBPP/123\\\\\\\": 5,\\\\n        \\\\\\\"MBPP/20\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/125\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/79\\\\\\\": 3,\\\\n        \\\\\\\"MBPP/134\\\\\\\": 3,\\\\n        \\\\\\\"MBPP/71\\\\\\\": 2,\\\\n        \\\\\\\"MBPP/270\\\\\\\": 2,\\\\n        \\\\\\\"MBPP/442\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"both_wrong\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 177,\\\\n      \\\\\\\"mutation_type_distribution\\\\\\\": {\\\\n        \\\\\\\"off_by_one\\\\\\\": 100,\\\\n        \\\\\\\"original\\\\\\\": 41,\\\\n        \\\\\\\"operator_swap\\\\\\\": 25,\\\\n        \\\\\\\"return_value\\\\\\\": 7,\\\\n        \\\\\\\"boundary_removal\\\\\\\": 2,\\\\n        \\\\\\\"variable_swap\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"true_label_distribution\\\\\\\": {\\\\n        \\\\\\\"FAIL\\\\\\\": 60,\\\\n        \\\\\\\"PASS\\\\\\\": 117\\\\n      },\\\\n      \\\\\\\"top_problem_ids\\\\\\\": {\\\\n        \\\\\\\"HumanEval/130\\\\\\\": 31,\\\\n        \\\\\\\"HumanEval/74\\\\\\\": 10,\\\\n        \\\\\\\"MBPP/781\\\\\\\": 9,\\\\n        \\\\\\\"MBPP/256\\\\\\\": 6,\\\\n        \\\\\\\"MBPP/765\\\\\\\": 5,\\\\n        \\\\\\\"MBPP/855\\\\\\\": 5,\\\\n        \\\\\\\"MBPP/67\\\\\\\": 5,\\\\n        \\\\\\\"MBPP/71\\\\\\\": 5,\\\\n        \\\\\\\"MBPP/836\\\\\\\": 4,\\\\n        \\\\\\\"MBPP/907\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"cwm_only_correct_exact_match\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 53,\\\\n      \\\\\\\"exact_match\\\\\\\": 50,\\\\n      \\\\\\\"exact_match_rate_pct\\\\\\\": 94.34\\\\n    },\\\\n    \\\\\\\"cls_only_correct_cwm_error_types\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": 49,\\\\n      \\\\\\\"AssertionError\\\\\\\": 7,\\\\n      \\\\\\\"OverflowError\\\\\\\": 2,\\\\n      \\\\\\\"TypeError\\\\\\\": 1\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_seed_comparison\\\\\\\": {\\\\n    \\\\\\\"prior_cross_seed_oracle_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"prior_cross_seed_complementarity_pct\\\\\\\": 5.9,\\\\n    \\\\\\\"matched_seed_oracle_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"matched_seed_complementarity_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_difference_pct\\\\\\\": 0.0,\\\\n    \\\\\\\"complementarity_difference_pct\\\\\\\": -3.1\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"agreement\\\": {\\n    \\\"total_samples\\\": 1890,\\n    \\\"cls_accuracy\\\": 87.83,\\n    \\\"cwm_accuracy\\\": 87.51,\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"cohen_kappa_prediction\\\": 0.8815,\\n    \\\"cohen_kappa_correctness\\\": 0.7259\\n  },\\n  \\\"oracle\\\": {\\n    \\\"oracle_correct\\\": 1713,\\n    \\\"oracle_accuracy_pct\\\": 90.63,\\n    \\\"complementarity_pct\\\": 2.8,\\n    \\\"better_model\\\": \\\"CLS\\\",\\n    \\\"better_model_accuracy_pct\\\": 87.83\\n  },\\n  \\\"by_mutation_type\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"n\\\": 36,\\n      \\\"cls_accuracy_pct\\\": 91.67,\\n      \\\"cwm_accuracy_pct\\\": 88.89,\\n      \\\"diff_pct\\\": 2.78,\\n      \\\"cls_f1\\\": 0.9042,\\n      \\\"cwm_f1\\\": 0.8691,\\n      \\\"chi2\\\": 0.0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 94.44\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"n\\\": 671,\\n      \\\"cls_accuracy_pct\\\": 80.33,\\n      \\\"cwm_accuracy_pct\\\": 81.82,\\n      \\\"diff_pct\\\": -1.49,\\n      \\\"cls_f1\\\": 0.7999,\\n      \\\"cwm_f1\\\": 0.8165,\\n      \\\"chi2\\\": 0.3933,\\n      \\\"p_value\\\": 0.5305,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 85.1\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"n\\\": 298,\\n      \\\"cls_accuracy_pct\\\": 85.91,\\n      \\\"cwm_accuracy_pct\\\": 88.59,\\n      \\\"diff_pct\\\": -2.68,\\n      \\\"cls_f1\\\": 0.8513,\\n      \\\"cwm_f1\\\": 0.875,\\n      \\\"chi2\\\": 0.739,\\n      \\\"p_value\\\": 0.39,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 91.61\\n    },\\n    \\\"original\\\": {\\n      \\\"n\\\": 398,\\n      \\\"cls_accuracy_pct\\\": 89.45,\\n      \\\"cwm_accuracy_pct\\\": 85.18,\\n      \\\"diff_pct\\\": 4.27,\\n      \\\"cls_f1\\\": 0.4721,\\n      \\\"cwm_f1\\\": 0.46,\\n      \\\"chi2\\\": 2.903,\\n      \\\"p_value\\\": 0.0884,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 89.7\\n    },\\n    \\\"return_value\\\": {\\n      \\\"n\\\": 402,\\n      \\\"cls_accuracy_pct\\\": 98.01,\\n      \\\"cwm_accuracy_pct\\\": 97.01,\\n      \\\"diff_pct\\\": 1.0,\\n      \\\"cls_f1\\\": 0.9457,\\n      \\\"cwm_f1\\\": 0.9148,\\n      \\\"chi2\\\": 0.4615,\\n      \\\"p_value\\\": 0.4969,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 98.26\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"n\\\": 85,\\n      \\\"cls_accuracy_pct\\\": 96.47,\\n      \\\"cwm_accuracy_pct\\\": 94.12,\\n      \\\"diff_pct\\\": 2.35,\\n      \\\"cls_f1\\\": 0.9645,\\n      \\\"cwm_f1\\\": 0.9407,\\n      \\\"chi2\\\": 0.1312,\\n      \\\"p_value\\\": 0.7172,\\n      \\\"significant\\\": false,\\n      \\\"oracle_accuracy_pct\\\": 97.65\\n    }\\n  },\\n  \\\"mutation_type_summary\\\": {\\n    \\\"cls_stronger\\\": {\\n      \\\"original\\\": {\\n        \\\"diff\\\": 4.27,\\n        \\\"sig\\\": false\\n      },\\n      \\\"boundary_removal\\\": {\\n        \\\"diff\\\": 2.78,\\n        \\\"sig\\\": false\\n      },\\n      \\\"variable_swap\\\": {\\n        \\\"diff\\\": 2.35,\\n        \\\"sig\\\": false\\n      },\\n      \\\"return_value\\\": {\\n        \\\"diff\\\": 1.0,\\n        \\\"sig\\\": false\\n      }\\n    },\\n    \\\"cwm_stronger\\\": {\\n      \\\"operator_swap\\\": {\\n        \\\"diff\\\": -2.68,\\n        \\\"sig\\\": false\\n      },\\n      \\\"off_by_one\\\": {\\n        \\\"diff\\\": -1.49,\\n        \\\"sig\\\": false\\n      }\\n    }\\n  },\\n  \\\"by_problem_id\\\": {\\n    \\\"total_problems\\\": 114,\\n    \\\"scatter_data\\\": [\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        97.5,\\n        97.5\\n      ],\\n      [\\n        38.0,\\n        38.0\\n      ],\\n      [\\n        96.36,\\n        96.36\\n      ],\\n      [\\n        93.33,\\n        93.33\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        82.86,\\n        91.43\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        77.78,\\n        75.56\\n      ],\\n      [\\n        97.92,\\n        97.92\\n      ],\\n      [\\n        95.0,\\n        95.0\\n      ],\\n      [\\n        80.0,\\n        86.67\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        64.29\\n      ],\\n      [\\n        60.0,\\n        46.67\\n      ],\\n      [\\n        86.67,\\n        66.67\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100.0,\\n        93.33\\n      ],\\n      [\\n        100.0,\\n        100.0\\n      ],\\n      [\\n        100\\n\\n... [截断: 输出过长，省略 5146 字符] ...\\n\\n       \\\"cwm_accuracy_pct\\\": 46.67,\\n        \\\"diff_pct\\\": 13.33\\n      },\\n      \\\"MBPP/270\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 93.33,\\n        \\\"cwm_accuracy_pct\\\": 80.0,\\n        \\\"diff_pct\\\": 13.33\\n      },\\n      \\\"MBPP/71\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 66.67,\\n        \\\"cwm_accuracy_pct\\\": 53.33,\\n        \\\"diff_pct\\\": 13.33\\n      }\\n    },\\n    \\\"cwm_strong_problems_gt10pct\\\": {\\n      \\\"MBPP/487\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 66.67,\\n        \\\"cwm_accuracy_pct\\\": 93.33,\\n        \\\"diff_pct\\\": -26.67\\n      },\\n      \\\"MBPP/957\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 60.0,\\n        \\\"cwm_accuracy_pct\\\": 86.67,\\n        \\\"diff_pct\\\": -26.67\\n      },\\n      \\\"MBPP/556\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 80.0,\\n        \\\"cwm_accuracy_pct\\\": 100.0,\\n        \\\"diff_pct\\\": -20.0\\n      },\\n      \\\"MBPP/922\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 73.33,\\n        \\\"cwm_accuracy_pct\\\": 93.33,\\n        \\\"diff_pct\\\": -20.0\\n      },\\n      \\\"MBPP/855\\\": {\\n        \\\"n\\\": 12,\\n        \\\"cls_accuracy_pct\\\": 41.67,\\n        \\\"cwm_accuracy_pct\\\": 58.33,\\n        \\\"diff_pct\\\": -16.67\\n      },\\n      \\\"MBPP/685\\\": {\\n        \\\"n\\\": 14,\\n        \\\"cls_accuracy_pct\\\": 78.57,\\n        \\\"cwm_accuracy_pct\\\": 92.86,\\n        \\\"diff_pct\\\": -14.29\\n      },\\n      \\\"MBPP/339\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 86.67,\\n        \\\"cwm_accuracy_pct\\\": 100.0,\\n        \\\"diff_pct\\\": -13.33\\n      },\\n      \\\"MBPP/442\\\": {\\n        \\\"n\\\": 15,\\n        \\\"cls_accuracy_pct\\\": 73.33,\\n        \\\"cwm_accuracy_pct\\\": 86.67,\\n        \\\"diff_pct\\\": -13.33\\n      }\\n    },\\n    \\\"n_cls_strong\\\": 9,\\n    \\\"n_cwm_strong\\\": 8\\n  },\\n  \\\"error_patterns\\\": {\\n    \\\"cls_only_errors\\\": {\\n      \\\"count\\\": 53,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 32,\\n        \\\"operator_swap\\\": 17,\\n        \\\"return_value\\\": 1,\\n        \\\"original\\\": 1,\\n        \\\"boundary_removal\\\": 1,\\n        \\\"variable_swap\\\": 1\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"PASS\\\": 13,\\n        \\\"FAIL\\\": 40\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"HumanEval/64\\\": 4,\\n        \\\"MBPP/957\\\": 4,\\n        \\\"MBPP/442\\\": 4,\\n        \\\"MBPP/487\\\": 4,\\n        \\\"MBPP/922\\\": 3,\\n        \\\"MBPP/556\\\": 3,\\n        \\\"MBPP/685\\\": 2,\\n        \\\"MBPP/836\\\": 2,\\n        \\\"MBPP/855\\\": 2,\\n        \\\"MBPP/891\\\": 2\\n      }\\n    },\\n    \\\"cwm_only_errors\\\": {\\n      \\\"count\\\": 59,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 22,\\n        \\\"original\\\": 18,\\n        \\\"operator_swap\\\": 9,\\n        \\\"return_value\\\": 5,\\n        \\\"variable_swap\\\": 3,\\n        \\\"boundary_removal\\\": 2\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"PASS\\\": 49,\\n        \\\"FAIL\\\": 10\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"MBPP/397\\\": 9,\\n        \\\"MBPP/429\\\": 6,\\n        \\\"MBPP/123\\\": 5,\\n        \\\"MBPP/20\\\": 4,\\n        \\\"MBPP/125\\\": 4,\\n        \\\"MBPP/79\\\": 3,\\n        \\\"MBPP/134\\\": 3,\\n        \\\"MBPP/71\\\": 2,\\n        \\\"MBPP/270\\\": 2,\\n        \\\"MBPP/442\\\": 2\\n      }\\n    },\\n    \\\"both_wrong\\\": {\\n      \\\"count\\\": 177,\\n      \\\"mutation_type_distribution\\\": {\\n        \\\"off_by_one\\\": 100,\\n        \\\"original\\\": 41,\\n        \\\"operator_swap\\\": 25,\\n        \\\"return_value\\\": 7,\\n        \\\"boundary_removal\\\": 2,\\n        \\\"variable_swap\\\": 2\\n      },\\n      \\\"true_label_distribution\\\": {\\n        \\\"FAIL\\\": 60,\\n        \\\"PASS\\\": 117\\n      },\\n      \\\"top_problem_ids\\\": {\\n        \\\"HumanEval/130\\\": 31,\\n        \\\"HumanEval/74\\\": 10,\\n        \\\"MBPP/781\\\": 9,\\n        \\\"MBPP/256\\\": 6,\\n        \\\"MBPP/765\\\": 5,\\n        \\\"MBPP/855\\\": 5,\\n        \\\"MBPP/67\\\": 5,\\n        \\\"MBPP/71\\\": 5,\\n        \\\"MBPP/836\\\": 4,\\n        \\\"MBPP/907\\\": 4\\n      }\\n    },\\n    \\\"cwm_only_correct_exact_match\\\": {\\n      \\\"total\\\": 53,\\n      \\\"exact_match\\\": 50,\\n      \\\"exact_match_rate_pct\\\": 94.34\\n    },\\n    \\\"cls_only_correct_cwm_error_types\\\": {\\n      \\\"PASS\\\": 49,\\n      \\\"AssertionError\\\": 7,\\n      \\\"OverflowError\\\": 2,\\n      \\\"TypeError\\\": 1\\n    }\\n  },\\n  \\\"cross_seed_comparison\\\": {\\n    \\\"prior_cross_seed_oracle_pct\\\": 90.63,\\n    \\\"prior_cross_seed_complementarity_pct\\\": 5.9,\\n    \\\"matched_seed_oracle_pct\\\": 90.63,\\n    \\\"matched_seed_complementarity_pct\\\": 2.8,\\n    \\\"oracle_difference_pct\\\": 0.0,\\n    \\\"complementarity_difference_pct\\\": -3.1\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-12T22:42:06.412Z_
+
+<details><summary>↩ Tool result · `toolu_01XSQ93KSvPF1u3jfijkHRD6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_seed\\\": [\\n    {\\n      \\\"seed\\\": 0,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.78,\\n      \\\"cwm_accuracy\\\": 87.57,\\n      \\\"both_correct\\\": 1611,\\n      \\\"cls_only_wrong\\\": 44,\\n      \\\"cwm_only_wrong\\\": 48,\\n      \\\"both_wrong\\\": 187,\\n      \\\"total_errors\\\": 279,\\n      \\\"oracle_correct\\\": 1703,\\n      \\\"oracle_accuracy\\\": 90.11,\\n      \\\"jaccard_overlap\\\": 0.6703,\\n      \\\"complementarity_rate\\\": 0.3297,\\n      \\\"cls_unique_error_rate\\\": 15.77,\\n      \\\"cwm_unique_error_rate\\\": 17.2\\n    },\\n    {\\n      \\\"seed\\\": 42,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.83,\\n      \\\"cwm_accuracy\\\": 87.51,\\n      \\\"both_correct\\\": 1601,\\n      \\\"cls_only_wrong\\\": 53,\\n      \\\"cwm_only_wrong\\\": 59,\\n      \\\"both_wrong\\\": 177,\\n      \\\"total_errors\\\": 289,\\n      \\\"oracle_correct\\\": 1713,\\n      \\\"oracle_accuracy\\\": 90.63,\\n      \\\"jaccard_overlap\\\": 0.6125,\\n      \\\"complementarity_rate\\\": 0.3875,\\n      \\\"cls_unique_error_rate\\\": 18.34,\\n      \\\"cwm_unique_error_rate\\\": 20.42\\n    },\\n    {\\n      \\\"seed\\\": 456,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.88,\\n      \\\"cwm_accuracy\\\": 86.98,\\n      \\\"both_correct\\\": 1610,\\n      \\\"cls_only_wrong\\\": 34,\\n      \\\"cwm_only_wrong\\\": 51,\\n      \\\"both_wrong\\\": 195,\\n      \\\"total_errors\\\": 280,\\n      \\\"oracle_correct\\\": 1695,\\n      \\\"oracle_accuracy\\\": 89.68,\\n      \\\"jaccard_overlap\\\": 0.6964,\\n      \\\"complementarity_rate\\\": 0.3036,\\n      \\\"cls_unique_error_rate\\\": 12.14,\\n      \\\"cwm_unique_error_rate\\\": 18.21\\n    }\\n  ],\\n  \\\"aggregated\\\": {\\n    \\\"mean_cls_accuracy\\\": 87.83,\\n    \\\"mean_cwm_accuracy\\\": 87.35,\\n    \\\"mean_oracle_accuracy\\\": 90.14,\\n    \\\"mean_complementarity_rate\\\": 0.3403,\\n    \\\"mean_jaccard_overlap\\\": 0.6597,\\n    \\\"mean_cls_unique_error_rate\\\": 15.42,\\n    \\\"mean_cwm_unique_error_rate\\\": 18.61,\\n    \\\"oracle_gain_over_cls\\\": 2.31,\\n    \\\"oracle_gain_over_cwm\\\": 30.05\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "fd2593e6-fa5d-43e5-8d19-04d45efee4a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"seed\\\\\\\": 0,\\\\n      \\\\\\\"n_samples\\\\\\\": 1890,\\\\n      \\\\\\\"cls_accuracy\\\\\\\": 87.78,\\\\n      \\\\\\\"cwm_accuracy\\\\\\\": 87.57,\\\\n      \\\\\\\"both_correct\\\\\\\": 1611,\\\\n      \\\\\\\"cls_only_wrong\\\\\\\": 44,\\\\n      \\\\\\\"cwm_only_wrong\\\\\\\": 48,\\\\n      \\\\\\\"both_wrong\\\\\\\": 187,\\\\n      \\\\\\\"total_errors\\\\\\\": 279,\\\\n      \\\\\\\"oracle_correct\\\\\\\": 1703,\\\\n      \\\\\\\"oracle_accuracy\\\\\\\": 90.11,\\\\n      \\\\\\\"jaccard_overlap\\\\\\\": 0.6703,\\\\n      \\\\\\\"complementarity_rate\\\\\\\": 0.3297,\\\\n      \\\\\\\"cls_unique_error_rate\\\\\\\": 15.77,\\\\n      \\\\\\\"cwm_unique_error_rate\\\\\\\": 17.2\\\\n    },\\\\n    {\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"n_samples\\\\\\\": 1890,\\\\n      \\\\\\\"cls_accuracy\\\\\\\": 87.83,\\\\n      \\\\\\\"cwm_accuracy\\\\\\\": 87.51,\\\\n      \\\\\\\"both_correct\\\\\\\": 1601,\\\\n      \\\\\\\"cls_only_wrong\\\\\\\": 53,\\\\n      \\\\\\\"cwm_only_wrong\\\\\\\": 59,\\\\n      \\\\\\\"both_wrong\\\\\\\": 177,\\\\n      \\\\\\\"total_errors\\\\\\\": 289,\\\\n      \\\\\\\"oracle_correct\\\\\\\": 1713,\\\\n      \\\\\\\"oracle_accuracy\\\\\\\": 90.63,\\\\n      \\\\\\\"jaccard_overlap\\\\\\\": 0.6125,\\\\n      \\\\\\\"complementarity_rate\\\\\\\": 0.3875,\\\\n      \\\\\\\"cls_unique_error_rate\\\\\\\": 18.34,\\\\n      \\\\\\\"cwm_unique_error_rate\\\\\\\": 20.42\\\\n    },\\\\n    {\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"n_samples\\\\\\\": 1890,\\\\n      \\\\\\\"cls_accuracy\\\\\\\": 87.88,\\\\n      \\\\\\\"cwm_accuracy\\\\\\\": 86.98,\\\\n      \\\\\\\"both_correct\\\\\\\": 1610,\\\\n      \\\\\\\"cls_only_wrong\\\\\\\": 34,\\\\n      \\\\\\\"cwm_only_wrong\\\\\\\": 51,\\\\n      \\\\\\\"both_wrong\\\\\\\": 195,\\\\n      \\\\\\\"total_errors\\\\\\\": 280,\\\\n      \\\\\\\"oracle_correct\\\\\\\": 1695,\\\\n      \\\\\\\"oracle_accuracy\\\\\\\": 89.68,\\\\n      \\\\\\\"jaccard_overlap\\\\\\\": 0.6964,\\\\n      \\\\\\\"complementarity_rate\\\\\\\": 0.3036,\\\\n      \\\\\\\"cls_unique_error_rate\\\\\\\": 12.14,\\\\n      \\\\\\\"cwm_unique_error_rate\\\\\\\": 18.21\\\\n    }\\\\n  ],\\\\n  \\\\\\\"aggregated\\\\\\\": {\\\\n    \\\\\\\"mean_cls_accuracy\\\\\\\": 87.83,\\\\n    \\\\\\\"mean_cwm_accuracy\\\\\\\": 87.35,\\\\n    \\\\\\\"mean_oracle_accuracy\\\\\\\": 90.14,\\\\n    \\\\\\\"mean_complementarity_rate\\\\\\\": 0.3403,\\\\n    \\\\\\\"mean_jaccard_overlap\\\\\\\": 0.6597,\\\\n    \\\\\\\"mean_cls_unique_error_rate\\\\\\\": 15.42,\\\\n    \\\\\\\"mean_cwm_unique_error_rate\\\\\\\": 18.61,\\\\n    \\\\\\\"oracle_gain_over_cls\\\\\\\": 2.31,\\\\n    \\\\\\\"oracle_gain_over_cwm\\\\\\\": 30.05\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_seed\\\": [\\n    {\\n      \\\"seed\\\": 0,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.78,\\n      \\\"cwm_accuracy\\\": 87.57,\\n      \\\"both_correct\\\": 1611,\\n      \\\"cls_only_wrong\\\": 44,\\n      \\\"cwm_only_wrong\\\": 48,\\n      \\\"both_wrong\\\": 187,\\n      \\\"total_errors\\\": 279,\\n      \\\"oracle_correct\\\": 1703,\\n      \\\"oracle_accuracy\\\": 90.11,\\n      \\\"jaccard_overlap\\\": 0.6703,\\n      \\\"complementarity_rate\\\": 0.3297,\\n      \\\"cls_unique_error_rate\\\": 15.77,\\n      \\\"cwm_unique_error_rate\\\": 17.2\\n    },\\n    {\\n      \\\"seed\\\": 42,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.83,\\n      \\\"cwm_accuracy\\\": 87.51,\\n      \\\"both_correct\\\": 1601,\\n      \\\"cls_only_wrong\\\": 53,\\n      \\\"cwm_only_wrong\\\": 59,\\n      \\\"both_wrong\\\": 177,\\n      \\\"total_errors\\\": 289,\\n      \\\"oracle_correct\\\": 1713,\\n      \\\"oracle_accuracy\\\": 90.63,\\n      \\\"jaccard_overlap\\\": 0.6125,\\n      \\\"complementarity_rate\\\": 0.3875,\\n      \\\"cls_unique_error_rate\\\": 18.34,\\n      \\\"cwm_unique_error_rate\\\": 20.42\\n    },\\n    {\\n      \\\"seed\\\": 456,\\n      \\\"n_samples\\\": 1890,\\n      \\\"cls_accuracy\\\": 87.88,\\n      \\\"cwm_accuracy\\\": 86.98,\\n      \\\"both_correct\\\": 1610,\\n      \\\"cls_only_wrong\\\": 34,\\n      \\\"cwm_only_wrong\\\": 51,\\n      \\\"both_wrong\\\": 195,\\n      \\\"total_errors\\\": 280,\\n      \\\"oracle_correct\\\": 1695,\\n      \\\"oracle_accuracy\\\": 89.68,\\n      \\\"jaccard_overlap\\\": 0.6964,\\n      \\\"complementarity_rate\\\": 0.3036,\\n      \\\"cls_unique_error_rate\\\": 12.14,\\n      \\\"cwm_unique_error_rate\\\": 18.21\\n    }\\n  ],\\n  \\\"aggregated\\\": {\\n    \\\"mean_cls_accuracy\\\": 87.83,\\n    \\\"mean_cwm_accuracy\\\": 87.35,\\n    \\\"mean_oracle_accuracy\\\": 90.14,\\n    \\\"mean_complementarity_rate\\\": 0.3403,\\n    \\\"mean_jaccard_overlap\\\": 0.6597,\\n    \\\"mean_cls_unique_error_rate\\\": 15.42,\\n    \\\"mean_cwm_unique_error_rate\\\": 18.61,\\n    \\\"oracle_gain_over_cls\\\": 2.31,\\n    \\\"oracle_gain_over_cwm\\\": 30.05\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check the specific numbers the paper claims.
+
+The paper claims:
+1. §5.6(b): "48 (42.1%) are perfectly predicted" — but `block_corr_results.json` says `observed_all_correct: 46` out of 114 problems → 46/114 = 40.35%
+
+2. §5.6(a):
+   - CLS 漏检率 75.5% — I need to understand what "漏检率" means. It's likely "miss rate" or FN/(FN+TP) for fail class from CLS. Let me check from the data.
+   - CWM 误报率 83.1% — "false positive rate" for CWM
+   - Oracle accuracy 90.63%
+
+Now I'm checking the JSON files to verify these numbers. The `error_overlap_analysis.json` and `matched_seed_overlap_results.json` both confirm the oracle accuracy at 90.63%, which matches what the paper reports. I need to dig into the error overlap data across the three seeds to validate the CLS and CWM error rates. I'm trying to pin down what these metrics actually mean. The paper defines CLS 漏检率 (miss rate) as false negatives for the FAIL class, and CWM 误报率 (false positive rate) similarly for the FAIL class, but I need to verify which direction they're measuring — whether it's predicting FAIL when actually PASS, or the inverse.
+
+Looking at the CWM-only errors data, I have 59 total errors with 49 true PASS and 10 true FAIL, which gives 49/59 ≈ 83.1%, matching the paper's CWM false positive rate. This suggests CWM is predicting FAIL when the true label is actually PASS. Now I need to check what the CLS-only errors look like to confirm the miss rate calculation. Looking at the CWM-unique errors now—there are 59 cases where CWM got it wrong but CLS was right. Of those, 49 are false positives (predicting FAIL when actually PASS) and 10 are misses, giving CWM a false positive rate of about 83.1%. Checking my calculations against the paper: CLS miss rate is 75.5%, CWM false positive rate is 83.1%, and the oracle accuracy works out to 90.63%—all matching up.
+
+The user mentioned 75.42% from per-test precision-recall, but the actual overlap analysis shows 40/53 = 75.47%, which rounds to 75.5% in the paper. These numbers are all coming from the matched-seed analysis.
+
+Now I'm checking if there's a separate calculation that produces the 75.42% figure, and looking at the error overlap data more carefully. The `error_overlap_analysis.json` and `matched_seed_overlap_results.json` files show consistent counts across both_correct, cls_only_correct, cwm_only_correct, and both_wrong categories.
+
+But I'm noticing the naming is inverted between the two files—in one, cls_only_correct means CLS is right and CWM is wrong, while in the error_patterns section it's reversed. So CLS-only errors (where CLS is wrong but CWM is right) total 53 cases, with 40 being actual failures, which gives a miss rate of 75.47%. For CWM-only errors, there are 59 cases with 10 actual failures.
+
+CWM's false positive rate comes out to 49/59 = 83.05%, which aligns with the paper's reported 75.5% and 83.1% when rounded. Now I need to verify whether block_correlation_analysis.py can be quickly re-run—it requires GPU for model inference, so it doesn't meet the criteria for a fast rerun without special hardware.
+
+Looking at the actual data in block_corr_results.json, I can verify the counts directly. The summary shows observed_all_correct: 46, which matches the logic in compute_block_stats that counts problems where all tests pass. This gives 46/114 = 40.35%, not 48 as I initially thought.
+
+For task 2, I'm cross-checking the three metrics from matched_seed_overlap_results.json against the paper's claims. The CLS miss rate of 40/53 = 75.47% aligns with the paper's 75.5%, the CWM false positive rate of 49/59 = 83.05% matches 83.1%, and the Oracle accuracy of 1713/1890 = 90.63% is exact. The user notes that the CLS rate could be derived from per-test precision-recall data as approximately 75.42%, which is close to but not exactly the paper's 75.5%.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "d811f2c9-e991-4ff1-9450-df30922cb6fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUtWeHoms2zoqx6dsVEywa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10360,
+      "cache_read_input_tokens": 49692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+数据全部收集完毕。现在验证精确计算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "6b8cfd90-5e8b-4525-9e52-b5a27fd099ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUtWeHoms2zoqx6dsVEywa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10360,
+      "cache_read_input_tokens": 49692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015udGCK4QhAAiKjyMxHuiPb`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_block_correlation.py",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "3d7fae59-d661-4147-a62b-7c1565d23a79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUtWeHoms2zoqx6dsVEywa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10360,
+      "cache_read_input_tokens": 49692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10360
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-12T22:43:08.695Z_
+
+<details><summary>↩ Tool result · `toolu_015udGCK4QhAAiKjyMxHuiPb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Block-correlation empirical analysis of prediction errors.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport time\\nfrom collections import Counter, defaultdict\\nfrom itertools import combinations\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import accuracy_score\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef run_greedy_inference(model, tokenizer, test_data, tmpl_kw, max_seq_length,\\n                         batch_size, eos_ids, majority_class, device):\\n    y_pred = []\\n    n_unparseable = 0\\n\\n    for i in range(0, len(test_data), batch_size):\\n        batch = test_data[i:i + batch_size]\\n        all_ids = []\\n        for ex in batch:\\n            ids = build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            all_ids.append(ids)\\n\\n        max_len = max(len(ids) for ids in all_ids)\\n        padded = []\\n        masks = []\\n        for ids in all_ids:\\n            pad_len = max_len - len(ids)\\n            padded.append([tokenizer.pad_token_id] * pad_len + ids)\\n            masks.append([0] * pad_len + [1] * len(ids))\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(masks, device=device)\\n\\n        with torch.no_grad():\\n            outputs = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=5,\\n                do_sample=False,\\n                eos_token_id=eos_ids,\\n            )\\n\\n        for j in range(len(batch)):\\n            gen_ids = outputs[j][max_len:]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_prediction(gen_text)\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n            y_pred.append(pred)\\n\\n    return y_pred, n_unparseable\\n\\n\\ndef compute_icc(errors, groups):\\n    \\\"\\\"\\\"One-way random effects ICC for binary error indicators grouped by problem_id.\\\"\\\"\\\"\\n    group_data = defaultdict(list)\\n    for e, g in zip(errors, groups):\\n        group_data[g].append(e)\\n\\n    valid_groups = {g: vals for g, vals in group_data.items() if len(vals) >= 2}\\n    if len(valid_groups) < 2:\\n        return float('nan')\\n\\n    N = sum(len(v) for v in valid_groups.values())\\n    k = len(valid_groups)\\n    grand_mean = sum(sum(v) for v in valid_groups.values()) / N\\n\\n    SSB = sum(len(v) * (np.mean(v) - grand_mean) ** 2 for v in valid_groups.values())\\n    SSW = sum(sum((x - np.\\n\\n... [截断: 输出过长，省略 5954 字符] ...\\n\\ngth,\\n        args.batch_size, eos_ids, majority_class, device,\\n    )\\n    infer_time = time.time() - t0\\n    acc = accuracy_score(y_true, y_pred)\\n    log.info(f\\\"Accuracy: {acc*100:.2f}% ({infer_time:.1f}s, {n_unparseable} unparseable)\\\")\\n\\n    errors = [int(p != t) for p, t in zip(y_pred, y_true)]\\n    error_rate = np.mean(errors)\\n    log.info(f\\\"Error rate: {error_rate*100:.2f}%\\\")\\n\\n    log.info(\\\"=== Computing ICC ===\\\")\\n    icc_point = compute_icc(errors, groups)\\n    log.info(f\\\"ICC (point estimate): {icc_point:.4f}\\\")\\n\\n    log.info(f\\\"=== Bootstrap ICC ({args.n_bootstrap} resamples) ===\\\")\\n    icc_boot = bootstrap_icc(errors, groups, n_boot=args.n_bootstrap)\\n    log.info(f\\\"ICC bootstrap: {icc_boot['mean']:.4f} [{icc_boot['ci_lower']:.4f}, {icc_boot['ci_upper']:.4f}]\\\")\\n\\n    log.info(\\\"=== Joint error rates ===\\\")\\n    joint = compute_joint_error_rates(errors, groups)\\n    log.info(f\\\"P(error)={joint['p_error']}, P(error)^2={joint['p_error_sq_iid']}, \\\"\\n             f\\\"P(both wrong|same problem)={joint['p_joint_observed']}, \\\"\\n             f\\\"ratio={joint['ratio_observed_vs_iid']}\\\")\\n\\n    log.info(\\\"=== Group-size statistics ===\\\")\\n    group_stats = compute_group_stats(errors, groups)\\n    for sz, s in group_stats.items():\\n        log.info(f\\\"  size={sz}: {s['n_groups']} groups, mean_err={s['mean_error_rate']:.4f}, \\\"\\n                 f\\\"std={s['std_error_rate']:.4f}\\\")\\n\\n    results = {\\n        \\\"test_set_size\\\": total,\\n        \\\"n_problems\\\": len(set(groups)),\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"error_rate\\\": round(float(error_rate), 4),\\n        \\\"n_unparseable\\\": n_unparseable,\\n        \\\"icc\\\": {\\n            \\\"point_estimate\\\": round(float(icc_point), 4),\\n            \\\"bootstrap\\\": icc_boot,\\n        },\\n        \\\"joint_error_rates\\\": joint,\\n        \\\"group_size_stats\\\": group_stats,\\n        \\\"model_comparison\\\": {\\n            \\\"iid_assumption\\\": {\\n                \\\"P_both_wrong\\\": round(float(joint[\\\"p_error\\\"] ** 2), 4),\\n                \\\"description\\\": \\\"P(error)^2, assumes independent errors\\\",\\n            },\\n            \\\"block_correlated_empirical\\\": {\\n                \\\"P_both_wrong\\\": joint[\\\"p_joint_observed\\\"],\\n                \\\"description\\\": \\\"Observed P(both wrong | same problem)\\\",\\n            },\\n            \\\"correlation_ratio\\\": joint[\\\"ratio_observed_vs_iid\\\"],\\n        },\\n        \\\"timing\\\": {\\n            \\\"inference_seconds\\\": round(infer_time, 1),\\n        },\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"BLOCK-CORRELATION ANALYSIS REPORT\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {total} examples, {len(set(groups))} unique problems\\\")\\n    print(f\\\"Accuracy: {acc*100:.2f}%, Error rate: {error_rate*100:.2f}%\\\")\\n    print(f\\\"\\\\nICC (point): {icc_point:.4f}\\\")\\n    print(f\\\"ICC (bootstrap 95% CI): [{icc_boot['ci_lower']}, {icc_boot['ci_upper']}]\\\")\\n    print(f\\\"\\\\nJoint error analysis:\\\")\\n    print(f\\\"  P(error) = {joint['p_error']}\\\")\\n    print(f\\\"  P(error)^2 (i.i.d. expected) = {joint['p_error_sq_iid']}\\\")\\n    print(f\\\"  P(both wrong | same problem) = {joint['p_joint_observed']}\\\")\\n    print(f\\\"  Ratio (observed/i.i.d.) = {joint['ratio_observed_vs_iid']}\\\")\\n    print(f\\\"\\\\nGroup-size breakdown:\\\")\\n    for sz, s in group_stats.items():\\n        print(f\\\"  size={sz}: {s['n_groups']} groups, \\\"\\n              f\\\"mean_err={s['mean_error_rate']:.4f} +/- {s['std_error_rate']:.4f}\\\")\\n    print(f\\\"\\\\nInterpretation:\\\")\\n    if joint[\\\"ratio_observed_vs_iid\\\"] and joint[\\\"ratio_observed_vs_iid\\\"] > 1.5:\\n        print(f\\\"  Strong block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\")\\n        print(f\\\"  Errors within the same problem are NOT independent.\\\")\\n    elif joint[\\\"ratio_observed_vs_iid\\\"] and joint[\\\"ratio_observed_vs_iid\\\"] > 1.1:\\n        print(f\\\"  Moderate block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\")\\n    else:\\n        print(f\\\"  Weak/no block correlation (ratio={joint['ratio_observed_vs_iid']})\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "37da5908-45dd-4dda-a991-a537ac390e9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Block-correlation empirical analysis of prediction errors.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport time\\\\nfrom collections import Counter, defaultdict\\\\nfrom itertools import combinations\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom sklearn.metrics import accuracy_score\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n    \\\\\\\"predict whether the test will pass or fail.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = f\\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWill this test pass or fail?\\\\\\\"\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if len(ids) > max_len:\\\\n        ids = ids[:max_len]\\\\n    return ids\\\\n\\\\n\\\\ndef parse_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text = text.strip().lower()\\\\n    if text.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    if \\\\\\\"pass\\\\\\\" in text and \\\\\\\"fail\\\\\\\" not in text:\\\\n        return 1\\\\n    if \\\\\\\"fail\\\\\\\" in text and \\\\\\\"pass\\\\\\\" not in text:\\\\n        return 0\\\\n    return -1\\\\n\\\\n\\\\ndef run_greedy_inference(model, tokenizer, test_data, tmpl_kw, max_seq_length,\\\\n                         batch_size, eos_ids, majority_class, device):\\\\n    y_pred = []\\\\n    n_unparseable = 0\\\\n\\\\n    for i in range(0, len(test_data), batch_size):\\\\n        batch = test_data[i:i + batch_size]\\\\n        all_ids = []\\\\n        for ex in batch:\\\\n            ids = build_prompt_ids(tokenizer, ex[\\\\\\\"code\\\\\\\"], ex[\\\\\\\"test\\\\\\\"], tmpl_kw, max_seq_length)\\\\n            all_ids.append(ids)\\\\n\\\\n        max_len = max(len(ids) for ids in all_ids)\\\\n        padded = []\\\\n        masks = []\\\\n        for ids in all_ids:\\\\n            pad_len = max_len - len(ids)\\\\n            padded.append([tokenizer.pad_token_id] * pad_len + ids)\\\\n            masks.append([0] * pad_len + [1] * len(ids))\\\\n\\\\n        input_ids = torch.tensor(padded, device=device)\\\\n        attention_mask = torch.tensor(masks, device=device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model.generate(\\\\n                input_ids=input_ids,\\\\n                attention_mask=attention_mask,\\\\n                max_new_tokens=5,\\\\n                do_sample=False,\\\\n                eos_token_id=eos_ids,\\\\n            )\\\\n\\\\n        for j in range(len(batch)):\\\\n            gen_ids = outputs[j][max_len:]\\\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\\\n            pred = parse_prediction(gen_text)\\\\n            if pred == -1:\\\\n                n_unparseable += 1\\\\n                pred = majority_class\\\\n            y_pred.append(pred)\\\\n\\\\n    return y_pred, n_unparseable\\\\n\\\\n\\\\ndef compute_icc(errors, groups):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"One-way random effects ICC for binary error indicators grouped by problem_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    group_data = defaultdict(list)\\\\n    for e, g in zip(errors, groups):\\\\n        group_data[g].append(e)\\\\n\\\\n    valid_groups = {g: vals for g, vals in group_data.items() if len(vals) >= 2}\\\\n    if len(valid_groups) < 2:\\\\n        return float('nan')\\\\n\\\\n    N = sum(len(v) for v in valid_groups.values())\\\\n    k = len(valid_groups)\\\\n    grand_mean = sum(sum(v) for v in valid_groups.values()) / N\\\\n\\\\n    SSB = sum(len(v) * (np.mean(v) - grand_mean) ** 2 for v in valid_groups.values())\\\\n    SSW = sum(sum((x - np.\\\\n\\\\n... [截断: 输出过长，省略 5954 字符] ...\\\\n\\\\ngth,\\\\n        args.batch_size, eos_ids, majority_class, device,\\\\n    )\\\\n    infer_time = time.time() - t0\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    log.info(f\\\\\\\"Accuracy: {acc*100:.2f}% ({infer_time:.1f}s, {n_unparseable} unparseable)\\\\\\\")\\\\n\\\\n    errors = [int(p != t) for p, t in zip(y_pred, y_true)]\\\\n    error_rate = np.mean(errors)\\\\n    log.info(f\\\\\\\"Error rate: {error_rate*100:.2f}%\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"=== Computing ICC ===\\\\\\\")\\\\n    icc_point = compute_icc(errors, groups)\\\\n    log.info(f\\\\\\\"ICC (point estimate): {icc_point:.4f}\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"=== Bootstrap ICC ({args.n_bootstrap} resamples) ===\\\\\\\")\\\\n    icc_boot = bootstrap_icc(errors, groups, n_boot=args.n_bootstrap)\\\\n    log.info(f\\\\\\\"ICC bootstrap: {icc_boot['mean']:.4f} [{icc_boot['ci_lower']:.4f}, {icc_boot['ci_upper']:.4f}]\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"=== Joint error rates ===\\\\\\\")\\\\n    joint = compute_joint_error_rates(errors, groups)\\\\n    log.info(f\\\\\\\"P(error)={joint['p_error']}, P(error)^2={joint['p_error_sq_iid']}, \\\\\\\"\\\\n             f\\\\\\\"P(both wrong|same problem)={joint['p_joint_observed']}, \\\\\\\"\\\\n             f\\\\\\\"ratio={joint['ratio_observed_vs_iid']}\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"=== Group-size statistics ===\\\\\\\")\\\\n    group_stats = compute_group_stats(errors, groups)\\\\n    for sz, s in group_stats.items():\\\\n        log.info(f\\\\\\\"  size={sz}: {s['n_groups']} groups, mean_err={s['mean_error_rate']:.4f}, \\\\\\\"\\\\n                 f\\\\\\\"std={s['std_error_rate']:.4f}\\\\\\\")\\\\n\\\\n    results = {\\\\n        \\\\\\\"test_set_size\\\\\\\": total,\\\\n        \\\\\\\"n_problems\\\\\\\": len(set(groups)),\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"error_rate\\\\\\\": round(float(error_rate), 4),\\\\n        \\\\\\\"n_unparseable\\\\\\\": n_unparseable,\\\\n        \\\\\\\"icc\\\\\\\": {\\\\n            \\\\\\\"point_estimate\\\\\\\": round(float(icc_point), 4),\\\\n            \\\\\\\"bootstrap\\\\\\\": icc_boot,\\\\n        },\\\\n        \\\\\\\"joint_error_rates\\\\\\\": joint,\\\\n        \\\\\\\"group_size_stats\\\\\\\": group_stats,\\\\n        \\\\\\\"model_comparison\\\\\\\": {\\\\n            \\\\\\\"iid_assumption\\\\\\\": {\\\\n                \\\\\\\"P_both_wrong\\\\\\\": round(float(joint[\\\\\\\"p_error\\\\\\\"] ** 2), 4),\\\\n                \\\\\\\"description\\\\\\\": \\\\\\\"P(error)^2, assumes independent errors\\\\\\\",\\\\n            },\\\\n            \\\\\\\"block_correlated_empirical\\\\\\\": {\\\\n                \\\\\\\"P_both_wrong\\\\\\\": joint[\\\\\\\"p_joint_observed\\\\\\\"],\\\\n                \\\\\\\"description\\\\\\\": \\\\\\\"Observed P(both wrong | same problem)\\\\\\\",\\\\n            },\\\\n            \\\\\\\"correlation_ratio\\\\\\\": joint[\\\\\\\"ratio_observed_vs_iid\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"timing\\\\\\\": {\\\\n            \\\\\\\"inference_seconds\\\\\\\": round(infer_time, 1),\\\\n        },\\\\n    }\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"BLOCK-CORRELATION ANALYSIS REPORT\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {total} examples, {len(set(groups))} unique problems\\\\\\\")\\\\n    print(f\\\\\\\"Accuracy: {acc*100:.2f}%, Error rate: {error_rate*100:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nICC (point): {icc_point:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"ICC (bootstrap 95% CI): [{icc_boot['ci_lower']}, {icc_boot['ci_upper']}]\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nJoint error analysis:\\\\\\\")\\\\n    print(f\\\\\\\"  P(error) = {joint['p_error']}\\\\\\\")\\\\n    print(f\\\\\\\"  P(error)^2 (i.i.d. expected) = {joint['p_error_sq_iid']}\\\\\\\")\\\\n    print(f\\\\\\\"  P(both wrong | same problem) = {joint['p_joint_observed']}\\\\\\\")\\\\n    print(f\\\\\\\"  Ratio (observed/i.i.d.) = {joint['ratio_observed_vs_iid']}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nGroup-size breakdown:\\\\\\\")\\\\n    for sz, s in group_stats.items():\\\\n        print(f\\\\\\\"  size={sz}: {s['n_groups']} groups, \\\\\\\"\\\\n              f\\\\\\\"mean_err={s['mean_error_rate']:.4f} +/- {s['std_error_rate']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nInterpretation:\\\\\\\")\\\\n    if joint[\\\\\\\"ratio_observed_vs_iid\\\\\\\"] and joint[\\\\\\\"ratio_observed_vs_iid\\\\\\\"] > 1.5:\\\\n        print(f\\\\\\\"  Strong block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\\\\\")\\\\n        print(f\\\\\\\"  Errors within the same problem are NOT independent.\\\\\\\")\\\\n    elif joint[\\\\\\\"ratio_observed_vs_iid\\\\\\\"] and joint[\\\\\\\"ratio_observed_vs_iid\\\\\\\"] > 1.1:\\\\n        print(f\\\\\\\"  Moderate block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\\\\\")\\\\n    else:\\\\n        print(f\\\\\\\"  Weak/no block correlation (ratio={joint['ratio_observed_vs_iid']})\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    log.info(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Block-correlation empirical analysis of prediction errors.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport time\\nfrom collections import Counter, defaultdict\\nfrom itertools import combinations\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import accuracy_score\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n    \\\"predict whether the test will pass or fail.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef run_greedy_inference(model, tokenizer, test_data, tmpl_kw, max_seq_length,\\n                         batch_size, eos_ids, majority_class, device):\\n    y_pred = []\\n    n_unparseable = 0\\n\\n    for i in range(0, len(test_data), batch_size):\\n        batch = test_data[i:i + batch_size]\\n        all_ids = []\\n        for ex in batch:\\n            ids = build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            all_ids.append(ids)\\n\\n        max_len = max(len(ids) for ids in all_ids)\\n        padded = []\\n        masks = []\\n        for ids in all_ids:\\n            pad_len = max_len - len(ids)\\n            padded.append([tokenizer.pad_token_id] * pad_len + ids)\\n            masks.append([0] * pad_len + [1] * len(ids))\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(masks, device=device)\\n\\n        with torch.no_grad():\\n            outputs = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=5,\\n                do_sample=False,\\n                eos_token_id=eos_ids,\\n            )\\n\\n        for j in range(len(batch)):\\n            gen_ids = outputs[j][max_len:]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_prediction(gen_text)\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n            y_pred.append(pred)\\n\\n    return y_pred, n_unparseable\\n\\n\\ndef compute_icc(errors, groups):\\n    \\\"\\\"\\\"One-way random effects ICC for binary error indicators grouped by problem_id.\\\"\\\"\\\"\\n    group_data = defaultdict(list)\\n    for e, g in zip(errors, groups):\\n        group_data[g].append(e)\\n\\n    valid_groups = {g: vals for g, vals in group_data.items() if len(vals) >= 2}\\n    if len(valid_groups) < 2:\\n        return float('nan')\\n\\n    N = sum(len(v) for v in valid_groups.values())\\n    k = len(valid_groups)\\n    grand_mean = sum(sum(v) for v in valid_groups.values()) / N\\n\\n    SSB = sum(len(v) * (np.mean(v) - grand_mean) ** 2 for v in valid_groups.values())\\n    SSW = sum(sum((x - np.\\n\\n... [截断: 输出过长，省略 5954 字符] ...\\n\\ngth,\\n        args.batch_size, eos_ids, majority_class, device,\\n    )\\n    infer_time = time.time() - t0\\n    acc = accuracy_score(y_true, y_pred)\\n    log.info(f\\\"Accuracy: {acc*100:.2f}% ({infer_time:.1f}s, {n_unparseable} unparseable)\\\")\\n\\n    errors = [int(p != t) for p, t in zip(y_pred, y_true)]\\n    error_rate = np.mean(errors)\\n    log.info(f\\\"Error rate: {error_rate*100:.2f}%\\\")\\n\\n    log.info(\\\"=== Computing ICC ===\\\")\\n    icc_point = compute_icc(errors, groups)\\n    log.info(f\\\"ICC (point estimate): {icc_point:.4f}\\\")\\n\\n    log.info(f\\\"=== Bootstrap ICC ({args.n_bootstrap} resamples) ===\\\")\\n    icc_boot = bootstrap_icc(errors, groups, n_boot=args.n_bootstrap)\\n    log.info(f\\\"ICC bootstrap: {icc_boot['mean']:.4f} [{icc_boot['ci_lower']:.4f}, {icc_boot['ci_upper']:.4f}]\\\")\\n\\n    log.info(\\\"=== Joint error rates ===\\\")\\n    joint = compute_joint_error_rates(errors, groups)\\n    log.info(f\\\"P(error)={joint['p_error']}, P(error)^2={joint['p_error_sq_iid']}, \\\"\\n             f\\\"P(both wrong|same problem)={joint['p_joint_observed']}, \\\"\\n             f\\\"ratio={joint['ratio_observed_vs_iid']}\\\")\\n\\n    log.info(\\\"=== Group-size statistics ===\\\")\\n    group_stats = compute_group_stats(errors, groups)\\n    for sz, s in group_stats.items():\\n        log.info(f\\\"  size={sz}: {s['n_groups']} groups, mean_err={s['mean_error_rate']:.4f}, \\\"\\n                 f\\\"std={s['std_error_rate']:.4f}\\\")\\n\\n    results = {\\n        \\\"test_set_size\\\": total,\\n        \\\"n_problems\\\": len(set(groups)),\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"error_rate\\\": round(float(error_rate), 4),\\n        \\\"n_unparseable\\\": n_unparseable,\\n        \\\"icc\\\": {\\n            \\\"point_estimate\\\": round(float(icc_point), 4),\\n            \\\"bootstrap\\\": icc_boot,\\n        },\\n        \\\"joint_error_rates\\\": joint,\\n        \\\"group_size_stats\\\": group_stats,\\n        \\\"model_comparison\\\": {\\n            \\\"iid_assumption\\\": {\\n                \\\"P_both_wrong\\\": round(float(joint[\\\"p_error\\\"] ** 2), 4),\\n                \\\"description\\\": \\\"P(error)^2, assumes independent errors\\\",\\n            },\\n            \\\"block_correlated_empirical\\\": {\\n                \\\"P_both_wrong\\\": joint[\\\"p_joint_observed\\\"],\\n                \\\"description\\\": \\\"Observed P(both wrong | same problem)\\\",\\n            },\\n            \\\"correlation_ratio\\\": joint[\\\"ratio_observed_vs_iid\\\"],\\n        },\\n        \\\"timing\\\": {\\n            \\\"inference_seconds\\\": round(infer_time, 1),\\n        },\\n    }\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"BLOCK-CORRELATION ANALYSIS REPORT\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {total} examples, {len(set(groups))} unique problems\\\")\\n    print(f\\\"Accuracy: {acc*100:.2f}%, Error rate: {error_rate*100:.2f}%\\\")\\n    print(f\\\"\\\\nICC (point): {icc_point:.4f}\\\")\\n    print(f\\\"ICC (bootstrap 95% CI): [{icc_boot['ci_lower']}, {icc_boot['ci_upper']}]\\\")\\n    print(f\\\"\\\\nJoint error analysis:\\\")\\n    print(f\\\"  P(error) = {joint['p_error']}\\\")\\n    print(f\\\"  P(error)^2 (i.i.d. expected) = {joint['p_error_sq_iid']}\\\")\\n    print(f\\\"  P(both wrong | same problem) = {joint['p_joint_observed']}\\\")\\n    print(f\\\"  Ratio (observed/i.i.d.) = {joint['ratio_observed_vs_iid']}\\\")\\n    print(f\\\"\\\\nGroup-size breakdown:\\\")\\n    for sz, s in group_stats.items():\\n        print(f\\\"  size={sz}: {s['n_groups']} groups, \\\"\\n              f\\\"mean_err={s['mean_error_rate']:.4f} +/- {s['std_error_rate']:.4f}\\\")\\n    print(f\\\"\\\\nInterpretation:\\\")\\n    if joint[\\\"ratio_observed_vs_iid\\\"] and joint[\\\"ratio_observed_vs_iid\\\"] > 1.5:\\n        print(f\\\"  Strong block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\")\\n        print(f\\\"  Errors within the same problem are NOT independent.\\\")\\n    elif joint[\\\"ratio_observed_vs_iid\\\"] and joint[\\\"ratio_observed_vs_iid\\\"] > 1.1:\\n        print(f\\\"  Moderate block correlation (ratio={joint['ratio_observed_vs_iid']:.2f}x)\\\")\\n    else:\\n        print(f\\\"  Weak/no block correlation (ratio={joint['ratio_observed_vs_iid']})\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both `block_correlation_analysis.py` and `eval_block_correlation.py` require GPU inference (they load models). They cannot be quickly re-run without GPU.
+
+However, I can verify the block_corr_results.json data independently by counting. The JSON has a `per_problem_detail` array with 114 entries, and `block_stats.observed_all_correct = 46`.
+
+Let me also check: which script produced `block_corr_results.json`? Looking at `block_correlation_analysis.py`, it has `args.output` defaulting to what? Let me check...
+
+
+The output file structure in `block_corr_results.json` matches the ICC permutation test approach from `block_correlation_analysis.py`, whereas `eval_block_correlation.py` uses bootstrap with a different output format, so `block_corr_results.json` definitely came from `block_correlation_analysis.py`.
+
+Since both scripts require GPU and I can't rerun them quickly, I'll work with what's in the data—the observed_all_correct value of 46 is clear. I could verify this by counting the all_correct entries from the per_problem_detail section using a quick Python command on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "376a2347-26c1-42b7-b604-ec45d0ee4290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFbzasijEXn5ohvGJSVbLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6385,
+      "cache_read_input_tokens": 60052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+用 python 验证 JSON 中的 all_correct 计数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "278a42c4-e5d0-45bd-9e54-7fd039451c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFbzasijEXn5ohvGJSVbLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6385,
+      "cache_read_input_tokens": 60052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S1NbjdQ47CKoW3mDrnKS9t`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/block_corr_results.json')); print('all_correct count:', sum(1 for p in d['per_problem_detail'] if p['all_correct'])); print('total problems:', len(d['per_problem_detail'])); print('pct:', round(sum(1 for p in d['per_problem_detail'] if p['all_correct'])/len(d['per_problem_detail'])*100, 2))\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "ace03b14-c264-4242-83be-799944c0889f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFbzasijEXn5ohvGJSVbLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6385,
+      "cache_read_input_tokens": 60052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-12T22:43:26.306Z_
+
+<details><summary>↩ Tool result · `toolu_01S1NbjdQ47CKoW3mDrnKS9t`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "b5598b63-1851-46d1-a6d0-aad3c16b3445",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GSBPbuULSJ7Ur94jSpZGZ2`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json')); e=d['error_patterns']; cls_err=e['cls_only_errors']; cwm_err=e['cwm_only_errors']; print('CLS-only errors:', cls_err['count']); print('  FAIL labels:', cls_err['true_label_distribution'].get('FAIL',0)); print('  miss rate:', round(cls_err['true_label_distribution'].get('FAIL',0)/cls_err['count']*100, 2)); print('CWM-only errors:', cwm_err['count']); print('  PASS labels:', cwm_err['true_label_distribution'].get('PASS',0)); print('  FP rate:', round(cwm_err['true_label_distribution'].get('PASS',0)/cwm_err['count']*100, 2)); print('Oracle:', d['oracle']['oracle_accuracy_pct'])\"",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "6d5f0dbe-4608-4d7c-a7ff-c498fd51a0b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFbzasijEXn5ohvGJSVbLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6385,
+      "cache_read_input_tokens": 60052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6385
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-12T22:43:30.671Z_
+
+<details><summary>↩ Tool result · `toolu_01GSBPbuULSJ7Ur94jSpZGZ2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "0b6a7d0c-bb4a-4378-959a-59209f0f8fad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons are blocked. I need to put the Python code in a single statement without semicolons, or use a different approach. Let me use `grep` to count from the JSON file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "e68b0ba9-5628-453d-ac58-40b65244f49e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZo6sBEytA7TQR3vPr5ifU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1252,
+      "cache_read_input_tokens": 66437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1252
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016q7V5m3FYAAoYm5rRDpFw6`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c \"\\\"all_correct\\\": true\" /home/sonny/exec-sim-repair-verifier/block_corr_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "24634c60-a2cc-40db-8a71-419859fc580a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZo6sBEytA7TQR3vPr5ifU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1252,
+      "cache_read_input_tokens": 66437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1252
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MJWXKQe6ZsA8nwdExMvD6b`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "command": "grep -c \"\\\"all_correct\\\": false\" /home/sonny/exec-sim-repair-verifier/block_corr_results.json",
+  "account": "sonny"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "574a83a6-bbce-4185-9839-6fd585bc8a86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZo6sBEytA7TQR3vPr5ifU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1252,
+      "cache_read_input_tokens": 66437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1252
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-12T22:43:37.127Z_
+
+<details><summary>↩ Tool result · `toolu_016q7V5m3FYAAoYm5rRDpFw6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"46\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "d7afc852-f2aa-4664-ac19-e7613bae0b9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"46\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-12T22:43:37.927Z_
+
+<details><summary>↩ Tool result · `toolu_01MJWXKQe6ZsA8nwdExMvD6b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"68\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "b206b796-693b-4cd4-b646-30b7bded5b8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"68\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"68\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+46 + 68 = 114 total problems. 46 all_correct. Confirmed.
+
+Now I have all the data. Let me compile the report.
+
+Summary:
+
+## Task 1: all_correct_observed
+- True value: 46 (not 48)
+- 46/114 = 40.35%
+- Source: `block_corr_results.json` produced by `block_correlation_analysis.py`
+- Paper needs correction: 48→46, 42.1%→40.4%
+
+## Task 2: error complementarity
+From `matched_seed_overlap_results.json` (produced by `matched_seed_analysis.py`):
+
+
+Looking at the error rates and accuracy metrics, the CLS miss rate checks out at 75.47%, the CWM false positive rate at 83.05%, and the oracle accuracy at 90.63% all match what the paper reports within normal rounding. I need to see the next thinking to rewrite it. Could you provide the next thinking chunk that follows the current rewritten thinking about the error analysis metrics?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "529a3a6f-ad17-49e8-94a3-a59ca68944d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SgASAQqdCQPKC62yKmAmeB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 67689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+全部数据已确认。以下是汇报：
+
+---
+
+## 任务 1: all_correct_observed
+
+- **真实值：46**（114 个 problem 中 46 个全对）
+- **百分比：40.35%**（46/114）
+- 来源：`/home/sonny/exec-sim-repair-verifier/block_corr_results.json`，由 `block_correlation_analysis.py` 产出
+- 独立验证：grep 逐行计数 `"all_correct": true` = 46，`"all_correct": false` = 68，合计 114 ✓
+- **论文需要修改：是**
+  - 48 → **46**
+  - 42.1% → **40.4%**（取 40.35% 一位小数四舍五入）
+- 无法纯分析重跑（`block_correlation_analysis.py` 需要加载模型做推理），但 JSON 结果和 summary 一致，数据可信
+
+## 任务 2: error complementarity
+
+数据来源：`/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json`，由 `matched_seed_analysis.py` 产出。同时被 `analyze_error_overlap.py` → `error_overlap_analysis.json` 交叉验证（overlap 计数完全一致）。
+
+**CLS 漏检率：**
+- CLS-only errors（CLS 错、CWM 对）= 53 例
+- 其中 true label = FAIL 的有 40 例（CLS 预测 PASS，实际 FAIL → 漏检）
+- 精确值 = 40/53 = **75.47%**
+- 论文写 75.5% → **正确**（四舍五入到 1 位小数）
+
+**CWM 误报率：**
+- CWM-only errors（CWM 错、CLS 对）= 59 例
+- 其中 true label = PASS 的有 49 例（CWM 预测 FAIL，实际 PASS → 误报）
+- 精确值 = 49/59 = **83.05%**
+- 论文写 83.1% → **正确**（四舍五入到 1 位小数）
+
+**Oracle accuracy：**
+- Oracle correct（CLS 对 ∪ CWM 对）= 1713/1890
+- 精确值 = **90.63%**
+- 论文写 90.63% → **完全匹配**
+
+**计算逻辑：**
+- CLS 漏检率 = FN_unique / (FN_unique + FP_unique)，即 CLS 独有错误中"漏掉 FAIL"的比例
+- CWM 误报率 = 同理，CWM 独有错误中"把 PASS 判成 FAIL"的比例
+- Oracle = CLS correct ∪ CWM correct（任一模型判对即算对）
+
+**分析脚本路径：**
+- `/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py`（主脚本）
+- `/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py`（交叉验证）
+
+**数据差异：无**（三个数值均与论文一致）
+
+---
+
+**总结：论文唯一需要修正的是 §5.6(b) 的 all_correct 数据：48→46，42.1%→40.4%。§5.6(a) 的三个数值均正确。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "uuid": "8028f2f7-0421-4d79-b65f-de07a4d19157",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SgASAQqdCQPKC62yKmAmeB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 67689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 81_
+
+全部数据已确认。以下是汇报：
+
+---
+
+## 任务 1: all_correct_observed
+
+- **真实值：46**（114 个 problem 中 46 个全对）
+- **百分比：40.35%**（46/114）
+- 来源：`/home/sonny/exec-sim-repair-verifier/block_corr_results.json`，由 `block_correlation_analysis.py` 产出
+- 独立验证：grep 逐行计数 `"all_correct": true` = 46，`"all_correct": false` = 68，合计 114 ✓
+- **论文需要修改：是**
+  - 48 → **46**
+  - 42.1% → **40.4%**（取 40.35% 一位小数四舍五入）
+- 无法纯分析重跑（`block_correlation_analysis.py` 需要加载模型做推理），但 JSON 结果和 summary 一致，数据可信
+
+## 任务 2: error complementarity
+
+数据来源：`/home/sonny/exec-sim-repair-verifier/matched_seed_overlap_results.json`，由 `matched_seed_analysis.py` 产出。同时被 `analyze_error_overlap.py` → `error_overlap_analysis.json` 交叉验证（overlap 计数完全一致）。
+
+**CLS 漏检率：**
+- CLS-only errors（CLS 错、CWM 对）= 53 例
+- 其中 true label = FAIL 的有 40 例（CLS 预测 PASS，实际 FAIL → 漏检）
+- 精确值 = 40/53 = **75.47%**
+- 论文写 75.5% → **正确**（四舍五入到 1 位小数）
+
+**CWM 误报率：**
+- CWM-only errors（CWM 错、CLS 对）= 59 例
+- 其中 true label = PASS 的有 49 例（CWM 预测 FAIL，实际 PASS → 误报）
+- 精确值 = 49/59 = **83.05%**
+- 论文写 83.1% → **正确**（四舍五入到 1 位小数）
+
+**Oracle accuracy：**
+- Oracle correct（CLS 对 ∪ CWM 对）= 1713/1890
+- 精确值 = **90.63%**
+- 论文写 90.63% → **完全匹配**
+
+**计算逻辑：**
+- CLS 漏检率 = FN_unique / (FN_unique + FP_unique)，即 CLS 独有错误中"漏掉 FAIL"的比例
+- CWM 误报率 = 同理，CWM 独有错误中"把 PASS 判成 FAIL"的比例
+- Oracle = CLS correct ∪ CWM correct（任一模型判对即算对）
+
+**分析脚本路径：**
+- `/home/sonny/exec-sim-repair-verifier/matched_seed_analysis.py`（主脚本）
+- `/home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py`（交叉验证）
+
+**数据差异：无**（三个数值均与论文一致）
+
+---
+
+**总结：论文唯一需要修正的是 §5.6(b) 的 all_correct 数据：48→46，42.1%→40.4%。§5.6(a) 的三个数值均正确。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 203805,
+  "duration_api_ms": 193934,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "d0ec8c78-1e3c-47e8-afd7-44ceb0b6624f",
+  "total_cost_usd": 0.7948864999999999,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 56620,
+    "cache_read_input_tokens": 396299,
+    "output_tokens": 9639,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56620,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1486,
+        "cache_read_input_tokens": 67689,
+        "cache_creation_input_tokens": 632,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 632
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1722,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001817,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 9639,
+      "cacheReadInputTokens": 396299,
+      "cacheCreationInputTokens": 56620,
+      "webSearchRequests": 0,
+      "costUSD": 0.7930695,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "32e24ba3-baec-4173-a295-967f18fdb4f9"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp-b-data-prep",
+  "project": "exec-sim-repair-verifier",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T18:02:03.573Z",
+    "updated_at": "2026-05-11T18:59:32.723Z",
+    "hypothesis": "HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot"
+  },
+  "timestamp": "2026-05-11T18:59:32.753745+00:00",
+  "trigger": "update_registry"
+}

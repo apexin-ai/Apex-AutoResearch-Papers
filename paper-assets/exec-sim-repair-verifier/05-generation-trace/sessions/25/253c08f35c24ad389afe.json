@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "253c08f35c24ad389afe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code prepare cwm8b post training scripts",
+  "task_key": "worker_code_prepare-cwm8b-post-training-scripts_20260515T194627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-cwm8b-post-training-scripts_20260515T194627_result.json",
+    "occurrence": 1,
+    "bytes": 1398,
+    "sha256": "b797b3b79be76b9c56f1947c6bef51b20dd69f8d703a53cfb13dfabbf49fcf91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署，语法验证通过。\n\n## 产出摘要\n\n| 脚本 | 路径 | 功能 |\n|------|------|------|\n| `cwm8b_val_sweep.sh` | `/root/autodl-tmp/scripts/cwm8b_val_sweep.sh` | 自动检测所有 checkpoint，3 GPU 并行跑 val eval (bs=8) |\n| `cwm8b_final_test_eval.sh` | `/root/autodl-tmp/scripts/cwm8b_final_test_eval.sh` | 自动找最高 step checkpoint，跑 test eval (bs=8) |\n\n**脚本特性**:\n- 自动检测 checkpoint（无需硬编码 step 列表）\n- val sweep 用 cuda:0,1,2 并行，GPU 3 留给正在跑的 ckpt-400 test eval\n- final test eval 默认 cuda:0，可传参覆盖：`bash cwm8b_final_test_eval.sh cuda:1`\n- 错误处理：checkpoint 不存在跳过，单个失败不阻塞其他\n- 进度日志：每个 checkpoint 有独立 log 文件\n\n**预计运行时间**（假设 bs=8 提速 ~4-6x）:\n- Val sweep: 5 checkpoints × ~6h/ckpt ÷ 3 GPU 并行 ≈ **10-12h**\n- Final test eval: 9784 samples × ~3s/sample ≈ **8h**\n\n**启动方式**（训练完成后）:\n```bash\n# 先启 val sweep（后台）\nnohup bash /root/autodl-tmp/scripts/cwm8b_val_sweep.sh > /root/autodl-tmp/eval_results/cwm8b_val_sweep.log 2>&1 &\n\n# 同时启 final test eval on GPU 3（如果 ckpt-400 test 已完成）\nnohup bash /root/autodl-tmp/scripts/cwm8b_final_test_eval.sh cuda:3 > /root/autodl-tmp/eval_results/cwm8b_final_test.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-cwm8b-post-training-scripts.md"
+}

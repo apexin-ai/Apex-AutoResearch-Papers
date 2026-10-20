@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0196d0daad82c299be23",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check and resubmit eval",
+  "task_key": "worker_ssh_check-and-resubmit-eval_20260519T232129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-and-resubmit-eval_20260519T232129_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "ae024f01f552e71337954a1824df6afc0f485985b4eb54fb24951efa8480b54c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：不需要重提交。** 两个进程都是正确的 eval。\n\n| GPU | PID | 进程 | 运行时间 | 显存占用 | GPU Util |\n|-----|-----|------|---------|---------|----------|\n| 0 | 876210 | `eval_repo_cls.py` CLS 8B s456 ckpt-2200 | ~2 min | 17,452 MiB | 77% |\n| 3 | 876070 | `eval_repo_cls.py` DeepSeek CLS s456 ckpt-2163 | ~2 min | 16,886 MiB | 71% |\n\n两个进程参数都用了 `--output`（非 `--output_dir`），checkpoint/model 路径正确。与你给的命令有两处小差异：`--batch_size 1`（非 16）、输出文件名是 `eval_summary.json`/`predictions.jsonl`（非 `eval_repo_cls.json`/`eval_repo_cls_predictions.jsonl`），但这些不影响功能正确性。\n\n另外 GPU 2 上有 PID 833672 占用 29,606 MiB，GPU 1 空闲（0 MiB，但 GPU-Util 显示 100% 可能是瞬时波动）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-and-resubmit-eval.md"
+}

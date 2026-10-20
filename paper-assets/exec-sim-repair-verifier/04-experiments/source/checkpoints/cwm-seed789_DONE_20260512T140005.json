@@ -1,0 +1,46 @@
+{
+  "exp_id": "cwm-seed789",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:31:34.311Z",
+    "updated_at": "2026-05-12T14:00:05.340Z",
+    "hypothesis": "补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 42227,
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm-seed789.log",
+      "submitted_at": "2026-05-12T12:34:07.017Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 789,
+      "metrics": {
+        "overall_accuracy": 86.67,
+        "pass_f1": 86.74,
+        "fail_f1": 86.6,
+        "exact_match_rate": 83.97,
+        "baseline_gap_pp": 34.92,
+        "test_set_size": 1890,
+        "unparseable_predictions": 0
+      },
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/",
+      "wall_clock_seconds": 5158.3,
+      "gpu_hours": 1.43
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-12T14:00:05.341Z"
+  },
+  "timestamp": "2026-05-12T14:00:05.411593+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1126021b5d965203943f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train deepseek all gpus",
+  "task_key": "worker_train_deepseek-all-gpus_20260516T061139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_deepseek-all-gpus_20260516T061139_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "c039d8a5b921c6b4e602c64238cc819007b4b599df80c2227d45d80439260e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CWM 8B mutation breakdown 数据完整，cuda:3 不需要额外任务。\n\n---\n\n## 执行总结\n\n**Step 1 ✓ — 代码同步**\n- `train_unified.py` 已同步到 westd（新增 `--task cls/cwm` 支持）\n- eval 脚本后续需要时再同步（文件过大 heredoc 传输受限）\n\n**Step 2 ✓ — DeepSeek 模型确认**\n- `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct/` 存在，2 个 safetensors 文件\n\n**Step 3 ✓ — 训练数据确认**\n| 数据集 | 路径 | 样本数 |\n|--------|------|--------|\n| repo-level CLS | `data/swebench_full/swebench_train.jsonl` | 70,748 |\n| function-level CWM | `data/cwm_train.jsonl` | 15,290 |\n| function-level CLS | `data/train.jsonl` | 15,290 |\n\n**Step 5 ✓ — 3 个训练任务已提交**\n\n| GPU | exp_id | Task | Data | Samples |\n|-----|--------|------|------|---------|\n| cuda:0 | `deepseek-cls-repo` | CLS | swebench_full | 70,748 |\n| cuda:1 | `deepseek-cwm-func` | CWM | cwm_train.jsonl | 15,290 |\n| cuda:2 | `deepseek-cls-func` | CLS | train.jsonl | 15,290 |\n\n**Step 6 ✓ — CWM 8B mutation breakdown 已完成**\n- 9784 samples，coverage=100%\n- Per-mutation 结果：gold 80.1%, boundary_removal 42.2%, operator_swap 54.6%, return_value 49.1%, off_by_one 63.4%\n- 注意：unparseable rate 极高 (73.8%)，overall acc 65.2% 低于 majority baseline 73.0%\n\n**调整说明**: 原计划 task 2 是\"repo-level CWM\"，但 swebench 数据无 `target` 字段（只有 `execution_output`），改为 function-level CWM。如需 repo-level CWM 训练，需修改 `get_target()` 读取 `execution_output` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-deepseek-all-gpus.md"
+}

@@ -1,0 +1,57 @@
+{
+  "exp_id": "qwen3-8b-traj-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:19:43.240Z",
+    "updated_at": "2026-05-17T14:17:29.217Z",
+    "hypothesis": "Qwen3-8B TRAJ func-level 将展示 TRAJ 在更大模型上的 scaling 行为，预期与 4B TRAJ (86.30%) 相比有小幅提升（类似 CLS/CWM 的 4B→8B +1-2pp pattern），填补 Table 2 scaling 分析的 TRAJ 8B 缺口",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data --model_name Qwen/Qwen3-8B --output_dir checkpoints_traj_8b_seed42 --run_name traj-qwen3-8b-lora-s42 --seed 42 --batch_size 2 --grad_accumulation 16 --epochs 3 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length 2048\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3819402",
+      "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-traj-func-s42.log",
+      "submitted_at": "2026-05-17T13:20:05.999Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data",
+      "data_count": "unknown",
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_traj_8b_seed42/best",
+      "wall_clock_seconds": 3443.2,
+      "gpu_hours": 0.96
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T14:10:45.579Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T14:10:47.921325+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "test_accuracy": 87.98,
+      "eval_loss": 0.0975,
+      "train_loss_final": 0.0312,
+      "train_loss_avg": 0.2387,
+      "unparseable": 0,
+      "consistency_rate": 78.78
+    },
+    "completed_at": "2026-05-17T14:17:29.217Z"
+  },
+  "timestamp": "2026-05-17T14:17:29.535172+00:00",
+  "trigger": "update_registry"
+}

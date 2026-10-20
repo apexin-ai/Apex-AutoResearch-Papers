@@ -1,0 +1,133 @@
+{
+  "model": "DeepSeek-Coder-6.7B-Instruct",
+  "level": "func",
+  "test_set": {
+    "n_instances": 1890,
+    "label_distribution": {"pass": 978, "fail": 912},
+    "majority_baseline_pct": 51.75
+  },
+  "experiments": {
+    "CLS": {
+      "seed42": {
+        "accuracy": 86.93,
+        "f1_macro": 86.92,
+        "precision_fail": 86.42,
+        "recall_fail": 86.51,
+        "f1_fail": 86.47,
+        "precision_pass": 87.41,
+        "recall_pass": 87.32,
+        "f1_pass": 87.37,
+        "unparseable_rate": 0.0,
+        "best_checkpoint_step": 478,
+        "best_epoch": 1,
+        "total_steps": 1434,
+        "total_epochs": 3,
+        "train_batch_size": 2,
+        "training_time_min_approx": 90,
+        "confusion_matrix": {"tn": 789, "fp": 123, "fn": 124, "tp": 854}
+      },
+      "seed123": {
+        "accuracy": 86.77,
+        "f1_macro": 86.77,
+        "precision_fail": 84.99,
+        "recall_fail": 88.16,
+        "f1_fail": 86.54,
+        "precision_pass": 88.56,
+        "recall_pass": 85.48,
+        "f1_pass": 86.99,
+        "unparseable_rate": 0.0,
+        "best_checkpoint_step": 956,
+        "best_epoch": 1,
+        "total_steps": 2868,
+        "total_epochs": 3,
+        "train_batch_size": 2,
+        "training_time_min_approx": 90,
+        "confusion_matrix": {"tn": 804, "fp": 108, "fn": 142, "tp": 836}
+      },
+      "mean_accuracy": 86.85,
+      "mean_f1_macro": 86.845,
+      "std_accuracy": 0.11,
+      "std_f1_macro": 0.11
+    },
+    "CWM": {
+      "seed42": {
+        "accuracy": 85.77,
+        "f1_macro": 85.73,
+        "precision_fail": 80.07,
+        "recall_fail": 93.86,
+        "f1_fail": 86.42,
+        "precision_pass": 93.18,
+        "recall_pass": 78.22,
+        "f1_pass": 85.05,
+        "unparseable_rate": 0.0,
+        "best_checkpoint_step": 956,
+        "best_epoch": 2,
+        "total_steps": 1434,
+        "total_epochs": 3,
+        "train_batch_size": 2,
+        "training_time_min_approx": 87,
+        "generation_stats": {"mean": 28.1, "median": 33.0, "max": 103, "min": 20},
+        "confusion_matrix": {"tn": 856, "fp": 56, "fn": 213, "tp": 765}
+      },
+      "seed123": {
+        "accuracy": 87.88,
+        "f1_macro": 87.88,
+        "precision_fail": 83.78,
+        "recall_fail": 92.87,
+        "f1_fail": 88.09,
+        "precision_pass": 92.61,
+        "recall_pass": 83.23,
+        "f1_pass": 87.67,
+        "unparseable_rate": 0.0,
+        "best_checkpoint_step": 956,
+        "best_epoch": 2,
+        "total_steps": 1434,
+        "total_epochs": 3,
+        "train_batch_size": 2,
+        "training_time_min_approx": 87,
+        "generation_stats": {"mean": 28.1, "median": 33.0, "max": 103, "min": 20},
+        "confusion_matrix": {"tn": 847, "fp": 65, "fn": 164, "tp": 814}
+      },
+      "mean_accuracy": 86.83,
+      "mean_f1_macro": 86.81,
+      "std_accuracy": 1.49,
+      "std_f1_macro": 1.52
+    }
+  },
+  "roadmap_verification": {
+    "claimed_cls": "86.85±0.11%",
+    "actual_cls": "86.85±0.11%",
+    "cls_correct": true,
+    "claimed_cwm": "86.83±1.49%",
+    "actual_cwm": "86.83±1.49%",
+    "cwm_correct": true
+  },
+  "registry_discrepancy": {
+    "issue": "Registry claims deepseek-cls-func-s123 acc=87.88, actual is 86.77. The 87.88 belongs to deepseek-cwm-func-s123.",
+    "corrected_cls_s123_accuracy": 86.77,
+    "corrected_cwm_s123_accuracy": 87.88
+  },
+  "paper_table_data": {
+    "DeepSeek-6.7B_CLS_func": {
+      "accuracy_mean": 86.85,
+      "accuracy_std": 0.11,
+      "f1_mean": 86.85,
+      "f1_std": 0.11,
+      "unparseable_pct": 0.0
+    },
+    "DeepSeek-6.7B_CWM_func": {
+      "accuracy_mean": 86.83,
+      "accuracy_std": 1.49,
+      "f1_mean": 86.81,
+      "f1_std": 1.52,
+      "unparseable_pct": 0.0
+    }
+  },
+  "notes": [
+    "All experiments run on 4×RTX5090 (single GPU used per experiment)",
+    "CLS best checkpoints converge at epoch 1; CWM at epoch 2",
+    "CWM shows higher variance across seeds (std 1.49 vs 0.11)",
+    "CWM has asymmetric precision/recall: high precision_pass + high recall_fail pattern",
+    "Zero unparseable for all DeepSeek func-level experiments"
+  ]
+}

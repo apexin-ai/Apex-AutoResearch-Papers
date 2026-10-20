@@ -1,0 +1,34 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Execution Simulation for Code.}
+Recent work has explored whether LLMs can simulate code execution without running the code.
+Code World Models~\cite{meta2025cwm} mid-train a 32B LLM on execution traces to predict output strings given code and inputs, establishing the generation-based paradigm for execution simulation.
+Self-Execution~\cite{ding2025selfexecution} extends this with step-by-step trace prediction and uses predicted outputs for self-verification of generated code.
+CodeMind~\cite{liu2024codemind} provides a systematic framework for evaluating code reasoning capabilities along multiple dimensions including independent execution reasoning and dependent execution reasoning.
+SolidCoder~\cite{chen2025solidcoder} addresses the gap between a model's mental simulation and actual execution by grounding generation in concrete execution feedback.
+Ye et al.~\cite{ye2025demystifying} present an empirical analysis of error patterns in LLM execution simulation, identifying systematic failure modes in trace prediction.
+All of these approaches formulate execution simulation as \emph{generation}---predicting output strings or execution traces. We reformulate the task as per-test binary classification and show that the choice of formulation interacts with code complexity: classification and generation achieve near-equivalent accuracy on simple function-level code, but classification scales better as complexity increases.
+
+\paragraph{LLM-based Verification for Code Repair.}
+Execution-free verification has emerged as a critical component for scaling test-time compute in code repair.
+SWE-RM~\cite{zhang2025swerm} trains a 30B mixture-of-experts reward model that scores candidate patches at the trajectory level without execution, enabling execution-free ranking for best-of-$N$ selection.
+Patch Reasoner~\cite{wu2025patchreasoner} uses explicit chain-of-thought reasoning to verify patch correctness, scaling verification through deeper reasoning rather than larger models.
+Snell et al.~\cite{snell2024scaling} show that test-time compute scaling---generating multiple candidates and selecting via a verifier---can outperform parameter scaling, positioning verification accuracy as the key bottleneck.
+S*~\cite{zhang2025sstar} proposes a hybrid test-time scaling strategy that combines execution-grounded selection with model-based scoring.
+VG-Search~\cite{wang2025vgsearch} systematically studies how verification granularity affects compute-efficient test-time scaling, finding that finer-grained verification signals improve selection quality.
+Our work contributes to this line by formally comparing per-test and trajectory-level granularity: we show that per-test classification achieves statistically equivalent patch-level accuracy to trajectory-level scoring (TOST $p = 0.007$) while additionally providing per-test diagnostic signals that trajectory-level verifiers discard.
+
+\paragraph{Automated Program Repair.}
+SWE-bench~\cite{jimenez2024swebench} established the standard benchmark for repository-level program repair, and SWE-bench Verified~\cite{chowdhury2024swebenchverified} provides a human-validated subset with higher label reliability.
+Agent-based approaches such as SWE-agent~\cite{yang2024sweagent} use tool-augmented LLM agents to navigate repositories, localize faults, and generate patches.
+Agentless~\cite{xia2024agentless} demonstrates that a simpler three-phase pipeline of localize--repair--validate can be competitive without agent scaffolding.
+These systems rely on execution-based validation as the final filter, which is reliable but expensive at scale.
+We focus specifically on the verification component: per-test classification provides failure-localized signals that could inform targeted re-repair strategies in these pipelines, a capability absent from trajectory-level verifiers.
+
+\paragraph{Classification vs.\ Generation in NLP.}
+The choice between classification and generation formulations is a recurring theme in NLP.
+T5~\cite{raffel2020t5} systematically compares task formulations under a unified text-to-text framework, showing that framing affects performance even when model capacity is held constant.
+BART~\cite{lewis2020bart} demonstrates generation--classification tradeoffs across summarization, question answering, and classification tasks.
+In reading comprehension, SQuAD~\cite{rajpurkar2016squad} frames question answering as span extraction---a classification-style formulation---rather than open-ended generation, exploiting the constraint that answers are drawn from a fixed context.
+We extend this formulation lens to code verification: where prior work finds that the optimal formulation depends on task structure, we identify \emph{code complexity} as the key moderator---classification and generation converge on simple code but diverge as complexity grows.

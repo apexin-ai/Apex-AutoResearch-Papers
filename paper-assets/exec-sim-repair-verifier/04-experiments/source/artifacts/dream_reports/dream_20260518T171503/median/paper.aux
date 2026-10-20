@@ -1,0 +1,79 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ni2023lever}
+\citation{chen2023codet}
+\citation{ding2024codeworldmodels}
+\citation{zhang2025swebench}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{le2022coderl}
+\citation{li2022competition}
+\citation{shinn2023reflexion}
+\citation{zhang2023predictive}
+\citation{jimenez2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ Outcome Supervision.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification in Code Repair.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Data}{2}{section.3}\protected@file@percent }
+\newlabel{sec:data}{{3}{2}{Data}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}SWE-bench PerTest Construction}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench PerTest dataset statistics. Docker re-evaluation of 500 SWE-bench Verified instances yields 418 successful instances with 34,790 per-test labels. The 16.4\% failure rate is consistent with known Docker environment reproducibility issues in SWE-bench.}}{3}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:dataset}{{1}{3}{SWE-bench PerTest dataset statistics. Docker re-evaluation of 500 SWE-bench Verified instances yields 418 successful instances with 34,790 per-test labels. The 16.4\% failure rate is consistent with known Docker environment reproducibility issues in SWE-bench}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Function-Level and Repository-Level Splits}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Task Formulations}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CLS (Per-test Classification).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM (Code World Model).}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Function-level accuracy across three formulations and two model families. All formulations achieve statistically equivalent accuracy within each model family (TOST equivalence, $\pm $2pp margin). CWM unparseable rate is 0\% at function-level for both models.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:func_results}{{2}{4}{Function-level accuracy across three formulations and two model families. All formulations achieve statistically equivalent accuracy within each model family (TOST equivalence, $\pm $2pp margin). CWM unparseable rate is 0\% at function-level for both models}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{TRAJ (Trajectory Scoring).}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training Setup}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Function-Level Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:func}{{5}{4}{Function-Level Results}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Repository-Level Results}{4}{section.6}\protected@file@percent }
+\newlabel{sec:repo}{{6}{4}{Repository-Level Results}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}CLS at Repository-Level}{4}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces CLS repo-level results. $\Delta _\text  {maj}$: gap over majority baseline (73.0\%). DeepSeek CLS achieves 77.2\% mean accuracy across two seeds, above the majority baseline but 7.6pp below Qwen3-8B. Best DeepSeek checkpoint: step 800 (eval loss 0.38).}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cls_repo}{{3}{5}{CLS repo-level results. $\Delta _\text {maj}$: gap over majority baseline (73.0\%). DeepSeek CLS achieves 77.2\% mean accuracy across two seeds, above the majority baseline but 7.6pp below Qwen3-8B. Best DeepSeek checkpoint: step 800 (eval loss 0.38)}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces CWM repo-level results. Unparseable outputs render CWM ineffective at repository-level. Qwen3 produces 93\% unparseable outputs; DeepSeek reduces this to 52\% but still falls below the majority baseline. Parseable DeepSeek samples reach 71.8\% accuracy, near the majority baseline.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:cwm_repo}{{4}{5}{CWM repo-level results. Unparseable outputs render CWM ineffective at repository-level. Qwen3 produces 93\% unparseable outputs; DeepSeek reduces this to 52\% but still falls below the majority baseline. Parseable DeepSeek samples reach 71.8\% accuracy, near the majority baseline}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}CWM at Repository-Level}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}CLS vs.\ CWM: Complexity-Dependent Divergence}{5}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces CLS vs.\ CWM accuracy at function-level and repo-level. Formulations are equivalent at function-level but diverge sharply at repo-level across both model families.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cls_cwm_summary}{{5}{6}{CLS vs.\ CWM accuracy at function-level and repo-level. Formulations are equivalent at function-level but diverge sharply at repo-level across both model families}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model comparison of CWM repo-level unparseable rates. The 41pp gap (93\% vs.\ 52\%) is statistically significant ($p{<}0.001$, Fisher's exact test), demonstrating that CWM failure severity is model/tokenizer-dependent.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cross_cwm}{{6}{6}{Cross-model comparison of CWM repo-level unparseable rates. The 41pp gap (93\% vs.\ 52\%) is statistically significant ($p{<}0.001$, Fisher's exact test), demonstrating that CWM failure severity is model/tokenizer-dependent}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Cross-Model CWM Analysis}{6}{section.7}\protected@file@percent }
+\newlabel{sec:cross_model}{{7}{6}{Cross-Model CWM Analysis}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Efficiency and Equivalence Analysis}{6}{section.8}\protected@file@percent }
+\newlabel{sec:efficiency}{{8}{6}{Efficiency and Equivalence Analysis}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inference cost.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic granularity.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Re-repair resolve rate across diagnostic conditions ($n{=}200$). CLS diagnostics yield a +1.5pp improvement over control, not statistically significant ($p{=}0.62$). Oracle diagnostics achieve +7.0pp, demonstrating information-theoretic value of per-test feedback. 15\% of instances failed due to Docker environment issues.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:rerepair}{{7}{7}{Re-repair resolve rate across diagnostic conditions ($n{=}200$). CLS diagnostics yield a +1.5pp improvement over control, not statistically significant ($p{=}0.62$). Oracle diagnostics achieve +7.0pp, demonstrating information-theoretic value of per-test feedback. 15\% of instances failed due to Docker environment issues}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Diagnostic Re-Repair Study}{7}{section.9}\protected@file@percent }
+\newlabel{sec:rerepair}{{9}{7}{Diagnostic Re-Repair Study}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Discussion}{7}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical guidance.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM is not fundamentally broken.}{7}{section*.17}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{chen2023codet}{{1}{2023}{{Chen et~al.}}{{}}}
+\bibcite{ding2024codeworldmodels}{{2}{2024}{{Ding et~al.}}{{}}}
+\bibcite{jimenez2024swebench}{{3}{2024}{{Jimenez et~al.}}{{}}}
+\bibcite{le2022coderl}{{4}{2022}{{Le et~al.}}{{}}}
+\bibcite{li2022competition}{{5}{2022}{{Li et~al.}}{{}}}
+\bibcite{lightman2023lets}{{6}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{ni2023lever}{{7}{2023}{{Ni et~al.}}{{}}}
+\bibcite{shinn2023reflexion}{{8}{2023}{{Shinn et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison scope.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{8}{section.11}\protected@file@percent }
+\bibcite{uesato2022solving}{{9}{2022}{{Uesato et~al.}}{{}}}
+\bibcite{zhang2023predictive}{{10}{2023}{{Zhang et~al.}}{{}}}
+\bibcite{zhang2025swebench}{{11}{2025}{{Zhang et~al.}}{{}}}
+\gdef \@abspage@last{9}

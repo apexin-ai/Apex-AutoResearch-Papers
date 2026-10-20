@@ -1,0 +1,950 @@
+{
+  "schema_version": "1.0",
+  "id": "08d5dc8281f85039fdbc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "ssh urgent check training data",
+  "task_key": "worker_ssh_urgent-check-training-data_20260520T050302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_urgent-check-training-data_20260520T050302.jsonl",
+    "occurrence": 1,
+    "bytes": 41844,
+    "sha256": "f83b6ef5732bdf80cc203eb6f75951874343253401e24724a171d7872ae77108"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T05:05:43.996121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T05:05:43.996488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T05:05:43.996691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -50 /root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s456-train.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T05:05:43.997064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -80 /root/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s123-train-v4.log"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T05:05:43.997542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 13:00:00,024 INFO Model: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct → family=deepseek\\\\n2026-05-20 13:00:00,025 INFO Task: cwm, Run name: deepseek-cwm-repo-s456\\\\n2026-05-20 13:00:00,025 INFO Loading tokenizer: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 13:00:00,103 INFO Chat template kwargs: {}\\\\n2026-05-20 13:00:00,108 INFO Sample formatted prompt (first 300 chars):\\\\n<｜begin▁of▁sentence｜>You are a code execution simulator. Given a code snippet and a test case, predict the execution result.### Instruction:\\\\n## Code\\\\ndef f(): return 1\\\\n\\\\n## Test\\\\nassert f() == 1\\\\n\\\\nWhat is the execution result?\\\\n### Response:\\\\nPASS: test completed successfully\\\\n<|EOT|>\\\\n\\\\n2026-05-20 13:00:00,108 INFO Train file: data/cwm_train.jsonl\\\\n2026-05-20 13:00:00,108 INFO Val file: data/cwm_val.jsonl\\\\n2026-05-20 13:00:00,168 INFO Loaded train=15290, val=1896\\\\n2026-05-20 13:00:15,501 WARNING train: dropped 10/15290 examples with all labels masked (prompt >= max_seq_length)\\\\n2026-05-20 13:00:15,501 INFO train: 0/15280 truncated (0.0%), kept 15280/15290\\\\n2026-05-20 13:00:18,204 INFO val: 0/1896 truncated (0.0%), kept 1896/1896\\\\n2026-05-20 13:00:18,297 INFO Loading model: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 13:00:18,298 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 121.22it/s]\\\\n2026-05-20 13:00:18,367 INFO LoRA target modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj']\\\\n2026-05-20 13:00:24,298 INFO Starting training...\\\\ntrainable params: 16,777,216 || all params: 6,757,289,984 || trainable%: 0.2483\\\\n\\\\r  0%|          | 0/2865 [00:00<?, ?it/s]\\\\r  0%|          | 1/2865 [00:02<2:09:17,  2.71s/it]\\\\r  0%|          | 2/2865 [00:04<1:53:16,  2.37s/it]\\\\r  0%| \n…[truncated 5660 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T05:05:43.997954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 09:30:05,487 INFO Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\n2026-05-20 09:30:05,840 INFO Chat template kwargs: {'enable_thinking': False}\\\\n2026-05-20 09:30:07,754 INFO Loaded train=70748, val=9335\\\\n2026-05-20 09:30:07,764 INFO Class weights: fail=1.7009, pass=0.2991\\\\n2026-05-20 09:34:53,307 INFO train: 3192/70748 truncated (4.5%)\\\\n2026-05-20 09:36:02,350 INFO val: 1883/9335 truncated (20.2%)\\\\n2026-05-20 09:36:04,726 INFO Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\n2026-05-20 09:36:04,728 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 213.81it/s]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\n2026-05-20 09:36:11,648 INFO Starting training...\\\\ntrainable params: 15,335,424 || all params: 8,206,070,784 || trainable%: 0.1869\\\\n\\\\r  0%|          | 0/6633 [00:00<?, ?it/s]\\\\r  0%|          | 1/6633 [00:11<21:11:51, 11.51s/it]\\\\r  0%|          | 2/6633 [00:23<21:52:53, 11.88s/it]\\\\r  0%|          | 3/6633 [00:35<21:33:06, 11.70s/it]\\\\r  0%|          | 4/6633 [00:48<22:31:50, 12.24s/it]\\\\r  0%|          | 5/6633 [01:00<22:26:45, 12.19s/it]\\\\r  0%|          | 6/6633 [01:11<21:31:56, 11.70s/it]\\\\r  0%|          | 7/6633 [01:22<21:35:29, 11.73s/it]\\\\r  0%|          | 8/6633 [01:34<21:42:53, 11.80s/it]\\\\r  0%|          | 9/6633 [01:47<21:57:11, 11.93s/it]\\\\r  0%|          | 10/6633 [01:58<21:43:43, 11.81s/it]\\\\r  0%|          | 11/6633 [02:10<21:33:51, 11.72s/it]\\\\r  0%|          | 12/6633 [02:22<22:00:40, 11.97s/it]\\\\r  0%|          | 13/6633 [02:35<22:28:31, 12.22s/it]\\\\r  0%|          | 14/6633 [02:47<22:14:41, 12.10s/it]\\\\r  0%|          | 15/6633 [02:59<22:14:37, 12.10s/it]\\\\r  0%|          | 16/6633 [03:10<21:52:23, 11.90s/it]\\\\r  \n…[truncated 7009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T05:05:43.998204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -80 /root/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s456-train-v3.log"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T05:05:43.998366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /root/runs/exec-sim-repair-verifier/deepseek-cwm-repo*.log"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T05:05:43.998640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 09:30:08,015 INFO Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\n2026-05-20 09:30:08,360 INFO Chat template kwargs: {'enable_thinking': False}\\\\n2026-05-20 09:30:10,189 INFO Loaded train=70748, val=9335\\\\n2026-05-20 09:30:10,210 INFO Class weights: fail=1.7009, pass=0.2991\\\\n2026-05-20 09:35:02,593 INFO train: 3192/70748 truncated (4.5%)\\\\n2026-05-20 09:36:12,988 INFO val: 1883/9335 truncated (20.2%)\\\\n2026-05-20 09:36:15,387 INFO Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\n2026-05-20 09:36:15,388 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 210.58it/s]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\n2026-05-20 09:36:22,136 INFO Starting training...\\\\ntrainable params: 15,335,424 || all params: 8,206,070,784 || trainable%: 0.1869\\\\n\\\\r  0%|          | 0/6633 [00:00<?, ?it/s]\\\\r  0%|          | 1/6633 [00:11<21:25:58, 11.63s/it]\\\\r  0%|          | 2/6633 [00:23<22:09:31, 12.03s/it]\\\\r  0%|          | 3/6633 [00:35<21:39:04, 11.76s/it]\\\\r  0%|          | 4/6633 [00:47<21:49:30, 11.85s/it]\\\\r  0%|          | 5/6633 [01:00<22:32:55, 12.25s/it]\\\\r  0%|          | 6/6633 [01:12<22:36:27, 12.28s/it]\\\\r  0%|          | 7/6633 [01:24<22:34:08, 12.26s/it]\\\\r  0%|          | 8/6633 [01:36<22:23:11, 12.16s/it]\\\\r  0%|          | 9/6633 [01:49<22:23:09, 12.17s/it]\\\\r  0%|          | 10/6633 [02:00<21:48:03, 11.85s/it]\\\\r  0%|          | 11/6633 [02:11<21:33:11, 11.72s/it]\\\\r  0%|          | 12/6633 [02:23<21:39:24, 11.78s/it]\\\\r  0%|          | 13/6633 [02:34<21:03:21, 11.45s/it]\\\\r  0%|          | 14/6633 [02:45<21:05:23, 11.47s/it]\\\\r  0%|          | 15/6633 [02:57<21:01:11, 11.43s/it]\\\\r  0%|          | 16/6633 [03:08<20:50:10, 11.34s/it]\\\\r  \n…[truncated 7009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T05:05:43.998960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s123-eval.log\\\\n/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s123-train.log\\\\n/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s123.log\\\\n/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s42-seq4096-eval.log\\\\n/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s456-train.log\\\\n/root/runs/exec-sim-repair-verifier/deepseek-cwm-repo.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T05:05:43.999149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T05:05:43.999304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15290 /home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T05:05:43.999448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T05:05:43.999589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"70748 /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T05:05:43.999721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/data/cwm_*.jsonl /home/sonny/exec-sim-repair-verifier/data/swebench_full/cwm_*.jsonl"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T05:05:43.999886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/exec-sim-repair-verifier/data/swebench_full/cwm_*.jsonl': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T05:05:44.000081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -50 /root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s123-train.log"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T05:05:44.000317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 09:26:38,181 INFO Model: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct → family=deepseek\\\\n2026-05-20 09:26:38,181 INFO Task: cwm, Run name: deepseek-cwm-repo-s123\\\\n2026-05-20 09:26:38,181 INFO Loading tokenizer: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 09:26:38,256 INFO Chat template kwargs: {}\\\\n2026-05-20 09:26:38,261 INFO Sample formatted prompt (first 300 chars):\\\\n<｜begin▁of▁sentence｜>You are a code execution simulator. Given a code snippet and a test case, predict the execution result.### Instruction:\\\\n## Code\\\\ndef f(): return 1\\\\n\\\\n## Test\\\\nassert f() == 1\\\\n\\\\nWhat is the execution result?\\\\n### Response:\\\\nPASS: test completed successfully\\\\n<|EOT|>\\\\n\\\\n2026-05-20 09:26:38,261 INFO Train file: data/cwm_train.jsonl\\\\n2026-05-20 09:26:38,261 INFO Val file: data/cwm_val.jsonl\\\\n2026-05-20 09:26:38,321 INFO Loaded train=15290, val=1896\\\\n2026-05-20 09:26:52,964 WARNING train: dropped 10/15290 examples with all labels masked (prompt >= max_seq_length)\\\\n2026-05-20 09:26:52,964 INFO train: 0/15280 truncated (0.0%), kept 15280/15290\\\\n2026-05-20 09:26:55,718 INFO val: 0/1896 truncated (0.0%), kept 1896/1896\\\\n2026-05-20 09:26:55,808 INFO Loading model: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 09:26:55,808 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 111.47it/s]\\\\n2026-05-20 09:26:55,881 INFO LoRA target modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj']\\\\n2026-05-20 09:27:02,133 INFO Starting training...\\\\ntrainable params: 16,777,216 || all params: 6,757,289,984 || trainable%: 0.2483\\\\n\\\\r  0%|          | 0/2865 [00:00<?, ?it/s]\\\\r  0%|          | 1/2865 [00:02<1:52:48,  2.36s/it]\\\\r  0%|          | 2/2865 [00:04<1:32:24,  1.94s/it]\\\\r  0%| \n…[truncated 6474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T05:05:44.000498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -1 /home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T05:05:44.000679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef separate_paren_groups(paren_string: str) -> List[str]:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\\\\\\\\n    separate those group into separate strings and return the list of those.\\\\\\\\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\\\\\\\\n    Ignore any spaces in the input string.\\\\\\\\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\\\\\\\\n    ['()', '(())', '(()())']\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    result = []\\\\\\\\n    current_string = []\\\\\\\\n    current_depth = 0\\\\\\\\n\\\\\\\\n    for c in paren_string:\\\\\\\\n        if c == '(':\\\\\\\\n            current_depth += 1\\\\\\\\n            current_string.append(c)\\\\\\\\n        elif c == ')':\\\\\\\\n            current_depth -= 1\\\\\\\\n            current_string.append(c)\\\\\\\\n\\\\\\\\n            if current_depth == 0:\\\\\\\\n                result.append(''.join(current_string))\\\\\\\\n                current_string.clear()\\\\\\\\n\\\\\\\\n    return result\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert separate_paren_groups('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T05:05:44.000864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -1 /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T05:05:44.001090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"diff --git a/sklearn/svm/base.py b/sklearn/svm/base.py\\\\\\\\n--- a/sklearn/svm/base.py\\\\\\\\n+++ b/sklearn/svm/base.py\\\\\\\\n@@ -287,11 +287,14 @@ def _sparse_fit(self, X, y, sample_weight, solver_type, kernel,\\\\\\\\n         n_SV = self.support_vectors_.shape[0]\\\\\\\\n \\\\\\\\n         dual_coef_indices = np.tile(np.arange(n_SV), n_class)\\\\\\\\n-        dual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\\\\\\\\n-                                     dual_coef_indices.size / n_class)\\\\\\\\n-        self.dual_coef_ = sp.csr_matrix(\\\\\\\\n-            (dual_coef_data, dual_coef_indices, dual_coef_indptr),\\\\\\\\n-            (n_class, n_SV))\\\\\\\\n+        if not n_SV:\\\\\\\\n+            self.dual_coef_ = sp.csr_matrix([])\\\\\\\\n+        else:\\\\\\\\n+            dual_coef_indptr = np.arange(0, dual_coef_indices.size + 1,\\\\\\\\n+                                         dual_coef_indices.size / n_class)\\\\\\\\n+            self.dual_coef_ = sp.csr_matrix(\\\\\\\\n+                (dual_coef_data, dual_coef_indices, dual_coef_indptr),\\\\\\\\n+                (n_class, n_SV))\\\\\\\\n \\\\\\\\n     def predict(self, X):\\\\\\\\n         \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Perform regression on samples in X.\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"sklearn/svm/tests/test_svm.py::test_svm_equivalence_sample_weight_C\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"swebench_verified\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"scikit-learn__scikit-learn-14894\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"gold\\\\\\\", \\\\\\\"error_message\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"execution_output\\\\\\\": \\\\\\\"+ pytest -rA sklearn/svm/tests/test_svm.py\\\\\\\\n============================= test session starts ==============================\\\\\\\\nplatform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1\\\\\\\\nrootdir: /testbed, configfile: setup.cfg\\\\\\\\ncollected 86 items\\\\\\\\n\\\\\\\\nsklearn/svm/tests/test_svm.py .......................................... [ 48%]\\\\\\\\n............................................                             [100\n…[truncated 2102 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T05:05:44.001275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -n \"data_dir\\|data_path\\|cwm\\|swebench\\|jsonl\\|load_data\\|train_file\\|--task\" /home/sonny/exec-sim-repair-verifier/train_unified.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T05:05:44.001441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T05:05:44.001581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T05:05:44.001731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/train_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T05:05:44.001926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -n \"data_dir\\|data_path\\|cwm\\|swebench\\|jsonl\\|load_data\\|train_file\\|--task\" /home/sonny/exec-sim-repair-verifier/train_unified.py"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T05:05:44.002090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T05:05:44.002219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -n \"data_dir\\|data_path\\|cwm\\|swebench\\|jsonl\\|load_data\\|train_file\" /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T05:05:44.002348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T05:05:44.002492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "sed -n '280,330p' /home/sonny/exec-sim-repair-verifier/train_unified.py"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T05:05:44.002760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T05:05:44.002999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -n -e \"data_dir\" -e \"data_path\" -e \"cwm\" -e \"swebench\" -e \"jsonl\" -e \"load_data\" -e \"train_file\" -e \"--task\" /home/sonny/exec-sim-repair-verifier/train_unified.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T05:05:44.003180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"9:  python train_unified.py --data_dir data/ --model_name_or_path Qwen/Qwen3-8B \\\\\\\\\\\\n10:      --output_dir checkpoints_cwm_qwen3_8b/ --run_name cwm-qwen3-8b-lora\\\\n13:  python train_unified.py --data_dir data/ --model_name_or_path deepseek-ai/deepseek-coder-6.7b-instruct \\\\\\\\\\\\n14:      --output_dir checkpoints_cwm_deepseek/ --run_name cwm-deepseek-6.7b-lora\\\\n39:    \\\\\\\"cwm\\\\\\\": (\\\\n50:    \\\\\\\"cwm\\\\\\\": \\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\",\\\\n121:def build_messages(code, test, target=None, task=\\\\\\\"cwm\\\\\\\"):\\\\n170:def tokenize_example(tokenizer, code, test, target, max_len, tmpl_kw, task=\\\\\\\"cwm\\\\\\\"):\\\\n200:def load_jsonl(path):\\\\n205:def preprocess_split(tokenizer, data, max_len, name, tmpl_kw, task=\\\\\\\"cwm\\\\\\\"):\\\\n240:    p.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True)\\\\n242:    p.add_argument(\\\\\\\"--task\\\\\\\", choices=[\\\\\\\"cls\\\\\\\", \\\\\\\"cwm\\\\\\\"], default=\\\\\\\"cwm\\\\\\\",\\\\n243:                   help=\\\\\\\"Task: cls (pass/fail classification) or cwm (execution simulation)\\\\\\\")\\\\n244:    p.add_argument(\\\\\\\"--train_file\\\\\\\", default=None, help=\\\\\\\"Override train JSONL filename\\\\\\\")\\\\n246:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"checkpoints_cwm/\\\\\\\")\\\\n299:    if args.train_file:\\\\n300:        train_path = os.path.join(args.data_dir, args.train_file)\\\\n302:        # Prefer repo-level swebench data if available\\\\n303:        repo_path = os.path.join(args.data_dir, \\\\\\\"swebench_full\\\\\\\", \\\\\\\"swebench_train.jsonl\\\\\\\")\\\\n304:        func_path = os.path.join(args.data_dir, \\\\\\\"train.jsonl\\\\\\\")\\\\n307:        train_path = os.path.join(args.data_dir, \\\\\\\"cwm_train.jsonl\\\\\\\")\\\\n310:        val_path = os.path.join(args.data_dir, args.val_file)\\\\n312:        repo_path = os.path.join(args.data_dir, \\\\\\\"swebench_full\\\\\\\", \\\\\\\"swebench_val.jsonl\\\\\\\")\\\\n313:        func_path = os.path.join(args.data_dir, \\\\\\\"val.jsonl\\\\\\\")\\\\n316:        val_path = os.path.join(ar\n…[truncated 228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T05:05:44.003332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -n -e \"data_dir\" -e \"data_path\" -e \"cwm\" -e \"swebench\" -e \"jsonl\" -e \"load_data\" -e \"train_file\" /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T05:05:44.003473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "tail -n +280 /home/sonny/exec-sim-repair-verifier/train_unified.py"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T05:05:44.003626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1:# train_repo_cwm.py — Qwen3 LoRA fine-tuning for repo-level CWM (Code World Model) generation\\\\n2:# Input: data/swebench_full/{swebench_train,swebench_val}.jsonl\\\\n6:# Differences from function-level train_cwm_baseline.py:\\\\n7:#   - Reads swebench_* split files; uses execution_output as target\\\\n37:def load_jsonl(path):\\\\n176:    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\\\\\")\\\\n178:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/checkpoints_repo_cwm/\\\\\\\")\\\\n180:    p.add_argument(\\\\\\\"--run_name\\\\\\\", default=\\\\\\\"repo-cwm-qwen3-4b-lora\\\\\\\")\\\\n218:    train_raw = load_jsonl(os.path.join(args.data_dir, \\\\\\\"swebench_train.jsonl\\\\\\\"))\\\\n219:    val_raw = load_jsonl(os.path.join(args.data_dir, \\\\\\\"swebench_val.jsonl\\\\\\\"))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T05:05:44.003879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    tokenizer = AutoTokenizer.from_pretrained(\\\\n        args.model_name_or_path, trust_remote_code=True, padding_side=\\\\\\\"right\\\\\\\",\\\\n    )\\\\n    setup_tokenizer(tokenizer, family)\\\\n    tmpl_kw = get_chat_template_kwargs(family, tokenizer)\\\\n    log.info(f\\\\\\\"Chat template kwargs: {tmpl_kw}\\\\\\\")\\\\n\\\\n    # Sanity check: render one example to verify template works\\\\n    sample_target = \\\\\\\"pass\\\\\\\" if args.task == \\\\\\\"cls\\\\\\\" else \\\\\\\"PASS: test completed successfully\\\\\\\"\\\\n    sample_text = _try_apply_chat_template(\\\\n        tokenizer,\\\\n        build_messages(\\\\\\\"def f(): return 1\\\\\\\", \\\\\\\"assert f() == 1\\\\\\\", sample_target, task=args.task),\\\\n        tmpl_kw,\\\\n        tokenize=False,\\\\n        add_generation_prompt=False,\\\\n    )\\\\n    log.info(f\\\\\\\"Sample formatted prompt (first 300 chars):\\\\\\\\n{sample_text[:300]}\\\\\\\")\\\\n\\\\n    # ── Data ──\\\\n    if args.train_file:\\\\n        train_path = os.path.join(args.data_dir, args.train_file)\\\\n    elif args.task == \\\\\\\"cls\\\\\\\":\\\\n        # Prefer repo-level swebench data if available\\\\n        repo_path = os.path.join(args.data_dir, \\\\\\\"swebench_full\\\\\\\", \\\\\\\"swebench_train.jsonl\\\\\\\")\\\\n        func_path = os.path.join(args.data_dir, \\\\\\\"train.jsonl\\\\\\\")\\\\n        train_path = repo_path if os.path.exists(repo_path) else func_path\\\\n    else:\\\\n        train_path = os.path.join(args.data_dir, \\\\\\\"cwm_train.jsonl\\\\\\\")\\\\n\\\\n    if args.val_file:\\\\n        val_path = os.path.join(args.data_dir, args.val_file)\\\\n    elif args.task == \\\\\\\"cls\\\\\\\":\\\\n        repo_path = os.path.join(args.data_dir, \\\\\\\"swebench_full\\\\\\\", \\\\\\\"swebench_val.jsonl\\\\\\\")\\\\n        func_path = os.path.join(args.data_dir, \\\\\\\"val.jsonl\\\\\\\")\\\\n        val_path = repo_path if os.path.exists(repo_path) else func_path\\\\n    else:\\\\n        val_path = os.path.join(args.data_dir, \\\\\\\"cwm_val.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Train file: {train_path}\\\\\\\")\\\\n    log.info(f\\\\\\\"Val file: {val_path}\\\\\\\")\\\n…[truncated 3554 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T05:05:44.004291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /proc/886278/cmdline"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T05:05:44.004471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000train_repo_cwm.py\\\\u0000--model_name\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\u0000--device\\\\u0000cuda:0\\\\u0000--batch_size\\\\u00001\\\\u0000--grad_accumulation\\\\u000032\\\\u0000--seed\\\\u0000123\\\\u0000--no_wandb\\\\u0000--output_dir\\\\u0000/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/\\\\u0000--save_total_limit\\\\u00005\\\\u0000--dataloader_num_workers\\\\u00000\\\\u0000--epochs\\\\u00003\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T05:05:44.004608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /proc/886352/cmdline"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T05:05:44.004747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\u0000train_repo_cwm.py\\\\u0000--model_name\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\u0000--device\\\\u0000cuda:0\\\\u0000--batch_size\\\\u00001\\\\u0000--grad_accumulation\\\\u000032\\\\u0000--seed\\\\u0000456\\\\u0000--no_wandb\\\\u0000--output_dir\\\\u0000/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/\\\\u0000--save_total_limit\\\\u00005\\\\u0000--dataloader_num_workers\\\\u00000\\\\u0000--epochs\\\\u00003\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T05:05:44.004904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /proc/917644/cmdline"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T05:05:44.005034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /proc/917644/cmdline: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T05:05:44.005194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "tail -30 /root/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s456-train.log"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T05:05:44.005404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 13:00:00,025 INFO Task: cwm, Run name: deepseek-cwm-repo-s456\\\\n2026-05-20 13:00:00,025 INFO Loading tokenizer: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 13:00:00,103 INFO Chat template kwargs: {}\\\\n2026-05-20 13:00:00,108 INFO Sample formatted prompt (first 300 chars):\\\\n<｜begin▁of▁sentence｜>You are a code execution simulator. Given a code snippet and a test case, predict the execution result.### Instruction:\\\\n## Code\\\\ndef f(): return 1\\\\n\\\\n## Test\\\\nassert f() == 1\\\\n\\\\nWhat is the execution result?\\\\n### Response:\\\\nPASS: test completed successfully\\\\n<|EOT|>\\\\n\\\\n2026-05-20 13:00:00,108 INFO Train file: data/cwm_train.jsonl\\\\n2026-05-20 13:00:00,108 INFO Val file: data/cwm_val.jsonl\\\\n2026-05-20 13:00:00,168 INFO Loaded train=15290, val=1896\\\\n2026-05-20 13:00:15,501 WARNING train: dropped 10/15290 examples with all labels masked (prompt >= max_seq_length)\\\\n2026-05-20 13:00:15,501 INFO train: 0/15280 truncated (0.0%), kept 15280/15290\\\\n2026-05-20 13:00:18,204 INFO val: 0/1896 truncated (0.0%), kept 1896/1896\\\\n2026-05-20 13:00:18,297 INFO Loading model: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\\\\n2026-05-20 13:00:18,298 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 121.22it/s]\\\\n2026-05-20 13:00:18,367 INFO LoRA target modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj']\\\\n2026-05-20 13:00:24,298 INFO Starting training...\\\\ntrainable params: 16,777,216 || all params: 6,757,289,984 || trainable%: 0.2483\\\\n\\\\r  0%|          | 0/2865 [00:00<?, ?it/s]\\\\r  0%|          | 1/2865 [00:02<2:09:17,  2.71s/it]\\\\r  0%|          | 2/2865 [00:04<1:53:16,  2.37s/it]\\\\r  0%|          | 3/2865 [00:06<1:37:01,  2.03s/it]\\\\r  0%|          | 4/2865 [00:08<1:30:02,  1.89s/it]\\\\r  0%|          | 5/28\n…[truncated 6509 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T05:05:44.005658+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the summary:\n\n---\n\n## 1. DeepSeek CWM s456\n\n- **脚本**: `train_unified.py --task cwm`\n- **数据**: `data/cwm_train.jsonl` — **function-level 短格式** (HumanEval)\n- **样本数**: train=15290, val=1896 (dropped 10, 0% truncated)\n- **启动时间**: 2026-05-20 13:00:00\n- **进度**: 日志到 step ~146/2865 (~5%), ~1.75s/it\n- **PID 917644 在 /proc 中不存在** — 进程可能已死或换了 PID\n\n## 2. Qwen CWM s123-v4 (PID 886278)\n\n- **脚本**: `train_repo_cwm.py`\n- **命令**: `train_repo_cwm.py --model_name Qwen3-8B --device cuda:0 --seed 123 --epochs 3`\n- **数据**: `swebench_full/swebench_train.jsonl` — **repo-level 长格式** (SWE-bench)\n- **样本数**: train=70748, val=9335\n- **Class weights**: fail=1.7009, pass=0.2991\n- **截断率**: train 4.5%, **val 20.2%**\n- **进度**: step 100/6633 (~1.5%), ~12s/it\n- **Loss**: 24.49 → 18.50\n\n## 3. Qwen CWM s456-v3 (PID 886352)\n\n- **脚本**: `train_repo_cwm.py`\n- **命令**: `train_repo_cwm.py --model_name Qwen3-8B --device cuda:0 --seed 456 --epochs 3`\n- **数据**: 同上 swebench_full (70748 samples)\n- **Class weights**: fail=1.7009, pass=0.2991\n- **进度**: step 100/6633 (~1.5%), ~12s/it\n- **Loss**: 22.61 → 18.94\n\n两个 Qwen 训练完全对称，只是 seed 不同。\n\n## 4. DeepSeek s42 vs s123 对比\n\n日志文件列表：\n```\ndeepseek-cwm-repo-s123-eval.log\ndeepseek-cwm-repo-s123-train.log\ndeepseek-cwm-repo-s123.log\ndeepseek-cwm-repo-s42-seq4096-eval.log   ← s42 只有 eval 日志，没有 train 日志\ndeepseek-cwm-repo-s456-train.log\ndeepseek-cwm-repo.log\n```\n\n**DeepSeek s123 训练日志**: 同样使用 `data/cwm_train.jsonl` (function-level, 15290), 已跑到 epoch ~0.99 (step 955/2865), loss 从 2.57 降到 0.039。\n\n## 5. 数据文件\n\n| 文件 | 行数 | 类型 | 内容 |\n|------|------|------|------|\n| `data/cwm_train.jsonl` | 15,290 | function-level | keys: code, test, target, label, source, problem_id, mutation_type; target=\"PASS: test completed successfully\" |\n| `data/swebench_full/swebench_train.jsonl` | 70,748 | repo-level | keys: code(diff), test(test path), label, source, problem_id, mutation_type, error_message, execution_output, metadata |\n| `data/cwm_val.jsonl`, `cwm_test.jsonl` | 存在 | function-level | — |\n| `swebench_full/cwm_*.jsonl` | **不存在** | — | — |\n\n## 6-7. 训练脚本数据加载逻辑\n\n**`train_unified.py`**:\n- `--task cwm` (默认) → `data/cwm_train.jsonl` + `cwm_val.jsonl` (function-level)\n- `--task cls` → 优先 `swebench_full/swebench_train.jsonl`，回退 `train.jsonl`\n- `--train_file` 可手动覆盖\n\n**`train_repo_cwm.py`**:\n- 固定读取 `swebench_full/swebench_train.jsonl` (repo-level)\n- 内部有 class weights → **实际做 pass/fail 分类**，虽然名字叫 CWM\n\n---\n\n## 关键发现\n\n**DeepSeek s456 和 s123 用的是完全相同的 function-level 数据 (`cwm_train.jsonl`, 15290 条)**，运行名里虽然有 \"repo\" 字样，但实际走的是 `train_unified.py --task cwm`，加载的是 HumanEval function-level 短数据，不是 repo-level swebench 数据。\n\n如果 DeepSeek s456 的目的是训 repo-level CWM（和 Qwen 对齐），**那数据加载是错的** — 它应该用 `train_repo_cwm.py` 或者用 `train_unified.py --train_file swebench_full/swebench_train.jsonl`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_urgent-check-training-data_20260520T050302"
+          },
+          "id": "event-000047"
+        }
+      ],
+      "message_count": 47
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-urgent-check-training-data.md"
+}

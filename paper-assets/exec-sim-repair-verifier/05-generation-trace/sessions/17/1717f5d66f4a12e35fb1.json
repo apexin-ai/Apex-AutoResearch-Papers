@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1717f5d66f4a12e35fb1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_21_1778949239.md",
+  "task_key": "loop_21_1778949239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1778949239.md",
+    "occurrence": 1,
+    "bytes": 3890,
+    "sha256": "19a3857ab7c1f86249d4348ee87c7bde2cd0ac0800797c294d085d44970e258b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-16T16:33:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: seetacloud-westd-4x5090 的 cuda:0/1/2/3（4 张 5090）\n- DeepSeek 实验用 `--no_wandb`，指标只在日志文件里，不要去 W&B 查\n- checkpoint 路径统一在 `/root/autodl-tmp/checkpoints_*`，不要写到根分区\n- train_unified.py 的 `--task cls` 和 `--task cwm` 是核心对比轴，不可混淆\n- D103 硬约束: seq_length/bs/precision/lr 变更需 Director 审批\n- cwm-repo 的 grad_accum=8 → total 13266 steps（非 6633），不要误判进度\n\n### 2. 🖥️ 基础设施快照\n- 服务器: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier\n- Python: /root/miniconda3/bin/python (conda base env, `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 模型路径: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\n- HF_HUB_OFFLINE=1 (模型已下载，离线模式)\n- 活跃进程:\n  - deepseek-cls-repo: PID 470263, cuda:0, cron 监控中\n  - deepseek-cwm-repo: PID 479953, cuda:1, cron 监控中\n  - deepseek-traj-func: PID 504483, cuda:2, cron 监控中, log=/tmp/deepseek_traj_func.log\n- Checkpoint 路径: /root/autodl-tmp/checkpoints_deepseek_cls_repo/, /root/autodl-tmp/checkpoints_deepseek_cwm_repo/, /root/autodl-tmp/checkpoints_deepseek_traj_func/\n- Eval 脚本已由 Worker `worker_code_deepseek-repo-eval-prep` 提前准备好\n\n### 3. 📊 当前状态\nSession #21 刚完成初始化。发现 TRAJ func Worker 已启动训练但未注册 registry/cron，已补注册修复。向 Director 汇报了全局状态。\n\nRegistry RUNNING:\n- `deepseek-cls-repo` — DeepSeek CLS repo-level, cuda:0, 26% (1754/6633), ETA May 17 04:00 UTC\n- `deepseek-cwm-repo` — DeepSeek CWM repo-level, cuda:1, 12% (1643/13266), ETA May 17 14:00 UTC\n- `deepseek-traj-func` — DeepSeek TRAJ func-level, cuda:2, 1512 steps, ETA ~12:55 UTC today\n\n等待中:\n- deepseek-traj-func cron 回调（~12:55 UTC）→ 跑 eval\n- deepseek-cls-repo cron 回调（~May 17 04:00）→ cuda:3 跑 eval\n- deepseek-cwm-repo cron 回调（~May 17 14:00）→ cuda:2 跑 eval\n\n### 4. 📋 待办\n- deepseek-traj-func cron 回调（进程结束）→ spawn Worker SSH 读日志提取 metrics → eval on cuda:2 → update registry + ROADMAP TRAJ 格\n- deepseek-cls-repo cron 回调 → spawn Worker: 读日志 + 跑 eval (cuda:3, test set n=9784) → update registry → 与 Qwen CLS repo 对比\n- deepseek-cwm-repo cron 回调 → spawn Worker: 读日志 + 跑 eval (cuda:2, test set n=9784) → update registry → 计算 CLS-CWM repo gap\n- 三个 DeepSeek repo 实验全部 DONE → 汇总 cross-model repo-level 对比 → 若 gap 复现: C1 升级 \"cross-model\"；若不复现: red-section Framing 提案 → 通知 Director\n- 全部结果齐全（预计 May 17 18:00 UTC）→ 论文最终更新\n\n### 5. 🎯 战略上下文\n- 核心论点: CLS formulation >> CWM for execution simulation。已在 Qwen 4B/8B repo-level 验证 19-26pp gap + CWM 有 53-74% unparseable（generation bottleneck）\n- D108 扩展第二模型家族 (DeepSeek 6.7B) 回应 generalizability concern\n- D110 确认: func-level CLS≈CWM across all models (gap 0.02-2.43pp)，叙事已调整为\"gap appears at repo-level complexity\"\n- EMNLP 2026 ARR DDL = May 25（剩 9 天），DeepSeek repo-level 结果是论文最后一块拼图\n- **关键判断点**: DeepSeek repo-level 是否复现 Qwen 的大 gap。如果 DeepSeek CWM repo 也有高 unparseable rate + 低 accuracy → cross-model 铁证。如果不复现 → 需要 reframe 为 model-family-specific\n- 易错点: CWM unparseable 默认 pass（majority class），分析时必须区分 \"unparseable defaulting to majority\" vs \"真正预测错误\"，报告 parseable-only accuracy\n- 论文 v41, consistency 0 critical / 0 warning, 等最终数据填入即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1778949239.md"
+}

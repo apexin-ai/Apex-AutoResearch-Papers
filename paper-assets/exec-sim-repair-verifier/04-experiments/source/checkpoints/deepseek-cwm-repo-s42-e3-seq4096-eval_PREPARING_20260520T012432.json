@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek-cwm-repo-s42-e3-seq4096-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T01:24:30.555Z",
+    "updated_at": "2026-05-20T01:24:31.675Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T01:24:32.119349+00:00",
+  "trigger": "update_registry"
+}

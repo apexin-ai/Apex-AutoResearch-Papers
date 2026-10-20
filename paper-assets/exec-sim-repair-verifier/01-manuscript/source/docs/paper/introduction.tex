@@ -1,0 +1,20 @@
+\section{Introduction}
+\label{sec:introduction}
+
+LLM-based automated program repair systems increasingly rely on test-time compute scaling: generating $K$ candidate patches and selecting the best via a verifier~\cite{snell2024scaling}. Full execution verification is reliable but expensive (\$1--3 per candidate at repository scale\footnote{Based on per-instance costs reported by \citet{yang2024sweagent} and \citet{xia2024agentless}.}), which has driven demand for execution-free alternatives. Three distinct formulations have emerged for this task: \textbf{generation-based simulation}~\cite{meta2025cwm,maimon2026selfexecution} predicts execution output strings per test; \textbf{trajectory-level scoring}~\cite{shum2025swerm} predicts a binary patch verdict without per-test decomposition; and \textbf{per-test classification}~\cite{ni2023lever,chen2023codet} predicts a pass/fail token per test. Each makes different tradeoffs between diagnostic granularity, output complexity, and inference cost.
+
+Despite active development along each axis, no prior work provides a systematic comparison holding model capacity, training data, and compute constant. Practitioners choosing a formulation for their verification pipeline must rely on results from different models, different datasets, and different evaluation protocols. Whether one formulation is uniformly preferable, or whether the choice depends on properties of the code being verified, remains an open empirical question. This connects to a broader pattern in NLP: task formulation (classification vs.\ generation vs.\ span extraction) systematically affects performance~\cite{raffel2020t5}, but the conditions under which each wins remain task-dependent and empirically unresolved. Recent evidence that generation-based verification outperforms classification in mathematical reasoning~\cite{hosseini2025genrm} raises a further question: does this advantage transfer to code verification, where outputs are longer and format-constrained? A related question is whether formulation choice matters at all relative to more basic decisions: at what complexity level does fine-tuning become necessary, and does formulation selection add value beyond what fine-tuning alone provides?
+
+We present the first systematic comparison across two code LLM families (Qwen3, DeepSeek-Coder), two complexity levels, and multiple seeds under ${\leq}$8B LoRA fine-tuning. By controlling model capacity, training data, and evaluation protocol, we isolate the effect of formulation choice itself. Our central finding is that \emph{code complexity moderates the classification--generation tradeoff}: at function level, all formulations achieve comparable accuracy; at repository level, this equivalence breaks down as generation-based verification suffers format collapse. Figure~\ref{fig:reformulation} illustrates the three formulations.
+
+We make the following contributions:
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Complexity-moderated equivalence and divergence.} At function level, classification and generation are statistically equivalent; at repository level, generation accuracy drops sharply due to output format complexity, while classification and trajectory scoring remain competitive (\S\ref{sec:equivalence}, \S\ref{sec:repo}).
+
+\item \textbf{Scaling evidence.} At 14B, function-level gaps narrow to ${\sim}$1 percentage point (pp) across all formulations, but whether the repo-level divergence is capacity-contingent or formulation-inherent remains open (\S\ref{sec:scaling}).
+
+\item \textbf{Error complementarity.} An oracle analysis shows that formulations make partially complementary errors, with upper bounds substantially above individual formulations, providing quantitative motivation for complexity-aware routing (\S\ref{sec:analysis}).
+
+\item \textbf{Failure mode taxonomy.} We identify three distinct failure modes at repository level---format collapse, decision collapse, and aggregation penalty---each tied to specific formulation--complexity interactions and amenable to targeted mitigation (\S\ref{sec:repo}).
+\end{itemize}

@@ -1,0 +1,74 @@
+# reviewer / loop_1.md
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_1.md`
+- **Structured JSON:** [`a8ceb756063be6a13db4.json`](../../sessions/a8/a8ceb756063be6a13db4.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_wall_time
+updated: '2026-05-12T04:27:49+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只有 **home-1x5090 cuda:0**（单卡 RTX 5090 32GB），CUDA_VISIBLE_DEVICES=0 是唯一合法值
+- SSH 账号 **sonny**，代码根目录 `/home/sonny/exec-sim-repair-verifier/`
+- **SWE-bench 全量运行正在跑**（PID 2312582, nohup, CPU-only Docker），不要 kill 这个进程
+- mvp-b-train registry 的 P/R 值**至今仍是错的**（第 4 次标记未修复）——引用 P/R 时必须从 `eval_results.json` 读，不要信 registry
+
+### 2. 🖥️ 基础设施快照
+- 服务器：home-1x5090（1× RTX 5090 32GB），用户 sonny
+- 工作目录：`/home/sonny/exec-sim-repair-verifier/`
+- Python：`python3`（系统 Python 3.10），无 conda/venv
+- Docker：v29.1.3（刚装的），swebench v4.1.0
+- 模型：Qwen/Qwen3-4B（HuggingFace，自动缓存）
+- Checkpoints：`checkpoints/best/`(seed42 原始), `checkpoints_seed{42,123,456}/best/`, `checkpoints_cwm/best/`, `checkpoints_trace/`(trace-then-judge)
+- 数据：`data/{train,val,test}.jsonl`(函数级 19K), `data/traj_{train,val,test}.jsonl`(trajectory-level 10K), `data/swebench_pilot/`, `data/swebench_fix_test/`, `data/swebench_full/`(全量运行产出目录)
+- 活跃进程：PID 2312582（SWE-bench 全量 Docker 执行，CPU），trace-then-judge 训练可能已完成或仍在跑（GPU 94% 27GB 最后一次看到）
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/`
+
+### 3. 📊 当前状态
+**刚完成的审查**：SWE-bench pipeline critical fixes（3个全部修复验证通过）、multi-seed 核实（88.41±0.96% acc, null result 稳健）、trace-then-judge 方法论 critical（mutation type 信息泄漏）、trajectory-level 数据准备（PASS）、SWE-bench 全量启动（250 instances, 2/240 gold 阶段）。
+
+**Registry 状态**：
+- `trace-then-judge`: QUEUED — 训练可能在跑或已完成，我标了 critical（方法论有缺陷）但 Director 未回复是否继续
+- `multi-seed-core`: QUEUED（实际已完成 EXIT_CODE=0，status 未更新）
+- 其他 5 个实验: DONE
+
+**等待中**：
+- SWE-bench 全量运行完成（预计 8-15h）
+- Director 对 trace-then-judge critical 的裁决
+- trajectory-level baseline 训练（等 GPU 空闲）
+
+### 4. 📋 待办（条件触发式）
+- SWE-bench 全量完成 → 验证数据质量（test 字段有代码？execution_output 无 conda 噪声？F2P 比例？总记录数？）→ 确认可用于 repo-level 训练
+- trace-then-judge 训练完成 → 审查结果，但**不要对结论赋予过高权重**（trace 模板泄漏 mutation type，方法论有缺陷）
+- trajectory-level baseline 训练完成 → 核实 accuracy，与 per-test classification 对比
+- repo-level classification + CWM 训练完成 → **这是 make-or-break**：F1 diff ≥3pp+p<0.05 → 全力推 EMNLP Main；<1pp → kill C1 pivot Plan B
+- Agent 更新 registry → 检查 multi-seed-core 是否改为 DONE，mvp-b-train P/R 是否修正
+- ROADMAP 更新 → 检查 GPU 状态是否如实报告（之前 3 次虚报）
+
+### 5. 🎯 战略上下文
+- **决策链**：D001(MVP 方案) → D002(MVP-A 有条件通过) → D003(P2P 是关键) → D004(P2P~1% reframe) → D005(CWM baseline P0) → D006(MVP 通过) → D007(函数级 null, complexity-dependent pivot) → D008(repo-level go/no-go 标准)
+- **三次 pivot**：granularity → reformulation → complexity-dependent。每次有数据支撑但累积 rationalization 风险高。D007 是最后一搏——repo-level 如果也 null，项目降级 Plan B（EMNLP Findings/workshop）
+- **最容易判断错的事**：(1) 不要被 trace-then-judge 结果分散注意力——方法论有缺陷，结果无论如何不可解释；(2) SWE-bench pilot 有两份数据：旧版 `data/swebench_pilot/`(7349条，3个critical问题) 和修复版 `data/swebench_fix_test/`(1953条，质量OK)，不要引用旧版；(3) registry mvp-b-train P/R 是错的，必须从 eval 文件读；(4) GPU 状态 ROADMAP 曾 3 次虚报，每次审查都要独立 `nvidia-smi` 核实
+- **DDL**：ARR May 25, 2026（~12 天）。关键路径：SWE-bench 数据(8-15h) → repo-level 训练+eval(~1天) → 写作(3-5天)。零容错
+
+
+---

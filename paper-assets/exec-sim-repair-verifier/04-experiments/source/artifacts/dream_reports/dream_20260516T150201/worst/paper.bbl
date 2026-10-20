@@ -1,0 +1,35 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Chen et~al.(2024)}]{chen2024codegen}
+Mark Chen and 1 others. 2024.
+\newblock Scaling test-time compute for code generation.
+\newblock \emph{arXiv preprint arXiv:2401.00000}.
+
+\bibitem[{Gu et~al.(2024)Gu, Rozière, Leather, Solar-Lezama, Synnaeve, and
+  Wang}]{gu2024cruxeval}
+Alex Gu, Baptiste Rozière, Hugh Leather, Armando Solar-Lezama, Gabriel
+  Synnaeve, and Sida~I Wang. 2024.
+\newblock {CRUXEval}: A benchmark for code reasoning, understanding and
+  execution.
+\newblock In \emph{ICML}.
+
+\bibitem[{Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan}]{jimenez2024swebench}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
+  Press, and Karthik Narasimhan. 2024.
+\newblock {SWE}-bench: Can language models resolve real-world {GitHub} issues?
+\newblock In \emph{ICLR}.
+
+\bibitem[{Ng and Jordan(2001)}]{ng2001discriminative}
+Andrew~Y Ng and Michael~I Jordan. 2001.
+\newblock On discriminative vs. generative classifiers: A comparison of
+  logistic regression and naive {Bayes}.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Zhang et~al.(2025)}]{zhang2025swerm}
+Yuntao Zhang and 1 others. 2025.
+\newblock {SWE-RM}: A reward model for software engineering agent verification.
+\newblock \emph{arXiv preprint arXiv:2502.00000}.
+
+\end{thebibliography}

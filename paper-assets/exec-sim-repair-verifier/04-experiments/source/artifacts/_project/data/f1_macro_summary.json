@@ -1,0 +1,372 @@
+{
+  "cls8b-eval-seed42": {
+    "f1_pass": 90.86,
+    "f1_fail": 90.06,
+    "f1_macro": 90.46,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "model-size-scaling-cls8b": {
+    "f1_pass": 90.86,
+    "f1_fail": 90.06,
+    "f1_macro": 90.46,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls8b-eval-seed123": {
+    "f1_pass": 89.54,
+    "f1_fail": 89.19,
+    "f1_macro": 89.36,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls8b-seed123": {
+    "f1_pass": 89.5,
+    "f1_fail": 89.2,
+    "f1_macro": 89.35,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls-seed789": {
+    "f1_pass": 88.9,
+    "f1_fail": 89.1,
+    "f1_macro": 89.0,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls8b-seed456": {
+    "f1_pass": 88.2,
+    "f1_fail": 88.41,
+    "f1_macro": 88.31,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls-seed0": {
+    "f1_pass": 87.79,
+    "f1_fail": 88.08,
+    "f1_macro": 87.94,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "deepseek-cwm-func-s123": {
+    "f1_macro": 87.88,
+    "source": "direct:test_f1_macro"
+  },
+  "model-size-scaling-cwm8b": {
+    "f1_pass": 87.57,
+    "f1_fail": 87.77,
+    "f1_macro": 87.67,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm-seed0": {
+    "f1_pass": 87.18,
+    "f1_fail": 87.93,
+    "f1_macro": 87.56,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm-baseline": {
+    "f1_pass": 87.31,
+    "f1_fail": 87.71,
+    "f1_macro": 87.51,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "per-test-precision-recall": {
+    "f1_pass": 87.15,
+    "f1_fail": 87.86,
+    "f1_macro": 87.5,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "per-test-majority-voting": {
+    "f1_macro": 87.5,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "traj-level-seed456": {
+    "f1_resolved": 85.8,
+    "f1_unresolved": 88.7,
+    "f1_macro": 87.25,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "traj-level-seed789": {
+    "f1_resolved": 86.17,
+    "f1_unresolved": 88.27,
+    "f1_macro": 87.22,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "cwm-seed123": {
+    "f1_pass": 86.95,
+    "f1_fail": 87.44,
+    "f1_macro": 87.19,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm-rank32-alpha64-ablation": {
+    "f1_macro": 87.03,
+    "source": "direct:f1_macro"
+  },
+  "cwm-rank32-ablation-v2": {
+    "f1_pass": 86.9,
+    "f1_fail": 87.1,
+    "f1_macro": 87.0,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm8b-seed123": {
+    "f1_pass": 86.83,
+    "f1_fail": 87.13,
+    "f1_macro": 86.98,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm-seed456": {
+    "f1_pass": 86.66,
+    "f1_fail": 87.29,
+    "f1_macro": 86.97,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "deepseek-cls-func": {
+    "f1_macro": 86.92,
+    "source": "direct:test_f1_macro"
+  },
+  "deepseek-cls-func-s123": {
+    "f1_macro": 86.77,
+    "source": "direct:test_f1_macro"
+  },
+  "cwm-seed789": {
+    "f1_pass": 86.74,
+    "f1_fail": 86.6,
+    "f1_macro": 86.67,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cwm8b-seed456": {
+    "f1_pass": 85.96,
+    "f1_fail": 86.51,
+    "f1_macro": 86.23,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "deepseek-cwm-func": {
+    "f1_macro": 85.73,
+    "source": "direct:test_f1_macro"
+  },
+  "traj-level-seed0": {
+    "f1_resolved": 83.41,
+    "f1_unresolved": 87.37,
+    "f1_macro": 85.39,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "traj-level-finetuned": {
+    "f1_resolved": 83.18,
+    "f1_unresolved": 87.5,
+    "f1_macro": 85.34,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "traj-level-seed123": {
+    "f1_resolved": 83.52,
+    "f1_unresolved": 87,
+    "f1_macro": 85.26,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "cls4b-v5-val-sweep-ckpt4600": {
+    "f1_macro": 85.04,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-v5-val-sweep-ckpt4400-v3": {
+    "f1_macro": 84.94,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-v5-ckpt4000-val5120-eval": {
+    "f1_macro": 84.25,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-v5-val-sweep-ckpt4200": {
+    "f1_macro": 83.07,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1000-val8192-eval": {
+    "f1_macro": 82.72,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-seed123-ckpt800-val5120-eval": {
+    "f1_macro": 81.95,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt3000-val8192-eval": {
+    "f1_macro": 81.73,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1200-val8192-v3": {
+    "f1_macro": 81.25,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt400-test8192-eval": {
+    "f1_macro": 81.18,
+    "source": "direct:f1_macro"
+  },
+  "deepseek-traj-repo-8k": {
+    "f1_resolved": 84.21,
+    "f1_unresolved": 76.92,
+    "f1_macro": 80.56,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "cls4b-v5-ckpt600-val5120-eval": {
+    "f1_macro": 79.81,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6400-val8192-eval": {
+    "f1_macro": 79.66,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6200-val8192-eval": {
+    "f1_macro": 79.26,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt800-val8192-eval": {
+    "f1_macro": 79.2,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6600-val8192-eval": {
+    "f1_macro": 79.02,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt800-test8192-eval": {
+    "f1_macro": 78.97,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1600-test8192-eval": {
+    "f1_macro": 78.94,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1600-val8192-v2": {
+    "f1_macro": 78.94,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1400-test8192-eval": {
+    "f1_macro": 78.9,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6633-val8192-eval": {
+    "f1_macro": 78.79,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt3000-test8192-eval": {
+    "f1_macro": 78.38,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-resume-ckpt3600-test-v2": {
+    "f1_macro": 78.17,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6400-test-eval-v2": {
+    "f1_macro": 77.91,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6600-test-eval": {
+    "f1_macro": 77.58,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6633-test-eval": {
+    "f1_macro": 77.56,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1000-test8192-eval": {
+    "f1_macro": 77.5,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1200-test8192-eval": {
+    "f1_macro": 77.47,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1400-val8192-eval": {
+    "f1_macro": 77.15,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-seed123-ckpt6200-test-eval-v2": {
+    "f1_macro": 77.01,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt1000-test-seq2048-ablation": {
+    "f1_macro": 76.88,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt3600-seq2048-ablation": {
+    "f1_macro": 76.8,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-v5-ckpt4600-test-eval": {
+    "f1_macro": 75.63,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt600-test8192-eval": {
+    "f1_macro": 75.12,
+    "source": "direct:f1_macro"
+  },
+  "deepseek-traj-repo-8k-s123": {
+    "f1_resolved": 76.92,
+    "f1_unresolved": 72.73,
+    "f1_macro": 74.83,
+    "source": "avg(resolved_f1, unresolved_f1)"
+  },
+  "cls4b-v5-ckpt600-test5120-eval": {
+    "f1_macro": 74.74,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cls-v5": {
+    "f1_macro": 74.74,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-v5-ckpt4400-test5120-eval": {
+    "f1_macro": 74.44,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cls-v5-conda": {
+    "f1_macro": 71.17,
+    "source": "direct:f1_macro"
+  },
+  "llm-judge-32b-zeroshot": {
+    "f1_pass": 65.68,
+    "f1_fail": 75.91,
+    "f1_macro": 70.8,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls8b-seed123-ckpt200-test-eval": {
+    "f1_macro": 70.18,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cls-8b": {
+    "f1_macro": 69.05,
+    "source": "direct:f1_macro"
+  },
+  "cls8b-s42-ckpt200-test8192-eval": {
+    "f1_macro": 68.18,
+    "source": "direct:f1_macro"
+  },
+  "cls4b-seed123-ckpt800-test5120-eval-v2": {
+    "f1_macro": 67.03,
+    "source": "direct:f1_macro"
+  },
+  "llm-judge-8b-zeroshot": {
+    "f1_pass": 50.5,
+    "f1_fail": 72.2,
+    "f1_macro": 61.35,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "cls8b-s42-ckpt200-val8192-eval-v2": {
+    "f1_macro": 61.17,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cwm-v11": {
+    "f1_macro": 52.99,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cwm-v12": {
+    "f1_macro": 51.67,
+    "source": "direct:eval_test_f1_macro"
+  },
+  "repo-level-cwm-seed123-conda": {
+    "f1_macro": 43.43,
+    "source": "direct:eval_test_f1_macro"
+  },
+  "mvp-b-train": {
+    "f1_pass": 0.87,
+    "f1_fail": 0.88,
+    "f1_macro": 0.88,
+    "source": "avg(pass_f1, fail_f1)"
+  },
+  "repo-level-cls-v4": {
+    "f1_macro": 0.57,
+    "source": "direct:f1_macro"
+  },
+  "repo-level-cwm-v10": {
+    "f1_macro": 0.47,
+    "source": "direct:f1_macro"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "cls4b-seed123-ckpt800-test5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:16:07.798Z",
+    "updated_at": "2026-05-15T09:36:38.776Z",
+    "spec": {
+      "command": "python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_seed123_home/checkpoint-800 --model_name Qwen/Qwen3-4B --split test --max_seq_length 5120 --batch_size 16 --device cuda:0 --max_new_tokens 8 --output_dir results/cls4b_seed123_ckpt800_test5120",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "3261669",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log",
+      "submitted_at": "2026-05-15T09:16:22.098Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 123,
+      "checkpoint_source": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+      "eval_data": "test",
+      "data_path": "repo-level-cls-test",
+      "data_count": 9784,
+      "checkpoint_path": "checkpoints_repo_cls_seed123_home/checkpoint-800",
+      "wall_clock_seconds": 1216.7,
+      "gpu_hours": 0.34
+    },
+    "hypothesis": "CLS 4B seed123 val-best (ckpt-800, val=87.92%) test@5120。补充 4B multi-seed repo-level test 数据。",
+    "parent": "repo-level-cls-seed123-home",
+    "conclusion": "failed",
+    "notes": "v1 失败：home 版 eval_repo_cls.py 不支持 --max_new_tokens 参数",
+    "completed_at": "2026-05-15T09:36:38.776Z"
+  },
+  "timestamp": "2026-05-15T09:36:39.031523+00:00",
+  "trigger": "update_registry"
+}

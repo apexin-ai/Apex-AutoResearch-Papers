@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "113bfb0eb753243c665b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis exp a routing",
+  "task_key": "worker_analysis_exp-a-routing_20260519T030014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-a-routing_20260519T030014_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "2093aeaa38d7ba4b8c4d23ecc5afb287d4367b07f4440653dccb8774c6876d95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Oracle routing = 100%**（7个CLS config覆盖全部48 variant），但实用routing策略受限于N=48样本量，最佳实用结果是 test-count heuristic 85.42% (+4.17pp)。\n\n| Strategy | Acc | vs Best |\n|---|---|---|\n| Best single CLS | 81.25% | baseline |\n| Oracle (7 CLS) | 100.00% | +18.75pp |\n| Oracle (best pair) | 95.83% | +14.58pp |\n| Test-count heuristic | **85.42%** | **+4.17pp** |\n| Agreement confidence | 83.33% | +2.08pp |\n| Majority/weighted vote | 75-79% | negative |\n\n**缺失数据**: TRAJ per-variant 预测不存在（eval脚本未保存，需GPU重跑），无法做CLS+TRAJ跨formulation routing。CWM repo-level 太弱(45-52%)，仅比best CLS多救回1个variant。\n\n**结论**: Routing的oracle potential很大（+18.75pp），但在N=48上难以实现可靠的practical routing。建议在paper中作为analysis/discussion point呈现互补性发现，而非核心贡献。如要强化routing故事，需先重跑TRAJ eval保存per-variant数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-a-routing.md"
+}

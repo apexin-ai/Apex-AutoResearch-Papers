@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01b1cea2f7e811adc1cb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check gpu1 cwm s42 status",
+  "task_key": "worker_ops_check-gpu1-cwm-s42-status_20260519T023215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gpu1-cwm-s42-status_20260519T023215_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "c422987cdc572ca8a739dc34e1b7a8f5bc9a58898505930b10c5533d0bd75482"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CWM s42 best @4096 — 已完成**\n\n- **目录**: `deepseek_cwm_repo_s42_test`\n- **Checkpoint**: `checkpoints_deepseek_cwm_repo/best/`，`max_seq_length=4096`\n- **GPU 1 状态**: 空闲（0% 利用率，0 MiB 显存），进程已退出\n\n| 指标 | 值 |\n|---|---|\n| Total | 9784 |\n| Overall accuracy | 5548/9784 = **56.70%** |\n| Unparseable | 4992/9784 = **51.0%** |\n| Parseable accuracy | 1855/4792 = **38.71%** |\n| F1 macro | 51.16 |\n| F1 pass / F1 fail | 67.61 / 34.71 |\n\n注意：unparseable 率极高（51%），导致 overall accuracy 低于 majority baseline（72.96%）。另外 `deepseek_cwm_repo_s42_epoch2`（同 checkpoint-8844 但可能 seq=8192 default）在 3050/9784 处中断，进程已死，无错误日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu1-cwm-s42-status.md"
+}

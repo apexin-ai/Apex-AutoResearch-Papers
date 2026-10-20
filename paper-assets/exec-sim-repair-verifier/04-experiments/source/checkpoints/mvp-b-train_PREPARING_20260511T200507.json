@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp-b-train",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-11T19:24:04.462Z",
+    "updated_at": "2026-05-11T20:05:07.759Z",
+    "hypothesis": "Qwen3-4B LoRA 在函数级 (code, test) → pass/fail 上可达 per-class F1 >65%, accuracy > majority+10pp",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints/ --wandb_project exec-sim-repair-verifier --no_wandb --seed 42 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints/best/ --output eval_results.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2099089",
+      "log_path": "~/runs/exec-sim-repair-verifier/mvp-b-train.log",
+      "submitted_at": "2026-05-11T19:42:46.505Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    }
+  },
+  "timestamp": "2026-05-11T20:05:07.771035+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,18 @@
+# CWM 8B Val Sweep — Individual commands
+# Each command is self-contained (source conda + cd + run)
+# Auto-set by script: val → max_seq_length=8192, batch_size=2
+
+# === checkpoint-5700 on cuda:0 ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5700/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --device cuda:0 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm8b_val_sweep/ckpt_5700/
+
+# === checkpoint-5800 on cuda:1 ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5800/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --device cuda:1 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm8b_val_sweep/ckpt_5800/
+
+# === checkpoint-5900 on cuda:2 ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5900/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --device cuda:2 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm8b_val_sweep/ckpt_5900/
+
+# === checkpoint-6000 on cuda:3 ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6000/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --device cuda:3 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm8b_val_sweep/ckpt_6000/
+
+# === checkpoint-400 on cuda:0 (Round 2, after Round 1 finishes) ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --device cuda:0 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm8b_val_sweep/ckpt_400/

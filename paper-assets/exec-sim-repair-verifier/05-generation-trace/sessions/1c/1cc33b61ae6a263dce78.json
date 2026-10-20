@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cc33b61ae6a263dce78",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops post reboot gpu check",
+  "task_key": "worker_ops_post-reboot-gpu-check_20260516T215636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-reboot-gpu-check_20260516T215636_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "b9da51d4924935d9be6d11179910928fb4b2a06bfc2f2e6e4242772514bcf8a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 GPU 存活，训练正常进行。汇总如下：\n\n| GPU | 进程名 | PID | 显存 | 利用率 | Step/Total | 进度 | 剩余时间估算 |\n|-----|--------|-----|------|--------|------------|------|-------------|\n| 0 | cls-repo-v4 (s42) | 548885 | 19557M | 100% | 1012/6633 | 15% | ~17h |\n| 1 | cwm-repo-s42 | 479953 | 19713M | 90% | 5855/13266 | 44% | ~16h |\n| 2 | cls-repo-s123 | 542514 | 17633M | 100% | 1412/6633 | 21% | ~16h |\n| 3 | cwm-repo-s123 | 542906 | 18061M | 99% | 1863/13266 | 14% | ~27h |\n\n**tmux sessions**: `ckpt_backup`, `cls-repo-v4`, `deepseek-cls-repo-s123`, `deepseek-cwm-repo`, `deepseek-cwm-repo-s123` — 全部存活。\n\n**警告**: GPU 1 的 cwm-repo-s42 在 epoch 1 eval 结束时报 `eval_loss: nan`。训练仍在继续（step 5855，epoch 2 进行中），但 eval loss 异常需要关注——可能是 eval 数据的数值溢出问题，或者模型在某些 eval 样本上产生了极端输出。建议后续检查 train loss 是否正常以及 epoch 2 eval 是否仍为 nan。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-reboot-gpu-check.md"
+}

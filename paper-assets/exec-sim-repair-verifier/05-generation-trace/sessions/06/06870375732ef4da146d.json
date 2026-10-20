@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06870375732ef4da146d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research paper error analysis prep",
+  "task_key": "worker_research_paper-error-analysis-prep_20260515T033258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-error-analysis-prep_20260515T033258_result.json",
+    "occurrence": 1,
+    "bytes": 1165,
+    "sha256": "1a2717a1931984f83c2a66869efa3a01c9a4b8a14d55fc8920fb0ac7bd89d79c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/error_analysis_data.md`（artifact ID: `art_20260515_1a8f0d`）\n\n文件包含 10 个章节：\n1. **Headline numbers** — CWM v12/seed123 vs CLS 4B/8B 全对比表，含 exp_id 列表\n2. **Error mode breakdown** — 75.2% unparseable 的 4 类细分（no_keywords 77%, ambiguous 23%），167 个 error 的归因（57.5% 来自 unparseable 默认机制）\n3. **Per-repo variation** — pytest 25-42% 最差，requests 64-84% 最好；scikit-learn ~0% vs sphinx 100% unparseable\n4. **Cross-complexity comparison** — function-level gap 1.24-2.43pp vs repo-level gap 24pp，含统计检验\n5. **Correct-by-accident** — 38% 的 CWM \"正确\"来自 unparseable 默认，parseable-only acc 仅 42.88%\n6. **Scaling behavior** — CLS +0.96pp vs CWM −0.23pp\n7. **三种失败模式** — token exhaustion / keyword ambiguity / hallucinated failures\n8. **5 个建议图表** — per-repo unparseable bar, error mode pie, gap amplification grouped bar 等\n9. **论文位置建议** — 各数据点应放 Results/Analysis/Discussion/Appendix 的具体建议\n10. **5 条可直接引用的论文关键句**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-error-analysis-prep.md"
+}

@@ -1,0 +1,72 @@
+{
+  "exp_id": "per-test-majority-voting",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:18:14.827Z",
+    "updated_at": "2026-05-12T09:45:40.858Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json --K 3 --temperature 0.7 --gpu 0\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "21710",
+      "log_path": "~/runs/exec-sim-repair-verifier/per-test-majority-voting.log",
+      "submitted_at": "2026-05-12T09:22:45.956Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/test.jsonl",
+      "data_count": 1890,
+      "model_name": "Qwen/Qwen3-4B + LoRA",
+      "seed": 42,
+      "checkpoint_source": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints/best/",
+      "wall_clock_seconds": 643.2,
+      "gpu_hours": 0.18
+    },
+    "hypothesis": "Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy",
+    "reproduce": {
+      "finished_at": "2026-05-12T09:25:13.934Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T09:25:15.074858+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "accuracy_greedy": 87.51,
+      "accuracy_majority_vote_K3": 86.83,
+      "delta_accuracy": -0.69,
+      "fail_f1_greedy": 87.86,
+      "fail_f1_mv": 87.29,
+      "pass_f1_greedy": 87.15,
+      "pass_f1_mv": 86.33,
+      "unanimous_rate": 93.3,
+      "split_samples": 127,
+      "flipped_correct_to_wrong": 28,
+      "flipped_wrong_to_correct": 15,
+      "net_flips": -13,
+      "per_pass_accuracy": [
+        86.72,
+        86.83,
+        87.62
+      ],
+      "wall_time_greedy_sec": 30,
+      "wall_time_mv_sec": 120
+    },
+    "notes": "Majority voting K=3 (temperature=0.7) 无效，accuracy 从 87.51% 降至 86.83% (-0.69pp)。93.3% 样本三次预测一致（unanimous），仅 127 个分歧样本中 28 个被错误翻转 vs 15 个被正确翻转（net -13）。模型错误是系统性偏差而非随机噪声，voting 无法修复。推理时间从 30s 增至 120s (4x)，无收益。结论：single-pass greedy 是最优推理策略，majority voting 不值得采用。",
+    "completed_at": "2026-05-12T09:33:29.181Z"
+  },
+  "timestamp": "2026-05-12T09:45:40.977406+00:00",
+  "trigger": "update_registry"
+}

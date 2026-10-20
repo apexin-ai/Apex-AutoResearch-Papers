@@ -1,0 +1,4 @@
+margin_pp,ci90_lower,ci90_upper,pooled_mean_diff_pp,bootstrap_se,p_value,reject_null,n_pairs,n_clusters,n_obs
+1.0,-0.275,1.620,0.661,0.577,0.2854,NO,4,114,7560
+2.0,-0.275,1.620,0.661,0.577,0.0104,YES,4,114,7560
+3.0,-0.275,1.620,0.661,0.577,0.0000,YES,4,114,7560

@@ -1,0 +1,46 @@
+{
+  "exp_id": "traj-level-seed456",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T07:00:59.345Z",
+    "updated_at": "2026-05-12T08:25:05.975Z",
+    "spec": {
+      "log_path": "~/runs/exec-sim-repair-verifier/traj-level-seed456.log",
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456/best",
+      "wall_clock_seconds": 2001.8,
+      "gpu_hours": 0.56
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T08:21:55.462Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T08:21:56.909045+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_accuracy": 87.4,
+      "unresolved_f1": 88.7,
+      "resolved_f1": 85.8,
+      "unresolved_precision": 85.7,
+      "unresolved_recall": 91.9,
+      "resolved_precision": 89.7,
+      "resolved_recall": 82.3,
+      "consistency_rate": 78.8
+    },
+    "conclusion": "success",
+    "hypothesis": "验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性",
+    "notes": "Traj-level seed 456: accuracy=87.4%, unresolved_f1=88.7%, resolved_f1=85.8%, consistency=78.8%。\n\n## 3-seed 汇总（traj-level）\n| seed | accuracy | unresolved_f1 | resolved_f1 | consistency |\n|------|----------|---------------|-------------|-------------|\n| 42   | 85.66    | 87.50         | 83.18       | 79.94       |\n| 123  | 85.47    | 87.00         | 83.52       | 78.59       |\n| 456  | 87.40    | 88.70         | 85.80       | 78.80       |\n| **mean** | **86.18** | **87.73** | **84.17** | **79.11** |\n| **std**  | **1.06**  | **0.91**  | **1.44**  | **0.73**  |\n\n## vs Per-test Classification (3-seed mean)\n- Per-test cls: accuracy=88.41±0.96, F1=88.41±1.01\n- Traj-level:   accuracy=86.18±1.06, F1(mean)=85.95\n- **Gap: 2.23pp accuracy, 2.46pp F1**\n\n## 结论\nPer-test classification 在所有 3 seeds 下均优于 traj-level（gap 1.01-3.94pp），确认 per-test granularity 的信息优势稳定存在。seed 456 traj accuracy 异常高（87.4%），拉近了 gap，但仍不逆转。Consistency rate 三 seed 稳定在 78-80%。",
+    "completed_at": "2026-05-12T08:25:05.975Z"
+  },
+  "timestamp": "2026-05-12T08:25:06.013958+00:00",
+  "trigger": "update_registry"
+}

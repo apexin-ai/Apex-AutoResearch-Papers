@@ -1,0 +1,37 @@
+{
+  "exp_id": "deepseek-traj-repo-8k-s999",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:01:18.947Z",
+    "updated_at": "2026-05-16T16:51:32.066Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 python3 train_traj_verifier.py --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --data_prefix traj --lora_rank 16 --lora_alpha 32 --max_seq_length 8192 --epochs 3 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --seed 999 --no_wandb --output_dir /root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s999/ --run_name deepseek-traj-repo-8k-s999",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/swebench_full/traj_train.jsonl",
+      "data_count": 386,
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 999,
+      "gpu": [
+        "cuda:3"
+      ],
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s999/best/",
+      "log_path": "/root/runs/exec-sim-repair-verifier/deepseek-traj-repo-8k-s999.log"
+    },
+    "metrics": {
+      "test_accuracy": 79.2,
+      "unparseable": 0,
+      "best_eval_loss": 0.1565,
+      "resolved_f1": 82.1,
+      "unresolved_f1": 75,
+      "f1_macro": 78.57,
+      "train_loss": 0.2184
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T16:51:32.376113+00:00",
+  "trigger": "update_registry"
+}

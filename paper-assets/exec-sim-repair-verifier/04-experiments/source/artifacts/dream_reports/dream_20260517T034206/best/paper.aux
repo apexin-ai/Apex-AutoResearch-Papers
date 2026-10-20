@@ -1,0 +1,80 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ni2023lever}
+\citation{chen2023codet}
+\citation{gu2024cwm}
+\citation{zhang2025swerewardbench}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{le2022coderl}
+\citation{li2022alphacode}
+\citation{shinn2023reflexion}
+\citation{zhang2018predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-Free Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ Outcome Supervision.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification-Guided Code Repair.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Predictive Mutation Testing.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Test Classification (CLS).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code World Model (CWM).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-Level Scoring (TRAJ).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complexity Levels.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Protocol.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Dataset: SWE-bench-PerTest}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench-PerTest dataset statistics. We re-execute 500 SWE-bench Verified instances with 16 candidates each in Docker, extracting per-test pass/fail labels.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:dataset}{{1}{4}{SWE-bench-PerTest dataset statistics. We re-execute 500 SWE-bench Verified instances with 16 candidates each in Docker, extracting per-test pass/fail labels}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Function-level accuracy (\%). CLS and CWM achieve near-identical performance across model families. Gap is CLS minus CWM.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:func}{{2}{4}{Function-level accuracy (\%). CLS and CWM achieve near-identical performance across model families. Gap is CLS minus CWM}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Downstream Re-Repair Protocol}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Function-Level: Formulation Equivalence}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Repository-level accuracy (\%) and CWM unparseable rate. Qwen3 exhibits catastrophic CWM failure (53--93\% unparseable), while DeepSeek maintains functional CWM (13\% unparseable). CLS is robust across both families.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:repo}{{3}{5}{Repository-level accuracy (\%) and CWM unparseable rate. Qwen3 exhibits catastrophic CWM failure (53--93\% unparseable), while DeepSeek maintains functional CWM (13\% unparseable). CLS is robust across both families}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DeepSeek repo-level multi-seed results. Both CLS and CWM show low variance ($\pm $1.1pp), confirming reproducibility.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:seeds}{{4}{5}{DeepSeek repo-level multi-seed results. Both CLS and CWM show low variance ($\pm $1.1pp), confirming reproducibility}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repository-Level: Model-Contingent Divergence}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:repo}{{4.2}{5}{Repository-Level: Model-Contingent Divergence}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen3 CWM Collapse.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepSeek CWM Functional.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CLS Robustness.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Seed Stability.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Diagnostic Granularity and Efficiency}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Re-repair resolve rates (pass@1, $n=60$ instances, 5 samples each). CLS-predicted diagnostics significantly improve over uninformed baselines. Significance: *$p<0.05$, **$p<0.01$ (McNemar test).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:rerepair}{{5}{6}{Re-repair resolve rates (pass@1, $n=60$ instances, 5 samples each). CLS-predicted diagnostics significantly improve over uninformed baselines. Significance: *$p<0.05$, **$p<0.01$ (McNemar test)}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-Test Localization.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference Efficiency.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Downstream Utility: Diagnostic-Guided Re-Repair}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Monotonic Diagnostic Quality Gradient.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CLS Diagnostics Despite Prediction Noise.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle-CLS Gap as Improvement Ceiling.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pass@5 Results.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Validation on Larger Sample.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Formulation Robustness Summary}{6}{subsection.4.5}\protected@file@percent }
+\bibcite{chen2023codet}{{1}{2023}{{Chen et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 200-instance pilot confirming re-repair improvement. Effect size is medium, indicating diagnostics are useful but not transformative.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:pilot}{{6}{7}{200-instance pilot confirming re-repair improvement. Effect size is medium, indicating diagnostics are useful but not transformative}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Accuracy ranges across models. CLS is the only formulation robust across all conditions. CWM is model-dependent at repo-level. TRAJ shows moderate variability.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:robustness}{{7}{7}{Accuracy ranges across models. CLS is the only formulation robust across all conditions. CWM is model-dependent at repo-level. TRAJ shows moderate variability}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Guidance.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tokenizer Engineering Implication.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{gu2024cwm}{{2}{2024}{{Gu et al.}}{{}}}
+\bibcite{le2022coderl}{{3}{2022}{{Le et al.}}{{}}}
+\bibcite{li2022alphacode}{{4}{2022}{{Li et al.}}{{}}}
+\bibcite{lightman2023lets}{{5}{2023}{{Lightman et al.}}{{}}}
+\bibcite{ni2023lever}{{6}{2023}{{Ni et al.}}{{}}}
+\bibcite{shinn2023reflexion}{{7}{2023}{{Shinn et al.}}{{}}}
+\bibcite{uesato2022solving}{{8}{2022}{{Uesato et al.}}{{}}}
+\bibcite{zhang2018predictive}{{9}{2018}{{Zhang et al.}}{{}}}
+\bibcite{zhang2025swerewardbench}{{10}{2025}{{Zhang et al.}}{{}}}
+\gdef \@abspage@last{8}

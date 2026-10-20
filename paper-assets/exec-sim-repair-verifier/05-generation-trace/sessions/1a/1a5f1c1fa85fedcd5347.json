@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a5f1c1fa85fedcd5347",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code mvp a oracle sim",
+  "task_key": "worker_code_mvp-a-oracle-sim_20260511T182340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-a-oracle-sim_20260511T182340_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "865ef9be3125dfbf71bc7d1bbb6535563140faa0ed0eef39cc32c2a7d6ca726a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MVP-A Oracle 模拟完成。\n\n**结果：PASS**\n\n| 指标 | Block-correlated | I.I.D. |\n|------|-----------------|--------|\n| 70-85% mean advantage | **36.2%** | 18.5% |\n| min advantage | 33.5% | 14.0% |\n| max advantage | 37.5% | 21.4% |\n| Pass (≥5%) | **YES** | YES |\n\n产出文件（服务器 `home-1x5090:/home/sonny/exec-sim-repair-verifier/`）：\n- `mvp_a_oracle_sim.py` — 模拟脚本\n- `mvp_a_results.json` — 完整结果数据\n- `mvp_a_curves.pdf` — 可视化（resolve rate 曲线 + advantage 曲线）\n\nRegistry 已更新为 DONE/success，metrics 和 notes 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-a-oracle-sim.md"
+}

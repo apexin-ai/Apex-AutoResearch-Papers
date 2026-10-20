@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03dfd613453c085e7f3a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis func error patterns",
+  "task_key": "worker_analysis_func-error-patterns_20260517T080634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_func-error-patterns_20260517T080634_result.json",
+    "occurrence": 1,
+    "bytes": 1829,
+    "sha256": "e84f9a7701b780c7363f7e08eb6ee1d92f5c9c3e03ed0c465336913597dd606e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n### 关键数字\n\n| | CLS (seed0) | CWM (seed123) | Oracle Ensemble |\n|---|---|---|---|\n| Accuracy | 87.78% | 87.30% | **89.84%** |\n\n- **Error overlap**: 68.8% (192/279 errors shared)\n- **Complementarity**: 31.2% (87/279 instances only one formulation gets right)\n- **Agreement rate**: 95.4%\n\n### By Mutation Type — formulation 什么时候重要\n\n| Mutation | n | CLS | CWM | Oracle | Complementarity |\n|---|---|---|---|---|---|\n| **return_value** | 402 | 97.5% | 98.0% | 98.8% | **61.5%** (最高) |\n| **variable_swap** | 85 | **94.1%** | 88.2% | 94.1% | 50.0% |\n| **original** | 398 | 86.4% | 87.2% | 89.7% | 35.9% |\n| **operator_swap** | 298 | 86.2% | 86.9% | 88.9% | 29.8% |\n| **off_by_one** | 671 | 82.4% | 80.8% | 84.4% | 26.1% |\n| **boundary_removal** | 36 | 91.7% | 91.7% | 91.7% | 0.0% (完全相同) |\n\n### Cross-seed validation (4 pairs)\n\nOracle 89.8-90.3%, complementarity 31-40% — patterns stable.\n\n### 意外发现\n\n1. **Formulation 差异很小** — CLS 和 CWM 在 func-level 上 95.4% 的 instances 给出相同结果，oracle ensemble 仅提升 ~2pp。这说明在 func-level 任务上，formulation choice 影响有限。\n2. **variable_swap 是 CLS 的优势区** — CLS 比 CWM 高 5.9pp，且 CWM 在此类 mutation 上没有任何独占正确的 instance (cwm_only=0)。\n3. **boundary_removal 完全一致** — 两种 formulation 的预测完全相同，error overlap=100%。\n4. **return_value 最高互补性** — 虽然两者都很强 (>97%), 但犯的错几乎不重叠 (complementarity=61.5%)。\n5. **对 D116 framing 的含义**：func-level 上 formulation 的影响集中在特定 mutation type (variable_swap, return_value), 但总体互补性有限。design space 差异更可能在 repo-level (更复杂场景) 上凸显。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-func-error-patterns.md"
+}

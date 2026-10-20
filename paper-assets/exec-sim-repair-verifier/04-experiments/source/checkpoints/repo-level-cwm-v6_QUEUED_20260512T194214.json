@@ -1,0 +1,30 @@
+{
+  "exp_id": "repo-level-cwm-v6",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-12T18:58:27.726Z",
+    "updated_at": "2026-05-12T19:42:14.591Z",
+    "hypothesis": "Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。",
+    "completed_at": "2026-05-12T19:17:09.536Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "parent": "repo-level-cwm-v5",
+    "spec": {
+      "command": "python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/ --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-12T19:42:14.686740+00:00",
+  "trigger": "update_registry"
+}

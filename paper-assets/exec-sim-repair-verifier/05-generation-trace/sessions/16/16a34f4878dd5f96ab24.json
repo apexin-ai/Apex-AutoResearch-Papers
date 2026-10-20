@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "16a34f4878dd5f96ab24",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh d045 home cls earlystop eval seed123",
+  "task_key": "worker_ssh_d045-home-cls-earlystop-eval-seed123_20260513T062216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d045-home-cls-earlystop-eval-seed123_20260513T062216.log",
+    "occurrence": 1,
+    "bytes": 1443454,
+    "sha256": "dca5d5b2841904e2f5737b4f84ae6fc6be602bc9afb7acda4e9636300d41583e"
+  },
+  "statistics": {
+    "messages": 1005,
+    "user_turns": 1,
+    "tool_calls": 439,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 439,
+      "tool_result": 439,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 898,
+      "chunks": [
+        {
+          "path": "16a34f4878dd5f96ab24-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "16a34f4878dd5f96ab24-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "16a34f4878dd5f96ab24-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "16a34f4878dd5f96ab24-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "16a34f4878dd5f96ab24-part-0005.json",
+          "message_count": 178
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "16a34f4878dd5f96ab24-part-0005.json",
+          "message_count": 2
+        },
+        {
+          "path": "16a34f4878dd5f96ab24-part-0006.json",
+          "message_count": 105
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d045-home-cls-earlystop-eval-seed123.md"
+}

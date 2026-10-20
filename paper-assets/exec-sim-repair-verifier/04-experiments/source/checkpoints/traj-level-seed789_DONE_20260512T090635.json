@@ -1,0 +1,48 @@
+{
+  "exp_id": "traj-level-seed789",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T08:23:44.159Z",
+    "updated_at": "2026-05-12T09:06:35.540Z",
+    "spec": {
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/",
+      "log_path": "~/runs/exec-sim-repair-verifier/traj-level-seed789.log"
+    },
+    "hypothesis": "补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05",
+    "parent": "traj-level-finetuned",
+    "reproduce": {
+      "finished_at": "2026-05-12T09:04:01.723Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T09:04:03.029128+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_accuracy": 87.31,
+      "unresolved_f1": 88.27,
+      "resolved_f1": 86.17,
+      "unresolved_precision": 87.41,
+      "unresolved_recall": 89.15,
+      "resolved_precision": 87.18,
+      "resolved_recall": 85.18,
+      "consistency_rate": 76.74,
+      "eval_loss": 0.1115,
+      "train_loss": 0.2255,
+      "train_runtime_sec": 2055.9
+    },
+    "conclusion": "success",
+    "notes": "## seed789 结果\naccuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74\ntrain_loss=0.2255, eval_loss=0.1115, wall_time=34.3min\n\n## 4-seed traj-level 汇总\n| metric | seed42 | seed123 | seed456 | seed789 | mean±std |\n|--------|--------|---------|---------|---------|----------|\n| accuracy | 85.66 | 85.47 | 87.40 | 87.31 | 86.46±1.04 |\n| unresolved_f1 | 87.50 | 87.00 | 88.70 | 88.27 | 87.87±0.76 |\n| resolved_f1 | 83.18 | 83.52 | 85.80 | 86.17 | 84.67±1.54 |\n| consistency | 79.94 | 78.59 | 78.80 | 76.74 | 78.52±1.33 |\n\n## Welch's t-test: traj-level vs per-test accuracy\n- Traj-level (4 seeds): 86.46±1.04\n- Per-test (3 seeds): 88.41±0.96\n- t=-2.569, df=4.66, p=0.054 (two-tailed)\n- Difference: -1.95pp, NOT significant at α=0.05\n\n## 结论\n4 seeds 仍未达到 p<0.05 的显著性差异（p=0.054，边缘）。traj-level 一致地低于 per-test ~2pp，但方差较大。需要第 5 seed 才能确认差异的统计显著性。",
+    "completed_at": "2026-05-12T09:06:35.540Z"
+  },
+  "timestamp": "2026-05-12T09:06:35.619771+00:00",
+  "trigger": "update_registry"
+}

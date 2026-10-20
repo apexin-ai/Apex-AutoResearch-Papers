@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "303ff69613351b0c7166",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home cuda0 status urgent",
+  "task_key": "worker_check_home-cuda0-status-urgent_20260514T103736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-cuda0-status-urgent_20260514T103736_result.json",
+    "occurrence": 1,
+    "bytes": 1874,
+    "sha256": "b1e3d0f0d40b949b0336e97fb5360bc0087b0597eb9820bdab72da7b4b6fbe70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 0\n- **利用率 100%**，显存 12345/32607 MiB，进程 PID 3072378 (python3)\n- 正在跑 val_sweep\n\n### 2048 Sweep：进行中（10/13 checkpoints started，9/13 完成）\n\n当前正在评估 `v5/checkpoint-4600`，进度 4800/9335 (~51%)。\n\n已完成 9 个 checkpoint 的结果：\n\n| Checkpoint | Acc | F1 Macro | F1 Fail | Prec Fail | Recall Fail |\n|---|---|---|---|---|---|\n| **seed123/ckpt-200** | 62.51 | 55.54 | 37.94 | 31.58 | 47.51 |\n| **seed123/ckpt-400** | 80.72 | 67.03 | 45.78 | 71.16 | 33.75 |\n| **seed123/ckpt-600** | 76.78 | 66.81 | 48.63 | 52.13 | 45.56 |\n| **seed123/ckpt-800** | 81.81 | 69.14 | 49.37 | 75.14 | 36.77 |\n| **seed123/ckpt-1000** | 82.30 | 67.63 | 45.84 | 87.59 | 31.04 |\n| **v5/ckpt-600** | 77.25 | **70.81** | **57.11** | 52.37 | **62.79** |\n| **v5/ckpt-4000** | 83.32 | 70.26 | 50.56 | 88.74 | 35.35 |\n| **v5/ckpt-4200** | 82.82 | 69.54 | 49.43 | 85.22 | 34.81 |\n| **v5/ckpt-4400** | **83.49** | **71.63** | **53.29** | 83.95 | 39.03 |\n\nMajority baseline accuracy = 75.88%。\n\n### 6144 验证：等待中\n\n`val_6144` tmux session 存活，run.log 显示已轮询 90+ 次（每分钟一次），持续输出 \"val_sweep still running, waiting 60s...\"。目录下只有 run.log，无结果文件。\n\n### 预估时间\n\n每个 checkpoint 约 25 分钟。当前 v5/ckpt-4600 剩余 ~14 min，之后还有 3 个 checkpoint ≈ 75 min。**2048 sweep 预计 ~05:10 PDT 完成**，之后 6144 自动启动。\n\n### 关键发现\n\n- **最高 F1 Macro**: v5/ckpt-4400 (71.63)，其次 v5/ckpt-600 (70.81)\n- **最高 Accuracy**: v5/ckpt-4400 (83.49)\n- **最高 Recall Fail**: v5/ckpt-600 (62.79) — 但代价是 accuracy 仅 77.25\n- v5 系列整体优于 seed123 系列（F1 Macro 更高）\n- 所有模型都存在 fail 类别 recall 低的问题（倾向预测 pass）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-cuda0-status-urgent.md"
+}

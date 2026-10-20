@@ -1,0 +1,42 @@
+{
+  "exp_id": "repo-level-cwm-seed123-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:06:04.864Z",
+    "updated_at": "2026-05-14T05:22:10.994Z",
+    "spec": {
+      "hypothesis": "CWM seed123 conda 重训 (transformers 4.57.6)，与 CLS seed123 配对，验证 repo-level CLS-CWM gap 的 multi-seed robustness。",
+      "parent": "repo-level-cwm-v12",
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 train_repo_cwm.py --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/",
+      "server": "westd-48478",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 123,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/",
+      "log_path": "/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/train.log",
+      "env": "conda base, transformers 4.57.6",
+      "tmux_session": "cwm_seed123",
+      "gpu": "cuda:0"
+    },
+    "notes": "D056 early stop. Best checkpoint-500 (eval_loss=0.3163). Eval 启动: tmux eval_cwm_seed123, westd GPU 0, batch_size=8, max_new_tokens=1024, conda env (transformers 4.57.6)。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T05:22:10.994Z"
+  },
+  "timestamp": "2026-05-14T05:22:11.162026+00:00",
+  "trigger": "update_registry"
+}

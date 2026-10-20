@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24ee97f850941988542e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deploy auto eval trigger",
+  "task_key": "worker_ssh_deploy-auto-eval-trigger_20260522T224059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deploy-auto-eval-trigger_20260522T224059_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "bd114e0cbedc602b4a6a14ce2822a48d926cc03d5788ff4d430d9569167a593e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 项目 | tmux session | 监控 PID | Eval GPU | 状态 |\n|------|-------------|----------|----------|------|\n| CWM 14B | `auto-eval-cwm14b` | 211098 (已跑 2h15m) | GPU 1 | 轮询监控中 |\n| CLS 14B v2 | `auto-eval-cls14b` | 215642 (已跑 1h04m) | GPU 3 | 轮询监控中 |\n\n两个监控脚本已在 tmux 中运行，每 60 秒检查一次训练进程。训练结束后会自动查找 best checkpoint 并启动 eval。日志分别在 `/tmp/auto_eval_cwm14b.log` 和 `/tmp/auto_eval_cls14b.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-auto-eval-trigger.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "002d7a2431132a718ab7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd cuda3 ckpt3000 v4",
+  "task_key": "worker_poll_westd-cuda3-ckpt3000-v4_20260515T080800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-cuda3-ckpt3000-v4_20260515T080800_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "429cd876b217d9469482725c801a72262fa383b0a28e08bdfc155fd102935da0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已完成，metrics 已注册。完整结果：\n\n**cls8b-seed123-ckpt3000 Test@8192 Results** (n=9784)\n\n| Metric | Value |\n|---|---|\n| **Accuracy** | **85.60%** |\n| Majority baseline | 72.96% |\n| **Gap vs majority** | **+12.64pp** |\n| **F1 macro** | **78.38%** |\n| F1 fail | 65.89% |\n| F1 pass | 90.87% |\n| Precision fail | 91.65% |\n| Recall fail | 51.44% |\n| Precision pass | 84.52% |\n| Recall pass | 98.26% |\n| Unparseable | 0 |\n\n**Confusion matrix:**\n\n|  | Pred fail | Pred pass |\n|---|---|---|\n| Actual fail | 1361 (TN) | 1285 (FP) |\n| Actual pass | 124 (FN) | 7014 (TP) |\n\n模型在 pass 类上表现很强 (recall 98.3%)，但 fail 类 recall 偏低 (51.4%)——近一半的 fail 样本被误判为 pass。Precision fail 很高 (91.7%)，说明预测为 fail 的大多是对的，但模型偏保守不敢预测 fail。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-cuda3-ckpt3000-v4.md"
+}

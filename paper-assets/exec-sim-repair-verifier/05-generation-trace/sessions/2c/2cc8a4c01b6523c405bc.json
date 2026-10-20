@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc8a4c01b6523c405bc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_20.md",
+    "occurrence": 1,
+    "bytes": 3568,
+    "sha256": "9ded54ae62c02ab2a44059f5fedb117bcc91be4d59bf134ab7e66b9d02c92b8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-17T22:37:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-3（seetacloud 4×5090 只有这 4 张）。任何进程跑在其他设备 → critical\n- CWM s42 eval 用的是 `best` checkpoint = step 13266 = epoch 3 last（已确认，不是 early-stop best）\n- D125 已定：CWM 报告方案 B — epoch 3 为主数字 + checkpoint sensitivity 作为 CWM fragility 证据。不要推翻为方案 A\n- DeepSeek eval_loss=NaN 是已知 tokenizer bug，不影响训练质量，不要因此判定实验失败\n- Registry 的 --no_wandb 实验会被 sentinel 误判为 DONE/failed，需 ps aux 独立验证存活\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`seetacloud-westd-4x5090`，代码 `/home/sonny/exec-sim-repair-verifier`\n- Checkpoints: `/root/autodl-tmp/checkpoints_deepseek_{cwm,cls}_repo{,_s123,_v4}/`\n- Eval logs: `/root/autodl-tmp/eval_results/deepseek_{cwm,cls}_repo_{s42,s123,v4}_{eval,8192}.log`\n- 模型: `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- 数据: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl` (9784 instances, 7138 pass / 2646 fail, majority=72.9%)\n- 活跃进程（04:59 UTC May 18 确认）:\n  - PID 662946: CWM s42 eval, cuda:0(实际映射 GPU 1), 1382/9784\n  - PID 664774: CLS v4 eval, CUDA_VISIBLE_DEVICES=0, tmux=cls-v4-eval-8192, 4600/9784\n  - PID 665019: CLS s123 eval, CUDA_VISIBLE_DEVICES=2, 4040/9784\n  - PID 668680: CWM s123 eval, CUDA_VISIBLE_DEVICES=3, 1039/9784\n\n### 3. 📊 当前状态\n刚完成：过拟合假说深度分析 + D125 叙事建议（已 post 给 Director，被采纳）。\n\nRunning acc 最新值（~05:00 UTC May 18）：\n- CWM s42: **57.2%** ↓（边际精度 54%，加速崩塌）\n- CWM s123: **62.6%**（稳定）\n- CLS v4: **70.9%**（低于 majority 72.9%，因为只训了 1/3）\n- CLS s123: **74.7%**（稳固，beat majority +1.8pp）\n\nRegistry PREPARING: `deepseek-cwm-repo-s42-epoch2-eval`（D124 决定性实验）, `deepseek-cls-repo-v5`（s42 全训）\nHome 3-shot baseline: worker 检查了但结果文件未在 seetacloud 找到，可能在另一台机器\n\n### 4. 📋 待办\n- CLS v4 eval 完成（ETA ~10:00 UTC）→ 记录最终 acc → GPU 0 启动 CLS v5 retrain\n- CLS s123 eval 完成（ETA ~12:30 UTC）→ 记录最终 acc → GPU 2 启动 D124（s42 epoch 2 eval，`/root/autodl-tmp/checkpoints_deepseek_cwm_repo/checkpoint-8844`）\n- D124 结果出来 → 如 ~62-63% 过拟合确认（posterior>85%），如 ~58% seed 差异为主 → post Director\n- CWM s42 如跌破 55% → severity=warning post Director，ROADMAP 退化数字需再更新\n- All evals done → 验证 Paper Agent 填 Table 4 数字与 eval results 一致\n\n### 5. 🎯 战略上下文\n- 核心叙事：CLS vs CWM vs TRAJ 在 func→repo 复杂度增加时表现分化。CWM 退化 22-27pp，CLS 仅 5-13pp\n- D124 是最高优先级实验：解耦过拟合 vs seed。当前先验 70-75% 是过拟合（边际精度加速发散是关键证据）\n- 易错判断：CWM s42 57% 看起来很差，但不要因此建议放弃 CWM 或改 story — D125 已决定这本身就是 evidence（checkpoint sensitivity = CWM fragility 第三维度）\n- ROADMAP ETA 偏乐观：实际 CLS eval 比写的晚 6-8h，CWM eval 需到 May 19 晚。但 DDL May 25 仍有充足 buffer\n- CLS v4 at 71%（below majority）不是 bug — 它只训了 1/3（ckpt-4422/13266），目的是填 Table 不是 claim SOTA\n- C2 claim \"≥10pp formulation bottleneck\" 在任何场景下都稳固（最小 gap 12.3pp）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-copy-3.md"
+}

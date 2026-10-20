@@ -1,0 +1,51 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "func_level": {
+    "base_model": "deepseek-coder-6.7b-instruct",
+    "n_samples": 100,
+    "max_seq_length": 2048,
+    "cls": {
+      "avg_ms": 40.59,
+      "median_ms": 42.87,
+      "std_ms": 6.78,
+      "p95_ms": 55.47,
+      "throughput_per_min": 1478.09,
+      "avg_input_tokens": 267,
+      "avg_output_tokens": 1
+    },
+    "cwm": {
+      "avg_ms": 189.05,
+      "median_ms": 184.51,
+      "std_ms": 16.2,
+      "p95_ms": 210.43,
+      "throughput_per_min": 317.37,
+      "avg_input_tokens": 263,
+      "avg_output_tokens": 7.2
+    },
+    "speedup": 4.66
+  },
+  "repo_level": {
+    "base_model": "Qwen3-4B",
+    "n_samples": 100,
+    "max_seq_length": 4096,
+    "cls": {
+      "avg_ms": 70.3,
+      "median_ms": 48.09,
+      "std_ms": 39.12,
+      "p95_ms": 116.81,
+      "throughput_per_min": 853.45,
+      "avg_input_tokens": 1040,
+      "avg_output_tokens": 1
+    },
+    "cwm": {
+      "avg_ms": 15307.68,
+      "median_ms": 16299.85,
+      "std_ms": 2139.75,
+      "p95_ms": 16704.02,
+      "throughput_per_min": 3.92,
+      "avg_input_tokens": 1039,
+      "avg_output_tokens": 477.1
+    },
+    "speedup": 217.75
+  }
+}

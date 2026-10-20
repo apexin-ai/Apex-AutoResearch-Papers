@@ -1,0 +1,16 @@
+{
+  "exp_id": "deepseek-traj-func-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:46:37.918Z",
+    "updated_at": "2026-05-16T13:46:38.624Z",
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'seetacloud-westd'. Available: ['home-1x5090', 'seetacloud-westd-4x5090', 'westd-48478']",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T13:46:39.013224+00:00",
+  "trigger": "update_registry"
+}

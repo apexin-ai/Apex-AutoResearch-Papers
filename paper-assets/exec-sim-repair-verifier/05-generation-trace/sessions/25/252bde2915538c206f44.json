@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "252bde2915538c206f44",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops d050 eval pipeline westd",
+  "task_key": "worker_ops_d050-eval-pipeline-westd_20260513T154335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d050-eval-pipeline-westd_20260513T154335_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "5da211fc2ddaefadf48394343e4a8bdac2da36da72419ce943cfb1594a9fbb26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMD5:\n  eval_repo_cls.py:           2e3867d83f0566cd6c8978570354304c\n  eval_repo_cwm.py:           5f1c80d01445bc0474a420c9353a1104\n  paired_bootstrap_repo.py:   d9073b9399fe471c5abfaece2a438227\n\nmax_new_tokens:\n  eval_repo_cls.py:  8        ✓\n  eval_repo_cwm.py:  1024     ✓ (default via argparse)\n\nTOST: present ✓ (tost_equivalence function + full TOST pipeline)\n\nCWM v11 Status:\n  PID 145692: running ✓ (uptime 4h21m, RSS 5.4GB, resumed from checkpoint-500)\n  Current step: 1477/6633 (22%)\n  Speed: ~8.9s/step ✓\n  GPU memory:\n    cuda:0  24923/32607 MiB  (99%)\n    cuda:1  16335/32607 MiB  (92%)\n    cuda:2  16297/32607 MiB  (77%)  ← CWM training\n    cuda:3  25751/32607 MiB  (71%)\n  Any errors: no\n```\n\n全部符合预期。训练从 step 501 恢复，当前 step 1477，速度稳定 ~8.9s/step，预计还需约 12.8 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d050-eval-pipeline-westd.md"
+}

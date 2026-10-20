@@ -1,0 +1,42 @@
+{
+  "exp_id": "repo-level-cwm-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T22:36:34.770Z",
+    "updated_at": "2026-05-13T10:26:09.296Z",
+    "hypothesis": "Repo-level CWM seed=123 extra seed on westd-48478 cuda:3. 复用 CWM v9 代码配置，对冲 D008 Go/No-Go。与 repo-level-cls-seed123 配对验证 complexity-dependent advantage。",
+    "notes": "D049 重启：D046 修正超参（lr=5e-5, wd=0.01, warmup=0.05），westd-48478 cuda:1, seed=123。之前 D046 取消是因为旧超参无效，现在用修正超参重新启动。",
+    "spec": {
+      "command": "python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123/ --seed 123 --no_wandb",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:1",
+      "pid": 142397,
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cwm-seed123.log",
+      "submitted_at": "2026-05-13T10:25:59.437Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 123,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_seed123/"
+    }
+  },
+  "timestamp": "2026-05-13T10:26:09.403348+00:00",
+  "trigger": "update_registry"
+}

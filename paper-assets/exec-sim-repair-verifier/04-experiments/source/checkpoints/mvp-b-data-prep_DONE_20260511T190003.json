@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp-b-data-prep",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T18:02:03.573Z",
+    "updated_at": "2026-05-11T19:00:03.494Z",
+    "hypothesis": "HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot",
+    "spec": {
+      "command": "python3 -u build_data.py --output-dir data --seed 42",
+      "server": "home-1x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/",
+      "data_count": 19076,
+      "model_name": "n/a",
+      "seed": 42
+    },
+    "checkpoint_path": "n/a",
+    "log_path": "/tmp/build_data.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-11T19:00:03.494Z"
+  },
+  "timestamp": "2026-05-11T19:00:03.503692+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "matched-seed-8b-predictions",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:21:33.762Z",
+    "updated_at": "2026-05-12T17:46:02.254Z",
+    "hypothesis": "在 home 服务器生成 matched-seed per-instance predictions（8B CWM eval JSONs 或 4B 补充分析），为 error overlap / oracle 分析提供数据",
+    "notes": "Worker 完成。4B CWM per-instance predictions 已生成: seed0 (87.57%), seed42 (已有), seed456 (86.98%). 可用 matched CLS-CWM pairs: seed0/seed42/seed456 (3对). 缺失: CWM seed123/789 (checkpoints only on seetacloud), 8B preds (checkpoints分散+GPU占用). 3 pairs 足够做 error overlap 分析。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T17:46:02.346087+00:00",
+  "trigger": "update_registry"
+}

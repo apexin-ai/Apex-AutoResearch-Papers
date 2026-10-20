@@ -1,0 +1,34 @@
+{
+  "exp_id": "deepseek-0shot-repo-baseline",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:30:52.005Z",
+    "updated_at": "2026-05-18T00:10:04.699Z",
+    "hypothesis": "DeepSeek 0-shot instruction 在 repo-level 的基准表现，跨模型验证 0-shot 在 repo-level 普遍接近随机",
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 0.4854,
+      "pass_f1": 0.647,
+      "fail_f1": 0.0509,
+      "unparseable_rate": 0.087,
+      "unparseable_count": 851,
+      "total_samples": 9784,
+      "runtime_seconds": 1545,
+      "confusion": {
+        "TP": 4614,
+        "FP": 2511,
+        "TN": 135,
+        "FN": 2524
+      }
+    },
+    "checkpoint_path": "N/A (inference-only)",
+    "log_path": "/home/sonny/exec-sim-repair-verifier/0shot_repo_level_deepseek.log",
+    "completed_at": "2026-05-18T00:10:04.699Z"
+  },
+  "timestamp": "2026-05-18T00:10:05.052189+00:00",
+  "trigger": "update_registry"
+}

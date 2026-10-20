@@ -1,0 +1,14 @@
+{
+  "exp_id": "repo-level-cwm-v11",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:42:42.615Z",
+    "updated_at": "2026-05-13T07:42:42.615Z"
+  },
+  "timestamp": "2026-05-13T07:42:42.732400+00:00",
+  "trigger": "update_registry"
+}

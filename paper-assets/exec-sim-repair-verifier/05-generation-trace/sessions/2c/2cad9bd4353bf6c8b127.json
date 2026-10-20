@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cad9bd4353bf6c8b127",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm eval incremental save",
+  "task_key": "worker_code_cwm-eval-incremental-save_20260514T123735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-eval-incremental-save_20260514T123735_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "68a83786daff2ee569fc38b5a2c609a70e04c943fedc95810edf45ff163f7d8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程正常运行中（状态 Rl+），不受磁盘上文件修改的影响。\n\n### 改动总结\n\n**修改了 `eval_repo_cwm.py`**，添加增量 JSONL 写入 + 续跑支持：\n\n1. **`run_inference` 新增参数** `incremental_path`, `completed_indices`\n2. **批次跳过**：如果整个 batch 的 index 都在 `completed_indices` 中，直接 skip（续跑时跳过已完成部分）\n3. **逐条写盘**：每处理完一个 sample，立即 `open(path, 'a')` + `flush()` 追加一行 JSON 到 `results_incremental.jsonl`\n4. **`main()` 中的续跑逻辑**：启动时如果 `results_incremental.jsonl` 已存在，加载已完成的 index 集合，传给 `run_inference` 跳过\n5. **结果合并**：inference 完成后 `all_results = completed_results + results`，按 index 排序，用于计算最终 metrics 和写入原有的 summary JSON / predictions JSONL\n6. **原有写入逻辑不变**：最终仍然写 `eval_repo_cwm.json` + `eval_repo_cwm_predictions.jsonl`，保持兼容\n\n增量文件路径：`{output_dir}/results_incremental.jsonl`。下次重启脚本时自动检测并续跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-eval-incremental-save.md"
+}

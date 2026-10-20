@@ -1,0 +1,39 @@
+{
+  "exp_id": "qwen3-8b-traj-repo-s42-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:49:06.304Z",
+    "updated_at": "2026-05-18T22:49:48.012Z",
+    "hypothesis": "Qwen3-8B TRAJ repo-level training retry with seq4096 (v1 OOM at seq8192). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. Qwen3-8B expected ~78-85% variant-level. Lower seq_length may truncate some long repo-level diffs but DeepSeek non-8k variant showed comparable results.",
+    "parent": "qwen3-8b-traj-repo-s42",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T22:49:43.183Z",
+      "command": "bash -c \"mkdir -p /root/autodl-tmp/checkpoints_qwen3_8b_traj_repo && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_traj_verifier.py --data_dir data/swebench_full/ --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --output_dir /root/autodl-tmp/checkpoints_qwen3_8b_traj_repo/ --run_name qwen3-8b-traj-repo --seed 42 --max_seq_length 4096 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --epochs 3 --lora_rank 16 --lora_alpha 32 --no_wandb\""
+    },
+    "spec": {
+      "command": "bash -c \"mkdir -p /root/autodl-tmp/checkpoints_qwen3_8b_traj_repo && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_traj_verifier.py --data_dir data/swebench_full/ --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --output_dir /root/autodl-tmp/checkpoints_qwen3_8b_traj_repo/ --run_name qwen3-8b-traj-repo --seed 42 --max_seq_length 4096 --batch_size 1 --grad_accumulation 8 --lr 2e-4 --epochs 3 --lora_rank 16 --lora_alpha 32 --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "771183",
+      "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-traj-repo-s42-v2.log",
+      "submitted_at": "2026-05-18T22:49:46.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "771183",
+    "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-traj-repo-s42-v2.log"
+  },
+  "timestamp": "2026-05-18T22:49:48.874739+00:00",
+  "trigger": "update_registry"
+}

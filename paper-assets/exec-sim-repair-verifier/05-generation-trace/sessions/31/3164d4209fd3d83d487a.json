@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3164d4209fd3d83d487a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect westd ckpt800 val8192 find result",
+  "task_key": "worker_collect_westd-ckpt800-val8192-find-result_20260514T234002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_westd-ckpt800-val8192-find-result_20260514T234002_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "8a973359e1116829018d07da401f3c53a86ebc0a752a833d2d2b33e682673987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**旧 run（PID 300321）结果已丢失**——新 run 覆写了同名日志，results 目录中也无 ckpt800 输出。\n\n**新 run 正在跑：**\n- PID 304612，启动于 07:40\n- 当前进度：**350/9335 (3.7%)**，**running_acc = 85.1%**\n- 速度：~6 samples/sec，预计总耗时 ~25 分钟，**约 08:06 完成**\n\nrunning_acc 目前在 85.1%，接近判断阈值（>85.00% 则优于 ckpt-600 需补跑 test@8192）。需要等 eval 完成才能看最终 accuracy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-westd-ckpt800-val8192-find-result.md"
+}

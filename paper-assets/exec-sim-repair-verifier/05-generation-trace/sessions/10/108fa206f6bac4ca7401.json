@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "108fa206f6bac4ca7401",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778624279.md",
+  "task_key": "loop_4_1778624279",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778624279.md",
+    "occurrence": 1,
+    "bytes": 4991,
+    "sha256": "10068af7c63af147631193b2b02ab8ea7874adf53fc21aecba84ff53adef2c74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T22:05:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud 禁止并行训练**：cgroup 360GB 限制，两个 4B 训练并行峰值触发 OOM killer（v3+v4 两次确认，D028）\n- **gpu_ids 白名单**：seetacloud [cuda:0,1,2,3]，home [cuda:0]。ROADMAP 显示 seetacloud 当前仅在 cuda:2 跑 CWM\n- **CWM v9 pid=94010 是误提交的重复进程**（已 kill），真实训练由 Worker cwm-v9-dryrun-submit 提交（pid=95806）。如果 cron 报 94010 退出失败，忽略\n- **ARR May 25 deadline，~13天**。repo-level 是决胜战场，没有 repo-level 数据就没有 paper\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**：4× RTX 5090，cgroup 360GB RAM，account=root\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - Python：`/root/miniconda3/bin/python`（conda env，不是 venv）\n  - 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n  - CWM v9 checkpoint：`/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n  - CWM v9 log：`/tmp/repo-level-cwm-v9_stdout.log`\n  - 活跃：CWM v9 pid=95806, cuda:2, tmux session（由 submit_training_job 管理）\n- **home-1x5090**：1× RTX 5090，62GB RAM，account=sonny\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - CLS checkpoint：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - CLS log：`/home/sonny/runs/exec-sim-repair-verifier/repo-level-cls-home.log`\n  - 活跃：cls-v3 pid=2885139（但有 completed_at 和 SIGKILL 记录，**实际可能已死**，需验证）\n- **westd-48478**：在 config 里但本轮无实验\n- **数据**：swebench_full 70748 条，路径 `data/swebench_full/`（两台服务器同路径）\n- **W&B**：两个 RUNNING 实验都设了 `--no_wandb`，无 W&B 监控\n- **Cron**：本 session 无活跃 cron。reconcile 返回 0。\n\n### 3. 📊 当前状态\n**刚做完**：D038 紧急恢复——CLS home 重启（cls-v3）+ CWM v9 修复提交。这是今天密集调试的收尾。\n\n**Registry RUNNING（3个，但实际状态需验证）**：\n| exp_id | 服务器 | 说明 |\n|--------|--------|------|\n| repo-level-cls-v3 | home cuda:0 | pid=2885139, 但 registry 有 completed_at + SIGKILL 记录（retry_count=2）。**第一件事应验证进程是否存活** |\n| repo-level-cwm-v9 | seetacloud cuda:2 | pid=95806, Worker 刚提交。save_steps=100, eval_steps=100。应该在跑 |\n| repo-level-cls-v2 | home cuda:0 | 实际已 crash（ValueError step 0），但状态未更新为 DONE(failed)。**应清理为 failed** |\n\n**活跃 Worker**：`worker_ssh_cwm-v9-dryrun-submit_20260512T212552`（running）——在 seetacloud 提交 CWM v9 训练\n\n**等待中**：\n- Worker cwm-v9-dryrun-submit 回调\n- cls-v3 和 cwm-v9 的训练完成回调（需先注册 cron 监控）\n\n### 4. 📋 待办（条件触发式）\n- **立即**：SSH 验证 cls-v3 (pid=2885139) 是否存活。存活 → 注册 cron 监控；已死 → 诊断 + 第五次重启\n- **立即**：cls-v2 状态应更新为 DONE(failed)，清理 registry\n- **Worker cwm-v9-dryrun-submit 回调到达** → 确认 pid/spec → 注册 cron 监控 CWM v9\n- **cls-v3 训练完成（~12h from submission, ETA ~May 13 09:00 UTC）** → spawn Worker 跑 eval → paired bootstrap vs CWM\n- **cwm-v9 训练完成（~20h, ETA ~May 13 17:00 UTC）** → spawn Worker 跑 eval → paired bootstrap vs CLS\n- **CLS + CWM 都完成** → Go/No-Go D008 判定：≥3pp → EMNLP Main 全力推；1-3pp → 加 seeds；<1pp → kill C1\n- **任一 repo-level 再次被 SIGKILL/SIGTERM** → 检查 save_steps 产生了 checkpoint 没有 → 有则 resume，无则再次重启并降低 save_steps\n- **GPU 空窗**（home CLS 完成但 CWM 还在跑）→ home 可跑 CLS eval 或其他补充实验\n\n### 5. 🎯 战略上下文\n**核心 story**：函数级 CLS≈CWM（TOST 等价 p=0.007），但 scaling 8B 拉开 gap 2.43pp (p=0.007)。核心赌注是 repo-level complexity 进一步放大 CLS 优势（D008 Go/No-Go）。\n\n**决策链**：D001→MVP pass → D008 pivot to complexity-dependent → 现在全力 repo-level。函数级 45 个实验全部完成（30 success / 3 negative / 10 failed / 2 killed）。\n\n**最容易判断错的事**：\n1. cls-v3 的 registry 状态混乱——有 SIGKILL 记录 + completed_at 但 status=RUNNING。**不要假设它在跑，先验证进程**\n2. CWM v1-v8 连续 8 次失败不是方法论问题——是平台 kill + 代码 bug + 磁盘满。v9 修复了已知的所有问题（eval_steps 对齐、compute_loss OOM、nohup 启动）。如果 v9 又死，考虑换服务器而不是再改代码\n3. seetacloud 长训练容易被平台 SIGTERM——save_steps 必须够小（v9 设的 100），确保被杀时有 checkpoint 可 resume\n4. **两个 RUNNING 实验都没 W&B 也没 cron**——新 session 必须立即补 cron 或手动 poll，否则训练完了也没人知道\n5. report.md 的 ROADMAP GPU 状态可能过时（显示 v7 还在跑），以 registry 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778624279.md"
+}

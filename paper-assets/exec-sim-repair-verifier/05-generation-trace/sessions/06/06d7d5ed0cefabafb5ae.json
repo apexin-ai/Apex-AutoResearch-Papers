@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06d7d5ed0cefabafb5ae",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d153 gpu1 traj ablation",
+  "task_key": "worker_d153-gpu1-traj-ablation_20260519T114210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu1-traj-ablation_20260519T114210_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "e4132651fcea807153edd3f820f39051c3a2360cc132862c71f4491518c1c119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-2200 eval at ~60% done. Waiting ~4.5 min to check completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d153-gpu1-traj-ablation.md"
+}

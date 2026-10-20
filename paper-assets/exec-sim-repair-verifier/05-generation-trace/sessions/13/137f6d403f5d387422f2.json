@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "137f6d403f5d387422f2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research bibliography audit",
+  "task_key": "worker_research_bibliography-audit_20260517T094728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bibliography-audit_20260517T094728_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "f826912aac89f4aaa046491da33b7b9dd46da007f2c13cf00dee7502d6a16d7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成：\n\n- **23/23 候选全部通过**（无幻觉条目）\n- **14 篇已存在** bib 中（跳过）\n- **9 篇新增**到 `references.bib`\n- **4 处修正**：CodeScore 年份(2023→2024)、ye2025prlcoder 会议(arXiv→EMNLP 2025)、DreamPRM-Code 作者、wang2024llmmutation 会议(arXiv→ACM TOSEM 2025)\n- **最终 bib 总计 45 篇**\n\n输出文件：\n- `docs/paper/references.bib` — 追加了 9 条新 entry\n- `artifacts/bibliography_audit_report.json` — 完整审计报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bibliography-audit.md"
+}

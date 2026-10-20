@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33dea6b666f498b43db5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops verify d054 startup",
+  "task_key": "worker_ops_verify-d054-startup_20260513T215139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d054-startup_20260513T215139_result.json",
+    "occurrence": 1,
+    "bytes": 1485,
+    "sha256": "718994ed6aa023e86def983c1676236d352d2aafe5af146563c1f4622785d64f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nCWM v12 启动: ⚠️ 进程存活但疑似卡住\n  PID 链: 181197 → 181201 → 181202 (python3 train_repo_cwm.py --seed 42)\n  日志仅 4 行，最后更新 05:50:54，停在 \"Class weights\" 之后\n  PID 181202 未出现在 nvidia-smi 进程列表 — 未分配 GPU 显存\n  原因: cuda:1 已被 CWM seed123 (PID 142402, 16326 MiB) 占用\n  v12 可能在模型加载阶段排队/死等 GPU 显存\ntransformers 版本: 未能直接验证（read_only 不支持分号），但 conda base 环境启动的\n\nhome seed123 进度: ❌ OOM 崩溃\n  错误: torch.OutOfMemoryError — 尝试分配 1.36 GiB，GPU 仅剩 105.94 MiB\n  崩溃在 step 0/6633，未产出任何训练数据\n  PID 2998850: 已死 (EXIT_CODE=1)\n\nwestd GPU 状态:\n  cuda:0: 占用 24914 MiB — CLS seed123 (PID 141203, train_repo_verifier.py --seed 123)\n  cuda:1: 占用 16326 MiB — CWM seed123 (PID 142402, train_repo_cwm.py --seed 123)\n  cuda:2: 占用 10768 MiB — eval CWM v11 ckpt600 (PID 180344, eval_repo_cwm.py)\n  cuda:3: 占用 25744 MiB — CLS 8B (PID 140060, train_repo_verifier_8b.py --seed 42)\n```\n\n**需要处理的问题:**\n1. **CWM v12 卡住**: GPU 1 被 CWM seed123 占着，v12 无法获取显存。需要等 seed123 完成或 kill 它，或者改 v12 到其他 GPU\n2. **home seed123 OOM**: 需要降低 batch size 或启用 gradient checkpointing 后重跑\n3. **westd 四卡全满**: 没有空闲 GPU，cuda:2 的 eval 任务完成后会释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d054-startup.md"
+}

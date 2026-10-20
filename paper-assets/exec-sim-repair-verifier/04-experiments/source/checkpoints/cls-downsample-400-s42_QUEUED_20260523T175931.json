@@ -1,0 +1,15 @@
+{
+  "exp_id": "cls-downsample-400-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T17:59:26.018Z",
+    "updated_at": "2026-05-23T17:59:31.009Z",
+    "hypothesis": "CLS function-level trained on ~447 samples (matching TRAJ variant count) should reveal whether TRAJ's lower accuracy (86.30% vs CLS 88.43%) is due to data volume disparity (34×) or formulation difference. If CLS@447 ≈ TRAJ → data volume is main confound; if CLS@447 > TRAJ → formulation effect independent of data volume."
+  },
+  "timestamp": "2026-05-23T17:59:31.506077+00:00",
+  "trigger": "update_registry"
+}

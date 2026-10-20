@@ -1,0 +1,2089 @@
+# cron hook cls8b seed123 ckpt6633 test eval 20260515T220057 015703
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 60
+- **Recorded user turns:** 2
+- **Tool calls:** 28
+- **Original source:** `logs/chats/archive/cron_hook_cls8b-seed123-ckpt6633-test-eval_20260515T220057_015703.jsonl`
+- **Structured JSON:** [`1ad6edf7e83b05365ffb.json`](../../sessions/1a/1ad6edf7e83b05365ffb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T17:38:24.853555+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #17。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 = westd cuda:0/1/2/3 + home cuda:0，其他 GPU 一律 push back Director
+- eval 禁止 `--max_samples`，必须跑完整 test set (n=9784) / val set (n=9335)
+- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出，否则会重复提交导致 OOM（已有事故）
+- s42 resume checkpoints 从 ckpt-600 开始（200步间隔），位于 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`，不含 ckpt-200/400
+- CWM 8B eval 用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024
+- home 版 eval 脚本不支持 `--max_new_tokens` 参数
+
+### 2. 🖥️ 基础设施快照
+- **Westd** (seetacloud-westd-4x5090, account=root):
+  - 工作目录: `/home/sonny/exec-sim-repair-verifier`
+  - Python: `/root/miniconda3/bin/python`（conda base，不用 venv）
+  - 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`
+  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`
+  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（有 400, 4000-4300）
+- **Home** (home-1x5090, account=sonny):
+  - 工作目录: `/home/sonny/exec-sim-repair-verifier`
+  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`
+  - 用 `python3` 不是 `python`
+- **活跃进程**:
+  - `repo-level-cwm-8b-conda-v4`: PID 266816, cuda:2, CWM 8B 训练 (~57%, ETA May 16 ~05:30 UTC)
+  - `repo-level-cls-8b-s42-resume`: PID 295794, cuda:1, CLS 8B s42 resume 训练 (~55%, ETA ~May 15 23:00 UTC)
+  - `cwm8b-ckpt400-test-eval`: PID 381618, cuda:3, CWM 8B ckpt-400 test eval (bs=8, ~9784 samples)
+  - `cls8b-s42-resume-val-sweep-seq4096`: PID 397645, cuda:0, s42 resume val sweep 21 checkpoints (1800-5800)
+- **Cron 监控**: 3 个 active（cwm-8b-conda-v4, cls-8b-s42-resume, cwm8b-ckpt400-test-eval）
+- **Workers**: 0 running
+
+### 3. 📊 当前状态
+4 个 GPU 全部满载运行，Paper Agent 已启动 Full Draft 写作。
+
+**RUNNING 实验**:
+| exp_id | GPU | 任务 | 进度 |
+|--------|-----|------|------|
+| repo-level-cwm-8b-conda-v4 | cuda:2 | CWM 8B 训练 (resume from ckpt-1600) | ~57%, ETA May 16 05:30 |
+| repo-level-cls-8b-s42-resume | cuda:1 | CLS 8B s42 resume 训练 | ~55%, ETA May 15 23:00 |
+| cwm8b-ckpt400-test-eval | cuda:3 | CWM 8B ckpt-400 test@full (n=9784) | bs=8, D102 批准重启 |
+| cls8b-s42-resume-val-sweep-seq4096 | cuda:0 | s42 resume val sweep 21 ckpts | 刚启动 |
+
+**等待中**:
+- 无 Worker 回调待处理
+- 4 个 PENDING 实验均已 killed（stale，可忽略）
+- Paper Agent 在独立推进写作
+
+**主表数字已锁定（除 CWM 8B）**:
+- CLS 8B s42: val 88.23% / test 83.52% / gap 25.48pp
+- CLS 8B seed123: val 88.69% / test 85.60% / gap 26.51pp
+- CLS 4B s42: val 90.07% / test 83.63% / gap 25.59pp
+- CWM 4B s42: test 58.04% / CWM 4B seed123: test 59.09%
+- CWM 8B: ⏳ 训练中，ckpt-400 eval 也在跑
+- Majority baseline: val 75.88% / test 72.96%
+
+### 4. 📋 待办（条件触发式）
+- `cls8b-s42-resume-val-sweep-seq4096` cron 完成 → 分析 21 个 checkpoint 的 val 曲线，找 s42 resume 最优 val checkpoint，补 test eval
+- `repo-level-cls-8b-s42-resume` 训练完成 → extended val sweep（覆盖 resume 后段 checkpoints）
+- `cwm8b-ckpt400-test-eval` 完成 → 记录 CWM 8B ckpt-400 test accuracy → 锁定 8B-8B CLS-CWM gap → 更新主表
+- `repo-level-cwm-8b-conda-v4` 训练完成 → eval final checkpoint test → 与 ckpt-400 对比（eval_loss 上升趋势，ckpt-400 可能是 best）
+- CWM 8B 两个 eval 都完成 → 8B-8B gap 锁定 → Paper 主表最后一格填入 → 通知 Paper Agent 更新
+- home cuda:0 空闲 → 可用于 supplementary eval（4B 补充实验或 ablation），但当前无紧急任务
+
+### 5. 🎯 战略上下文
+**核心结论**: Classification 在 repo-level 以 ~26pp 碾压 CWM（multi-seed validated），函数级两者等价（D007 complexity-dependent framing）。C1/C2/C3 三个 claim 均已有实验支撑。
+
+**决策链关键节点**:
+- D007: 函数级 CWM≈CLS → 采用 Complexity-Dependent Advantage framing
+- D088: 回到 val-selected checkpoint 为主指标（ML 社区规范）
+- D093: Multi-seed gap 锁定 25.99pp mean
+- D094: seq_length confound 排除（CLS@2048 仍有 24.79pp gap）
+- D096: 主表切换为 8B-8B 对比
+- D097: LoRA rank ablation 确认 rank=16 不低估 CWM
+- D100: CWM relaxed matching 反而降低准确率，排除 parsing failure 解释
+- D102: CWM 8B eval 从 bs=1 改 bs=8 重启
+
+**易踩的坑**:
+- CWM 8B eval_loss 持续上升（400=0.286 → 4300=0.482），**ckpt-400 很可能是 best**，不要假设 final checkpoint 更好
+- CWM unparseable rate 极高（53-67%），这些默认算错 → CWM accuracy 天花板受限于 format compliance
+- 4B seed123 test 仅 75.33%（远低于 s42 的 83.63%），4B 跨 seed 不稳定，**主表用 s42 single-seed 就好，不要强调 4B multi-seed**
+- val-test 分布偏移严重（D085: 37.5% val 样本来自 test 没有的 repo），val-best ≠ test-best 是常态
+- EMNLP ARR May 25 剩 10 天，Paper Agent 已在跑，关键阻塞是 CWM 8B test 数字（ETA May 16-17）
+
+## 项目硬约束 (memory.md 节选)
+
+## Home 服务器路径
+- 用户目录: `/home/sonny`（不是 /home/ubuntu）
+- 4B v5 checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`
+- 用 python3 不是 python
+
+## Westd 服务器路径
+- seed123 checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`
+- seed123 backup: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`
+- s42 resume checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`
+- 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+- CWM 8B checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`
+- 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+
+## 可查的历史
+前 108 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T17:38:36.998697+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T17:38:37.049368+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T17:38:41.166934+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "exec-sim-repair-verifier",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "exec-sim-repair-verifier",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:38:41.618792+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T17:38:41.619467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cls8b-s42-resume-val-sweep-seq4096\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:30:21.415Z\", \"updated_at\": \"2026-05-15T17:30:34.371Z\", \"spec\": {\"command\": \"bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep.sh\", \"server\": \"seetacloud-westd-4x5090\", \"pid\": 397645, \"gpu\": \"cuda:0\", \"data_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume\", \"data_count\": 9335, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"/root/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq4096.log\", \"batch_size\": 1, \"max_seq_length\": 4096}, \"hypothesis\": \"s42 resume val sweep (seq4096): 21 checkpoints (1800-5800), bs=1\", \"notes\": \"启动成功，PID=397645, cuda:0\"}, \"cwm8b-ckpt400-test-eval\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T12:16:19.540Z\", \"updated_at\": \"2026-05-15T17:17:06.973Z\", \"hypothesis\": \"CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。\", \"notes\": \"2026-05-15 16:57 UTC: pid=381618, etime=2h18m。进程中间静默死亡丢失~8h GPU时间，仅保存 359 样本。当前 auto-resume 从 sample 359 开始，1544/9784 (15.8%), running_acc=65.0%。速率 ~8.4 samples/min，剩余 8240 samples。ETA: ~May 16 09:15 UTC (~16h)。bs=8 (D102)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T14:55:30.129Z\"}, \"failure_reason\": \"\", \"completed_at\": \"\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:55:37.446501+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-15 14:37 UTC: D102 bs=1→bs=8 重启。kill pid=367292, 新 pid=381618。auto-resume 从 359 条继续，剩余 9425/9784。显存 20982/32607 MiB on cuda:3。ETA May 16 17:20 UTC。\"}}, \"spec\": {\"pid\": \"381618\", \"batch_size\": 8, \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifie
+…[truncated 2999 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T17:38:42.171538+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T17:38:42.171950+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T17:38:48.294975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"repo-level-cwm-8b-conda-v4\", \"success\": true, \"actions\": [\"Job still running (pid=266816)\"]}, {\"exp_id\": \"repo-level-cls-8b-s42-resume\", \"success\": true, \"actions\": [\"Job still running (pid=295794)\"]}, {\"exp_id\": \"cwm8b-ckpt400-test-eval\", \"success\": true, \"actions\": [\"Job still running (pid=381618)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 6676
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:38:48.295538+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| cls8b-s42-resume-val-sweep-seq4096 | — | — | — | — |\\n| cwm8b-ckpt400-test-eval | CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。 | — | — | — |\\n| repo-level-cls-8b-s42-resume | — | — | — | — |\\n\\n## 待处理\\n- repo-level-cls-8b-s42-ckpt200-val（等待人工审批）\\n- cls8b-ckpt3000-test-v2（等待人工审批）\\n- cls8b-ckpt3000-test-eval（等待人工审批）\\n- cls8b-s42-extended-val-sweep（等待人工审批）\\n\\n## 近期结论\\n- **cls8b-s42-resume-val-sweep-seq8192** (killed): —\\n- **cls8b-s42-resume-val-sweep** (failed): —\\n- **s42-extended-val-sweep-v2** (failed): s42 resume extended val sweep: 18 checkpoints (1800-5200 步长200), 寻找 s42-resume 训练的最优 val checkpoint。前 8 个 ckpt (200-1600) 已在之前 sweep 完成 (peak=ckpt-1000 88.23%)，本轮覆盖后半段。\\n\\n## 趋势\\n成功 75 / 负向 4 / 失败 31 / 共 126\\naccuracy: 87.04 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nhome-1x5090: 无 GPU 信息\\nseetacloud-westd-4x5090: 无 GPU 信息\\n\\n## 告警\\n- trace-then-judge: 训练失败 — unknown\\n- repo-level-cls: 训练失败 — unknown\\n- repo-level-cwm: 训练失败 — unknown\\n- repo-level-cls-v2: 训练失败 — unknown\\n- repo-level-cwm-v2: 训练失败 — unknown\\n- repo-level-cls-v3: 训练失败 — unknown\\n- repo-level-cwm-v3: 训练失败 — unknown\\n- repo-level-cls-home: 训练失败 — unknown\\n- repo-level-cwm-v4: 已被终止 — unknown\\n- repo-level-cwm-v5: 训练失败 — unknown\\n- repo-level-cwm-v6: 训练失败 — unknown\\n- repo-level-cwm-v7: 训练失败 — unknown\\n- repo-level-cwm-v8: 训练失败 — unknown\\n- repo-level-cwm-v9: 训练失败 — unknown\\n- repo-level-cls-seed123: 已被终止 — unknown\\n- repo-level-cwm-seed123: 已被终止 — unknown\\n- repo-level-cwm-v11: 已被终止 — unknown\\n- repo-level-cls-8b: 已被终止 — unknown\\n- repo-level-cwm-v
+…[truncated 1493 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 6124
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T17:38:48.346223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-15 08:58 UTC | 更新原因: 所有 eval sweep 完成，Paper Agent 已启动，更新为 Paper Writing 阶段\\n\\n## 核心方向\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Paper Writing（Paper Agent 已启动 Full Draft）\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 **10 天**）\\n- **C1**: ✅ Multi-seed gap = 25.99pp (s42: 25.48, seed123: 26.51)\\n- **C2**: ✅ TOST p=0.007\\n- **C3**: ✅ Oracle frontier 完成\\n\\n## 论文主表数字（D088 val-selected, 全部锁定）\\n\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\n|------|----------|-----|------|------------|\\n| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\n| CWM 4B s42 | — | — | 58.04% | — |\\n| CWM 4B seed123 | — | — | 59.09% | — |\\n| CWM 8B | — | — | ⏳ training 57% | — |\\n| Majority | — | 75.88% | 72.96% | — |\\n\\n## Sweep 完成度\\n- ✅ 8B s42 val sweep: 8 点 (200→1600), peak=ckpt-1000 (88.23%)\\n- ✅ 8B s42 test sweep: 7 点 (400→1600), peak=ckpt-1400 (85.47%)\\n- ✅ seed123 val sweep: 5 点 (3000, 6200→6633), peak=ckpt-3000 (88.69%)\\n- ✅ seed123 val-best test: ckpt-3000 test=85.60%\\n- ✅ 4B val sweep: 5 点, peak=ckpt-4600 (90.07%)\\n- ✅ 4B test: ckpt-4600=83.63%, ckpt-4400=83.24%\\n\\n## 近期任务\\n- [x] ~~8B s42 sweep 完成~~\\n- [x] ~~seed123 val sweep + val-best test~~\\n- [x] ~~4B val-best test~~\\n- [x] ~~文档修正 (error_analysis + comprehensive_results + compilation)~~\\n- [x] ~~Paper Agent 启动~~\\n- [ ] CWM 8B 训练完成 (57%, ETA May 16 05:30 UTC) → test eval → 锁 8B-8B gap\\n- [ ] s42 resume 完成 (55%, ETA ~23:00 UTC) → extended val sweep\\n- [ ] Paper Agent: Step 2 图表 → Step 3 写作 → Step 4 审查\\n- [ ] val_sweep_compilation.md 最终编译缺口补全\\n\\n## GPU 预算\\n- wes
+…[truncated 1614 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 6174
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T17:39:14.648307+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T17:39:14.748931+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T17:39:19.015980+00:00_
+
+called mcp__agent-ml-research__register_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron</summary>
+
+```json
+{
+  "exp_id": "cls8b-s42-resume-val-sweep-seq4096",
+  "server": "seetacloud-westd-4x5090",
+  "pid": "397645",
+  "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq4096.log",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "tool_args": {
+    "exp_id": "cls8b-s42-resume-val-sweep-seq4096",
+    "server": "seetacloud-westd-4x5090",
+    "pid": "397645",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq4096.log",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T17:39:19.276202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"cls8b-s42-resume-val-sweep-seq4096\", \"server\": \"seetacloud-westd-4x5090\", \"pid\": \"397645\", \"wandb_run_id\": null, \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq4096.log\", \"interval_seconds\": 120, \"project\": \"exec-sim-repair-verifier\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-15T17:39:19.112Z\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__register_cron",
+  "elapsed_ms": 260
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T17:39:30.018258+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T17:39:30.019070+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_bc5a0163.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T17:39:32.628947+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T17:39:32.730369+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T17:40:03.470994+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 (100%) | Worker 池 0 (全部 GPU-bound 等回调) | home cuda:0 空闲\n\n**Loop #17 启动汇报**\n\nReconcile 确认 4 个 RUNNING 实验进程均存活：\n- `cls8b-s42-resume-val-sweep-seq4096` (cuda:0): s42 resume 21 ckpt val sweep，刚启动，已补注册 cron 监控\n- `repo-level-cls-8b-s42-resume` (cuda:1): PID 295794，上次记录 61%，ETA ~May 16 06:00 UTC\n- `repo-level-cwm-8b-conda-v4` (cuda:2): PID 266816，上次记录 60.5%，ETA ~May 16 11:00 UTC\n- `cwm8b-ckpt400-test-eval` (cuda:3): PID 381618，15.8% (1544/9784)，ETA ~May 16 09:15 UTC\n\n无新完成/失败。等待 cron 回调触发下一步动作。Paper Agent 独立推进中。\n\n**关键路径**: CWM 8B ckpt-400 test eval (ETA May 16 09:15) → 锁定 8B-8B gap → 主表最后一格。",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4/4 | 实际跑 4/4 (100%) | Worker 池 0 (全部 GPU-bound 等回调) | home cuda:0 空闲\n\n**Loop #17 启动汇报**\n\nReconcile 确认 4 个 RUNNING 实验进程均存活：\n- `cls8b-s42-resume-val-sweep-seq4096` (cuda:0): s42 resume 21 ckpt val sweep，刚启动，已补注册 cron 监控\n- `repo-level-cls-8b-s42-resume` (cuda:1): PID 295794，上次记录 61%，ETA ~May 16 06:00 UTC\n- `repo-level-cwm-8b-conda-v4` (cuda:2): PID 266816，上次记录 60.5%，ETA ~May 16 11:00 UTC\n- `cwm8b-ckpt400-test-eval` (cuda:3): PID 381618，15.8% (1544/9784)，ETA ~May 16 09:15 UTC\n\n无新完成/失败。等待 cron 回调触发下一步动作。Paper Agent 独立推进中。\n\n**关键路径**: CWM 8B ckpt-400 test eval (ETA May 16 09:15) → 锁定 8B-8B gap → 主表最后一格。",
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T17:40:07.186149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3715
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T17:40:12.564882+00:00_
+
+Session-start 初始化完成。
+
+**状态摘要**：
+- 4 个实验全部在跑（westd 4 GPU 满载），cron 4/4 active
+- 最近 ETA：s42 resume 训练 ~May 16 06:00 UTC，CWM 8B eval ~May 16 09:15 UTC
+- 关键阻塞：CWM 8B test 数字（主表最后一格）
+- 已向 Director 汇报，等待 cron 回调触发下一步
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+38 recorded events
+
+### User
+
+_source line 23 · 2026-05-15T21:56:57.739404+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T21:57:16.880987+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T21:57:16.980293+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 99
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T21:57:20.874725+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T21:57:21.408975+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T21:57:21.964979+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T21:57:22.335521+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T21:57:22.525349+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T21:57:24.210967+00:00_
+
+Error: result (232,592 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 3336
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T21:57:51.999557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"cwm8b-ckpt400-test-eval\", \"success\": true, \"actions\": [\"Job still running (pid=381618)\"]}, {\"exp_id\": \"cls8b-s42-resume-val-sweep-seq8192-v2\", \"success\": true, \"actions\": [\"Job still running (pid=398981)\"]}, {\"exp_id\": \"repo-level-cwm-8b-conda-v5\", \"success\": true, \"actions\": [\"Job still running (pid=400279)\"]}, {\"exp_id\": \"cls8b-s42-resume-val-sweep-gpu1\", \"success\": true, \"actions\": [\"Job still running (pid=405526)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 30590
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T21:57:52.103490+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | GPU | 假设 | 进度 | ETA (UTC) |\\n|--------|-----|------|------|-----------|\\n| cwm8b-ckpt400-test-eval | westd cuda:3 | CWM 8B ckpt-400 test eval (n=9784, bs=8) | 1544/9784 (15.8%) | May 16 09:15 |\\n| repo-level-cwm-8b-conda-v5 | westd cuda:2 | CWM 8B 训练 resume from ckpt-5200 | ~57% | May 16 05:30 |\\n| cls8b-s42-resume-val-sweep-seq8192-v2 | westd cuda:0 | s42 resume 21 ckpts val sweep (seq8192 bs=1) | ckpt-1800 (1/21) | May 16 10:50 |\\n| cls8b-s42-resume-val-sweep-gpu1 | westd cuda:1 | Parallel val sweep GPU1 (ckpt-4000→5800, 10 ckpts) | 刚启动 | ~May 16 04:00 |\\n\\n## 待处理\\n- cls8b-s42-resume-ckpt1000-test-mutation: per-mutation-type test breakdown（准备中）\\n- repo-level-cls-8b-s42-ckpt200-val（PENDING，等待人工审批）\\n- cls8b-ckpt3000-test-v2（PENDING）\\n- cls8b-ckpt3000-test-eval（PENDING）\\n- cls8b-s42-extended-val-sweep（PENDING）\\n\\n## 近期结论\\n- **repo-level-cls-8b-s42-resume** (success): s42 resume 训练完成\\n- **cls8b-s42-resume-val-sweep-seq4096** (killed): D103 未授权降级 seq_length，改用 seq8192\\n\\n## 关键路径\\n1. CWM 8B 训练完成 (May 16 05:30) → final ckpt test eval → 锁 8B-8B gap\\n2. CWM 8B ckpt-400 test eval (May 16 09:15) → 第一个 CWM 8B test 数据点\\n3. val sweep 完成 (May 16 10:50) → 编译完整 s42 resume val curve\\n\\n## 资源状态\\n- seetacloud-westd-4x5090: cuda:0/1/2/3 全部 RUNNING ✅\\n- home-1x5090: cuda:0 待命\\n\\n## 论文主表（D088 val-selected）\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\n|------|----------|-----|------|------------|\\n| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\n| CWM 4B s42 | — | — | 58.04% | — |\\n| CWM 4B seed123 | — | — | 59.09% | — |\\n| CWM 8B | — | — | ⏳ eval中 | — |\\n| Majority | — | 75.88% | 
+…[truncated 160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 30138
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T21:57:52.205584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\", \"content\": \"# exec-sim-repair-verifier — Research Dashboard\\n\\n> 最后更新: 2026-05-15 08:58 UTC | 更新原因: 所有 eval sweep 完成，Paper Agent 已启动，更新为 Paper Writing 阶段\\n\\n## 核心方向\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Paper Writing（Paper Agent 已启动 Full Draft）\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 **10 天**）\\n- **C1**: ✅ Multi-seed gap = 25.99pp (s42: 25.48, seed123: 26.51)\\n- **C2**: ✅ TOST p=0.007\\n- **C3**: ✅ Oracle frontier 完成\\n\\n## 论文主表数字（D088 val-selected, 全部锁定）\\n\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\n|------|----------|-----|------|------------|\\n| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\n| CWM 4B s42 | — | — | 58.04% | — |\\n| CWM 4B seed123 | — | — | 59.09% | — |\\n| CWM 8B | — | — | ⏳ training 57% | — |\\n| Majority | — | 75.88% | 72.96% | — |\\n\\n## Sweep 完成度\\n- ✅ 8B s42 val sweep: 8 点 (200→1600), peak=ckpt-1000 (88.23%)\\n- ✅ 8B s42 test sweep: 7 点 (400→1600), peak=ckpt-1400 (85.47%)\\n- ✅ seed123 val sweep: 5 点 (3000, 6200→6633), peak=ckpt-3000 (88.69%)\\n- ✅ seed123 val-best test: ckpt-3000 test=85.60%\\n- ✅ 4B val sweep: 5 点, peak=ckpt-4600 (90.07%)\\n- ✅ 4B test: ckpt-4600=83.63%, ckpt-4400=83.24%\\n\\n## 近期任务\\n- [x] ~~8B s42 sweep 完成~~\\n- [x] ~~seed123 val sweep + val-best test~~\\n- [x] ~~4B val-best test~~\\n- [x] ~~文档修正 (error_analysis + comprehensive_results + compilation)~~\\n- [x] ~~Paper Agent 启动~~\\n- [ ] CWM 8B 训练完成 (57%, ETA May 16 05:30 UTC) → test eval → 锁 8B-8B gap\\n- [ ] s42 resume 完成 (55%, ETA ~23:00 UTC) → extended val sweep\\n- [ ] Paper Agent: Step 2 图表 → Step 3 写作 → Step 4 审查\\n- [ ] val_sweep_compilation.md 最终编译缺口补全\\n\\n## GPU 预算\\n- wes
+…[truncated 1653 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 29870
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T21:57:53.567347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"cwm-baseline\", \"claim\": 1, \"description\": \"Train CWM generation baseline (Qwen3-4B LoRA, same data/config as MVP-B) to predict execution output instead of pass/fail. Compare per-class F1 against classification model (87.1/87.9%).\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"mvp-b-train\"], \"status\": \"DONE\", \"registry_id\": \"cwm-baseline\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 87.51, \"pass_f1\": 87.31, \"fail_f1\": 87.71, \"pass_precision\": 92.06, \"pass_recall\": 83.03, \"fail_precision\": 83.53, \"fail_recall\": 92.32, \"exact_match_rate\": 84.02, \"train_loss\": 0.2534, \"eval_loss\": 0.0644, \"train_runtime_sec\": 3439, \"test_set_size\": 1890, \"unparseable_predictions\": 0}}, {\"id\": \"multi-seed-core\", \"claim\": 1, \"description\": \"Multi-seed validation for core comparison: run classification (mvp-b-train) and CWM baseline each with seeds {0, 1, 42}. Report mean +/- std F1. Statistical significance via paired t-test or bootstrap CI. Required for any claim of 'significantly better'.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"cwm-baseline\"], \"registry_id\": \"traj-level-seed0\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 85.66, \"unresolved_f1\": 87.37, \"resolved_f1\": 83.41, \"unresolved_precision\": 82.71, \"unresolved_recall\": 92.59, \"resolved_precision\": 90.07, \"resolved_recall\": 77.66, \"consistency_rate\": 79.55, \"train_loss\": 0.225, \"eval_loss_epoch1\": 0.0949, \"eval_loss_epoch2\": 0.0885, \"eval_loss_epoch3\": 0.1011, \"train_runtime_sec\": 4071.3}}, {\"id\": \"trace-then-judge\", \"claim\": 1, \"description\": \"Trace-then-Judge ablation (chain-of-thought, NOT pipeline): single Qwen3-4B model trained to first generate a brief execution reasoning trace (~50 tokens describing expected behavior), then output pass/fail. Same LoRA config/data. Tests
+…[truncated 8816 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 31041
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T21:58:06.319956+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Parse registry for running experiments",
+  "prompt": "Parse the large JSON registry file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\n\nThis is JSON with schema: {result: string} where the result is itself a JSON string.\n\nI need you to extract and return:\n1. All experiments with status \"RUNNING\" or \"PREPARING\" or \"PENDING\" or \"ALLOCATED\" or \"QUEUED\" — for each, give: exp_id, status, server, gpu, pid, hypothesis, spec (command, data_path, model_name if available), any metrics so far\n2. Total experiment count and breakdown by status\n3. Any experiments with cron monitoring active (look for cron_id or similar fields)\n\nUse jq or python to parse. Return the findings as structured text.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Parse registry for running experiments",
+    "prompt": "Parse the large JSON registry file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\n\nThis is JSON with schema: {result: string} where the result is itself a JSON string.\n\nI need you to extract and return:\n1. All experiments with status \"RUNNING\" or \"PREPARING\" or \"PENDING\" or \"ALLOCATED\" or \"QUEUED\" — for each, give: exp_id, status, server, gpu, pid, hypothesis, spec (command, data_path, model_name if available), any metrics so far\n2. Total experiment count and breakdown by status\n3. Any experiments with cron monitoring active (look for cron_id or similar fields)\n\nUse jq or python to parse. Return the findings as structured text.",
+    "subagent_type": "general-purpose"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T21:58:07.327741+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T21:58:07.681062+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T21:58:10.684839+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt",
+  "description": "Check file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -c /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt",
+    "description": "Check file size"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T21:58:10.839345+00:00_
+
+243860 /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T21:58:21.698446+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json, sys\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\n# The outer JSON has schema {result: string} where result is itself JSON\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\n# data could be a dict with an \"experiments\" key, or a list, or the registry itself\nif isinstance(data, dict):\n    # Check common keys\n    print(\"Top-level keys:\", list(data.keys())[:20])\n    if \"experiments\" in data:\n        experiments = data[\"experiments\"]\n    elif \"registry\" in data:\n        experiments = data[\"registry\"]\n    else:\n        # Maybe the dict IS the experiments keyed by id\n        # Check if values look like experiment objects\n        first_key = list(data.keys())[0] if data else None\n        first_val = data[first_key] if first_key else None\n        if isinstance(first_val, dict) and \"status\" in first_val:\n            experiments = data\n        else:\n            print(\"Unexpected structure. First key:\", first_key)\n            print(\"First value type:\", type(first_val))\n            if isinstance(first_val, dict):\n                print(\"First value keys:\", list(first_val.keys())[:10])\n            sys.exit(1)\nelif isinstance(data, list):\n    experiments = data\n    print(\"Data is a list of\", len(data), \"items\")\nelse:\n    print(\"Unexpected type:\", type(data))\n    sys.exit(1)\n\nprint(\"Type of experiments:\", type(experiments))\nif isinstance(experiments, list):\n    print(\"Count:\", len(experiments))\n    if experiments:\n        print(\"First item keys:\", list(experiments[0].keys()) if isinstance(experiments[0], dict) else type(experiments[0]))\nelif isinstance(experiments, dict):\n    print(\"Count:\", len(experiments))\n    first_key = list(experiments.keys())[0]\n    print(\"First key:\", first_key)\n    print(\"First value keys:\", list(experiments[first_key].keys()) if isinstance(experiments[first_key], dict) else type(experiments[first_key]))\nPYEOF",
+  "description": "Parse the JSON structure to understand its shape"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json, sys\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\n# The outer JSON has schema {result: string} where result is itself JSON\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\n# data could be a dict with an \"experiments\" key, or a list, or the registry itself\nif isinstance(data, dict):\n    # Check common keys\n    print(\"Top-level keys:\", list(data.keys())[:20])\n    if \"experiments\" in data:\n        experiments = data[\"experiments\"]\n    elif \"registry\" in data:\n        experiments = data[\"registry\"]\n    else:\n        # Maybe the dict IS the experiments keyed by id\n        # Check if values look like experiment objects\n        first_key = list(data.keys())[0] if data else None\n        first_val = data[first_key] if first_key else None\n        if isinstance(first_val, dict) and \"status\" in first_val:\n            experiments = data\n        else:\n            print(\"Unexpected structure. First key:\", first_key)\n            print(\"First value type:\", type(first_val))\n            if isinstance(first_val, dict):\n                print(\"First value keys:\", list(first_val.keys())[:10])\n            sys.exit(1)\nelif isinstance(data, list):\n    experiments = data\n    print(\"Data is a list of\", len(data), \"items\")\nelse:\n    print(\"Unexpected type:\", type(data))\n    sys.exit(1)\n\nprint(\"Type of experiments:\", type(experiments))\nif isinstance(experiments, list):\n    print(\"Count:\", len(experiments))\n    if experiments:\n        print(\"First item keys:\", list(experiments[0].keys()) if isinstance(experiments[0], dict) else type(experiments[0]))\nelif isinstance(experiments, dict):\n    print(\"Count:\", len(experiments))\n    first_key = list(experiments.keys())[0]\n    print(\"First key:\", first_key)\n    print(\"First value keys:\", list(experiments[first_key].keys()) if isinstance(experiments[first_key], dict) else type(experiments[first_key]))\nPYEOF",
+    "description": "Parse the JSON structure to understand its shape"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T21:58:21.802152+00:00_
+
+Exit code 1
+Top-level keys: ['success', 'data', 'error', 'metadata']
+Unexpected structure. First key: success
+First value type: &lt;class 'bool'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T21:58:30.145900+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\n# It has keys: success, data, error, metadata\nprint(\"success:\", data.get(\"success\"))\nprint(\"error:\", data.get(\"error\"))\nprint(\"metadata:\", json.dumps(data.get(\"metadata\"), indent=2)[:500] if data.get(\"metadata\") else None)\n\nd = data.get(\"data\")\nprint(\"\\ndata type:\", type(d))\nif isinstance(d, dict):\n    print(\"data keys:\", list(d.keys())[:20])\n    # Check if experiments is nested\n    if \"experiments\" in d:\n        exps = d[\"experiments\"]\n        print(\"experiments type:\", type(exps), \"count:\", len(exps) if isinstance(exps, (list, dict)) else \"N/A\")\n    else:\n        # maybe data itself is keyed by exp_id\n        first_k = list(d.keys())[0] if d else None\n        first_v = d[first_k] if first_k else None\n        print(\"first data key:\", first_k)\n        print(\"first data value type:\", type(first_v))\n        if isinstance(first_v, dict):\n            print(\"first data value keys:\", list(first_v.keys())[:15])\nelif isinstance(d, list):\n    print(\"data is list, len:\", len(d))\n    if d:\n        print(\"first item:\", json.dumps(d[0], indent=2)[:500])\nelif isinstance(d, str):\n    # Maybe data is itself a JSON string\n    print(\"data is string, len:\", len(d))\n    inner2 = json.loads(d)\n    print(\"parsed data type:\", type(inner2))\n    if isinstance(inner2, dict):\n        print(\"parsed data keys:\", list(inner2.keys())[:20])\nPYEOF",
+  "description": "Explore nested JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\n# It has keys: success, data, error, metadata\nprint(\"success:\", data.get(\"success\"))\nprint(\"error:\", data.get(\"error\"))\nprint(\"metadata:\", json.dumps(data.get(\"metadata\"), indent=2)[:500] if data.get(\"metadata\") else None)\n\nd = data.get(\"data\")\nprint(\"\\ndata type:\", type(d))\nif isinstance(d, dict):\n    print(\"data keys:\", list(d.keys())[:20])\n    # Check if experiments is nested\n    if \"experiments\" in d:\n        exps = d[\"experiments\"]\n        print(\"experiments type:\", type(exps), \"count:\", len(exps) if isinstance(exps, (list, dict)) else \"N/A\")\n    else:\n        # maybe data itself is keyed by exp_id\n        first_k = list(d.keys())[0] if d else None\n        first_v = d[first_k] if first_k else None\n        print(\"first data key:\", first_k)\n        print(\"first data value type:\", type(first_v))\n        if isinstance(first_v, dict):\n            print(\"first data value keys:\", list(first_v.keys())[:15])\nelif isinstance(d, list):\n    print(\"data is list, len:\", len(d))\n    if d:\n        print(\"first item:\", json.dumps(d[0], indent=2)[:500])\nelif isinstance(d, str):\n    # Maybe data is itself a JSON string\n    print(\"data is string, len:\", len(d))\n    inner2 = json.loads(d)\n    print(\"parsed data type:\", type(inner2))\n    if isinstance(inner2, dict):\n        print(\"parsed data keys:\", list(inner2.keys())[:20])\nPYEOF",
+    "description": "Explore nested JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T21:58:30.349041+00:00_
+
+success: True
+error: None
+metadata: {
+  "elapsed_seconds": 2.7845
+}
+
+data type: &lt;class 'dict'>
+data keys: ['experiments', 'count', 'total', 'baseline']
+experiments type: &lt;class 'dict'> count: 138
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 203
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T21:58:44.731458+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\nexperiments = data[\"data\"][\"experiments\"]\ntotal = data[\"data\"].get(\"total\")\ncount = data[\"data\"].get(\"count\")\nbaseline = data[\"data\"].get(\"baseline\")\n\nprint(f\"=== REGISTRY OVERVIEW ===\")\nprint(f\"Total experiments: {len(experiments)}\")\nprint(f\"'total' field: {total}\")\nprint(f\"'count' field: {count}\")\nprint(f\"Baseline: {json.dumps(baseline, indent=2)[:1000] if baseline else None}\")\nprint()\n\n# Status breakdown\nstatuses = Counter()\nfor eid, exp in experiments.items():\n    s = exp.get(\"status\", \"UNKNOWN\")\n    statuses[s] += 1\n\nprint(\"=== STATUS BREAKDOWN ===\")\nfor status, cnt in statuses.most_common():\n    print(f\"  {status}: {cnt}\")\nprint()\n\n# Active experiments (RUNNING, PREPARING, PENDING, ALLOCATED, QUEUED)\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"ALLOCATED\", \"QUEUED\"}\nprint(\"=== ACTIVE EXPERIMENTS ===\")\nfor eid, exp in sorted(experiments.items()):\n    s = exp.get(\"status\", \"UNKNOWN\")\n    if s in active_statuses:\n        print(f\"\\n--- {eid} ---\")\n        print(f\"  status: {s}\")\n        print(f\"  hypothesis: {exp.get('hypothesis', 'N/A')}\")\n        print(f\"  server: {exp.get('server', exp.get('spec', {}).get('server', 'N/A'))}\")\n        \n        # GPU info\n        gpu = exp.get('gpu', exp.get('gpu_id', exp.get('spec', {}).get('gpu', 'N/A')))\n        print(f\"  gpu: {gpu}\")\n        \n        # PID\n        pid = exp.get('pid', exp.get('spec', {}).get('pid', 'N/A'))\n        print(f\"  pid: {pid}\")\n        \n        # Spec\n        spec = exp.get('spec', {})\n        if spec:\n            print(f\"  spec:\")\n            for k, v in spec.items():\n                val_str = str(v)\n                if len(val_str) > 200:\n                    val_str = val_str[:200] + \"...\"\n                print(f\"    {k}: {val_str}\")\n        \n        # Metrics\n        metrics = exp.get('metrics', exp.get('result', {}))\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:500]}\")\n        \n        # Cron\n        cron_id = exp.get('cron_id', exp.get('cron', None))\n        if cron_id:\n            print(f\"  cron_id: {cron_id}\")\n\nprint()\n\n# Experiments with cron monitoring\nprint(\"=== EXPERIMENTS WITH CRON MONITORING ===\")\ncron_count = 0\nfor eid, exp in sorted(experiments.items()):\n    cron_id = exp.get('cron_id', exp.get('cron', None))\n    if cron_id:\n        cron_count += 1\n        print(f\"  {eid} (status={exp.get('status')}): cron_id={cron_id}\")\nif cron_count == 0:\n    print(\"  (none found with explicit cron_id field)\")\n\nPYEOF",
+  "description": "Full analysis of experiments by status, active experiments detail, cron monitoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\n\ninner_str = outer.get(\"result\", outer)\nif isinstance(inner_str, str):\n    data = json.loads(inner_str)\nelse:\n    data = inner_str\n\nexperiments = data[\"data\"][\"experiments\"]\ntotal = data[\"data\"].get(\"total\")\ncount = data[\"data\"].get(\"count\")\nbaseline = data[\"data\"].get(\"baseline\")\n\nprint(f\"=== REGISTRY OVERVIEW ===\")\nprint(f\"Total experiments: {len(experiments)}\")\nprint(f\"'total' field: {total}\")\nprint(f\"'count' field: {count}\")\nprint(f\"Baseline: {json.dumps(baseline, indent=2)[:1000] if baseline else None}\")\nprint()\n\n# Status breakdown\nstatuses = Counter()\nfor eid, exp in experiments.items():\n    s = exp.get(\"status\", \"UNKNOWN\")\n    statuses[s] += 1\n\nprint(\"=== STATUS BREAKDOWN ===\")\nfor status, cnt in statuses.most_common():\n    print(f\"  {status}: {cnt}\")\nprint()\n\n# Active experiments (RUNNING, PREPARING, PENDING, ALLOCATED, QUEUED)\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"ALLOCATED\", \"QUEUED\"}\nprint(\"=== ACTIVE EXPERIMENTS ===\")\nfor eid, exp in sorted(experiments.items()):\n    s = exp.get(\"status\", \"UNKNOWN\")\n    if s in active_statuses:\n        print(f\"\\n--- {eid} ---\")\n        print(f\"  status: {s}\")\n        print(f\"  hypothesis: {exp.get('hypothesis', 'N/A')}\")\n        print(f\"  server: {exp.get('server', exp.get('spec', {}).get('server', 'N/A'))}\")\n        \n        # GPU info\n        gpu = exp.get('gpu', exp.get('gpu_id', exp.get('spec', {}).get('gpu', 'N/A')))\n        print(f\"  gpu: {gpu}\")\n        \n        # PID\n        pid = exp.get('pid', exp.get('spec', {}).get('pid', 'N/A'))\n        print(f\"  pid: {pid}\")\n        \n        # Spec\n        spec = exp.get('spec', {})\n        if spec:\n            print(f\"  spec:\")\n            for k, v in spec.items():\n                val_str = str(v)\n                if len(val_str) > 200:\n                    val_str = val_str[:200] + \"...\"\n                print(f\"    {k}: {val_str}\")\n        \n        # Metrics\n        metrics = exp.get('metrics', exp.get('result', {}))\n        if metrics:\n            print(f\"  metrics: {json.dumps(metrics, indent=4)[:500]}\")\n        \n        # Cron\n        cron_id = exp.get('cron_id', exp.get('cron', None))\n        if cron_id:\n            print(f\"  cron_id: {cron_id}\")\n\nprint()\n\n# Experiments with cron monitoring\nprint(\"=== EXPERIMENTS WITH CRON MONITORING ===\")\ncron_count = 0\nfor eid, exp in sorted(experiments.items()):\n    cron_id = exp.get('cron_id', exp.get('cron', None))\n    if cron_id:\n        cron_count += 1\n        print(f\"  {eid} (status={exp.get('status')}): cron_id={cron_id}\")\nif cron_count == 0:\n    print(\"  (none found with explicit cron_id field)\")\n\nPYEOF",
+    "description": "Full analysis of experiments by status, active experiments detail, cron monitoring"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T21:58:44.832985+00:00_
+
+=== REGISTRY OVERVIEW ===
+Total experiments: 138
+'total' field: 138
+'count' field: 138
+Baseline: None
+
+=== STATUS BREAKDOWN ===
+  DONE: 129
+  RUNNING: 4
+  PENDING: 4
+  PREPARING: 1
+
+=== ACTIVE EXPERIMENTS ===
+
+--- cls8b-ckpt3000-test-eval ---
+  status: PENDING
+  hypothesis: N/A
+  server: seetacloud-westd-4x5090
+  gpu: ['cuda:1']
+  pid: 282240
+  spec:
+    command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 python eval_repo_cls.py --checkpoint_dir /root/autod...
+    server: seetacloud-westd-4x5090
+    gpu: ['cuda:1']
+    pid: 282240
+    log_path: ~/runs/exec-sim-repair-verifier/cls8b-ckpt3000-test-eval.log
+    submitted_at: 2026-05-14T20:23:04.251Z
+    submitted_via: submit_training_job
+    backend: tmux
+    account: root
+
+--- cls8b-ckpt3000-test-v2 ---
+  status: PENDING
+  hypothesis: N/A
+  server: seetacloud-westd-4x5090
+  gpu: ['cuda:1']
+  pid: 282767
+  spec:
+    command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 python eval_repo_cls.py --checkpoint_dir /root/autod...
+    server: seetacloud-westd-4x5090
+    gpu: ['cuda:1']
+    pid: 282767
+    log_path: ~/runs/exec-sim-repair-verifier/cls8b-ckpt3000-test-v2.log
+    submitted_at: 2026-05-14T20:24:30.033Z
+    submitted_via: submit_training_job
+    backend: tmux
+    account: root
+
+--- cls8b-s42-extended-val-sweep ---
+  status: PENDING
+  hypothesis: N/A
+  server: N/A
+  gpu: N/A
+  pid: N/A
+
+--- cls8b-s42-resume-ckpt1000-test-mutation ---
+  status: PREPARING
+  hypothesis: CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。
+  server: N/A
+  gpu: N/A
+  pid: N/A
+
+--- cls8b-s42-resume-val-sweep-gpu1 ---
+  status: RUNNING
+  hypothesis: Parallel val sweep GPU 1 (ckpt-4000→5800, 10 checkpoints), complementin
+…[truncated 4182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T21:59:01.465173+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\ninner_str = outer.get(\"result\", outer)\ndata = json.loads(inner_str) if isinstance(inner_str, str) else inner_str\nexperiments = data[\"data\"][\"experiments\"]\n\n# Check for cron-related fields more broadly\nprint(\"=== SEARCHING FOR CRON-RELATED FIELDS ACROSS ALL EXPERIMENTS ===\")\ncron_fields = set()\nfor eid, exp in experiments.items():\n    for k in exp.keys():\n        if 'cron' in k.lower() or 'monitor' in k.lower():\n            cron_fields.add(k)\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        for k in spec.keys():\n            if 'cron' in k.lower() or 'monitor' in k.lower():\n                cron_fields.add(f\"spec.{k}\")\n\nif cron_fields:\n    print(f\"Found cron-related fields: {cron_fields}\")\n    for eid, exp in experiments.items():\n        for f in cron_fields:\n            if '.' in f:\n                parts = f.split('.')\n                val = exp.get(parts[0], {}).get(parts[1])\n            else:\n                val = exp.get(f)\n            if val:\n                print(f\"  {eid}: {f} = {val}\")\nelse:\n    print(\"No cron-related fields found in any experiment.\")\n\n# Check for metrics on RUNNING experiments\nprint(\"\\n=== METRICS ON ACTIVE EXPERIMENTS ===\")\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"ALLOCATED\", \"QUEUED\"}\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") in active_statuses:\n        # Check all possible metric fields\n        for key in ['metrics', 'result', 'results', 'eval_metrics', 'train_metrics', 'conclusion']:\n            val = exp.get(key)\n            if val:\n                print(f\"  {eid}.{key}: {json.dumps(val, indent=2)[:300]}\")\n        # Also check spec for progress-like fields\n        spec = exp.get('spec', {})\n        if isinstance(spec, dict):\n            for k in ['progress_pct', 'progress_samples', 'eta', 'speed_samples_per_min', 'vram_mib', 'auto_resume_from']:\n                if k in spec:\n                    print(f\"  {eid}.spec.{k}: {spec[k]}\")\n\n# Check all unique keys across experiments\nprint(\"\\n=== ALL UNIQUE EXPERIMENT KEYS ===\")\nall_keys = set()\nfor exp in experiments.values():\n    all_keys.update(exp.keys())\nprint(sorted(all_keys))\n\n# Check for conclusion field on active\nprint(\"\\n=== CONCLUSION FIELD ON ALL ACTIVE ===\")\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") in active_statuses:\n        print(f\"  {eid}: conclusion={exp.get('conclusion', 'N/A')}, plan_id={exp.get('plan_id', 'N/A')}, parent={exp.get('parent', 'N/A')}\")\nPYEOF",
+  "description": "Check for cron monitoring fields, metrics on active experiments, and all unique keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\ninner_str = outer.get(\"result\", outer)\ndata = json.loads(inner_str) if isinstance(inner_str, str) else inner_str\nexperiments = data[\"data\"][\"experiments\"]\n\n# Check for cron-related fields more broadly\nprint(\"=== SEARCHING FOR CRON-RELATED FIELDS ACROSS ALL EXPERIMENTS ===\")\ncron_fields = set()\nfor eid, exp in experiments.items():\n    for k in exp.keys():\n        if 'cron' in k.lower() or 'monitor' in k.lower():\n            cron_fields.add(k)\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        for k in spec.keys():\n            if 'cron' in k.lower() or 'monitor' in k.lower():\n                cron_fields.add(f\"spec.{k}\")\n\nif cron_fields:\n    print(f\"Found cron-related fields: {cron_fields}\")\n    for eid, exp in experiments.items():\n        for f in cron_fields:\n            if '.' in f:\n                parts = f.split('.')\n                val = exp.get(parts[0], {}).get(parts[1])\n            else:\n                val = exp.get(f)\n            if val:\n                print(f\"  {eid}: {f} = {val}\")\nelse:\n    print(\"No cron-related fields found in any experiment.\")\n\n# Check for metrics on RUNNING experiments\nprint(\"\\n=== METRICS ON ACTIVE EXPERIMENTS ===\")\nactive_statuses = {\"RUNNING\", \"PREPARING\", \"PENDING\", \"ALLOCATED\", \"QUEUED\"}\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") in active_statuses:\n        # Check all possible metric fields\n        for key in ['metrics', 'result', 'results', 'eval_metrics', 'train_metrics', 'conclusion']:\n            val = exp.get(key)\n            if val:\n                print(f\"  {eid}.{key}: {json.dumps(val, indent=2)[:300]}\")\n        # Also check spec for progress-like fields\n        spec = exp.get('spec', {})\n        if isinstance(spec, dict):\n            for k in ['progress_pct', 'progress_samples', 'eta', 'speed_samples_per_min', 'vram_mib', 'auto_resume_from']:\n                if k in spec:\n                    print(f\"  {eid}.spec.{k}: {spec[k]}\")\n\n# Check all unique keys across experiments\nprint(\"\\n=== ALL UNIQUE EXPERIMENT KEYS ===\")\nall_keys = set()\nfor exp in experiments.values():\n    all_keys.update(exp.keys())\nprint(sorted(all_keys))\n\n# Check for conclusion field on active\nprint(\"\\n=== CONCLUSION FIELD ON ALL ACTIVE ===\")\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") in active_statuses:\n        print(f\"  {eid}: conclusion={exp.get('conclusion', 'N/A')}, plan_id={exp.get('plan_id', 'N/A')}, parent={exp.get('parent', 'N/A')}\")\nPYEOF",
+    "description": "Check for cron monitoring fields, metrics on active experiments, and all unique keys"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T21:59:01.616164+00:00_
+
+=== SEARCHING FOR CRON-RELATED FIELDS ACROSS ALL EXPERIMENTS ===
+No cron-related fields found in any experiment.
+
+=== METRICS ON ACTIVE EXPERIMENTS ===
+  cls8b-ckpt3000-test-eval.conclusion: "killed"
+  cls8b-ckpt3000-test-v2.conclusion: "killed"
+  cls8b-s42-extended-val-sweep.conclusion: "killed"
+  cwm8b-ckpt400-test-eval.spec.progress_pct: 30.5
+  cwm8b-ckpt400-test-eval.spec.progress_samples: 2984
+  cwm8b-ckpt400-test-eval.spec.eta: 2026-05-16T17:15:00Z
+  cwm8b-ckpt400-test-eval.spec.speed_samples_per_min: 8.4
+  cwm8b-ckpt400-test-eval.spec.vram_mib: 22516
+  cwm8b-ckpt400-test-eval.spec.auto_resume_from: 359
+  repo-level-cls-8b-s42-ckpt200-val.conclusion: "killed"
+
+=== ALL UNIQUE EXPERIMENT KEYS ===
+['account', 'checkpoint_path', 'completed_at', 'conclusion', 'created_at', 'extra', 'failure_reason', 'gpu', 'hypothesis', 'log_path', 'metrics', 'notes', 'output_path', 'parent', 'pid', 'reproduce', 'retry_count', 'server', 'spec', 'status', 'updated_at']
+
+=== CONCLUSION FIELD ON ALL ACTIVE ===
+  cls8b-ckpt3000-test-eval: conclusion=killed, plan_id=N/A, parent=N/A
+  cls8b-ckpt3000-test-v2: conclusion=killed, plan_id=N/A, parent=N/A
+  cls8b-s42-extended-val-sweep: conclusion=killed, plan_id=N/A, parent=N/A
+  cls8b-s42-resume-ckpt1000-test-mutation: conclusion=N/A, plan_id=N/A, parent=N/A
+  cls8b-s42-resume-val-sweep-gpu1: conclusion=N/A, plan_id=N/A, parent=cls8b-s42-resume-val-sweep-seq8192-v2
+  cls8b-s42-resume-val-sweep-seq8192-v2: conclusion=N/A, plan_id=N/A, parent=N/A
+  cwm8b-ckpt400-test-eval: conclusion=N/A, plan_id=N/A, parent=N/A
+  repo-level-cls-8b-s42-ckpt200-val: conclusion=killed, plan_id=N/A, parent=N/A
+  repo-level-cwm-8b-conda-v5: conclusion=N/A, plan_id=N/A, parent=repo-level-cwm-8b-conda-v4
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T21:59:11.770745+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\ninner_str = outer.get(\"result\", outer)\ndata = json.loads(inner_str) if isinstance(inner_str, str) else inner_str\nexperiments = data[\"data\"][\"experiments\"]\n\n# Get metrics for RUNNING experiments that actually have metrics\nprint(\"=== METRICS ON RUNNING EXPERIMENTS (full detail) ===\")\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") == \"RUNNING\":\n        metrics = exp.get(\"metrics\")\n        if metrics:\n            print(f\"\\n{eid} metrics:\")\n            print(json.dumps(metrics, indent=2))\n        else:\n            print(f\"\\n{eid}: no metrics field\")\n\n# Also show the DONE experiments breakdown for context\nfrom collections import Counter\nconclusions = Counter()\nfor eid, exp in experiments.items():\n    if exp.get(\"status\") == \"DONE\":\n        c = exp.get(\"conclusion\", \"unknown\")\n        conclusions[c] += 1\nprint(\"\\n=== DONE EXPERIMENTS BY CONCLUSION ===\")\nfor c, cnt in conclusions.most_common():\n    print(f\"  {c}: {cnt}\")\nPYEOF",
+  "description": "Get metrics detail for RUNNING experiments and DONE breakdown"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 << 'PYEOF'\nimport json\n\nFILE = \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-bc5a0163/9a9846f1-b4f8-429a-9b74-99cace44d084/tool-results/mcp-agent-ml-research-read_registry-1778882244042.txt\"\n\nwith open(FILE, 'r') as f:\n    outer = json.load(f)\ninner_str = outer.get(\"result\", outer)\ndata = json.loads(inner_str) if isinstance(inner_str, str) else inner_str\nexperiments = data[\"data\"][\"experiments\"]\n\n# Get metrics for RUNNING experiments that actually have metrics\nprint(\"=== METRICS ON RUNNING EXPERIMENTS (full detail) ===\")\nfor eid, exp in sorted(experiments.items()):\n    if exp.get(\"status\") == \"RUNNING\":\n        metrics = exp.get(\"metrics\")\n        if metrics:\n            print(f\"\\n{eid} metrics:\")\n            print(json.dumps(metrics, indent=2))\n        else:\n            print(f\"\\n{eid}: no metrics field\")\n\n# Also show the DONE experiments breakdown for context\nfrom collections import Counter\nconclusions = Counter()\nfor eid, exp in experiments.items():\n    if exp.get(\"status\") == \"DONE\":\n        c = exp.get(\"conclusion\", \"unknown\")\n        conclusions[c] += 1\nprint(\"\\n=== DONE EXPERIMENTS BY CONCLUSION ===\")\nfor c, cnt in conclusions.most_common():\n    print(f\"  {c}: {cnt}\")\nPYEOF",
+    "description": "Get metrics detail for RUNNING experiments and DONE breakdown"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T21:59:11.872672+00:00_
+
+=== METRICS ON RUNNING EXPERIMENTS (full detail) ===
+
+cls8b-s42-resume-val-sweep-gpu1: no metrics field
+
+cls8b-s42-resume-val-sweep-seq8192-v2: no metrics field
+
+cwm8b-ckpt400-test-eval: no metrics field
+
+repo-level-cwm-8b-conda-v5: no metrics field
+
+=== DONE EXPERIMENTS BY CONCLUSION ===
+  success: 76
+  failed: 32
+  killed: 17
+  negative: 4
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T21:59:43.860565+00:00_
+
+Here are the findings:
+
+---
+
+## 1. Total Experiment Count & Status Breakdown
+
+**Total: 138 experiments**
+
+| Status | Count |
+|--------|-------|
+| DONE | 129 |
+| RUNNING | 4 |
+| PENDING | 4 |
+| PREPARING | 1 |
+| ALLOCATED | 0 |
+| QUEUED | 0 |
+
+DONE breakdown by conclusion: success=76, failed=32, killed=17, negative=4.
+
+---
+
+## 2. Active Experiments (9 total: 4 RUNNING, 4 PENDING, 1 PREPARING)
+
+### RUNNING (4)
+
+**cls8b-s42-resume-val-sweep-seq8192-v2**
+- Server: `seetacloud-westd-4x5090`, GPU: `cuda:0`, PID: 398981
+- Hypothesis: s42 resume val sweep (seq8192 bs=1): 21 checkpoints (1800-5800), baseline-consistent seq_length
+- Command: `bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep.sh`
+- Model: Qwen/Qwen3-8B, data: `data/swebench_full/swebench_val.jsonl` (n=9335), seed=42
+- Metrics: none yet
+
+**cls8b-s42-resume-val-sweep-gpu1**
+- Server: `seetacloud-westd-4x5090`, GPU: `cuda:1`, PID: 405526
+- Hypothesis: Parallel val sweep GPU 1 (ckpt-4000 to 5800, 10 checkpoints), complementing GPU 0 sweep
+- Parent: `cls8b-s42-resume-val-sweep-seq8192-v2`
+- Command: `bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep_gpu1.sh`
+- Model: Qwen3-8B + LoRA (cls_8b_s42_resume), data: val split (n=9335), seed=42
+- Checkpoint range: 4000-5800 step=200 (10 checkpoints)
+- Metrics: none yet
+
+**cwm8b-ckpt400-test-eval**
+- Server: `seetacloud-westd-4x5090`, GPU: `cuda:3`, PID: 381618
+- Hypothesis: CWM 8B ckpt-400 (best eval_loss=0.286) test@full (n=9784). Compare with CLS 8B to lock 8B-8B gap.
+- Command: `python3 eval_repo_cwm.py --checkpoint_dir .../checkpoint-400 ...`
+- Model: Qwen3-8B, data: test split (n=9784), seed=42, batch_size=8
+- Progress: **30.5%** (2984/9784 samples), speed=8.4 samples/min, VRAM=22516 MiB
+- ETA: 2026-05-16T17:15:00Z (revised from original 09:15), estimated ~18.3h total
+- Auto-resumed from sample 359
+
+**repo-level-cwm-8b-conda-v5**
+- Server: `seetacloud-westd-4x5090`, GPU: `cuda:2`, PID: 400279
+- Hypothesis: CWM 8B training resume from ckpt-5200 (v4 timeou
+…[truncated 1970 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "Agent",
+  "elapsed_ms": 97540
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T21:59:43.913235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\", \"content\": \"# Memory — exec-sim-repair-verifier\\n\\n## 硬教训：标 FAILED 前必须确认进程已退出 (2026-05-15)\\n- **事故**：v1 ckpt-3000 test eval (PID 345441) 被误标 DONE/failed，但进程实际在跑。随后 v2 提交到同 GPU 导致 OOM。\\n- **规则**：标 FAILED/DONE(failed) 前必须 `ps -p PID` 确认进程已退出。标 RUNNING 的实验所在 GPU 不得提交新任务。\\n- **适用范围**：所有 registry 状态变更操作\\n\\n## 硬教训：eval 不要用 --max_samples (2026-05-15)\\n- **事故**：seed123 ckpt-6200/6400 test eval 用了 `--max_samples 8192`，只评了 8192/9784 样本，与主表 n=9784 不可比。被 Reviewer 抓出后需 kill+重跑。\\n- **规则**：test eval 禁止 --max_samples 参数，必须评完整 test set (n=9784)。val eval 同理 (n=9335)。\\n- **例外**：debug/dry-run 时可以用，但结果不入正式表。\\n\\n## 硬教训：s42 resume 从 ckpt-600 开始 (2026-05-15)\\n- s42 resume 的 checkpoint 目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` 从 ckpt-600 开始（200步间隔），不含 ckpt-200/400。\\n- 原始训练 ckpt-200/400 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，但那是 s42 原始训练目录不是 resume 目录。\\n- **提交 s42 val eval 前检查 checkpoint 是否存在于 resume 目录**。\\n\\n## ⚠️ Unparseable Rate 混淆变量警告 (2026-05-15)\\n- ckpt-1800 的 20.2% unparseable 是在 **seq=2048** 下测的；ckpt-800/1400 的 0% 是在 **seq=8192** 下测的\\n- **无法归因为\\\"过拟合导致 format compliance 退化\\\"**——可能是截断导致\\n- ckpt-200 在 seq=2048 下仅 1.4% unparseable，暗示两者都有影响（截断 + 过拟合），但需控制变量\\n- **cls8b-s42-resume-val-sweep-seq8192 正在以统一 seq=8192 重新评估所有 checkpoint**，含 unparseable 追踪\\n- 等此 sweep 完成后才能下 unparseable 趋势结论\\n\\n## 8B-8B Gap 评判标准 (Director 指令, 2026-05-15)\\n- **CLS 8B vs CWM 8B 对比必须双方都用 val-best checkpoint**（不是 test-best，不是 final）\\n- CWM 8B eval **必须统计 unparseable rate**（无法解析为 pass/fail 的输出比例）\\n- unparseable rate 是论文 failure modes (§2.3) 的关键证据\\n- 4B repo-level CWM unparseable rate: s42=53.7%, seed123=67.2%\\n- 8B 是否改善直接影响 claim 强度\\n- **CWM 8B val sweep 脚本必须包含 unparseable 统计**\\n\\n## D088 Checkpoint 选择 — Val Sweep 完成 (2026-05-15)\\n- **主指标回到 val-selected checkpoint**（ML 社区规范）\\n- **8B s42 Val-best = ckpt-
+…[truncated 4647 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 96585
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T21:59:44.017134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\", \"content\": \"# Paper Framing — exec-sim-repair-verifier\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\n\\n## Core Claims (3 conditions)\\n\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\n\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789
+…[truncated 4381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 96336
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T21:59:48.947824+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T21:59:48.998419+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T21:59:52.074245+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "exec-sim-repair-verifier",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T21:59:52.529962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_check-running-experiments-and-scripts_20260515T215737\", \"task_type\": \"ops:check-running-experiments-and-scripts\", \"project\": \"exec-sim-repair-verifier\", \"status\": \"running\", \"started_at\": \"2026-05-15T21:57:38.464916+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 455
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T21:59:52.580584+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "exec-sim-repair-verifier",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "exec-sim-repair-verifier",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T21:59:52.631371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"exec-sim-repair-verifier\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/home/sonny/exec-sim-repair-verifier\", \"servers\": [{\"account\": \"root\", \"server\": \"seetacloud-westd-4x5090\"}, {\"account\": \"sonny\", \"server\": \"home-1x5090\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-15T22:00:57.012951+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单仅 `cuda:0/1/2/3`@seetacloud-westd-4x5090，home-1x5090 的 cuda:0 可用但非白名单主力
+- D103：seq_length/bs/precision/lr 变更必须 Director 审批，Worker 无权自行降级
+- Test eval 禁止 `--max_samples`，必须跑完整 test set (n=9784) / val set (n=9335)
+- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出（曾因误标导致同 GPU OOM 事故）
+- CWM 8B eval **必须统计 unparseable rate**——这是论文 failure modes 的关键证据
+- s42 resume checkpoint 从 ckpt-600 开始（resume 目录无 ckpt-200/400），提交 eval 前检查 checkpoint 是否存在
+
+### 2. 🖥️ 基础设施快照
+- **Westd** (`seetacloud-westd-4x5090`, account=root)
+  - 工作目录: `/home/sonny/exec-sim-repair-verifier`
+  - Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`
+  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` (已有 400, 4000-4300)
+  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` (ckpt-600 起)
+  - seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `checkpoint-3000` 在 `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/`
+  - 活跃进程:
+    - cuda:0 PID 398981 — `cls8b-s42-resume-val-sweep-seq8192-v2` (ckpt-1800→3800, 11 ckpts)
+    - cuda:1 PID 405526 — `cls8b-s42-resume-val-sweep-gpu1` (ckpt-4000→5800, 10 ckpts)
+    - cuda:2 PID 400279 — `repo-level-cwm-8b-conda-v5` (训练 resume from ckpt-5200)
+    - cuda:3 PID 381618 — `cwm8b-ckpt400-test-eval` (30.5%, ~8.4 samples/min)
+  - 4 crons 活跃（刚 reconcile 确认全部 still running）
+- **Home** (`home-1x5090`, account=sonny)
+  - 工作目录: `/home/sonny/exec-sim-repair-verifier`，用 `python3`
+  - 4B ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`
+  - cuda:0 空闲待命
+
+### 3. 📊 当前状态
+**阶段**: Paper Writing，EMNLP ARR May 25 截止（剩 10 天）。Paper Agent 已启动 Full Draft。
+
+4 个实验全 GPU 占满 RUNNING：
+| exp_id | GPU | 摘要 | ETA (UTC) |
+|--------|-----|------|-----------|
+| cwm8b-ckpt400-test-eval | cuda:3 | CWM 8B ckpt-400 test eval, 30.5% | May 16 ~17:15 |
+| repo-level-cwm-8b-conda-v5 | cuda:2 | CWM 8B 训练 resume from 5200 | May 16 ~05:30 |
+| cls8b-s42-resume-val-sweep-seq8192-v2 | cuda:0 | s42 resume 21 ckpts val sweep (seq8192) | May 16 ~10:50 |
+| cls8b-s42-resume-val-sweep-gpu1 | cuda:1 | 并行 val sweep (ckpt-4000→5800) | May 16 ~04:00 |
+
+等待中：
+- 4 个 PENDING 条目是僵尸（conclusion=killed 但 status 未推进到 DONE）——需清理
+- 1 个 PREPARING: `cls8b-s42-resume-ckpt1000-test-mutation`（per-mutation-type test breakdown）
+- 1 个 running worker: `ops:check-running-experiments-and-scripts`（可能已卡住/过期）
+
+### 4. 📋 待办（条件触发式）
+- `cls8b-s42-resume-val-sweep-gpu1` 完成 (~May 16 04:00) → 合并 GPU0+GPU1 结果编译完整 s42 resume val curve (21 ckpts)
+- `repo-level-cwm-8b-conda-v5` 训练完成 (~May 16 05:30) → 找 val-best ckpt → 提交 CWM 8B final ckpt test eval → 锁定 8B-8B gap
+- `cwm8b-ckpt400-test-eval` 完成 (~May 16 17:15) → 记录 accuracy + unparseable rate → 第一个 CWM 8B test 数据点 → 与 CLS 8B 83.52% 对比
+- val sweep 全完成 → 更新 val_sweep_compilation.md → 确认 val-best 是否仍为 ckpt-1000
+- CWM 8B 两个 test eval 都完成 → 锁定论文主表 CWM 8B 行 → 通知 Paper Agent 填数字
+- 僵尸 PENDING 条目 → 清理为 DONE(killed)
+- `cls8b-s42-resume-ckpt1000-test-mutation` PREPARING → 等有 GPU 空出后提交
+
+### 5. 🎯 战略上下文
+**核心结论**: CLS 在 repo-level 显著优于 CWM（25.99pp mean gap，2 seeds）。函数级两者等价（~87% F1）。CWM 失败模式 = token-budget exhaustion + unparseable outputs (53-67%)。
+
+**决策链**:
+- D088: 主指标 = val-selected checkpoint（ML 规范）
+- D096: 论文主表以 8B-8B 对比为主（seed 方差仅 2.08pp）
+- D103: 参数降级需 Director 审批（因 seq4096 事故）
+- D100/D101: CWM relaxed matching 反而降低准确率，排除 parsing failure 解释
+
+**易错点**:
+- CWM eval 用 `eval_repo_cwm.py`，不是 `eval_repo_cls.py`——两者参数不同（max_new_tokens=1024 vs 8）
+- s42 原始训练目录 vs resume 目录是两个不同路径，checkpoint 编号不连续
+- 4 个 PENDING 条目不是真正等审批，是 killed 僵尸——不要尝试提交它们
+- CWM 8B eval_loss 持续上升（400=0.286→4300=0.482），ckpt-400 可能是 val-best，但必须等训练完后做 val sweep 确认
+- home 版 eval 脚本不支持 `--max_new_tokens` 参数
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:cls8b-seed123-ckpt6633-test-eval"
+}
+```
+
+</details>
+
+---

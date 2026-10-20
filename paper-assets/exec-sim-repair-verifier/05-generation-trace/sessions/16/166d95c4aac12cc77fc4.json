@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "166d95c4aac12cc77fc4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval kill and resubmit seed123 8b val 8192",
+  "task_key": "worker_eval_kill-and-resubmit-seed123-8b-val-8192_20260514T211013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kill-and-resubmit-seed123-8b-val-8192_20260514T211013_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "07ddd98a4c34a93422be9f6728fc11b1840dc6cf8fa5e2914f170a3db2257ad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **旧实验** `cls8b-seed123-ckpt3000-val-eval`：已 kill，registry 标记 conclusion=killed，notes 说明原因\n- **新实验** `cls8b-seed123-ckpt3000-val8192-eval`：已在 cuda:1 上运行（17891 MiB），推理已开始\n  - 修复：添加 `--max_seq_length 8192` + `--batch_size 1`（原 batch_size=16 在 8192 seq_len 下 OOM）\n  - Registry 状态 RUNNING，hypothesis/parent/spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kill-and-resubmit-seed123-8b-val-8192.md"
+}

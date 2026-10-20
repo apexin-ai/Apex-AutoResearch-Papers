@@ -1,0 +1,29 @@
+{
+  "exp_id": "traj-level-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T06:09:51.802Z",
+    "updated_at": "2026-05-12T06:23:32.077Z",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed123/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 123 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed123/best --model_name Qwen/Qwen3-4B --output eval_traj_seed123.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2427622",
+      "log_path": "~/runs/exec-sim-repair-verifier/traj-level-seed123.log",
+      "submitted_at": "2026-05-12T06:10:21.885Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny"
+    },
+    "hypothesis": "验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性",
+    "parent": "traj-level-finetuned"
+  },
+  "timestamp": "2026-05-12T06:23:32.131078+00:00",
+  "trigger": "update_registry"
+}

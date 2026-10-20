@@ -1,0 +1,14 @@
+{
+  "exp_id": "cwm-rank32-ablation-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:50:32.964Z",
+    "updated_at": "2026-05-15T12:50:32.964Z"
+  },
+  "timestamp": "2026-05-15T12:50:33.247178+00:00",
+  "trigger": "update_registry"
+}

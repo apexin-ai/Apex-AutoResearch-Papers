@@ -1,0 +1,14 @@
+{
+  "exp_id": "qwen3-8b-traj-repo-s456",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:57:13.413Z",
+    "updated_at": "2026-05-19T11:57:13.413Z"
+  },
+  "timestamp": "2026-05-19T11:57:13.814997+00:00",
+  "trigger": "update_registry"
+}

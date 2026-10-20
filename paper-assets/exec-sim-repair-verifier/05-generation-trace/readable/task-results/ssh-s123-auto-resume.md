@@ -1,0 +1,42 @@
+# ssh s123 auto resume
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ssh_s123-auto-resume_20260520T211757_result.json`
+- **Structured JSON:** [`53e007406bafdedb07d6.json`](../../sessions/53/53e007406bafdedb07d6.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+监控链部署完成。
+
+**状态确认**：
+- **Watcher PID**: 817（`watch_s123_eval_then_resume.sh`，正常运行）
+- **Eval PID**: 978461（已运行 5h34m，仍在跑）
+- **Log 输出**: `Watcher started. Monitoring eval PID 978461` / `Eval PID 978461 still running`
+
+**完整链路**：
+1. Watcher 每 5 分钟轮询 eval PID 978461
+2. Eval 结束 → `GPU=2 bash resume_deepseek_s123_v2.sh`（从 checkpoint-4209 恢复，剩余 ~2 epochs）
+3. 训练成功（exit 0）→ `bash eval_deepseek_cwm_s123_v2.sh`（最终 eval，GPU 2）
+4. 训练失败 → 写失败状态到 `artifacts/eval_summaries/s123_resume_status.json`，不启动 eval
+
+**与原设计的差异**：改用顺序执行替代 `launch_with_exitcode.sh` + `monitor_with_exitcheck.sh` 的组合，因为后者存在 PID 不匹配 bug（nohup 外层 PID ≠ launch_with_exitcode 内部记录的 PID，导致 monitor 找不到退出码文件）。顺序方案更简单可靠。
+
+**监控方式**：
+- 查 log: `cat /home/sonny/exec-sim-repair-verifier/watch_s123_resume.log`
+- 查状态: `cat /home/sonny/exec-sim-repair-verifier/artifacts/eval_summaries/s123_resume_status.json`
+
+---

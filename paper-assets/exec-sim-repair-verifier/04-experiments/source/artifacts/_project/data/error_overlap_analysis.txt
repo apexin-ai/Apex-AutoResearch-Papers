@@ -1,0 +1,21 @@
+total_samples: 1890
+overlap_summary:
+  both_correct: 1601 (84.71%)
+  cls_only_correct: 59 (3.12%)
+  cwm_only_correct: 53 (2.80%)
+  both_wrong: 177 (9.37%)
+complementarity:
+  union_correct: 1713
+  union_accuracy: 90.63%
+  oracle_gain_over_cls: +2.80pp
+  oracle_gain_over_cwm: +3.12pp
+cohens_kappa:
+  on_correctness: 0.7259
+  on_predictions: 0.8815
+cwm_weakest_mutation_types:
+  1. off_by_one: 81.82% acc, 75.71% exact_match
+  2. original: 85.18% acc, 85.18% exact_match
+  3. operator_swap: 88.59% acc, 85.91% exact_match
+problems_cls_only: 16
+problems_cwm_only: 17
+Full data: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json

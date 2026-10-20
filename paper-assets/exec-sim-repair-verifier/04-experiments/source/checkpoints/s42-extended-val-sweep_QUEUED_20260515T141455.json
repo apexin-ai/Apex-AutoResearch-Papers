@@ -1,0 +1,14 @@
+{
+  "exp_id": "s42-extended-val-sweep",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:14:55.217Z",
+    "updated_at": "2026-05-15T14:14:55.217Z"
+  },
+  "timestamp": "2026-05-15T14:14:55.525031+00:00",
+  "trigger": "update_registry"
+}

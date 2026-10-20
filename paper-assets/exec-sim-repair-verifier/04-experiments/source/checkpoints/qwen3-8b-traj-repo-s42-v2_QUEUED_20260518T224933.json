@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen3-8b-traj-repo-s42-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:49:06.304Z",
+    "updated_at": "2026-05-18T22:49:32.670Z",
+    "hypothesis": "Qwen3-8B TRAJ repo-level training retry with seq4096 (v1 OOM at seq8192). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. Qwen3-8B expected ~78-85% variant-level. Lower seq_length may truncate some long repo-level diffs but DeepSeek non-8k variant showed comparable results.",
+    "parent": "qwen3-8b-traj-repo-s42"
+  },
+  "timestamp": "2026-05-18T22:49:33.042645+00:00",
+  "trigger": "update_registry"
+}

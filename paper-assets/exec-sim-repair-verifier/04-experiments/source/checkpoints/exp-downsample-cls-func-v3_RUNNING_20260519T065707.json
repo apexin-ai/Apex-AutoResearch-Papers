@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-downsample-cls-func-v3",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:05:36.371Z",
+    "updated_at": "2026-05-19T06:57:07.315Z",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && WANDB_MODE=offline HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir data/ --task cls --train_file train_downsampled.jsonl --val_file val.jsonl --output_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/ --run_name cls-downsample-qwen3-4b-lora --epochs 3 --batch_size 2 --grad_accumulation 16 --lr 2e-4 --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --seed 42 --wandb_project exec-sim-repair-verifier",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "796724",
+      "log_path": "~/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3.log",
+      "submitted_at": "2026-05-19T04:05:35.621Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/train_downsampled.jsonl",
+      "data_count": 8051,
+      "model_name": "Qwen3-4B",
+      "seed": 42
+    },
+    "hypothesis": "CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势",
+    "parent": "exp-downsample-cls-func-v2",
+    "notes": "v2 failed (EXIT_CODE=1) at trainer.train() — wandb tried online mode, no API key configured: `UsageError: No API key configured. Use wandb login to log in.` (line `_find_or_prompt_for_key`). v3 fix: submit_training_job framework auto-injected `WANDB_MODE=offline` + `CUDA_VISIBLE_DEVICES=1` + `HF_HUB_OFFLINE=1`. Confirmed via /proc/796729/environ. v3 running on GPU 1 (cuda:1), tmux session exp-downsample-cls-func-v3, started 2026-05-19 12:05:35, step ~36/756 @ ~3.35s/iter, ETA ~42 min total. Data: train_downsampled.jsonl 8051 rows (8041 after masking filter), val.jsonl 1896 rows.",
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.2869,
+      "eval_loss_epoch1": 0.1061,
+      "eval_loss_epoch2": 0.0907,
+      "eval_loss_epoch3": 0.1156,
+      "best_epoch": 2,
+      "train_runtime_sec": 2662,
+      "train_runtime_min": 44.4,
+      "train_samples_per_sec": 9.06,
+      "data_count": 8051
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best"
+  },
+  "timestamp": "2026-05-19T06:57:07.840252+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "cls14b-func-s42-v2-bf16-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T02:30:53.514Z",
+    "updated_at": "2026-05-23T02:46:36.377Z",
+    "hypothesis": "CLS 14B bf16 eval should yield higher accuracy than NF4 eval (89.47%), eliminating quantization confound. If bf16 accuracy > 89.47%, the CLS 8B→14B regression is an NF4 artifact; if bf16 ≈ 89.47%, the regression is real.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T02:46:36.871056+00:00",
+  "trigger": "update_registry"
+}

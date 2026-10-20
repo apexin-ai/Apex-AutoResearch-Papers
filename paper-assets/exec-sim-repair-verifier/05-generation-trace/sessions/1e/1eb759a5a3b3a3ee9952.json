@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb759a5a3b3a3ee9952",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor all gpu status check",
+  "task_key": "worker_monitor_all-gpu-status-check_20260515T181824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_all-gpu-status-check_20260515T181824_result.json",
+    "occurrence": 1,
+    "bytes": 1770,
+    "sha256": "4a488a1efe6e4f9e6b0d55bedeff620ac5783378657660cb8f21f95540dee317"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总 (2026-05-16 02:18 UTC)\n\n| GPU | VRAM | GPU% | 任务 | PID | 状态 | 进度 | 关键指标 |\n|-----|------|------|------|-----|------|------|----------|\n| **cuda:0** | 18.5/32.6 GB | 99% | val-sweep-seq8192-v2 (CLS eval) | 402135 | **运行中** | ckpt-2000, 3600/9335 samples (38.6%) | running_acc=**87.2%** |\n| **cuda:1** | 27.3/32.6 GB | 90% | cls-8b-s42-resume 训练 | 295794 | **即将完成** | step 6600/6633 (99.5%), epoch 2.99 | loss=0.137, eval_loss=0.477 |\n| **cuda:2** | 21.0/32.6 GB | 97% | cwm-8b-v5 resume 训练 | 400280 | **运行中** | 307/9335 samples (3.3%), 从 ckpt-5200 恢复 | ~7-8 it/s |\n| **cuda:3** | 22.5/32.6 GB | 85% | cwm8b-ckpt400-test-eval | 381618 | **运行中** | 2240/9784 samples (22.9%) | running_acc=**64.3%**, ~8 samples/57s |\n\n### 各任务详情\n\n**cuda:0 — val-sweep-seq8192-v2**: 当前正在评估 checkpoint-2000（从 ps 看到的 checkpoint_dir）。3600/9335 val samples，速率 ~5.4 samples/sec，本 checkpoint 还需 ~18 min。之后还有大量 checkpoint 待 sweep（可用 ckpt: 800–6400，间隔 200）。\n\n**cuda:1 — cls-8b-s42-resume 训练**: 几乎跑完。6600/6633 steps，epoch 2.99。最新 loss=0.137，最近一次 eval_loss=0.477 (epoch 2.89)。最新 checkpoint: **checkpoint-6400** (01:48 保存)。剩余 33 steps ≈ **~4 min** 完成。\n\n**cuda:2 — cwm-8b-v5 resume**: 从 checkpoint-5200 恢复，刚启动 ~27 min (01:51 启动)。307/9335 samples，tqdm ETA ~18 min 完当前 epoch pass。剩余步数 ~1400+ steps (至 6633)，按当前速率估算总 ETA **~2 小时**。\n\n**cuda:3 — cwm8b-ckpt400-test-eval**: 2240/9784 test samples (22.9%)，acc=64.3%。速率 ~8 samples/57sec。剩余 7544 samples，ETA **~15 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-all-gpu-status-check.md"
+}

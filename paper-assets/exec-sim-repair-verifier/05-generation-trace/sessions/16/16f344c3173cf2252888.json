@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16f344c3173cf2252888",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4592,
+    "sha256": "c5be87762f42cf9d8c40db78c189fb742d3ba4c6c4a60e695ba69e58bfa0098a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-13T20:23:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 的 4 张 GPU (0-3) 全部分配给本项目，但需核对每个进程的 CUDA_VISIBLE_DEVICES 与 registry spec 一致\n- CWM v11 训练已被 Director 批准 kill（PID 145692 已终止），不要重启它——best checkpoint 在 step 600，系统性过拟合已确认\n- Registry 注明 \"Best eval_loss=0.3066@step400\" 是错误的——实际 best 是 step 600 (eval_loss=0.2943)，从 trainer_state.json 独立核实过\n- 两个 CWM v11 subset eval 进程（PID 166070 batch_size=4 GPU2, PID 167482 batch_size=2 GPU1）写同一输出目录 `/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/`——结果文件可能互相覆盖，审查时注意区分来源\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (root)：代码 `/home/sonny/exec-sim-repair-verifier/`，数据 `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` 或 `/root/autodl-tmp/swebench_full/`，模型缓存 `/root/.cache/huggingface/hub/Qwen/Qwen3-4B` 和 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`，eval 输出 `/root/autodl-tmp/eval_results/`，checkpoint `/root/autodl-tmp/checkpoints_repo_*/`\n- **home-1x5090** (sonny)：代码 `/home/sonny/exec-sim-repair-verifier/`，CLS v5 训练 checkpoint `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- 活跃进程 (seetacloud)：PID 141203 CLS-seed123 cuda:0 | PID 142402 CWM-seed123 cuda:1 | PID 167482 CWM-v11-eval cuda:1(共享) | PID 166070 CWM-v11-eval cuda:2 | PID 140060 CLS-8B cuda:3\n- 活跃进程 (home)：PID 2947259 CLS-v5 训练 cuda:0\n- 无 W&B（所有实验 --no_wandb）\n\n### 3. 📊 当前状态\n**刚做完**：审查 CWM v11 checkpoint-600 subset eval (500 样本)。进度 320/500，running_acc 从 72.5% 持续下滑至 **67.5%**，远低于 majority baseline 72.96%。CLS v5 = 76.92%，CLS-CWM gap ≈ **9.4pp**。已向 Director 提交两次 CRITICAL（eval 速度 + 训练 kill 建议，均已执行）。\n\n**Director 挂起的正式评估请求**（尚未回复）：\n1. CWM ~67-72% 确认后 C1 最强写法评估\n2. 两个重复 eval 进程 + GPU 共享是否影响数值正确性\n3. D008 Go/No-Go 最终判定\n\n**Registry RUNNING**：\n- repo-level-cls-v5 (home cuda:0)：训练中，best ckpt-600 已 eval (76.92%)\n- repo-level-cls-seed123 (westd cuda:0)：step ~2444/6633 (37%)\n- repo-level-cwm-seed123 (westd cuda:1)：step ~1627/6633 (25%)\n- repo-level-cls-8b (westd cuda:3)：step ~2042/6633 (31%)\n- repo-level-cwm-v11 (ANALYZING)：等 500 样本 eval 完成\n\n### 4. 📋 待办（条件触发式）\n- CWM v11 eval 完成（~500/500）→ 核实最终 accuracy + unparseable rate + fail_f1，与 CLS v5 完整对比，发 D008 最终 GO/NO-GO 评估\n- D008 GO 确认 → 审查 C1 claim 写法：CWM 67.5% 远低于 baseline，gap 从 func-level 1.24pp → repo-level 9.4pp，支撑 \"classification is necessary at repo-level\"\n- seed123 训练完成（CLS + CWM 配对）→ 两者都在 best checkpoint (<10% training) eval，验证 seed-42 的 CLS>CWM 方向是否复现\n- CLS-8B 训练完成 → eval best checkpoint，验证 8B scaling claim（当前 function-level 8B gap 2.43pp 是否在 repo-level 进一步扩大）\n- 任何训练实验完成 → 检查系统性过拟合是否在 seed123 复现（预期会复现）\n\n### 5. 🎯 战略上下文\n- **核心发现**：所有 repo-level 模型（CLS 4B/8B, CWM 4B, 所有 seed）在 <10% 训练步数 peak 后退化——系统性过拟合是 repo-level 的根本挑战\n- **D008 决策**：CWM v11 eval 走向强烈倾向 GO。CWM 67.5% 远低于 baseline = CWM 在 repo-level 彻底崩溃，CLS 76.92% 超出 baseline 4pp = CLS 有效。9.4pp gap 是论文 C1 (complexity-dependent advantage) 最强证据\n- **C1 claim 写法**：Director 提议 \"classification is necessary, not just beneficial\"。我的评估框架：CWM 低于 baseline + gap 从 1.24pp→9.4pp + v10 的 93% unparseable 三重证据可支撑强 claim，但需 hedge \"单 seed repo-level，seed123 验证中\"\n- **易踩坑**：(1) Registry 里 CWM v11 的 \"Best eval_loss=0.3066@step400\" 是错的，别引用；(2) Worker 习惯性 nohup 启动后报 done，eval 实际还在跑——必须独立验证进程状态；(3) GPU 共享不影响推理数值正确性（只影响速度），但两个进程写同一目录会覆盖——看最终文件时间戳确认来源；(4) 所有训练都远超 best checkpoint 范围，继续跑无价值但 seed123 可能还没到 eval_steps 200 的 best——看 trainer_state.json 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

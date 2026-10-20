@@ -1,0 +1,17 @@
+{
+  "method": "paired_t_TOST",
+  "seeds": "bf16_only",
+  "n_seeds": 3,
+  "df": 2,
+  "gaps": [
+    -0.97,
+    1.45,
+    -1.84
+  ],
+  "mean_gap": -0.4533,
+  "sd": 1.7048,
+  "se": 0.9842,
+  "margin": 2.0,
+  "tost_p": 0.1283,
+  "equivalent": false
+}

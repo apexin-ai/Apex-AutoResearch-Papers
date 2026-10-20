@@ -1,0 +1,33 @@
+\section{Method}
+\label{sec:method}
+
+Let $p$ denote a candidate patch and $T = \{t_1, \ldots, t_n\}$ its test suite, where each $t_i$ has label $y_i \in \{\text{\textsc{Pass}}, \text{\textsc{Fail}}\}$ from execution. Tests decompose into \emph{fail-to-pass} ($T_{\text{f2p}}$) and \emph{pass-to-pass} ($T_{\text{p2p}}$) subsets; a patch is correct iff $\forall\, t_i{:}\ y_i = \text{\textsc{Pass}}$. We compare three formulations for predicting correctness without execution.
+
+\subsection{Verification Formulations}
+\label{sec:formulations}
+
+Let $c_p$ denote the code context (unified diff) of patch $p$.
+
+\paragraph{\cls{} (per-test classification).} $f(c_p, t_i) \rightarrow \hat{y}_i \in \{\text{\textsc{Pass}}, \text{\textsc{Fail}}\}$ predicts a single binary token per test (cross-entropy loss). Patch verdict: $\hat{y}_p = \bigwedge_{i} [\hat{y}_i = \text{\textsc{Pass}}]$. Output cost: one token per test.
+
+\paragraph{\cwm{} (output generation).}\footnote{We use ``code world model'' following \citet{meta2025cwm} to denote execution output prediction, distinct from world models in model-based reinforcement learning.} $g(c_p, t_i) \rightarrow \hat{o}_i \in \Sigma^*$ generates the execution output string (language modeling loss). Verdict by exact match: $\hat{y}_i = \text{\textsc{Pass}}$ iff $\hat{o}_i = o_i^*$.\footnote{Exact string matching is conservative, consistent with \citet{meta2025cwm}. Semantic equivalences are not counted.} When the generated output is unparseable (i.e., does not conform to the expected structured format), the prediction defaults to the majority class verdict. Output cost: $\sum_i |\hat{o}_i|$ tokens.
+
+\paragraph{\traj{} (trajectory-level).} $h(c_p, T) \rightarrow \hat{y}_p \in \{\text{\textsc{Resolved}}, \text{\textsc{Unresolved}}\}$ predicts a single patch verdict from all tests and provides no per-test signal. \traj{} serves as a granularity control: \cls{}--\traj{} differences isolate the value of per-test decomposition independent of the classification formulation itself.
+
+\subsection{Expected Failure Modes}
+\label{sec:failure-modes}
+
+Each formulation has characteristic failure modes that differ in their sensitivity to code complexity:
+
+\paragraph{Generation failure modes (\cwm{}).} The open-ended output space introduces three failure modes: (1)~\emph{token-budget exhaustion}, where $|o_i^*| > B$ (generation budget in tokens) guarantees exact-match failure; (2)~\emph{string-value prediction errors}, where semantically equivalent outputs differing in surface form produce false negatives; and (3)~\emph{format compliance collapse}, where the model fails to produce structured predictions at high complexity. A token sequence of length $L$ with per-token accuracy $q$ has correct-sequence probability $q^L$; long outputs are exponentially harder to predict exactly. We adopt exact string matching following \citet{meta2025cwm}; unparseable predictions default to the majority-class label (\textsc{Pass}).
+
+\paragraph{Classification failure modes (\cls{}).} The single-token output eliminates format and truncation failures but constrains reasoning to internal representations. \cls{} errors manifest as false positives or false negatives; at function level, a mild FP bias (56.5\%) emerges.
+
+\paragraph{Trajectory-level failure modes (\traj{}).} By collapsing per-test information into a single verdict, \traj{} discards diagnostic granularity but avoids per-test aggregation errors.
+
+\paragraph{Complexity dependence.} When outputs are short (function level), generation modes (1)--(2) are rarely triggered and all formulations should perform comparably. As output complexity increases (repository level), generation-specific failures may compound. Whether this divergence is formulation-inherent or capacity-contingent is an empirical question (\S\ref{sec:experiments}).
+
+\subsection{Oracle Accuracy-Utility Framework}
+\label{sec:oracle}
+
+For a buggy patch with $k = |T_{\text{f2p}}|$ fail-to-pass tests, a per-test verifier with recall $r$ detects the bug if it identifies at least one failing test: $P_{\text{detect}}(k) = 1 - (1 - r)^{k_{\text{eff}}}$, where $k_{\text{eff}} = k / (1 + (k-1)\rho)$ accounts for within-patch correlation via intraclass correlation coefficient (ICC) $\rho$~\citep{shrout1979icc}. The per-test advantage over a trajectory-level baseline ($a_h$) is $\Delta(k) = P_{\text{detect}}(k) - a_h$, with population expectation $\mathbb{E}[\Delta] = \sum_{k} P(|T_{\text{f2p}}| = k) \cdot \Delta(k)$. This predicts that per-test advantage concentrates in multi-F2P-test instances and vanishes at $k{=}1$, validated in \S\ref{sec:experiments} and Appendix~\ref{app:oracle}.

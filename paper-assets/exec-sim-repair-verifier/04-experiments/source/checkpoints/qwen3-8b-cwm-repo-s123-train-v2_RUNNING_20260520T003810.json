@@ -1,0 +1,36 @@
+{
+  "exp_id": "qwen3-8b-cwm-repo-s123-train-v2",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:35:30.714Z",
+    "updated_at": "2026-05-20T00:38:09.246Z",
+    "spec": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/ --save_total_limit 5 --dataloader_num_workers 0 --epochs 3",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "881318",
+      "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s123-train-v2.log",
+      "submitted_at": "2026-05-20T00:38:07.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Qwen3-8B CWM repo-level s123 重跑：v1 因 4 并行训练 OOM 死亡。与 s42 (64.36%) 对比提供 multi-seed evidence。Config 与 s42 完全一致（train_repo_cwm.py, bs=1, ga=32, lr=5e-5, seq2048, epochs=3, lora_r=16）。",
+    "parent": "qwen3-8b-cwm-repo-s123-train",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": "cuda:0",
+    "pid": "881318",
+    "log_path": "~/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s123-train-v2.log",
+    "reproduce": {
+      "command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/ --save_total_limit 5 --dataloader_num_workers 0 --epochs 3"
+    }
+  },
+  "timestamp": "2026-05-20T00:38:10.080275+00:00",
+  "trigger": "update_registry"
+}

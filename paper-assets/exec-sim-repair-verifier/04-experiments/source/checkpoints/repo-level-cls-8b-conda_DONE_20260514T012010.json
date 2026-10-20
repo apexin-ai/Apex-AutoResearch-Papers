@@ -1,0 +1,62 @@
+{
+  "exp_id": "repo-level-cls-8b-conda",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:07:02.272Z",
+    "updated_at": "2026-05-14T01:20:10.325Z",
+    "spec": {
+      "hypothesis": "CLS 8B conda 重训 (transformers 4.57.6)，与 CLS v5 (4B) 同环境对比，验证 repo-level scaling effect。之前 8B 在 transformers 5.8.0 训练结果无效 (71.37%)。",
+      "server": "westd-48478",
+      "gpu": "cuda:3",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=3 python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/ --run_name repo-cls-qwen3-8b-conda",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+      "data_count": 70748,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.05,
+      "save_steps": 200,
+      "eval_steps": 200,
+      "save_total_limit": 5,
+      "num_train_epochs": 3,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "max_seq_length": 2048,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/",
+      "log_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/train.log",
+      "env": "conda base, transformers 4.57.6",
+      "pid": 185438,
+      "account": "root",
+      "total_steps": 6633,
+      "speed": "~8.3s/step",
+      "estimated_hours": 15.3,
+      "gpu_mem_used": "25751/32607 MiB",
+      "tmux_session": "cls8b-conda"
+    },
+    "notes": "D056 early stop. Best checkpoint-200 (eval_loss=0.0796). Eval 启动: tmux eval_cls_8b, westd GPU 3, batch_size=8, conda env (transformers 4.57.6)。Running accuracy@560样本: 73.2%。模型通过 ModelScope 下载到 /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/。",
+    "reproduce": {
+      "finished_at": "2026-05-14T01:06:38.490Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T01:06:39.345Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T01:06:40.925438+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T01:20:10.447117+00:00",
+  "trigger": "update_registry"
+}

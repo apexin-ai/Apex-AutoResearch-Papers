@@ -1,0 +1,86 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{chen2023codet}
+\citation{ni2023lever}
+\citation{ding2024cwm}
+\citation{zhang2025swerm}
+\citation{lightman2023lets}
+\citation{uesato2022solving}
+\citation{zhang2018predictive}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution-free code verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code World Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-level verification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process vs.\ outcome supervision.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Predictive mutation testing.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Verification Formulations}{2}{subsection.3.1}\protected@file@percent }
+\citation{gu2024cruxeval}
+\citation{jimenez2024swebench}
+\citation{hu2022lora}
+\citation{qwen2025qwen3}
+\citation{guo2024deepseek}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Function-level verification accuracy (\%). Mean $\pm $ standard deviation across seeds reported where $\geq $3 seeds available. Majority baseline: 51.75\%.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:func}{{1}{3}{Function-level verification accuracy (\%). Mean $\pm $ standard deviation across seeds reported where $\geq $3 seeds available. Majority baseline: 51.75\%}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-test classification (CLS).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Execution output generation (CWM).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-level scoring (TRAJ).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Datasets}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Function-level.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Repository-level.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Function-Level Formulation Comparison}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:func}{{4.1}{3}{Function-Level Formulation Comparison}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-seed statistics for function-level Qwen3-4B. The TOST procedure tests whether the CLS--CWM gap falls within $\pm $2pp.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:seeds}{{2}{4}{Multi-seed statistics for function-level Qwen3-4B. The TOST procedure tests whether the CLS--CWM gap falls within $\pm $2pp}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-test failure prediction quality (func-level). Overall accuracy: 87.51\%.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:diag}{{3}{4}{Per-test failure prediction quality (func-level). Overall accuracy: 87.51\%}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Model Size Scaling}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:scale}{{4.2}{4}{Model Size Scaling}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Test Diagnostic Quality}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:diag}{{4.3}{4}{Per-Test Diagnostic Quality}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Oracle advantage of per-test over trajectory-level predictions, stratified by number of failing tests ($T$). ``Block adv.'' measures information gain from knowing \emph  {which} tests fail.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:oracle}{{4}{5}{Oracle advantage of per-test over trajectory-level predictions, stratified by number of failing tests ($T$). ``Block adv.'' measures information gain from knowing \emph {which} tests fail}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Oracle Advantage of Per-Test Granularity}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:oracle}{{4.4}{5}{Oracle Advantage of Per-Test Granularity}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Block Correlation in Per-Test Evaluation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:icc}{{4.5}{5}{Block Correlation in Per-Test Evaluation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Block correlation analysis of per-test predictions. Design effect indicates the ratio of true variance to variance under the i.i.d.\ assumption.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:icc}{{5}{6}{Block correlation analysis of per-test predictions. Design effect indicates the ratio of true variance to variance under the i.i.d.\ assumption}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Repository-level verification results. Majority baseline: 72.96\%. ``Unp.'' = unparseable output rate (\%). Results below the majority baseline are marked with $\dagger $.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:repo}{{6}{6}{Repository-level verification results. Majority baseline: 72.96\%. ``Unp.'' = unparseable output rate (\%). Results below the majority baseline are marked with $\dagger $}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Repository-Level Case Study}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:repo}{{4.6}{6}{Repository-Level Case Study}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen3 CLS.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CWM collapse on both model families.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepSeek CLS.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepSeek TRAJ.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Zero-shot baselines.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Ablations and Negative Results}{7}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trace-then-judge.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-consistency via majority voting.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Downstream re-repair.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical guidance.}{7}{section*.19}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{chen2023codet}{1}
+\bibcite{ding2024cwm}{2}
+\bibcite{gu2024cruxeval}{3}
+\bibcite{guo2024deepseek}{4}
+\bibcite{hu2022lora}{5}
+\bibcite{jimenez2024swebench}{6}
+\bibcite{lightman2023lets}{7}
+\@writefile{toc}{\contentsline {paragraph}{The CWM scalability barrier.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Block correlation and evaluation practice.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{ni2023lever}{8}
+\bibcite{qwen2025qwen3}{9}
+\bibcite{uesato2022solving}{10}
+\bibcite{zhang2018predictive}{11}
+\bibcite{zhang2025swerm}{12}
+\gdef \@abspage@last{9}

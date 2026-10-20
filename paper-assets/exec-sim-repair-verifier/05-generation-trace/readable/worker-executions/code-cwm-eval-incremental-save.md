@@ -1,0 +1,2788 @@
+# code cwm eval incremental save
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_code_cwm-eval-incremental-save_20260514T123735.log`
+- **Structured JSON:** [`1051447df1d00b5327b7.json`](../../sessions/10/1051447df1d00b5327b7.json)
+
+## Before a recorded user message
+
+58 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "26553ad2-b951-4be4-ac26-d8fa6751c30d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779206400,
+    "rateLimitType": "seven_day",
+    "utilization": 0.53,
+    "isUsingOverage": false
+  },
+  "uuid": "23c8febe-2530-41f3-b8f1-452913af9f39",
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先并行读取两个文件来了解现有实现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "64ff1e9c-1883-4046-910d-aeed40dd5a7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7e9wYZZ91za7PHFvzrYpX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11443,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11443
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MCNiQvUqq5ya5x6gzkYnsf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "c00ee0df-bf23-4476-8547-4c53a062c2e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7e9wYZZ91za7PHFvzrYpX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11443,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11443
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T12:37:48.093Z_
+
+<details><summary>↩ Tool result · `toolu_01MCNiQvUqq5ya5x6gzkYnsf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "6f524723-8a3f-4faf-9ab7-5201e44840de",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read both files from the remote server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "4aa609fb-fb53-40d2-8dc9-2e97dcc311de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JzoLQuS9tnpn5tbGnZNCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 23284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Vj1K3LDdaQsMuEWzJNztj`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "5a5b0f9b-9e13-4043-9115-fb33fda37d95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JzoLQuS9tnpn5tbGnZNCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 23284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AAzEBMMyvjBnnswz4KpCGU`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "dd640dc9-af57-4640-a228-a678dc148840",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017JzoLQuS9tnpn5tbGnZNCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 23284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 892
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T12:37:53.445Z_
+
+<details><summary>↩ Tool result · `toolu_014Vj1K3LDdaQsMuEWzJNztj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_{args.split}.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Usage:\\n#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nimport signal\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict whether the test will pass or fail when run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\nLABEL_MAP = {1: \\\"pass\\\", 0: \\\"fail\\\"}\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n    \\n\\n... [截断: 输出过长，省略 4761 字符] ...\\n\\nrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    if n_unparseable:\\n        print(f\\\"\\\\nUnparseable: {n_unparseable}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n  python eval_repo_cls.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory with swebench_{args.split}.jsonl\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cls.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cls_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--split\\\", choices=[\\\"val\\\", \\\"test\\\"], default=\\\"test\\\", help=\\\"Data split to evaluate\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} {args.split} instances\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n    n_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    metrics = compute_metrics(labels, preds)\\n    print_report(metrics, len(results), n_unparseable)\\n\\n    output = {\\n        \\\"model\\\": \\\"CLS\\\",\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"split\\\": args.split,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cls_unparseable\\\": n_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_path = os.path.join(script_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(script_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "bf8e9c5b-ad36-47b4-a2f4-943c3903aee5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_{args.split}.jsonl\\\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n# Usage:\\\\n#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport gc\\\\nimport signal\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, f1_score,\\\\n    precision_score, recall_score,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n    \\\\\\\"predict whether the test will pass or fail when run against the patched code.\\\\\\\"\\\\n)\\\\nUSER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWill this test pass or fail?\\\\\\\"\\\\nLABEL_MAP = {1: \\\\\\\"pass\\\\\\\", 0: \\\\\\\"fail\\\\\\\"}\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False, enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n        ids = ids.input_ids\\\\n    if not isinstance(ids, list):\\\\n        ids = list(ids)\\\\n    truncated = len(ids) > max_len\\\\n    if truncated:\\\\n        ids = ids[:max_len]\\\\n    return ids, truncated\\\\n\\\\n\\\\ndef parse_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text = text.strip().lower()\\\\n    if text.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    if \\\\\\\"pass\\\\\\\" in text and \\\\\\\"fail\\\\\\\" not in text:\\\\n        return 1\\\\n    if \\\\\\\"fail\\\\\\\" in text and \\\\\\\"pass\\\\\\\" not in text:\\\\n        return 0\\\\n    return -1\\\\n\\\\n\\\\ndef load_model(checkpoint_dir, base_model_name, device):\\\\n    from peft import PeftModel\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    try:\\\\n        import flash_attn\\\\n        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n    except ImportError:\\\\n        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_model_name,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=attn_impl,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\\\n    model.eval()\\\\n    model = model.to(device)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length, device):\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n    total = len(test_data)\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\\\n\\\\n    results = []\\\\n    n_unparseable = 0\\\\n\\\\n    for i in range(0, total, batch_size):\\\\n        batch = test_data[i : i + batch_size]\\\\n\\\\n        batch_built = [\\\\n            build_prompt_ids(tokenizer, ex[\\\\\\\"code\\\\\\\"], ex[\\\\\\\"test\\\\\\\"], tmpl_kw, max_seq_length)\\\\n            for ex in batch\\\\n        ]\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 4761 字符] ...\\\\n\\\\nrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    if n_unparseable:\\\\n        print(f\\\\\\\"\\\\\\\\nUnparseable: {n_unparseable}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n  python eval_repo_cls.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory with swebench_{args.split}.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cls.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cls_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--split\\\\\\\", choices=[\\\\\\\"val\\\\\\\", \\\\\\\"test\\\\\\\"], default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Data split to evaluate\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading {args.split} data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} {args.split} instances\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n    n_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    print_report(metrics, len(results), n_unparseable)\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"split\\\\\\\": args.split,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cls_unparseable\\\\\\\": n_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_path = os.path.join(script_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(script_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_{args.split}.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Usage:\\n#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nimport signal\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code verifier. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict whether the test will pass or fail when run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWill this test pass or fail?\\\"\\nLABEL_MAP = {1: \\\"pass\\\", 0: \\\"fail\\\"}\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text = text.strip().lower()\\n    if text.startswith(\\\"pass\\\"):\\n        return 1\\n    if text.startswith(\\\"fail\\\"):\\n        return 0\\n    if \\\"pass\\\" in text and \\\"fail\\\" not in text:\\n        return 1\\n    if \\\"fail\\\" in text and \\\"pass\\\" not in text:\\n        return 0\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n    \\n\\n... [截断: 输出过长，省略 4761 字符] ...\\n\\nrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    if n_unparseable:\\n        print(f\\\"\\\\nUnparseable: {n_unparseable}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n  python eval_repo_cls.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory with swebench_{args.split}.jsonl\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cls.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cls_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--split\\\", choices=[\\\"val\\\", \\\"test\\\"], default=\\\"test\\\", help=\\\"Data split to evaluate\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} {args.split} instances\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n    n_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    metrics = compute_metrics(labels, preds)\\n    print_report(metrics, len(results), n_unparseable)\\n\\n    output = {\\n        \\\"model\\\": \\\"CLS\\\",\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"split\\\": args.split,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cls_unparseable\\\": n_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_path = os.path.join(script_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(script_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T12:37:53.965Z_
+
+<details><summary>↩ Tool result · `toolu_01AAzEBMMyvjBnnswz4KpCGU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    tot\\n\\n... [截断: 输出过长，省略 5974 字符] ...\\n\\n(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit number of test samples\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    if args.max_samples:\\n        test_data = test_data[:args.max_samples]\\n        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n\\n    metrics = compute_metrics(labels, preds)\\n    gen_stats = gen_length_stats(results)\\n\\n    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n    truncation_stats = {\\n        \\\"truncated_count\\\": truncated_count,\\n        \\\"truncated_pct\\\": truncated_pct,\\n        \\\"truncated_accuracy\\\": truncated_accuracy,\\n        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n    }\\n\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    print_report(metrics, gen_stats, len(results))\\n\\n    output = {\\n        \\\"model\\\": \\\"CWM\\\",\\n        \\\"split\\\": args.split,\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"generation_stats\\\": gen_stats,\\n        \\\"truncation\\\": truncation_stats,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"max_new_tokens\\\": args.max_new_tokens,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_dir = args.output_dir or script_dir\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(out_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "8db9cadc-1b37-45c6-a868-f810acc6c9cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/root/miniconda3/bin/python3\\\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n# Key difference from eval_repo_cls.py:\\\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\\\n#   - Different system prompt (\\\\\\\"execution simulator\\\\\\\" vs \\\\\\\"code verifier\\\\\\\")\\\\n# Usage:\\\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\\\n#   python eval_repo_cwm.py --dry_run\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport gc\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, f1_score,\\\\n    precision_score, recall_score,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n    \\\\\\\"predict the execution result when the test is run against the patched code.\\\\\\\"\\\\n)\\\\nUSER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False, enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n        ids = ids.input_ids\\\\n    if not isinstance(ids, list):\\\\n        ids = list(ids)\\\\n    truncated = len(ids) > max_len\\\\n    if truncated:\\\\n        ids = ids[:max_len]\\\\n    return ids, truncated\\\\n\\\\n\\\\ndef parse_cwm_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_lower = text.strip().lower()\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    fail_kw = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n    pass_kw = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n    has_fail = any(p in text_lower for p in fail_kw)\\\\n    has_pass = any(p in text_lower for p in pass_kw)\\\\n    if has_fail and not has_pass:\\\\n        return 0\\\\n    if has_pass and not has_fail:\\\\n        return 1\\\\n    return -1\\\\n\\\\n\\\\ndef load_model(checkpoint_dir, base_model_name, device):\\\\n    from peft import PeftModel\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    try:\\\\n        import flash_attn\\\\n        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n    except ImportError:\\\\n        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_model_name,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=attn_impl,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\\\n    model.eval()\\\\n    model = model.to(device)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\\\n                  max_new_tokens, device):\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n    tot\\\\n\\\\n... [截断: 输出过长，省略 5974 字符] ...\\\\n\\\\n(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=1024)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit number of test samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None, help=\\\\\\\"Output directory for results\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading {args.split} data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    if args.max_samples:\\\\n        test_data = test_data[:args.max_samples]\\\\n        log.info(f\\\\\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    gen_stats = gen_length_stats(results)\\\\n\\\\n    truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n    trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n    non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\\\n    truncation_stats = {\\\\n        \\\\\\\"truncated_count\\\\\\\": truncated_count,\\\\n        \\\\\\\"truncated_pct\\\\\\\": truncated_pct,\\\\n        \\\\\\\"truncated_accuracy\\\\\\\": truncated_accuracy,\\\\n        \\\\\\\"non_truncated_accuracy\\\\\\\": non_truncated_accuracy,\\\\n    }\\\\n\\\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    print_report(metrics, gen_stats, len(results))\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CWM\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": args.split,\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"generation_stats\\\\\\\": gen_stats,\\\\n        \\\\\\\"truncation\\\\\\\": truncation_stats,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_dir = args.output_dir or script_dir\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    out_path = os.path.join(out_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(out_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    tot\\n\\n... [截断: 输出过长，省略 5974 字符] ...\\n\\n(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit number of test samples\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    if args.max_samples:\\n        test_data = test_data[:args.max_samples]\\n        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n\\n    metrics = compute_metrics(labels, preds)\\n    gen_stats = gen_length_stats(results)\\n\\n    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n    truncation_stats = {\\n        \\\"truncated_count\\\": truncated_count,\\n        \\\"truncated_pct\\\": truncated_pct,\\n        \\\"truncated_accuracy\\\": truncated_accuracy,\\n        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n    }\\n\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    print_report(metrics, gen_stats, len(results))\\n\\n    output = {\\n        \\\"model\\\": \\\"CWM\\\",\\n        \\\"split\\\": args.split,\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"generation_stats\\\": gen_stats,\\n        \\\"truncation\\\": truncation_stats,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"max_new_tokens\\\": args.max_new_tokens,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_dir = args.output_dir or script_dir\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(out_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated for both files. I need to see the `run_inference` function in eval_repo_cwm.py since that's where the main loop is. Let me also check the cls file for its incremental JSONL pattern. But wait - the user mentioned the cls file has a "v2 version" with incremental JSONL. Let me look more carefully.
+
+Actually, looking at the cls file output, it seems like it does NOT have incremental JSONL writing - it just writes all results at the end in `main()`. The user said "先读 eval_repo_cls.py，找到 v2 版本的增量 JSONL 写入实现（这是参考实现）" but from what I can see, eval_repo_cls.py doesn't have incremental writing either.
+
+
+I need to see the full `run_inference` function in both files since they were truncated - the cls version cuts off at the batch building logic and the cwm version cuts off mid-function. The incremental JSONL pattern the user mentioned might be in the parts I haven't seen yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "d1ab15e3-c06f-4a84-95ed-b814b32e0a4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E8KHpu9GUtgEnjMC8s22Dp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7041,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7041
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+输出被截断了，我需要看两个文件中 `run_inference` 函数的完整内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "f392406a-a424-4467-adb3-5215d0da10e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E8KHpu9GUtgEnjMC8s22Dp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7041,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7041
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014gR2Ux5vB2pBHdAUWecKFL`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"def run_inference\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "81fd4997-1bb6-4a81-b996-ed6fe5f8957f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E8KHpu9GUtgEnjMC8s22Dp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7041,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7041
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T12:38:07.126Z_
+
+<details><summary>↩ Tool result · `toolu_014gR2Ux5vB2pBHdAUWecKFL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"121:def run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "4ca607df-b442-4d08-9960-e9265f87cb95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"121:def run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"121:def run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0131P43TPbkKciUFkSZzwyre`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "f7960c24-33cd-4900-8cc3-3e1f0e7da785",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E8KHpu9GUtgEnjMC8s22Dp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7041,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7041
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FqPbAEnCKxdYf5X7XrUbZy`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "30f172ee-d39b-4f0f-aa45-626a349b26a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E8KHpu9GUtgEnjMC8s22Dp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7041,
+      "cache_read_input_tokens": 24176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7041
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T12:38:08.117Z_
+
+<details><summary>↩ Tool result · `toolu_0131P43TPbkKciUFkSZzwyre`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"357 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "3c8ef56c-638b-4436-85fa-0aa610098339",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"357 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"357 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T12:38:08.641Z_
+
+<details><summary>↩ Tool result · `toolu_01FqPbAEnCKxdYf5X7XrUbZy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"327 /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "c73fa0cf-8864-484a-8d3e-1e1a34e0d85a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"327 /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"327 /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TSEyre4Z11bsSuFb4NfixS`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -250 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "3cd2ee3b-bb17-4b2a-95bf-41d861bb8cb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYKfFx9xNpK4QB5SBRcY9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 31217,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1167
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T12:38:12.735Z_
+
+<details><summary>↩ Tool result · `toolu_01TSEyre4Z11bsSuFb4NfixS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    tot\\n\\n... [截断: 输出过长，省略 1305 字符] ...\\n\\n tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n        \\\"f1_macro\\\": round(float(f1.mean()) * 100, 2),\\n        \\\"precision_fail\\\": round(float(prec[0]) * 100, 2),\\n        \\\"precision_pass\\\": round(float(prec[1]) * 100, 2),\\n        \\\"recall_fail\\\": round(float(rec[0]) * 100, 2),\\n        \\\"recall_pass\\\": round(float(rec[1]) * 100, 2),\\n        \\\"confusion_matrix\\\": {\\n            \\\"tn\\\": int(cm[0][0]), \\\"fp\\\": int(cm[0][1]),\\n            \\\"fn\\\": int(cm[1][0]), \\\"tp\\\": int(cm[1][1]),\\n        },\\n        \\\"support\\\": {\\\"fail\\\": int(Counter(y_true)[0]), \\\"pass\\\": int(Counter(y_true)[1])},\\n    }\\n\\n\\ndef gen_length_stats(results):\\n    lengths = [len(r[\\\"gen_text\\\"]) for r in results]\\n    return {\\n        \\\"mean\\\": round(np.mean(lengths), 1),\\n        \\\"median\\\": round(float(np.median(lengths)), 1),\\n        \\\"max\\\": max(lengths),\\n        \\\"min\\\": min(lengths),\\n    }\\n\\n\\ndef print_report(metrics, gen_stats, n_total):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"REPO-LEVEL CWM EVALUATION\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {n_total} instances\\\")\\n    print(f\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\")\\n    print(f\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\")\\n    print(f\\\"\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\")\\n    print(f\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\")\\n    print(f\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\")\\n    print(f\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    print(f\\\"\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "1e717ce5-94cc-4147-a168-e47e7628fc88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/root/miniconda3/bin/python3\\\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n# Key difference from eval_repo_cls.py:\\\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\\\n#   - Different system prompt (\\\\\\\"execution simulator\\\\\\\" vs \\\\\\\"code verifier\\\\\\\")\\\\n# Usage:\\\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\\\n#   python eval_repo_cwm.py --dry_run\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport gc\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, f1_score,\\\\n    precision_score, recall_score,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n    \\\\\\\"predict the execution result when the test is run against the patched code.\\\\\\\"\\\\n)\\\\nUSER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False, enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n        ids = ids.input_ids\\\\n    if not isinstance(ids, list):\\\\n        ids = list(ids)\\\\n    truncated = len(ids) > max_len\\\\n    if truncated:\\\\n        ids = ids[:max_len]\\\\n    return ids, truncated\\\\n\\\\n\\\\ndef parse_cwm_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_lower = text.strip().lower()\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    fail_kw = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n    pass_kw = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n    has_fail = any(p in text_lower for p in fail_kw)\\\\n    has_pass = any(p in text_lower for p in pass_kw)\\\\n    if has_fail and not has_pass:\\\\n        return 0\\\\n    if has_pass and not has_fail:\\\\n        return 1\\\\n    return -1\\\\n\\\\n\\\\ndef load_model(checkpoint_dir, base_model_name, device):\\\\n    from peft import PeftModel\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    try:\\\\n        import flash_attn\\\\n        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n    except ImportError:\\\\n        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_model_name,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=attn_impl,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\\\n    model.eval()\\\\n    model = model.to(device)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\\\n                  max_new_tokens, device):\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n    tot\\\\n\\\\n... [截断: 输出过长，省略 1305 字符] ...\\\\n\\\\n tokenizer.decode(gen_ids, skip_special_tokens=True)\\\\n            pred = parse_cwm_prediction(gen_text)\\\\n            was_unparseable = pred == -1\\\\n            if pred == -1:\\\\n                n_unparseable += 1\\\\n                pred = majority_class\\\\n\\\\n            pid = ex.get(\\\\\\\"problem_id\\\\\\\", ex.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\\\\"instance_id\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            results.append({\\\\n                \\\\\\\"index\\\\\\\": i + j,\\\\n                \\\\\\\"problem_id\\\\\\\": pid,\\\\n                \\\\\\\"label\\\\\\\": ex[\\\\\\\"label\\\\\\\"],\\\\n                \\\\\\\"pred\\\\\\\": pred,\\\\n                \\\\\\\"correct\\\\\\\": int(pred == ex[\\\\\\\"label\\\\\\\"]),\\\\n                \\\\\\\"truncated\\\\\\\": batch_truncated[j],\\\\n                \\\\\\\"gen_text\\\\\\\": gen_text.strip(),\\\\n                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n            })\\\\n\\\\n        done = min(i + batch_size, total)\\\\n        if True:\\\\n            acc_so_far = sum(r[\\\\\\\"correct\\\\\\\"] for r in results) / len(results) * 100\\\\n            log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n\\\\n    if n_unparseable:\\\\n        log.warning(f\\\\\\\"{n_unparseable} unparseable predictions\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n        \\\\\\\"f1_macro\\\\\\\": round(float(f1.mean()) * 100, 2),\\\\n        \\\\\\\"precision_fail\\\\\\\": round(float(prec[0]) * 100, 2),\\\\n        \\\\\\\"precision_pass\\\\\\\": round(float(prec[1]) * 100, 2),\\\\n        \\\\\\\"recall_fail\\\\\\\": round(float(rec[0]) * 100, 2),\\\\n        \\\\\\\"recall_pass\\\\\\\": round(float(rec[1]) * 100, 2),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": {\\\\n            \\\\\\\"tn\\\\\\\": int(cm[0][0]), \\\\\\\"fp\\\\\\\": int(cm[0][1]),\\\\n            \\\\\\\"fn\\\\\\\": int(cm[1][0]), \\\\\\\"tp\\\\\\\": int(cm[1][1]),\\\\n        },\\\\n        \\\\\\\"support\\\\\\\": {\\\\\\\"fail\\\\\\\": int(Counter(y_true)[0]), \\\\\\\"pass\\\\\\\": int(Counter(y_true)[1])},\\\\n    }\\\\n\\\\n\\\\ndef gen_length_stats(results):\\\\n    lengths = [len(r[\\\\\\\"gen_text\\\\\\\"]) for r in results]\\\\n    return {\\\\n        \\\\\\\"mean\\\\\\\": round(np.mean(lengths), 1),\\\\n        \\\\\\\"median\\\\\\\": round(float(np.median(lengths)), 1),\\\\n        \\\\\\\"max\\\\\\\": max(lengths),\\\\n        \\\\\\\"min\\\\\\\": min(lengths),\\\\n    }\\\\n\\\\n\\\\ndef print_report(metrics, gen_stats, n_total):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"REPO-LEVEL CWM EVALUATION\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {n_total} instances\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    tot\\n\\n... [截断: 输出过长，省略 1305 字符] ...\\n\\n tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n        \\\"f1_macro\\\": round(float(f1.mean()) * 100, 2),\\n        \\\"precision_fail\\\": round(float(prec[0]) * 100, 2),\\n        \\\"precision_pass\\\": round(float(prec[1]) * 100, 2),\\n        \\\"recall_fail\\\": round(float(rec[0]) * 100, 2),\\n        \\\"recall_pass\\\": round(float(rec[1]) * 100, 2),\\n        \\\"confusion_matrix\\\": {\\n            \\\"tn\\\": int(cm[0][0]), \\\"fp\\\": int(cm[0][1]),\\n            \\\"fn\\\": int(cm[1][0]), \\\"tp\\\": int(cm[1][1]),\\n        },\\n        \\\"support\\\": {\\\"fail\\\": int(Counter(y_true)[0]), \\\"pass\\\": int(Counter(y_true)[1])},\\n    }\\n\\n\\ndef gen_length_stats(results):\\n    lengths = [len(r[\\\"gen_text\\\"]) for r in results]\\n    return {\\n        \\\"mean\\\": round(np.mean(lengths), 1),\\n        \\\"median\\\": round(float(np.median(lengths)), 1),\\n        \\\"max\\\": max(lengths),\\n        \\\"min\\\": min(lengths),\\n    }\\n\\n\\ndef print_report(metrics, gen_stats, n_total):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"REPO-LEVEL CWM EVALUATION\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {n_total} instances\\\")\\n    print(f\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\")\\n    print(f\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\")\\n    print(f\\\"\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\")\\n    print(f\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\")\\n    print(f\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\")\\n    print(f\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    print(f\\\"\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UxUQF9vACtfoErYJU4mwxF`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "tail -110 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "50b5a608-42c2-4ae1-b6e9-a5005f525427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYKfFx9xNpK4QB5SBRcY9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 31217,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1167
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T12:38:13.463Z_
+
+<details><summary>↩ Tool result · `toolu_01UxUQF9vACtfoErYJU4mwxF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\n  python eval_repo_cwm.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory\\\")\\n    p.add_argument(\\\"--split\\\", choices=[\\\"val\\\", \\\"test\\\"], default=\\\"test\\\", help=\\\"Data split to evaluate on\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cwm.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cwm_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=8)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit number of test samples\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    if args.max_samples:\\n        test_data = test_data[:args.max_samples]\\n        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n\\n    metrics = compute_metrics(labels, preds)\\n    gen_stats = gen_length_stats(results)\\n\\n    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n    truncation_stats = {\\n        \\\"truncated_count\\\": truncated_count,\\n        \\\"truncated_pct\\\": truncated_pct,\\n        \\\"truncated_accuracy\\\": truncated_accuracy,\\n        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n    }\\n\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    print_report(metrics, gen_stats, len(results))\\n\\n    output = {\\n        \\\"model\\\": \\\"CWM\\\",\\n        \\\"split\\\": args.split,\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"generation_stats\\\": gen_stats,\\n        \\\"truncation\\\": truncation_stats,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"max_new_tokens\\\": args.max_new_tokens,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_dir = args.output_dir or script_dir\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(out_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "0af9bb1d-9ba8-49e7-b5bb-382511955141",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\\\n  python eval_repo_cwm.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--split\\\\\\\", choices=[\\\\\\\"val\\\\\\\", \\\\\\\"test\\\\\\\"], default=\\\\\\\"test\\\\\\\", help=\\\\\\\"Data split to evaluate on\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cwm.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cwm_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=1024)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit number of test samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None, help=\\\\\\\"Output directory for results\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading {args.split} data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    if args.max_samples:\\\\n        test_data = test_data[:args.max_samples]\\\\n        log.info(f\\\\\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    gen_stats = gen_length_stats(results)\\\\n\\\\n    truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n    trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n    non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\\\n    truncation_stats = {\\\\n        \\\\\\\"truncated_count\\\\\\\": truncated_count,\\\\n        \\\\\\\"truncated_pct\\\\\\\": truncated_pct,\\\\n        \\\\\\\"truncated_accuracy\\\\\\\": truncated_accuracy,\\\\n        \\\\\\\"non_truncated_accuracy\\\\\\\": non_truncated_accuracy,\\\\n    }\\\\n\\\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    print_report(metrics, gen_stats, len(results))\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CWM\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": args.split,\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"generation_stats\\\\\\\": gen_stats,\\\\n        \\\\\\\"truncation\\\\\\\": truncation_stats,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_dir = args.output_dir or script_dir\\\\n    os.makedirs(out_dir, exist_ok=True)\\\\n    out_path = os.path.join(out_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(out_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cwm.py --checkpoint_dir &lt;cwm_checkpoint_path> --device cuda:1\\n  python eval_repo_cwm.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory\\\")\\n    p.add_argument(\\\"--split\\\", choices=[\\\"val\\\", \\\"test\\\"], default=\\\"test\\\", help=\\\"Data split to evaluate on\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cwm.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cwm_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=8)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=1024)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    p.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Limit number of test samples\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n\\n    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    if args.max_samples:\\n        test_data = test_data[:args.max_samples]\\n        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n\\n    metrics = compute_metrics(labels, preds)\\n    gen_stats = gen_length_stats(results)\\n\\n    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n    truncation_stats = {\\n        \\\"truncated_count\\\": truncated_count,\\n        \\\"truncated_pct\\\": truncated_pct,\\n        \\\"truncated_accuracy\\\": truncated_accuracy,\\n        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n    }\\n\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    print_report(metrics, gen_stats, len(results))\\n\\n    output = {\\n        \\\"model\\\": \\\"CWM\\\",\\n        \\\"split\\\": args.split,\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"generation_stats\\\": gen_stats,\\n        \\\"truncation\\\": truncation_stats,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"max_new_tokens\\\": args.max_new_tokens,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_dir = args.output_dir or script_dir\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(out_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still need to see the truncated part of the `run_inference` function (lines ~121-180). Let me get lines 121-180 specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "d7f56718-c48a-4743-8d17-83f092ba717d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYivYVigk9brFseiZt3c2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5932,
+      "cache_read_input_tokens": 32384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+还需要看 `run_inference` 中被截断的部分（约121-180行）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "cfe052b9-9ced-4eb5-992e-aa7f85cae881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYivYVigk9brFseiZt3c2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5932,
+      "cache_read_input_tokens": 32384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C4AwBw3umgDhizNgLjEVWG`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -200 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "5c1239d9-5e8e-43da-b110-02ed3eef2fe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYivYVigk9brFseiZt3c2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5932,
+      "cache_read_input_tokens": 32384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T12:38:19.134Z_
+
+<details><summary>↩ Tool result · `toolu_01C4AwBw3umgDhizNgLjEVWG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n        batch_ids = [r[0] for r in batch_built]\\n        batch_truncated = [r[1] for r in batch_built]\\n\\n        max_len = max(len(ids) for ids in batch_ids)\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(attn_mask, device=device)\\n\\n        with torch.no_grad():\\n            out = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=max_new_tokens,\\n                do_sample=False,\\n                pad_token_id=tokenizer.pad_token_id,\\n            )\\n\\n        for j, ex in enumerate(batch):\\n            gen_ids = out[j][len(padded[j]):]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "e7b02100-ead2-4c4b-85a1-f012c863e5a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/root/miniconda3/bin/python3\\\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n# Key difference from eval_repo_cls.py:\\\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\\\n#   - Different system prompt (\\\\\\\"execution simulator\\\\\\\" vs \\\\\\\"code verifier\\\\\\\")\\\\n# Usage:\\\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\\\n#   python eval_repo_cwm.py --dry_run\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport gc\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, f1_score,\\\\n    precision_score, recall_score,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n    \\\\\\\"predict the execution result when the test is run against the patched code.\\\\\\\"\\\\n)\\\\nUSER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False, enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n        ids = ids.input_ids\\\\n    if not isinstance(ids, list):\\\\n        ids = list(ids)\\\\n    truncated = len(ids) > max_len\\\\n    if truncated:\\\\n        ids = ids[:max_len]\\\\n    return ids, truncated\\\\n\\\\n\\\\ndef parse_cwm_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_lower = text.strip().lower()\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    fail_kw = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n    pass_kw = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n    has_fail = any(p in text_lower for p in fail_kw)\\\\n    has_pass = any(p in text_lower for p in pass_kw)\\\\n    if has_fail and not has_pass:\\\\n        return 0\\\\n    if has_pass and not has_fail:\\\\n        return 1\\\\n    return -1\\\\n\\\\n\\\\ndef load_model(checkpoint_dir, base_model_name, device):\\\\n    from peft import PeftModel\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    try:\\\\n        import flash_attn\\\\n        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n    except ImportError:\\\\n        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_model_name,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=attn_impl,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\\\n    model.eval()\\\\n    model = model.to(device)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\\\n                  max_new_tokens, device):\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n    total = len(test_data)\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\\\n\\\\n    results = []\\\\n    n_unparseable = 0\\\\n\\\\n    for i in range(0, total, batch_size):\\\\n        batch = test_data[i : i + batch_size]\\\\n\\\\n        batch_built = [\\\\n            build_prompt_ids(tokenizer, ex[\\\\\\\"code\\\\\\\"], ex[\\\\\\\"test\\\\\\\"], tmpl_kw, max_seq_length)\\\\n            for ex in batch\\\\n        ]\\\\n        batch_ids = [r[0] for r in batch_built]\\\\n        batch_truncated = [r[1] for r in batch_built]\\\\n\\\\n        max_len = max(len(ids) for ids in batch_ids)\\\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\\\n\\\\n        input_ids = torch.tensor(padded, device=device)\\\\n        attention_mask = torch.tensor(attn_mask, device=device)\\\\n\\\\n        with torch.no_grad():\\\\n            out = model.generate(\\\\n                input_ids=input_ids,\\\\n                attention_mask=attention_mask,\\\\n                max_new_tokens=max_new_tokens,\\\\n                do_sample=False,\\\\n                pad_token_id=tokenizer.pad_token_id,\\\\n            )\\\\n\\\\n        for j, ex in enumerate(batch):\\\\n            gen_ids = out[j][len(padded[j]):]\\\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\\\n            pred = parse_cwm_prediction(gen_text)\\\\n            was_unparseable = pred == -1\\\\n            if pred == -1:\\\\n                n_unparseable += 1\\\\n                pred = majority_class\\\\n\\\\n            pid = ex.get(\\\\\\\"problem_id\\\\\\\", ex.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\\\\"instance_id\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            results.append({\\\\n                \\\\\\\"index\\\\\\\": i + j,\\\\n                \\\\\\\"problem_id\\\\\\\": pid,\\\\n                \\\\\\\"label\\\\\\\": ex[\\\\\\\"label\\\\\\\"],\\\\n                \\\\\\\"pred\\\\\\\": pred,\\\\n                \\\\\\\"correct\\\\\\\": int(pred == ex[\\\\\\\"label\\\\\\\"]),\\\\n                \\\\\\\"truncated\\\\\\\": batch_truncated[j],\\\\n                \\\\\\\"gen_text\\\\\\\": gen_text.strip(),\\\\n                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n            })\\\\n\\\\n        done = min(i + batch_size, total)\\\\n        if True:\\\\n            acc_so_far = sum(r[\\\\\\\"correct\\\\\\\"] for r in results) / len(results) * 100\\\\n            log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n\\\\n    if n_unparseable:\\\\n        log.warning(f\\\\\\\"{n_unparseable} unparseable predictions\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n        batch_ids = [r[0] for r in batch_built]\\n        batch_truncated = [r[1] for r in batch_built]\\n\\n        max_len = max(len(ids) for ids in batch_ids)\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(attn_mask, device=device)\\n\\n        with torch.no_grad():\\n            out = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=max_new_tokens,\\n                do_sample=False,\\n                pad_token_id=tokenizer.pad_token_id,\\n            )\\n\\n        for j, ex in enumerate(batch):\\n            gen_ids = out[j][len(padded[j]):]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. The `run_inference` function in `eval_repo_cwm.py` collects results into a list and returns them. The `main()` function writes all results at the end. I need to modify it to:
+
+1. Add incremental JSONL writing in `run_inference` or in `main` 
+2. Support resume by reading already-completed sample IDs from the JSONL file
+
+The key changes needed:
+1. In `main()`, determine the incremental JSONL path (`results_incremental.jsonl` in output_dir)
+2. If resume: load existing completed indices/problem_ids from the JSONL
+
+
+3. Pass the incremental file path and completed set to `run_inference`
+4. In `run_inference`, after each batch, append results to the JSONL file with flush
+5. Skip already-completed samples
+6. Keep the original final write logic intact
+
+Now I need to check what output directories the currently running processes are using.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "90de25cc-caef-47c5-a324-c7076266acf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKaZE8dgFcw8U1QrALj59e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3044,
+      "cache_read_input_tokens": 38316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3044
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+现在完整了解了代码结构。让我检查正在运行的进程使用的输出目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "585966bd-75bc-4398-b7e5-bf38034be520",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKaZE8dgFcw8U1QrALj59e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3044,
+      "cache_read_input_tokens": 38316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3044
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VtWKJzBriSYU55cYw8QTPN`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps -p 195531,195668 -o pid,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "9221acaa-8765-4374-bef7-423fc1bb9fa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKaZE8dgFcw8U1QrALj59e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3044,
+      "cache_read_input_tokens": 38316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3044
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T12:38:28.779Z_
+
+<details><summary>↩ Tool result · `toolu_01VtWKJzBriSYU55cYw8QTPN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND\\n195531 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/\\n195668 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_v12_conda_eval/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "9f916579-97d3-47cb-81e9-23024e0661c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID COMMAND\\\\n195531 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/\\\\n195668 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_v12_conda_eval/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID COMMAND\\n195531 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/\\n195668 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-500 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --max_new_tokens 1024 --batch_size 8 --device cuda:0 --output_dir /root/autodl-tmp/results/repo_cwm_v12_conda_eval/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I can see the two running processes:
+- PID 195531: `--output_dir /root/autodl-tmp/results/repo_cwm_seed123_conda_eval/`
+- PID 195668: `--output_dir /root/autodl-tmp/results/repo_cwm_v12_conda_eval/`
+
+Now I need to write the modified eval_repo_cwm.py. Key changes:
+
+1. `run_inference` needs to accept an `incremental_path` parameter and an optional `completed_indices` set
+
+
+2. After each batch, append results to the JSONL file
+3. In `main()`, compute the incremental path, load completed indices if the file exists, filter test_data to skip completed ones
+4. Keep original final write logic
+
+Actually, I'm realizing the filtering approach is problematic since it would shift indices. Better to iterate through all test_data but skip samples whose index is already in the completed set. But that complicates batching logic if I'm skipping individual items within batches. Let me simplify: in `main()`, before calling `run_inference`, I'll compute the incremental path and load any existing completed indices, then pass those to the function so it can skip them during processing. I need to avoid filtering test_data since items don't have inherent indices—the index is just the loop position. Instead, I'll check each sample's index during inference and skip it if already completed, but still include the cached result in the output.
+
+Writing the implementation... I'm realizing the issue with partial batch completion—if some items in a batch are done and others aren't, I still need to run the whole batch through the model since they're processed together, which makes the skip logic complicated. The cleanest approach is to filter the test data upfront to only include items that haven't been completed yet, then run all batches normally without worrying about mixed completion states. I'm realizing the core constraint: I can't selectively skip items within a batch since `model.generate()` processes everything together, so I need to either skip entire batches or process everything and filter results afterward.
+
+The cleanest approach is to check at the batch level whether all indices are already completed, skip those batches entirely, then write only new results to the incremental file while merging old and new results in `main()` afterward.
+
+Modifying `run_inference` to accept the incremental path and completed indices, then checking if each batch is fully done before processing...
+
+Writing the modified code... Writing the incremental save logic... Writing a Python patch script... Still writing the inference loop... Writing result processing... I'm tracing through the main function flow to figure out where the resume logic should fit—it needs to happen after the output directory is created but before we load the model, so we can check what's already been processed and skip those samples. I'm logging the resumed count and loading the model, then running inference with the incremental path and completed indices tracked. After that, I'll merge the new results with the already-completed ones, sort by index, and extract the labels and predictions for the metrics calculation.
+
+Now I'm thinking through how to apply these changes—I could write out the whole file, but it's safer to use a Python script that reads the current file and applies targeted string replacements to modify the function signature and add the necessary logic.
+
+Writing the patch script... Building the result collection loop... I'm realizing the string matching approach is too fragile, so instead I'll write a patch script that targets specific line numbers to make the modifications cleanly. Let me map out the exact line numbers in the 357-line file to identify where the key sections are—the function definition, the results initialization, the batch processing loop, the result building logic, and the progress logging.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "7da06924-bed1-4262-8a0c-ddf97b2886f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DdgouFXW4QyyRdjfQgsNei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 41360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+现在我有了完整的代码理解。让我确认关键行号，然后写修改补丁。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "8dec252e-725c-47c9-963d-7f7f2310d56e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DdgouFXW4QyyRdjfQgsNei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 41360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WDK6hAuP4CkqfgEZfkq3FX`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "grep -n \"\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "291e984c-a297-49ba-b3e9-ab7997cfd8df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DdgouFXW4QyyRdjfQgsNei",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 41360,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T12:39:59.694Z_
+
+<details><summary>↩ Tool result · `toolu_01WDK6hAuP4CkqfgEZfkq3FX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1:#!/root/miniconda3/bin/python3\\n2:# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n3:# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n4:# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n5:# Dependencies: torch, transformers, peft, sklearn, numpy\\n6:# Key difference from eval_repo_cls.py:\\n7:#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n8:#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n9:#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n10:# Usage:\\n11:#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n12:#   python eval_repo_cwm.py --dry_run\\n13:\\n14:import argparse\\n15:import json\\n16:import logging\\n17:import os\\n18:import gc\\n19:from collections import Counter\\n20:\\n21:import numpy as np\\n22:import torch\\n23:from sklearn.metrics import (\\n24:    accuracy_score, confusion_matrix, f1_score,\\n25:    precision_score, recall_score,\\n26:)\\n27:\\n28:logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n29:log = logging.getLogger(__name__)\\n30:\\n31:SYSTEM_PROMPT = (\\n32:    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n33:    \\\"predict the execution result when the test is run against the patched code.\\\"\\n34:)\\n35:USER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n36:\\n37:\\n38:def load_jsonl(path):\\n39:    with open(path) as f:\\n40:        return [json.loads(line) for line in f]\\n41:\\n42:\\n43:def detect_thinking_support(tokenizer):\\n44:    try:\\n45:        tokenizer.apply_chat_template(\\n46:            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n47:            tokenize=False, enable_thinking=False,\\n48:        )\\n49:        return {\\\"enable_thinking\\\": False}\\n50:    except TypeError:\\n51:        return {}\\n52:\\n53:\\n54:def build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n55:    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n56:    msgs = [\\n57:        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n58:        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n59:    ]\\n60:    ids = tokenizer.apply_chat_template(\\n61:        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n62:    )\\n63:    if hasattr(ids, \\\"input_ids\\\"):\\n64:        ids = ids.input_ids\\n65:    if not isinstance(ids, list):\\n66:        ids = list(ids)\\n67:    truncated = len(ids) > max_len\\n68:    if truncated:\\n69:        ids = ids[:max_len]\\n70:    return ids, truncated\\n71:\\n72:\\n73:def parse_cwm_prediction(text):\\n74:    if \\\"&lt;/think>\\\" in text:\\n75:        text = text.split(\\\"&lt;/think>\\\")[-1]\\n76:    text_lower = text.strip().lower()\\n77:    if text_lower.startswith(\\\"pass\\\"):\\n78:        return 1\\n79:    if text_lower.startswith(\\\"fail\\\"):\\n80:        return 0\\n81:    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n82:    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n83:    has_fail = any(p in text_lower for p in fail_kw)\\n84:    has_pass = any(p in text_lower for p in pass_kw)\\n85:    if has_fail and not has_pass:\\n86:        return 0\\n87:    if has_pass and not has_fail:\\n88:        return 1\\n89:    return -1\\n90:\\n91:\\n92:def load_model(checkpoint_dir, base_model_name, device):\\n93:    from peft import PeftModel\\n94:    from transformers import AutoModelForCausalLM, AutoTokenizer\\n95:\\n96:    tokenizer = AutoTokenizer.from_pretrained(\\n97:        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n98:    )\\n99:    if tokenizer.pad_token is None:\\n100:        tokenizer.pad_token = tokenizer.eos_token\\n101:\\n102:    try:\\n103:        import flash_attn\\n104:        attn_impl = \\\"flash_attention_2\\\"\\n105:    except ImportError:\\n106:        attn_impl = \\\"sdpa\\\"\\n107:    log.info(f\\\"Attention: {attn_impl}\\\")\\n108:\\n109:    base_model = AutoModelForCausalLM.from_pretrained(\\n110:        base_model_name,\\n111:        torch_dtype=torch.bfloat16,\\n112:        trust_remote_code=True,\\n113:        attn_impl\\n\\n... [截断: 输出过长，省略 7294 字符] ...\\n\\nargument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n266:    args = p.parse_args()\\n267:\\n268:    script_dir = os.path.dirname(os.path.abspath(__file__))\\n269:    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n270:    if not os.path.exists(data_path):\\n271:        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n272:\\n273:    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n274:    test_data = load_jsonl(data_path)\\n275:    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n276:\\n277:    if args.max_samples:\\n278:        test_data = test_data[:args.max_samples]\\n279:        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n280:\\n281:    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n282:    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n283:\\n284:    if args.dry_run:\\n285:        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n286:        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n287:        return\\n288:\\n289:    if not args.checkpoint_dir:\\n290:        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n291:\\n292:    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n293:    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n294:    log.info(\\\"Model loaded. Starting inference...\\\")\\n295:\\n296:    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n297:                            args.max_seq_length, args.max_new_tokens, args.device)\\n298:\\n299:    del model\\n300:    gc.collect()\\n301:    torch.cuda.empty_cache()\\n302:\\n303:    labels = [r[\\\"label\\\"] for r in results]\\n304:    preds = [r[\\\"pred\\\"] for r in results]\\n305:\\n306:    metrics = compute_metrics(labels, preds)\\n307:    gen_stats = gen_length_stats(results)\\n308:\\n309:    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n310:    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n311:    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n312:    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n313:    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n314:    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n315:    truncation_stats = {\\n316:        \\\"truncated_count\\\": truncated_count,\\n317:        \\\"truncated_pct\\\": truncated_pct,\\n318:        \\\"truncated_accuracy\\\": truncated_accuracy,\\n319:        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n320:    }\\n321:\\n322:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n323:\\n324:    print_report(metrics, gen_stats, len(results))\\n325:\\n326:    output = {\\n327:        \\\"model\\\": \\\"CWM\\\",\\n328:        \\\"split\\\": args.split,\\n329:        \\\"checkpoint\\\": args.checkpoint_dir,\\n330:        \\\"n_instances\\\": len(results),\\n331:        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n332:        \\\"metrics\\\": metrics,\\n333:        \\\"generation_stats\\\": gen_stats,\\n334:        \\\"truncation\\\": truncation_stats,\\n335:        \\\"config\\\": {\\n336:            \\\"model_name\\\": args.model_name,\\n337:            \\\"max_seq_length\\\": args.max_seq_length,\\n338:            \\\"max_new_tokens\\\": args.max_new_tokens,\\n339:            \\\"batch_size\\\": args.batch_size,\\n340:        },\\n341:    }\\n342:    out_dir = args.output_dir or script_dir\\n343:    os.makedirs(out_dir, exist_ok=True)\\n344:    out_path = os.path.join(out_dir, args.output)\\n345:    with open(out_path, \\\"w\\\") as f:\\n346:        json.dump(output, f, indent=2)\\n347:    log.info(f\\\"Summary saved to {out_path}\\\")\\n348:\\n349:    pred_path = os.path.join(out_dir, args.pred_output)\\n350:    with open(pred_path, \\\"w\\\") as f:\\n351:        for r in results:\\n352:            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n353:    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n354:\\n355:\\n356:if __name__ == \\\"__main__\\\":\\n357:    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "c720fbf3-e6ae-4031-bb1b-c1c4f0eed096",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1:#!/root/miniconda3/bin/python3\\\\n2:# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\\\n3:# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\\\n4:# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n5:# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n6:# Key difference from eval_repo_cls.py:\\\\n7:#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\\\n8:#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\\\n9:#   - Different system prompt (\\\\\\\"execution simulator\\\\\\\" vs \\\\\\\"code verifier\\\\\\\")\\\\n10:# Usage:\\\\n11:#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\\\n12:#   python eval_repo_cwm.py --dry_run\\\\n13:\\\\n14:import argparse\\\\n15:import json\\\\n16:import logging\\\\n17:import os\\\\n18:import gc\\\\n19:from collections import Counter\\\\n20:\\\\n21:import numpy as np\\\\n22:import torch\\\\n23:from sklearn.metrics import (\\\\n24:    accuracy_score, confusion_matrix, f1_score,\\\\n25:    precision_score, recall_score,\\\\n26:)\\\\n27:\\\\n28:logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n29:log = logging.getLogger(__name__)\\\\n30:\\\\n31:SYSTEM_PROMPT = (\\\\n32:    \\\\\\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n33:    \\\\\\\"predict the execution result when the test is run against the patched code.\\\\\\\"\\\\n34:)\\\\n35:USER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n36:\\\\n37:\\\\n38:def load_jsonl(path):\\\\n39:    with open(path) as f:\\\\n40:        return [json.loads(line) for line in f]\\\\n41:\\\\n42:\\\\n43:def detect_thinking_support(tokenizer):\\\\n44:    try:\\\\n45:        tokenizer.apply_chat_template(\\\\n46:            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n47:            tokenize=False, enable_thinking=False,\\\\n48:        )\\\\n49:        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n50:    except TypeError:\\\\n51:        return {}\\\\n52:\\\\n53:\\\\n54:def build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n55:    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n56:    msgs = [\\\\n57:        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n58:        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n59:    ]\\\\n60:    ids = tokenizer.apply_chat_template(\\\\n61:        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n62:    )\\\\n63:    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n64:        ids = ids.input_ids\\\\n65:    if not isinstance(ids, list):\\\\n66:        ids = list(ids)\\\\n67:    truncated = len(ids) > max_len\\\\n68:    if truncated:\\\\n69:        ids = ids[:max_len]\\\\n70:    return ids, truncated\\\\n71:\\\\n72:\\\\n73:def parse_cwm_prediction(text):\\\\n74:    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n75:        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n76:    text_lower = text.strip().lower()\\\\n77:    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n78:        return 1\\\\n79:    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n80:        return 0\\\\n81:    fail_kw = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n82:    pass_kw = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n83:    has_fail = any(p in text_lower for p in fail_kw)\\\\n84:    has_pass = any(p in text_lower for p in pass_kw)\\\\n85:    if has_fail and not has_pass:\\\\n86:        return 0\\\\n87:    if has_pass and not has_fail:\\\\n88:        return 1\\\\n89:    return -1\\\\n90:\\\\n91:\\\\n92:def load_model(checkpoint_dir, base_model_name, device):\\\\n93:    from peft import PeftModel\\\\n94:    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n95:\\\\n96:    tokenizer = AutoTokenizer.from_pretrained(\\\\n97:        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n98:    )\\\\n99:    if tokenizer.pad_token is None:\\\\n100:        tokenizer.pad_token = tokenizer.eos_token\\\\n101:\\\\n102:    try:\\\\n103:        import flash_attn\\\\n104:        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n105:    except ImportError:\\\\n106:        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n107:    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n108:\\\\n109:    base_model = AutoModelForCausalLM.from_pretrained(\\\\n110:        base_model_name,\\\\n111:        torch_dtype=torch.bfloat16,\\\\n112:        trust_remote_code=True,\\\\n113:        attn_impl\\\\n\\\\n... [截断: 输出过长，省略 7294 字符] ...\\\\n\\\\nargument(\\\\\\\"--output_dir\\\\\\\", default=None, help=\\\\\\\"Output directory for results\\\\\\\")\\\\n266:    args = p.parse_args()\\\\n267:\\\\n268:    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n269:    data_path = os.path.join(script_dir, args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n270:    if not os.path.exists(data_path):\\\\n271:        data_path = os.path.join(args.data_dir, f\\\\\\\"swebench_{args.split}.jsonl\\\\\\\")\\\\n272:\\\\n273:    log.info(f\\\\\\\"Loading {args.split} data: {data_path}\\\\\\\")\\\\n274:    test_data = load_jsonl(data_path)\\\\n275:    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n276:\\\\n277:    if args.max_samples:\\\\n278:        test_data = test_data[:args.max_samples]\\\\n279:        log.info(f\\\\\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\\\\\")\\\\n280:\\\\n281:    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n282:    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n283:\\\\n284:    if args.dry_run:\\\\n285:        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n286:        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n287:        return\\\\n288:\\\\n289:    if not args.checkpoint_dir:\\\\n290:        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n291:\\\\n292:    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n293:    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n294:    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n295:\\\\n296:    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n297:                            args.max_seq_length, args.max_new_tokens, args.device)\\\\n298:\\\\n299:    del model\\\\n300:    gc.collect()\\\\n301:    torch.cuda.empty_cache()\\\\n302:\\\\n303:    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n304:    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n305:\\\\n306:    metrics = compute_metrics(labels, preds)\\\\n307:    gen_stats = gen_length_stats(results)\\\\n308:\\\\n309:    truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n310:    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n311:    trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n312:    non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n313:    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\\\n314:    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\\\n315:    truncation_stats = {\\\\n316:        \\\\\\\"truncated_count\\\\\\\": truncated_count,\\\\n317:        \\\\\\\"truncated_pct\\\\\\\": truncated_pct,\\\\n318:        \\\\\\\"truncated_accuracy\\\\\\\": truncated_accuracy,\\\\n319:        \\\\\\\"non_truncated_accuracy\\\\\\\": non_truncated_accuracy,\\\\n320:    }\\\\n321:\\\\n322:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n323:\\\\n324:    print_report(metrics, gen_stats, len(results))\\\\n325:\\\\n326:    output = {\\\\n327:        \\\\\\\"model\\\\\\\": \\\\\\\"CWM\\\\\\\",\\\\n328:        \\\\\\\"split\\\\\\\": args.split,\\\\n329:        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n330:        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n331:        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n332:        \\\\\\\"metrics\\\\\\\": metrics,\\\\n333:        \\\\\\\"generation_stats\\\\\\\": gen_stats,\\\\n334:        \\\\\\\"truncation\\\\\\\": truncation_stats,\\\\n335:        \\\\\\\"config\\\\\\\": {\\\\n336:            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n337:            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n338:            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens,\\\\n339:            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n340:        },\\\\n341:    }\\\\n342:    out_dir = args.output_dir or script_dir\\\\n343:    os.makedirs(out_dir, exist_ok=True)\\\\n344:    out_path = os.path.join(out_dir, args.output)\\\\n345:    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n346:        json.dump(output, f, indent=2)\\\\n347:    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n348:\\\\n349:    pred_path = os.path.join(out_dir, args.pred_output)\\\\n350:    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n351:        for r in results:\\\\n352:            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n353:    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n354:\\\\n355:\\\\n356:if __name__ == \\\\\\\"__main__\\\\\\\":\\\\n357:    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1:#!/root/miniconda3/bin/python3\\n2:# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n3:# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n4:# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n5:# Dependencies: torch, transformers, peft, sklearn, numpy\\n6:# Key difference from eval_repo_cls.py:\\n7:#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n8:#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n9:#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n10:# Usage:\\n11:#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n12:#   python eval_repo_cwm.py --dry_run\\n13:\\n14:import argparse\\n15:import json\\n16:import logging\\n17:import os\\n18:import gc\\n19:from collections import Counter\\n20:\\n21:import numpy as np\\n22:import torch\\n23:from sklearn.metrics import (\\n24:    accuracy_score, confusion_matrix, f1_score,\\n25:    precision_score, recall_score,\\n26:)\\n27:\\n28:logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n29:log = logging.getLogger(__name__)\\n30:\\n31:SYSTEM_PROMPT = (\\n32:    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n33:    \\\"predict the execution result when the test is run against the patched code.\\\"\\n34:)\\n35:USER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n36:\\n37:\\n38:def load_jsonl(path):\\n39:    with open(path) as f:\\n40:        return [json.loads(line) for line in f]\\n41:\\n42:\\n43:def detect_thinking_support(tokenizer):\\n44:    try:\\n45:        tokenizer.apply_chat_template(\\n46:            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n47:            tokenize=False, enable_thinking=False,\\n48:        )\\n49:        return {\\\"enable_thinking\\\": False}\\n50:    except TypeError:\\n51:        return {}\\n52:\\n53:\\n54:def build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n55:    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n56:    msgs = [\\n57:        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n58:        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n59:    ]\\n60:    ids = tokenizer.apply_chat_template(\\n61:        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n62:    )\\n63:    if hasattr(ids, \\\"input_ids\\\"):\\n64:        ids = ids.input_ids\\n65:    if not isinstance(ids, list):\\n66:        ids = list(ids)\\n67:    truncated = len(ids) > max_len\\n68:    if truncated:\\n69:        ids = ids[:max_len]\\n70:    return ids, truncated\\n71:\\n72:\\n73:def parse_cwm_prediction(text):\\n74:    if \\\"&lt;/think>\\\" in text:\\n75:        text = text.split(\\\"&lt;/think>\\\")[-1]\\n76:    text_lower = text.strip().lower()\\n77:    if text_lower.startswith(\\\"pass\\\"):\\n78:        return 1\\n79:    if text_lower.startswith(\\\"fail\\\"):\\n80:        return 0\\n81:    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n82:    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n83:    has_fail = any(p in text_lower for p in fail_kw)\\n84:    has_pass = any(p in text_lower for p in pass_kw)\\n85:    if has_fail and not has_pass:\\n86:        return 0\\n87:    if has_pass and not has_fail:\\n88:        return 1\\n89:    return -1\\n90:\\n91:\\n92:def load_model(checkpoint_dir, base_model_name, device):\\n93:    from peft import PeftModel\\n94:    from transformers import AutoModelForCausalLM, AutoTokenizer\\n95:\\n96:    tokenizer = AutoTokenizer.from_pretrained(\\n97:        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n98:    )\\n99:    if tokenizer.pad_token is None:\\n100:        tokenizer.pad_token = tokenizer.eos_token\\n101:\\n102:    try:\\n103:        import flash_attn\\n104:        attn_impl = \\\"flash_attention_2\\\"\\n105:    except ImportError:\\n106:        attn_impl = \\\"sdpa\\\"\\n107:    log.info(f\\\"Attention: {attn_impl}\\\")\\n108:\\n109:    base_model = AutoModelForCausalLM.from_pretrained(\\n110:        base_model_name,\\n111:        torch_dtype=torch.bfloat16,\\n112:        trust_remote_code=True,\\n113:        attn_impl\\n\\n... [截断: 输出过长，省略 7294 字符] ...\\n\\nargument(\\\"--output_dir\\\", default=None, help=\\\"Output directory for results\\\")\\n266:    args = p.parse_args()\\n267:\\n268:    script_dir = os.path.dirname(os.path.abspath(__file__))\\n269:    data_path = os.path.join(script_dir, args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n270:    if not os.path.exists(data_path):\\n271:        data_path = os.path.join(args.data_dir, f\\\"swebench_{args.split}.jsonl\\\")\\n272:\\n273:    log.info(f\\\"Loading {args.split} data: {data_path}\\\")\\n274:    test_data = load_jsonl(data_path)\\n275:    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n276:\\n277:    if args.max_samples:\\n278:        test_data = test_data[:args.max_samples]\\n279:        log.info(f\\\"Truncated to {len(test_data)} samples (--max_samples={args.max_samples})\\\")\\n280:\\n281:    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n282:    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n283:\\n284:    if args.dry_run:\\n285:        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n286:        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n287:        return\\n288:\\n289:    if not args.checkpoint_dir:\\n290:        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n291:\\n292:    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n293:    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n294:    log.info(\\\"Model loaded. Starting inference...\\\")\\n295:\\n296:    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n297:                            args.max_seq_length, args.max_new_tokens, args.device)\\n298:\\n299:    del model\\n300:    gc.collect()\\n301:    torch.cuda.empty_cache()\\n302:\\n303:    labels = [r[\\\"label\\\"] for r in results]\\n304:    preds = [r[\\\"pred\\\"] for r in results]\\n305:\\n306:    metrics = compute_metrics(labels, preds)\\n307:    gen_stats = gen_length_stats(results)\\n308:\\n309:    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n310:    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n311:    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n312:    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n313:    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n314:    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n315:    truncation_stats = {\\n316:        \\\"truncated_count\\\": truncated_count,\\n317:        \\\"truncated_pct\\\": truncated_pct,\\n318:        \\\"truncated_accuracy\\\": truncated_accuracy,\\n319:        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n320:    }\\n321:\\n322:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n323:\\n324:    print_report(metrics, gen_stats, len(results))\\n325:\\n326:    output = {\\n327:        \\\"model\\\": \\\"CWM\\\",\\n328:        \\\"split\\\": args.split,\\n329:        \\\"checkpoint\\\": args.checkpoint_dir,\\n330:        \\\"n_instances\\\": len(results),\\n331:        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n332:        \\\"metrics\\\": metrics,\\n333:        \\\"generation_stats\\\": gen_stats,\\n334:        \\\"truncation\\\": truncation_stats,\\n335:        \\\"config\\\": {\\n336:            \\\"model_name\\\": args.model_name,\\n337:            \\\"max_seq_length\\\": args.max_seq_length,\\n338:            \\\"max_new_tokens\\\": args.max_new_tokens,\\n339:            \\\"batch_size\\\": args.batch_size,\\n340:        },\\n341:    }\\n342:    out_dir = args.output_dir or script_dir\\n343:    os.makedirs(out_dir, exist_ok=True)\\n344:    out_path = os.path.join(out_dir, args.output)\\n345:    with open(out_path, \\\"w\\\") as f:\\n346:        json.dump(output, f, indent=2)\\n347:    log.info(f\\\"Summary saved to {out_path}\\\")\\n348:\\n349:    pred_path = os.path.join(out_dir, args.pred_output)\\n350:    with open(pred_path, \\\"w\\\") as f:\\n351:        for r in results:\\n352:            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n353:    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n354:\\n355:\\n356:if __name__ == \\\"__main__\\\":\\n357:    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 357 lines with line numbers. Let me also check that the middle section (around lines 113-200) wasn't truncated. Let me check lines 113-200 specifically since there was a truncation.
+
+Actually wait, I can see line 113 is `attn_impl` and then it cuts off with `... [截断: 输出过长，省略 7294 字符] ...` and then picks up at line ~262. Let me get lines 113-200.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "8e9a4660-2d64-4f81-8043-f689e8c7128b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvFJGEyMnwH6okonjVqNbf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9616,
+      "cache_read_input_tokens": 42096,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KuNt4vrVSxGhgFiR9LhCze`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -200 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "a44150b1-df12-459e-8c42-d9d56bd1c362",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvFJGEyMnwH6okonjVqNbf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9616,
+      "cache_read_input_tokens": 42096,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T12:40:05.644Z_
+
+<details><summary>↩ Tool result · `toolu_01KuNt4vrVSxGhgFiR9LhCze`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n        batch_ids = [r[0] for r in batch_built]\\n        batch_truncated = [r[1] for r in batch_built]\\n\\n        max_len = max(len(ids) for ids in batch_ids)\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(attn_mask, device=device)\\n\\n        with torch.no_grad():\\n            out = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=max_new_tokens,\\n                do_sample=False,\\n                pad_token_id=tokenizer.pad_token_id,\\n            )\\n\\n        for j, ex in enumerate(batch):\\n            gen_ids = out[j][len(padded[j]):]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "1fbb5fba-a56c-4f42-bacd-768f35ee52bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/root/miniconda3/bin/python3\\\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\\\n# Key difference from eval_repo_cls.py:\\\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\\\n#   - Different system prompt (\\\\\\\"execution simulator\\\\\\\" vs \\\\\\\"code verifier\\\\\\\")\\\\n# Usage:\\\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\\\n#   python eval_repo_cwm.py --dry_run\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport gc\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score, confusion_matrix, f1_score,\\\\n    precision_score, recall_score,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\\\\\"\\\\n    \\\\\\\"predict the execution result when the test is run against the patched code.\\\\\\\"\\\\n)\\\\nUSER_TEMPLATE = \\\\\\\"## Patch (git diff)\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False, enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if hasattr(ids, \\\\\\\"input_ids\\\\\\\"):\\\\n        ids = ids.input_ids\\\\n    if not isinstance(ids, list):\\\\n        ids = list(ids)\\\\n    truncated = len(ids) > max_len\\\\n    if truncated:\\\\n        ids = ids[:max_len]\\\\n    return ids, truncated\\\\n\\\\n\\\\ndef parse_cwm_prediction(text):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_lower = text.strip().lower()\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n    fail_kw = [\\\\\\\"error\\\\\\\", \\\\\\\"assert\\\\\\\", \\\\\\\"traceback\\\\\\\", \\\\\\\"exception\\\\\\\", \\\\\\\"fail\\\\\\\"]\\\\n    pass_kw = [\\\\\\\"pass\\\\\\\", \\\\\\\"success\\\\\\\", \\\\\\\"completed\\\\\\\"]\\\\n    has_fail = any(p in text_lower for p in fail_kw)\\\\n    has_pass = any(p in text_lower for p in pass_kw)\\\\n    if has_fail and not has_pass:\\\\n        return 0\\\\n    if has_pass and not has_fail:\\\\n        return 1\\\\n    return -1\\\\n\\\\n\\\\ndef load_model(checkpoint_dir, base_model_name, device):\\\\n    from peft import PeftModel\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(\\\\n        base_model_name, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\",\\\\n    )\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    try:\\\\n        import flash_attn\\\\n        attn_impl = \\\\\\\"flash_attention_2\\\\\\\"\\\\n    except ImportError:\\\\n        attn_impl = \\\\\\\"sdpa\\\\\\\"\\\\n    log.info(f\\\\\\\"Attention: {attn_impl}\\\\\\\")\\\\n\\\\n    base_model = AutoModelForCausalLM.from_pretrained(\\\\n        base_model_name,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n        attn_implementation=attn_impl,\\\\n    )\\\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\\\n    model.eval()\\\\n    model = model.to(device)\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\\\n                  max_new_tokens, device):\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n    total = len(test_data)\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\\\n\\\\n    results = []\\\\n    n_unparseable = 0\\\\n\\\\n    for i in range(0, total, batch_size):\\\\n        batch = test_data[i : i + batch_size]\\\\n\\\\n        batch_built = [\\\\n            build_prompt_ids(tokenizer, ex[\\\\\\\"code\\\\\\\"], ex[\\\\\\\"test\\\\\\\"], tmpl_kw, max_seq_length)\\\\n            for ex in batch\\\\n        ]\\\\n        batch_ids = [r[0] for r in batch_built]\\\\n        batch_truncated = [r[1] for r in batch_built]\\\\n\\\\n        max_len = max(len(ids) for ids in batch_ids)\\\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\\\n\\\\n        input_ids = torch.tensor(padded, device=device)\\\\n        attention_mask = torch.tensor(attn_mask, device=device)\\\\n\\\\n        with torch.no_grad():\\\\n            out = model.generate(\\\\n                input_ids=input_ids,\\\\n                attention_mask=attention_mask,\\\\n                max_new_tokens=max_new_tokens,\\\\n                do_sample=False,\\\\n                pad_token_id=tokenizer.pad_token_id,\\\\n            )\\\\n\\\\n        for j, ex in enumerate(batch):\\\\n            gen_ids = out[j][len(padded[j]):]\\\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\\\n            pred = parse_cwm_prediction(gen_text)\\\\n            was_unparseable = pred == -1\\\\n            if pred == -1:\\\\n                n_unparseable += 1\\\\n                pred = majority_class\\\\n\\\\n            pid = ex.get(\\\\\\\"problem_id\\\\\\\", ex.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\\\\"instance_id\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            results.append({\\\\n                \\\\\\\"index\\\\\\\": i + j,\\\\n                \\\\\\\"problem_id\\\\\\\": pid,\\\\n                \\\\\\\"label\\\\\\\": ex[\\\\\\\"label\\\\\\\"],\\\\n                \\\\\\\"pred\\\\\\\": pred,\\\\n                \\\\\\\"correct\\\\\\\": int(pred == ex[\\\\\\\"label\\\\\\\"]),\\\\n                \\\\\\\"truncated\\\\\\\": batch_truncated[j],\\\\n                \\\\\\\"gen_text\\\\\\\": gen_text.strip(),\\\\n                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n            })\\\\n\\\\n        done = min(i + batch_size, total)\\\\n        if True:\\\\n            acc_so_far = sum(r[\\\\\\\"correct\\\\\\\"] for r in results) / len(results) * 100\\\\n            log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n\\\\n    if n_unparseable:\\\\n        log.warning(f\\\\\\\"{n_unparseable} unparseable predictions\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/root/miniconda3/bin/python3\\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\\n# Dependencies: torch, transformers, peft, sklearn, numpy\\n# Key difference from eval_repo_cls.py:\\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\\n#   - Longer max_new_tokens (1024 vs 8) since CWM generates execution traces\\n#   - Different system prompt (\\\"execution simulator\\\" vs \\\"code verifier\\\")\\n# Usage:\\n#   python eval_repo_cwm.py --checkpoint_dir &lt;path> --device cuda:1\\n#   python eval_repo_cwm.py --dry_run\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport gc\\nfrom collections import Counter\\n\\nimport numpy as np\\nimport torch\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, f1_score,\\n    precision_score, recall_score,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code patch (git diff) and a test name, \\\"\\n    \\\"predict the execution result when the test is run against the patched code.\\\"\\n)\\nUSER_TEMPLATE = \\\"## Patch (git diff)\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False, enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if hasattr(ids, \\\"input_ids\\\"):\\n        ids = ids.input_ids\\n    if not isinstance(ids, list):\\n        ids = list(ids)\\n    truncated = len(ids) > max_len\\n    if truncated:\\n        ids = ids[:max_len]\\n    return ids, truncated\\n\\n\\ndef parse_cwm_prediction(text):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_lower = text.strip().lower()\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n    fail_kw = [\\\"error\\\", \\\"assert\\\", \\\"traceback\\\", \\\"exception\\\", \\\"fail\\\"]\\n    pass_kw = [\\\"pass\\\", \\\"success\\\", \\\"completed\\\"]\\n    has_fail = any(p in text_lower for p in fail_kw)\\n    has_pass = any(p in text_lower for p in pass_kw)\\n    if has_fail and not has_pass:\\n        return 0\\n    if has_pass and not has_fail:\\n        return 1\\n    return -1\\n\\n\\ndef load_model(checkpoint_dir, base_model_name, device):\\n    from peft import PeftModel\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n    tokenizer = AutoTokenizer.from_pretrained(\\n        base_model_name, trust_remote_code=True, padding_side=\\\"left\\\",\\n    )\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    try:\\n        import flash_attn\\n        attn_impl = \\\"flash_attention_2\\\"\\n    except ImportError:\\n        attn_impl = \\\"sdpa\\\"\\n    log.info(f\\\"Attention: {attn_impl}\\\")\\n\\n    base_model = AutoModelForCausalLM.from_pretrained(\\n        base_model_name,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n        attn_implementation=attn_impl,\\n    )\\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\\n    model.eval()\\n    model = model.to(device)\\n    return model, tokenizer\\n\\n\\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n    total = len(test_data)\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\\n\\n    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = [\\n            build_prompt_ids(tokenizer, ex[\\\"code\\\"], ex[\\\"test\\\"], tmpl_kw, max_seq_length)\\n            for ex in batch\\n        ]\\n        batch_ids = [r[0] for r in batch_built]\\n        batch_truncated = [r[1] for r in batch_built]\\n\\n        max_len = max(len(ids) for ids in batch_ids)\\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\\n\\n        input_ids = torch.tensor(padded, device=device)\\n        attention_mask = torch.tensor(attn_mask, device=device)\\n\\n        with torch.no_grad():\\n            out = model.generate(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n                max_new_tokens=max_new_tokens,\\n                do_sample=False,\\n                pad_token_id=tokenizer.pad_token_id,\\n            )\\n\\n        for j, ex in enumerate(batch):\\n            gen_ids = out[j][len(padded[j]):]\\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n            pred = parse_cwm_prediction(gen_text)\\n            was_unparseable = pred == -1\\n            if pred == -1:\\n                n_unparseable += 1\\n                pred = majority_class\\n\\n            pid = ex.get(\\\"problem_id\\\", ex.get(\\\"metadata\\\", {}).get(\\\"instance_id\\\", \\\"\\\"))\\n            results.append({\\n                \\\"index\\\": i + j,\\n                \\\"problem_id\\\": pid,\\n                \\\"label\\\": ex[\\\"label\\\"],\\n                \\\"pred\\\": pred,\\n                \\\"correct\\\": int(pred == ex[\\\"label\\\"]),\\n                \\\"truncated\\\": batch_truncated[j],\\n                \\\"gen_text\\\": gen_text.strip(),\\n                \\\"unparseable\\\": was_unparseable,\\n            })\\n\\n        done = min(i + batch_size, total)\\n        if True:\\n            acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete file structure. Let me map out the exact line numbers I need:
+
+Lines 121-122: `def run_inference(...)` - modify signature
+Lines 127-128: `results = [] / n_unparseable = 0` - add completed_indices init
+Lines 130-131: `for i in range(...): batch = ...` - add batch skip logic
+Lines 162-178: Inner loop result building - add incremental write
+Lines 180-182: Progress logging - update to show resumed count
+Lines 289-290: Before model loading in main() - add out_dir computation and resume logic
+
+
+Lines 296-297: `results = run_inference(...)` - add new params
+Lines 303-353: Post-inference code in main() - use all_results
+
+I'll write a Python script that backs up the original file, reads it, applies all the modifications systematically, and writes the updated version back.
+
+Building the patch script... Still writing the modification logic... Continuing to build out the result dictionary... Continuing to refactor the progress logging section... Writing the resume logic... Modifying the run_inference call to include the new parameters for batch size, sequence length, token limits, device, and the incremental file path along with completed indices, then adding merge logic after the cache clearing step...
+
+Actually, I'm realizing the line-by-line patching is getting unwieldy. Let me switch to a simpler string-based replacement approach that's more robust...
+
+I'll write a Python script that makes targeted replacements on the file content directly. First, I'm backing up the original, then modifying the function signature to add parameters for incremental saving, and continuing with the other necessary replacements. Writing the batch skip logic... Now I'm calculating the running accuracy across all results processed so far and logging the progress with the current batch completion status.
+
+Building the result dictionary... Setting up the output directory and resume logic... Now I'm calling the inference function with the model and tokenizer, passing along the batch size, sequence length, and token generation parameters, plus the incremental save path and completed indices to support resuming from checkpoints. After clearing the GPU cache, I'm merging the newly completed results with any previously saved results, sorting them by index to maintain order, then extracting the labels and predictions for evaluation.
+
+Updating the metrics computation to use the merged results instead of just the current batch, and replacing all remaining references to the original results variable with the combined all_results throughout the metrics and statistics sections. Fixing the output section to use `all_results` instead of `results`, then removing the duplicate `out_dir` computation since it's already been moved earlier in the script—though I need to be careful not to accidentally match the version I already added. I see the core issue now—I need to move the `out_dir` initialization earlier in the script before inference runs, then remove the duplicate from its original location. Since I'm already adding it in step 4, I just need to carefully identify and remove the original instance that comes after the inference loop, being mindful that other replacements I've made will shift the context around it. I need to be more careful about identifying the exact location of that second `out_dir` assignment so I can target it precisely with the string replacement, using the surrounding context from the config dictionary to distinguish it from other similar code patterns. I need to be careful with the context I include in the replacement string to ensure it only matches the second occurrence where `out_dir` and `os.makedirs` are followed by `incremental_path` rather than `out_path`. Since I've already modified the config dict to use `len(all_results)`, I can leverage that unique context along with the closing braces to make the replacement precise. I see the issue now—the original file already has that same block of code later in the execution flow, right before writing the output. Since I'm adding it earlier in my step 4 replacement, I need to remove the duplicate. I can target the second occurrence specifically by using its surrounding context as an anchor, since the two instances have distinctly different code around them. I'm realizing the string replacement approach is fragile since the exact whitespace and context need to match perfectly. Let me think through this more carefully—I could use regex with `re.sub` to handle the patching more robustly, or just reconstruct the entire file content to be safe, though that's a lot of lines to manage. Actually, if I'm precise about the context strings I'm matching, the simple replace should work fine. Writing the patch script... Still writing the evaluation loop... Building the results structure... Writing the resume logic... Still writing inference logic... Continuing with the refactoring... Continuing with the string replacements to fix the results handling throughout the script...
+
+I need to verify that my replacement pattern will actually match correctly. The original location has the closing brace followed by the `out_dir` assignment, but in the new code I added earlier, there's a log statement before that same `out_dir` line. These are different contexts, so I need to make sure I'm targeting the right occurrence with the correct surrounding text. I'm checking the specific lines around the model loading and inference call to make sure my replacements won't overlap or cause issues. The section from lines 292-297 with the model loading and `run_inference` call should be unique enough to target safely, and I'll need to make sure the final results writing uses the accumulated data from all my modifications. I'm verifying all the remaining references are using `all_results` instead of `results` throughout the metrics calculation and output sections, then I'll write out the complete patch as a Python script to apply these fixes.
+
+Now I'm working through how to actually deploy this—the escaping gets tricky with heredocs and newline characters in the replacement strings, so I think the cleanest approach is to write the file locally and push it to the server using base64 encoding to avoid any shell escaping issues. I'm working through the escaping carefully—when the Python script goes through a single-quoted heredoc, the `\n` sequences stay as literal backslash-n characters in the file, which is exactly what Python needs to interpret them as newline escapes when it reads the string. This approach should handle the quotes and special characters correctly. I need to carefully trace through the escaping levels here. In the heredoc, `\\n` becomes a literal backslash followed by `n` in the Python source file, which then gets interpreted by Python as an escaped backslash followed by `n` in the string—so the actual output is `\n` as two characters, which is what I want for the JSON output line. Writing the patch script... Writing the complete file...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "d8ca94e5-5d2e-4e80-a646-bc7b9c245c86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoeEM17gBRNRhhExarYEhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3097,
+      "cache_read_input_tokens": 51712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3097
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+现在我完整理解了代码结构。备份原文件后用 Python 脚本打补丁。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "04be1827-130e-4b21-bdb8-527503dac46e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoeEM17gBRNRhhExarYEhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3097,
+      "cache_read_input_tokens": 51712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3097
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01L2VytEuC3BaFLkvkDcxir4`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cp /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py.bak",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "3f95eafe-8906-4603-9819-da3adb7cdd25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoeEM17gBRNRhhExarYEhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3097,
+      "cache_read_input_tokens": 51712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3097
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T12:43:15.930Z_
+
+<details><summary>↩ Tool result · `toolu_01L2VytEuC3BaFLkvkDcxir4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "886b997a-c67b-45e2-a568-dd1f791c84b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CxLaxdQBUjz3WUcMMr4PWn`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cat > /tmp/patch_cwm.py << 'PATCHEOF'\n#!/usr/bin/env python3\n\"\"\"Patch eval_repo_cwm.py: add incremental JSONL writing + resume support.\"\"\"\n\nSRC = '/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py'\n\nwith open(SRC) as f:\n    c = f.read()\n\n# 1. run_inference signature: add incremental_path, completed_indices\nold = 'def run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device):'\nnew = 'def run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\\n                  max_new_tokens, device, incremental_path=None, completed_indices=None):'\nassert old in c, \"FAIL: step 1 - signature not found\"\nc = c.replace(old, new)\n\n# 2. After n_unparseable=0, add completed_indices init + batch skip logic\nold = '    results = []\\n    n_unparseable = 0\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_built = ['\nnew = '    results = []\\n    n_unparseable = 0\\n    if completed_indices is None:\\n        completed_indices = set()\\n\\n    for i in range(0, total, batch_size):\\n        batch = test_data[i : i + batch_size]\\n\\n        batch_idx_range = set(range(i, i + len(batch)))\\n        if batch_idx_range.issubset(completed_indices):\\n            done = min(i + batch_size, total)\\n            log.info(f\"[CWM] {done}/{total}  (skipped, already in incremental)\")\\n            continue\\n\\n        batch_built = ['\nassert old in c, \"FAIL: step 2 - results/loop not found\"\nc = c.replace(old, new)\n\n# 3. Inner loop: add idx check + incremental write + update progress log\nold = (\n    '        for j, ex in enumerate(batch):\\n'\n    '            gen_ids = out[j][len(padded[j]):]\\n'\n    '            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n'\n    '            pred = parse_cwm_prediction(gen_text)\\n'\n    '            was_unparseable = pred == -1\\n'\n    '            if pred == -1:\\n'\n    '                n_unparseable += 1\\n'\n    '                pred = majority_class\\n'\n    '\\n'\n    '            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\\n'\n    '            results.append({\\n'\n    '                \"index\": i + j,\\n'\n    '                \"problem_id\": pid,\\n'\n    '                \"label\": ex[\"label\"],\\n'\n    '                \"pred\": pred,\\n'\n    '                \"correct\": int(pred == ex[\"label\"]),\\n'\n    '                \"truncated\": batch_truncated[j],\\n'\n    '                \"gen_text\": gen_text.strip(),\\n'\n    '                \"unparseable\": was_unparseable,\\n'\n    '            })\\n'\n    '\\n'\n    '        done = min(i + batch_size, total)\\n'\n    '        if True:\\n'\n    '            acc_so_far = sum(r[\"correct\"] for r in results) / len(results) * 100\\n'\n    '            log.info(f\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\")'\n)\nnew = (\n    '        for j, ex in enumerate(batch):\\n'\n    '            idx = i + j\\n'\n    '            if idx in completed_indices:\\n'\n    '                continue\\n'\n    '            gen_ids = out[j][len(padded[j]):]\\n'\n    '            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\\n'\n    '            pred = parse_cwm_prediction(gen_text)\\n'\n    '            was_unparseable = pred == -1\\n'\n    '            if pred == -1:\\n'\n    '                n_unparseable += 1\\n'\n    '                pred = majority_class\\n'\n    '\\n'\n    '            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\\n'\n    '            result = {\\n'\n    '                \"index\": idx,\\n'\n    '                \"problem_id\": pid,\\n'\n    '                \"label\": ex[\"label\"],\\n'\n    '                \"pred\": pred,\\n'\n    '                \"correct\": int(pred == ex[\"label\"]),\\n'\n    '                \"truncated\": batch_truncated[j],\\n'\n    '                \"gen_text\": gen_text.strip(),\\n'\n    '                \"unparseable\": was_unparseable,\\n'\n    '            }\\n'\n    '            results.append(result)\\n'\n    '\\n'\n    '            if incremental_path:\\n'\n    '                with open(incremental_path, \"a\") as _fout:\\n'\n    '                    _fout.write(json.dumps(result) + \"\\\\n\")\\n'\n    '                    _fout.flush()\\n'\n    '\\n'\n    '        done = min(i + batch_size, total)\\n'\n    '        if True:\\n'\n    '            acc_so_far = sum(r[\"correct\"] for r in results) / len(results) * 100 if results else 0\\n'\n    '            log.info(f\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%  (new={len(results)} resumed={len(completed_indices)})\")'\n)\nassert old in c, \"FAIL: step 3 - inner loop not found\"\nc = c.replace(old, new)\n\n# 4. In main(): add out_dir + resume before model loading, modify run_inference call\nold = (\n    '    log.info(f\"Loading model from {args.checkpoint_dir}\")\\n'\n    '    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n'\n    '    log.info(\"Model loaded. Starting inference...\")\\n'\n    '\\n'\n    '    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n'\n    '                            args.max_seq_length, args.max_new_tokens, args.device)\\n'\n)\nnew = (\n    '    out_dir = args.output_dir or script_dir\\n'\n    '    os.makedirs(out_dir, exist_ok=True)\\n'\n    '\\n'\n    '    incremental_path = os.path.join(out_dir, \"results_incremental.jsonl\")\\n'\n    '    completed_results = []\\n'\n    '    completed_indices = set()\\n'\n    '    if os.path.exists(incremental_path):\\n'\n    '        with open(incremental_path) as _f:\\n'\n    '            for _line in _f:\\n'\n    '                _line = _line.strip()\\n'\n    '                if _line:\\n'\n    '                    _r = json.loads(_line)\\n'\n    '                    completed_results.append(_r)\\n'\n    '                    completed_indices.add(_r[\"index\"])\\n'\n    '        log.info(f\"Resuming: {len(completed_results)} already completed\")\\n'\n    '\\n'\n    '    log.info(f\"Loading model from {args.checkpoint_dir}\")\\n'\n    '    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n'\n    '    log.info(\"Model loaded. Starting inference...\")\\n'\n    '\\n'\n    '    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n'\n    '                            args.max_seq_length, args.max_new_tokens, args.device,\\n'\n    '                            incremental_path=incremental_path,\\n'\n    '                            completed_indices=completed_indices)\\n'\n)\nassert old in c, \"FAIL: step 4 - model loading block not found\"\nc = c.replace(old, new)\n\n# 5. After empty_cache: add merge + replace results->all_results in metrics section\nold = (\n    '    torch.cuda.empty_cache()\\n'\n    '\\n'\n    '    labels = [r[\"label\"] for r in results]\\n'\n    '    preds = [r[\"pred\"] for r in results]\\n'\n    '\\n'\n    '    metrics = compute_metrics(labels, preds)\\n'\n    '    gen_stats = gen_length_stats(results)\\n'\n    '\\n'\n    '    truncated_count = sum(1 for r in results if r[\"truncated\"])\\n'\n    '    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n'\n    '    trunc_correct = [r[\"correct\"] for r in results if r[\"truncated\"]]\\n'\n    '    non_trunc_correct = [r[\"correct\"] for r in results if not r[\"truncated\"]]'\n)\nnew = (\n    '    torch.cuda.empty_cache()\\n'\n    '\\n'\n    '    all_results = completed_results + results\\n'\n    '    all_results.sort(key=lambda r: r[\"index\"])\\n'\n    '\\n'\n    '    labels = [r[\"label\"] for r in all_results]\\n'\n    '    preds = [r[\"pred\"] for r in all_results]\\n'\n    '\\n'\n    '    metrics = compute_metrics(labels, preds)\\n'\n    '    gen_stats = gen_length_stats(all_results)\\n'\n    '\\n'\n    '    truncated_count = sum(1 for r in all_results if r[\"truncated\"])\\n'\n    '    truncated_pct = round(truncated_count / len(all_results) * 100, 2) if all_results else 0\\n'\n    '    trunc_correct = [r[\"correct\"] for r in all_results if r[\"truncated\"]]\\n'\n    '    non_trunc_correct = [r[\"correct\"] for r in all_results if not r[\"truncated\"]]'\n)\nassert old in c, \"FAIL: step 5 - post-inference metrics not found\"\nc = c.replace(old, new)\n\n# 6. n_cwm_unparseable + print_report: results->all_results\nold = (\n    '    n_cwm_unparseable = sum(1 for r in results if r.get(\"unparseable\", False))\\n'\n    '\\n'\n    '    print_report(metrics, gen_stats, len(results))'\n)\nnew = (\n    '    n_cwm_unparseable = sum(1 for r in all_results if r.get(\"unparseable\", False))\\n'\n    '\\n'\n    '    print_report(metrics, gen_stats, len(all_results))'\n)\nassert old in c, \"FAIL: step 6 - unparseable/print_report not found\"\nc = c.replace(old, new)\n\n# 7. n_instances: results->all_results\nold = '        \"n_instances\": len(results),'\nnew = '        \"n_instances\": len(all_results),'\nassert old in c, \"FAIL: step 7 - n_instances not found\"\nc = c.replace(old, new)\n\n# 8. Remove duplicate out_dir (original location, now moved up)\nold = '    }\\n    out_dir = args.output_dir or script_dir\\n    os.makedirs(out_dir, exist_ok=True)\\n    out_path = os.path.join(out_dir, args.output)'\nnew = '    }\\n    out_path = os.path.join(out_dir, args.output)'\nassert old in c, \"FAIL: step 8 - original out_dir block not found\"\nc = c.replace(old, new)\n\n# 9. Pred JSONL write: results->all_results\nold = '        for r in results:\\n            f.write(json.dumps(r)'\nnew = '        for r in all_results:\\n            f.write(json.dumps(r)'\nassert old in c, \"FAIL: step 9 - pred JSONL write not found\"\nc = c.replace(old, new)\n\nwith open(SRC, 'w') as f:\n    f.write(c)\n\nprint(\"OK: all 9 patches applied successfully\")\nPATCHEOF\npython3 /tmp/patch_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "fb1e2ed0-bf2d-489f-9b8f-b0a7d36c7056",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FygyEVZphSBJpwjVWFF42d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14626,
+      "cache_read_input_tokens": 54809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14626
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T12:43:55.205Z_
+
+<details><summary>↩ Tool result · `toolu_01CxLaxdQBUjz3WUcMMr4PWn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: all 9 patches applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "098ca6f9-d7b6-4caf-87d8-1151e677cf3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: all 9 patches applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: all 9 patches applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 9 patches applied successfully. Now let me verify the modified file looks correct by doing a syntax check and viewing key sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "2f063e75-9179-400b-a8b5-a9a0bda9d9eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyAG9u9D4oyUxiZirhckck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 69435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+9 个补丁全部成功。验证语法和关键改动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "03c7caff-ab1b-46af-bc1f-402c0af9da2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyAG9u9D4oyUxiZirhckck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 69435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SXpTxmzNEBttgkkgcdpoDA`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 -c \"import py_compile; py_compile.compile('eval_repo_cwm.py', doraise=True)\" && echo \"SYNTAX_OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "0a6c2871-5a60-422e-9606-1ea3bb453c4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyAG9u9D4oyUxiZirhckck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 69435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T12:44:00.588Z_
+
+<details><summary>↩ Tool result · `toolu_01SXpTxmzNEBttgkkgcdpoDA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "446a0b3d-ef83-4aeb-a8cf-fc289eef63d6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016tMmFV4nyCEMs1fG7qbhM6`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "diff /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py.bak /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "33bdd68a-618f-4fcb-aa13-9bc6a867799e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyAG9u9D4oyUxiZirhckck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3625,
+      "cache_read_input_tokens": 69435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3625
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T12:44:01.044Z_
+
+<details><summary>↩ Tool result · `toolu_016tMmFV4nyCEMs1fG7qbhM6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "f8ed5cb8-67e6-42eb-8636-bbed48ecf677",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'diff' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HfvLzYfzF6Bt9RzW55FViu`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "diff /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py.bak /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "4a31bb19-2bf7-40e9-a9b7-e9ed68e5369c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Df8Jw5MWXYv2Ewteigt6h9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 73060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 596
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T12:44:04.970Z_
+
+<details><summary>↩ Tool result · `toolu_01HfvLzYfzF6Bt9RzW55FViu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"122c122\\n<                   max_new_tokens, device):\\n---\\n>                   max_new_tokens, device, incremental_path=None, completed_indices=None):\\n129a130,131\\n>     if completed_indices is None:\\n>         completed_indices = set()\\n133a136,141\\n>         batch_idx_range = set(range(i, i + len(batch)))\\n>         if batch_idx_range.issubset(completed_indices):\\n>             done = min(i + batch_size, total)\\n>             log.info(f\\\"[CWM] {done}/{total}  (skipped, already in incremental)\\\")\\n>             continue\\n> \\n157a166,168\\n>             idx = i + j\\n>             if idx in completed_indices:\\n>                 continue\\n167,168c178,179\\n<             results.append({\\n<                 \\\"index\\\": i + j,\\n---\\n>             result = {\\n>                 \\\"index\\\": idx,\\n176c187,193\\n<             })\\n---\\n>             }\\n>             results.append(result)\\n> \\n>             if incremental_path:\\n>                 with open(incremental_path, \\\"a\\\") as _fout:\\n>                     _fout.write(json.dumps(result) + \\\"\\\\n\\\")\\n>                     _fout.flush()\\n180,181c197,198\\n<             acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n<             log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n---\\n>             acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100 if results else 0\\n>             log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%  (new={len(results)} resumed={len(completed_indices)})\\\")\\n291a309,324\\n>     out_dir = args.output_dir or script_dir\\n>     os.makedirs(out_dir, exist_ok=True)\\n> \\n>     incremental_path = os.path.join(out_dir, \\\"results_incremental.jsonl\\\")\\n>     completed_results = []\\n>     completed_indices = set()\\n>     if os.path.exists(incremental_path):\\n>         with open(incremental_path) as _f:\\n>             for _line in _f:\\n>                 _line = _line.strip()\\n>                 if _line:\\n>                     _r = json.loads(_line)\\n>                     completed_results.append(_r)\\n>                     completed_indices.add(_r[\\\"index\\\"])\\n>         log.info(f\\\"Resuming: {len(completed_results)} already completed\\\")\\n> \\n297c330,332\\n<                             args.max_seq_length, args.max_new_tokens, args.device)\\n---\\n>                             args.max_seq_length, args.max_new_tokens, args.device,\\n>                             incremental_path=incremental_path,\\n>                             completed_indices=completed_indices)\\n303,304c338,342\\n<     labels = [r[\\\"label\\\"] for r in results]\\n<     preds = [r[\\\"pred\\\"] for r in results]\\n---\\n>     all_results = completed_results + results\\n>     all_results.sort(key=lambda r: r[\\\"index\\\"])\\n> \\n>     labels = [r[\\\"label\\\"] for r in all_results]\\n>     preds = [r[\\\"pred\\\"] for r in all_results]\\n307c345\\n<     gen_stats = gen_length_stats(results)\\n---\\n>     gen_stats = gen_length_stats(all_results)\\n309,312c347,350\\n<     truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n<     truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n<     trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n<     non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n---\\n>     truncated_count = sum(1 for r in all_results if r[\\\"truncated\\\"])\\n>     truncated_pct = round(truncated_count / len(all_results) * 100, 2) if all_results else 0\\n>     trunc_correct = [r[\\\"correct\\\"] for r in all_results if r[\\\"truncated\\\"]]\\n>     non_trunc_correct = [r[\\\"correct\\\"] for r in all_results if not r[\\\"truncated\\\"]]\\n322c360\\n<     n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n---\\n>     n_cwm_unparseable = sum(1 for r in all_results if r.get(\\\"unparseable\\\", False))\\n324c362\\n<     print_report(metrics, gen_stats, len(results))\\n---\\n>     print_report(metrics, gen_stats, len(all_results))\\n330c368\\n<         \\\"n_instances\\\": len(results),\\n---\\n>         \\\"n_instances\\\": len(all_results),\\n342,343d379\\n<     out_dir = args.output_dir or script_dir\\n<     os.makedirs(out_dir, exist_ok=True)\\n351c387\\n<         for r in results:\\n---\\n>         for r in all_results:\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "6bbc55bd-8cb7-4f0f-89f3-c95b2f3f4bcf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"122c122\\\\n<                   max_new_tokens, device):\\\\n---\\\\n>                   max_new_tokens, device, incremental_path=None, completed_indices=None):\\\\n129a130,131\\\\n>     if completed_indices is None:\\\\n>         completed_indices = set()\\\\n133a136,141\\\\n>         batch_idx_range = set(range(i, i + len(batch)))\\\\n>         if batch_idx_range.issubset(completed_indices):\\\\n>             done = min(i + batch_size, total)\\\\n>             log.info(f\\\\\\\"[CWM] {done}/{total}  (skipped, already in incremental)\\\\\\\")\\\\n>             continue\\\\n> \\\\n157a166,168\\\\n>             idx = i + j\\\\n>             if idx in completed_indices:\\\\n>                 continue\\\\n167,168c178,179\\\\n<             results.append({\\\\n<                 \\\\\\\"index\\\\\\\": i + j,\\\\n---\\\\n>             result = {\\\\n>                 \\\\\\\"index\\\\\\\": idx,\\\\n176c187,193\\\\n<             })\\\\n---\\\\n>             }\\\\n>             results.append(result)\\\\n> \\\\n>             if incremental_path:\\\\n>                 with open(incremental_path, \\\\\\\"a\\\\\\\") as _fout:\\\\n>                     _fout.write(json.dumps(result) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n>                     _fout.flush()\\\\n180,181c197,198\\\\n<             acc_so_far = sum(r[\\\\\\\"correct\\\\\\\"] for r in results) / len(results) * 100\\\\n<             log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n---\\\\n>             acc_so_far = sum(r[\\\\\\\"correct\\\\\\\"] for r in results) / len(results) * 100 if results else 0\\\\n>             log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%  (new={len(results)} resumed={len(completed_indices)})\\\\\\\")\\\\n291a309,324\\\\n>     out_dir = args.output_dir or script_dir\\\\n>     os.makedirs(out_dir, exist_ok=True)\\\\n> \\\\n>     incremental_path = os.path.join(out_dir, \\\\\\\"results_incremental.jsonl\\\\\\\")\\\\n>     completed_results = []\\\\n>     completed_indices = set()\\\\n>     if os.path.exists(incremental_path):\\\\n>         with open(incremental_path) as _f:\\\\n>             for _line in _f:\\\\n>                 _line = _line.strip()\\\\n>                 if _line:\\\\n>                     _r = json.loads(_line)\\\\n>                     completed_results.append(_r)\\\\n>                     completed_indices.add(_r[\\\\\\\"index\\\\\\\"])\\\\n>         log.info(f\\\\\\\"Resuming: {len(completed_results)} already completed\\\\\\\")\\\\n> \\\\n297c330,332\\\\n<                             args.max_seq_length, args.max_new_tokens, args.device)\\\\n---\\\\n>                             args.max_seq_length, args.max_new_tokens, args.device,\\\\n>                             incremental_path=incremental_path,\\\\n>                             completed_indices=completed_indices)\\\\n303,304c338,342\\\\n<     labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n<     preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n---\\\\n>     all_results = completed_results + results\\\\n>     all_results.sort(key=lambda r: r[\\\\\\\"index\\\\\\\"])\\\\n> \\\\n>     labels = [r[\\\\\\\"label\\\\\\\"] for r in all_results]\\\\n>     preds = [r[\\\\\\\"pred\\\\\\\"] for r in all_results]\\\\n307c345\\\\n<     gen_stats = gen_length_stats(results)\\\\n---\\\\n>     gen_stats = gen_length_stats(all_results)\\\\n309,312c347,350\\\\n<     truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n<     truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n<     trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n<     non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n---\\\\n>     truncated_count = sum(1 for r in all_results if r[\\\\\\\"truncated\\\\\\\"])\\\\n>     truncated_pct = round(truncated_count / len(all_results) * 100, 2) if all_results else 0\\\\n>     trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in all_results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n>     non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in all_results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n322c360\\\\n<     n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n---\\\\n>     n_cwm_unparseable = sum(1 for r in all_results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n324c362\\\\n<     print_report(metrics, gen_stats, len(results))\\\\n---\\\\n>     print_report(metrics, gen_stats, len(all_results))\\\\n330c368\\\\n<         \\\\\\\"n_instances\\\\\\\": len(results),\\\\n---\\\\n>         \\\\\\\"n_instances\\\\\\\": len(all_results),\\\\n342,343d379\\\\n<     out_dir = args.output_dir or script_dir\\\\n<     os.makedirs(out_dir, exist_ok=True)\\\\n351c387\\\\n<         for r in results:\\\\n---\\\\n>         for r in all_results:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"122c122\\n<                   max_new_tokens, device):\\n---\\n>                   max_new_tokens, device, incremental_path=None, completed_indices=None):\\n129a130,131\\n>     if completed_indices is None:\\n>         completed_indices = set()\\n133a136,141\\n>         batch_idx_range = set(range(i, i + len(batch)))\\n>         if batch_idx_range.issubset(completed_indices):\\n>             done = min(i + batch_size, total)\\n>             log.info(f\\\"[CWM] {done}/{total}  (skipped, already in incremental)\\\")\\n>             continue\\n> \\n157a166,168\\n>             idx = i + j\\n>             if idx in completed_indices:\\n>                 continue\\n167,168c178,179\\n<             results.append({\\n<                 \\\"index\\\": i + j,\\n---\\n>             result = {\\n>                 \\\"index\\\": idx,\\n176c187,193\\n<             })\\n---\\n>             }\\n>             results.append(result)\\n> \\n>             if incremental_path:\\n>                 with open(incremental_path, \\\"a\\\") as _fout:\\n>                     _fout.write(json.dumps(result) + \\\"\\\\n\\\")\\n>                     _fout.flush()\\n180,181c197,198\\n<             acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100\\n<             log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n---\\n>             acc_so_far = sum(r[\\\"correct\\\"] for r in results) / len(results) * 100 if results else 0\\n>             log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%  (new={len(results)} resumed={len(completed_indices)})\\\")\\n291a309,324\\n>     out_dir = args.output_dir or script_dir\\n>     os.makedirs(out_dir, exist_ok=True)\\n> \\n>     incremental_path = os.path.join(out_dir, \\\"results_incremental.jsonl\\\")\\n>     completed_results = []\\n>     completed_indices = set()\\n>     if os.path.exists(incremental_path):\\n>         with open(incremental_path) as _f:\\n>             for _line in _f:\\n>                 _line = _line.strip()\\n>                 if _line:\\n>                     _r = json.loads(_line)\\n>                     completed_results.append(_r)\\n>                     completed_indices.add(_r[\\\"index\\\"])\\n>         log.info(f\\\"Resuming: {len(completed_results)} already completed\\\")\\n> \\n297c330,332\\n<                             args.max_seq_length, args.max_new_tokens, args.device)\\n---\\n>                             args.max_seq_length, args.max_new_tokens, args.device,\\n>                             incremental_path=incremental_path,\\n>                             completed_indices=completed_indices)\\n303,304c338,342\\n<     labels = [r[\\\"label\\\"] for r in results]\\n<     preds = [r[\\\"pred\\\"] for r in results]\\n---\\n>     all_results = completed_results + results\\n>     all_results.sort(key=lambda r: r[\\\"index\\\"])\\n> \\n>     labels = [r[\\\"label\\\"] for r in all_results]\\n>     preds = [r[\\\"pred\\\"] for r in all_results]\\n307c345\\n<     gen_stats = gen_length_stats(results)\\n---\\n>     gen_stats = gen_length_stats(all_results)\\n309,312c347,350\\n<     truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n<     truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n<     trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n<     non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n---\\n>     truncated_count = sum(1 for r in all_results if r[\\\"truncated\\\"])\\n>     truncated_pct = round(truncated_count / len(all_results) * 100, 2) if all_results else 0\\n>     trunc_correct = [r[\\\"correct\\\"] for r in all_results if r[\\\"truncated\\\"]]\\n>     non_trunc_correct = [r[\\\"correct\\\"] for r in all_results if not r[\\\"truncated\\\"]]\\n322c360\\n<     n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n---\\n>     n_cwm_unparseable = sum(1 for r in all_results if r.get(\\\"unparseable\\\", False))\\n324c362\\n<     print_report(metrics, gen_stats, len(results))\\n---\\n>     print_report(metrics, gen_stats, len(all_results))\\n330c368\\n<         \\\"n_instances\\\": len(results),\\n---\\n>         \\\"n_instances\\\": len(all_results),\\n342,343d379\\n<     out_dir = args.output_dir or script_dir\\n<     os.makedirs(out_dir, exist_ok=True)\\n351c387\\n<         for r in results:\\n---\\n>         for r in all_results:\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The diff looks correct. Let me also confirm the running processes are unaffected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "3825efbd-df33-4769-beb6-f7fa46fd6611",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDpTUcryCUFATu8DDQmnqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1825,
+      "cache_read_input_tokens": 73656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1825
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+语法正确，diff 完全符合预期。确认运行中进程不受影响。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "70f4bc33-536b-4c6e-8f03-e415263ebe1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDpTUcryCUFATu8DDQmnqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1825,
+      "cache_read_input_tokens": 73656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1825
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WKzzvtuRbGJ2Uwazz6iMs2`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ps -p 195531,195668 -o pid,stat,etime",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "66418091-5216-4574-94d3-35520c6008b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDpTUcryCUFATu8DDQmnqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1825,
+      "cache_read_input_tokens": 73656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1825
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T12:44:10.124Z_
+
+<details><summary>↩ Tool result · `toolu_01WKzzvtuRbGJ2Uwazz6iMs2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED\\n195531 Rl+     11:41:08\\n195668 Rl+     11:41:05\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "364de208-ba29-49c3-b85c-fdc5a9548c65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED\\\\n195531 Rl+     11:41:08\\\\n195668 Rl+     11:41:05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED\\n195531 Rl+     11:41:08\\n195668 Rl+     11:41:05\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+两个进程正常运行中（状态 Rl+），不受磁盘上文件修改的影响。
+
+### 改动总结
+
+**修改了 `eval_repo_cwm.py`**，添加增量 JSONL 写入 + 续跑支持：
+
+1. **`run_inference` 新增参数** `incremental_path`, `completed_indices`
+2. **批次跳过**：如果整个 batch 的 index 都在 `completed_indices` 中，直接 skip（续跑时跳过已完成部分）
+3. **逐条写盘**：每处理完一个 sample，立即 `open(path, 'a')` + `flush()` 追加一行 JSON 到 `results_incremental.jsonl`
+4. **`main()` 中的续跑逻辑**：启动时如果 `results_incremental.jsonl` 已存在，加载已完成的 index 集合，传给 `run_inference` 跳过
+5. **结果合并**：inference 完成后 `all_results = completed_results + results`，按 index 排序，用于计算最终 metrics 和写入原有的 summary JSON / predictions JSONL
+6. **原有写入逻辑不变**：最终仍然写 `eval_repo_cwm.json` + `eval_repo_cwm_predictions.jsonl`，保持兼容
+
+增量文件路径：`{output_dir}/results_incremental.jsonl`。下次重启脚本时自动检测并续跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "uuid": "7df9a02f-b09a-46c5-9354-e4fc36d78ca4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkrKHhN6qvf6B4ebERM23S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 75481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 298
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 58_
+
+两个进程正常运行中（状态 Rl+），不受磁盘上文件修改的影响。
+
+### 改动总结
+
+**修改了 `eval_repo_cwm.py`**，添加增量 JSONL 写入 + 续跑支持：
+
+1. **`run_inference` 新增参数** `incremental_path`, `completed_indices`
+2. **批次跳过**：如果整个 batch 的 index 都在 `completed_indices` 中，直接 skip（续跑时跳过已完成部分）
+3. **逐条写盘**：每处理完一个 sample，立即 `open(path, 'a')` + `flush()` 追加一行 JSON 到 `results_incremental.jsonl`
+4. **`main()` 中的续跑逻辑**：启动时如果 `results_incremental.jsonl` 已存在，加载已完成的 index 集合，传给 `run_inference` 跳过
+5. **结果合并**：inference 完成后 `all_results = completed_results + results`，按 index 排序，用于计算最终 metrics 和写入原有的 summary JSON / predictions JSONL
+6. **原有写入逻辑不变**：最终仍然写 `eval_repo_cwm.json` + `eval_repo_cwm_predictions.jsonl`，保持兼容
+
+增量文件路径：`{output_dir}/results_incremental.jsonl`。下次重启脚本时自动检测并续跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 399373,
+  "duration_api_ms": 394837,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "e764c432-f0c7-48de-9e14-1052532aa2e6",
+  "total_cost_usd": 1.4162990000000002,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 63938,
+    "cache_read_input_tokens": 642827,
+    "output_tokens": 27751,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 63938,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 431,
+        "cache_read_input_tokens": 75481,
+        "cache_creation_input_tokens": 298,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 298
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1283,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001408,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 27751,
+      "cacheReadInputTokens": 642827,
+      "cacheCreationInputTokens": 63938,
+      "webSearchRequests": 0,
+      "costUSD": 1.4148910000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dc91ae27-9023-4de1-9172-b5bdd8d791b5"
+}
+```
+
+</details>
+
+---

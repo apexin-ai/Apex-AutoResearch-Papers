@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1450f402f0aa818a6a9a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check registry integrity",
+  "task_key": "worker_check_registry-integrity_20260514T220036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_registry-integrity_20260514T220036_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "a6a812e6f32b02c744646bb4d07d7022437474210cfdbf0e5a1d04ac2ee88530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Registry 完整性检查结果：**\n\n- **文件路径**：`registry.yaml` 存在，大小 57096 tokens\n- **实验总数**：**75 条**，符合预期（70+）\n- **状态分布**：\n  - DONE: 68 条\n  - RUNNING: 4 条（#65, #66, #73, #75）\n  - PREPARING: 3 条（#67, #68, #70, #74）\n- **备份文件**：无 `registry.yaml.bak`\n- **锁文件**：存在 `registry.lock`\n\n**结论**：Registry 文件完整，75 条记录全部在。之前只查到 2 条是查询问题（可能 `read_registry` 带了 limit 或 filter），不是 registry 损坏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-registry-integrity.md"
+}

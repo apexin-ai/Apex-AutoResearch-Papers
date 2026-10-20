@@ -1,0 +1,38 @@
+{
+  "exp_id": "cwm14b-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:23:21.299Z",
+    "updated_at": "2026-05-23T00:47:46.413Z",
+    "hypothesis": "Qwen3-14B QLoRA CWM at function level should remain equivalent to CLS (within ±2pp SESOI), consistent with 4B/8B equivalence pattern. If CWM remains flat while CLS scales, the CLS-CWM gap at 14B widens further, strengthening the scaling divergence narrative for §5.3.",
+    "spec": {
+      "command": "train_unified.py --task cwm --model Qwen3-14B --epochs 3 --quantize_4bit",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "data/cwm_train.jsonl",
+      "data_count": 15280,
+      "model_name": "Qwen3-14B",
+      "seed": 42,
+      "gpu": "cuda:2",
+      "pid": "211042",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm14b-func-s42.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_cwm14b_func_s42/checkpoint-956"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "accuracy": 89.3,
+      "f1_fail": 88.3,
+      "f1_pass": 90.1,
+      "exact_match_rate": 86.6,
+      "unparseable": 0,
+      "checkpoint": "checkpoint-956",
+      "delta_vs_8b": 1.97
+    },
+    "completed_at": "2026-05-23T00:47:46.413Z"
+  },
+  "timestamp": "2026-05-23T00:47:46.846053+00:00",
+  "trigger": "update_registry"
+}

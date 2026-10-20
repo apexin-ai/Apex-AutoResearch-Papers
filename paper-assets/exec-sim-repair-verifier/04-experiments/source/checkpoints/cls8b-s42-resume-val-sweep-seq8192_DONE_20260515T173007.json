@@ -1,0 +1,24 @@
+{
+  "exp_id": "cls8b-s42-resume-val-sweep-seq8192",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:25:04.128Z",
+    "updated_at": "2026-05-15T17:30:07.118Z",
+    "notes": "2026-05-15 重启 val sweep seq8192, 新 PID=396597, cuda:0. 21 ckpts (1800→5800).",
+    "spec": {
+      "pid": 396597,
+      "command": "bash /root/autodl-tmp/scripts/cls8b_s42_resume_val_sweep.sh",
+      "server": "seetacloud-westd-4x5090",
+      "device": "cuda:0",
+      "log": "/root/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq8192.log"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T17:25:31.221Z"
+  },
+  "timestamp": "2026-05-15T17:30:07.434443+00:00",
+  "trigger": "update_registry"
+}

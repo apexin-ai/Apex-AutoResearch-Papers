@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33509feb33be96161963",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh progress check and seed123 prep",
+  "task_key": "worker_ssh_progress-check-and-seed123-prep_20260513T011316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress-check-and-seed123-prep_20260513T011316_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "d0244444b6cc2b2298be875ebaf283eb51316dd29721607f8f635ed5e282d5fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**CLS v4 (home-1x5090)**: step 1123/6633 (17%), eval_loss=0.2410, train_loss=0.4469, ~7s/it, 预计今晚 23:00 完成\n\n**CWM v10 (seetacloud-4x5090)**: step 594/6633 (9%), eval_loss=0.3294, train_loss=1.9143, ~8s/it, 预计明早 02:00 完成\n\n两个 seed123 启动命令已保存到 `artifacts/seed123_launch_plan.md`。CLS seed123 需等 home GPU 释放；CWM seed123 可用 seetacloud 空闲 GPU 并行启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-and-seed123-prep.md"
+}

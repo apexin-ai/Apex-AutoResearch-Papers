@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c3fec80665cfcc2f068",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train cls 8b conda westd",
+  "task_key": "worker_train_cls-8b-conda-westd_20260513T220537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cls-8b-conda-westd_20260513T220537_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "fbb51eafae45cd86e25937c943b3ab98904f28608ddaeac0e660bdca74903c86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并更新为 RUNNING。\n\n**总结：**\n- 实验 `repo-level-cls-8b-conda` 在 westd-48478 cuda:3 上运行中\n- tmux session: `cls8b-conda`, PID: 185438\n- 配置: Qwen3-8B, batch=1, grad_accum=32, LoRA r=16, conda env (transformers 4.57.6)\n- GPU 显存: 25751/32607 MiB，无 OOM 风险\n- 6633 total steps, ~8.3s/step, 预计约 15 小时完成\n- 模型通过 ModelScope 下载到 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`（HuggingFace 不可达）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cls-8b-conda-westd.md"
+}

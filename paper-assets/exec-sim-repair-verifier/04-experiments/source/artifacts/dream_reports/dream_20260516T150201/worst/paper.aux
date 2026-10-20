@@ -1,0 +1,69 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jimenez2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{gu2024cruxeval}
+\citation{zhang2025swerm}
+\citation{ng2001discriminative}
+\citation{chen2024codegen}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural Code Verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classification vs Generation in NLP.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling for Code Repair.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classification (CLS).}{2}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SWE-bench-PerTest dataset statistics. 489 of 500 instances successfully re-evaluated; 11 failed due to legacy Python 3.7 dependencies.}}{2}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:dataset}{{1}{2}{SWE-bench-PerTest dataset statistics. 489 of 500 instances successfully re-evaluated; 11 failed due to legacy Python 3.7 dependencies}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Constrained Word Model (CWM).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory (TRAJ).}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dataset: SWE-bench-PerTest}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Setup}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Formulation Ranking is Model-Contingent}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:matrix}{{4.1}{2}{Formulation Ranking is Model-Contingent}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Accuracy (\%) across the full formulation $\times $ model $\times $ complexity design space. $^\dagger $93\% of CWM outputs unparseable (Qwen tokenizer artifact); accuracy computed with unparseable$\to $majority class. --- = not completed. The formulation ranking \emph  {reverses} between Qwen repo-level (CLS$\gg $CWM) and DeepSeek repo-level (CWM$>$CLS).}}{3}{table.caption.8}\protected@file@percent }
+\newlabel{tab:matrix}{{2}{3}{Accuracy (\%) across the full formulation $\times $ model $\times $ complexity design space. $^\dagger $93\% of CWM outputs unparseable (Qwen tokenizer artifact); accuracy computed with unparseable$\to $majority class. --- = not completed. The formulation ranking \emph {reverses} between Qwen repo-level (CLS$\gg $CWM) and DeepSeek repo-level (CWM$>$CLS)}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Repo-level CWM unparseable rates. DeepSeek-Coder's code-specialized tokenizer produces parseable outputs in 88\% of cases, versus Qwen's 7--47\%.}}{3}{table.caption.9}\protected@file@percent }
+\newlabel{tab:unparseable}{{3}{3}{Repo-level CWM unparseable rates. DeepSeek-Coder's code-specialized tokenizer produces parseable outputs in 88\% of cases, versus Qwen's 7--47\%}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Regression analysis predicting CLS--CWM accuracy gap from instance features. Model family is the only significant predictor; complexity proxies are not.}}{3}{table.caption.10}\protected@file@percent }
+\newlabel{tab:regression}{{4}{3}{Regression analysis predicting CLS--CWM accuracy gap from instance features. Model family is the only significant predictor; complexity proxies are not}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Error complementarity between CLS and CWM. Low $\kappa $ indicates systematically different error patterns; oracle lifts are consistent across model families.}}{3}{table.caption.11}\protected@file@percent }
+\newlabel{tab:complementarity}{{5}{3}{Error complementarity between CLS and CWM. Low $\kappa $ indicates systematically different error patterns; oracle lifts are consistent across model families}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Error Complementarity Across Model Families}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:complementarity}{{4.2}{3}{Error Complementarity Across Model Families}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Error Taxonomy.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Efficiency: CLS Advantage When Accuracy is Equivalent}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:efficiency}{{4.3}{3}{Efficiency: CLS Advantage When Accuracy is Equivalent}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Error taxonomy from 200 annotated samples. CLS and CWM fail for fundamentally different reasons, with only 15\% overlap in error types.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:taxonomy}{{6}{4}{Error taxonomy from 200 annotated samples. CLS and CWM fail for fundamentally different reasons, with only 15\% overlap in error types}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Inference latency comparison. CLS uses 12\% of CWM's FLOPs per sample due to single-token output. CWM's variable-length generation also limits batch size.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:efficiency}{{7}{4}{Inference latency comparison. CLS uses 12\% of CWM's FLOPs per sample due to single-token output. CWM's variable-length generation also limits batch size}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Test vs Trajectory Granularity}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:granularity}{{4.4}{4}{Per-Test vs Trajectory Granularity}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Downstream Utility: Re-Repair Experiment}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:rerepair}{{4.5}{4}{Downstream Utility: Re-Repair Experiment}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces DeepSeek function-level 3-formulation comparison (2-seed means). Per-test formulations (CLS, CWM) outperform trajectory by $\sim $2pp while providing diagnostic granularity.}}{4}{table.caption.15}\protected@file@percent }
+\newlabel{tab:func_three}{{8}{4}{DeepSeek function-level 3-formulation comparison (2-seed means). Per-test formulations (CLS, CWM) outperform trajectory by $\sim $2pp while providing diagnostic granularity}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Re-repair experiment. CLS-based diagnostic provides no significant improvement ($p=0.72$). Even oracle diagnostics yield only marginal, non-significant gains ($p=0.11$). Random (incorrect) diagnostics significantly \emph  {harm} performance.}}{4}{table.caption.16}\protected@file@percent }
+\newlabel{tab:rerepair}{{9}{4}{Re-repair experiment. CLS-based diagnostic provides no significant improvement ($p=0.72$). Even oracle diagnostics yield only marginal, non-significant gains ($p=0.11$). Random (incorrect) diagnostics significantly \emph {harm} performance}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Qwen Case Study: Complexity-Dependent Effects}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:qwen}{{4.6}{4}{Qwen Case Study: Complexity-Dependent Effects}{subsection.4.6}{}}
+\bibstyle{acl_natbib}
+\bibdata{references}
+\bibcite{chen2024codegen}{{1}{2024}{{Chen et~al.}}{{}}}
+\bibcite{gu2024cruxeval}{{2}{2024}{{Gu et~al.}}{{Gu, Rozière, Leather, Solar-Lezama, Synnaeve, and Wang}}}
+\bibcite{jimenez2024swebench}{{3}{2024}{{Jimenez et~al.}}{{Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan}}}
+\bibcite{ng2001discriminative}{{4}{2001}{{Ng and Jordan}}{{}}}
+\bibcite{zhang2025swerm}{{5}{2025}{{Zhang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{No Universal Best Formulation.}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formulation Diversity as Strategy.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Efficiency Implications.}{5}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{5}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}\protected@file@percent }
+\gdef \@abspage@last{5}

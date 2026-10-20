@@ -1,0 +1,28 @@
+{
+  "exp_id": "deepseek-cls-repo-v5-ckpt4210-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:36:08.992Z",
+    "updated_at": "2026-05-18T21:59:45.841Z",
+    "hypothesis": "CLS v5 epoch 2 (ckpt-4210) eval: 3-point epoch curve for D142 decision collapse training-induced claim. Epoch 1=82.61%/51% fail recall, epoch 2=?, epoch 3=pending. 预期 epoch 2 介于两者之间，验证 monotonic degradation.",
+    "parent": "deepseek-cls-repo-v5-ckpt6315-eval",
+    "spec": {
+      "server": "seetacloud-westd-4x5090",
+      "gpu": "cuda:0",
+      "model_name": "deepseek-coder-6.7b-instruct",
+      "seed": 42,
+      "data_path": "data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "checkpoint_source": "checkpoint-4210 (epoch 2, eval_loss=0.1587)",
+      "eval_data": "repo_test (9784 instances)",
+      "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/checkpoint-4210 --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/swebench_full --split test --max_seq_length 8192 --batch_size 1 --device cuda:0 --output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt4210_test_seq8192/eval_summary.json --pred_output /root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt4210_test_seq8192/predictions.jsonl"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T21:59:46.258792+00:00",
+  "trigger": "update_registry"
+}

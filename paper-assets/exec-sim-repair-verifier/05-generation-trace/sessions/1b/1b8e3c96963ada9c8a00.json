@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b8e3c96963ada9c8a00",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cls inference home",
+  "task_key": "worker_ops_cls-inference-home_20260517T044847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cls-inference-home_20260517T044847_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "377b0a93ce01281fa93329d3f060eac0744eb2c3089066430356fbc56f6973aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CLS verifier inference 完成。产出汇总：\n\n**脚本**: `/home/sonny/exec-sim-repair-verifier/cls_inference_for_rerepair.py`\n\n**输出**: `/home/sonny/exec-sim-repair-verifier/data/re_repair_v2/cls_predictions.jsonl` (59 instances)\n\n**统计结果**:\n| 指标 | 值 |\n|------|------|\n| 总预测数 | 11,464 |\n| Unparseable | 0 |\n| Pass 预测 | 8,471 (73.9%) |\n| Fail 预测 | 2,993 (26.1%) |\n| 全 pass 预测的 instance | 5/59 |\n| **Accuracy vs oracle** | **93.29%** |\n| **F1 macro vs oracle** | **91.52%** |\n| 推理耗时 | 397.7s (6.6 min) |\n\n准确率 93.29% 远高于 test set 的 82.35%，原因是 re-repair 数据分布更偏 pass（~74% pass），模型在高 pass 比例场景下表现更好。54/59 instances 有 fail 预测，能为 condition B 提供有效信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cls-inference-home.md"
+}

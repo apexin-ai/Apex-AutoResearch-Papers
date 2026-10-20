@@ -1,0 +1,29 @@
+{
+  "exp_id": "cls14b-func-s42",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:08:16.477Z",
+    "updated_at": "2026-05-22T21:36:08.055Z",
+    "hypothesis": "Qwen3-14B QLoRA CLS should exceed 8B baseline (90.48%) by ≥1pp, confirming CLS scaling trend from 4B→8B→14B on function-level pass/fail classification.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_unified.py --model_name_or_path /dev/shm/Qwen3-14B --data_dir data/ --task cls --output_dir /root/autodl-tmp/checkpoints_cls14b_func_s42/ --run_name cls14b-func-s42 --seed 42 --epochs 3 --quantize_4bit --batch_size 1 --grad_accumulation 32 --lr 5e-5 --no_wandb\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "212095",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls14b-func-s42.log",
+      "submitted_at": "2026-05-22T20:32:46.131Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T21:36:08.523074+00:00",
+  "trigger": "update_registry"
+}

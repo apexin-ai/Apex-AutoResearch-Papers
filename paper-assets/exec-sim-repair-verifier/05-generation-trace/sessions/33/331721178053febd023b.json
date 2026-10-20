@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "331721178053febd023b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra check repo level cls pid",
+  "task_key": "worker_infra_check-repo-level-cls-pid_20260512T141455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-repo-level-cls-pid_20260512T141455_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "b771b03a27d89be8398ce7c0e557f21a77086663668b4c91c26ddde94a73c311"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。两个实验状态：\n\n---\n\n**1. repo-level-cls (seetacloud-westd-4x5090)**\n- **PID: 34681**\n- 命令: `python3 train_repo_verifier.py --max_seq_length 4096 --no_wandb --device cuda:0`\n- GPU 0: RTX 5090, 31124MiB/32607MiB, 100% 利用率\n- 训练进度: **step 1104/6633 (~17%)**, epoch 1, 已运行约 2h42m, ~8.5s/step\n- 预计剩余: ~13h\n\n**2. cls8b-seed456 (home-1x5090)**\n- **PID 2810143 存活**, 确认是 train_verifier.py (Qwen3-8B, seed 456)\n- 训练进度: **step 303/1434 (~21%)**, epoch 1, 已运行约 17m25s, ~3.5s/step\n- 预计剩余: ~1h6m"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-repo-level-cls-pid.md"
+}

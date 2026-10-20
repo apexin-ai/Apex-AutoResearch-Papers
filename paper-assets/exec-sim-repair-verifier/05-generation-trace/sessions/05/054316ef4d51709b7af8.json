@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054316ef4d51709b7af8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778623504.md",
+  "task_key": "loop_4_1778623504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778623504.md",
+    "occurrence": 1,
+    "bytes": 4625,
+    "sha256": "5b88708923a2919fe93f449f12baae010fb3387836eec7528ffda81d8e87429f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T22:04:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud 禁止并行训练**：cgroup 360GB RAM 限制，两个 4B 训练并行必触发 OOM killer（v3+v4 两次确认，D028）\n- **home 只有 1 块 GPU**，同一时间只能跑一个训练\n- **repo-level-cls-v2 和 repo-level-cls-v3 在 registry 均标 RUNNING (home cuda:0)**——实际只有一个在跑（v3 PID=2885139 是后启动的），v2 (PID=2881844) 大概率已被覆盖，接手后第一件事 SSH 确认哪个 PID 存活，清理僵尸 registry 条目\n- **westd-48478 服务器 account 配置错误**：项目配 sonny，实际服务器只有 root，当前不可用\n- CWM 已连续失败 8 个版本 (v1-v8)，v6/v7 是平台级 SIGTERM（非代码问题），v9 是最新尝试——不要再从头写训练脚本，复用 v9 修复过的代码\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: 4× RTX 5090, account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`（注意 root 登录但项目在 /home/sonny 下）\n  - Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n  - 模型: Qwen3-4B LoRA（HF cache 在数据盘 `/root/autodl-tmp/`）\n  - 活跃: CWM v9 训练中 (PID=95806, cuda:2, 23.3GB/32GB, 96% util)，刚过 dry-run 进入正式训练预处理阶段\n  - cuda:0/1/3 空闲，但因 cgroup 限制不可用于并行训练\n- **home-1x5090**: 1× RTX 5090, account=sonny, 62GB RAM, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 活跃: CLS v3 (PID=2885139, cuda:0, 19.5GB/32GB, 99% util)，save_steps=200, nohup 启动\n- **westd-48478**: 当前不可用（account 配置不匹配）\n- **W&B**: 项目里没见到 wandb 配置，指标主要靠 SSH 读 log 获取\n- **Cron**: reconcile 结果 0 条活跃 cron——CWM v9 和 CLS v3 都是 nohup 启动，**没有 cron 监控**，需要手动检查或注册 cron\n\n### 3. 📊 当前状态\n**刚完成**: CWM v9 dry-run 成功并提交正式训练（Worker `worker_ssh_cwm-v9-dryrun-submit` 仍 running，turn 25，已提交 PID=95806）。CLS v3 是第四次重启（根分区磁盘满修复后 nohup 启动）。\n\n**Registry RUNNING 实验**:\n| exp_id | 服务器 | GPU | PID | 说明 |\n|--------|--------|-----|-----|------|\n| repo-level-cls-v3 | home | cuda:0 | 2885139 | CLS 第四次重启，save_steps=200 |\n| repo-level-cwm-v9 | seetacloud | cuda:2 | 95806 | CWM 第九版，eval_steps=save_steps=100，compute_loss OOM 修复 |\n| repo-level-cls-v2 | home | cuda:0 | 2881844 | ⚠️ 疑似僵尸条目，需确认 |\n\n**等待中**:\n- Worker `worker_ssh_cwm-v9-dryrun-submit` 仍在运行（已完成核心工作，可能在做后续验证）\n- 无活跃 Cron——**两个 RUNNING 实验都没有 cron 监控，这是缺口**\n- Paper Agent Step 2 进行中（图表生成 + 模板），method section 草稿已完成\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 验证 home PID=2885139 (cls-v3) 是否存活，确认 PID=2881844 (cls-v2) 已死 → 将 cls-v2 标记 DONE/killed\n- **立即**: 为 cls-v3 和 cwm-v9 注册 cron 监控（当前零 cron，训练完成无人知道）\n- CWM v9 训练完成 → spawn worker 跑 repo-level CWM eval + 与 CLS 做 paired bootstrap\n- CLS v3 训练完成 → spawn worker 跑 repo-level CLS eval\n- 两者都完成 → Go/No-Go 判定（D008: ≥3pp → EMNLP Main, 1-3pp → 加 seeds, <1pp → kill C1）\n- Paper: method section 草稿已出 → 需要 results section 等 repo-level 数据\n- westd-48478 如需使用 → 向 Director 报告 account 配置需改为 root\n\n### 5. 🎯 战略上下文\n**核心结论链**: 函数级 CLS≈CWM（gap<0.5pp, TOST 等价）→ 但 8B scaling 拉大 gap 到 2.43pp → **hypothesis: repo-level 复杂度会进一步放大 CLS 优势**（Pillar 1, complexity-dependent advantage）。Repo-level 是 make-or-break——如果 gap<1pp，整个 C1 claim 要 kill。\n\n**最容易判断错的事**:\n1. seetacloud 3 块空闲 GPU 看起来可以并行 → **不行**，cgroup 360GB 限制只允许单训练\n2. registry 里 cls-v2 标 RUNNING → 实际大概率已死，被 v3 取代\n3. CWM 连续 8 次失败容易让人觉得方法有问题 → v6/v7 是平台 SIGTERM 而非代码 bug，v9 已修复所有已知问题（eval_steps 对齐 + compute_loss OOM）\n4. **零 cron 是当前最大运维风险**——训练可能已经完成或崩溃，但没人知道\n\n**时间线**: ARR May 25, ~13 天。CLS ~12h (home) / CWM ~20h (seetacloud) 并行 → eval+stats ~3h → paper patch ~1d → 终审 ~1d = 总计 ~4-5d。时间充裕但不能再出第十次失败。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778623504.md"
+}

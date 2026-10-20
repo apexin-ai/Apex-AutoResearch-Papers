@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a42b76167f664c876a1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 5paired bootstrap prep",
+  "task_key": "worker_analysis_5paired-bootstrap-prep_20260512T131741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_5paired-bootstrap-prep_20260512T131741_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "d73b80b9ffcaf89ebd7b895ea3cdce22b980a32a082efa8a5add74afb5ab091e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 已部署到服务器 `/home/sonny/exec-sim-repair-verifier/`\n\n**1. `analysis_5paired_bootstrap.py`** — 主分析脚本\n- 接受 N 对 CLS/CWM predictions 文件 (`--pairs CLS1 CWM1 CLS2 CWM2 ...`)\n- 按 `problem_id` 聚类重采样（114 个 problem clusters，平均每 cluster 16.6 个 variants）\n- 输出：mean diff、95% CI、bootstrap SE、TOST 等价检验（±2pp）\n- 支持 JSONL 和 JSON array 两种格式，自动识别 `pred`/`prediction` 字段\n\n**2. `extract_predictions_generic.py`** — 通用 predictions 提取\n- 支持 `--mode cls` 和 `--mode cwm`\n- 从任意 LoRA checkpoint 提取 per-sample predictions\n\n### 已生成的 predictions 文件\n| 文件 | 来源 | Acc |\n|------|------|-----|\n| `predictions_cls_seed42.jsonl` | 从 `eval_results_bf16_predictions.json` 转换 | 87.51% |\n| `predictions_cls_seed0.jsonl` | 已有 | 87.78% |\n| `predictions_cwm_seed123.jsonl` | 刚从 `checkpoints_cwm_seed123/best` 提取 | 87.30% |\n\n### Dry-run 结果（2 pairs, preliminary）\n```\nMean diff (CLS − CWM):  +0.344pp\n95% CI:                  [-0.733, +1.413]pp\nTOST ±2pp:               Equivalent (p=0.001)\nMin equiv margin:        1.210pp\n```\n\n### 待办：补齐 5 pairs\n缺少的 predictions 需用 `extract_predictions_generic.py` 提取：\n- CLS seed=789 — 需要找到对应 checkpoint（服务器上未看到 `checkpoints_cls_seed789/`）\n- CWM seed=42 — 需要找到对应 checkpoint\n- CWM seed=456 — 需要找到对应 checkpoint\n- CWM seed=789, seed=0 — 等训练完成后提取"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-5paired-bootstrap-prep.md"
+}

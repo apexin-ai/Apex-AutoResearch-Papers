@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01e11e71a7defbc5043b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops monitor experiments progress",
+  "task_key": "worker_ops_monitor-experiments-progress_20260515T220311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-experiments-progress_20260515T220311_result.json",
+    "occurrence": 1,
+    "bytes": 1439,
+    "sha256": "47bf783184b01e18075a66b218b48db0726bc4b7d43494a2e1982de5627e952b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| exp_id | GPU | 进度 | ETA (UTC) | GPU利用率 | 关键指标 |\n|--------|-----|------|-----------|-----------|----------|\n| **repo-level-cwm-8b-conda-v5** | cuda:2 (90%) | 5842/6633 (88.1%) | ~08:45 (~2h41m) | 21.1/32.6 GB | loss 未显示, 最新 ckpt: **5800** |\n| **cwm8b-ckpt400-test-eval** | cuda:3 (87%) | 4168/9784 (42.6%) | ~16:50 (~10.8h) | 22.5/32.6 GB | running_acc=**64.7%**, unparseable=0 |\n| **cls8b-s42-resume-val-sweep-seq8192-v2** | cuda:0 (99%) | ckpt 10/10, 8940/9335 (95.8%) | **即将完成 (~1min)** | 18.5/32.6 GB | 当前 ckpt-3600 acc=**90.4%** |\n| **cls8b-s42-resume-val-sweep-gpu1** | cuda:1 (77%) | ckpt 8/10, 5530/9335 (59.3%) | ~07:05 (~1h) | 18.5/32.6 GB | 当前 ckpt-5400 acc=**88.7%** |\n\n### 详情\n\n**CWM 8B 训练 (关键路径)**: 从上次 5818 推进到 5842，速度 ~12.2s/step。checkpoint-5800 已保存 (05:54 UTC)。剩 791 steps，预计 ~2h41m 完成全部 6633 steps。\n\n**CWM 8B eval**: 进度较慢，~6.9s/sample。从 3776→4168，running_acc 稳定在 64.3%–64.7%。还需 ~10.8h，今天下午才能跑完。\n\n**Val sweep GPU0**: 正在跑最后一个 checkpoint (3600)，还剩不到 1 分钟。跑完即整个 10-ckpt sweep 结束。已完成 ckpts: 1800→3400 (9个)。\n\n**Val sweep GPU1**: 已完成 7 个 ckpt (4000→5200)，正在跑第 8 个 (5400, 59.3%)。剩余 5400(尾部) + 5600 + 5800 = ~1h。每个 ckpt 约 26 min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-experiments-progress.md"
+}

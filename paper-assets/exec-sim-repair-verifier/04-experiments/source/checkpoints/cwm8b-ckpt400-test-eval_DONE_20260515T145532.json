@@ -1,0 +1,31 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:16:19.540Z",
+    "updated_at": "2026-05-15T14:55:32.005Z",
+    "hypothesis": "CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。",
+    "spec": {
+      "pid": "381618",
+      "batch_size": 8,
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/",
+      "vram_mib": 20982,
+      "auto_resume_from": 359,
+      "estimated_hours": 18.7,
+      "eta": "2026-05-16T17:20:00Z"
+    },
+    "notes": "2026-05-15 14:37 UTC: D102 bs=1→bs=8 重启。kill pid=367292, 新 pid=381618。auto-resume 从 359 条继续，剩余 9425/9784。显存 20982/32607 MiB on cuda:3。ETA May 16 17:20 UTC。",
+    "reproduce": {
+      "finished_at": "2026-05-15T14:55:30.129Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T14:55:32.005Z"
+  },
+  "timestamp": "2026-05-15T14:55:32.256387+00:00",
+  "trigger": "update_registry"
+}

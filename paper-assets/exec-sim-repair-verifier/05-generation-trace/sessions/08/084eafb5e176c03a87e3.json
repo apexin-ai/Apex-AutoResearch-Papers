@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "084eafb5e176c03a87e3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "figure fig2 gap amplification",
+  "task_key": "worker_figure_fig2-gap-amplification_20260515T182357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2-gap-amplification_20260515T182357_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "e146758b3d53cceb27aeb7d88b6a9f39ec20621ff4349da36777f66021821daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用工具列表中，跳过注册步骤。\n\n产出完成：\n- **PDF**: `artifacts/fig2_gap_amplification.pdf` (34 KB)\n- **PNG**: `artifacts/fig2_gap_amplification.png` (139 KB)\n- **脚本**: `artifacts/fig2_gap_amplification.py`\n\n图表特性：broken Y-axis (0–5.5 / 22–30)，左侧波浪线断开；三个 bar 从浅到深渐变色；error bars 用 propagated std (Function 4B: ±0.86, 8B: ±0.37)；Repo-level bar 标注 \"CWM below majority voting baseline (72.96%)\"；8B bar 标注 p = 0.008。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-gap-amplification.md"
+}

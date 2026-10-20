@@ -1,0 +1,47 @@
+{
+  "exp_id": "cwm-4b-rank32-ablation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:31:41.910Z",
+    "updated_at": "2026-05-15T12:46:47.158Z",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=0 python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_cwm_4b_rank32/ --lora_rank 32 --seed 42 --batch_size 1 --grad_accumulation 32 --run_name cwm-4b-rank32-ablation --no_wandb'",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "369497",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm-4b-rank32-ablation.log",
+      "submitted_at": "2026-05-15T12:32:30Z",
+      "submitted_via": "tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints_cwm_4b_rank32/",
+      "lora_rank": 32,
+      "lora_alpha": 32,
+      "lr": 0.0002,
+      "epochs": 3,
+      "batch_size": 1,
+      "grad_accumulation": 32,
+      "effective_batch_size": 32,
+      "max_seq_length": 2048,
+      "estimated_hours": 2.8,
+      "wall_clock_seconds": 857.2,
+      "gpu_hours": 0.24
+    },
+    "hypothesis": "LoRA rank ablation: CWM 4B rank=32 vs 原始 rank=16。回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。",
+    "conclusion": "failed",
+    "notes": "Killed at ~5min on cuda:0 because duplicate of cwm-rank32-ablation (submitted 3min earlier). This run used bs=1/ga=32 vs baseline default bs=2/ga=16 (same effective batch=32 but slower 6.5s/it vs 4s/it, and not strictly identical to baseline config). Canonical rank=32 ablation continues as cwm-rank32-ablation (PID 368823, bs=2/ga=16, output=checkpoints_cwm_rank32/). No checkpoints written before kill.",
+    "completed_at": "2026-05-15T12:46:47.158Z"
+  },
+  "timestamp": "2026-05-15T12:46:47.406358+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "cls8b-s42-ckpt400-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:18:24.242Z",
+    "updated_at": "2026-05-14T21:18:53.629Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-400 --model_name Qwen3-8B --split test --max_seq_length 8192 --max_new_tokens 512 --batch_size 1 --device cuda:0",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "291891",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt400-test8192-eval.log",
+      "submitted_at": "2026-05-14T21:18:23.942Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "test set",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-400",
+      "eval_data": "test",
+      "hypothesis": "CRITICAL: 消除 max_seq_length 混杂变量。8B CLS s42 ckpt-400 在 test set 上用 max_seq_length=8192 评估。",
+      "max_seq_length": 8192
+    }
+  },
+  "timestamp": "2026-05-14T21:18:53.830077+00:00",
+  "trigger": "update_registry"
+}

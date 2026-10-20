@@ -1,0 +1,41 @@
+{
+  "exp_id": "cls4b-v5-ckpt600-val5120-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:39:23.063Z",
+    "updated_at": "2026-05-14T23:47:04.584Z",
+    "spec": {
+      "command": "python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-600 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --output_dir results/repo_cls_v5_ckpt600_val5120 --device cuda:0",
+      "server": "home-1x5090",
+      "parent": "repo-level-cls-v5",
+      "checkpoint_source": "checkpoints_repo_cls_v5/checkpoint-600",
+      "eval_data": "val@5120",
+      "model_name": "Qwen/Qwen3-4B",
+      "data_path": "val@5120",
+      "data_count": 5120,
+      "seed": 42,
+      "pid": 3179262,
+      "checkpoint_path": "checkpoints_repo_cls_v5/checkpoint-600",
+      "log_path": "results/repo_cls_v5_ckpt600_val5120/"
+    },
+    "hypothesis": "Evaluate repo-level classification v5 checkpoint-600 on val split with max_seq_length=5120",
+    "metrics": {
+      "accuracy": 82.82,
+      "f1_macro": 79.81,
+      "f1_fail": 72.03,
+      "f1_pass": 87.6,
+      "precision_fail": 59.3,
+      "recall_fail": 91.7,
+      "unparseable": 0,
+      "total": 9335
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T23:47:04.584Z"
+  },
+  "timestamp": "2026-05-14T23:47:05.119987+00:00",
+  "trigger": "update_registry"
+}

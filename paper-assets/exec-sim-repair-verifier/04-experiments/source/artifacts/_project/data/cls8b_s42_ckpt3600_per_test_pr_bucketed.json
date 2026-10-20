@@ -1,0 +1,82 @@
+{
+  "model": "CLS-8B-s42-ckpt3600",
+  "split": "test",
+  "n_instances": 9784,
+  "n_problems": 25,
+  "overall_metrics": {
+    "accuracy": 84.48,
+    "fail_precision": 80.06,
+    "fail_recall": 56.76,
+    "fail_f1": 66.43,
+    "pass_precision": 85.53,
+    "pass_recall": 94.76,
+    "pass_f1": 89.91,
+    "f1_macro": 78.17,
+    "confusion": {
+      "TP": 6764,
+      "TN": 1502,
+      "FP": 1144,
+      "FN": 374
+    },
+    "support": {
+      "fail": 2646,
+      "pass": 7138
+    }
+  },
+  "bucket_analysis": {
+    "T=1": null,
+    "T=2-5": {
+      "n_problems": 1,
+      "n_instances": 442,
+      "n_fail": 3,
+      "n_pass": 439,
+      "accuracy": 85.07,
+      "fail_precision": 4.35,
+      "fail_recall": 100.0,
+      "fail_f1": 8.33,
+      "pass_precision": 100.0,
+      "pass_recall": 84.97,
+      "pass_f1": 91.87
+    },
+    "T=6+": {
+      "n_problems": 15,
+      "n_instances": 6177,
+      "n_fail": 2643,
+      "n_pass": 3534,
+      "accuracy": 77.08,
+      "fail_precision": 84.64,
+      "fail_recall": 56.72,
+      "fail_f1": 67.92,
+      "pass_precision": 74.04,
+      "pass_recall": 92.3,
+      "pass_f1": 82.17
+    }
+  },
+  "per_problem_stats": {
+    "pydata__xarray-6992": {"n_total": 2322, "n_fail": 0, "n_pass": 2322, "accuracy": 98.45, "fail_recall": null, "pass_recall": 98.45},
+    "django__django-14315": {"n_total": 593, "n_fail": 341, "n_pass": 252, "accuracy": 78.75, "fail_recall": 94.72, "pass_recall": 57.14},
+    "pytest-dev__pytest-7490": {"n_total": 342, "n_fail": 122, "n_pass": 220, "accuracy": 66.37, "fail_recall": 48.36, "pass_recall": 76.36},
+    "astropy__astropy-7336": {"n_total": 1071, "n_fail": 437, "n_pass": 634, "accuracy": 59.1, "fail_recall": 1.14, "pass_recall": 99.05},
+    "django__django-12406": {"n_total": 437, "n_fail": 45, "n_pass": 392, "accuracy": 81.46, "fail_recall": 46.67, "pass_recall": 85.46},
+    "django__django-13109": {"n_total": 206, "n_fail": 0, "n_pass": 206, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "pytest-dev__pytest-6202": {"n_total": 180, "n_fail": 20, "n_pass": 160, "accuracy": 87.22, "fail_recall": 0.0, "pass_recall": 98.12},
+    "django__django-10973": {"n_total": 90, "n_fail": 0, "n_pass": 90, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "django__django-14351": {"n_total": 228, "n_fail": 18, "n_pass": 210, "accuracy": 91.23, "fail_recall": 0.0, "pass_recall": 99.05},
+    "matplotlib__matplotlib-24177": {"n_total": 1572, "n_fail": 786, "n_pass": 786, "accuracy": 100.0, "fail_recall": 100.0, "pass_recall": 100.0},
+    "django__django-12325": {"n_total": 711, "n_fail": 474, "n_pass": 237, "accuracy": 38.68, "fail_recall": 8.02, "pass_recall": 100.0},
+    "django__django-11848": {"n_total": 237, "n_fail": 72, "n_pass": 165, "accuracy": 77.22, "fail_recall": 50.0, "pass_recall": 89.09},
+    "django__django-12143": {"n_total": 70, "n_fail": 0, "n_pass": 70, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "psf__requests-6028": {"n_total": 442, "n_fail": 3, "n_pass": 439, "accuracy": 85.07, "fail_recall": 100.0, "pass_recall": 84.97},
+    "django__django-14631": {"n_total": 459, "n_fail": 197, "n_pass": 262, "accuracy": 90.85, "fail_recall": 78.68, "pass_recall": 100.0},
+    "django__django-10880": {"n_total": 73, "n_fail": 0, "n_pass": 73, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "django__django-14376": {"n_total": 60, "n_fail": 0, "n_pass": 60, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "sympy__sympy-17655": {"n_total": 45, "n_fail": 36, "n_pass": 9, "accuracy": 20.0, "fail_recall": 0.0, "pass_recall": 100.0},
+    "django__django-14434": {"n_total": 151, "n_fail": 0, "n_pass": 151, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "django__django-11880": {"n_total": 132, "n_fail": 0, "n_pass": 132, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "sphinx-doc__sphinx-11445": {"n_total": 132, "n_fail": 40, "n_pass": 92, "accuracy": 96.97, "fail_recall": 100.0, "pass_recall": 95.65},
+    "django__django-17029": {"n_total": 61, "n_fail": 0, "n_pass": 61, "accuracy": 100.0, "fail_recall": null, "pass_recall": 100.0},
+    "django__django-15037": {"n_total": 64, "n_fail": 19, "n_pass": 45, "accuracy": 42.19, "fail_recall": 0.0, "pass_recall": 60.0},
+    "scikit-learn__scikit-learn-14053": {"n_total": 46, "n_fail": 18, "n_pass": 28, "accuracy": 100.0, "fail_recall": 100.0, "pass_recall": 100.0},
+    "sympy__sympy-16886": {"n_total": 60, "n_fail": 18, "n_pass": 42, "accuracy": 93.33, "fail_recall": 100.0, "pass_recall": 90.48}
+  }
+}

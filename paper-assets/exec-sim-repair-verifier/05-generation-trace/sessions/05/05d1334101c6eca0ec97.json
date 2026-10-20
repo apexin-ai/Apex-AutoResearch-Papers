@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "05d1334101c6eca0ec97",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh d049 cls seed123 dryrun",
+  "task_key": "worker_ssh_d049-cls-seed123-dryrun_20260513T092842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-cls-seed123-dryrun_20260513T092842.log",
+    "occurrence": 1,
+    "bytes": 731831,
+    "sha256": "262f48822f48babb1db8e20df6fcb06e18bfb61643eb12f06914007e6631bac9"
+  },
+  "statistics": {
+    "messages": 460,
+    "user_turns": 0,
+    "tool_calls": 166,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 166,
+      "tool_result": 166,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 460,
+      "chunks": [
+        {
+          "path": "05d1334101c6eca0ec97-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "05d1334101c6eca0ec97-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "05d1334101c6eca0ec97-part-0003.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d049-cls-seed123-dryrun.md"
+}

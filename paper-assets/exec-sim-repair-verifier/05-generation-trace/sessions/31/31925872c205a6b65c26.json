@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31925872c205a6b65c26",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops deepseek cwm repo cuda1 start",
+  "task_key": "worker_ops_deepseek-cwm-repo-cuda1-start_20260516T080023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deepseek-cwm-repo-cuda1-start_20260516T080023_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "a4ee2961167415b7a645bfe3a5d528b03e329b72b25aa7cc77049ffbe7d8a0ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。\n\n## 报告\n\n### 1. cuda:1 之前状态\n- cwm-func **已完成**（无 tmux session，GPU 空闲 0 MiB），无需 kill\n\n### 2. Dry-run 结果\n- 数据加载正常：train=70,748, val=9,335\n- get_target 对 swebench_full 数据工作正常（执行输出格式化为 PASS/FAIL 预测）\n- 9.5% 训练样本被截断至 max_seq_length=2048\n\n### 3. 训练启动确认\n- **PID**: 479953\n- **tmux session**: `deepseek-cwm-repo`\n- **总 steps**: 13,266（3 epochs × 70,748 / (batch_size=2 × grad_accum=8)）\n- **速度**: ~7.6s/step → 预计 **~28h**（比预估的 20h 长）\n- LoRA: rank=16, alpha=32, targets=q/k/v/o_proj, trainable 0.25% (16.7M params)\n- Registry 已更新为 RUNNING\n\n### 4. 4 卡 nvidia-smi 快照\n| GPU | Util | Memory |\n|-----|------|--------|\n| 0 | 98% | 19,557 / 32,607 MiB (deepseek-cls-repo) |\n| 1 | 99% | 19,713 / 32,607 MiB (**deepseek-cwm-repo** ✓) |\n| 2 | 0% | 0 MiB |\n| 3 | 89% | 28,099 / 32,607 MiB (eval-cwm-func-s123) |\n\n> 注意：参数名修正了 `--gradient_accumulation_steps` → `--grad_accumulation`，`--learning_rate` → `--lr`。项目路径是 `/home/sonny/exec-sim-repair-verifier`（不是 `/root/autodl-tmp/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deepseek-cwm-repo-cuda1-start.md"
+}

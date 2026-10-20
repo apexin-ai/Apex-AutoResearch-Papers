@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "132a497245ebf74082e0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm8b seed123",
+  "task_key": "worker_analysis_cwm8b-seed123_20260512T110030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm8b-seed123_20260512T110030_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "2bf565a423b6769a7b7ecde471bca969a079924b05ab29d0f7a90aeacbeb7a48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论: SUCCESS** — seed123 成功复现 seed42 结果。\n\n关键数据：\n\n| 指标 | seed123 | seed42 | 差值 |\n|------|---------|--------|------|\n| accuracy | 86.98% | 87.67% | -0.69pp |\n| pass_f1 | 86.83% | 87.57% | -0.74pp |\n| fail_f1 | 87.13% | 87.77% | -0.64pp |\n| exact_match | 84.13% | 84.39% | -0.26pp |\n\n所有指标差异 <1pp，属于正常 seed 方差。CWM vs CLS 的 ~3.5pp gap 在两个 seed 下均稳定存在。训练正常完成（3 epoch, EXIT_CODE=0），checkpoint 完整。\n\n分析已写入 `artifacts/cwm8b_seed123_analysis.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm8b-seed123.md"
+}

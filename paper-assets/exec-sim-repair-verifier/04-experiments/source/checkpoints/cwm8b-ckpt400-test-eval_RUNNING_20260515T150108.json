@@ -1,0 +1,55 @@
+{
+  "exp_id": "cwm8b-ckpt400-test-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T12:16:19.540Z",
+    "updated_at": "2026-05-15T15:01:08.371Z",
+    "hypothesis": "CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。",
+    "notes": "2026-05-15 14:45 UTC: bs=8 实际速度 ~5.7 samples/min（低于初始估算 8.4/min）。376/9784 done, running_acc=70.6%。修正 ETA ~27.5h → May 17 ~18:00 UTC。显存 22516/32607 MiB, GPU util 89%。",
+    "reproduce": {
+      "finished_at": "2026-05-15T14:55:30.129Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-15T14:55:32.005Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T14:55:37.446501+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-15 14:37 UTC: D102 bs=1→bs=8 重启。kill pid=367292, 新 pid=381618。auto-resume 从 359 条继续，剩余 9425/9784。显存 20982/32607 MiB on cuda:3。ETA May 16 17:20 UTC。"
+      }
+    },
+    "spec": {
+      "pid": "381618",
+      "batch_size": 8,
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --max_new_tokens 1024 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/",
+      "vram_mib": 22516,
+      "auto_resume_from": 359,
+      "estimated_hours": 27.5,
+      "eta": "2026-05-17T18:00:00Z",
+      "speed_samples_per_min": 5.7,
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "data_path": "test split",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400",
+      "eval_data": "test@full(n=9784)",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval.log"
+    }
+  },
+  "timestamp": "2026-05-15T15:01:08.630375+00:00",
+  "trigger": "update_registry"
+}

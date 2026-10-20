@@ -1,0 +1,9 @@
+Remote path: /home/sonny/exec-sim-repair-verifier/data/
+Files:
+- train.jsonl (7.7M, 15,290 samples)
+- val.jsonl (937K, 1,896 samples)
+- test.jsonl (927K, 1,890 samples)
+- stats.json (4.9K)
+
+Format per line: {"code": str, "test": str, "label": 0|1, "source": "humaneval"|"mbpp", "problem_id": str, "mutation_type": str}
+label=1 means pass, label=0 means fail

@@ -1,0 +1,25 @@
+{
+  "exp_id": "repo-level-cwm-8b-conda-v4",
+  "project": "exec-sim-repair-verifier",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:43:09.320Z",
+    "updated_at": "2026-05-15T17:49:04.988Z",
+    "hypothesis": "8B CWM 训练（从 checkpoint-1600 resume，第四次追踪）。PID 266816 在 cuda:2 上运行中，step 1700/6633。与 v2/v3 同实验但修正了脚本和 resume 路径。",
+    "spec": {
+      "gpu": [
+        "cuda:2"
+      ],
+      "log_path": "~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v4.log"
+    },
+    "notes": "2026-05-15 09:39 UTC: step 4013/6633 (60.5%), 已运行15h54m, ~40min/100steps. ETA ~May 16 11:00 UTC (~17h). 日志实际是 repo-level-cwm-8b-conda-v2.log。",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200",
+    "log_path": "/root/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v2.log",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T17:49:05.269654+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+============================================================
+cwm8b-seed123 评估分析摘要
+============================================================
+
+1. 完整 Metrics
+   - test_set_size: 1890
+   - overall_accuracy: 86.98%
+   - pass_f1: 86.83%, fail_f1: 87.13%
+   - exact_match_rate: 84.13% (1590/1890)
+   - train_loss: 0.2281, eval_loss (epoch 3): 0.0565
+   - unparseable_predictions: 0
+   - generation_length: mean=28.6, median=33.0, max=103
+
+2. 与 cwm8b seed=42 对比
+   指标                seed123     seed42      差值
+   accuracy            86.98%      87.67%      -0.69pp
+   pass_f1             86.83%      87.57%      -0.74pp
+   fail_f1             87.13%      87.77%      -0.64pp
+   exact_match_rate    84.13%      84.39%      -0.26pp
+   train_loss          0.2281      0.2290      -0.0009
+   eval_loss           0.0565      0.0512      +0.0053
+
+   所有指标差异 <1pp，结果高度一致。
+
+3. 与 cls8b seed=42 的 gap
+   指标                cwm8b-s123  cls8b-s42   差值
+   accuracy            86.98%      90.48%      -3.50pp
+   pass_f1             86.83%      90.86%      -4.03pp
+   fail_f1             87.13%      90.06%      -2.93pp
+
+   CWM 对 CLS 的 gap 约 3-4pp，与 seed42 观察一致。
+
+4. 训练状态
+   - 3 epoch 正常完成，EXIT_CODE=0
+   - 训练时长: 5566s (~1h33m)
+   - 无报错，评估流程顺利执行
+
+5. Checkpoint 确认
+   路径: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/best/
+   - adapter_model.safetensors (58.5MB) ✓
+   - adapter_config.json ✓
+   - tokenizer 文件完整 ✓
+
+6. 结论: SUCCESS
+   seed123 成功复现 seed42 的结果，所有指标差异 <1pp，
+   属于正常 seed 方差范围。CWM vs CLS 的 ~3.5pp gap
+   在两个 seed 下均稳定存在。

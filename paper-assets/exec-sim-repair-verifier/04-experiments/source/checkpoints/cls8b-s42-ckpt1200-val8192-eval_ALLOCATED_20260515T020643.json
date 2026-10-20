@@ -1,0 +1,24 @@
+{
+  "exp_id": "cls8b-s42-ckpt1200-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:44:38.194Z",
+    "updated_at": "2026-05-15T02:06:42.916Z",
+    "hypothesis": "D088 val pipeline: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 sweep curve 数据点。",
+    "parent": "repo-level-cls-8b-conda",
+    "spec": {
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1200",
+      "eval_data": "val@8192",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T02:06:43.160264+00:00",
+  "trigger": "update_registry"
+}

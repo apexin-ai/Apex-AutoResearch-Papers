@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32af16d1b7b5ea5f1eee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval matched seed 8b predictions",
+  "task_key": "worker_eval_matched-seed-8b-predictions_20260512T172251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_matched-seed-8b-predictions_20260512T172251_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "6815507e0608399476a1d4bead1145eacafad95484455613ba5ab3b3839c8ade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n**已完成 (本次生成)**：\n| 文件 | Accuracy | 说明 |\n|------|----------|------|\n| `eval_cwm_seed0_with_preds_predictions.json` | 87.57% | 4B CWM seed0 per-instance predictions |\n| `eval_cwm_seed456_with_preds_predictions.json` | 86.98% | 4B CWM seed456 per-instance predictions |\n\n**已存在**：\n- `eval_cwm_seed42_with_preds_predictions.json` — 4B CWM seed42\n- `predictions_cls_seed{0,42,123,456,789}.jsonl` — 4B CLS 全部 5 seeds\n- `predictions_traj_seed{0,42,123,456,789}.jsonl` — 4B TRAJ 全部 5 seeds\n\n**可做 matched-seed error overlap 的 CLS-CWM 配对**: seed0, seed42, seed456 (3 对)\n\n**缺失/阻塞**：\n| 缺失项 | 原因 |\n|--------|------|\n| CWM seed123/789 per-instance preds | checkpoints 只在 seetacloud，home 上没有 |\n| 8B CLS seed456 per-instance preds | checkpoint 在 home 但 GPU 被 `repo-level-cls-home` 训练占用 (PID 2840848, 19GB VRAM) |\n| 8B CLS seed42/123 per-instance preds | checkpoints 只在 seetacloud |\n| 8B CWM 全部 per-instance preds | checkpoints 只在 seetacloud |\n\n**下一步选择**：\n1. 杀掉 `repo-level-cls-home` 训练 → 可立即跑 8B CLS seed456 eval (~5分钟)\n2. 等训练完 → 时间不确定（可能数小时）\n3. 在 seetacloud 补跑 CWM seed123/789 和 8B predictions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-matched-seed-8b-predictions.md"
+}

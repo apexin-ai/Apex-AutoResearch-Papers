@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09248d623c778cb5c3e2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home seed123 ckpt800 then v5 sweep",
+  "task_key": "worker_eval_home-seed123-ckpt800-then-v5-sweep_20260514T210725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-seed123-ckpt800-then-v5-sweep_20260514T210725_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "b28f467c06da8037da18e92b03913c7105cfd8b2af844ff223a5b51685e49c60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。等待 ckpt-600 eval 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-seed123-ckpt800-then-v5-sweep.md"
+}

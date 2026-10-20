@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a527e473ab75a0ad2d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "verify cuda0 cleanup and training",
+  "task_key": "worker_verify_cuda0-cleanup-and-training_20260515T141637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cuda0-cleanup-and-training_20260515T141637_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "dcb917859ccb5fc89b5f361d30c100b6fee2ec75e88ea57285ea4319b0f0c8a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**验证结果：**\n\n| 检查项 | 状态 |\n|--------|------|\n| cuda:0 进程 | 仅 1 个 Python 进程 (PID 379614, 20920 MiB)，无 val sweep 残留 |\n| tmux session | `cwm-rank32-alpha64-ablation` 存在 |\n| 训练进度 | 已正常启动，当前 step 18/1434 (~1%)，速度 ~3.7s/it |\n| LoRA 配置 | trainable params 23.6M / 4.0B total (0.58%)，符合 rank32 预期 |\n\ncuda:0 干净，rank32-alpha64 训练正常运行中。PID 是 379614（非 379609），可能是实际训练子进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cuda0-cleanup-and-training.md"
+}

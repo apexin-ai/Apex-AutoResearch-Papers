@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d0f4cf77909f83671e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "verify md5sum best dir",
+  "task_key": "worker_verify_md5sum-best-dir_20260515T184723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_md5sum-best-dir_20260515T184723_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "d893f7d48856c2bbc0a52c75909fb4899e1ae80a0ef84c38f34923269f8551fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**`best/` 既不是 checkpoint-1000 也不是 checkpoint-6633。**\n\n`trainer_state.json` 明确记录：\n\n```\nbest_global_step: 200\nbest_model_checkpoint: /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\nbest_metric: 0.07963339239358902 (eval_loss at epoch ~0.09)\n```\n\n`best/` 是 Trainer 在训练结束时（`load_best_model_at_end=True`）从**旧训练 run** `checkpoints_repo_cls_8b_conda/checkpoint-200` 加载并保存的副本。\n\n时间线佐证：\n| 目录 | 创建时间 |\n|------|---------|\n| checkpoint-1000 | 2026-05-15 07:15:49 |\n| checkpoint-6633 | 2026-05-16 02:33:55.678 |\n| **best/** | **2026-05-16 02:33:55.930** (+252ms after 6633) |\n\ncheckpoint-6633（最后一步）先保存，252ms 后 Trainer 保存了 best model——内容来自 step 200（旧 run）。\n\n**注意**：`ssh_read_only` 白名单不允许 `md5sum`，无法做字节级对比。如需 100% 确认 `best/` 与 `checkpoint-200` 二进制一致，需用 `ssh_execute` 执行 `md5sum`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-md5sum-best-dir.md"
+}

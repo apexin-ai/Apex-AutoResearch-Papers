@@ -1,0 +1,6899 @@
+# analysis error overlap cls cwm
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 141
+- **Recorded user turns:** 0
+- **Tool calls:** 52
+- **Original source:** `logs/workers/worker_analysis_error-overlap-cls-cwm_20260512T160639.log`
+- **Structured JSON:** [`836af0a6f02645141b89.json`](../../sessions/83/836af0a6f02645141b89.json)
+
+## Before a recorded user message
+
+141 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9cda2104-01fa-4909-9453-4c3dfcc20378",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778612400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d0e18b97-9c7b-49d0-8d91-66c6930ad0d5",
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the tasks and then execute them step by step.
+
+1. First, I need to connect to the server and find CLS and CWM prediction files
+2. Write and run an error overlap analysis script
+3. Analyze CWM per-class F1 breakdown
+4. Find and update cwm-seed789 metrics
+
+Let me start by loading the necessary tools and exploring the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "97913db7-117e-4bf1-9654-fba1ae81ed94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115fyAmGgGqhRoj7etmuKqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11683,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11683
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行。先加载工具并探测服务器上的预测文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "2964698d-f43f-479a-81a7-eee470aefb67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115fyAmGgGqhRoj7etmuKqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11683,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11683
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VkeKurDav99KcXNhU5a89P`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "3c672cb6-d717-452f-9979-ea12179c13d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115fyAmGgGqhRoj7etmuKqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11683,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11683
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T16:06:56.274Z_
+
+<details><summary>↩ Tool result · `toolu_01VkeKurDav99KcXNhU5a89P`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "701a7c71-39d0-4445-a349-c0050b85e0af",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the registry to find CLS and CWM experiments, and simultaneously explore the server for prediction files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "955e6b2b-16cb-47ef-9132-38dbea511336",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrfPxeE8T4AHqqauFTcCMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2371,
+      "cache_read_input_tokens": 23384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2371
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011qb4amp9A8uekqAZmhJvsE`</summary>
+
+```json
+{
+  "project": "exec-sim-repair-verifier",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "68d785dc-f421-4a4c-8fc8-fc7ef34da7e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrfPxeE8T4AHqqauFTcCMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2371,
+      "cache_read_input_tokens": 23384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2371
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T16:07:01.989Z_
+
+<details><summary>↩ Tool result · `toolu_011qb4amp9A8uekqAZmhJvsE`</summary>
+
+```text
+Error: result (64,300 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8fff08dc-8a2f-4442-babe-805a0a289e2b",
+  "tool_use_result": {
+    "content": "Error: result (64,300 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"repo-level-cls-v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T14:41:27.833Z\", \"updated_at\": \"2026-05-12T15:57:31.074Z\", \"hypothesis\": \"Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。验证 complexity-dependent CLS advantage。\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --output_dir /root/autodl-tmp/checkpoints_repo_cls/ --no_wandb\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"63878\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cls-v2.log\", \"submitted_at\": \"2026-05-12T15:57:30.978Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"repo-level-cwm-v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T14:41:28.527Z\", \"updated_at\": \"2026-05-12T15:57:03.183Z\", \"hypothesis\": \"Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。与 repo-level-cls-v2 对比验证 complexity gap。\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm/ --no_wandb\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"63096\", \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cwm-v2.log\", \"submitted_at\": \"2026-05-12T15:57:03.090Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"cls8b-seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T13:55:11.074Z\", \"updated_at\": \"2026-05-12T15:28:45.391Z\", \"hypothesis\": \"8B CLS 第 3 个 seed，与 cwm8b-seed456 配对。完成后有 3 matched 8B pairs (seed42/123/456)，增强 scaling gap 证据\", \"spec\": {\"command\": \"bash -c \\\"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output_dir checkpoints_cls8b_seed456/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b_seed456/best --model_name /home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B --output eval_cls8b_seed456.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": 2810143, \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed456.log\", \"submitted_at\": \"2026-05-12T13:57:23.981Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 456, \"wall_clock_seconds\": 5481.4, \"gpu_hours\": 1.52}, \"reproduce\": {\"finished_at\": \"2026-05-12T15:25:37.799Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:25:39.132859+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 88.31, \"pass_f1\": 88.2, \"fail_f1\": 88.41, \"pass_precision\": 92.29, \"pass_recall\": 84.46, \"fail_precision\": 84.72, \"fail_recall\": 92.43, \"train_loss\": 0.3105, \"eval_loss\": 0.0928, \"unparseable\": 0, \"test_set_size\": 1890}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed456/best\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed456.log\", \"completed_at\": \"2026-05-12T15:28:45.391Z\"}, \"cwm8b-seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T13:18:05.040Z\", \"updated_at\": \"2026-05-12T15:00:31.635Z\", \"hypothesis\": \"8B CWM 第 3 个 seed，补强 scaling gap 证据。当前 8B cls-cwm gap 基于 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)，3 seeds 更稳健\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed456/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 456 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm8b_seed456/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cwm8b_seed456.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": 47236, \"log_path\": \"/root/runs/exec-sim-repair-verifier/cwm8b-seed456.log\", \"submitted_at\": \"2026-05-12T13:19:20.937Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 456, \"hyperparams\": {\"batch_size\": 2, \"grad_accumulation\": 16, \"lr\": \"2e-4\", \"epochs\": 3, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\", \"trainable_params\": \"15.3M/8.2B (0.19%)\"}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/best/\", \"eval_output_path\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm8b_seed456.json\", \"wall_clock_seconds\": 6070.7, \"gpu_hours\": 1.69}, \"reproduce\": {\"finished_at\": \"2026-05-12T14:57:01.804Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T14:57:03.276321+00:00\"}]}, \"metrics\": {\"overall_accuracy\": 86.24, \"pass_f1\": 85.96, \"fail_f1\": 86.51, \"pass_precision\": 91.08, \"pass_recall\": 81.39, \"fail_precision\": 82.09, \"fail_recall\": 91.45, \"exact_match_rate\": 82.8, \"train_loss\": 0.2279, \"eval_loss\": 0.0583, \"unparseable\": 0, \"test_set_size\": 1890, \"majority_baseline_accuracy\": 51.75, \"accuracy_vs_baseline_gap_pp\": 34.5}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T15:00:31.635Z\"}, \"5-paired-clustered-bootstrap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T13:10:42.139Z\", \"updated_at\": \"2026-05-12T14:33:52.551Z\", \"hypothesis\": \"5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 variant 级别是否等价（扩展之前 3-paired 分析）\", \"conclusion\": \"success\", \"metrics\": {\"pooled_gap_pp\": -0.45, \"pooled_ci_lower\": -1.71, \"pooled_ci_upper\": 0.84, \"pooled_p_value\": 0.499, \"tost_p_value\": 0.0071, \"tost_margin_pp\": 2, \"seed_level_paired_t_p\": 0.425, \"seed_level_mean_gap\": -0.48, \"n_variants_pooled\": 523, \"n_clusters\": 114, \"per_seed_gaps\": {\"seed42\": -0.97, \"seed123\": 1.45, \"seed456\": -1.84, \"seed789\": -0.78, \"seed0\": -0.29}}, \"notes\": \"5-paired 扩展了之前 3-paired 分析。核心发现：CLS 和 TRAJ 在 variant 级别统计等价（TOST p=0.0071, margin ±2pp），无显著差异（gap=-0.45pp, p=0.499）。确认 D018：per-test CLS 聚合到 variant 级别后与 TRAJ 表现一致。注意：seed 789/0 使用 4-bit 量化推理（低于 bf16 ~2-3pp），但 paired 比较内部一致。结果保存在 home:/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_5paired.json。\", \"checkpoint_path\": \"N/A (statistical analysis)\", \"spec\": {\"checkpoint_path\": \"N/A (analysis task)\", \"log_path\": \"home:/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_5paired.json\"}, \"completed_at\": \"2026-05-12T14:33:41.311Z\", \"log_path\": \"home:/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_5paired.json\"}, \"repo-level-cwm\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T11:07:31.773Z\", \"updated_at\": \"2026-05-12T14:12:06.893Z\", \"hypothesis\": \"Repo-level (SWE-bench) CWM generation baseline — 对比 classification 在 repo-level 的优势是否与函数级一致，验证 complexity hypothesis 跨粒度的稳健性\", \"reproduce\": {\"finished_at\": \"2026-05-12T11:24:12.423Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-12T11:24:13.981Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:24:15.616925+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_cwm.py:122 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。两个 repo-level 实验（cls + cwm）同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\"}}, \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_cwm.py:122 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。两个 repo-level 实验（cls + cwm）同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --max_seq_length 4096 --no_wandb --device cuda:0 && python3 eval_repo_cwm.py --checkpoint_dir checkpoints_repo_cwm/best --max_seq_length 4096 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:3\", \"pid\": 38925, \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"log_path\": \"~/runs/exec-sim-repair-verifier/repo-level-cwm.log\", \"hyperparams\": {\"max_seq_length\": 4096, \"batch_size\": 2, \"grad_accumulation\": 16, \"lr\": \"2e-4\", \"epochs\": 3, \"class_weight_fail\": 1.7009, \"class_weight_pass\": 0.2991}}, \"conclusion\": \"failed\"}, \"repo-level-cls\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T11:07:29.362Z\", \"updated_at\": \"2026-05-12T14:12:05.932Z\", \"hypothesis\": \"Repo-level (SWE-bench) classification verifier — 验证 per-test classification 从函数级 (HumanEval/MBPP) 扩展到 repo-level 的泛化能力，使用 max_seq_length=4096 和 class weighting 处理 85/15 不平衡\", \"reproduce\": {\"finished_at\": \"2026-05-12T11:24:07.920Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-12T11:24:09.838Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:24:11.030736+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_verifier.py:124 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。与 repo-level-cwm 同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\"}}, \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_verifier.py:124 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。与 repo-level-cwm 同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --max_seq_length 4096 --no_wandb --device cuda:0 && python3 eval_repo_verifier.py --checkpoint_dir checkpoints_repo_cls/best --max_seq_length 4096 --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:0\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full/\", \"data_count\": 70748, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"notes\": \"实际在物理 GPU 0 运行（CUDA_VISIBLE_DEVICES 覆盖 bug）。进程正常，Director 指示不中断。\"}, \"conclusion\": \"failed\"}, \"cwm-seed789\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:31:34.311Z\", \"updated_at\": \"2026-05-12T14:00:05.340Z\", \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": 42227, \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed789.log\", \"submitted_at\": \"2026-05-12T12:34:07.017Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 789, \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\", \"wall_clock_seconds\": 5158.3, \"gpu_hours\": 1.43}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T14:00:05.341Z\"}, \"cwm-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:49:43.806Z\", \"updated_at\": \"2026-05-12T13:53:51.849Z\", \"hypothesis\": \"补充 4B CWM seed=0，凑齐 CWM 5-seed (42, 123, 456, 789, 0)，与 5-seed CLS 做完整 paired 统计分析\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output_dir checkpoints_cwm_seed0/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 0 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed0/best/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output eval_cwm_seed0.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2764835\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed0.log\", \"submitted_at\": \"2026-05-12T12:50:46.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 0, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0/best/\", \"wall_clock_seconds\": 3785.6, \"gpu_hours\": 1.05}, \"reproduce\": {\"finished_at\": \"2026-05-12T13:52:02.918Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T13:52:04.195613+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 87.57, \"fail_f1\": 87.93, \"fail_precision\": 82.71, \"fail_recall\": 93.86, \"pass_f1\": 87.18, \"pass_precision\": 93.45, \"pass_recall\": 81.7, \"exact_match_rate\": 84.29, \"eval_loss\": 0.0665, \"train_loss\": 0.2554, \"train_runtime_sec\": 3586}, \"completed_at\": \"2026-05-12T13:53:51.849Z\"}, \"per-test-precision-recall\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T05:51:25.659Z\", \"updated_at\": \"2026-05-12T13:38:59.726Z\", \"spec\": {\"command\": \"python3 eval_precision_recall.py --data_dir data/ --checkpoint_dir checkpoints/best --model_name Qwen/Qwen3-4B --output eval_precision_recall_results.json\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2414143\", \"log_path\": \"~/runs/exec-sim-repair-verifier/per-test-precision-recall.log\", \"submitted_at\": \"2026-05-12T05:51:25.631Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"eval_data\": \"data/test.jsonl\", \"checkpoint_path\": \"n/a (eval only)\", \"wall_clock_seconds\": 1093.5, \"gpu_hours\": 0.3}, \"hypothesis\": \"Per-test 级别 precision/recall 诊断分析 — 按 mutation type 和 problem 粒度评估分类器的诊断质量\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T06:09:39.167Z\", \"metrics\": {\"accuracy\": 87.51, \"fail_precision\": 82.75, \"fail_recall\": 93.64, \"fail_f1\": 87.86, \"pass_precision\": 93.24, \"pass_recall\": 81.8, \"pass_f1\": 87.15, \"FP_count\": 58, \"FN_count\": 178, \"best_mutation\": \"return_value (97.26%)\", \"worst_mutation\": \"off_by_one (82.56%)\", \"bucket_6_10_acc\": 96.3, \"bucket_11plus_acc\": 87.12}, \"notes\": \"扩展诊断分析完成 (eval_pertest_diagnostic.py)。新增发现：114 个 problems 中 48 个 (42.1%) 完美预测；median problem fail-F1=94.12%；return_value 最易 (F1=98.6%), off_by_one 最难 (F1=80.8%)；worst problems: MBPP/397 (40%), HumanEval/130 (46%)。脚本和结果保存在 home:/home/sonny/exec-sim-repair-verifier/eval_pertest_diag.json。\"}, \"cwm-seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:24:58.500Z\", \"updated_at\": \"2026-05-12T13:15:21.097Z\", \"hypothesis\": \"补充 4B CWM seed=123，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，同时为 \\\"scaling widens gap\\\" 叙事提供更强 evidence\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --seed 123 --no_wandb --device cuda:0 && python3 eval_cwm_baseline.py --checkpoint_dir checkpoints_cwm_seed123/best --device cuda:0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": \"cuda:2\", \"pid\": 39006, \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed123.log\", \"submitted_at\": \"2026-05-12T11:49:35.477Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"metrics\": {\"overall_accuracy\": 87.2, \"pass_f1\": 86.95, \"fail_f1\": 87.44, \"exact_match_rate\": 84.44, \"majority_baseline_accuracy\": 51.75, \"accuracy_vs_baseline_gap_pp\": 35.45, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/best\", \"wall_clock_seconds\": 5095.9, \"gpu_hours\": 1.42}, \"reproduce\": {\"finished_at\": \"2026-05-12T13:14:08.136Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T13:14:09.405600+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 87.2, \"pass_f1\": 86.95, \"fail_f1\": 87.44, \"exact_match_rate\": 84.44, \"majority_baseline_accuracy\": 51.75, \"accuracy_vs_baseline_gap_pp\": 35.45, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"completed_at\": \"2026-05-12T13:14:31.380Z\"}, \"cwm-seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:46:14.491Z\", \"updated_at\": \"2026-05-12T12:51:35.823Z\", \"hypothesis\": \"补充 4B CWM seed=456，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，支撑 scaling widens gap 叙事\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output_dir checkpoints_cwm_seed456/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 456 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed456/best/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output eval_cwm_seed456.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2759009\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed456.log\", \"submitted_at\": \"2026-05-12T12:49:16Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 456, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed456/best/\", \"wall_clock_seconds\": 38.4, \"gpu_hours\": 0.01}, \"reproduce\": {\"finished_at\": \"2026-05-12T12:48:36.344Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T12:48:37.698557+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 86.98, \"pass_f1\": 86.66, \"fail_f1\": 87.29, \"pass_precision\": 92.26, \"pass_recall\": 81.7, \"fail_precision\": 82.52, \"fail_recall\": 92.65, \"exact_match_rate\": 84.02, \"train_loss\": 0.2525, \"eval_loss_best\": 0.0551, \"eval_loss_final\": 0.0635, \"train_runtime_sec\": 3440, \"unparseable\": 0}, \"completed_at\": \"2026-05-12T12:49:54.438Z\", \"notes\": \"CWM 4B seed=456 训练和评估正常完成。accuracy=86.98%，与 cwm-baseline (seed=42, 87.51%) 相差 -0.53pp，与 cwm8b-seed123 (seed=123, 86.98%) 完全一致。4B CWM 两个非默认 seed 均为 86.98%，略低于 seed=42 的 87.51%，说明 seed=42 可能略偏高，4B CWM 的真实水平约 87.0-87.5%。exact_match_rate=84.02% 与 baseline 完全一致。pass_f1=86.66% vs baseline 87.31% (-0.65pp)，fail_f1=87.29% vs baseline 87.71% (-0.42pp)，差异很小。4B cls-cwm gap 分析：cls-baseline accuracy=88.36%，CWM 均值约 87.16%，gap ~1.2pp，在不同 seed 下稳定存在，支撑 scaling widens gap 叙事。\"}, \"cls-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:22:27.264Z\", \"updated_at\": \"2026-05-12T12:31:31.781Z\", \"hypothesis\": \"补充 cls seed=0 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性\", \"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best/\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls-seed0.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-12T12:29:09.860Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T12:29:11.272583+00:00\"}]}, \"metrics\": {\"accuracy\": 87.94, \"pass_f1\": 87.79, \"fail_f1\": 88.08, \"pass_precision\": 92.13, \"pass_recall\": 83.84, \"fail_precision\": 84.2, \"fail_recall\": 92.32, \"train_loss\": 0.2347, \"eval_loss\": 0.0963, \"train_runtime_sec\": 4976.75, \"unparseable\": 0}, \"conclusion\": \"success\", \"notes\": \"5-seed cls comparison complete. Seeds: seed0=87.94, seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.00. Cls 5-seed mean=88.43±0.78 (sample std). Traj 5-seed mean=86.30±0.97. Cls outperforms traj by +2.13pp with lower variance (0.78 vs 0.97). All 5 cls seeds pass MVP-B criteria (per-class F1>65%, accuracy gap>=10pp). Classification approach shows consistent advantage over trajectory-level approach across all seeds.\", \"completed_at\": \"2026-05-12T12:31:22.221Z\"}, \"cls-seed789\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:22:01.380Z\", \"updated_at\": \"2026-05-12T11:26:34.278Z\", \"hypothesis\": \"补充 cls seed=789 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed789/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 789 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed789/best --model_name Qwen/Qwen3-4B --output eval_seed789.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2748645\", \"log_path\": \"/home/sonny/runs/exec-sim-repair-verifier/cls-seed789.log\", \"submitted_at\": \"2026-05-12T10:22:13.530Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 789, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/\", \"wall_clock_seconds\": 3849.0, \"gpu_hours\": 1.07}, \"reproduce\": {\"finished_at\": \"2026-05-12T11:24:03.000Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:24:04.214486+00:00\"}]}, \"metrics\": {\"accuracy\": 89, \"pass_f1\": 88.9, \"fail_f1\": 89.1, \"pass_precision\": 93.3, \"pass_recall\": 84.9, \"fail_precision\": 85.2, \"fail_recall\": 93.4}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T11:26:22.575Z\", \"notes\": \"cls seed789 完成。accuracy=89.0%, pass_f1=88.9%, fail_f1=89.1%。5-seed cls 汇总: seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.0, seed0=pending。4 seeds mean=88.56±0.78。与 traj 5-seed mean 86.30±0.97 比，cls 仍领先 ~2.3pp。\"}, \"cls8b-seed123\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T09:23:37.452Z\", \"updated_at\": \"2026-05-12T11:23:13.980Z\", \"hypothesis\": \"验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\", \"reproduce\": {\"finished_at\": \"2026-05-12T11:04:29.187Z\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 596.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 297.69 MiB is free. Process 21715 has 13.57 GiB memory in use. Including non-PyTorch memory, this process has 17.49 GiB memory in use. Of the allocated\", \"completed_at\": \"2026-05-12T09:26:17.270Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T09:26:18.332729+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:04:31.005638+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"notes\": \"8B cls seed123 完成。accuracy=89.4% (vs seed42=90.48%, 差距 1.08pp 在正常波动范围内)。8B cls-cwm gap: seed42=2.81pp (90.48-87.67), seed123=2.42pp (89.4-86.98)。两个 seed 均显示 classification 在 8B 上显著优于 CWM，gap ~2.4-2.8pp 稳定。对比 4B gap ~0.9pp，8B 放大了 cls 的优势，支撑 Pillar 1 (complexity hypothesis)。OOM 后使用 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True 重试成功。\", \"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/best/\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-seed123.log\"}, \"metrics\": {\"accuracy\": 89.4, \"pass_f1\": 89.5, \"fail_f1\": 89.2, \"pass_precision\": 91.2, \"pass_recall\": 87.9, \"fail_precision\": 87.5, \"fail_recall\": 90.9, \"train_loss\": 0.3087, \"eval_loss\": 0.0848, \"train_runtime_sec\": 5666, \"unparseable\": 0}, \"conclusion\": \"success\"}, \"cwm8b-seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T09:23:40.894Z\", \"updated_at\": \"2026-05-12T11:02:59.646Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed123/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 123 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm8b_seed123/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cwm8b_seed123.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"22516\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm8b-seed123.log\", \"submitted_at\": \"2026-05-12T09:23:51.749Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/best/\", \"wall_clock_seconds\": 5947.9, \"gpu_hours\": 1.65}, \"hypothesis\": \"验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\", \"reproduce\": {\"finished_at\": \"2026-05-12T10:59:44.440Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T10:59:46.008298+00:00\"}]}, \"metrics\": {\"accuracy\": 86.98, \"pass_f1\": 86.83, \"fail_f1\": 87.13, \"exact_match_rate\": 84.13}, \"conclusion\": \"success\", \"notes\": \"8B CWM seed123: accuracy=86.98%, pass_f1=86.83%, fail_f1=87.13%, exact_match=84.13%。与 seed42 (87.67%) 相比下降 0.69pp。8B cls-cwm gap: seed42=2.81pp, seed123=3.50pp (90.48-86.98)。Classification 优势在两个 seed 下均稳定。\", \"completed_at\": \"2026-05-12T11:02:59.646Z\"}, \"traj-level-finetuned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T04:01:30.468Z\", \"updated_at\": \"2026-05-12T10:25:09.350Z\", \"hypothesis\": \"Trajectory-level verifier (聚合 per-test → resolved/unresolved) 的 accuracy 低于 per-test classification 聚合后的准确率，验证 per-test granularity 的信息优势\", \"parent\": \"multi-seed-core\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj/best --model_name Qwen/Qwen3-4B --output eval_traj_results.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2364326\", \"log_path\": \"~/runs/exec-sim-repair-verifier/traj-level-finetuned.log\", \"submitted_at\": \"2026-05-12T04:51:11.439Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/traj_train.jsonl\", \"data_count\": 8052, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"n/a (training from scratch)\", \"eval_data\": \"data/traj_test.jsonl\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_traj/best/\", \"wall_clock_seconds\": 3366.1, \"gpu_hours\": 0.94}, \"notes\": \"Trajectory-level 85.66% vs per-test classification 88.41%。⚠️ 此比较是不同粒度（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后 gap=-0.37pp, p=0.646，两者无显著差异。Per-test 的真正优势在 diagnostic granularity（知道哪个测试失败），不在 raw accuracy。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T05:47:17.506Z\", \"metrics\": {\"accuracy\": 85.66, \"unresolved_f1\": 87.5, \"resolved_f1\": 83.18, \"per_test_consistency\": 79.94}}, \"traj-level-seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T07:00:59.345Z\", \"updated_at\": \"2026-05-12T10:25:07.158Z\", \"spec\": {\"log_path\": \"~/runs/exec-sim-repair-verifier/traj-level-seed456.log\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456/best\", \"wall_clock_seconds\": 2001.8, \"gpu_hours\": 0.56}, \"reproduce\": {\"finished_at\": \"2026-05-12T08:21:55.462Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T08:21:56.909045+00:00\"}]}, \"metrics\": {\"overall_accuracy\": 87.4, \"unresolved_f1\": 88.7, \"resolved_f1\": 85.8, \"unresolved_precision\": 85.7, \"unresolved_recall\": 91.9, \"resolved_precision\": 89.7, \"resolved_recall\": 82.3, \"consistency_rate\": 78.8}, \"conclusion\": \"success\", \"hypothesis\": \"验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性\", \"notes\": \"Traj-level seed 456: accuracy=87.4%, unresolved_f1=88.7%, resolved_f1=85.8%, consistency=78.8%。\\n\\n⚠️ 注意：per-test accuracy vs traj accuracy 的直接比较是不同粒度对比（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后无显著差异 (gap=-0.37pp, p=0.646)。Per-test 的优势在 diagnostic granularity 而非 raw accuracy。\", \"completed_at\": \"2026-05-12T08:25:05.975Z\"}, \"traj-level-seed789\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:23:44.159Z\", \"updated_at\": \"2026-05-12T10:25:04.794Z\", \"spec\": {\"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789/best/\", \"log_path\": \"~/runs/exec-sim-repair-verifier/traj-level-seed789.log\"}, \"hypothesis\": \"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\", \"parent\": \"traj-level-finetuned\", \"reproduce\": {\"finished_at\": \"2026-05-12T09:04:01.723Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T09:04:03.029128+00:00\"}]}, \"metrics\": {\"overall_accuracy\": 87.31, \"unresolved_f1\": 88.27, \"resolved_f1\": 86.17, \"unresolved_precision\": 87.41, \"unresolved_recall\": 89.15, \"resolved_precision\": 87.18, \"resolved_recall\": 85.18, \"consistency_rate\": 76.74, \"eval_loss\": 0.1115, \"train_loss\": 0.2255, \"train_runtime_sec\": 2055.9}, \"conclusion\": \"success\", \"notes\": \"seed789: accuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74, train_loss=0.2255, eval_loss=0.1115, wall_time=34.3min。\\n\\n5-seed traj-level 汇总: mean accuracy=86.30±0.97, unresolved_f1=87.76±0.68, resolved_f1=84.42±1.45。\\n\\n⚠️ 注意：per-test accuracy (88.41%) vs traj accuracy (86.30%) 的直接比较是不同粒度对比（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后 gap=-0.37pp, p=0.646，无显著差异。Per-test 的真正优势在 diagnostic granularity 而非 raw accuracy。\", \"completed_at\": \"2026-05-12T09:06:35.540Z\"}, \"traj-level-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:23:47.402Z\", \"updated_at\": \"2026-05-12T10:23:10.812Z\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed0/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 0 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed0/best --model_name Qwen/Qwen3-4B --output eval_traj_seed0.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2611195\", \"log_path\": \"~/runs/exec-sim-repair-verifier/traj-level-seed0.log\", \"submitted_at\": \"2026-05-12T09:07:53.148Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed0/best/\", \"wall_clock_seconds\": 4444.1, \"gpu_hours\": 1.23}, \"hypothesis\": \"补充第 5 seed (0) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\", \"parent\": \"traj-level-finetuned\", \"reproduce\": {\"finished_at\": \"2026-05-12T10:17:50.011Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T10:17:51.159128+00:00\"}]}, \"notes\": \"clustered bootstrap CI 分析（跨 3 seeds）发现：将 cls 预测聚合到 variant 级别后，cls vs traj gap 消失。Pooled gap = -0.37pp, 95% CI [-1.89, +1.07], p=0.646。原先 per-test accuracy (88.41%) vs traj accuracy (86.46%) 的 2.23pp gap 是苹果橘子比较——前者评估 1890 个测试，后者评估 1032 个变体。方法论重要发现：per-test 的优势不在 variant-level accuracy，而在 diagnostic granularity（知道哪个测试失败）。\", \"metrics\": {\"overall_accuracy\": 85.66, \"unresolved_f1\": 87.37, \"resolved_f1\": 83.41, \"unresolved_precision\": 82.71, \"unresolved_recall\": 92.59, \"resolved_precision\": 90.07, \"resolved_recall\": 77.66, \"consistency_rate\": 79.55, \"train_loss\": 0.225, \"eval_loss_epoch1\": 0.0949, \"eval_loss_epoch2\": 0.0885, \"eval_loss_epoch3\": 0.1011, \"train_runtime_sec\": 4071.3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T10:21:57.297Z\"}, \"per-test-majority-voting\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:18:14.827Z\", \"updated_at\": \"2026-05-12T10:06:09.994Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json --K 3 --temperature 0.7 --gpu 0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"21710\", \"log_path\": \"~/runs/exec-sim-repair-verifier/per-test-majority-voting.log\", \"submitted_at\": \"2026-05-12T09:22:45.956Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-4B + LoRA\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"wall_clock_seconds\": 643.2, \"gpu_hours\": 0.18}, \"hypothesis\": \"Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy\", \"reproduce\": {\"finished_at\": \"2026-05-12T09:25:13.934Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T09:25:15.074858+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"accuracy_greedy\": 87.51, \"accuracy_majority_vote_K3\": 86.83, \"delta_accuracy\": -0.69, \"fail_f1_greedy\": 87.86, \"fail_f1_mv\": 87.29, \"pass_f1_greedy\": 87.15, \"pass_f1_mv\": 86.33, \"unanimous_rate\": 93.3, \"split_samples\": 127, \"flipped_correct_to_wrong\": 28, \"flipped_wrong_to_correct\": 15, \"net_flips\": -13, \"per_pass_accuracy\": [86.72, 86.83, 87.62], \"wall_time_greedy_sec\": 30, \"wall_time_mv_sec\": 120}, \"notes\": \"Majority voting K=3 (temperature=0.7) 无效，accuracy 从 87.51% 降至 86.83% (-0.69pp)。93.3% 样本三次预测一致（unanimous），仅 127 个分歧样本。Flip 分析：28 个原正确样本被 voting 翻错，15 个原错误样本被 voting 翻对，净损失 13 个。模型错误是系统性偏差而非随机噪声，voting 无法修复。推理时间从 30s 增至 120s (4x)，无收益。结论：single-pass greedy 是最优推理策略，majority voting 不值得采用。\", \"completed_at\": \"2026-05-12T09:33:29.181Z\"}, \"block-corr-empirical\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:20:56.388Z\", \"updated_at\": \"2026-05-12T09:27:14.694Z\", \"spec\": {\"plan_id\": \"block-corr-empirical\", \"command\": \"python3 block_correlation_analysis.py --data_dir data --checkpoint_dir checkpoints/best --model_name Qwen/Qwen3-4B --output block_corr_results.json --batch_size 4 --n_permutations 2000\", \"server\": \"home-1x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-4B + LoRA (seed 42)\", \"seed\": 42, \"checkpoint_source\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"log_path\": \"/tmp/block_corr.log\"}, \"hypothesis\": \"训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的 block-correlation 假设\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T08:36:39.118Z\", \"metrics\": {\"icc\": 0.1909, \"icc_p_value\": 0, \"design_effect\": 3.9676, \"overall_error_rate\": 0.1249, \"all_correct_observed\": 46, \"all_correct_expected_iid\": 16.35, \"all_correct_ratio\": 2.81, \"error_std_observed\": 0.1531, \"error_std_expected_iid\": 0.0811, \"error_std_ratio\": 1.89, \"n_samples\": 1890, \"n_problems\": 114, \"inference_precision\": \"bfloat16\", \"version\": \"v2_corrected\"}, \"notes\": \"v2 修正版：用 bfloat16 推理替代 v1 的 4-bit 量化。accuracy 偏差已消除 (87.51% = 主评估)。ICC 从 0.233 降至 0.191（4-bit 量化误差本身也是 block-correlated 的），但结论不变：block-correlation 显著存在 (p<0.0001)，DEFF=3.97。\"}, \"model-size-scaling-cwm8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T05:08:45.037Z\", \"updated_at\": \"2026-05-12T09:23:59.200Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm8b/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cwm8b_results.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"11522\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/model-size-scaling-cwm8b.log\", \"submitted_at\": \"2026-05-12T07:45:44.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/best/\", \"wall_clock_seconds\": 5867.9, \"gpu_hours\": 1.63}, \"hypothesis\": \"Qwen3-8B CWM generation baseline 在函数级的 F1 与同尺寸 classification 的差距，相比 4B 尺度（差距 0.2pp）是否扩大或缩小\", \"reproduce\": {\"finished_at\": \"2026-05-12T09:21:05.535Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T09:21:07.119998+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.67, \"pass_f1\": 87.57, \"fail_f1\": 87.77, \"pass_precision\": 91.53, \"pass_recall\": 83.95, \"fail_precision\": 84.19, \"fail_recall\": 91.67, \"exact_match_rate\": 84.39, \"train_loss\": 0.229, \"eval_loss_epoch1\": 0.0554, \"eval_loss_epoch2\": 0.0512, \"eval_loss_epoch3\": 0.0564, \"train_runtime_sec\": 5570, \"unparseable\": 0}, \"completed_at\": \"2026-05-12T09:23:32.111Z\", \"notes\": \"8B CWM 相比 4B 几乎无提升: accuracy 87.67 vs 87.51 (+0.16pp), pass_f1 87.57 vs 87.31 (+0.26pp), fail_f1 87.77 vs 87.71 (+0.06pp), exact_match 84.39 vs 84.02 (+0.37pp)。CWM对模型容量增加不敏感，瓶颈可能在于生成精确错误信息的任务复杂度本身，而非模型能力不足。训练3 epoch完成，train_loss=0.229（低于cls的0.3125），eval_loss在epoch2最低(0.0512)。关键对比：8B cls-cwm gap (accuracy 2.81pp, pass_f1 3.29pp, fail_f1 2.29pp) 远大于4B的gap (accuracy 0.90pp, pass_f1 1.10pp, fail_f1 0.69pp)。Gap扩大约3倍，强烈支持complexity hypothesis——classification的scaling效率显著优于CWM generation。\"}, \"model-size-scaling-cls8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T05:08:43.293Z\", \"updated_at\": \"2026-05-12T09:23:53.485Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cls8b/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 42 --no_wandb && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_cls8b/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cls8b_results.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"11443\", \"log_path\": \"/root/runs/exec-sim-repair-verifier/model-size-scaling-cls8b.log\", \"submitted_at\": \"2026-05-12T07:45:42.174Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/train.jsonl\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/best/\", \"wall_clock_seconds\": 5868.8, \"gpu_hours\": 1.63}, \"hypothesis\": \"Qwen3-8B classification 在函数级 per-test 任务上的 F1 高于 4B (87.5%)，且与 8B CWM 的差距大于 4B 尺度的差距（0.2pp），验证 classification 优势随模型增大扩大\", \"reproduce\": {\"finished_at\": \"2026-05-12T09:21:04.045Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T09:21:05.418335+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 90.48, \"pass_f1\": 90.86, \"fail_f1\": 90.06, \"pass_precision\": 90.22, \"pass_recall\": 91.51, \"fail_precision\": 90.76, \"fail_recall\": 89.36, \"train_loss\": 0.3125, \"eval_loss_epoch1\": 0.0723, \"eval_loss_epoch2\": 0.0741, \"eval_loss_epoch3\": 0.0783, \"train_runtime_sec\": 5614, \"unparseable\": 0}, \"completed_at\": \"2026-05-12T09:23:30.976Z\", \"notes\": \"8B classification 显著优于 4B baseline: accuracy 90.48 vs 88.41 (+2.07pp), pass_f1 90.86 vs 88.41 (+2.45pp), fail_f1 90.06 vs 88.40 (+1.66pp)。训练3 epoch完成，train_loss=0.3125，eval_loss在epoch1最低(0.0723)后略升(epoch3=0.0783)，有轻微过拟合但不影响最终效果。Scaling 明确有效。与同尺寸8B CWM对比：cls-cwm accuracy gap从4B的0.90pp扩大到8B的2.81pp (+1.91pp)，pass_f1 gap从1.10pp扩大到3.29pp (+2.19pp)，fail_f1 gap从0.69pp扩大到2.29pp (+1.60pp)。Classification在模型增大时获益远超CWM generation，支持complexity hypothesis。\"}, \"llm-judge-32b-zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T05:08:47.931Z\", \"updated_at\": \"2026-05-12T08:21:22.141Z\", \"spec\": {\"command\": \"python eval_llm_judge.py --model /root/autodl-tmp/models/Qwen/Qwen3-32B --quantize-4bit --test-file data/test.jsonl --output eval_llm_judge_32b.json\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"13452\", \"log_path\": \"~/runs/exec-sim-repair-verifier/llm-judge-32b-zeroshot.log\", \"submitted_at\": \"2026-05-12T08:09:27.519Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen3-32B-4bit\", \"seed\": 0, \"checkpoint_path\": \"n/a (eval only, zero-shot)\", \"wall_clock_seconds\": 471, \"gpu_hours\": 0.13}, \"hypothesis\": \"Qwen3-32B 4-bit 量化 zero-shot 是否可达 fine-tuned 4B 水平——若是则 fine-tuning 价值存疑，若否则确认小模型 fine-tuning 的 Pareto 优势\", \"reproduce\": {\"finished_at\": \"2026-05-12T08:19:22.507Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T08:19:23.592438+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 71.69, \"majority_baseline\": 51.75, \"accuracy_vs_baseline_gap\": 19.95, \"fail_precision\": 64.4, \"fail_recall\": 92.43, \"fail_f1\": 75.91, \"pass_precision\": 88.12, \"pass_recall\": 52.35, \"pass_f1\": 65.68, \"unparseable_predictions\": 0, \"trajectory_accuracy\": 99.12, \"trajectory_total_problems\": 114, \"trajectory_correct\": 113, \"trajectory_true_resolved\": 1, \"trajectory_pred_resolved\": 0}, \"completed_at\": \"2026-05-12T08:20:44.265Z\", \"notes\": \"Qwen3-32B 4-bit zero-shot accuracy=71.69%, 远低于 fine-tuned 4B 的 88.41%（差距 16.7pp），确认小模型 fine-tuning 的 Pareto 优势。\\n\\n## Scaling 趋势 (zero-shot)\\n- 8B → 32B: accuracy 64.4% → 71.69% (+7.3pp)\\n- 模型规模增大 4x 仅带来约 7pp 提升，外推到更大模型也难以弥补 16.7pp 差距\\n- pass_recall 从 35.1%(8B) 提升到 52.35%(32B)，但仍远低于 fine-tuned 4B 的均衡水平\\n\\n## Zero-shot 的系统性偏差\\n- 所有 zero-shot 模型都严重偏向预测 FAIL（fail_recall>92%, pass_recall<53%）\\n- Fine-tuned 4B 实现了均衡的 precision/recall（~88%/88%），这是 zero-shot prompting 无法达到的\\n\\n## Trajectory-level\\n- 32B zero-shot trajectory accuracy=99.12%（113/114），与 8B 和 fine-tuned 类似\\n- Trajectory-level 区分度不足以区分方法优劣，sample-level metrics 才是关键\\n\\n## 结论\\n8x 参数量的 zero-shot 推理无法替代小模型 fine-tuning。Fine-tuned 4B 在 accuracy、F1 和 class balance 上全面碾压 32B zero-shot，且推理成本低 8x+。\\n\\nWall clock: 471s (含模型加载 73s), 1 GPU, 0.13 GPU-hours。\"}, \"llm-judge-8b-zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T05:08:46.511Z\", \"updated_at\": \"2026-05-12T08:14:26.582Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 llm_judge_zeroshot.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --data_dir data/ --output eval_llm_judge_8b.json --gpu 0\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"13295\", \"log_path\": \"~/runs/exec-sim-repair-verifier/llm-judge-8b-zeroshot.log\", \"submitted_at\": \"2026-05-12T08:09:25.634Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/test.jsonl\", \"data_count\": 1890, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 0, \"checkpoint_path\": \"n/a (eval only, zero-shot)\", \"wall_clock_seconds\": 300.9, \"gpu_hours\": 0.08}, \"hypothesis\": \"Qwen3-8B zero-shot LLM-as-judge 在 per-test 和 trajectory-level 判别上均低于 fine-tuned 4B 模型，确认 fine-tuning 的必要性\", \"reproduce\": {\"finished_at\": \"2026-05-12T08:12:32.985Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T08:12:34.081464+00:00\"}]}, \"metrics\": {\"overall_accuracy\": 64.4, \"fail_precision\": 57.9, \"fail_recall\": 95.8, \"fail_f1\": 72.2, \"pass_precision\": 90, \"pass_recall\": 35.1, \"pass_f1\": 50.5, \"majority_baseline\": 51.7, \"accuracy_vs_baseline_gap\": 12.6, \"traj_accuracy\": 99.1, \"traj_problems\": 114, \"traj_true_resolved\": 1, \"traj_pred_resolved\": 0, \"confusion\": {\"TP_fail\": 874, \"FN_fail\": 38, \"FP_fail\": 635, \"TN_fail\": 343}}, \"conclusion\": \"success\", \"notes\": \"Qwen3-8B zero-shot LLM-as-judge 远低于 fine-tuned 4B：accuracy 64.4% vs 88.41% (-24pp), fail_f1 72.2% vs 88.4% (-16.2pp), pass_f1 50.5% vs 88.4% (-37.9pp)。模型严重偏向预测 FAIL（1509/1890 预测为 FAIL），fail recall 95.8% 但 precision 仅 57.9%，pass recall 仅 35.1%。Trajectory-level 99.1% accuracy 无意义（114 problems 中仅 1 个 resolved，模型全部预测 unresolved）。结论：fine-tuning 必要性强验证，即使更大的 zero-shot 模型（8B）也无法匹敌更小的 fine-tuned 模型（4B），差距达 24pp。\", \"completed_at\": \"2026-05-12T08:14:26.582Z\"}, \"traj-level-seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T06:09:51.802Z\", \"updated_at\": \"2026-05-12T08:05:28.994Z\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_traj_seed123/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 123 --no_wandb && python3 eval_traj_verifier.py --data_dir data/ --checkpoint_dir checkpoints_traj_seed123/best --model_name Qwen/Qwen3-4B --output eval_traj_seed123.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2427622\", \"log_path\": \"~/runs/exec-sim-repair-verifier/traj-level-seed123.log\", \"submitted_at\": \"2026-05-12T06:10:21.885Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/traj_train.jsonl\", \"data_count\": 8052, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 123, \"checkpoint_source\": \"n/a (training from scratch)\", \"eval_data\": \"data/traj_test.jsonl\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed123/best\", \"wall_clock_seconds\": 6907.1, \"gpu_hours\": 1.92}, \"hypothesis\": \"验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性\", \"parent\": \"traj-level-finetuned\", \"reproduce\": {\"finished_at\": \"2026-05-12T07:50:37.896Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T07:50:38.908178+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 85.47, \"unresolved_f1\": 87, \"resolved_f1\": 83.52, \"unresolved_precision\": 83.53, \"unresolved_recall\": 90.78, \"resolved_precision\": 88.17, \"resolved_recall\": 79.33, \"consistency_rate\": 78.59}, \"completed_at\": \"2026-05-12T08:05:28.994Z\"}, \"oracle-f2p-stratified\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T06:06:58.065Z\", \"updated_at\": \"2026-05-12T06:07:22.217Z\", \"spec\": {\"command\": \"python3 oracle_f2p_stratified.py --output oracle_f2p_stratified_results.json\", \"server\": \"home-1x5090\", \"data_path\": \"n/a (simulation using SWE-bench F2P distribution)\", \"data_count\": 0, \"model_name\": \"n/a (oracle simulation)\", \"seed\": 42, \"checkpoint_path\": \"n/a\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/oracle_f2p_stratified_results.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T06:07:14.982Z\", \"hypothesis\": \"Per-test verifier 的优势集中在 F2P test count ≥2 的实例上，T=1 时退化为 trajectory-level（无信息增益）\", \"metrics\": {\"T1_pct\": 68.7, \"T1_block_adv\": -0.09, \"T2_pct\": 19.1, \"T2_block_adv\": 31.69, \"T3_5_pct\": 7.1, \"T3_5_block_adv\": 40.74, \"T6plus_pct\": 5.1, \"T6plus_block_adv\": 40.06, \"overall_block_adv\": 10.93, \"T2_contribution_pct\": 55.3}}, \"trace-then-judge\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T03:19:47.150Z\", \"updated_at\": \"2026-05-12T05:06:12.473Z\", \"hypothesis\": \"Trace-then-judge (生成 ~50 tokens reasoning trace 再判 pass/fail) 的 F1 与 direct classification 相当，排除 classification 优势来自跳过 reasoning 的可能\", \"parent\": \"multi-seed-core\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_trace_judge.py ... && python3 eval_trace_judge.py ...\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2310152\", \"log_path\": \"~/runs/exec-sim-repair-verifier/trace-then-judge.log\", \"submitted_at\": \"2026-05-12T03:41:58.309Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"n/a (training from scratch)\", \"eval_data\": \"data/trace_test.jsonl\", \"wall_clock_seconds\": 4130.4, \"gpu_hours\": 1.15}, \"conclusion\": \"failed\", \"notes\": \"进程在评估 1600/1890 (~85%) 时意外死亡，eval_trace_*.json 未生成，结果不可用。方法论缺陷（trace 模板泄漏 mutation type）+ 评估未完成。\", \"completed_at\": \"2026-05-12T04:50:48.684Z\"}, \"mvp-b-train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T19:24:04.462Z\", \"updated_at\": \"2026-05-12T04:44:41.807Z\", \"hypothesis\": \"Qwen3-4B LoRA 在函数级 (code, test) → pass/fail 上可达 per-class F1 >65%, accuracy > majority+10pp\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints/best/ --output eval_results.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2102798\", \"log_path\": \"~/runs/exec-sim-repair-verifier/mvp-b-train.log\", \"submitted_at\": \"2026-05-11T20:06:48.617Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 4384.0, \"gpu_hours\": 1.22}, \"notes\": \"OOM at step 15 (2nd attempt). Root cause: cross_entropy logits fp32 = 9.4GB + model 26GB > 32GB VRAM. Fix: bs 8→2, grad_accum 4→16, effective bs unchanged at 32. Retry count: 2.\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 0.875, \"pass_f1\": 0.871, \"fail_f1\": 0.879, \"pass_precision\": 0.9324, \"pass_recall\": 0.818, \"fail_precision\": 0.8275, \"fail_recall\": 0.9364, \"majority_baseline\": 0.52, \"accuracy_vs_majority_gap\": 0.355}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints/best/\", \"completed_at\": \"2026-05-11T21:19:52.606Z\"}, \"multi-seed-core\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T22:31:56.650Z\", \"updated_at\": \"2026-05-12T04:44:24.731Z\", \"hypothesis\": \"Classification verifier 在 3 seeds 下稳定达到 ~87% accuracy/F1，CWM ≈ classification 的 null result robust\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed42/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed42/best/ --output eval_seed42.json && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed123/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 123 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed123/best/ --output eval_seed123.json && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed456/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 456 && python3 eval_verifier.py --data_dir data/ --checkpoint_dir checkpoints_seed456/best/ --output eval_seed456.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2135757\", \"log_path\": \"~/runs/exec-sim-repair-verifier/multi-seed-core.log\", \"submitted_at\": \"2026-05-11T23:56:06.403Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 17298.3, \"gpu_hours\": 4.81}, \"metrics\": {\"seed42\": {\"accuracy\": 87.83, \"pass_f1\": 88.06, \"fail_f1\": 87.59, \"pass_precision\": 89.45, \"pass_recall\": 86.71, \"fail_precision\": 86.2, \"fail_recall\": 89.04}, \"seed123\": {\"accuracy\": 89.52, \"pass_f1\": 89.64, \"fail_f1\": 89.4, \"pass_precision\": 91.76, \"pass_recall\": 87.63, \"fail_precision\": 87.34, \"fail_recall\": 91.56}, \"seed456\": {\"accuracy\": 87.88, \"pass_f1\": 87.53, \"fail_f1\": 88.21, \"pass_precision\": 93.6, \"pass_recall\": 82.21, \"fail_precision\": 83.12, \"fail_recall\": 93.97}, \"mean\": {\"accuracy\": 88.41, \"pass_f1\": 88.41, \"fail_f1\": 88.4}, \"std\": {\"accuracy\": 0.96, \"pass_f1\": 1.1, \"fail_f1\": 0.92}}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed{42,123,456}/best/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T04:44:24.731Z\"}, \"cwm-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T21:19:57.582Z\", \"updated_at\": \"2026-05-11T22:27:46.303Z\", \"hypothesis\": \"CWM generation baseline (预测 execution output) 的 per-class F1 显著低于 classification (87.1/87.9%)，验证 task reformulation (generation→classification) 的有效性\", \"parent\": \"mvp-b-train\", \"spec\": {\"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_cwm/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 42 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm/best/ --output eval_cwm_results.json\\\"\", \"server\": \"home-1x5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"2126876\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-baseline.log\", \"submitted_at\": \"2026-05-11T21:28:15.525Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"sonny\", \"wall_clock_seconds\": 3570.8, \"gpu_hours\": 0.99}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm/best\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 87.51, \"pass_f1\": 87.31, \"fail_f1\": 87.71, \"pass_precision\": 92.06, \"pass_recall\": 83.03, \"fail_precision\": 83.53, \"fail_recall\": 92.32, \"exact_match_rate\": 84.02, \"train_loss\": 0.2534, \"eval_loss\": 0.0644, \"train_runtime_sec\": 3439, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"notes\": \"CWM generation baseline 与 classification 结果几乎持平，假设未得到验证。CWM: acc=87.51%, pass_f1=87.31%, fail_f1=87.71% vs Classification: acc=87.5%, pass_f1=87.1%, fail_f1=87.9%。差值: acc +0.01pp, pass_f1 +0.21pp, fail_f1 -0.19pp。CWM 额外提供 exact_match_rate=84.02%（可用于更细粒度的错误定位）。Task reformulation (generation→classification) 在 pass/fail 判别上没有带来显著提升，但 classification 更轻量高效。IndexError/OverflowError 类别 CWM 表现较差（exact_match 25%/0%），说明生成式方法在罕见错误类型上泛化不足。\", \"completed_at\": \"2026-05-11T22:27:46.303Z\"}, \"mvp-a-oracle-sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T18:02:03.506Z\", \"updated_at\": \"2026-05-11T20:05:44.123Z\", \"hypothesis\": \"Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）\", \"spec\": {\"command\": \"python3 mvp_a_oracle_sim.py\", \"server\": \"home-1x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/\", \"data_count\": 10000, \"model_name\": \"oracle-sim\", \"seed\": 42, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/mvp_a_results.json\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/mvp_a_results.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-11T18:39:41.540Z\", \"metrics\": {\"original_T12\": {\"iid_adv_70_85\": 0.1849, \"block_adv_70_85\": 0.3618}, \"sensitivity_T3\": {\"iid_adv_70_85\": 0.0761, \"block_adv_70_85\": 0.3839}, \"sensitivity_T7\": {\"iid_adv_70_85\": 0.1351, \"block_adv_70_85\": 0.3833}, \"sensitivity_T11\": {\"iid_adv_70_85\": 0.1863, \"block_adv_70_85\": 0.3639}, \"real_f2p_T1\": {\"iid_adv_70_85\": 0.0198, \"block_adv_70_85\": 0.1088, \"pct_T1\": 0.687, \"T_median\": 1, \"T_mean\": 2.3}, \"swebench_f2p_stats\": {\"median\": 1, \"mean\": 3, \"P75\": 2, \"P90\": 3}, \"total_reg5pct\": {\"iid_adv_70_85\": -0.01, \"block_adv_70_85\": -0.005, \"pass\": false}, \"total_reg10pct\": {\"iid_adv_70_85\": 0.132, \"block_adv_70_85\": 0.083, \"pass\": true}, \"total_reg20pct\": {\"iid_adv_70_85\": 0.357, \"block_adv_70_85\": 0.278, \"pass\": true}}, \"notes\": \"Total (F2P+P2P) simulation completed (2026-05-11). Real SWE-bench dist: F2P median=1, P2P median=50.5, Total median=52. Results by P2P regression rate: (1) reg=5%: per-test advantage NEGATIVE for both i.i.d.(-1.0%) and block(-0.5%) — BOTH FAIL. (2) reg=10%: clear advantage, PASS. (3) reg=20%: dominant, PASS. CRITICAL UPDATE: Real P2P regression rate measured at ~1% (mean), 0% (median) from CoderForge data (106 wrong patches). 77% of wrong patches break zero P2P tests. Real scenario is WORSE than reg=5% simulation. Per-test advantage on Total tests is NEGATIVE in practice. Remaining value: F2P-only discrimination (block-corr advantage=10.9%), but F2P median=1 limits this to 31% of instances with F2P≥2.\"}, \"p2p-regression-rate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T20:03:33.129Z\", \"updated_at\": \"2026-05-11T20:04:11.093Z\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/p2p_regression_analysis.md\", \"log_path\": \"/home/sonny/exec-sim-repair-verifier/p2p_regression_analysis.md\", \"completed_at\": \"2026-05-11T20:04:02.945Z\", \"notes\": \"P2P regression rate measured at 1.04% mean / 0% median on CoderForge Qwen3-32B SWE-bench Verified data (106 unresolved patches). 77% of incorrect patches break zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair). Project premise partially invalidated for P2P.\"}, \"mvp-b-data-prep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-11T18:02:03.573Z\", \"updated_at\": \"2026-05-11T19:00:11.658Z\", \"hypothesis\": \"HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot\", \"spec\": {\"command\": \"python3 -u build_data.py --output-dir data --seed 42\", \"server\": \"home-1x5090\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 19076, \"model_name\": \"n/a\", \"seed\": 42}, \"checkpoint_path\": \"n/a\", \"log_path\": \"/tmp/build_data.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-11T19:00:03.494Z\", \"notes\": \"Total: 19,076 samples (HumanEval 5,575 + MBPP 13,501). Class balance: pass 52.0% / fail 48.0%. Majority baseline: 52.0%. Splits: train=15,290 val=1,896 test=1,890. 5 mutation types: operator_swap (66.1% fail), return_value (87.5%), boundary_removal (72.3%), variable_swap (51.6%), off_by_one (42.5%). All labels verified by actual test execution (5s timeout).\"}}, \"count\": 35, \"total\": 35, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1714}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6e6eD7rAZBpbT3zr5BER3`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_*\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "50008257-233a-4d4e-9188-90882896be4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrfPxeE8T4AHqqauFTcCMf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2371,
+      "cache_read_input_tokens": 23384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2371
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T16:07:02.848Z_
+
+<details><summary>↩ Tool result · `toolu_01E6e6eD7rAZBpbT3zr5BER3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ec475d46-09ff-4d61-95c6-0f849b088646",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q6ak27oKGPvw9viH1jFXKV`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "90f35407-5a8e-4503-b801-341f96bbaf52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013VcTzuCgVhddVYdWGoFNxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 25755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 933
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T16:07:09.489Z_
+
+<details><summary>↩ Tool result · `toolu_01Q6ak27oKGPvw9viH1jFXKV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_trace_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/eval_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "623e1eb9-046a-42d9-86da-ff683166f4a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed0.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed0.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_trace_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed42.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed0.json\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed456.json\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_trace_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed42.json\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\n/home/sonny/exec-sim-repair-verifier/eval_seed123.json\\n/home/sonny/exec-sim-repair-verifier/eval_results.json\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LESRgDoZoCo96ENCJx5Kos`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n# Find CLS and CWM experiments\nfor exp in result:\n    exp_id = exp.get('exp_id', '')\n    if 'cls' in exp_id.lower() or 'cwm' in exp_id.lower():\n        print(f\\\"=== {exp_id} ===\\\")\n        print(f\\\"  status: {exp.get('status')}\\\")\n        print(f\\\"  conclusion: {exp.get('conclusion')}\\\")\n        print(f\\\"  metrics: {json.dumps(exp.get('metrics', {}), indent=2)}\\\")\n        spec = exp.get('spec', {})\n        if spec:\n            print(f\\\"  checkpoint_path: {spec.get('checkpoint_path', 'N/A')}\\\")\n            print(f\\\"  log_path: {spec.get('log_path', 'N/A')}\\\")\n            print(f\\\"  seed: {spec.get('seed', 'N/A')}\\\")\n            print(f\\\"  server: {spec.get('server', 'N/A')}\\\")\n        print()\n\" 2>&1 | head -200",
+  "description": "Extract CLS and CWM experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "0503019c-1100-4baa-acb4-a0fd94916fae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013VcTzuCgVhddVYdWGoFNxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 25755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 933
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T16:07:12.975Z_
+
+<details><summary>↩ Tool result · `toolu_01LESRgDoZoCo96ENCJx5Kos`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    exp_id = exp.get('exp_id', '')
+             ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e46ab3b6-5925-4cf4-ab89-75f210db25aa",
+  "tool_use_result": {
+    "stdout": "Traceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    exp_id = exp.get('exp_id', '')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019kBFta4kU3LkStbo5uX2KP`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelif isinstance(result, list):\n    print(len(result))\n    if result:\n        print(type(result[0]))\n        if isinstance(result[0], dict):\n            print(list(result[0].keys()))\n        elif isinstance(result[0], str):\n            r0 = json.loads(result[0])\n            print(type(r0), list(r0.keys())[:10] if isinstance(r0, dict) else '')\n\"",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "160b91b7-d8eb-4d70-9d4c-80ae0e214165",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNgvhBZDnfHDQYmbmGY9vQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 26688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T16:07:21.005Z_
+
+<details><summary>↩ Tool result · `toolu_019kBFta4kU3LkStbo5uX2KP`</summary>
+
+```text
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "aed24474-3745-47b4-9c4a-35e2ded6b03b",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\n['success', 'data', 'error', 'metadata']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WQKbyqkwz579WkjnVhbhoj`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']\n# Find CLS and CWM experiments\nfor exp_id, exp in experiments.items():\n    if 'cls' in exp_id.lower() or 'cwm' in exp_id.lower():\n        print(f'=== {exp_id} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        metrics = exp.get('metrics', {})\n        print(f'  metrics: {json.dumps(metrics, indent=2) if metrics else \\\"NONE\\\"}')\n        spec = exp.get('spec', {})\n        if spec:\n            print(f'  checkpoint_path: {spec.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n            print(f'  log_path: {spec.get(\\\"log_path\\\", \\\"N/A\\\")}')\n            print(f'  seed: {spec.get(\\\"seed\\\", \\\"N/A\\\")}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n        print()\n\" 2>&1 | head -200",
+  "description": "Extract CLS and CWM experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "9bf87ab2-8083-4593-b08a-6da0904c13a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYAh2VvWRg7FWGRWzs3a2B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 28041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 382
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T16:07:28.858Z_
+
+<details><summary>↩ Tool result · `toolu_01WQKbyqkwz579WkjnVhbhoj`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "d3186739-e62e-4677-bc6d-69735d075ed9",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01E9PmLRxCu3hH5Q2yv7cSPf`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nif isinstance(result, dict) and 'data' in result:\n    experiments = result['data']\n    if isinstance(experiments, dict):\n        for exp_id, exp in experiments.items():\n            print(exp_id)\n    elif isinstance(experiments, list):\n        for exp in experiments:\n            if isinstance(exp, dict):\n                print(exp.get('exp_id', 'no_id'))\n            else:\n                print(type(exp))\nelse:\n    # Maybe result itself is the list\n    print('result keys:', list(result.keys()) if isinstance(result, dict) else type(result))\n\" 2>&1 | head -50",
+  "description": "List all experiment IDs in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ac61c3d0-670b-44ce-b431-9b67302ea22f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142R1pZvRgGqWLuZrvmmDLf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 28423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 516
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T16:07:34.246Z_
+
+<details><summary>↩ Tool result · `toolu_01E9PmLRxCu3hH5Q2yv7cSPf`</summary>
+
+```text
+experiments
+count
+total
+baseline
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "840ea920-adb8-4801-bc05-b6c7f91d14fc",
+  "tool_use_result": {
+    "stdout": "experiments\ncount\ntotal\nbaseline",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QJe4p4rwaAK8uakDRCBHQW`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nif isinstance(exps, list):\n    for exp in exps:\n        eid = exp.get('exp_id','')\n        if 'cls' in eid.lower() or 'cwm' in eid.lower():\n            print(f'=== {eid} ===')\n            print(f'  status: {exp.get(\\\"status\\\")}')\n            print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n            metrics = exp.get('metrics', {})\n            print(f'  metrics: {json.dumps(metrics) if metrics else \\\"NONE\\\"}')\n            spec = exp.get('spec', {})\n            if spec:\n                print(f'  checkpoint: {spec.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n                print(f'  log_path: {spec.get(\\\"log_path\\\", \\\"N/A\\\")}')\n                print(f'  seed: {spec.get(\\\"seed\\\", \\\"N/A\\\")}')\n            print()\nelif isinstance(exps, dict):\n    for eid, exp in exps.items():\n        if 'cls' in eid.lower() or 'cwm' in eid.lower():\n            print(f'=== {eid} ===')\n            print(json.dumps(exp, indent=2)[:500])\n            print()\n\" 2>&1 | head -200",
+  "description": "Extract CLS/CWM experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "143467a7-5d5b-4ac1-a167-17a2880d7fa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ZUQf6d263vDN3aEsdEp2H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 28939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 380
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T16:07:40.610Z_
+
+<details><summary>↩ Tool result · `toolu_01QJe4p4rwaAK8uakDRCBHQW`</summary>
+
+```text
+=== repo-level-cls-v2 ===
+{
+  "status": "PREPARING",
+  "retry_count": 0,
+  "created_at": "2026-05-12T14:41:27.833Z",
+  "updated_at": "2026-05-12T15:57:31.074Z",
+  "hypothesis": "Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). \u4fee\u590d sample_weight KeyError \u540e\u91cd\u63d0\u4ea4\u3002\u9a8c\u8bc1 complexity-dependent CLS advantage\u3002",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --output_dir /root/autodl-tmp/checkpoints_repo
+
+=== repo-level-cwm-v2 ===
+{
+  "status": "PREPARING",
+  "retry_count": 0,
+  "created_at": "2026-05-12T14:41:28.527Z",
+  "updated_at": "2026-05-12T15:57:03.183Z",
+  "hypothesis": "Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). \u4fee\u590d sample_weight KeyError \u540e\u91cd\u63d0\u4ea4\u3002\u4e0e repo-level-cls-v2 \u5bf9\u6bd4\u9a8c\u8bc1 complexity gap\u3002",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/chec
+
+=== cls8b-seed456 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T13:55:11.074Z",
+  "updated_at": "2026-05-12T15:28:45.391Z",
+  "hypothesis": "8B CLS \u7b2c 3 \u4e2a seed\uff0c\u4e0e cwm8b-seed456 \u914d\u5bf9\u3002\u5b8c\u6210\u540e\u6709 3 matched 8B pairs (seed42/123/456)\uff0c\u589e\u5f3a scaling gap \u8bc1\u636e",
+  "spec": {
+    "command": "bash -c \"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_di
+
+=== cwm8b-seed456 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T13:18:05.040Z",
+  "updated_at": "2026-05-12T15:00:31.635Z",
+  "hypothesis": "8B CWM \u7b2c 3 \u4e2a seed\uff0c\u8865\u5f3a scaling gap \u8bc1\u636e\u3002\u5f53\u524d 8B cls-cwm gap \u57fa\u4e8e 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)\uff0c3 seeds \u66f4\u7a33\u5065",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_ca
+
+=== repo-level-cwm ===
+{
+  "status": "DONE",
+  "retry_count": 1,
+  "created_at": "2026-05-12T11:07:31.773Z",
+  "updated_at": "2026-05-12T14:12:06.893Z",
+  "hypothesis": "Repo-level (SWE-bench) CWM generation baseline \u2014 \u5bf9\u6bd4 classification \u5728 repo-level \u7684\u4f18\u52bf\u662f\u5426\u4e0e\u51fd\u6570\u7ea7\u4e00\u81f4\uff0c\u9a8c\u8bc1 complexity hypothesis \u8de8\u7c92\u5ea6\u7684\u7a33\u5065\u6027",
+  "reproduce": {
+    "finished_at": "2026-05-12T11:24:12.423Z"
+  },
+  "failure_reason": "EXIT_CODE=1 
+
+=== repo-level-cls ===
+{
+  "status": "DONE",
+  "retry_count": 1,
+  "created_at": "2026-05-12T11:07:29.362Z",
+  "updated_at": "2026-05-12T14:12:05.932Z",
+  "hypothesis": "Repo-level (SWE-bench) classification verifier \u2014 \u9a8c\u8bc1 per-test classification \u4ece\u51fd\u6570\u7ea7 (HumanEval/MBPP) \u6269\u5c55\u5230 repo-level \u7684\u6cdb\u5316\u80fd\u529b\uff0c\u4f7f\u7528 max_seq_length=4096 \u548c class weighting \u5904\u7406 85/15 \u4e0d\u5e73\u8861",
+  "reproduce": {
+    "finished_at": "2026-05-12T11:24:07.9
+
+=== cwm-seed789 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T12:31:34.311Z",
+  "updated_at": "2026-05-12T14:00:05.340Z",
+  "hypothesis": "\u8865\u5145 4B CWM seed=789\uff0c\u51d1\u9f50 CWM 5-seed \u5bf9\u6bd4\uff0842, 123, 456, 789, 0\uff09\uff0c\u4e0e 5-seed CLS \u505a paired \u7edf\u8ba1\u68c0\u9a8c",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair
+
+=== cwm-seed0 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T12:49:43.806Z",
+  "updated_at": "2026-05-12T13:53:51.849Z",
+  "hypothesis": "\u8865\u5145 4B CWM seed=0\uff0c\u51d1\u9f50 CWM 5-seed (42, 123, 456, 789, 0)\uff0c\u4e0e 5-seed CLS \u505a\u5b8c\u6574 paired \u7edf\u8ba1\u5206\u6790",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B
+
+=== cwm-seed123 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T11:24:58.500Z",
+  "updated_at": "2026-05-12T13:15:21.097Z",
+  "hypothesis": "\u8865\u5145 4B CWM seed=123\uff0c\u4e0e cwm-baseline (seed=42, 87.51%) \u5bf9\u6bd4\u786e\u8ba4 4B cls-cwm gap ~0.9pp \u7684\u7a33\u5b9a\u6027\uff0c\u540c\u65f6\u4e3a \"scaling widens gap\" \u53d9\u4e8b\u63d0\u4f9b\u66f4\u5f3a evidence",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && exp
+
+=== cwm-seed456 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T11:46:14.491Z",
+  "updated_at": "2026-05-12T12:51:35.823Z",
+  "hypothesis": "\u8865\u5145 4B CWM seed=456\uff0c\u4e0e cwm-baseline (seed=42, 87.51%) \u5bf9\u6bd4\u786e\u8ba4 4B cls-cwm gap ~0.9pp \u7684\u7a33\u5b9a\u6027\uff0c\u652f\u6491 scaling widens gap \u53d9\u4e8b",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cac
+
+=== cls-seed0 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T10:22:27.264Z",
+  "updated_at": "2026-05-12T12:31:31.781Z",
+  "hypothesis": "\u8865\u5145 cls seed=0 \u7528\u4e8e 5-paired comparison (cls vs traj \u5404 5 seeds)\uff0c\u786e\u8ba4 per-test classification accuracy \u7684\u7a33\u5b9a\u6027",
+  "spec": {
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best/",
+    "log_path": "~/runs/exec-sim-repair-verifier/cls-seed0.log"
+  },
+  "reproduce": {
+
+
+=== cls-seed789 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T10:22:01.380Z",
+  "updated_at": "2026-05-12T11:26:34.278Z",
+  "hypothesis": "\u8865\u5145 cls seed=789 \u7528\u4e8e 5-paired comparison (cls vs traj \u5404 5 seeds)\uff0c\u786e\u8ba4 per-test classification accuracy \u7684\u7a33\u5b9a\u6027",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed789/ --
+
+=== cls8b-seed123 ===
+{
+  "status": "DONE",
+  "retry_count": 1,
+  "created_at": "2026-05-12T09:23:37.452Z",
+  "updated_at": "2026-05-12T11:23:13.980Z",
+  "hypothesis": "\u9a8c\u8bc1 8B classification 90.48% accuracy \u5728\u4e0d\u540c seed \u4e0b\u7a33\u5b9a\uff0c\u786e\u8ba4 cls vs cwm 2.81pp gap \u7684\u53ef\u590d\u73b0\u6027",
+  "reproduce": {
+    "finished_at": "2026-05-12T11:04:29.187Z"
+  },
+  "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 596.00 MiB. GPU 0 has a total capacity of 31.36 GiB o
+
+=== cwm8b-seed123 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T09:23:40.894Z",
+  "updated_at": "2026-05-12T11:02:59.646Z",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed123/ --batch_size 2 --grad_accumula
+
+=== model-size-scaling-cwm8b ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T05:08:45.037Z",
+  "updated_at": "2026-05-12T09:23:59.200Z",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b/ --batch_size 2 --grad_accumulation 16 
+
+=== model-size-scaling-cls8b ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T05:08:43.293Z",
+  "updated_at": "2026-05-12T09:23:53.485Z",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cls8b/ --batch_size 2 --grad_accumulation 16 --lr
+
+=== cwm-baseline ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-11T21:19:57.582Z",
+  "updated_at": "2026-05-11T22:27:46.303Z",
+  "hypothesis": "CWM generation baseline (\u9884\u6d4b execution output) \u7684 per-class F1 \u663e\u8457\u4f4e\u4e8e classification (87.1/87.9%)\uff0c\u9a8c\u8bc1 task reformulation (generation\u2192classification) \u7684\u6709\u6548\u6027",
+  "parent": "mvp-b-train",
+  "spec": {
+    "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_b
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8ba88312-2c5f-4142-bda3-8e6dd34217af",
+  "tool_use_result": {
+    "stdout": "=== repo-level-cls-v2 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T14:41:27.833Z\",\n  \"updated_at\": \"2026-05-12T15:57:31.074Z\",\n  \"hypothesis\": \"Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). \\u4fee\\u590d sample_weight KeyError \\u540e\\u91cd\\u63d0\\u4ea4\\u3002\\u9a8c\\u8bc1 complexity-dependent CLS advantage\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --output_dir /root/autodl-tmp/checkpoints_repo\n\n=== repo-level-cwm-v2 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T14:41:28.527Z\",\n  \"updated_at\": \"2026-05-12T15:57:03.183Z\",\n  \"hypothesis\": \"Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). \\u4fee\\u590d sample_weight KeyError \\u540e\\u91cd\\u63d0\\u4ea4\\u3002\\u4e0e repo-level-cls-v2 \\u5bf9\\u6bd4\\u9a8c\\u8bc1 complexity gap\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/chec\n\n=== cls8b-seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T13:55:11.074Z\",\n  \"updated_at\": \"2026-05-12T15:28:45.391Z\",\n  \"hypothesis\": \"8B CLS \\u7b2c 3 \\u4e2a seed\\uff0c\\u4e0e cwm8b-seed456 \\u914d\\u5bf9\\u3002\\u5b8c\\u6210\\u540e\\u6709 3 matched 8B pairs (seed42/123/456)\\uff0c\\u589e\\u5f3a scaling gap \\u8bc1\\u636e\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_di\n\n=== cwm8b-seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T13:18:05.040Z\",\n  \"updated_at\": \"2026-05-12T15:00:31.635Z\",\n  \"hypothesis\": \"8B CWM \\u7b2c 3 \\u4e2a seed\\uff0c\\u8865\\u5f3a scaling gap \\u8bc1\\u636e\\u3002\\u5f53\\u524d 8B cls-cwm gap \\u57fa\\u4e8e 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)\\uff0c3 seeds \\u66f4\\u7a33\\u5065\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_ca\n\n=== repo-level-cwm ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-12T11:07:31.773Z\",\n  \"updated_at\": \"2026-05-12T14:12:06.893Z\",\n  \"hypothesis\": \"Repo-level (SWE-bench) CWM generation baseline \\u2014 \\u5bf9\\u6bd4 classification \\u5728 repo-level \\u7684\\u4f18\\u52bf\\u662f\\u5426\\u4e0e\\u51fd\\u6570\\u7ea7\\u4e00\\u81f4\\uff0c\\u9a8c\\u8bc1 complexity hypothesis \\u8de8\\u7c92\\u5ea6\\u7684\\u7a33\\u5065\\u6027\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-12T11:24:12.423Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=1 \n\n=== repo-level-cls ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-12T11:07:29.362Z\",\n  \"updated_at\": \"2026-05-12T14:12:05.932Z\",\n  \"hypothesis\": \"Repo-level (SWE-bench) classification verifier \\u2014 \\u9a8c\\u8bc1 per-test classification \\u4ece\\u51fd\\u6570\\u7ea7 (HumanEval/MBPP) \\u6269\\u5c55\\u5230 repo-level \\u7684\\u6cdb\\u5316\\u80fd\\u529b\\uff0c\\u4f7f\\u7528 max_seq_length=4096 \\u548c class weighting \\u5904\\u7406 85/15 \\u4e0d\\u5e73\\u8861\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-12T11:24:07.9\n\n=== cwm-seed789 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T12:31:34.311Z\",\n  \"updated_at\": \"2026-05-12T14:00:05.340Z\",\n  \"hypothesis\": \"\\u8865\\u5145 4B CWM seed=789\\uff0c\\u51d1\\u9f50 CWM 5-seed \\u5bf9\\u6bd4\\uff0842, 123, 456, 789, 0\\uff09\\uff0c\\u4e0e 5-seed CLS \\u505a paired \\u7edf\\u8ba1\\u68c0\\u9a8c\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair\n\n=== cwm-seed0 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T12:49:43.806Z\",\n  \"updated_at\": \"2026-05-12T13:53:51.849Z\",\n  \"hypothesis\": \"\\u8865\\u5145 4B CWM seed=0\\uff0c\\u51d1\\u9f50 CWM 5-seed (42, 123, 456, 789, 0)\\uff0c\\u4e0e 5-seed CLS \\u505a\\u5b8c\\u6574 paired \\u7edf\\u8ba1\\u5206\\u6790\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B\n\n=== cwm-seed123 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T11:24:58.500Z\",\n  \"updated_at\": \"2026-05-12T13:15:21.097Z\",\n  \"hypothesis\": \"\\u8865\\u5145 4B CWM seed=123\\uff0c\\u4e0e cwm-baseline (seed=42, 87.51%) \\u5bf9\\u6bd4\\u786e\\u8ba4 4B cls-cwm gap ~0.9pp \\u7684\\u7a33\\u5b9a\\u6027\\uff0c\\u540c\\u65f6\\u4e3a \\\"scaling widens gap\\\" \\u53d9\\u4e8b\\u63d0\\u4f9b\\u66f4\\u5f3a evidence\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && exp\n\n=== cwm-seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T11:46:14.491Z\",\n  \"updated_at\": \"2026-05-12T12:51:35.823Z\",\n  \"hypothesis\": \"\\u8865\\u5145 4B CWM seed=456\\uff0c\\u4e0e cwm-baseline (seed=42, 87.51%) \\u5bf9\\u6bd4\\u786e\\u8ba4 4B cls-cwm gap ~0.9pp \\u7684\\u7a33\\u5b9a\\u6027\\uff0c\\u652f\\u6491 scaling widens gap \\u53d9\\u4e8b\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cac\n\n=== cls-seed0 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T10:22:27.264Z\",\n  \"updated_at\": \"2026-05-12T12:31:31.781Z\",\n  \"hypothesis\": \"\\u8865\\u5145 cls seed=0 \\u7528\\u4e8e 5-paired comparison (cls vs traj \\u5404 5 seeds)\\uff0c\\u786e\\u8ba4 per-test classification accuracy \\u7684\\u7a33\\u5b9a\\u6027\",\n  \"spec\": {\n    \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best/\",\n    \"log_path\": \"~/runs/exec-sim-repair-verifier/cls-seed0.log\"\n  },\n  \"reproduce\": {\n\n\n=== cls-seed789 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T10:22:01.380Z\",\n  \"updated_at\": \"2026-05-12T11:26:34.278Z\",\n  \"hypothesis\": \"\\u8865\\u5145 cls seed=789 \\u7528\\u4e8e 5-paired comparison (cls vs traj \\u5404 5 seeds)\\uff0c\\u786e\\u8ba4 per-test classification accuracy \\u7684\\u7a33\\u5b9a\\u6027\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_seed789/ --\n\n=== cls8b-seed123 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-12T09:23:37.452Z\",\n  \"updated_at\": \"2026-05-12T11:23:13.980Z\",\n  \"hypothesis\": \"\\u9a8c\\u8bc1 8B classification 90.48% accuracy \\u5728\\u4e0d\\u540c seed \\u4e0b\\u7a33\\u5b9a\\uff0c\\u786e\\u8ba4 cls vs cwm 2.81pp gap \\u7684\\u53ef\\u590d\\u73b0\\u6027\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-12T11:04:29.187Z\"\n  },\n  \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 596.00 MiB. GPU 0 has a total capacity of 31.36 GiB o\n\n=== cwm8b-seed123 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T09:23:40.894Z\",\n  \"updated_at\": \"2026-05-12T11:02:59.646Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed123/ --batch_size 2 --grad_accumula\n\n=== model-size-scaling-cwm8b ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T05:08:45.037Z\",\n  \"updated_at\": \"2026-05-12T09:23:59.200Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b/ --batch_size 2 --grad_accumulation 16 \n\n=== model-size-scaling-cls8b ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T05:08:43.293Z\",\n  \"updated_at\": \"2026-05-12T09:23:53.485Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cls8b/ --batch_size 2 --grad_accumulation 16 --lr\n\n=== cwm-baseline ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-11T21:19:57.582Z\",\n  \"updated_at\": \"2026-05-11T22:27:46.303Z\",\n  \"hypothesis\": \"CWM generation baseline (\\u9884\\u6d4b execution output) \\u7684 per-class F1 \\u663e\\u8457\\u4f4e\\u4e8e classification (87.1/87.9%)\\uff0c\\u9a8c\\u8bc1 task reformulation (generation\\u2192classification) \\u7684\\u6709\\u6548\\u6027\",\n  \"parent\": \"mvp-b-train\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_b",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the registry data. Now let me understand the structure better. I need to find:
+
+1. CLS baseline (seed42) eval predictions - likely `eval_seed42.json`
+2. CWM baseline (seed42) eval predictions - likely `eval_cwm_results.json` or from `eval_cwm_baseline.py`
+3. cwm-seed789 metrics
+
+Let me check the eval files on the server to understand their structure. I also need to find the cwm-seed789 metrics.
+
+Key eval files found:
+
+
+- CLS models across multiple seeds (seed42, seed456, seed123, seed789)
+- CWM models with different seeds (seed0, seed456) plus aggregate results
+- Additional evaluation files for precision/recall, trajectories, and traces
+
+Now I need to examine the eval_seed42.json file to understand its structure and locate the CWM baseline predictions, since the registry shows cwm-seed789 as done but without metrics. The eval files might be organized differently than expected, so I should check what's actually in these files to find where the CWM seed789 results are stored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "714d4429-4295-4933-9119-d4fdfc5771ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+找到了相关文件。现在查看 CLS 和 CWM eval 文件的结构，以及 cwm-seed789 的结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "19939260-9c05-4712-bbed-f3ca44f009fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HyBVtLYPwHHunnxSXjJykN`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_seed42.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "dd886974-a738-4be4-b0b3-6a2197772e3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016UnLr2pCt5qZWhASx5Qgb4`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_cwm_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "7ac6cd79-4ab4-495d-8bff-028c06784f7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T16:07:54.824Z_
+
+<details><summary>↩ Tool result · `toolu_01HyBVtLYPwHHunnxSXjJykN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.83,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 36.08,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 86.2,\\n      \\\"recall\\\": 89.04,\\n      \\\"f1\\\": 87.59,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.45,\\n      \\\"recall\\\": 86.71,\\n      \\\"f1\\\": 88.06,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 812,\\n    \\\"fp\\\": 100,\\n    \\\"fn\\\": 130,\\n    \\\"tp\\\": 848\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e3efece2-69ed-4e83-9e40-4eb468935f80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.83,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 36.08,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 86.2,\\\\n      \\\\\\\"recall\\\\\\\": 89.04,\\\\n      \\\\\\\"f1\\\\\\\": 87.59,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 89.45,\\\\n      \\\\\\\"recall\\\\\\\": 86.71,\\\\n      \\\\\\\"f1\\\\\\\": 88.06,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 812,\\\\n    \\\\\\\"fp\\\\\\\": 100,\\\\n    \\\\\\\"fn\\\\\\\": 130,\\\\n    \\\\\\\"tp\\\\\\\": 848\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.83,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 36.08,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 86.2,\\n      \\\"recall\\\": 89.04,\\n      \\\"f1\\\": 87.59,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.45,\\n      \\\"recall\\\": 86.71,\\n      \\\"f1\\\": 88.06,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 812,\\n    \\\"fp\\\": 100,\\n    \\\"fn\\\": 130,\\n    \\\"tp\\\": 848\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T16:07:56.146Z_
+
+<details><summary>↩ Tool result · `toolu_016UnLr2pCt5qZWhASx5Qgb4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.51,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.53,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.71,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.06,\\n      \\\"recall\\\": 83.03,\\n      \\\"f1\\\": 87.31,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 166,\\n    \\\"tp\\\": 812\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.02,\\n    \\\"exact_match_count\\\": 1588,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 812,\\n        \\\"exact_match_rate\\\": 83.03,\\n        \\\"pass_fail_accuracy\\\": 83.03\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 656,\\n        \\\"exact_match_rate\\\": 87.0,\\n        \\\"pass_fail_accuracy\\\": 92.31\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 6,\\n        \\\"exact_match_rate\\\": 54.55,\\n        \\\"pass_fail_accuracy\\\": 90.91\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 71.43,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 29.8,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c33e8f0f-95f4-411f-9ef4-1971e3fc535f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.51,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.77,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 83.53,\\\\n      \\\\\\\"recall\\\\\\\": 92.32,\\\\n      \\\\\\\"f1\\\\\\\": 87.71,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 92.06,\\\\n      \\\\\\\"recall\\\\\\\": 83.03,\\\\n      \\\\\\\"f1\\\\\\\": 87.31,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 842,\\\\n    \\\\\\\"fp\\\\\\\": 70,\\\\n    \\\\\\\"fn\\\\\\\": 166,\\\\n    \\\\\\\"tp\\\\\\\": 812\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 84.02,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1588,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 812,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 83.03,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 83.03\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 656,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 87.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 92.31\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 17,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 77.27,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 6,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 54.55,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 90.91\\\\n      },\\\\n      \\\\\\\"ZeroDivisionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 9,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 55.56,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"RecursionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 7,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 71.43,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"ValueError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 5,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 40.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"OverflowError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 3,\\\\n        \\\\\\\"exact_match\\\\\\\": 0,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 0.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"generation_length\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 29.8,\\\\n      \\\\\\\"median\\\\\\\": 33.0,\\\\n      \\\\\\\"max\\\\\\\": 103\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 87.51,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.77,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 83.53,\\n      \\\"recall\\\": 92.32,\\n      \\\"f1\\\": 87.71,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.06,\\n      \\\"recall\\\": 83.03,\\n      \\\"f1\\\": 87.31,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 842,\\n    \\\"fp\\\": 70,\\n    \\\"fn\\\": 166,\\n    \\\"tp\\\": 812\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.02,\\n    \\\"exact_match_count\\\": 1588,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 812,\\n        \\\"exact_match_rate\\\": 83.03,\\n        \\\"pass_fail_accuracy\\\": 83.03\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 656,\\n        \\\"exact_match_rate\\\": 87.0,\\n        \\\"pass_fail_accuracy\\\": 92.31\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 6,\\n        \\\"exact_match_rate\\\": 54.55,\\n        \\\"pass_fail_accuracy\\\": 90.91\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 71.43,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 29.8,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UStscCUHddcAFZZHAvNp3i`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*seed789*\" -o -name \"*seed789*cwm*\" -o -name \"*cwm_seed789*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e8fc7e58-4c76-4168-b841-20fc415bc4a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EnQSvKmNTtnHs17wyYBNKC`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "fa854cf0-c1a6-4f51-965e-163fb0e3f66b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151KUVnZcutvUaQaVuvChtX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5016,
+      "cache_read_input_tokens": 29319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5016
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T16:07:57.394Z_
+
+<details><summary>↩ Tool result · `toolu_01UStscCUHddcAFZZHAvNp3i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "a94861fa-1c71-4c30-9789-b7b1b61b833c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T16:07:58.612Z_
+
+<details><summary>↩ Tool result · `toolu_01EnQSvKmNTtnHs17wyYBNKC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "1d1a7243-6492-439a-8679-abe70e80b357",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The CLS eval_seed42.json has overall metrics but no per-instance predictions. The CWM eval_cwm_results.json has more detail including cwm_metrics. But I need per-instance predictions for the overlap analysis.
+
+Let me check if there are per-instance prediction files, or if I need to look at the eval scripts to understand where predictions are stored.
+
+Also, cwm-seed789 checkpoint doesn't exist at the expected path. Let me search more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "9e0a5245-cdfb-4f89-8f83-2c2a976e9f27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VerY7EPMtQdKMV3fkAV8Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+CLS eval 只有汇总统计，没有 per-instance 预测。需要找到逐样本预测文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "1feb50c0-2873-4536-8ea8-2a60230d23c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VerY7EPMtQdKMV3fkAV8Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012M2JT2euifu1mCNVCWkbwh`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*predict*\" -o -name \"*pertest*\" -o -name \"*per_instance*\" -o -name \"*diag*\" -o -name \"*detail*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "902c757b-bacb-4e5c-a14a-5dcc5e0212ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VerY7EPMtQdKMV3fkAV8Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T16:08:08.542Z_
+
+<details><summary>↩ Tool result · `toolu_012M2JT2euifu1mCNVCWkbwh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed456.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed456.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_4bit.py\\n/home/sonny/exec-sim-repair-verifier/extract_predictions.py\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c1d1f191-51a5-479d-8334-317e1833c5ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed123.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed456.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed42.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed456.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed123.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_4bit.py\\\\n/home/sonny/exec-sim-repair-verifier/extract_predictions.py\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed0.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed456.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed42.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed456.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed123.jsonl\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_4bit.py\\n/home/sonny/exec-sim-repair-verifier/extract_predictions.py\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018CD66Zfe6iTkkpRhA8aRKS`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*seed789*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "fc54abcc-a438-46ce-90ca-573c6d739de3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VerY7EPMtQdKMV3fkAV8Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SEBYoz9fXJndkWMyPNcW3u`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"checkpoints*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "b100f57f-d716-435d-b40e-4bc04bf17bb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VerY7EPMtQdKMV3fkAV8Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3072,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3072
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T16:08:09.571Z_
+
+<details><summary>↩ Tool result · `toolu_018CD66Zfe6iTkkpRhA8aRKS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "cc847813-0827-43ae-ba29-da72b9b413da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T16:08:10.780Z_
+
+<details><summary>↩ Tool result · `toolu_01SEBYoz9fXJndkWMyPNcW3u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed42\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm\\n/home/sonny/exec-sim-repair-verifier/checkpoints_trace\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "307f6e9b-b2f4-4966-9d7d-34d659343202",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed789\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed42\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_trace\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed123\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed42\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm\\n/home/sonny/exec-sim-repair-verifier/checkpoints_trace\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed456\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found per-instance prediction files:
+- CLS predictions: `predictions_cls_seed42.jsonl`, `predictions_cls_seed123.jsonl`, etc.
+- Traj predictions: `predictions_traj_seed42.jsonl`, etc.
+
+But I don't see CWM per-instance prediction files. Let me search more broadly for CWM predictions. Also, I notice:
+- `checkpoints_cwm` (baseline, seed42)
+- `checkpoints_cwm_seed0`
+- `checkpoints_cwm_seed456`
+- But NO `checkpoints_cwm_seed789` or `checkpoints_cwm_seed123`
+
+
+- The registry marks cwm-seed789 as DONE, yet there's no checkpoint directory or prediction file for it. I'm seeing eval results for seed42, seed0, and seed456, but nothing for seed789 or seed123. Let me check the eval scripts to understand what they generate and look for where the CWM predictions might be stored—these missing seeds could have been trained elsewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "913071b3-4213-48f6-86cc-f50a89c1c427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+找到了 CLS per-instance 预测文件（`predictions_cls_seed42.jsonl` 等），但没看到 CWM 的。需要查看 CWM 预测文件和 cwm-seed789 的情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ef8cd8d4-4061-434a-b8f9-7e85536d66fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014xfubNVz3sSvSJcmDuNDmo`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*\" -type f -name \"*.jsonl\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "eac8810c-a7ff-4604-85e7-89cd565d561b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018sPFDFcEwaMq9nosJVA5T5`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "7c725a7a-52b1-4515-81d3-0d6a292d6755",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T16:08:28.938Z_
+
+<details><summary>↩ Tool result · `toolu_014xfubNVz3sSvSJcmDuNDmo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "61a3bcde-1731-468c-b41f-c5c1256c850b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\n/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EmnxAudpwES82crrQa2vKP`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "27fd9ef3-b06a-430d-95be-88597b3c845b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-12T16:08:30.164Z_
+
+<details><summary>↩ Tool result · `toolu_018sPFDFcEwaMq9nosJVA5T5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"pass\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"pass\\\"}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"gen_text\\\": \\\"fail\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "0c58eaa6-5310-4e60-b3bf-3173915ff218",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"index\\\\\\\": 0, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"pred\\\\\\\": 1, \\\\\\\"gen_text\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"index\\\\\\\": 1, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"pred\\\\\\\": 1, \\\\\\\"gen_text\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"index\\\\\\\": 2, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\", \\\\\\\"label\\\\\\\": 0, \\\\\\\"pred\\\\\\\": 0, \\\\\\\"gen_text\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"index\\\": 0, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"pass\\\"}\\n{\\\"index\\\": 1, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\", \\\"label\\\": 1, \\\"pred\\\": 1, \\\"gen_text\\\": \\\"pass\\\"}\\n{\\\"index\\\": 2, \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\", \\\"label\\\": 0, \\\"pred\\\": 0, \\\"gen_text\\\": \\\"fail\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T16:08:31.374Z_
+
+<details><summary>↩ Tool result · `toolu_01EmnxAudpwES82crrQa2vKP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.98,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.24,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 82.52,\\n      \\\"recall\\\": 92.65,\\n      \\\"f1\\\": 87.29,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.26,\\n      \\\"recall\\\": 81.7,\\n      \\\"f1\\\": 86.66,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 845,\\n    \\\"fp\\\": 67,\\n    \\\"fn\\\": 179,\\n    \\\"tp\\\": 799\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.02,\\n    \\\"exact_match_count\\\": 1588,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 799,\\n        \\\"exact_match_rate\\\": 81.7,\\n        \\\"pass_fail_accuracy\\\": 81.7\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 678,\\n        \\\"exact_match_rate\\\": 89.92,\\n        \\\"pass_fail_accuracy\\\": 92.57\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 10,\\n        \\\"exact_match_rate\\\": 45.45,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\\"exact_match_rate\\\": 63.64,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 28.57,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 28.8,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 83\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "93e4aebf-99d9-42ef-93ef-8e48788447eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 86.98,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.24,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 82.52,\\\\n      \\\\\\\"recall\\\\\\\": 92.65,\\\\n      \\\\\\\"f1\\\\\\\": 87.29,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 92.26,\\\\n      \\\\\\\"recall\\\\\\\": 81.7,\\\\n      \\\\\\\"f1\\\\\\\": 86.66,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 845,\\\\n    \\\\\\\"fp\\\\\\\": 67,\\\\n    \\\\\\\"fn\\\\\\\": 179,\\\\n    \\\\\\\"tp\\\\\\\": 799\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 84.02,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1588,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 799,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 81.7,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 81.7\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 678,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 89.92,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 92.57\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 10,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 45.45,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 7,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 63.64,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"ZeroDivisionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 9,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 55.56,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"RecursionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 7,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 28.57,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"ValueError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 5,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 40.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"OverflowError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 3,\\\\n        \\\\\\\"exact_match\\\\\\\": 0,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 0.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"generation_length\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 28.8,\\\\n      \\\\\\\"median\\\\\\\": 33.0,\\\\n      \\\\\\\"max\\\\\\\": 83\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.98,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 35.24,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 82.52,\\n      \\\"recall\\\": 92.65,\\n      \\\"f1\\\": 87.29,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 92.26,\\n      \\\"recall\\\": 81.7,\\n      \\\"f1\\\": 86.66,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 845,\\n    \\\"fp\\\": 67,\\n    \\\"fn\\\": 179,\\n    \\\"tp\\\": 799\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 84.02,\\n    \\\"exact_match_count\\\": 1588,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 799,\\n        \\\"exact_match_rate\\\": 81.7,\\n        \\\"pass_fail_accuracy\\\": 81.7\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 678,\\n        \\\"exact_match_rate\\\": 89.92,\\n        \\\"pass_fail_accuracy\\\": 92.57\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 10,\\n        \\\"exact_match_rate\\\": 45.45,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\\"exact_match_rate\\\": 63.64,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 28.57,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 28.8,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 83\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015dQoc4ujTeJ4hQvYVDgYBb`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor exp in exps:\n    eid = exp.get('exp_id','')\n    if eid == 'cwm-seed789':\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n\"",
+  "description": "Get cwm-seed789 full registry entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c7c9493e-e2c8-46d4-a745-42e083d43377",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYryrdfgwbmE2RSSWAm7st",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 37407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-12T16:08:35.102Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_015dQoc4ujTeJ4hQvYVDgYBb`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    eid = exp.get('exp_id','')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "5824303d-ec08-41df-8423-b4e280548a62",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    eid = exp.get('exp_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiments list might be a dict, not a list. Let me fix the parsing. Also, I can see the CLS predictions have per-instance data with `index`, `problem_id`, `mutation_type`, `label`, `pred`, `gen_text`. But CWM doesn't have per-instance prediction JSONL files on the server (only training data files: cwm_train.jsonl, cwm_val.jsonl, cwm_test.jsonl).
+
+I need to:
+1. Generate CWM per-instance predictions by running eval on the CWM checkpoint
+2. Or check if the eval scripts already output per-instance data
+
+
+3. Look at the eval scripts to understand the flow and check if there are CWM checkpoints for seed42.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "0f2674cd-5752-4146-8e8b-5a61e8b84ed7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MutrG6TXCxRRGF8RM6TcUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3203,
+      "cache_read_input_tokens": 39567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3203
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017bUZStqDNAsqcQnjwfjDsm`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nif isinstance(exps, dict):\n    for eid in exps:\n        if 'cwm' in eid.lower() and '789' in eid:\n            print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\nelif isinstance(exps, list):\n    for exp in exps:\n        if isinstance(exp, str):\n            exp_data = json.loads(exp)\n        else:\n            exp_data = exp\n        eid = exp_data.get('exp_id','')\n        if eid == 'cwm-seed789':\n            print(json.dumps(exp_data, indent=2, ensure_ascii=False))\n\" 2>&1",
+  "description": "Get cwm-seed789 details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "2b8f9696-ebc1-4c79-99a7-ae99278cbef2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MutrG6TXCxRRGF8RM6TcUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3203,
+      "cache_read_input_tokens": 39567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3203
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-12T16:08:50.863Z_
+
+<details><summary>↩ Tool result · `toolu_017bUZStqDNAsqcQnjwfjDsm`</summary>
+
+```text
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-12T12:31:34.311Z",
+  "updated_at": "2026-05-12T14:00:05.340Z",
+  "hypothesis": "补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\"",
+    "server": "seetacloud-westd-4x5090",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": 42227,
+    "log_path": "~/runs/exec-sim-repair-verifier/cwm-seed789.log",
+    "submitted_at": "2026-05-12T12:34:07.017Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/home/sonny/exec-sim-repair-verifier/data/",
+    "data_count": 15290,
+    "model_name": "Qwen/Qwen3-4B",
+    "seed": 789,
+    "metrics": {
+      "overall_accuracy": 86.67,
+      "pass_f1": 86.74,
+      "fail_f1": 86.6,
+      "exact_match_rate": 83.97,
+      "baseline_gap_pp": 34.92,
+      "test_set_size": 1890,
+      "unparseable_predictions": 0
+    },
+    "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/",
+    "wall_clock_seconds": 5158.3,
+    "gpu_hours": 1.43
+  },
+  "conclusion": "success",
+  "completed_at": "2026-05-12T14:00:05.341Z"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "db95c226-c4a3-4815-b97a-5e8cad715e20",
+  "tool_use_result": {
+    "stdout": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T12:31:34.311Z\",\n  \"updated_at\": \"2026-05-12T14:00:05.340Z\",\n  \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\"\",\n    \"server\": \"seetacloud-westd-4x5090\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": 42227,\n    \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed789.log\",\n    \"submitted_at\": \"2026-05-12T12:34:07.017Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\",\n    \"data_count\": 15290,\n    \"model_name\": \"Qwen/Qwen3-4B\",\n    \"seed\": 789,\n    \"metrics\": {\n      \"overall_accuracy\": 86.67,\n      \"pass_f1\": 86.74,\n      \"fail_f1\": 86.6,\n      \"exact_match_rate\": 83.97,\n      \"baseline_gap_pp\": 34.92,\n      \"test_set_size\": 1890,\n      \"unparseable_predictions\": 0\n    },\n    \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\",\n    \"wall_clock_seconds\": 5158.3,\n    \"gpu_hours\": 1.43\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-12T14:00:05.341Z\"\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The metrics are in `spec.metrics` but the top-level `metrics` field might be empty. Let me check if the registry entry has a top-level metrics field or not.
+
+Actually, looking at the output, the metrics are stored inside `spec.metrics`, but the registry standard might expect them at the top level. The task says to update the registry with metrics. Let me check what other DONE experiments look like - do they have top-level metrics or spec-level metrics?
+
+Also I found that cwm-seed789 was trained on seetacloud-westd-4x5090 server, not home-1x5090. 
+
+Now I need to verify that the eval output was actually saved, and check what the CWM evaluation script produces in terms of per-instance predictions. Since cwm-seed789 ran on a different server, I should look for the eval outputs and checkpoints there rather than on the home server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "58d51aa4-8932-46a2-a873-727a115a880d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ghr9tc2zR2JbxkE6C88e5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1318,
+      "cache_read_input_tokens": 42770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1318
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+cwm-seed789 的 metrics 在 `spec.metrics` 里但可能没在顶层。它是在 seetacloud-westd-4x5090 上训练的。现在查看 eval 脚本和 CWM 预测生成方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "6c8d8e74-fb65-483a-ad15-e28607ed69b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ghr9tc2zR2JbxkE6C88e5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1318,
+      "cache_read_input_tokens": 42770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1318
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KkupcxC1CQywQ9TUEtZq6i`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -80 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "6800ad83-7d17-4cad-bea9-392e509ed8b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ghr9tc2zR2JbxkE6C88e5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1318,
+      "cache_read_input_tokens": 42770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1318
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-12T16:09:05.677Z_
+
+<details><summary>↩ Tool result · `toolu_01KkupcxC1CQywQ9TUEtZq6i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n# Output: Formatted report to stdout + JSON to --output\\n# Key difference from eval_verifier.py:\\n#   - Generates execution output string instead of \\\"pass\\\"/\\\"fail\\\"\\n#   - Extracts pass/fail from generated output via keyword matching\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import (\\n    accuracy_score,\\n    confusion_matrix,\\n    f1_score,\\n    precision_score,\\n    recall_score,\\n)\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code snippet and a test case, \\\"\\n    \\\"predict the execution result.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef extract_pass_fail(text):\\n    \\\"\\\"\\\"Extract pass/fail prediction from generated execution output.\\\"\\\"\\\"\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_clean = text.strip()\\n    text_lower = text_clean.lower()\\n\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e47af3c7-094b-43c6-9af0-eeab985f1879",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\\\n# Output: Formatted report to stdout + JSON to --output\\\\n# Key difference from eval_verifier.py:\\\\n#   - Generates execution output string instead of \\\\\\\"pass\\\\\\\"/\\\\\\\"fail\\\\\\\"\\\\n#   - Extracts pass/fail from generated output via keyword matching\\\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport statistics\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score,\\\\n    confusion_matrix,\\\\n    f1_score,\\\\n    precision_score,\\\\n    recall_score,\\\\n)\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code snippet and a test case, \\\\\\\"\\\\n    \\\\\\\"predict the execution result.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = f\\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n    msgs = [\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg},\\\\n    ]\\\\n    ids = tokenizer.apply_chat_template(\\\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\\\n    )\\\\n    if len(ids) > max_len:\\\\n        ids = ids[:max_len]\\\\n    return ids\\\\n\\\\n\\\\ndef extract_pass_fail(text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract pass/fail prediction from generated execution output.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    text_clean = text.strip()\\\\n    text_lower = text_clean.lower()\\\\n\\\\n    if text_lower.startswith(\\\\\\\"pass\\\\\\\"):\\\\n        return 1\\\\n    if text_lower.startswith(\\\\\\\"fail\\\\\\\"):\\\\n        return 0\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\n# Output: Formatted report to stdout + JSON to --output\\n# Key difference from eval_verifier.py:\\n#   - Generates execution output string instead of \\\"pass\\\"/\\\"fail\\\"\\n#   - Extracts pass/fail from generated output via keyword matching\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport statistics\\nfrom collections import Counter, defaultdict\\n\\nimport torch\\nfrom peft import PeftModel\\nfrom sklearn.metrics import (\\n    accuracy_score,\\n    confusion_matrix,\\n    f1_score,\\n    precision_score,\\n    recall_score,\\n)\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a code execution simulator. Given a code snippet and a test case, \\\"\\n    \\\"predict the execution result.\\\"\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}],\\n            tokenize=False,\\n            enable_thinking=False,\\n        )\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\n\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\n    user_msg = f\\\"## Code\\\\n{code}\\\\n\\\\n## Test\\\\n{test}\\\\n\\\\nWhat is the execution result?\\\"\\n    msgs = [\\n        {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n    ]\\n    ids = tokenizer.apply_chat_template(\\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\\n    )\\n    if len(ids) > max_len:\\n        ids = ids[:max_len]\\n    return ids\\n\\n\\ndef extract_pass_fail(text):\\n    \\\"\\\"\\\"Extract pass/fail prediction from generated execution output.\\\"\\\"\\\"\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    text_clean = text.strip()\\n    text_lower = text_clean.lower()\\n\\n    if text_lower.startswith(\\\"pass\\\"):\\n        return 1\\n    if text_lower.startswith(\\\"fail\\\"):\\n        return 0\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSqCaGuhNsraB4yK7gZkZ3`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -80 /home/sonny/exec-sim-repair-verifier/extract_predictions.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "82a9341d-c537-44ec-9482-77d17999489e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ghr9tc2zR2JbxkE6C88e5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1318,
+      "cache_read_input_tokens": 42770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1318
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GyuqA7ttrpeYchMKAM4ViT`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "account": "root",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "dccf1a33-f190-45eb-9f81-981acf0ab1f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ghr9tc2zR2JbxkE6C88e5A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1318,
+      "cache_read_input_tokens": 42770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1318
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T16:09:06.917Z_
+
+<details><summary>↩ Tool result · `toolu_01MSqCaGuhNsraB4yK7gZkZ3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Extract per-sample predictions from all checkpoint/seed combos.\\nRequires GPU. Loads base model once per config, swaps LoRA adapters.\\nOutput: predictions_{cls,traj}_seed{N}.jsonl\\n\\\"\\\"\\\"\\nimport argparse, json, logging, os\\nfrom collections import Counter\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nCLS_SYSTEM = (\\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n              \\\"predict whether the test will pass or fail.\\\")\\nTRAJ_SYSTEM = (\\\"You are a code repair verifier. Given the code patch and test summary, \\\"\\n               \\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\")\\n\\nCONFIGS = [\\n    {\\\"name\\\": \\\"cls_seed42\\\",  \\\"ckpt\\\": \\\"checkpoints_seed42/best\\\",        \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed42.jsonl\\\"},\\n    {\\\"name\\\": \\\"cls_seed123\\\", \\\"ckpt\\\": \\\"checkpoints_seed123/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed123.jsonl\\\"},\\n    {\\\"name\\\": \\\"cls_seed456\\\", \\\"ckpt\\\": \\\"checkpoints_seed456/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed456.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed42\\\",  \\\"ckpt\\\": \\\"checkpoints_traj/best\\\",         \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed42.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed123\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed123/best\\\", \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed123.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed456\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed456/best\\\", \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed456.jsonl\\\"},\\n]\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}], tokenize=False, enable_thinking=False)\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\n    if mode == \\\"cls\\\":\\n        user_msg = f\\\"## Code\\\\n{item['code']}\\\\n\\\\n## Test\\\\n{item['test']}\\\\n\\\\nWill this test pass or fail?\\\"\\n        system = CLS_SYSTEM\\n    else:\\n        user_msg = f\\\"[Code]\\\\n{item['code']}\\\\n\\\\n[Test Summary]\\\\n{item['test_summary']}\\\"\\n        system = TRAJ_SYSTEM\\n    msgs = [{\\\"role\\\": \\\"system\\\", \\\"content\\\": system}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg}]\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\n    return ids[:max_len] if len(ids) > max_len else ids\\n\\ndef parse_pred(text, mode):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    t = text.strip().lower()\\n    if mode == \\\"cls\\\":\\n        if t.startswith(\\\"pass\\\"): return 1\\n        if t.startswith(\\\"fail\\\"): return 0\\n        if \\\"pass\\\" in t and \\\"fail\\\" not in t: return 1\\n        if \\\"fail\\\" in t and \\\"pass\\\" not in t: return 0\\n    else:\\n        if t.startswith(\\\"resolved\\\"): return 1\\n        if t.startswith(\\\"unresolved\\\"): return 0\\n        if \\\"resolved\\\" in t and \\\"unresolved\\\" not in t: return 1\\n        if \\\"unresolved\\\" in t: return 0\\n    return -1\\n\\ndef run_one(cfg, base_dir, model_name, batch_size, max_len):\\n    out_path = os.path.join(base_dir, cfg[\\\"out\\\"])\\n    if os.path.exists(out_path):\\n        log.info(f\\\"[{cfg['name']}] Skip — {out_path} exists\\\")\\n        return\\n\\n    ckpt_path = os.path.join(base_dir, cfg[\\\"ckpt\\\"])\\n    data_path = os.path.join(base_dir, cfg[\\\"data\\\"])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\"left\\\")\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "2e3f13d5-1d43-4149-8249-7778539604bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Extract per-sample predictions from all checkpoint/seed combos.\\\\nRequires GPU. Loads base model once per config, swaps LoRA adapters.\\\\nOutput: predictions_{cls,traj}_seed{N}.jsonl\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, logging, os\\\\nfrom collections import Counter\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nCLS_SYSTEM = (\\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n              \\\\\\\"predict whether the test will pass or fail.\\\\\\\")\\\\nTRAJ_SYSTEM = (\\\\\\\"You are a code repair verifier. Given the code patch and test summary, \\\\\\\"\\\\n               \\\\\\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\\\\\")\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed42\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed42/best\\\\\\\",        \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed42.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed123\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed123/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed123.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed456\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed456/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed456.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed42\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj/best\\\\\\\",         \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed42.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed123\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed123/best\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed123.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed456\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed456/best\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed456.jsonl\\\\\\\"},\\\\n]\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}], tokenize=False, enable_thinking=False)\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\\\n    if mode == \\\\\\\"cls\\\\\\\":\\\\n        user_msg = f\\\\\\\"## Code\\\\\\\\n{item['code']}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{item['test']}\\\\\\\\n\\\\\\\\nWill this test pass or fail?\\\\\\\"\\\\n        system = CLS_SYSTEM\\\\n    else:\\\\n        user_msg = f\\\\\\\"[Code]\\\\\\\\n{item['code']}\\\\\\\\n\\\\\\\\n[Test Summary]\\\\\\\\n{item['test_summary']}\\\\\\\"\\\\n        system = TRAJ_SYSTEM\\\\n    msgs = [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg}]\\\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\\\n    return ids[:max_len] if len(ids) > max_len else ids\\\\n\\\\ndef parse_pred(text, mode):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    t = text.strip().lower()\\\\n    if mode == \\\\\\\"cls\\\\\\\":\\\\n        if t.startswith(\\\\\\\"pass\\\\\\\"): return 1\\\\n        if t.startswith(\\\\\\\"fail\\\\\\\"): return 0\\\\n        if \\\\\\\"pass\\\\\\\" in t and \\\\\\\"fail\\\\\\\" not in t: return 1\\\\n        if \\\\\\\"fail\\\\\\\" in t and \\\\\\\"pass\\\\\\\" not in t: return 0\\\\n    else:\\\\n        if t.startswith(\\\\\\\"resolved\\\\\\\"): return 1\\\\n        if t.startswith(\\\\\\\"unresolved\\\\\\\"): return 0\\\\n        if \\\\\\\"resolved\\\\\\\" in t and \\\\\\\"unresolved\\\\\\\" not in t: return 1\\\\n        if \\\\\\\"unresolved\\\\\\\" in t: return 0\\\\n    return -1\\\\n\\\\ndef run_one(cfg, base_dir, model_name, batch_size, max_len):\\\\n    out_path = os.path.join(base_dir, cfg[\\\\\\\"out\\\\\\\"])\\\\n    if os.path.exists(out_path):\\\\n        log.info(f\\\\\\\"[{cfg['name']}] Skip — {out_path} exists\\\\\\\")\\\\n        return\\\\n\\\\n    ckpt_path = os.path.join(base_dir, cfg[\\\\\\\"ckpt\\\\\\\"])\\\\n    data_path = os.path.join(base_dir, cfg[\\\\\\\"data\\\\\\\"])\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\")\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Extract per-sample predictions from all checkpoint/seed combos.\\nRequires GPU. Loads base model once per config, swaps LoRA adapters.\\nOutput: predictions_{cls,traj}_seed{N}.jsonl\\n\\\"\\\"\\\"\\nimport argparse, json, logging, os\\nfrom collections import Counter\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nCLS_SYSTEM = (\\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n              \\\"predict whether the test will pass or fail.\\\")\\nTRAJ_SYSTEM = (\\\"You are a code repair verifier. Given the code patch and test summary, \\\"\\n               \\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\")\\n\\nCONFIGS = [\\n    {\\\"name\\\": \\\"cls_seed42\\\",  \\\"ckpt\\\": \\\"checkpoints_seed42/best\\\",        \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed42.jsonl\\\"},\\n    {\\\"name\\\": \\\"cls_seed123\\\", \\\"ckpt\\\": \\\"checkpoints_seed123/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed123.jsonl\\\"},\\n    {\\\"name\\\": \\\"cls_seed456\\\", \\\"ckpt\\\": \\\"checkpoints_seed456/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed456.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed42\\\",  \\\"ckpt\\\": \\\"checkpoints_traj/best\\\",         \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed42.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed123\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed123/best\\\", \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed123.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed456\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed456/best\\\", \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed456.jsonl\\\"},\\n]\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}], tokenize=False, enable_thinking=False)\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\n    if mode == \\\"cls\\\":\\n        user_msg = f\\\"## Code\\\\n{item['code']}\\\\n\\\\n## Test\\\\n{item['test']}\\\\n\\\\nWill this test pass or fail?\\\"\\n        system = CLS_SYSTEM\\n    else:\\n        user_msg = f\\\"[Code]\\\\n{item['code']}\\\\n\\\\n[Test Summary]\\\\n{item['test_summary']}\\\"\\n        system = TRAJ_SYSTEM\\n    msgs = [{\\\"role\\\": \\\"system\\\", \\\"content\\\": system}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg}]\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\n    return ids[:max_len] if len(ids) > max_len else ids\\n\\ndef parse_pred(text, mode):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    t = text.strip().lower()\\n    if mode == \\\"cls\\\":\\n        if t.startswith(\\\"pass\\\"): return 1\\n        if t.startswith(\\\"fail\\\"): return 0\\n        if \\\"pass\\\" in t and \\\"fail\\\" not in t: return 1\\n        if \\\"fail\\\" in t and \\\"pass\\\" not in t: return 0\\n    else:\\n        if t.startswith(\\\"resolved\\\"): return 1\\n        if t.startswith(\\\"unresolved\\\"): return 0\\n        if \\\"resolved\\\" in t and \\\"unresolved\\\" not in t: return 1\\n        if \\\"unresolved\\\" in t: return 0\\n    return -1\\n\\ndef run_one(cfg, base_dir, model_name, batch_size, max_len):\\n    out_path = os.path.join(base_dir, cfg[\\\"out\\\"])\\n    if os.path.exists(out_path):\\n        log.info(f\\\"[{cfg['name']}] Skip — {out_path} exists\\\")\\n        return\\n\\n    ckpt_path = os.path.join(base_dir, cfg[\\\"ckpt\\\"])\\n    data_path = os.path.join(base_dir, cfg[\\\"data\\\"])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\"left\\\")\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-12T16:09:12.907Z_
+
+<details><summary>↩ Tool result · `toolu_01GyuqA7ttrpeYchMKAM4ViT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e7cf95c9-2478-4037-91f1-6f96f2747bcb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval_cwm_seed789.json exists on seetacloud-westd-4x5090 server. Let me read it to get the metrics for registry update.
+
+Also, I can see that:
+1. CLS per-instance predictions exist: `predictions_cls_seed42.jsonl` with `{index, problem_id, mutation_type, label, pred, gen_text}`
+2. CWM per-instance predictions do NOT exist yet - need to generate them
+3. The extract_predictions.py only handles CLS and traj, not CWM
+
+For the error overlap analysis, I need CWM per-instance predictions. 
+
+Now I'm checking whether there's an updated extraction script that handles CWM predictions, and I also need to verify if there's a CWM checkpoint available for seed42 on the home-1x5090 server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "b51edb11-fb7c-4b1c-bd2a-6002684bbb28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSvHAcYfjH96sx27BvZvgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3889,
+      "cache_read_input_tokens": 44088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3889
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018TfycPyaeJYCE5AWKZyi4y`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "account": "root",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "256ce260-9333-44f7-8b3b-32cb8f0d3fdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSvHAcYfjH96sx27BvZvgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3889,
+      "cache_read_input_tokens": 44088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3889
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CRzxdUUdRePYPNdxN1TPtD`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -80 /home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "4af07350-2772-4c47-9d90-77f678690eac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSvHAcYfjH96sx27BvZvgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3889,
+      "cache_read_input_tokens": 44088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3889
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0197F31QR1k88EH3EabDmWRe`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm/best/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "32ea2ef7-6be4-4cd5-af09-b30104986788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YSvHAcYfjH96sx27BvZvgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3889,
+      "cache_read_input_tokens": 44088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3889
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-12T16:09:29.468Z_
+
+<details><summary>↩ Tool result · `toolu_018TfycPyaeJYCE5AWKZyi4y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.67,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 34.92,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 84.09,\\n      \\\"recall\\\": 89.25,\\n      \\\"f1\\\": 86.6,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.37,\\n      \\\"recall\\\": 84.25,\\n      \\\"f1\\\": 86.74,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 814,\\n    \\\"fp\\\": 98,\\n    \\\"fn\\\": 154,\\n    \\\"tp\\\": 824\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 83.97,\\n    \\\"exact_match_count\\\": 1587,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 824,\\n        \\\"exact_match_rate\\\": 84.25,\\n        \\\"pass_fail_accuracy\\\": 84.25\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 645,\\n        \\\"exact_match_rate\\\": 85.54,\\n        \\\"pass_fail_accuracy\\\": 88.99\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\\"exact_match_rate\\\": 63.64,\\n        \\\"pass_fail_accuracy\\\": 90.91\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 28.57,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 29.7,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "95cf3310-8742-4caa-aabe-b183daf5c21f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 86.67,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 34.92,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 84.09,\\\\n      \\\\\\\"recall\\\\\\\": 89.25,\\\\n      \\\\\\\"f1\\\\\\\": 86.6,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 89.37,\\\\n      \\\\\\\"recall\\\\\\\": 84.25,\\\\n      \\\\\\\"f1\\\\\\\": 86.74,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 814,\\\\n    \\\\\\\"fp\\\\\\\": 98,\\\\n    \\\\\\\"fn\\\\\\\": 154,\\\\n    \\\\\\\"tp\\\\\\\": 824\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 83.97,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1587,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 824,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 84.25,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 84.25\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 645,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 85.54,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 88.99\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 17,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 77.27,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 86.36\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 7,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 63.64,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 90.91\\\\n      },\\\\n      \\\\\\\"ZeroDivisionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 9,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 55.56,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"RecursionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 7,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 28.57,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"ValueError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 5,\\\\n        \\\\\\\"exact_match\\\\\\\": 2,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 40.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"OverflowError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 3,\\\\n        \\\\\\\"exact_match\\\\\\\": 0,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 0.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"generation_length\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 29.7,\\\\n      \\\\\\\"median\\\\\\\": 33.0,\\\\n      \\\\\\\"max\\\\\\\": 103\\\\n    }\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_set_size\\\": 1890,\\n  \\\"class_balance\\\": {\\n    \\\"pass\\\": 978,\\n    \\\"fail\\\": 912,\\n    \\\"pass_pct\\\": 51.7\\n  },\\n  \\\"majority_baseline_accuracy\\\": 51.75,\\n  \\\"overall_accuracy\\\": 86.67,\\n  \\\"accuracy_vs_baseline_gap_pp\\\": 34.92,\\n  \\\"per_class\\\": {\\n    \\\"fail\\\": {\\n      \\\"precision\\\": 84.09,\\n      \\\"recall\\\": 89.25,\\n      \\\"f1\\\": 86.6,\\n      \\\"support\\\": 912\\n    },\\n    \\\"pass\\\": {\\n      \\\"precision\\\": 89.37,\\n      \\\"recall\\\": 84.25,\\n      \\\"f1\\\": 86.74,\\n      \\\"support\\\": 978\\n    }\\n  },\\n  \\\"confusion_matrix\\\": {\\n    \\\"tn\\\": 814,\\n    \\\"fp\\\": 98,\\n    \\\"fn\\\": 154,\\n    \\\"tp\\\": 824\\n  },\\n  \\\"cwm_metrics\\\": {\\n    \\\"exact_match_rate\\\": 83.97,\\n    \\\"exact_match_count\\\": 1587,\\n    \\\"by_error_type\\\": {\\n      \\\"PASS\\\": {\\n        \\\"total\\\": 978,\\n        \\\"exact_match\\\": 824,\\n        \\\"exact_match_rate\\\": 84.25,\\n        \\\"pass_fail_accuracy\\\": 84.25\\n      },\\n      \\\"AssertionError\\\": {\\n        \\\"total\\\": 754,\\n        \\\"exact_match\\\": 645,\\n        \\\"exact_match_rate\\\": 85.54,\\n        \\\"pass_fail_accuracy\\\": 88.99\\n      },\\n      \\\"SyntaxError\\\": {\\n        \\\"total\\\": 81,\\n        \\\"exact_match\\\": 80,\\n        \\\"exact_match_rate\\\": 98.77,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"NameError\\\": {\\n        \\\"total\\\": 22,\\n        \\\"exact_match\\\": 17,\\n        \\\"exact_match_rate\\\": 77.27,\\n        \\\"pass_fail_accuracy\\\": 86.36\\n      },\\n      \\\"IndexError\\\": {\\n        \\\"total\\\": 20,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 25.0,\\n        \\\"pass_fail_accuracy\\\": 60.0\\n      },\\n      \\\"TypeError\\\": {\\n        \\\"total\\\": 11,\\n        \\\"exact_match\\\": 7,\\n        \\\"exact_match_rate\\\": 63.64,\\n        \\\"pass_fail_accuracy\\\": 90.91\\n      },\\n      \\\"ZeroDivisionError\\\": {\\n        \\\"total\\\": 9,\\n        \\\"exact_match\\\": 5,\\n        \\\"exact_match_rate\\\": 55.56,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"RecursionError\\\": {\\n        \\\"total\\\": 7,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 28.57,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"ValueError\\\": {\\n        \\\"total\\\": 5,\\n        \\\"exact_match\\\": 2,\\n        \\\"exact_match_rate\\\": 40.0,\\n        \\\"pass_fail_accuracy\\\": 100.0\\n      },\\n      \\\"OverflowError\\\": {\\n        \\\"total\\\": 3,\\n        \\\"exact_match\\\": 0,\\n        \\\"exact_match_rate\\\": 0.0,\\n        \\\"pass_fail_accuracy\\\": 0.0\\n      }\\n    },\\n    \\\"generation_length\\\": {\\n      \\\"mean\\\": 29.7,\\n      \\\"median\\\": 33.0,\\n      \\\"max\\\": 103\\n    }\\n  },\\n  \\\"unparseable_predictions\\\": 0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-12T16:09:30.562Z_
+
+<details><summary>↩ Tool result · `toolu_01CRzxdUUdRePYPNdxN1TPtD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Extract per-sample predictions for seeds 789, 0.\\\"\\\"\\\"\\nimport json, logging, os\\nfrom collections import Counter\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nCLS_SYSTEM = (\\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n              \\\"predict whether the test will pass or fail.\\\")\\nTRAJ_SYSTEM = (\\\"You are a code repair verifier. Given the code patch and test summary, \\\"\\n               \\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\")\\n\\nBASE_DIR = \\\"/home/sonny/exec-sim-repair-verifier\\\"\\nMODEL_NAME = \\\"Qwen/Qwen3-4B\\\"\\nBATCH_SIZE = 16\\nMAX_LEN = 2048\\n\\nCONFIGS = [\\n    {\\\"name\\\": \\\"cls_seed789\\\",  \\\"ckpt\\\": \\\"checkpoints_seed789/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed789.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed789\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed789/best\\\",  \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed789.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed0\\\",   \\\"ckpt\\\": \\\"checkpoints_traj_seed0/best\\\",    \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed0.jsonl\\\"},\\n]\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}], tokenize=False, enable_thinking=False)\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\n    if mode == \\\"cls\\\":\\n        user_msg = f\\\"## Code\\\\n{item['code']}\\\\n\\\\n## Test\\\\n{item['test']}\\\\n\\\\nWill this test pass or fail?\\\"\\n        system = CLS_SYSTEM\\n    else:\\n        user_msg = f\\\"[Code]\\\\n{item['code']}\\\\n\\\\n[Test Summary]\\\\n{item['test_summary']}\\\"\\n        system = TRAJ_SYSTEM\\n    msgs = [{\\\"role\\\": \\\"system\\\", \\\"content\\\": system}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg}]\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\n    return ids[:max_len] if len(ids) > max_len else ids\\n\\ndef parse_pred(text, mode):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    t = text.strip().lower()\\n    if mode == \\\"cls\\\":\\n        if t.startswith(\\\"pass\\\"): return 1\\n        if t.startswith(\\\"fail\\\"): return 0\\n        if \\\"pass\\\" in t and \\\"fail\\\" not in t: return 1\\n        if \\\"fail\\\" in t and \\\"pass\\\" not in t: return 0\\n    else:\\n        if t.startswith(\\\"resolved\\\"): return 1\\n        if t.startswith(\\\"unresolved\\\"): return 0\\n        if \\\"resolved\\\" in t and \\\"unresolved\\\" not in t: return 1\\n        if \\\"unresolved\\\" in t: return 0\\n    return -1\\n\\ndef run_one(cfg):\\n    out_path = os.path.join(BASE_DIR, cfg[\\\"out\\\"])\\n    if os.path.exists(out_path):\\n        log.info(f\\\"[{cfg['name']}] Skip — {out_path} exists\\\")\\n        return\\n\\n    ckpt_path = os.path.join(BASE_DIR, cfg[\\\"ckpt\\\"])\\n    data_path = os.path.join(BASE_DIR, cfg[\\\"data\\\"])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\"left\\\")\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8fbb808e-cea6-418e-bf19-e256157eeea9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Extract per-sample predictions for seeds 789, 0.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, logging, os\\\\nfrom collections import Counter\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nCLS_SYSTEM = (\\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n              \\\\\\\"predict whether the test will pass or fail.\\\\\\\")\\\\nTRAJ_SYSTEM = (\\\\\\\"You are a code repair verifier. Given the code patch and test summary, \\\\\\\"\\\\n               \\\\\\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\\\\\")\\\\n\\\\nBASE_DIR = \\\\\\\"/home/sonny/exec-sim-repair-verifier\\\\\\\"\\\\nMODEL_NAME = \\\\\\\"Qwen/Qwen3-4B\\\\\\\"\\\\nBATCH_SIZE = 16\\\\nMAX_LEN = 2048\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed789\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed789/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed789.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed789\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed789/best\\\\\\\",  \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed789.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed0\\\\\\\",   \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed0/best\\\\\\\",    \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed0.jsonl\\\\\\\"},\\\\n]\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}], tokenize=False, enable_thinking=False)\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\\\n    if mode == \\\\\\\"cls\\\\\\\":\\\\n        user_msg = f\\\\\\\"## Code\\\\\\\\n{item['code']}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{item['test']}\\\\\\\\n\\\\\\\\nWill this test pass or fail?\\\\\\\"\\\\n        system = CLS_SYSTEM\\\\n    else:\\\\n        user_msg = f\\\\\\\"[Code]\\\\\\\\n{item['code']}\\\\\\\\n\\\\\\\\n[Test Summary]\\\\\\\\n{item['test_summary']}\\\\\\\"\\\\n        system = TRAJ_SYSTEM\\\\n    msgs = [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_msg}]\\\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\\\n    return ids[:max_len] if len(ids) > max_len else ids\\\\n\\\\ndef parse_pred(text, mode):\\\\n    if \\\\\\\"&lt;/think>\\\\\\\" in text:\\\\n        text = text.split(\\\\\\\"&lt;/think>\\\\\\\")[-1]\\\\n    t = text.strip().lower()\\\\n    if mode == \\\\\\\"cls\\\\\\\":\\\\n        if t.startswith(\\\\\\\"pass\\\\\\\"): return 1\\\\n        if t.startswith(\\\\\\\"fail\\\\\\\"): return 0\\\\n        if \\\\\\\"pass\\\\\\\" in t and \\\\\\\"fail\\\\\\\" not in t: return 1\\\\n        if \\\\\\\"fail\\\\\\\" in t and \\\\\\\"pass\\\\\\\" not in t: return 0\\\\n    else:\\\\n        if t.startswith(\\\\\\\"resolved\\\\\\\"): return 1\\\\n        if t.startswith(\\\\\\\"unresolved\\\\\\\"): return 0\\\\n        if \\\\\\\"resolved\\\\\\\" in t and \\\\\\\"unresolved\\\\\\\" not in t: return 1\\\\n        if \\\\\\\"unresolved\\\\\\\" in t: return 0\\\\n    return -1\\\\n\\\\ndef run_one(cfg):\\\\n    out_path = os.path.join(BASE_DIR, cfg[\\\\\\\"out\\\\\\\"])\\\\n    if os.path.exists(out_path):\\\\n        log.info(f\\\\\\\"[{cfg['name']}] Skip — {out_path} exists\\\\\\\")\\\\n        return\\\\n\\\\n    ckpt_path = os.path.join(BASE_DIR, cfg[\\\\\\\"ckpt\\\\\\\"])\\\\n    data_path = os.path.join(BASE_DIR, cfg[\\\\\\\"data\\\\\\\"])\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\\\\\"left\\\\\\\")\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n    tmpl_kw = detect_thinking_support(tokenizer)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Extract per-sample predictions for seeds 789, 0.\\\"\\\"\\\"\\nimport json, logging, os\\nfrom collections import Counter\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nCLS_SYSTEM = (\\\"You are a code verifier. Given a code snippet and a test case, \\\"\\n              \\\"predict whether the test will pass or fail.\\\")\\nTRAJ_SYSTEM = (\\\"You are a code repair verifier. Given the code patch and test summary, \\\"\\n               \\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\")\\n\\nBASE_DIR = \\\"/home/sonny/exec-sim-repair-verifier\\\"\\nMODEL_NAME = \\\"Qwen/Qwen3-4B\\\"\\nBATCH_SIZE = 16\\nMAX_LEN = 2048\\n\\nCONFIGS = [\\n    {\\\"name\\\": \\\"cls_seed789\\\",  \\\"ckpt\\\": \\\"checkpoints_seed789/best\\\",       \\\"data\\\": \\\"data/test.jsonl\\\",      \\\"mode\\\": \\\"cls\\\",  \\\"out\\\": \\\"predictions_cls_seed789.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed789\\\", \\\"ckpt\\\": \\\"checkpoints_traj_seed789/best\\\",  \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed789.jsonl\\\"},\\n    {\\\"name\\\": \\\"traj_seed0\\\",   \\\"ckpt\\\": \\\"checkpoints_traj_seed0/best\\\",    \\\"data\\\": \\\"data/traj_test.jsonl\\\", \\\"mode\\\": \\\"traj\\\", \\\"out\\\": \\\"predictions_traj_seed0.jsonl\\\"},\\n]\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\ndef detect_thinking_support(tokenizer):\\n    try:\\n        tokenizer.apply_chat_template(\\n            [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"hi\\\"}], tokenize=False, enable_thinking=False)\\n        return {\\\"enable_thinking\\\": False}\\n    except TypeError:\\n        return {}\\n\\ndef build_ids(tokenizer, item, mode, tmpl_kw, max_len):\\n    if mode == \\\"cls\\\":\\n        user_msg = f\\\"## Code\\\\n{item['code']}\\\\n\\\\n## Test\\\\n{item['test']}\\\\n\\\\nWill this test pass or fail?\\\"\\n        system = CLS_SYSTEM\\n    else:\\n        user_msg = f\\\"[Code]\\\\n{item['code']}\\\\n\\\\n[Test Summary]\\\\n{item['test_summary']}\\\"\\n        system = TRAJ_SYSTEM\\n    msgs = [{\\\"role\\\": \\\"system\\\", \\\"content\\\": system}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg}]\\n    ids = tokenizer.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw)\\n    return ids[:max_len] if len(ids) > max_len else ids\\n\\ndef parse_pred(text, mode):\\n    if \\\"&lt;/think>\\\" in text:\\n        text = text.split(\\\"&lt;/think>\\\")[-1]\\n    t = text.strip().lower()\\n    if mode == \\\"cls\\\":\\n        if t.startswith(\\\"pass\\\"): return 1\\n        if t.startswith(\\\"fail\\\"): return 0\\n        if \\\"pass\\\" in t and \\\"fail\\\" not in t: return 1\\n        if \\\"fail\\\" in t and \\\"pass\\\" not in t: return 0\\n    else:\\n        if t.startswith(\\\"resolved\\\"): return 1\\n        if t.startswith(\\\"unresolved\\\"): return 0\\n        if \\\"resolved\\\" in t and \\\"unresolved\\\" not in t: return 1\\n        if \\\"unresolved\\\" in t: return 0\\n    return -1\\n\\ndef run_one(cfg):\\n    out_path = os.path.join(BASE_DIR, cfg[\\\"out\\\"])\\n    if os.path.exists(out_path):\\n        log.info(f\\\"[{cfg['name']}] Skip — {out_path} exists\\\")\\n        return\\n\\n    ckpt_path = os.path.join(BASE_DIR, cfg[\\\"ckpt\\\"])\\n    data_path = os.path.join(BASE_DIR, cfg[\\\"data\\\"])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path, trust_remote_code=True, padding_side=\\\"left\\\")\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    tmpl_kw = detect_thinking_support(tokenizer)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-12T16:09:31.786Z_
+
+<details><summary>↩ Tool result · `toolu_0197F31QR1k88EH3EabDmWRe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\nmerges.txt\\nREADME.md\\nspecial_tokens_map.json\\ntokenizer_config.json\\ntokenizer.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "52fc4dc4-2036-4a80-92fd-e05c1e93fdd3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\nmerges.txt\\\\nREADME.md\\\\nspecial_tokens_map.json\\\\ntokenizer_config.json\\\\ntokenizer.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\nmerges.txt\\nREADME.md\\nspecial_tokens_map.json\\ntokenizer_config.json\\ntokenizer.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the cwm-seed789 eval results. Now I need CWM per-instance predictions. The CWM checkpoint for baseline (seed42) is at `checkpoints_cwm/best/` on home-1x5090. 
+
+I need to:
+1. Generate CWM per-instance predictions for seed42 baseline (need to run eval_cwm_baseline.py or write a script to extract predictions)
+2. But wait - the eval_cwm_baseline.py generates aggregate metrics, not per-instance predictions. I need to modify it or write a new script.
+
+Actually, let me think about this differently. 
+
+The CLS predictions have `{index, problem_id, mutation_type, label, pred, gen_text}` format, so I need to match that structure for CWM. I'll need to write a script that loads the CWM checkpoint, runs inference on cwm_test.jsonl, and outputs per-instance predictions with the same fields. This requires GPU access, but I could combine it with the overlap analysis in one script to make it more efficient. LS predictions
+
+But wait - maybe the CWM test data and CLS test data are the same samples, just with different formats (classification vs generation). Let me check the test data structure.
+
+Actually, looking at the code more carefully:
+- CLS uses `data/test.jsonl` 
+- CWM uses `data/cwm_test.jsonl`
+
+These should be the same 1890 samples, just formatted differently for the two tasks. The key is that each sample has the same `problem_id` and `mutation_type`, so I can match them.
+
+Let me check what the CWM test data looks like and whether I can write a script to extract CWM predictions.
+
+I think the most efficient approach is to write a script that extracts CWM per-instance predictions from the checkpoint, then runs the full overlap analysis with the CLS predictions I already have. Since I have CLS predictions in `predictions_cls_seed42.jsonl` but need to generate CWM predictions, I'll need to modify the extraction script to handle CWM mode and produce per-instance outputs.
+
+Writing extraction and analysis script... I need to check the data format before proceeding with the script, so I can make sure the analysis handles the predictions correctly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "9e98e82a-13bf-4f8b-ac6c-0f54123f7d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YmPQyHqGYSvbMXMY628FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3847,
+      "cache_read_input_tokens": 47977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+现在有了所有需要的信息。需要先生成 CWM per-instance 预测文件（当前只有 CLS 的），然后做 overlap 分析。先看 test data 结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "b0eb6342-53b8-4f65-a5ec-0f5ddc7abb20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YmPQyHqGYSvbMXMY628FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3847,
+      "cache_read_input_tokens": 47977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018t6yVTsrDKHM5wwRaTHgwG`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c4edc505-a828-40f9-b427-5b2b14fa7dbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YmPQyHqGYSvbMXMY628FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3847,
+      "cache_read_input_tokens": 47977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-12T16:10:00.283Z_
+
+<details><summary>↩ Tool result · `toolu_018t6yVTsrDKHM5wwRaTHgwG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"FAIL: SyntaxError: expected ':'\\\", \\\"label\\\": 0, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8cbff562-a0a2-4556-bbf7-ac35a17d81d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"FAIL: SyntaxError: expected ':'\\\\\\\", \\\\\\\"label\\\\\\\": 0, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"PASS: test completed successfully\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"target\\\": \\\"FAIL: SyntaxError: expected ':'\\\", \\\"label\\\": 0, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T25tckjUhSrDiGRr38p3HB`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -3 /home/sonny/exec-sim-repair-verifier/data/test.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "1107e1de-7bb0-4898-9ea2-fe4a422cc623",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YmPQyHqGYSvbMXMY628FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3847,
+      "cache_read_input_tokens": 47977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H9KYL4LeSF8HoWK821NsCk`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl /home/sonny/exec-sim-repair-verifier/data/test.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "5acf6ab4-4b83-4dd8-babd-bea219d760c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YmPQyHqGYSvbMXMY628FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3847,
+      "cache_read_input_tokens": 47977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-12T16:10:01.491Z_
+
+<details><summary>↩ Tool result · `toolu_01T25tckjUhSrDiGRr38p3HB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 0, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "67d89b73-d7fd-420e-95ac-5db80cf33be0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"label\\\\\\\": 0, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"original\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 1, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"off_by_one\\\"}\\n{\\\"code\\\": \\\"from typing import List\\\\n\\\\n\\\\ndef has_close_elements(numbers: List[float], threshold: float) ->= bool:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\n    given threshold.\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\n    False\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\n    True\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for idx, elem in enumerate(numbers):\\\\n        for idx2, elem2 in enumerate(numbers):\\\\n            if idx != idx2:\\\\n                distance = abs(elem - elem2)\\\\n                if distance < threshold:\\\\n                    return True\\\\n\\\\n    return False\\\\n\\\", \\\"test\\\": \\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\", \\\"label\\\": 0, \\\"source\\\": \\\"humaneval\\\", \\\"problem_id\\\": \\\"HumanEval/0\\\", \\\"mutation_type\\\": \\\"operator_swap\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-12T16:10:02.712Z_
+
+<details><summary>↩ Tool result · `toolu_01H9KYL4LeSF8HoWK821NsCk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n   1890 /home/sonny/exec-sim-repair-verifier/data/test.jsonl\\n   1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n   5670 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "98034380-76c9-496a-a274-389135ff280a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n   1890 /home/sonny/exec-sim-repair-verifier/data/test.jsonl\\\\n   1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\\n   5670 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\n   1890 /home/sonny/exec-sim-repair-verifier/data/test.jsonl\\n   1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\n   5670 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. `data/test.jsonl` (CLS) and `data/cwm_test.jsonl` (CWM) both have 1890 samples, same ordering
+2. CLS predictions exist at `predictions_cls_seed42.jsonl` with per-instance data
+3. CWM per-instance predictions don't exist yet - need to generate them from the CWM checkpoint
+
+The data differs: CLS test has `{code, test, label, source, problem_id, mutation_type}` while CWM test also has `{target}` field with the expected output string.
+
+
+CLS predictions are formatted as `{index, problem_id, mutation_type, label, pred, gen_text}`.
+
+I'll create two separate scripts: one to extract CWM per-instance predictions from the checkpoint (which requires GPU), and another to analyze the overlap between both prediction sets. Let me start with the extraction script.
+
+Writing extraction script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "168abcc4-d563-4a3e-82ac-9c459fcd7a16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhxrcgyEtt5iWmez7diCfL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 51824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4333
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+数据对齐确认: CLS 和 CWM 测试集都是 1890 样本。CLS 有 per-instance 预测，CWM 没有。需要先提取 CWM predictions，再做 overlap 分析。
+
+写两个脚本：提取 CWM 预测 + overlap 分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "11a1b6e8-974b-402c-a41c-fa83f97efaa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhxrcgyEtt5iWmez7diCfL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 51824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4333
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QJmQtnTP6YQaPHEbY7bdtC`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "tail -50 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "5c51476a-12e4-4586-9bbc-f493bd3b6d06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhxrcgyEtt5iWmez7diCfL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4333,
+      "cache_read_input_tokens": 51824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4333
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-12T16:10:16.945Z_
+
+<details><summary>↩ Tool result · `toolu_01QJmQtnTP6YQaPHEbY7bdtC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\")\\n    print(f\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\")\\n    for name, idx in [(\\\"fail\\\", 0), (\\\"pass\\\", 1)]:\\n        f1_status = \\\"OK\\\" if f1[idx] > 0.65 else \\\"LOW\\\"\\n        support = n_fail if idx == 0 else n_pass\\n        print(f\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\")\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\")\\n    print(f\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\")\\n\\n    print(f\\\"\\\\n--- CWM-Specific Metrics ---\\\")\\n    print(f\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\")\\n    print(f\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\")\\n    print(f\\\"\\\\nPer error-type breakdown:\\\")\\n    print(f\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\")\\n    print(f\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\")\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\"total\\\"]):\\n        print(f\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\")\\n\\n    f1_ok = all(x > 0.65 for x in f1)\\n    gap_ok = gap >= 0.10\\n    print(f\\\"\\\\nMVP-B CRITERIA (same thresholds as classification):\\\")\\n    print(f\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\")\\n    print(f\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\")\\n    print(f\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n    if args.save_predictions:\\n        pred_path = args.output.replace(\\\".json\\\", \\\"_predictions.json\\\")\\n        pred_data = {\\n            \\\"metadata\\\": {\\n                \\\"model\\\": args.model_name,\\n                \\\"checkpoint\\\": args.checkpoint_dir,\\n                \\\"test_set_size\\\": total,\\n            },\\n            \\\"predictions\\\": predictions_list,\\n        }\\n        with open(pred_path, \\\"w\\\") as f:\\n            json.dump(pred_data, f, indent=2)\\n        log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c964857b-1252-4160-abe5-bf95ea651f4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\\\\\")\\\\n    for name, idx in [(\\\\\\\"fail\\\\\\\", 0), (\\\\\\\"pass\\\\\\\", 1)]:\\\\n        f1_status = \\\\\\\"OK\\\\\\\" if f1[idx] > 0.65 else \\\\\\\"LOW\\\\\\\"\\\\n        support = n_fail if idx == 0 else n_pass\\\\n        print(f\\\\\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- CWM-Specific Metrics ---\\\\\\\")\\\\n    print(f\\\\\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\\\\\")\\\\n    print(f\\\\\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nPer error-type breakdown:\\\\\\\")\\\\n    print(f\\\\\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\\\\\")\\\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\\\\\"total\\\\\\\"]):\\\\n        print(f\\\\\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\\\\\")\\\\n\\\\n    f1_ok = all(x > 0.65 for x in f1)\\\\n    gap_ok = gap >= 0.10\\\\n    print(f\\\\\\\"\\\\\\\\nMVP-B CRITERIA (same thresholds as classification):\\\\\\\")\\\\n    print(f\\\\\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\\\\\")\\\\n    print(f\\\\\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    log.info(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\\n    if args.save_predictions:\\\\n        pred_path = args.output.replace(\\\\\\\".json\\\\\\\", \\\\\\\"_predictions.json\\\\\\\")\\\\n        pred_data = {\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"model\\\\\\\": args.model_name,\\\\n                \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n                \\\\\\\"test_set_size\\\\\\\": total,\\\\n            },\\\\n            \\\\\\\"predictions\\\\\\\": predictions_list,\\\\n        }\\\\n        with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(pred_data, f, indent=2)\\\\n        log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\")\\n    print(f\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\")\\n    for name, idx in [(\\\"fail\\\", 0), (\\\"pass\\\", 1)]:\\n        f1_status = \\\"OK\\\" if f1[idx] > 0.65 else \\\"LOW\\\"\\n        support = n_fail if idx == 0 else n_pass\\n        print(f\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\")\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\")\\n    print(f\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\")\\n\\n    print(f\\\"\\\\n--- CWM-Specific Metrics ---\\\")\\n    print(f\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\")\\n    print(f\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\")\\n    print(f\\\"\\\\nPer error-type breakdown:\\\")\\n    print(f\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\")\\n    print(f\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\")\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\"total\\\"]):\\n        print(f\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\")\\n\\n    f1_ok = all(x > 0.65 for x in f1)\\n    gap_ok = gap >= 0.10\\n    print(f\\\"\\\\nMVP-B CRITERIA (same thresholds as classification):\\\")\\n    print(f\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\")\\n    print(f\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\")\\n    print(f\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(f\\\"Results saved to {args.output}\\\")\\n\\n    if args.save_predictions:\\n        pred_path = args.output.replace(\\\".json\\\", \\\"_predictions.json\\\")\\n        pred_data = {\\n            \\\"metadata\\\": {\\n                \\\"model\\\": args.model_name,\\n                \\\"checkpoint\\\": args.checkpoint_dir,\\n                \\\"test_set_size\\\": total,\\n            },\\n            \\\"predictions\\\": predictions_list,\\n        }\\n        with open(pred_path, \\\"w\\\") as f:\\n            json.dump(pred_data, f, indent=2)\\n        log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval_cwm_baseline.py has a `--save_predictions` flag that saves per-instance predictions. Let me check what the `predictions_list` structure looks like. Also let me see if there are already saved prediction files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "6ef0f68b-34e6-400f-a45a-2d32c6f0aec2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvQCvd3tkiZT46PUJLJmvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 56157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+`eval_cwm_baseline.py` 有 `--save_predictions` 选项。查看是否已有保存的预测文件，以及预测数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "59b8b957-183f-4f7d-973f-46b5af84d79b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvQCvd3tkiZT46PUJLJmvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 56157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UnWYB4ptyJ5Jxt95zEZsFk`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*predictions*\" -o -name \"*predictions*cwm*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "feadd312-afd3-450f-873c-75e5799a469d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvQCvd3tkiZT46PUJLJmvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 56157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Dwapd4KssC8Q8itBGRGrz`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep -n \"predictions_list\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "a8fcb6ec-b71f-4507-9ec3-385f891cee69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvQCvd3tkiZT46PUJLJmvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 56157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-12T16:10:25.664Z_
+
+<details><summary>↩ Tool result · `toolu_01UnWYB4ptyJ5Jxt95zEZsFk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e9353294-b9a6-4cc1-9eee-ae7edc719981",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-12T16:10:26.675Z_
+
+<details><summary>↩ Tool result · `toolu_014Dwapd4KssC8Q8itBGRGrz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"162:    predictions_list = []\\n202:            predictions_list.append({\\n346:            \\\"predictions\\\": predictions_list,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "2e3599c1-e2e1-49e4-88ad-4f1a1ab585bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"162:    predictions_list = []\\\\n202:            predictions_list.append({\\\\n346:            \\\\\\\"predictions\\\\\\\": predictions_list,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"162:    predictions_list = []\\n202:            predictions_list.append({\\n346:            \\\"predictions\\\": predictions_list,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V9wNwWdwiLwDtaH7jKZqpB`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "sed -n '195,215p' /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "a359de8f-eb5d-483c-b84b-2c134c7c7295",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFz6YXByqKQQDumh8UqgZc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 57888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-12T16:10:29.434Z_
+
+<details><summary>↩ Tool result · `toolu_01V9wNwWdwiLwDtaH7jKZqpB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "dad0af68-bb15-49d9-88da-d0f7d8eabdf1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xo1iBCzJqv3zD2bS9RpnxE`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep -A 15 \"predictions_list.append\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "cefa6ef0-bc01-4837-b15d-8ff0349efac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LB8zu3f2VNUbNRBRSGkTP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 58500,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-12T16:10:33.528Z_
+
+<details><summary>↩ Tool result · `toolu_01Xo1iBCzJqv3zD2bS9RpnxE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            predictions_list.append({\\n                \\\"idx\\\": i + j,\\n                \\\"problem_id\\\": batch[j].get(\\\"problem_id\\\", \\\"\\\"),\\n                \\\"mutation_type\\\": batch[j].get(\\\"mutation_type\\\", \\\"\\\"),\\n                \\\"source\\\": batch[j].get(\\\"source\\\", \\\"\\\"),\\n                \\\"true_label\\\": \\\"PASS\\\" if batch_labels[j] == 1 else \\\"FAIL\\\",\\n                \\\"predicted_label\\\": \\\"PASS\\\" if pred == 1 else \\\"FAIL\\\",\\n                \\\"correct\\\": pred == batch_labels[j],\\n                \\\"raw_output\\\": gen_text,\\n                \\\"error_type\\\": extract_error_type(gt_target),\\n                \\\"exact_match\\\": gen_text.strip() == gt_target.strip(),\\n            })\\n\\n        done = min(i + args.batch_size, total)\\n        if done % (args.batch_size * 10) == 0 or done == total:\\n            log.info(f\\\"Progress: {done}/{total}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "53cb323a-3399-4e43-b1cd-004f02b3470e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            predictions_list.append({\\\\n                \\\\\\\"idx\\\\\\\": i + j,\\\\n                \\\\\\\"problem_id\\\\\\\": batch[j].get(\\\\\\\"problem_id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"mutation_type\\\\\\\": batch[j].get(\\\\\\\"mutation_type\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"source\\\\\\\": batch[j].get(\\\\\\\"source\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\" if batch_labels[j] == 1 else \\\\\\\"FAIL\\\\\\\",\\\\n                \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\" if pred == 1 else \\\\\\\"FAIL\\\\\\\",\\\\n                \\\\\\\"correct\\\\\\\": pred == batch_labels[j],\\\\n                \\\\\\\"raw_output\\\\\\\": gen_text,\\\\n                \\\\\\\"error_type\\\\\\\": extract_error_type(gt_target),\\\\n                \\\\\\\"exact_match\\\\\\\": gen_text.strip() == gt_target.strip(),\\\\n            })\\\\n\\\\n        done = min(i + args.batch_size, total)\\\\n        if done % (args.batch_size * 10) == 0 or done == total:\\\\n            log.info(f\\\\\\\"Progress: {done}/{total}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            predictions_list.append({\\n                \\\"idx\\\": i + j,\\n                \\\"problem_id\\\": batch[j].get(\\\"problem_id\\\", \\\"\\\"),\\n                \\\"mutation_type\\\": batch[j].get(\\\"mutation_type\\\", \\\"\\\"),\\n                \\\"source\\\": batch[j].get(\\\"source\\\", \\\"\\\"),\\n                \\\"true_label\\\": \\\"PASS\\\" if batch_labels[j] == 1 else \\\"FAIL\\\",\\n                \\\"predicted_label\\\": \\\"PASS\\\" if pred == 1 else \\\"FAIL\\\",\\n                \\\"correct\\\": pred == batch_labels[j],\\n                \\\"raw_output\\\": gen_text,\\n                \\\"error_type\\\": extract_error_type(gt_target),\\n                \\\"exact_match\\\": gen_text.strip() == gt_target.strip(),\\n            })\\n\\n        done = min(i + args.batch_size, total)\\n        if done % (args.batch_size * 10) == 0 or done == total:\\n            log.info(f\\\"Progress: {done}/{total}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - the eval_cwm_baseline.py has a `--save_predictions` flag that would save per-instance predictions. But no prediction files exist for CWM. I need to run this on the GPU.
+
+Now, I have two approaches:
+1. Run eval_cwm_baseline.py with --save_predictions to generate CWM seed42 predictions, then run the overlap analysis
+2. Write a combined script
+
+Since running the CWM eval requires GPU and loading the model, and this takes significant time, let me use the existing eval_cwm_baseline.py with --save_predictions. But wait, I need to think about the approach:
+
+
+The eval already ran and produced results but without the predictions saved. I should just re-run eval_cwm_baseline.py with the --save_predictions flag pointing to the CWM checkpoint, which will generate the prediction file I need, then follow up with the overlap analysis. I'm checking the command-line arguments for eval_cwm_baseline.py to see what flags are available and how to properly invoke it with the save_predictions option.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "1faaeb9d-1254-4163-bbcb-0f8a0abb3f30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013CdeHtGgUDUQtf6KJoAnbU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 58727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BJup1vcuY8cCP32q5yLcSt`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "grep \"add_argument\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "65333104-6b0f-40fa-b4bb-b2f1734c5c77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013CdeHtGgUDUQtf6KJoAnbU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 58727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-12T16:10:49.712Z_
+
+<details><summary>↩ Tool result · `toolu_01BJup1vcuY8cCP32q5yLcSt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    p.add_argument(\\\"--data_dir\\\", required=True)\\n    p.add_argument(\\\"--checkpoint_dir\\\", required=True)\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_cwm_results.json\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=64)\\n    p.add_argument(\\\"--save_predictions\\\", action=\\\"store_true\\\", help=\\\"Save per-instance predictions to JSON\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "17509594-6cdf-4951-a4da-3f42762b0a17",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    p.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_cwm_results.json\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=64)\\\\n    p.add_argument(\\\\\\\"--save_predictions\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Save per-instance predictions to JSON\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    p.add_argument(\\\"--data_dir\\\", required=True)\\n    p.add_argument(\\\"--checkpoint_dir\\\", required=True)\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_cwm_results.json\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=64)\\n    p.add_argument(\\\"--save_predictions\\\", action=\\\"store_true\\\", help=\\\"Save per-instance predictions to JSON\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me plan the execution:
+
+1. Run `eval_cwm_baseline.py` with `--save_predictions` to generate per-instance CWM predictions (this is GPU work)
+2. Write `analyze_error_overlap.py` that reads both CLS and CWM predictions
+3. Run the analysis script
+4. Update cwm-seed789 metrics in registry
+
+Let me first check the model path on home-1x5090 for Qwen3-4B.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "5ee97829-dacc-4e2d-bf12-69764b0ef0d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRzXNWkyPwinxaJHmzPcjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 59271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XhWbHoXTiNJefcQnoXn4YM`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls /home/sonny/.cache/huggingface/hub/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "b352a032-cc4a-420e-9c5a-a73e0597c703",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRzXNWkyPwinxaJHmzPcjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 59271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 950
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-12T16:10:57.395Z_
+
+<details><summary>↩ Tool result · `toolu_01XhWbHoXTiNJefcQnoXn4YM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CACHEDIR.TAG\\ndatasets--AlexCuadron--SWE-Bench-Verified-O1-reasoning-high-results\\ndatasets--emotion\\ndatasets--google-research-datasets--mbpp\\ndatasets--openai--openai_humaneval\\ndatasets--princeton-nlp--SWE-bench_Verified\\ndatasets--SWE-bench--SWE-smith\\ndatasets--SWE-bench--SWE-smith-trajectories\\ndatasets--togethercomputer--CoderForge-Preview-32B-SWE-Bench-Verified-Evaluation-trajectories\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\nmodels--distilbert-base-uncased\\nmodels--microsoft--Florence-2-large\\nmodels--QuanSun--EVA-CLIP\\nmodels--Qwen--Qwen3-0.6B\\nmodels--Qwen--Qwen3-4B\\nmodels--Qwen--Qwen3-8B\\nmodels--timm--cait_s24_224.fb_dist_in1k\\nmodels--timm--coat_lite_small.in1k\\nmodels--timm--convmixer_768_32.in1k\\nmodels--timm--convnext_tiny.fb_in1k\\nmodels--timm--convnextv2_tiny.fcmae_ft_in1k\\nmodels--timm--deit_base_patch16_224.fb_in1k\\nmodels--timm--deit_small_patch16_224.fb_in1k\\nmodels--timm--focalnet_tiny_srf.ms_in1k\\nmodels--timm--mambaout_tiny.in1k\\nmodels--timm--poolformer_s24.sail_in1k\\nmodels--timm--poolformer_s36.sail_in1k\\nmodels--timm--pvt_v2_b2.in1k\\nmodels--timm--pvt_v2_b3.in1k\\nmodels--timm--resmlp_24_224.fb_in1k\\nmodels--timm--resnet101.a1_in1k\\nmodels--timm--resnet50.a1_in1k\\nmodels--timm--swin_tiny_patch4_window7_224.ms_in1k\\nmodels--timm--twins_svt_small.in1k\\nversion_diffusers_cache.txt\\nversion.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "5d1eb16c-6fc5-4207-acb6-29135f3c3960",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CACHEDIR.TAG\\\\ndatasets--AlexCuadron--SWE-Bench-Verified-O1-reasoning-high-results\\\\ndatasets--emotion\\\\ndatasets--google-research-datasets--mbpp\\\\ndatasets--openai--openai_humaneval\\\\ndatasets--princeton-nlp--SWE-bench_Verified\\\\ndatasets--SWE-bench--SWE-smith\\\\ndatasets--SWE-bench--SWE-smith-trajectories\\\\ndatasets--togethercomputer--CoderForge-Preview-32B-SWE-Bench-Verified-Evaluation-trajectories\\\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\\\nmodels--distilbert-base-uncased\\\\nmodels--microsoft--Florence-2-large\\\\nmodels--QuanSun--EVA-CLIP\\\\nmodels--Qwen--Qwen3-0.6B\\\\nmodels--Qwen--Qwen3-4B\\\\nmodels--Qwen--Qwen3-8B\\\\nmodels--timm--cait_s24_224.fb_dist_in1k\\\\nmodels--timm--coat_lite_small.in1k\\\\nmodels--timm--convmixer_768_32.in1k\\\\nmodels--timm--convnext_tiny.fb_in1k\\\\nmodels--timm--convnextv2_tiny.fcmae_ft_in1k\\\\nmodels--timm--deit_base_patch16_224.fb_in1k\\\\nmodels--timm--deit_small_patch16_224.fb_in1k\\\\nmodels--timm--focalnet_tiny_srf.ms_in1k\\\\nmodels--timm--mambaout_tiny.in1k\\\\nmodels--timm--poolformer_s24.sail_in1k\\\\nmodels--timm--poolformer_s36.sail_in1k\\\\nmodels--timm--pvt_v2_b2.in1k\\\\nmodels--timm--pvt_v2_b3.in1k\\\\nmodels--timm--resmlp_24_224.fb_in1k\\\\nmodels--timm--resnet101.a1_in1k\\\\nmodels--timm--resnet50.a1_in1k\\\\nmodels--timm--swin_tiny_patch4_window7_224.ms_in1k\\\\nmodels--timm--twins_svt_small.in1k\\\\nversion_diffusers_cache.txt\\\\nversion.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"CACHEDIR.TAG\\ndatasets--AlexCuadron--SWE-Bench-Verified-O1-reasoning-high-results\\ndatasets--emotion\\ndatasets--google-research-datasets--mbpp\\ndatasets--openai--openai_humaneval\\ndatasets--princeton-nlp--SWE-bench_Verified\\ndatasets--SWE-bench--SWE-smith\\ndatasets--SWE-bench--SWE-smith-trajectories\\ndatasets--togethercomputer--CoderForge-Preview-32B-SWE-Bench-Verified-Evaluation-trajectories\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\nmodels--distilbert-base-uncased\\nmodels--microsoft--Florence-2-large\\nmodels--QuanSun--EVA-CLIP\\nmodels--Qwen--Qwen3-0.6B\\nmodels--Qwen--Qwen3-4B\\nmodels--Qwen--Qwen3-8B\\nmodels--timm--cait_s24_224.fb_dist_in1k\\nmodels--timm--coat_lite_small.in1k\\nmodels--timm--convmixer_768_32.in1k\\nmodels--timm--convnext_tiny.fb_in1k\\nmodels--timm--convnextv2_tiny.fcmae_ft_in1k\\nmodels--timm--deit_base_patch16_224.fb_in1k\\nmodels--timm--deit_small_patch16_224.fb_in1k\\nmodels--timm--focalnet_tiny_srf.ms_in1k\\nmodels--timm--mambaout_tiny.in1k\\nmodels--timm--poolformer_s24.sail_in1k\\nmodels--timm--poolformer_s36.sail_in1k\\nmodels--timm--pvt_v2_b2.in1k\\nmodels--timm--pvt_v2_b3.in1k\\nmodels--timm--resmlp_24_224.fb_in1k\\nmodels--timm--resnet101.a1_in1k\\nmodels--timm--resnet50.a1_in1k\\nmodels--timm--swin_tiny_patch4_window7_224.ms_in1k\\nmodels--timm--twins_svt_small.in1k\\nversion_diffusers_cache.txt\\nversion.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+现在分两步并行：1) 在 GPU 上重新运行 CWM eval 生成 per-instance predictions；2) 写好 overlap 分析脚本等 predictions 就绪后运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "c18a4e94-a1e3-478a-b083-4286fd67602e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZYn2D34wW5tV7MW6iMbNG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 60221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 980
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018d4DA2K3PSonJtFHFQsGC5`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\n  --data_dir data/ \\\n  --checkpoint_dir checkpoints_cwm/best \\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\n  --output eval_cwm_seed42_with_preds.json \\\n  --save_predictions \\\n  --batch_size 16 \\\n  > /tmp/cwm_extract_preds.log 2>&1 &\necho \"PID=$!\"",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "9b7d8d46-9770-4e89-b5c0-b1d30c8f5dda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZYn2D34wW5tV7MW6iMbNG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 60221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 980
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-12T16:11:36.720Z_
+
+<details><summary>↩ Tool result · `toolu_018d4DA2K3PSonJtFHFQsGC5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\\\\\\\\\\n  --data_dir data/ \\\\\\\\\\\\n  --checkpoint_dir checkpoints_cwm/best \\\\\\\\\\\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\\\\\\\\\\n  --output eval_cwm_seed42_with_preds.json \\\\\\\\\\\\n  --save_predictions \\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\n  > /tmp/cwm_extract_preds.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=2827684\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "f658b4c4-ec41-4396-b285-780d7bccadee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\\\\\\\\\\\\\\\\\\\\\\n  --data_dir data/ \\\\\\\\\\\\\\\\\\\\\\\\n  --checkpoint_dir checkpoints_cwm/best \\\\\\\\\\\\\\\\\\\\\\\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\\\\\\\\\\\\\\\\\\\\\\n  --output eval_cwm_seed42_with_preds.json \\\\\\\\\\\\\\\\\\\\\\\\n  --save_predictions \\\\\\\\\\\\\\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\\\\\\\\\\\\\n  > /tmp/cwm_extract_preds.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=2827684\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\\\\\\\\\\n  --data_dir data/ \\\\\\\\\\\\n  --checkpoint_dir checkpoints_cwm/best \\\\\\\\\\\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\\\\\\\\\\n  --output eval_cwm_seed42_with_preds.json \\\\\\\\\\\\n  --save_predictions \\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\n  > /tmp/cwm_extract_preds.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=2827684\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The process started with PID 2827684. Let me write the analysis script while waiting for the CWM predictions to complete.
+
+Actually, looking at the stdout, it says "PID=2827684", which means the process was started in the background. The SSH command timed out after 30 seconds, but the process should still be running on the server. Let me check its status in a moment.
+
+Meanwhile, let me write the analysis script. The CWM predictions will be saved as `eval_cwm_seed42_with_preds_predictions.json` (the script replaces .json with _predictions.json).
+
+
+Now I need to write the `analyze_error_overlap.py` script that handles both prediction formats—CLS uses JSONL with index and prediction fields, while CWM uses JSON with a different structure containing metadata and predictions arrays. I'll match records across both datasets using problem_id and mutation_type as the key identifiers.
+
+Writing analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "3ed2164d-7fd8-460e-b809-d709d76dd78e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DUk2WZ6pUTJmG36ZdxUj5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 61201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+CWM eval 在后台运行 (PID=2827684)。现在写分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "a23279ae-5b35-485c-9706-04be19fe9c7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DUk2WZ6pUTJmG36ZdxUj5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 61201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013Jad7bAZB2shRUJLY6X8TH`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"CLS vs CWM per-instance error overlap analysis.\"\"\"\nimport json\nimport sys\nfrom collections import Counter, defaultdict\n\ndef load_cls_predictions(path):\n    preds = []\n    with open(path) as f:\n        for line in f:\n            preds.append(json.loads(line))\n    return preds\n\ndef load_cwm_predictions(path):\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"predictions\"]\n\ndef cohens_kappa(y1, y2):\n    n = len(y1)\n    assert n == len(y2)\n    cats = sorted(set(y1) | set(y2))\n    confusion = Counter()\n    for a, b in zip(y1, y2):\n        confusion[(a, b)] += 1\n    po = sum(confusion[(c, c)] for c in cats) / n\n    pe = sum(\n        (sum(confusion[(c, c2)] for c2 in cats) / n) *\n        (sum(confusion[(c2, c)] for c2 in cats) / n)\n        for c in cats\n    )\n    if pe == 1.0:\n        return 1.0\n    return (po - pe) / (1.0 - pe)\n\ndef compute_f1_prec_rec(labels, preds, pos_label):\n    tp = sum(1 for l, p in zip(labels, preds) if l == pos_label and p == pos_label)\n    fp = sum(1 for l, p in zip(labels, preds) if l != pos_label and p == pos_label)\n    fn = sum(1 for l, p in zip(labels, preds) if l == pos_label and p != pos_label)\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\n    return {\"precision\": round(prec * 100, 2), \"recall\": round(rec * 100, 2), \"f1\": round(f1 * 100, 2), \"support\": tp + fn}\n\ndef main():\n    cls_path = \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\"\n    cwm_path = \"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\"\n    out_path = \"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\"\n\n    cls_preds = load_cls_predictions(cls_path)\n    cwm_preds = load_cwm_predictions(cwm_path)\n\n    assert len(cls_preds) == len(cwm_preds), f\"Size mismatch: CLS={len(cls_preds)}, CWM={len(cwm_preds)}\"\n    n = len(cls_preds)\n\n    # Build lookup by index\n    cwm_by_idx = {p[\"idx\"]: p for p in cwm_preds}\n\n    both_correct = []\n    cls_only_correct = []\n    cwm_only_correct = []\n    both_wrong = []\n\n    by_mutation = defaultdict(lambda: {\"both_correct\": 0, \"cls_only\": 0, \"cwm_only\": 0, \"both_wrong\": 0, \"total\": 0})\n    by_problem = defaultdict(lambda: {\"both_correct\": 0, \"cls_only\": 0, \"cwm_only\": 0, \"both_wrong\": 0, \"total\": 0})\n\n    cls_correct_list = []\n    cwm_correct_list = []\n\n    cwm_labels = []\n    cwm_pred_labels = []\n    cwm_mutation_data = defaultdict(lambda: {\"labels\": [], \"preds\": [], \"exact_matches\": []})\n\n    for cls_p in cls_preds:\n        idx = cls_p[\"index\"]\n        cwm_p = cwm_by_idx[idx]\n        \n        cls_correct = (cls_p[\"pred\"] == cls_p[\"label\"])\n        cwm_pred_val = 1 if cwm_p[\"predicted_label\"] == \"PASS\" else 0\n        cwm_label_val = 1 if cwm_p[\"true_label\"] == \"PASS\" else 0\n        cwm_correct_val = (cwm_pred_val == cwm_label_val)\n\n        cls_correct_list.append(1 if cls_correct else 0)\n        cwm_correct_list.append(1 if cwm_correct_val else 0)\n\n        mt = cls_p[\"mutation_type\"]\n        pid = cls_p[\"problem_id\"]\n\n        cwm_labels.append(cwm_label_val)\n        cwm_pred_labels.append(cwm_pred_val)\n        cwm_mutation_data[mt][\"labels\"].append(cwm_label_val)\n        cwm_mutation_data[mt][\"preds\"].append(cwm_pred_val)\n        cwm_mutation_data[mt][\"exact_matches\"].append(1 if cwm_p.get(\"exact_match\", False) else 0)\n\n        item = {\"index\": idx, \"problem_id\": pid, \"mutation_type\": mt}\n\n        if cls_correct and cwm_correct_val:\n            both_correct.append(item)\n            cat = \"both_correct\"\n        elif cls_correct and not cwm_correct_val:\n            cls_only_correct.append(item)\n            cat = \"cls_only\"\n        elif not cls_correct and cwm_correct_val:\n            cwm_only_correct.append(item)\n            cat = \"cwm_only\"\n        else:\n            both_wrong.append(item)\n            cat = \"both_wrong\"\n\n        by_mutation[mt][cat] += 1\n        by_mutation[mt][\"total\"] += 1\n        by_problem[pid][cat] += 1\n        by_problem[pid][\"total\"] += 1\n\n    # Cohen's kappa on correctness\n    kappa_correctness = cohens_kappa(cls_correct_list, cwm_correct_list)\n\n    # Cohen's kappa on predictions (pass/fail)\n    cls_pred_binary = [p[\"pred\"] for p in cls_preds]\n    cwm_pred_binary = [1 if cwm_by_idx[p[\"index\"]][\"predicted_label\"] == \"PASS\" else 0 for p in cls_preds]\n    kappa_predictions = cohens_kappa(cls_pred_binary, cwm_pred_binary)\n\n    # CWM per-class F1 by mutation type\n    cwm_per_mutation_f1 = {}\n    for mt, data in sorted(cwm_mutation_data.items()):\n        labels = data[\"labels\"]\n        preds = data[\"preds\"]\n        em = data[\"exact_matches\"]\n        pass_metrics = compute_f1_prec_rec(labels, preds, 1)\n        fail_metrics = compute_f1_prec_rec(labels, preds, 0)\n        acc = sum(1 for l, p in zip(labels, preds) if l == p) / len(labels) * 100\n        em_rate = sum(em) / len(em) * 100\n        cwm_per_mutation_f1[mt] = {\n            \"total\": len(labels),\n            \"accuracy\": round(acc, 2),\n            \"exact_match_rate\": round(em_rate, 2),\n            \"pass_f1\": pass_metrics,\n            \"fail_f1\": fail_metrics,\n        }\n\n    # Problems where only one method succeeds\n    cls_only_problems = set()\n    cwm_only_problems = set()\n    for pid, counts in by_problem.items():\n        if counts[\"cls_only\"] > 0 and counts[\"cwm_only\"] == 0:\n            cls_only_problems.add(pid)\n        elif counts[\"cwm_only\"] > 0 and counts[\"cls_only\"] == 0:\n            cwm_only_problems.add(pid)\n\n    # Sort mutation breakdown\n    mutation_breakdown = {}\n    for mt in sorted(by_mutation.keys()):\n        d = by_mutation[mt]\n        t = d[\"total\"]\n        mutation_breakdown[mt] = {\n            \"total\": t,\n            \"both_correct\": d[\"both_correct\"],\n            \"both_correct_pct\": round(d[\"both_correct\"] / t * 100, 1),\n            \"cls_only_correct\": d[\"cls_only\"],\n            \"cls_only_correct_pct\": round(d[\"cls_only\"] / t * 100, 1),\n            \"cwm_only_correct\": d[\"cwm_only\"],\n            \"cwm_only_correct_pct\": round(d[\"cwm_only\"] / t * 100, 1),\n            \"both_wrong\": d[\"both_wrong\"],\n            \"both_wrong_pct\": round(d[\"both_wrong\"] / t * 100, 1),\n        }\n\n    # Find CWM weakest mutation types (by accuracy)\n    cwm_weakest = sorted(cwm_per_mutation_f1.items(), key=lambda x: x[1][\"accuracy\"])[:3]\n\n    results = {\n        \"total_samples\": n,\n        \"overlap_summary\": {\n            \"both_correct\": len(both_correct),\n            \"both_correct_pct\": round(len(both_correct) / n * 100, 2),\n            \"cls_only_correct\": len(cls_only_correct),\n            \"cls_only_correct_pct\": round(len(cls_only_correct) / n * 100, 2),\n            \"cwm_only_correct\": len(cwm_only_correct),\n            \"cwm_only_correct_pct\": round(len(cwm_only_correct) / n * 100, 2),\n            \"both_wrong\": len(both_wrong),\n            \"both_wrong_pct\": round(len(both_wrong) / n * 100, 2),\n        },\n        \"complementarity\": {\n            \"cls_unique_correct\": len(cls_only_correct),\n            \"cwm_unique_correct\": len(cwm_only_correct),\n            \"union_correct\": len(both_correct) + len(cls_only_correct) + len(cwm_only_correct),\n            \"union_accuracy_pct\": round((len(both_correct) + len(cls_only_correct) + len(cwm_only_correct)) / n * 100, 2),\n            \"oracle_gain_over_cls_pp\": round(len(cwm_only_correct) / n * 100, 2),\n            \"oracle_gain_over_cwm_pp\": round(len(cls_only_correct) / n * 100, 2),\n        },\n        \"cohens_kappa\": {\n            \"on_correctness\": round(kappa_correctness, 4),\n            \"on_predictions\": round(kappa_predictions, 4),\n        },\n        \"mutation_type_breakdown\": mutation_breakdown,\n        \"cwm_per_mutation_f1\": cwm_per_mutation_f1,\n        \"cwm_weakest_mutation_types\": [{\"mutation_type\": mt, \"accuracy\": d[\"accuracy\"], \"exact_match_rate\": d[\"exact_match_rate\"]} for mt, d in cwm_weakest],\n        \"problems_cls_only_succeeds\": sorted(list(cls_only_problems))[:20],\n        \"problems_cwm_only_succeeds\": sorted(list(cwm_only_problems))[:20],\n        \"n_problems_cls_only\": len(cls_only_problems),\n        \"n_problems_cwm_only\": len(cwm_only_problems),\n    }\n\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(json.dumps(results, indent=2))\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "84e2dd77-2754-42a4-a3c1-e68d5f975757",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DUk2WZ6pUTJmG36ZdxUj5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 61201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-12T16:12:27.624Z_
+
+<details><summary>↩ Tool result · `toolu_013Jad7bAZB2shRUJLY6X8TH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "9ab3b153-b7ea-41ef-8fc9-e03e44a1dd47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+脚本已写好。现在检查 CWM eval 进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "d25e0483-920c-4e24-8e54-f86c7efa827b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PERuVXK14t24Tis1PnwcgY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3593,
+      "cache_read_input_tokens": 62013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3593
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0159qZ4aBWzQJfbbS5ABj3Js`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "tail -10 /tmp/cwm_extract_preds.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ce71248d-6067-496b-86fc-eb336e5098f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PERuVXK14t24Tis1PnwcgY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3593,
+      "cache_read_input_tokens": 62013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3593
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-12T16:12:42.242Z_
+
+<details><summary>↩ Tool result · `toolu_0159qZ4aBWzQJfbbS5ABj3Js`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ZeroDivisionError              9        55.6%     100.0%\\n  RecursionError                 7        71.4%     100.0%\\n  ValueError                     5        40.0%     100.0%\\n  OverflowError                  3         0.0%       0.0%\\n\\nMVP-B CRITERIA (same thresholds as classification):\\n  Per-class F1 >65%: PASS\\n  Accuracy gap >=10pp: PASS (+35.8pp)\\n  Overall: PASS\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "0b37f366-5aef-468d-828d-8cf681d1d2a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  ZeroDivisionError              9        55.6%     100.0%\\\\n  RecursionError                 7        71.4%     100.0%\\\\n  ValueError                     5        40.0%     100.0%\\\\n  OverflowError                  3         0.0%       0.0%\\\\n\\\\nMVP-B CRITERIA (same thresholds as classification):\\\\n  Per-class F1 >65%: PASS\\\\n  Accuracy gap >=10pp: PASS (+35.8pp)\\\\n  Overall: PASS\\\\n============================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  ZeroDivisionError              9        55.6%     100.0%\\n  RecursionError                 7        71.4%     100.0%\\n  ValueError                     5        40.0%     100.0%\\n  OverflowError                  3         0.0%       0.0%\\n\\nMVP-B CRITERIA (same thresholds as classification):\\n  Per-class F1 >65%: PASS\\n  Accuracy gap >=10pp: PASS (+35.8pp)\\n  Overall: PASS\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+CWM eval 已完成。检查预测文件是否生成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "4f8eb7ac-1384-444e-82d6-7183d0bdcf74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017FPis8Rv6y8miWjZzjGBz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 65606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FPJ5xy1JuSynmzUcLgfxQV`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "61e8444b-a05c-4b49-bdc1-4905ee09bbf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017FPis8Rv6y8miWjZzjGBz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 65606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-12T16:12:48.194Z_
+
+<details><summary>↩ Tool result · `toolu_01FPJ5xy1JuSynmzUcLgfxQV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny   2280 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds.json\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "83211d47-bd62-4d04-8c06-87552d81e710",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-rw-r-- 1 sonny sonny   2280 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds.json\\\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-rw-r-- 1 sonny sonny   2280 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds.json\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xmwd3eZ4zTxDLRgoV6jsWa`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json')); print(len(d['predictions'])); print(json.dumps(d['predictions'][0], indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "80d01003-b493-4a94-8663-be103aee36d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SheK7UHXhx8owSsRzkfo2j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 348,
+      "cache_read_input_tokens": 65962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 348
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-12T16:12:51.641Z_
+
+<details><summary>↩ Tool result · `toolu_01Xmwd3eZ4zTxDLRgoV6jsWa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "1139e530-3d7a-437e-b9b8-cd9475d4bc49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nbwhba8sTJ39UYJ7vrT4dT`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json')); print(len(d['predictions'])); print(json.dumps(d['predictions'][0], indent=2))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "14010435-b8c9-478d-9f65-88db2aaaa78c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EhdU1ApB1H5VCw5kQhH1d9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 271,
+      "cache_read_input_tokens": 66310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 271
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-12T16:12:57.280Z_
+
+<details><summary>↩ Tool result · `toolu_01Nbwhba8sTJ39UYJ7vrT4dT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "42b241bc-60cb-4c60-9f2c-e279d2254b9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CgcFVuYg1eqx3N8W7E92ZL`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "head -30 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "de8fc896-7231-4238-a610-3f5e6b44c698",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3hBNYcwN55K3vqQcC9F1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 271,
+      "cache_read_input_tokens": 66581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 271
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-12T16:13:01.082Z_
+
+<details><summary>↩ Tool result · `toolu_01CgcFVuYg1eqx3N8W7E92ZL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ad9026c3-72ea-417a-aae2-9d1b1880a9bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints_cwm/best\\\\\\\",\\\\n    \\\\\\\"test_set_size\\\\\\\": 1890\\\\n  },\\\\n  \\\\\\\"predictions\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"model\\\": \\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\",\\n    \\\"checkpoint\\\": \\\"checkpoints_cwm/best\\\",\\n    \\\"test_set_size\\\": 1890\\n  },\\n  \\\"predictions\\\": [\\n    {\\n      \\\"idx\\\": 0,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n    },\\n    {\\n      \\\"idx\\\": 1,\\n      \\\"problem_id\\\": \\\"HumanEval/0\\\",\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"source\\\": \\\"humaneval\\\",\\n      \\\"true_label\\\": \\\"PASS\\\",\\n      \\\"predicted_label\\\": \\\"PASS\\\",\\n      \\\"correct\\\": true,\\n      \\\"raw_output\\\": \\\"PASS: test completed successfully\\\",\\n      \\\"error_type\\\": \\\"PASS\\\",\\n      \\\"exact_match\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 118_
+
+CWM 预测文件格式正确，1890 条记录。运行 overlap 分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "f542c395-f775-48a2-8304-de128bc66cdd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQUT6xHkB5bFeAJhQeuESL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 66852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 733
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PQiYfLRD3yfbMvFoYsB6r7`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cd /home/sonny/exec-sim-repair-verifier && python3 analyze_error_overlap.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8ca1a201-1077-4785-bb8d-363b633ca888",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PQUT6xHkB5bFeAJhQeuESL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 66852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 733
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-12T16:13:06.034Z_
+
+<details><summary>↩ Tool result · `toolu_01PQiYfLRD3yfbMvFoYsB6r7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "78670142-8849-4951-a539-6aa872e949d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_samples\\\\\\\": 1890,\\\\n  \\\\\\\"overlap_summary\\\\\\\": {\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37\\\\n  },\\\\n  \\\\\\\"complementarity\\\\\\\": {\\\\n    \\\\\\\"cls_unique_correct\\\\\\\": 59,\\\\n    \\\\\\\"cwm_unique_correct\\\\\\\": 53,\\\\n    \\\\\\\"union_correct\\\\\\\": 1713,\\\\n    \\\\\\\"union_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": 3.12\\\\n  },\\\\n  \\\\\\\"cohens_kappa\\\\\\\": {\\\\n    \\\\\\\"on_correctness\\\\\\\": 0.7259,\\\\n    \\\\\\\"on_predictions\\\\\\\": 0.8815\\\\n  },\\\\n  \\\\\\\"mutation_type_breakdown\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"both_correct\\\\\\\": 31,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 86.1,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 2,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 5.6,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 5.6\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"both_correct\\\\\\\": 517,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 77.0,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 22,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.3,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 32,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 4.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 100,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 14.9\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"both_correct\\\\\\\": 247,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 82.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 9,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.0,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 17,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 5.7,\\\\n      \\\\\\\"both_wrong\\\\\\\": 25,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 8.4\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"both_correct\\\\\\\": 338,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 84.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 18,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 4.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.3,\\\\n      \\\\\\\"both_wrong\\\\\\\": 41,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 10.3\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"both_correct\\\\\\\": 389,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 96.8,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 5,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 7,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 1.7\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"both_correct\\\\\\\": 79,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 92.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 3,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 2.4\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_per_mutation_f1\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.89,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 80.56,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 69.23,\\\\n        \\\\\\\"f1\\\\\\\": 81.82,\\\\n        \\\\\\\"support\\\\\\\": 13\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 85.19,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 92.0,\\\\n        \\\\\\\"support\\\\\\\": 23\\\\n      }\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 87.22,\\\\n        \\\\\\\"recall\\\\\\\": 79.95,\\\\n        \\\\\\\"f1\\\\\\\": 83.42,\\\\n        \\\\\\\"support\\\\\\\": 384\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 75.86,\\\\n        \\\\\\\"recall\\\\\\\": 84.32,\\\\n        \\\\\\\"f1\\\\\\\": 79.87,\\\\n        \\\\\\\"support\\\\\\\": 287\\\\n      }\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 80.73,\\\\n        \\\\\\\"recall\\\\\\\": 87.13,\\\\n        \\\\\\\"f1\\\\\\\": 83.81,\\\\n        \\\\\\\"support\\\\\\\": 101\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.12,\\\\n        \\\\\\\"recall\\\\\\\": 89.34,\\\\n        \\\\\\\"f1\\\\\\\": 91.19,\\\\n        \\\\\\\"support\\\\\\\": 197\\\\n      }\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 85.18,\\\\n        \\\\\\\"f1\\\\\\\": 91.99,\\\\n        \\\\\\\"support\\\\\\\": 398\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0,\\\\n        \\\\\\\"f1\\\\\\\": 0.0,\\\\n        \\\\\\\"support\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"accuracy\\\\\\\": 97.01,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 94.78,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.19,\\\\n        \\\\\\\"recall\\\\\\\": 80.49,\\\\n        \\\\\\\"f1\\\\\\\": 84.62,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 97.81,\\\\n        \\\\\\\"recall\\\\\\\": 98.89,\\\\n        \\\\\\\"f1\\\\\\\": 98.35,\\\\n        \\\\\\\"support\\\\\\\": 361\\\\n      }\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"accuracy\\\\\\\": 94.12,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 88.24,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 87.8,\\\\n        \\\\\\\"f1\\\\\\\": 93.51,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.8,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 94.62,\\\\n        \\\\\\\"support\\\\\\\": 44\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_weakest_mutation_types\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91\\\\n    }\\\\n  ],\\\\n  \\\\\\\"problems_cls_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"HumanEval/74\\\\\\\",\\\\n    \\\\\\\"MBPP/123\\\\\\\",\\\\n    \\\\\\\"MBPP/134\\\\\\\",\\\\n    \\\\\\\"MBPP/148\\\\\\\",\\\\n    \\\\\\\"MBPP/270\\\\\\\",\\\\n    \\\\\\\"MBPP/288\\\\\\\",\\\\n    \\\\\\\"MBPP/304\\\\\\\",\\\\n    \\\\\\\"MBPP/380\\\\\\\",\\\\n    \\\\\\\"MBPP/397\\\\\\\",\\\\n    \\\\\\\"MBPP/429\\\\\\\",\\\\n    \\\\\\\"MBPP/468\\\\\\\",\\\\n    \\\\\\\"MBPP/54\\\\\\\",\\\\n    \\\\\\\"MBPP/71\\\\\\\",\\\\n    \\\\\\\"MBPP/781\\\\\\\",\\\\n    \\\\\\\"MBPP/79\\\\\\\",\\\\n    \\\\\\\"MBPP/830\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"problems_cwm_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"MBPP/103\\\\\\\",\\\\n    \\\\\\\"MBPP/160\\\\\\\",\\\\n    \\\\\\\"MBPP/316\\\\\\\",\\\\n    \\\\\\\"MBPP/339\\\\\\\",\\\\n    \\\\\\\"MBPP/375\\\\\\\",\\\\n    \\\\\\\"MBPP/487\\\\\\\",\\\\n    \\\\\\\"MBPP/492\\\\\\\",\\\\n    \\\\\\\"MBPP/556\\\\\\\",\\\\n    \\\\\\\"MBPP/561\\\\\\\",\\\\n    \\\\\\\"MBPP/575\\\\\\\",\\\\n    \\\\\\\"MBPP/67\\\\\\\",\\\\n    \\\\\\\"MBPP/685\\\\\\\",\\\\n    \\\\\\\"MBPP/831\\\\\\\",\\\\n    \\\\\\\"MBPP/855\\\\\\\",\\\\n    \\\\\\\"MBPP/86\\\\\\\",\\\\n    \\\\\\\"MBPP/922\\\\\\\",\\\\n    \\\\\\\"MBPP/957\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_problems_cls_only\\\\\\\": 16,\\\\n  \\\\\\\"n_problems_cwm_only\\\\\\\": 17\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! The analysis is complete. Now let me update the cwm-seed789 metrics in the registry and register the artifact.
+
+Let me first check what the current top-level metrics field looks like for cwm-seed789.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ffe15ea5-47c8-46b4-be7f-361ddfd534c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXrKmbU57ifvbsrtY8MpAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3875,
+      "cache_read_input_tokens": 67585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3875
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122_
+
+分析完成。现在更新 cwm-seed789 的 metrics 并注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "70c26a31-a669-436b-8ee0-ec2cdfba1a96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXrKmbU57ifvbsrtY8MpAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3875,
+      "cache_read_input_tokens": 67585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3875
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016LCgthCRUXDvZusMPs94z8`</summary>
+
+```json
+{
+  "exp_id": "cwm-seed789",
+  "field": "metrics",
+  "value": {
+    "overall_accuracy": 86.67,
+    "pass_f1": 86.74,
+    "fail_f1": 86.6,
+    "exact_match_rate": 83.97,
+    "baseline_gap_pp": 34.92,
+    "test_set_size": 1890,
+    "unparseable_predictions": 0,
+    "per_class": {
+      "fail": {
+        "precision": 84.09,
+        "recall": 89.25,
+        "f1": 86.6
+      },
+      "pass": {
+        "precision": 89.37,
+        "recall": 84.25,
+        "f1": 86.74
+      }
+    }
+  },
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "528bb2e9-384f-4cc4-935f-a3270ff80573",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXrKmbU57ifvbsrtY8MpAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3875,
+      "cache_read_input_tokens": 67585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3875
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-12T16:13:15.290Z_
+
+<details><summary>↩ Tool result · `toolu_016LCgthCRUXDvZusMPs94z8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cwm-seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:31:34.311Z\", \"updated_at\": \"2026-05-12T16:13:15.185Z\", \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": 42227, \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed789.log\", \"submitted_at\": \"2026-05-12T12:34:07.017Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 789, \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\", \"wall_clock_seconds\": 5158.3, \"gpu_hours\": 1.43}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T14:00:05.341Z\", \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0, \"per_class\": {\"fail\": {\"precision\": 84.09, \"recall\": 89.25, \"f1\": 86.6}, \"pass\": {\"precision\": 89.37, \"recall\": 84.25, \"f1\": 86.74}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "fafc572b-9728-4770-b12f-d6b0a9d96340",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cwm-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:31:34.311Z\\\", \\\"updated_at\\\": \\\"2026-05-12T16:13:15.185Z\\\", \\\"hypothesis\\\": \\\"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 42227, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:34:07.017Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 789, \\\"metrics\\\": {\\\"overall_accuracy\\\": 86.67, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 86.6, \\\"exact_match_rate\\\": 83.97, \\\"baseline_gap_pp\\\": 34.92, \\\"test_set_size\\\": 1890, \\\"unparseable_predictions\\\": 0}, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\\\", \\\"wall_clock_seconds\\\": 5158.3, \\\"gpu_hours\\\": 1.43}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-12T14:00:05.341Z\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 86.67, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 86.6, \\\"exact_match_rate\\\": 83.97, \\\"baseline_gap_pp\\\": 34.92, \\\"test_set_size\\\": 1890, \\\"unparseable_predictions\\\": 0, \\\"per_class\\\": {\\\"fail\\\": {\\\"precision\\\": 84.09, \\\"recall\\\": 89.25, \\\"f1\\\": 86.6}, \\\"pass\\\": {\\\"precision\\\": 89.37, \\\"recall\\\": 84.25, \\\"f1\\\": 86.74}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2038}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"cwm-seed789\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:31:34.311Z\", \"updated_at\": \"2026-05-12T16:13:15.185Z\", \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\"\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:1\"], \"pid\": 42227, \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed789.log\", \"submitted_at\": \"2026-05-12T12:34:07.017Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\", \"data_count\": 15290, \"model_name\": \"Qwen/Qwen3-4B\", \"seed\": 789, \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\", \"wall_clock_seconds\": 5158.3, \"gpu_hours\": 1.43}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T14:00:05.341Z\", \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0, \"per_class\": {\"fail\": {\"precision\": 84.09, \"recall\": 89.25, \"f1\": 86.6}, \"pass\": {\"precision\": 89.37, \"recall\": 84.25, \"f1\": 86.74}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_019rLqrbRvXkYT5UEEmwrsG8`</summary>
+
+```json
+{
+  "name": "CLS vs CWM Error Overlap Analysis",
+  "type": "data",
+  "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Includes agreement matrix, Cohen's kappa, mutation-type breakdown, CWM per-mutation F1, and complementarity metrics.",
+  "project": "exec-sim-repair-verifier",
+  "source_path": "/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json",
+  "tags": [
+    "dream5",
+    "error-overlap",
+    "cls-vs-cwm",
+    "paper"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "10cf0c2f-a8af-436f-b545-dd42161decd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXrKmbU57ifvbsrtY8MpAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3875,
+      "cache_read_input_tokens": 67585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3875
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-12T16:13:18.645Z_
+
+<details><summary>↩ Tool result · `toolu_019rLqrbRvXkYT5UEEmwrsG8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "bf965278-869f-471a-8e44-643d04022677",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry update worked. The artifact registration failed because the source_path is on the remote server, not local. Let me read the file content and register it via content instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ae480160-c398-40c7-9851-46d6c0129c93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BE4jLzdeZNXsH5ibpCWhHy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1669,
+      "cache_read_input_tokens": 71460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128_
+
+cwm-seed789 metrics 已更新。artifact 需要用 content 方式注册（文件在远程服务器）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "66185e08-4d17-4423-8982-580d0f57dc83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BE4jLzdeZNXsH5ibpCWhHy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1669,
+      "cache_read_input_tokens": 71460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019baGqSa4r2V7jWpVbDJy7T`</summary>
+
+```json
+{
+  "server": "home-1x5090",
+  "account": "sonny",
+  "command": "cat /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "37153303-7639-438c-a791-ff60f8bf5f48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BE4jLzdeZNXsH5ibpCWhHy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1669,
+      "cache_read_input_tokens": 71460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-12T16:13:25.155Z_
+
+<details><summary>↩ Tool result · `toolu_019baGqSa4r2V7jWpVbDJy7T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "e6532ebb-7339-460e-b68d-ac184577935a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_samples\\\\\\\": 1890,\\\\n  \\\\\\\"overlap_summary\\\\\\\": {\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37\\\\n  },\\\\n  \\\\\\\"complementarity\\\\\\\": {\\\\n    \\\\\\\"cls_unique_correct\\\\\\\": 59,\\\\n    \\\\\\\"cwm_unique_correct\\\\\\\": 53,\\\\n    \\\\\\\"union_correct\\\\\\\": 1713,\\\\n    \\\\\\\"union_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": 3.12\\\\n  },\\\\n  \\\\\\\"cohens_kappa\\\\\\\": {\\\\n    \\\\\\\"on_correctness\\\\\\\": 0.7259,\\\\n    \\\\\\\"on_predictions\\\\\\\": 0.8815\\\\n  },\\\\n  \\\\\\\"mutation_type_breakdown\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"both_correct\\\\\\\": 31,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 86.1,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 2,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 5.6,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 5.6\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"both_correct\\\\\\\": 517,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 77.0,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 22,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.3,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 32,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 4.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 100,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 14.9\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"both_correct\\\\\\\": 247,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 82.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 9,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.0,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 17,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 5.7,\\\\n      \\\\\\\"both_wrong\\\\\\\": 25,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 8.4\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"both_correct\\\\\\\": 338,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 84.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 18,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 4.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.3,\\\\n      \\\\\\\"both_wrong\\\\\\\": 41,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 10.3\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"both_correct\\\\\\\": 389,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 96.8,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 5,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 0.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 7,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 1.7\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"both_correct\\\\\\\": 79,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 92.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 3,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.5,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 1.2,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 2.4\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_per_mutation_f1\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.89,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 80.56,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 69.23,\\\\n        \\\\\\\"f1\\\\\\\": 81.82,\\\\n        \\\\\\\"support\\\\\\\": 13\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 85.19,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 92.0,\\\\n        \\\\\\\"support\\\\\\\": 23\\\\n      }\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 87.22,\\\\n        \\\\\\\"recall\\\\\\\": 79.95,\\\\n        \\\\\\\"f1\\\\\\\": 83.42,\\\\n        \\\\\\\"support\\\\\\\": 384\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 75.86,\\\\n        \\\\\\\"recall\\\\\\\": 84.32,\\\\n        \\\\\\\"f1\\\\\\\": 79.87,\\\\n        \\\\\\\"support\\\\\\\": 287\\\\n      }\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 80.73,\\\\n        \\\\\\\"recall\\\\\\\": 87.13,\\\\n        \\\\\\\"f1\\\\\\\": 83.81,\\\\n        \\\\\\\"support\\\\\\\": 101\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.12,\\\\n        \\\\\\\"recall\\\\\\\": 89.34,\\\\n        \\\\\\\"f1\\\\\\\": 91.19,\\\\n        \\\\\\\"support\\\\\\\": 197\\\\n      }\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 398,\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 85.18,\\\\n        \\\\\\\"f1\\\\\\\": 91.99,\\\\n        \\\\\\\"support\\\\\\\": 398\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0,\\\\n        \\\\\\\"f1\\\\\\\": 0.0,\\\\n        \\\\\\\"support\\\\\\\": 0\\\\n      }\\\\n    },\\\\n    \\\\\\\"return_value\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 402,\\\\n      \\\\\\\"accuracy\\\\\\\": 97.01,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 94.78,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.19,\\\\n        \\\\\\\"recall\\\\\\\": 80.49,\\\\n        \\\\\\\"f1\\\\\\\": 84.62,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 97.81,\\\\n        \\\\\\\"recall\\\\\\\": 98.89,\\\\n        \\\\\\\"f1\\\\\\\": 98.35,\\\\n        \\\\\\\"support\\\\\\\": 361\\\\n      }\\\\n    },\\\\n    \\\\\\\"variable_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 85,\\\\n      \\\\\\\"accuracy\\\\\\\": 94.12,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 88.24,\\\\n      \\\\\\\"pass_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 100.0,\\\\n        \\\\\\\"recall\\\\\\\": 87.8,\\\\n        \\\\\\\"f1\\\\\\\": 93.51,\\\\n        \\\\\\\"support\\\\\\\": 41\\\\n      },\\\\n      \\\\\\\"fail_f1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 89.8,\\\\n        \\\\\\\"recall\\\\\\\": 100.0,\\\\n        \\\\\\\"f1\\\\\\\": 94.62,\\\\n        \\\\\\\"support\\\\\\\": 44\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cwm_weakest_mutation_types\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 81.82,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 75.71\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 85.18,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.18\\\\n    },\\\\n    {\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\",\\\\n      \\\\\\\"accuracy\\\\\\\": 88.59,\\\\n      \\\\\\\"exact_match_rate\\\\\\\": 85.91\\\\n    }\\\\n  ],\\\\n  \\\\\\\"problems_cls_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"HumanEval/74\\\\\\\",\\\\n    \\\\\\\"MBPP/123\\\\\\\",\\\\n    \\\\\\\"MBPP/134\\\\\\\",\\\\n    \\\\\\\"MBPP/148\\\\\\\",\\\\n    \\\\\\\"MBPP/270\\\\\\\",\\\\n    \\\\\\\"MBPP/288\\\\\\\",\\\\n    \\\\\\\"MBPP/304\\\\\\\",\\\\n    \\\\\\\"MBPP/380\\\\\\\",\\\\n    \\\\\\\"MBPP/397\\\\\\\",\\\\n    \\\\\\\"MBPP/429\\\\\\\",\\\\n    \\\\\\\"MBPP/468\\\\\\\",\\\\n    \\\\\\\"MBPP/54\\\\\\\",\\\\n    \\\\\\\"MBPP/71\\\\\\\",\\\\n    \\\\\\\"MBPP/781\\\\\\\",\\\\n    \\\\\\\"MBPP/79\\\\\\\",\\\\n    \\\\\\\"MBPP/830\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"problems_cwm_only_succeeds\\\\\\\": [\\\\n    \\\\\\\"MBPP/103\\\\\\\",\\\\n    \\\\\\\"MBPP/160\\\\\\\",\\\\n    \\\\\\\"MBPP/316\\\\\\\",\\\\n    \\\\\\\"MBPP/339\\\\\\\",\\\\n    \\\\\\\"MBPP/375\\\\\\\",\\\\n    \\\\\\\"MBPP/487\\\\\\\",\\\\n    \\\\\\\"MBPP/492\\\\\\\",\\\\n    \\\\\\\"MBPP/556\\\\\\\",\\\\n    \\\\\\\"MBPP/561\\\\\\\",\\\\n    \\\\\\\"MBPP/575\\\\\\\",\\\\n    \\\\\\\"MBPP/67\\\\\\\",\\\\n    \\\\\\\"MBPP/685\\\\\\\",\\\\n    \\\\\\\"MBPP/831\\\\\\\",\\\\n    \\\\\\\"MBPP/855\\\\\\\",\\\\n    \\\\\\\"MBPP/86\\\\\\\",\\\\n    \\\\\\\"MBPP/922\\\\\\\",\\\\n    \\\\\\\"MBPP/957\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_problems_cls_only\\\\\\\": 16,\\\\n  \\\\\\\"n_problems_cwm_only\\\\\\\": 17\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_samples\\\": 1890,\\n  \\\"overlap_summary\\\": {\\n    \\\"both_correct\\\": 1601,\\n    \\\"both_correct_pct\\\": 84.71,\\n    \\\"cls_only_correct\\\": 59,\\n    \\\"cls_only_correct_pct\\\": 3.12,\\n    \\\"cwm_only_correct\\\": 53,\\n    \\\"cwm_only_correct_pct\\\": 2.8,\\n    \\\"both_wrong\\\": 177,\\n    \\\"both_wrong_pct\\\": 9.37\\n  },\\n  \\\"complementarity\\\": {\\n    \\\"cls_unique_correct\\\": 59,\\n    \\\"cwm_unique_correct\\\": 53,\\n    \\\"union_correct\\\": 1713,\\n    \\\"union_accuracy_pct\\\": 90.63,\\n    \\\"oracle_gain_over_cls_pp\\\": 2.8,\\n    \\\"oracle_gain_over_cwm_pp\\\": 3.12\\n  },\\n  \\\"cohens_kappa\\\": {\\n    \\\"on_correctness\\\": 0.7259,\\n    \\\"on_predictions\\\": 0.8815\\n  },\\n  \\\"mutation_type_breakdown\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"both_correct\\\": 31,\\n      \\\"both_correct_pct\\\": 86.1,\\n      \\\"cls_only_correct\\\": 2,\\n      \\\"cls_only_correct_pct\\\": 5.6,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 2.8,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 5.6\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"both_correct\\\": 517,\\n      \\\"both_correct_pct\\\": 77.0,\\n      \\\"cls_only_correct\\\": 22,\\n      \\\"cls_only_correct_pct\\\": 3.3,\\n      \\\"cwm_only_correct\\\": 32,\\n      \\\"cwm_only_correct_pct\\\": 4.8,\\n      \\\"both_wrong\\\": 100,\\n      \\\"both_wrong_pct\\\": 14.9\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"both_correct\\\": 247,\\n      \\\"both_correct_pct\\\": 82.9,\\n      \\\"cls_only_correct\\\": 9,\\n      \\\"cls_only_correct_pct\\\": 3.0,\\n      \\\"cwm_only_correct\\\": 17,\\n      \\\"cwm_only_correct_pct\\\": 5.7,\\n      \\\"both_wrong\\\": 25,\\n      \\\"both_wrong_pct\\\": 8.4\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"both_correct\\\": 338,\\n      \\\"both_correct_pct\\\": 84.9,\\n      \\\"cls_only_correct\\\": 18,\\n      \\\"cls_only_correct_pct\\\": 4.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.3,\\n      \\\"both_wrong\\\": 41,\\n      \\\"both_wrong_pct\\\": 10.3\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"both_correct\\\": 389,\\n      \\\"both_correct_pct\\\": 96.8,\\n      \\\"cls_only_correct\\\": 5,\\n      \\\"cls_only_correct_pct\\\": 1.2,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 0.2,\\n      \\\"both_wrong\\\": 7,\\n      \\\"both_wrong_pct\\\": 1.7\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"both_correct\\\": 79,\\n      \\\"both_correct_pct\\\": 92.9,\\n      \\\"cls_only_correct\\\": 3,\\n      \\\"cls_only_correct_pct\\\": 3.5,\\n      \\\"cwm_only_correct\\\": 1,\\n      \\\"cwm_only_correct_pct\\\": 1.2,\\n      \\\"both_wrong\\\": 2,\\n      \\\"both_wrong_pct\\\": 2.4\\n    }\\n  },\\n  \\\"cwm_per_mutation_f1\\\": {\\n    \\\"boundary_removal\\\": {\\n      \\\"total\\\": 36,\\n      \\\"accuracy\\\": 88.89,\\n      \\\"exact_match_rate\\\": 80.56,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 69.23,\\n        \\\"f1\\\": 81.82,\\n        \\\"support\\\": 13\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 85.19,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 92.0,\\n        \\\"support\\\": 23\\n      }\\n    },\\n    \\\"off_by_one\\\": {\\n      \\\"total\\\": 671,\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 87.22,\\n        \\\"recall\\\": 79.95,\\n        \\\"f1\\\": 83.42,\\n        \\\"support\\\": 384\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 75.86,\\n        \\\"recall\\\": 84.32,\\n        \\\"f1\\\": 79.87,\\n        \\\"support\\\": 287\\n      }\\n    },\\n    \\\"operator_swap\\\": {\\n      \\\"total\\\": 298,\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 80.73,\\n        \\\"recall\\\": 87.13,\\n        \\\"f1\\\": 83.81,\\n        \\\"support\\\": 101\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 93.12,\\n        \\\"recall\\\": 89.34,\\n        \\\"f1\\\": 91.19,\\n        \\\"support\\\": 197\\n      }\\n    },\\n    \\\"original\\\": {\\n      \\\"total\\\": 398,\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 85.18,\\n        \\\"f1\\\": 91.99,\\n        \\\"support\\\": 398\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"support\\\": 0\\n      }\\n    },\\n    \\\"return_value\\\": {\\n      \\\"total\\\": 402,\\n      \\\"accuracy\\\": 97.01,\\n      \\\"exact_match_rate\\\": 94.78,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 89.19,\\n        \\\"recall\\\": 80.49,\\n        \\\"f1\\\": 84.62,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 97.81,\\n        \\\"recall\\\": 98.89,\\n        \\\"f1\\\": 98.35,\\n        \\\"support\\\": 361\\n      }\\n    },\\n    \\\"variable_swap\\\": {\\n      \\\"total\\\": 85,\\n      \\\"accuracy\\\": 94.12,\\n      \\\"exact_match_rate\\\": 88.24,\\n      \\\"pass_f1\\\": {\\n        \\\"precision\\\": 100.0,\\n        \\\"recall\\\": 87.8,\\n        \\\"f1\\\": 93.51,\\n        \\\"support\\\": 41\\n      },\\n      \\\"fail_f1\\\": {\\n        \\\"precision\\\": 89.8,\\n        \\\"recall\\\": 100.0,\\n        \\\"f1\\\": 94.62,\\n        \\\"support\\\": 44\\n      }\\n    }\\n  },\\n  \\\"cwm_weakest_mutation_types\\\": [\\n    {\\n      \\\"mutation_type\\\": \\\"off_by_one\\\",\\n      \\\"accuracy\\\": 81.82,\\n      \\\"exact_match_rate\\\": 75.71\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"original\\\",\\n      \\\"accuracy\\\": 85.18,\\n      \\\"exact_match_rate\\\": 85.18\\n    },\\n    {\\n      \\\"mutation_type\\\": \\\"operator_swap\\\",\\n      \\\"accuracy\\\": 88.59,\\n      \\\"exact_match_rate\\\": 85.91\\n    }\\n  ],\\n  \\\"problems_cls_only_succeeds\\\": [\\n    \\\"HumanEval/74\\\",\\n    \\\"MBPP/123\\\",\\n    \\\"MBPP/134\\\",\\n    \\\"MBPP/148\\\",\\n    \\\"MBPP/270\\\",\\n    \\\"MBPP/288\\\",\\n    \\\"MBPP/304\\\",\\n    \\\"MBPP/380\\\",\\n    \\\"MBPP/397\\\",\\n    \\\"MBPP/429\\\",\\n    \\\"MBPP/468\\\",\\n    \\\"MBPP/54\\\",\\n    \\\"MBPP/71\\\",\\n    \\\"MBPP/781\\\",\\n    \\\"MBPP/79\\\",\\n    \\\"MBPP/830\\\"\\n  ],\\n  \\\"problems_cwm_only_succeeds\\\": [\\n    \\\"MBPP/103\\\",\\n    \\\"MBPP/160\\\",\\n    \\\"MBPP/316\\\",\\n    \\\"MBPP/339\\\",\\n    \\\"MBPP/375\\\",\\n    \\\"MBPP/487\\\",\\n    \\\"MBPP/492\\\",\\n    \\\"MBPP/556\\\",\\n    \\\"MBPP/561\\\",\\n    \\\"MBPP/575\\\",\\n    \\\"MBPP/67\\\",\\n    \\\"MBPP/685\\\",\\n    \\\"MBPP/831\\\",\\n    \\\"MBPP/855\\\",\\n    \\\"MBPP/86\\\",\\n    \\\"MBPP/922\\\",\\n    \\\"MBPP/957\\\"\\n  ],\\n  \\\"n_problems_cls_only\\\": 16,\\n  \\\"n_problems_cwm_only\\\": 17\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_011tg27K7vPpBzTgeC54pVYq`</summary>
+
+```json
+{
+  "name": "CLS vs CWM Error Overlap Analysis",
+  "type": "data",
+  "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+  "project": "exec-sim-repair-verifier",
+  "content": "{\"total_samples\":1890,\"overlap_summary\":{\"both_correct\":1601,\"both_correct_pct\":84.71,\"cls_only_correct\":59,\"cls_only_correct_pct\":3.12,\"cwm_only_correct\":53,\"cwm_only_correct_pct\":2.8,\"both_wrong\":177,\"both_wrong_pct\":9.37},\"complementarity\":{\"cls_unique_correct\":59,\"cwm_unique_correct\":53,\"union_correct\":1713,\"union_accuracy_pct\":90.63,\"oracle_gain_over_cls_pp\":2.8,\"oracle_gain_over_cwm_pp\":3.12},\"cohens_kappa\":{\"on_correctness\":0.7259,\"on_predictions\":0.8815},\"cwm_weakest_mutation_types\":[{\"mutation_type\":\"off_by_one\",\"accuracy\":81.82,\"exact_match_rate\":75.71},{\"mutation_type\":\"original\",\"accuracy\":85.18,\"exact_match_rate\":85.18},{\"mutation_type\":\"operator_swap\",\"accuracy\":88.59,\"exact_match_rate\":85.91}],\"n_problems_cls_only\":16,\"n_problems_cwm_only\":17}",
+  "content_filename": "error_overlap_analysis.json",
+  "tags": [
+    "dream5",
+    "error-overlap",
+    "cls-vs-cwm",
+    "paper"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "6bbb088b-2556-4b18-84a9-3bf20c66b2e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012BYmL3Mz8zYtiQdrSVJAeQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3826,
+      "cache_read_input_tokens": 73129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3826
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-12T16:13:38.914Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_011tg27K7vPpBzTgeC54pVYq`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "7925dd0a-93c9-4e60-814b-8342a1f04d73",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01MRPUAMPqsMUQgu73Bzp4Tk`</summary>
+
+```json
+{
+  "name": "CLS vs CWM Error Overlap Analysis",
+  "type": "data",
+  "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+  "project": "exec-sim-repair-verifier",
+  "content": "{\"total_samples\":1890,\"overlap_summary\":{\"both_correct\":1601,\"both_correct_pct\":84.71,\"cls_only_correct\":59,\"cls_only_correct_pct\":3.12,\"cwm_only_correct\":53,\"cwm_only_correct_pct\":2.8,\"both_wrong\":177,\"both_wrong_pct\":9.37},\"complementarity\":{\"cls_unique_correct\":59,\"cwm_unique_correct\":53,\"union_correct\":1713,\"union_accuracy_pct\":90.63,\"oracle_gain_over_cls_pp\":2.8,\"oracle_gain_over_cwm_pp\":3.12},\"cohens_kappa\":{\"on_correctness\":0.7259,\"on_predictions\":0.8815},\"cwm_weakest_mutation_types\":[{\"mutation_type\":\"off_by_one\",\"accuracy\":81.82,\"exact_match_rate\":75.71},{\"mutation_type\":\"original\",\"accuracy\":85.18,\"exact_match_rate\":85.18},{\"mutation_type\":\"operator_swap\",\"accuracy\":88.59,\"exact_match_rate\":85.91}],\"n_problems_cls_only\":16,\"n_problems_cwm_only\":17}",
+  "content_filename": "error_overlap_analysis.json",
+  "tags": [
+    "dream5",
+    "error-overlap",
+    "cls-vs-cwm",
+    "paper"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "fbb5c8b5-fb42-4515-a928-516476da628d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBFSS1etJ7LxjmDgcaMcJH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 76955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-12T16:13:47.972Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MRPUAMPqsMUQgu73Bzp4Tk`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "fa08d146-32fe-4e45-9b08-94f1e5a2ca81",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01CJy4z1Q3ifeV92LmmcTh8L`</summary>
+
+```json
+{
+  "name": "CLS vs CWM Error Overlap Analysis",
+  "type": "data",
+  "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+  "project": "exec-sim-repair-verifier",
+  "content": "{\n  \"total_samples\": 1890,\n  \"overlap_summary\": {\n    \"both_correct\": 1601, \"both_correct_pct\": 84.71,\n    \"cls_only_correct\": 59, \"cls_only_correct_pct\": 3.12,\n    \"cwm_only_correct\": 53, \"cwm_only_correct_pct\": 2.80,\n    \"both_wrong\": 177, \"both_wrong_pct\": 9.37\n  },\n  \"complementarity\": {\n    \"union_correct\": 1713, \"union_accuracy_pct\": 90.63,\n    \"oracle_gain_over_cls_pp\": 2.80, \"oracle_gain_over_cwm_pp\": 3.12\n  },\n  \"cohens_kappa\": {\"on_correctness\": 0.7259, \"on_predictions\": 0.8815},\n  \"cwm_weakest\": [\"off_by_one (81.82%)\", \"original (85.18%)\", \"operator_swap (88.59%)\"]\n}",
+  "content_filename": "error_overlap_analysis.json",
+  "tags": [
+    "dream5",
+    "error-overlap",
+    "cls-vs-cwm",
+    "paper"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "8fc3f438-368d-4dbd-9455-667128699b95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6dUYccHpXVceUj2VA9jBT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 77659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-12T16:13:55.546Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01CJy4z1Q3ifeV92LmmcTh8L`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '...perator_swap (88.59%)']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "35b0aa59-a772-4573-a49d-ef3b81379739",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '...perator_swap (88.59%)']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 137_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It seems like the JSON is being parsed into a dict rather than being passed as a string. Let me try escaping it or wrapping it differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "91669819-f7c7-4e7e-b797-4254685467fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKfASC3uE8vSgSiZNb5UEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 78363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01GYL2LK5iJvu76BUs89jPeT`</summary>
+
+```json
+{
+  "name": "CLS vs CWM Error Overlap Analysis",
+  "type": "data",
+  "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+  "project": "exec-sim-repair-verifier",
+  "content": "total_samples: 1890\noverlap_summary:\n  both_correct: 1601 (84.71%)\n  cls_only_correct: 59 (3.12%)\n  cwm_only_correct: 53 (2.80%)\n  both_wrong: 177 (9.37%)\ncomplementarity:\n  union_correct: 1713\n  union_accuracy: 90.63%\n  oracle_gain_over_cls: +2.80pp\n  oracle_gain_over_cwm: +3.12pp\ncohens_kappa:\n  on_correctness: 0.7259\n  on_predictions: 0.8815\ncwm_weakest_mutation_types:\n  1. off_by_one: 81.82% acc, 75.71% exact_match\n  2. original: 85.18% acc, 85.18% exact_match\n  3. operator_swap: 88.59% acc, 85.91% exact_match\nproblems_cls_only: 16\nproblems_cwm_only: 17\nFull data: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json",
+  "content_filename": "error_overlap_analysis.txt",
+  "tags": [
+    "dream5",
+    "error-overlap",
+    "cls-vs-cwm",
+    "paper"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "28f22cac-c109-4a96-949a-c5cfabc6bedc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKfASC3uE8vSgSiZNb5UEa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 78363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-12T16:14:09.182Z_
+
+<details><summary>↩ Tool result · `toolu_01GYL2LK5iJvu76BUs89jPeT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_962380\", \"name\": \"CLS vs CWM Error Overlap Analysis\", \"type\": \"data\", \"description\": \"Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_analysis.txt\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T16:14:09.138733+00:00\", \"tags\": [\"dream5\", \"error-overlap\", \"cls-vs-cwm\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "584c660f-d6fb-43c1-b5d7-1398361bfa28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_962380\\\", \\\"name\\\": \\\"CLS vs CWM Error Overlap Analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_analysis.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T16:14:09.138733+00:00\\\", \\\"tags\\\": [\\\"dream5\\\", \\\"error-overlap\\\", \\\"cls-vs-cwm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_962380\", \"name\": \"CLS vs CWM Error Overlap Analysis\", \"type\": \"data\", \"description\": \"Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.\", \"path\": \"projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_analysis.txt\", \"url\": null, \"project\": \"exec-sim-repair-verifier\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T16:14:09.138733+00:00\", \"tags\": [\"dream5\", \"error-overlap\", \"cls-vs-cwm\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 140_
+
+全部完成。汇总关键发现：
+
+---
+
+## 结果汇报
+
+### 任务 1: CLS vs CWM Error Overlap (seed42, n=1890)
+
+| 类别 | 数量 | 比例 |
+|------|------|------|
+| Both correct | 1601 | 84.71% |
+| CLS-only correct | 59 | 3.12% |
+| CWM-only correct | 53 | 2.80% |
+| Both wrong | 177 | 9.37% |
+
+**互补性**：Oracle 组合 (任一正确即正确) 准确率 = **90.63%**，比 CLS 单独 (+2.80pp)、CWM 单独 (+3.12pp) 都高。两种方法有约 **5.9%** 的互补空间。
+
+**Cohen's Kappa**：
+- 预测一致性 κ = 0.88 (almost perfect agreement)  
+- 正确性一致性 κ = 0.73 (substantial agreement)
+
+**按 mutation type**：互补性最强的是 **off_by_one** (CWM-only 4.8%, 两者都错 14.9%) 和 **operator_swap** (CWM-only 5.7%)。**return_value** 几乎完全重叠 (96.8% both correct)。
+
+### 任务 2: CWM Per-class F1 Breakdown
+
+CWM 最弱 mutation types:
+1. **off_by_one**: acc 81.82%, exact_match 75.71%, fail_f1 79.87%
+2. **original** (pass samples): acc 85.18%, exact_match 85.18%  
+3. **operator_swap**: acc 88.59%, exact_match 85.91%
+
+最强：**return_value** (97.01% acc, 94.78% exact_match), **variable_swap** (94.12% acc)
+
+### 任务 3: cwm-seed789 Metrics 补录
+
+已更新 registry：
+- overall_accuracy: 86.67%
+- pass_f1: 86.74, fail_f1: 86.60
+- exact_match_rate: 83.97%
+- baseline_gap: +34.92pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "uuid": "ba49178c-de49-4237-93a7-bf99ef57db5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBZHPrgtcovjoKyXGFPShJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 79035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 141_
+
+全部完成。汇总关键发现：
+
+---
+
+## 结果汇报
+
+### 任务 1: CLS vs CWM Error Overlap (seed42, n=1890)
+
+| 类别 | 数量 | 比例 |
+|------|------|------|
+| Both correct | 1601 | 84.71% |
+| CLS-only correct | 59 | 3.12% |
+| CWM-only correct | 53 | 2.80% |
+| Both wrong | 177 | 9.37% |
+
+**互补性**：Oracle 组合 (任一正确即正确) 准确率 = **90.63%**，比 CLS 单独 (+2.80pp)、CWM 单独 (+3.12pp) 都高。两种方法有约 **5.9%** 的互补空间。
+
+**Cohen's Kappa**：
+- 预测一致性 κ = 0.88 (almost perfect agreement)  
+- 正确性一致性 κ = 0.73 (substantial agreement)
+
+**按 mutation type**：互补性最强的是 **off_by_one** (CWM-only 4.8%, 两者都错 14.9%) 和 **operator_swap** (CWM-only 5.7%)。**return_value** 几乎完全重叠 (96.8% both correct)。
+
+### 任务 2: CWM Per-class F1 Breakdown
+
+CWM 最弱 mutation types:
+1. **off_by_one**: acc 81.82%, exact_match 75.71%, fail_f1 79.87%
+2. **original** (pass samples): acc 85.18%, exact_match 85.18%  
+3. **operator_swap**: acc 88.59%, exact_match 85.91%
+
+最强：**return_value** (97.01% acc, 94.78% exact_match), **variable_swap** (94.12% acc)
+
+### 任务 3: cwm-seed789 Metrics 补录
+
+已更新 registry：
+- overall_accuracy: 86.67%
+- pass_f1: 86.74, fail_f1: 86.60
+- exact_match_rate: 83.97%
+- baseline_gap: +34.92pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 462269,
+  "duration_api_ms": 404724,
+  "num_turns": 53,
+  "stop_reason": "end_turn",
+  "session_id": "fdc89fa9-e66c-4389-8d90-84db1eb36057",
+  "total_cost_usd": 1.8323165000000006,
+  "usage": {
+    "input_tokens": 39,
+    "cache_creation_input_tokens": 68308,
+    "cache_read_input_tokens": 1829693,
+    "output_tokens": 19550,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 68308,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 603,
+        "cache_read_input_tokens": 79035,
+        "cache_creation_input_tokens": 974,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 974
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1480,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 39,
+      "outputTokens": 19550,
+      "cacheReadInputTokens": 1829693,
+      "cacheCreationInputTokens": 68308,
+      "webSearchRequests": 0,
+      "costUSD": 1.8307165000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2a88aeeb-d12e-4922-b96d-d3bc5150803a"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,12 @@
+{
+  "method": "5-paired seed-level analysis (registry values)",
+  "cls_accs": [87.83, 89.52, 87.88, 89.0, 87.94],
+  "cwm_accs": [87.51, 87.2, 86.98, 86.67, 87.57],
+  "per_seed_gaps": {"42": 0.32, "123": 2.32, "456": 0.9, "789": 2.33, "0": 0.37},
+  "paired_ttest": {"mean_gap_pp": 1.25, "std_gap": 1.01, "se": 0.451, "t_stat": 2.765, "p_value": 0.0506, "ci_95": [-0.0, 2.5], "cohens_d": 1.237, "significant_005": false},
+  "tost_2pp": {"margin": 2.0, "p_tost": 0.0855, "equivalent": false},
+  "bootstrap": {"mean_gap": 1.25, "ci_95": [0.46, 2.04], "p_value": 0.0},
+  "one_sided_p": 0.0253,
+  "wilcoxon": {"two_sided_p": 0.0625, "one_sided_p": 0.0312},
+  "summary": {"mean_cls": 88.43, "mean_cwm": 87.19, "gap": 1.25, "cls_wins_all_seeds": true}
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1889e7becd89db197213",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check eval progress round2",
+  "task_key": "worker_check_eval-progress-round2_20260522T075425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-progress-round2_20260522T075425_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "0aac42995a1175068c1baf1eab571d72023d812df9e6321c111fdbda5d50c1d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| exp_id | GPU | PID | alive? | 进度 | running_acc | jsonl行数 | 速率 | ETA (CST) |\n|--------|-----|-----|--------|------|-------------|-----------|------|-----------|\n| qwen3-8b-cwm-repo-s123-eval | 0 | 94100 | Rl ✅ | 7376/9784 (75.4%) | 67.3% | 7380 | ~12 样本/min | ~19:15 |\n| deepseek-cwm-repo-s123-e3-eval | 2 | 100824 | Rl ✅ | 6728/9784 (68.8%) | 57.1% | 6732 | ~13 样本/min | ~19:50 |\n| qwen3-8b-cwm-repo-s456-eval | 3 | 96722 | S ✅ | 6676/9784 (68.2%) | 66.6% | 6680 | ~11 样本/min | ~20:30 |\n| deepseek-cwm-repo-s123-1epoch-eval | 1 | 111113 | S ✅ | 4304/9784 (44.0%) | 75.6% | 4316 | ~13 样本/min | ~23:05 |\n\n## GPU 利用率\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 100% | 22159/32607 MiB |\n| 1 | 85% | 30427/32607 MiB |\n| 2 | 84% | 30427/32607 MiB |\n| 3 | 61% | 22159/32607 MiB |\n\n## 备注\n\n- 全部 4 个 eval 进程存活，无异常\n- Qwen 两个（GPU 0/3）用 22GB VRAM，DeepSeek 两个（GPU 1/2）用 30GB\n- DS 1epoch running_acc 75.6% 显著高于 DS e3 的 57.1%——1epoch 未过拟合，e3 可能过拟合导致泛化变差\n- Qwen s123 (67.3%) 和 s456 (66.6%) 接近，seed 稳定性好\n- 日志路径与预期不同：实际分别在 `/root/runs/`、`/root/autodl-tmp/eval_results/*/final_eval.log`、monitor log 中\n- 无已完成实验，最早完成的是 Qwen s123 (~19:15 CST)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-progress-round2.md"
+}

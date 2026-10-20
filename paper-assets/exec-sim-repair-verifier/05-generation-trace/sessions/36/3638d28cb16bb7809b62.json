@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3638d28cb16bb7809b62",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag deepseek cwm repo s42 epoch2 eval",
+  "task_key": "worker_diag_deepseek-cwm-repo-s42-epoch2-eval_20260519T034702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_deepseek-cwm-repo-s42-epoch2-eval_20260519T034702_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "073aa1c8ac0da13c867f88adfd1cfc08e3c57bc3e5cde9fb759aa81e736be8d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇报：\n\n**退出原因：** 被手动 kill 为 `cwm-s42-e3-seq2048` eval 腾 GPU。最后日志 21:50:22，新 session 创建于 21:51:12。\n\n**部分结果（可回收）：**\n- 3050/9784 样本（31.2%），running_acc = **66.8-66.9%**\n- 增量结果保存在 `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_epoch2/results_incremental.jsonl`\n\n**过拟合假设初步信号：** epoch 2 partial 66.9% vs epoch 3 的 58.7%，差 ~8pp，方向上支持 epoch 3 过拟合。但仅 31% 测试集覆盖率，不够 conclusive。\n\n**已清理：** cron 已删除，registry 标记为 DONE/killed。\n\n**建议下一步：**\n1. 如果 epoch 3 seq2048 eval 完成后仍需 epoch 2 完整结果，可用 `results_incremental.jsonl` 做断点续跑（已有 3050 条，只需跑剩余 6734 条）\n2. 也可直接用 3050 条部分结果做统计检验（bootstrap CI），如果 CI 下界仍 >> 58.7% 就足够 conclusive，不需要跑满"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-deepseek-cwm-repo-s42-epoch2-eval.md"
+}

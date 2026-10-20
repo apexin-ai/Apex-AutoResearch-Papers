@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0634bf905e0aa9975cf4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis model size scaling 8b",
+  "task_key": "worker_analysis_model-size-scaling-8b_20260512T092221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_model-size-scaling-8b_20260512T092221_result.json",
+    "occurrence": 1,
+    "bytes": 3419,
+    "sha256": "3c0b45b52c8464f01de0120b7fcf6f03ce83aa58b5c4c0888b69568237f24f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "grep 带 pipe 被 read_only 阻止了，但从日志和 JSON 已经获取了全部关键信息。\n\n---\n\n## 实验结果汇总\n\n### 1. 完整 Metrics\n\n| Metric | 8B CLS | 8B CWM |\n|--------|--------|--------|\n| **accuracy** | **90.48%** | 87.67% |\n| pass_precision | 90.22% | 91.53% |\n| pass_recall | 91.51% | 83.95% |\n| **pass_f1** | **90.86%** | 87.57% |\n| fail_precision | 90.76% | 84.19% |\n| fail_recall | 89.36% | 91.67% |\n| **fail_f1** | **90.06%** | 87.77% |\n| exact_match_rate | — | 84.39% |\n| train_loss | 0.3125 | 0.2290 |\n| eval_loss | 0.0783 | 0.0564 |\n| unparseable | 0 | 0 |\n\n### 2. Scaling Deltas\n\n#### 8B CLS vs 4B CLS (classification scaling gain)\n\n| Metric | 4B (3-seed mean) | 8B | **Delta** |\n|--------|:-:|:-:|:-:|\n| accuracy | 88.41% | 90.48% | **+2.07pp** |\n| pass_f1 | 88.41% | 90.86% | **+2.45pp** |\n| fail_f1 | 88.40% | 90.06% | **+1.66pp** |\n\n#### 8B CWM vs 4B CWM (CWM scaling gain)\n\n| Metric | 4B | 8B | **Delta** |\n|--------|:-:|:-:|:-:|\n| accuracy | 87.51% | 87.67% | **+0.16pp** |\n| pass_f1 | 87.31% | 87.57% | **+0.26pp** |\n| fail_f1 | 87.71% | 87.77% | **+0.06pp** |\n| exact_match | 84.02% | 84.39% | **+0.37pp** |\n\n#### 8B CLS vs 8B CWM (classification advantage at 8B)\n\n| Metric | CLS | CWM | **CLS advantage** |\n|--------|:-:|:-:|:-:|\n| accuracy | 90.48% | 87.67% | **+2.81pp** |\n| pass_f1 | 90.86% | 87.57% | **+3.29pp** |\n| fail_f1 | 90.06% | 87.77% | **+2.29pp** |\n\n### 3. Hypothesis 验证：Classification 优势是否随模型增大扩大\n\n| Gap (cls - cwm) | 4B | 8B | 变化 |\n|:--|:-:|:-:|:-:|\n| accuracy | +0.90pp | **+2.81pp** | **3.1×** |\n| pass_f1 | +1.10pp | **+3.29pp** | **3.0×** |\n| fail_f1 | +0.69pp | **+2.29pp** | **3.3×** |\n\n**结论：Classification 优势随模型增大显著扩大。** 4B 时两种方法几乎等价（gap <1pp），8B 时 classification 全面领先 2-3pp。原因很清晰：**Classification 从 4B→8B 获得了 ~2pp 的真实 scaling gain，而 CWM 基本持平（<0.3pp）——CWM 在 4B 就已经饱和了。**\n\n### 4. 训练信息\n\n| | CLS 8B | CWM 8B |\n|--|--|--|\n| 训练开始 | 15:46:09 | 15:46:10 |\n| 训练结束 | 17:19:43 | 17:19:01 |\n| wall clock | **1h33m34s** (5614s) | **1h32m50s** (5570s) |\n| throughput | 8.17 samples/s | 8.24 samples/s |\n| checkpoint | `checkpoints_cls8b/best` | `checkpoints_cwm8b/best` |\n| 模型参数 | 8.2B total, 15.3M trainable (0.19% LoRA) | 同左 |\n| epochs | 3 | 3 |\n\n### 5. 异常检查\n\n无异常。两个实验均：\n- 训练完整跑完 3 epochs (1434 steps)\n- 无 OOM、NaN、early stopping\n- unparseable_predictions = 0\n- Loss 曲线正常收敛（CLS: 7.50→0.07→0.08 eval, CWM: 5.48→0.05→0.06 eval）\n- CWM 8B 注意 pass_recall 偏低（83.95%），fail_recall 偏高（91.67%），存在明显 bias 倾向把 pass 预测为 fail\n\n### CWM error-type 亮点\n\nCWM 8B 在不同错误类型表现分化很大：\n- SyntaxError: exact_match 98.8%, accuracy 100% (最强)\n- AssertionError: exact_match 86.7%, accuracy 91.0%\n- IndexError: exact_match 仅 30.0%（最弱，但 pass/fail accuracy 仍 85%）\n- OverflowError: exact_match 0%，但 pass/fail accuracy 100%\n\n这说明 CWM 在 pass/fail 二分类上的瓶颈不在错误类型预测失败，而在于即使预测了正确的错误类型，exact match 也不够精确——但这不影响 pass/fail 分类性能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-model-size-scaling-8b.md"
+}

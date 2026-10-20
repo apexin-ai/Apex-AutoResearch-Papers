@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "246b4284186cfc01853f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b v5 val sweep ckpt4200",
+  "task_key": "worker_eval_cls4b-v5-val-sweep-ckpt4200_20260515T032510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-v5-val-sweep-ckpt4200_20260515T032510_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "449510197f8580e6fd4f79e39cc14d54912c0439c1ff8b5b2aeab210a44cfc88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，推理正常进行中。\n\n**状态**:\n- **PID**: 3213540\n- **服务器**: home-1x5090 cuda:0\n- **命令**: `python3 eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_v5/checkpoint-4200 --model_name Qwen/Qwen3-4B --split val --max_seq_length 5120 --batch_size 16 --device cuda:0 --output_dir results/repo_cls_v5_ckpt4200_val5120`\n- **日志**: `/home/sonny/runs/exec-sim-repair-verifier/cls4b-v5-val-sweep-ckpt4200.log`\n- **预计耗时**: ~75 分钟（9335 samples, ~7.5s/batch×584 batches）\n- **Registry**: `cls4b-v5-val-sweep-ckpt4200` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-v5-val-sweep-ckpt4200.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35312fedb9721f17fff5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra westd gpu status check",
+  "task_key": "worker_infra_westd-gpu-status-check_20260514T193803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-gpu-status-check_20260514T193803_result.json",
+    "occurrence": 1,
+    "bytes": 2338,
+    "sha256": "01f00878ea497162bd0528b981763403e9107d41dcb200710a5ccd718defe643"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告（2026-05-15 03:38 UTC+8）\n\n### GPU 0 — 空闲，eval 已完成\n\nCWM seed123 eval 完成于 **02:25 UTC+8**，结果：\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 59.09% |\n| Majority baseline | 72.96% |\n| Gap vs majority | **-13.87pp** |\n| F1_macro | 43.43% |\n| F1_fail | 13.67% (P=15.9%, R=12.0%) |\n| F1_pass | 73.19% (P=70.1%, R=76.5%) |\n| Unparseable | **6574/9784 (67.2%)** |\n| Checkpoint | checkpoint-500 |\n| 模型 | Qwen3-4B |\n\n### GPU 1 — 空闲，eval 已完成\n\nCWM v12 eval 完成于 **02:13 UTC+8**，结果：\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 58.04% |\n| Majority baseline | 72.96% |\n| Gap vs majority | **-14.91pp** |\n| F1_macro | **51.67%** |\n| F1_fail | 34.12% (P=29.7%, R=40.2%) |\n| F1_pass | 69.22% (P=74.5%, R=64.7%) |\n| Unparseable | **5255/9784 (53.7%)** |\n| Checkpoint | checkpoint-500 |\n| 模型 | Qwen3-4B |\n\n### GPU 2 — 运行中：CWM 8B 训练 (`repo-level-cwm-8b-conda-v2`)\n\n| 项 | 值 |\n|----|-----|\n| PID | **266816** (python3) |\n| 启动时间 | 01:44 UTC+8，已运行 ~1h54m |\n| 进度 | Step **1700/6633** (25.6%)，从 checkpoint-1600 恢复 |\n| 当前状态 | 正在跑 validation（4438/9335 items） |\n| 最新 loss | 0.2853（epoch 0.77） |\n| 速度 | ~12s/step |\n| 预计剩余 | ~16.4h（4933 steps） |\n\n注意：这是**新提交的 v2 任务**，不是 ROADMAP 提到的旧 PID 210568。旧进程已结束。\n\n### GPU 3 — 运行中：CLS 8B seed123 训练 (`repo-level-cls-8b-seed123-conda-v3`)\n\n| 项 | 值 |\n|----|-----|\n| PID | **266449** (python3) / 266444 (bash wrapper) |\n| 启动时间 | 01:43 UTC+8，已运行 ~1h55m |\n| 进度 | Step **3200/6633** (48.3%)，从 checkpoint-3000 恢复 |\n| 当前状态 | 正在跑 validation（583/9335 items） |\n| 最新 loss | **0.17**（epoch 1.45） |\n| 速度 | ~8s/step |\n| 预计剩余 | ~7.6h（3433 steps） |\n\n注意：实际 python PID 是 266449（不是任务描述的 266896），bash wrapper PID 266444 一致。\n\n---\n\n**关键发现**：两个 CWM eval 的 accuracy 都低于 majority baseline（~73%），且 unparseable rate 极高（53-67%）。CWM v12 的 F1_macro（51.67%）明显优于 seed123（43.43%），主要得益于更好的 fail 类召回率（40.2% vs 12.0%）和更低的 unparseable rate。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-gpu-status-check.md"
+}
