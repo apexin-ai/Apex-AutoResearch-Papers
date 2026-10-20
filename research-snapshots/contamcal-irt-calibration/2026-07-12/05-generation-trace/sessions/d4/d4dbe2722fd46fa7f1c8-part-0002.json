@@ -1,0 +1,2510 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d4dbe2722fd46fa7f1c8",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-14T16:11:06.125Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018hYZahtZgGRZghSP23dUG8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9943,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.899,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.7695,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6829\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9695,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9467,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8343,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7848\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9771,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9448,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8133,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6467\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8914,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7086\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.6603,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.8074,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.1501,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6708\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7157,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.322,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.254,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.1604\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7081,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.261,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.2469,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5573\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.7205,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.347,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.7833,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.8725\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"base_vs_sft_clean\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.6603,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n        \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9943,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0248,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7157,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0157,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7081,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.261,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9771,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9448,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0913,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.7205,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.347,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n        \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9981,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0149,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_clean_vs_sft_contam\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.6363,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6285,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.02e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8559,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 567.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.502,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5401,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7496,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.75e-10,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8813,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 418.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0337,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_c\\\\n\\\\n... [截断: 输出过长，省略 765 字符] ...\\\\n\\\\nuc_ratio\\\\\\\": 0.8948,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 390.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0171,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_contam_vs_rl_aligned\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.6708,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5833,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6613,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.71e-07,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6829,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8874,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 451.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0724,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1604,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.9253,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5198,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.000109,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7848,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9406,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 595.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.682,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.2469,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.5573,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.447,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7053,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.07e-08,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8133,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7951,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 575.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.553,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.7833,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.8725,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4892,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6038,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.45e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8914,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7086,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7949,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 482.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.135,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_signal\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.6603,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 1.8074,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n      \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9943,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.899,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0248\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7157,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.322,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9695,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9467,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0157\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7081,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.261,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9771,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9448,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0913\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.7205,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 3.347,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n      \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9981,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9962,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0149\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_regimes\\\\\\\": 4,\\\\n    \\\\\\\"regime_names\\\\\\\": [\\\\n      \\\\\\\"base\\\\\\\",\\\\n      \\\\\\\"sft_clean\\\\\\\",\\\\n      \\\\\\\"sft_contam\\\\\\\",\\\\n      \\\\\\\"rl_aligned\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_signals_analyzed\\\\\\\": 4,\\\\n    \\\\\\\"n_signals_surviving\\\\\\\": 0,\\\\n    \\\\\\\"surviving_signals\\\\\\\": [],\\\\n    \\\\\\\"mean_auc_ratio\\\\\\\": 0.9614,\\\\n    \\\\\\\"mean_spearman_rho\\\\\\\": 0.8508\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "102c456b-4d8e-437c-affb-696961cad6ed",
+            "isSidechain": false,
+            "promptId": "d3ed2e75-c8a6-4109-8197-cae7f20ffc10",
+            "type": "user",
+            "uuid": "f51b972c-fbc4-49dc-981c-3130387b6768",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9943,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.899,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.7695,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6829\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9695,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9467,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8343,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7848\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9771,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9448,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8133,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6467\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8914,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7086\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.6603,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.8074,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.1501,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6708\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7157,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.322,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.254,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.1604\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7081,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.261,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.2469,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5573\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.7205,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.347,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.7833,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.8725\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"base_vs_sft_clean\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.6603,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n        \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9943,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0248,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7157,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0157,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7081,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.261,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9771,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9448,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0913,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.7205,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.347,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n        \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9981,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0149,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_clean_vs_sft_contam\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.6363,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6285,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.02e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8559,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 567.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.502,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5401,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7496,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.75e-10,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8813,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 418.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0337,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_c\\\\n\\\\n... [截断: 输出过长，省略 765 字符] ...\\\\n\\\\nuc_ratio\\\\\\\": 0.8948,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 390.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0171,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_contam_vs_rl_aligned\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.6708,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5833,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6613,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.71e-07,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6829,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8874,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 451.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0724,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1604,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.9253,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5198,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.000109,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7848,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9406,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 595.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.682,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.2469,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.5573,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.447,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7053,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.07e-08,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8133,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7951,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 575.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.553,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.7833,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.8725,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4892,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6038,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.45e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8914,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7086,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7949,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 482.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.135,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_signal\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.6603,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 1.8074,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n      \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9943,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.899,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0248\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7157,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.322,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9695,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9467,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0157\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7081,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.261,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9771,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9448,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0913\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.7205,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 3.347,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n      \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9981,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9962,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0149\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_regimes\\\\\\\": 4,\\\\n    \\\\\\\"regime_names\\\\\\\": [\\\\n      \\\\\\\"base\\\\\\\",\\\\n      \\\\\\\"sft_clean\\\\\\\",\\\\n      \\\\\\\"sft_contam\\\\\\\",\\\\n      \\\\\\\"rl_aligned\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_signals_analyzed\\\\\\\": 4,\\\\n    \\\\\\\"n_signals_surviving\\\\\\\": 0,\\\\n    \\\\\\\"surviving_signals\\\\\\\": [],\\\\n    \\\\\\\"mean_auc_ratio\\\\\\\": 0.9614,\\\\n    \\\\\\\"mean_spearman_rho\\\\\\\": 0.8508\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 0.9943,\\n      \\\"sft_clean\\\": 0.899,\\n      \\\"sft_contam\\\": 0.7695,\\n      \\\"rl_aligned\\\": 0.6829\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 0.9695,\\n      \\\"sft_clean\\\": 0.9467,\\n      \\\"sft_contam\\\": 0.8343,\\n      \\\"rl_aligned\\\": 0.7848\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 0.9771,\\n      \\\"sft_clean\\\": 0.9448,\\n      \\\"sft_contam\\\": 0.8133,\\n      \\\"rl_aligned\\\": 0.6467\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 0.9981,\\n      \\\"sft_clean\\\": 0.9962,\\n      \\\"sft_contam\\\": 0.8914,\\n      \\\"rl_aligned\\\": 0.7086\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 3.6603,\\n      \\\"sft_clean\\\": 1.8074,\\n      \\\"sft_contam\\\": 1.1501,\\n      \\\"rl_aligned\\\": 0.6708\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 2.7157,\\n      \\\"sft_clean\\\": 2.322,\\n      \\\"sft_contam\\\": 1.254,\\n      \\\"rl_aligned\\\": 1.1604\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 2.7081,\\n      \\\"sft_clean\\\": 2.261,\\n      \\\"sft_contam\\\": 1.2469,\\n      \\\"rl_aligned\\\": 0.5573\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 3.7205,\\n      \\\"sft_clean\\\": 3.347,\\n      \\\"sft_contam\\\": 1.7833,\\n      \\\"rl_aligned\\\": 0.8725\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"base_vs_sft_clean\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.6603,\\n        \\\"effect_size_b\\\": 1.8074,\\n        \\\"effect_size_ratio\\\": 0.4938,\\n        \\\"spearman_rho\\\": 0.8108,\\n        \\\"spearman_p\\\": 9.56e-13,\\n        \\\"auc_a\\\": 0.9943,\\n        \\\"auc_b\\\": 0.899,\\n        \\\"auc_ratio\\\": 0.9042,\\n        \\\"wilcoxon_stat\\\": 405.0,\\n        \\\"wilcoxon_p\\\": 0.0248,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7157,\\n        \\\"effect_size_b\\\": 2.322,\\n        \\\"effect_size_ratio\\\": 0.855,\\n        \\\"spearman_rho\\\": 0.8959,\\n        \\\"spearman_p\\\": 1.54e-18,\\n        \\\"auc_a\\\": 0.9695,\\n        \\\"auc_b\\\": 0.9467,\\n        \\\"auc_ratio\\\": 0.9764,\\n        \\\"wilcoxon_stat\\\": 389.0,\\n        \\\"wilcoxon_p\\\": 0.0157,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7081,\\n        \\\"effect_size_b\\\": 2.261,\\n        \\\"effect_size_ratio\\\": 0.8349,\\n        \\\"spearman_rho\\\": 0.924,\\n        \\\"spearman_p\\\": 1.12e-21,\\n        \\\"auc_a\\\": 0.9771,\\n        \\\"auc_b\\\": 0.9448,\\n        \\\"auc_ratio\\\": 0.9669,\\n        \\\"wilcoxon_stat\\\": 462.0,\\n        \\\"wilcoxon_p\\\": 0.0913,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.7205,\\n        \\\"effect_size_b\\\": 3.347,\\n        \\\"effect_size_ratio\\\": 0.8996,\\n        \\\"spearman_rho\\\": 0.7724,\\n        \\\"spearman_p\\\": 5.04e-11,\\n        \\\"auc_a\\\": 0.9981,\\n        \\\"auc_b\\\": 0.9962,\\n        \\\"auc_ratio\\\": 0.9981,\\n        \\\"wilcoxon_stat\\\": 387.0,\\n        \\\"wilcoxon_p\\\": 0.0149,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_clean_vs_sft_contam\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.8074,\\n        \\\"effect_size_b\\\": 1.1501,\\n        \\\"effect_size_ratio\\\": 0.6363,\\n        \\\"spearman_rho\\\": 0.6285,\\n        \\\"spearman_p\\\": 1.02e-06,\\n        \\\"auc_a\\\": 0.899,\\n        \\\"auc_b\\\": 0.7695,\\n        \\\"auc_ratio\\\": 0.8559,\\n        \\\"wilcoxon_stat\\\": 567.0,\\n        \\\"wilcoxon_p\\\": 0.502,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.322,\\n        \\\"effect_size_b\\\": 1.254,\\n        \\\"effect_size_ratio\\\": 0.5401,\\n        \\\"spearman_rho\\\": 0.7496,\\n        \\\"spearman_p\\\": 3.75e-10,\\n        \\\"auc_a\\\": 0.9467,\\n        \\\"auc_b\\\": 0.8343,\\n        \\\"auc_ratio\\\": 0.8813,\\n        \\\"wilcoxon_stat\\\": 418.0,\\n        \\\"wilcoxon_p\\\": 0.0337,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_c\\n\\n... [截断: 输出过长，省略 765 字符] ...\\n\\nuc_ratio\\\": 0.8948,\\n        \\\"wilcoxon_stat\\\": 390.5,\\n        \\\"wilcoxon_p\\\": 0.0171,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_contam_vs_rl_aligned\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.1501,\\n        \\\"effect_size_b\\\": 0.6708,\\n        \\\"effect_size_ratio\\\": 0.5833,\\n        \\\"spearman_rho\\\": 0.6613,\\n        \\\"spearman_p\\\": 1.71e-07,\\n        \\\"auc_a\\\": 0.7695,\\n        \\\"auc_b\\\": 0.6829,\\n        \\\"auc_ratio\\\": 0.8874,\\n        \\\"wilcoxon_stat\\\": 451.0,\\n        \\\"wilcoxon_p\\\": 0.0724,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.254,\\n        \\\"effect_size_b\\\": 1.1604,\\n        \\\"effect_size_ratio\\\": 0.9253,\\n        \\\"spearman_rho\\\": 0.5198,\\n        \\\"spearman_p\\\": 0.000109,\\n        \\\"auc_a\\\": 0.8343,\\n        \\\"auc_b\\\": 0.7848,\\n        \\\"auc_ratio\\\": 0.9406,\\n        \\\"wilcoxon_stat\\\": 595.0,\\n        \\\"wilcoxon_p\\\": 0.682,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.2469,\\n        \\\"effect_size_b\\\": 0.5573,\\n        \\\"effect_size_ratio\\\": 0.447,\\n        \\\"spearman_rho\\\": 0.7053,\\n        \\\"spearman_p\\\": 1.07e-08,\\n        \\\"auc_a\\\": 0.8133,\\n        \\\"auc_b\\\": 0.6467,\\n        \\\"auc_ratio\\\": 0.7951,\\n        \\\"wilcoxon_stat\\\": 575.0,\\n        \\\"wilcoxon_p\\\": 0.553,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.7833,\\n        \\\"effect_size_b\\\": 0.8725,\\n        \\\"effect_size_ratio\\\": 0.4892,\\n        \\\"spearman_rho\\\": 0.6038,\\n        \\\"spearman_p\\\": 3.45e-06,\\n        \\\"auc_a\\\": 0.8914,\\n        \\\"auc_b\\\": 0.7086,\\n        \\\"auc_ratio\\\": 0.7949,\\n        \\\"wilcoxon_stat\\\": 482.0,\\n        \\\"wilcoxon_p\\\": 0.135,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    }\\n  },\\n  \\\"per_signal\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"signal_label\\\": \\\"Embedding\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.6603,\\n      \\\"effect_size_rl\\\": 1.8074,\\n      \\\"effect_size_ratio\\\": 0.4938,\\n      \\\"spearman_rho\\\": 0.8108,\\n      \\\"spearman_p\\\": 9.56e-13,\\n      \\\"auc_sft\\\": 0.9943,\\n      \\\"auc_rl\\\": 0.899,\\n      \\\"auc_ratio\\\": 0.9042,\\n      \\\"wilcoxon_stat\\\": 405.0,\\n      \\\"wilcoxon_p\\\": 0.0248\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"signal_label\\\": \\\"Min-K%++\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7157,\\n      \\\"effect_size_rl\\\": 2.322,\\n      \\\"effect_size_ratio\\\": 0.855,\\n      \\\"spearman_rho\\\": 0.8959,\\n      \\\"spearman_p\\\": 1.54e-18,\\n      \\\"auc_sft\\\": 0.9695,\\n      \\\"auc_rl\\\": 0.9467,\\n      \\\"auc_ratio\\\": 0.9764,\\n      \\\"wilcoxon_stat\\\": 389.0,\\n      \\\"wilcoxon_p\\\": 0.0157\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"signal_label\\\": \\\"ConStat\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7081,\\n      \\\"effect_size_rl\\\": 2.261,\\n      \\\"effect_size_ratio\\\": 0.8349,\\n      \\\"spearman_rho\\\": 0.924,\\n      \\\"spearman_p\\\": 1.12e-21,\\n      \\\"auc_sft\\\": 0.9771,\\n      \\\"auc_rl\\\": 0.9448,\\n      \\\"auc_ratio\\\": 0.9669,\\n      \\\"wilcoxon_stat\\\": 462.0,\\n      \\\"wilcoxon_p\\\": 0.0913\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"signal_label\\\": \\\"Self-Critique\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.7205,\\n      \\\"effect_size_rl\\\": 3.347,\\n      \\\"effect_size_ratio\\\": 0.8996,\\n      \\\"spearman_rho\\\": 0.7724,\\n      \\\"spearman_p\\\": 5.04e-11,\\n      \\\"auc_sft\\\": 0.9981,\\n      \\\"auc_rl\\\": 0.9962,\\n      \\\"auc_ratio\\\": 0.9981,\\n      \\\"wilcoxon_stat\\\": 387.0,\\n      \\\"wilcoxon_p\\\": 0.0149\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_regimes\\\": 4,\\n    \\\"regime_names\\\": [\\n      \\\"base\\\",\\n      \\\"sft_clean\\\",\\n      \\\"sft_contam\\\",\\n      \\\"rl_aligned\\\"\\n    ],\\n    \\\"n_signals_analyzed\\\": 4,\\n    \\\"n_signals_surviving\\\": 0,\\n    \\\"surviving_signals\\\": [],\\n    \\\"mean_auc_ratio\\\": 0.9614,\\n    \\\"mean_spearman_rho\\\": 0.8508\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            },
+            "sourceToolAssistantUUID": "102c456b-4d8e-437c-affb-696961cad6ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-14T16:11:06.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SbMuizWT4a59w5PSsszKC2",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f51b972c-fbc4-49dc-981c-3130387b6768",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kfNYrgnJot4xD1iMpP",
+            "type": "assistant",
+            "uuid": "0cbfbc5c-9f95-4d66-8b1f-43ee92330f8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017m4jjtEReCFAae8Wt3TBiA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1631,
+                "cache_read_input_tokens": 87467,
+                "output_tokens": 1075,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1631,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1075,
+                    "cache_read_input_tokens": 87467,
+                    "cache_creation_input_tokens": 1631,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1631
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_run_exp_008_signal_survival_cpu_20260514T160652]: Worker worker_run_exp_008_signal_survival_cpu_20260514T160652 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "673c00d4-8670-4f80-83c7-38314c898fa9",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-14T16:12:37.738Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive picture of exp-008. Let me analyze:\n\n## Two different datasets in exp-008\n\nThere are **two separate output directories**:\n\n### 1. `exp008_output` (synthetic/old data, 4 regimes)\n- Regimes: base → sft_clean → sft_contam → rl_aligned\n- N=50, 15 contaminated, 35 clean\n- All 4 signals (S1-S4) start high (~0.95-0.99 AUC at base) and gradually decay\n- By rl_aligned: S1=0.683, S2=0.785, S3=0.647, S4=0.709\n\n\n- None of the signals fully disappear, though they all drop substantially from baseline\n\n### 2. `exp008_exp002_output` (real exp-002 data, 3 regimes)  \n- Regimes: d000, d005, d100\n- Uses actual signal computations from real exp-002 models\n- This is the genuine result that should inform the paper\n- S1 Embedding shows d000=0.50, d005=0.95 and continues from there\n\nNow looking at the full signal performance across regimes: S1 Embedding ranges from 0.95-0.99 at d005 but drops to 0.49-0.50 at d100, while S2 Min-K++ stays random around 0.47-0.57 across all conditions. S3 ConStat wasn't computed for exp-002, and S4 Self-Critique also performs randomly at 0.43-0.55. Again, no signals survive the threshold.\n\nThere's something counterintuitive happening with S1 Embedding—it peaks at 5% contamination but becomes essentially random at 100% contamination, which is backwards from what I'd expect since higher contamination should make detection easier.\n\nThe issue likely stems from how the embedding space shifts under heavy fine-tuning. At d100, the model has drifted so far from the d000 reference that the embedding-based signal loses all discriminative power. There's also a potential methodology concern: if the reference model uses d000 but the contaminated items at d100 have been trained on completely different data, the signal becomes meaningless. At d000 itself, contaminated and clean items should look identical (AUC ~0.5), at d005 they diverge enough to be distinguishable (high AUC), but at d100 everything has shifted so dramatically that the reference-based comparison breaks down. This is actually a methodological constraint — the signal survival analysis can only discriminate between contaminated and clean items when both exist in the dataset, so at d100 where everything is contaminated, there's nothing to distinguish.\n\nNow looking at what this means for C2's claim about RL post-training causing cliff-like degradation: the real data from exp-002 only covers SFT regimes without any RL, while the synthetic data with RL has too few items to be convincing. So the specific claim about RL-induced degradation lacks real empirical support.\n\nThere's also a conceptual mix-up happening — the analysis treats dosage levels (percentage of contaminated items) as if they're training regimes (SFT versus RL), but these are actually separate dimensions that shouldn't be conflated. The real regime transition isn't captured in the actual data.\n\nLooking at S2 and S4 now, Min-K++ and Self-Critique appear to be completely ineffective approaches. The ROADMAP explicitly flagged that the \"RL-robust partial✓\" claim in Table 2 relies solely on exp-008, and the real data results don't actually support RL-robustness—only synthetic data shows the gradual decay pattern. This claim needs to be removed. Additionally, exp-008 was completed without a registry entry, breaking traceability. The critical issue is that at d100 dosage, all items become contaminated, which eliminates the clean/contaminated distinction needed to compute AUC meaningfully—this methodological confound explains the d005=0.95 versus d100=0.50 pattern. signal survival\" framing is fundamentally limited — it measures signal discrimination within a dataset, not absolute signal strength. The paper must acknowledge this limitation. C2's claim about \"which signals survive under which training regimes\" needs to be qualified: signals can only be evaluated when there exist both contaminated and clean items.\n\nLet me trace through the actual data here. At d005, only 5% of MMLU items were in the training set (703 out of 14042), leaving 13339 clean items. But at d100 where all items should be contaminated, the cross-benchmark summary still shows the same n_contaminated count of 703 — which suggests the \"contaminated\" label isn't tracking ground-truth injection status, but rather which items were flagged as contaminated in the d005 comparison or which items appeared in training at each dosage level. the signal analysis still labels items based on the d005 contamination set, regardless of which regime is being analyzed. At d000, those 703 items were never seen by the model so there's no signal; at d005, they were in the training set so signal is strong; at d100, everything was contaminated so there's no contrast between the labeled subset and the rest. This reveals a fundamental limitation of the experimental design—the \"0/4 signals surviving\" conclusion isn't really about signal survival, but rather that the d005 subset becomes indistinguishable from the rest once all items are contaminated.\n\nFor the actual C2 claim about signal survival under RL, this experiment provides no real evidence since it doesn't test RL at all. The synthetic data does show something more interesting though: gradual decay across the training pipeline (base → sft_clean → sft_contam → rl_aligned), with all four signals degrading but mostly staying above 0.5. That's actually the opposite of the \"cliff-like\" collapse claimed in C2—it's a slow, continuous decline.\n\nSo my key findings are: the d005→d100 AUC collapse is just an artifact of experimental design where d100 has everything in training, destroying the clean/contaminated distinction needed for measurement. The real data only tests dosage regimes, not RL versus SFT, so there's no actual support for C2's cliff-like degradation claim. And looking at the individual signals, S2 and S4 are basically useless on real data, hovering around 0.5 AUC even at d005 where S1 works well—meaning two-thirds of the computed signals don't actually work.\n\nS3 wasn't even tested on real data in exp-002, and combined with S2/S4 failing, the whole multi-signal fusion narrative falls apart. There's also no registry entry for exp-008 despite having results on the server. The ROADMAP claim about RL-robust partial success contradicts what I'm seeing—the synthetic data shows gradual decay, not the cliff-like pattern claimed.\n\nNow I'm reconsidering the synthetic data structure itself. The exp008_output has different regime types—base, sft_clean, sft_contam, rl_aligned—and I need to look at what S1 actually shows across these.\n\nLooking at the AUC trajectories across regimes, S3 and S4 both show substantial drops in the final transition, with S3 falling 0.166 and S4 dropping 0.182—that's actually more cliff-like than I initially thought, though S1's drop of 0.087 is more gradual.\n\nBut the sft_clean to sft_contam transition is also significant, with consistent losses of 0.113 to 0.129 across S1 and S2. So the degradation isn't really concentrated at the RL step—it's spread across both contamination and alignment stages, making the overall pattern one of cumulative decay rather than a sharp cliff.\n\nThe real limitation here is that the synthetic dataset is tiny with only 15 contaminated examples out of 50 total, which severely constrains what I can reliably conclude from these numbers.\n\nI'm also noticing a fundamental mismatch: the synthetic data uses training regime labels (base, sft_clean, sft_contam, rl_aligned) while the real experiment uses contamination dosages (d000, d005, d100), and the synthetic RL stage doesn't even exist in the real data since those are all SFT models. These are actually measuring different things—one tracks signal decay across training stages, the other tracks performance across contamination levels—so mixing them together in the paper would be conflating two separate analyses. I need to be clear about which evidence supports which claim.\n\nNow I'm ready to write up the full report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "673c00d4-8670-4f80-83c7-38314c898fa9",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kh2acxzzCWk84LKob7",
+            "type": "assistant",
+            "uuid": "a1f043d8-9d83-4f30-82fa-a28bb34e8a69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014caPadq6iA5xMsoBznhQ3x",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15264,
+                "cache_read_input_tokens": 89098,
+                "output_tokens": 4204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15264,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4204,
+                    "cache_read_input_tokens": 89098,
+                    "cache_creation_input_tokens": 15264,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15264
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-14T16:12:37.743Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现了重大问题。exp-008 有两套数据（合成 vs 真实 exp-002），并且真实数据结果与论文 C2 claim 存在严重冲突。让我验证一个关键细节——d100 的 contaminated item 标签。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1f043d8-9d83-4f30-82fa-a28bb34e8a69",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kh2acxzzCWk84LKob7",
+            "type": "assistant",
+            "uuid": "402d37a1-7c9e-47da-adc2-054718e1a6e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014caPadq6iA5xMsoBznhQ3x",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15264,
+                "cache_read_input_tokens": 89098,
+                "output_tokens": 4204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15264,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4204,
+                    "cache_read_input_tokens": 89098,
+                    "cache_creation_input_tokens": 15264,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15264
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-14T16:12:37.785Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N5nLHkC6ibEFHq5suLHZhj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat /root/contamcal-irt-calibration/exp008/exp008_exp002_output/per_benchmark/mmlu/survival_report.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "402d37a1-7c9e-47da-adc2-054718e1a6e0",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kh2acxzzCWk84LKob7",
+            "type": "assistant",
+            "uuid": "3cb31cf5-6833-443b-8c67-49abf812e087",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014caPadq6iA5xMsoBznhQ3x",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15264,
+                "cache_read_input_tokens": 89098,
+                "output_tokens": 4204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15264,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4204,
+                    "cache_read_input_tokens": 89098,
+                    "cache_creation_input_tokens": 15264,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15264
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-14T16:12:38.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WHkAqGi4UmfSUtjSczPvMy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -80 /root/contamcal-irt-calibration/exp008_new/run_signal_survival.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3cb31cf5-6833-443b-8c67-49abf812e087",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kh2acxzzCWk84LKob7",
+            "type": "assistant",
+            "uuid": "e37a34ed-d94e-4945-8763-3354386f5da7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014caPadq6iA5xMsoBznhQ3x",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15264,
+                "cache_read_input_tokens": 89098,
+                "output_tokens": 4204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15264,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4204,
+                    "cache_read_input_tokens": 89098,
+                    "cache_creation_input_tokens": 15264,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15264
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-14T16:12:38.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N5nLHkC6ibEFHq5suLHZhj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"d000\\\\\\\",\\\\n    \\\\\\\"d005\\\\\\\",\\\\n    \\\\\\\"d100\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.5049,\\\\n      \\\\\\\"d005\\\\\\\": 0.953,\\\\n      \\\\\\\"d100\\\\\\\": 0.4943\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.509,\\\\n      \\\\\\\"d005\\\\\\\": 0.4655,\\\\n      \\\\\\\"d100\\\\\\\": 0.5053\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": null,\\\\n      \\\\\\\"d005\\\\\\\": null,\\\\n      \\\\\\\"d100\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.4957,\\\\n      \\\\\\\"d005\\\\\\\": 0.5165,\\\\n      \\\\\\\"d100\\\\\\\": 0.5125\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.0208,\\\\n      \\\\\\\"d005\\\\\\\": 2.5085,\\\\n      \\\\\\\"d100\\\\\\\": -0.0079\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.0421,\\\\n      \\\\\\\"d005\\\\\\\": -0.1079,\\\\n      \\\\\\\"d100\\\\\\\": 0.0161\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": null,\\\\n      \\\\\\\"d005\\\\\\\": null,\\\\n      \\\\\\\"d100\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": -0.0042,\\\\n      \\\\\\\"d005\\\\\\\": 0.0652,\\\\n      \\\\\\\"d100\\\\\\\": 0.0189\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"d000_vs_d005\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0208,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.5085,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 120.7563,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6055,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.5049,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.953,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.8874,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 2547.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0421,\\\\n        \\\\\\\"effect_size_b\\\\\\\": -0.1079,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -2.5647,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.3053,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.34e-300,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.509,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.4655,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9144,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 507542.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 0,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n        \\\\\\\"n_clean\\\\\\\": 0,\\\\n        \\\\\\\"effect_size_a\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_b\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n        \\\\\\\"spearman_rho\\\\\\\": null,\\\\n        \\\\\\\"spearman_p\\\\\\\": null,\\\\n        \\\\\\\"auc_a\\\\\\\": null,\\\\n        \\\\\\\"auc_b\\\\\\\": null,\\\\n        \\\\\\\"auc_ratio\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": null,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": -0.0042,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0652,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -15.4512,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2258,\\\\n        \\\\\\\"spearman_p\\\\\\\": 7.74e-162,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.4957,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5165,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.042,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 20294820.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"d005_vs_d100\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.5085,\\\\n        \\\\\\\"effect_size_b\\\\\\\": -0.0079,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -0.0032,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2383,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.55e-180,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.953,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.4943,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.5187,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 4264.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": -0.1079,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0161,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -0.1488,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7952,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.4655,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5053,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0856,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 29103542.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 0,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n        \\\\\\\"n_clean\\\\\\\": 0,\\\\n        \\\\\\\"effect_size_a\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_b\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n        \\\\\\\"spearman_rho\\\\\\\": null,\\\\n        \\\\\\\"spearman_p\\\\\\\": null,\\\\n        \\\\\\\"auc_a\\\\\\\": null,\\\\n        \\\\\\\"auc_b\\\\\\\": null,\\\\n        \\\\\\\"auc_ratio\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": null,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0652,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0189,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.2894,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.409,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.5165,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5125,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9921,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 40938252.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 3.02e-10,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_signal\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 0.0208,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.5085,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 120.7563,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6055,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.5049,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.953,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 1.8874,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 2547.5,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 0.0421,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": -0.1079,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": -2.5647,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.3053,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.34e-300,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.509,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.4655,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9144,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 507542.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 0,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n      \\\\\\\"n_clean\\\\\\\": 0,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": NaN,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": NaN,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n      \\\\\\\"spearman_rho\\\\\\\": null,\\\\n      \\\\\\\"spearman_p\\\\\\\": null,\\\\n      \\\\\\\"auc_sft\\\\\\\": null,\\\\n      \\\\\\\"auc_rl\\\\\\\": null,\\\\n      \\\\\\\"auc_ratio\\\\\\\": null,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": -0.0042,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 0.0652,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": -15.4512,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.2258,\\\\n      \\\\\\\"spearman_p\\\\\\\": 7.74e-162,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.4957,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.5165,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 1.042,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 20294820.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_regimes\\\\\\\": 3,\\\\n    \\\\\\\"regime_names\\\\\\\": [\\\\n      \\\\\\\"d000\\\\\\\",\\\\n      \\\\\\\"d005\\\\\\\",\\\\n      \\\\\\\"d100\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_signals_analyzed\\\\\\\": 4,\\\\n    \\\\\\\"n_signals_surviving\\\\\\\": 0,\\\\n    \\\\\\\"surviving_signals\\\\\\\": [],\\\\n    \\\\\\\"mean_auc_ratio\\\\\\\": 1.2813,\\\\n    \\\\\\\"mean_spearman_rho\\\\\\\": 0.3789\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3cb31cf5-6833-443b-8c67-49abf812e087",
+            "isSidechain": false,
+            "promptId": "d3ed2e75-c8a6-4109-8197-cae7f20ffc10",
+            "type": "user",
+            "uuid": "22ac90d5-3961-4ae1-b1c3-85a811624b02",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"d000\\\\\\\",\\\\n    \\\\\\\"d005\\\\\\\",\\\\n    \\\\\\\"d100\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.5049,\\\\n      \\\\\\\"d005\\\\\\\": 0.953,\\\\n      \\\\\\\"d100\\\\\\\": 0.4943\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.509,\\\\n      \\\\\\\"d005\\\\\\\": 0.4655,\\\\n      \\\\\\\"d100\\\\\\\": 0.5053\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": null,\\\\n      \\\\\\\"d005\\\\\\\": null,\\\\n      \\\\\\\"d100\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.4957,\\\\n      \\\\\\\"d005\\\\\\\": 0.5165,\\\\n      \\\\\\\"d100\\\\\\\": 0.5125\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.0208,\\\\n      \\\\\\\"d005\\\\\\\": 2.5085,\\\\n      \\\\\\\"d100\\\\\\\": -0.0079\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": 0.0421,\\\\n      \\\\\\\"d005\\\\\\\": -0.1079,\\\\n      \\\\\\\"d100\\\\\\\": 0.0161\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": null,\\\\n      \\\\\\\"d005\\\\\\\": null,\\\\n      \\\\\\\"d100\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"d000\\\\\\\": -0.0042,\\\\n      \\\\\\\"d005\\\\\\\": 0.0652,\\\\n      \\\\\\\"d100\\\\\\\": 0.0189\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"d000_vs_d005\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0208,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.5085,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 120.7563,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6055,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.5049,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.953,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.8874,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 2547.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0421,\\\\n        \\\\\\\"effect_size_b\\\\\\\": -0.1079,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -2.5647,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.3053,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.34e-300,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.509,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.4655,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9144,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 507542.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 0,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n        \\\\\\\"n_clean\\\\\\\": 0,\\\\n        \\\\\\\"effect_size_a\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_b\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n        \\\\\\\"spearman_rho\\\\\\\": null,\\\\n        \\\\\\\"spearman_p\\\\\\\": null,\\\\n        \\\\\\\"auc_a\\\\\\\": null,\\\\n        \\\\\\\"auc_b\\\\\\\": null,\\\\n        \\\\\\\"auc_ratio\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": null,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": -0.0042,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0652,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -15.4512,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2258,\\\\n        \\\\\\\"spearman_p\\\\\\\": 7.74e-162,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.4957,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5165,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.042,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 20294820.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"d005_vs_d100\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.5085,\\\\n        \\\\\\\"effect_size_b\\\\\\\": -0.0079,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -0.0032,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2383,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.55e-180,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.953,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.4943,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.5187,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 4264.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": -0.1079,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0161,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -0.1488,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7952,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.4655,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5053,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0856,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 29103542.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 0,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n        \\\\\\\"n_clean\\\\\\\": 0,\\\\n        \\\\\\\"effect_size_a\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_b\\\\\\\": NaN,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n        \\\\\\\"spearman_rho\\\\\\\": null,\\\\n        \\\\\\\"spearman_p\\\\\\\": null,\\\\n        \\\\\\\"auc_a\\\\\\\": null,\\\\n        \\\\\\\"auc_b\\\\\\\": null,\\\\n        \\\\\\\"auc_ratio\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": null,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 14042,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n        \\\\\\\"n_clean\\\\\\\": 13339,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 0.0652,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.0189,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.2894,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.409,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.5165,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5125,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9921,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 40938252.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 3.02e-10,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_signal\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 0.0208,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.5085,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 120.7563,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.6055,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.5049,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.953,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 1.8874,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 2547.5,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 0.0421,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": -0.1079,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": -2.5647,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.3053,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.34e-300,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.509,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.4655,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9144,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 507542.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 0,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n      \\\\\\\"n_clean\\\\\\\": 0,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": NaN,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": NaN,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": null,\\\\n      \\\\\\\"spearman_rho\\\\\\\": null,\\\\n      \\\\\\\"spearman_p\\\\\\\": null,\\\\n      \\\\\\\"auc_sft\\\\\\\": null,\\\\n      \\\\\\\"auc_rl\\\\\\\": null,\\\\n      \\\\\\\"auc_ratio\\\\\\\": null,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": null,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 14042,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 703,\\\\n      \\\\\\\"n_clean\\\\\\\": 13339,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": -0.0042,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 0.0652,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": -15.4512,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.2258,\\\\n      \\\\\\\"spearman_p\\\\\\\": 7.74e-162,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.4957,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.5165,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 1.042,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 20294820.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_regimes\\\\\\\": 3,\\\\n    \\\\\\\"regime_names\\\\\\\": [\\\\n      \\\\\\\"d000\\\\\\\",\\\\n      \\\\\\\"d005\\\\\\\",\\\\n      \\\\\\\"d100\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_signals_analyzed\\\\\\\": 4,\\\\n    \\\\\\\"n_signals_surviving\\\\\\\": 0,\\\\n    \\\\\\\"surviving_signals\\\\\\\": [],\\\\n    \\\\\\\"mean_auc_ratio\\\\\\\": 1.2813,\\\\n    \\\\\\\"mean_spearman_rho\\\\\\\": 0.3789\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"d000\\\",\\n    \\\"d005\\\",\\n    \\\"d100\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"d000\\\": 0.5049,\\n      \\\"d005\\\": 0.953,\\n      \\\"d100\\\": 0.4943\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"d000\\\": 0.509,\\n      \\\"d005\\\": 0.4655,\\n      \\\"d100\\\": 0.5053\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"d000\\\": null,\\n      \\\"d005\\\": null,\\n      \\\"d100\\\": null\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"d000\\\": 0.4957,\\n      \\\"d005\\\": 0.5165,\\n      \\\"d100\\\": 0.5125\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"d000\\\": 0.0208,\\n      \\\"d005\\\": 2.5085,\\n      \\\"d100\\\": -0.0079\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"d000\\\": 0.0421,\\n      \\\"d005\\\": -0.1079,\\n      \\\"d100\\\": 0.0161\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"d000\\\": null,\\n      \\\"d005\\\": null,\\n      \\\"d100\\\": null\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"d000\\\": -0.0042,\\n      \\\"d005\\\": 0.0652,\\n      \\\"d100\\\": 0.0189\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"d000_vs_d005\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": 0.0208,\\n        \\\"effect_size_b\\\": 2.5085,\\n        \\\"effect_size_ratio\\\": 120.7563,\\n        \\\"spearman_rho\\\": 0.6055,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"auc_a\\\": 0.5049,\\n        \\\"auc_b\\\": 0.953,\\n        \\\"auc_ratio\\\": 1.8874,\\n        \\\"wilcoxon_stat\\\": 2547.5,\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": 0.0421,\\n        \\\"effect_size_b\\\": -0.1079,\\n        \\\"effect_size_ratio\\\": -2.5647,\\n        \\\"spearman_rho\\\": 0.3053,\\n        \\\"spearman_p\\\": 1.34e-300,\\n        \\\"auc_a\\\": 0.509,\\n        \\\"auc_b\\\": 0.4655,\\n        \\\"auc_ratio\\\": 0.9144,\\n        \\\"wilcoxon_stat\\\": 507542.0,\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 0,\\n        \\\"n_contaminated\\\": 0,\\n        \\\"n_clean\\\": 0,\\n        \\\"effect_size_a\\\": NaN,\\n        \\\"effect_size_b\\\": NaN,\\n        \\\"effect_size_ratio\\\": null,\\n        \\\"spearman_rho\\\": null,\\n        \\\"spearman_p\\\": null,\\n        \\\"auc_a\\\": null,\\n        \\\"auc_b\\\": null,\\n        \\\"auc_ratio\\\": null,\\n        \\\"wilcoxon_stat\\\": null,\\n        \\\"wilcoxon_p\\\": null,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": -0.0042,\\n        \\\"effect_size_b\\\": 0.0652,\\n        \\\"effect_size_ratio\\\": -15.4512,\\n        \\\"spearman_rho\\\": 0.2258,\\n        \\\"spearman_p\\\": 7.74e-162,\\n        \\\"auc_a\\\": 0.4957,\\n        \\\"auc_b\\\": 0.5165,\\n        \\\"auc_ratio\\\": 1.042,\\n        \\\"wilcoxon_stat\\\": 20294820.0,\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"d005_vs_d100\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": 2.5085,\\n        \\\"effect_size_b\\\": -0.0079,\\n        \\\"effect_size_ratio\\\": -0.0032,\\n        \\\"spearman_rho\\\": 0.2383,\\n        \\\"spearman_p\\\": 1.55e-180,\\n        \\\"auc_a\\\": 0.953,\\n        \\\"auc_b\\\": 0.4943,\\n        \\\"auc_ratio\\\": 0.5187,\\n        \\\"wilcoxon_stat\\\": 4264.5,\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": -0.1079,\\n        \\\"effect_size_b\\\": 0.0161,\\n        \\\"effect_size_ratio\\\": -0.1488,\\n        \\\"spearman_rho\\\": 0.7952,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"auc_a\\\": 0.4655,\\n        \\\"auc_b\\\": 0.5053,\\n        \\\"auc_ratio\\\": 1.0856,\\n        \\\"wilcoxon_stat\\\": 29103542.0,\\n        \\\"wilcoxon_p\\\": 0.0,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 0,\\n        \\\"n_contaminated\\\": 0,\\n        \\\"n_clean\\\": 0,\\n        \\\"effect_size_a\\\": NaN,\\n        \\\"effect_size_b\\\": NaN,\\n        \\\"effect_size_ratio\\\": null,\\n        \\\"spearman_rho\\\": null,\\n        \\\"spearman_p\\\": null,\\n        \\\"auc_a\\\": null,\\n        \\\"auc_b\\\": null,\\n        \\\"auc_ratio\\\": null,\\n        \\\"wilcoxon_stat\\\": null,\\n        \\\"wilcoxon_p\\\": null,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 14042,\\n        \\\"n_contaminated\\\": 703,\\n        \\\"n_clean\\\": 13339,\\n        \\\"effect_size_a\\\": 0.0652,\\n        \\\"effect_size_b\\\": 0.0189,\\n        \\\"effect_size_ratio\\\": 0.2894,\\n        \\\"spearman_rho\\\": 0.409,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"auc_a\\\": 0.5165,\\n        \\\"auc_b\\\": 0.5125,\\n        \\\"auc_ratio\\\": 0.9921,\\n        \\\"wilcoxon_stat\\\": 40938252.5,\\n        \\\"wilcoxon_p\\\": 3.02e-10,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    }\\n  },\\n  \\\"per_signal\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"signal_label\\\": \\\"Embedding\\\",\\n      \\\"n_items\\\": 14042,\\n      \\\"n_contaminated\\\": 703,\\n      \\\"n_clean\\\": 13339,\\n      \\\"effect_size_sft\\\": 0.0208,\\n      \\\"effect_size_rl\\\": 2.5085,\\n      \\\"effect_size_ratio\\\": 120.7563,\\n      \\\"spearman_rho\\\": 0.6055,\\n      \\\"spearman_p\\\": 0.0,\\n      \\\"auc_sft\\\": 0.5049,\\n      \\\"auc_rl\\\": 0.953,\\n      \\\"auc_ratio\\\": 1.8874,\\n      \\\"wilcoxon_stat\\\": 2547.5,\\n      \\\"wilcoxon_p\\\": 0.0\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"signal_label\\\": \\\"Min-K%++\\\",\\n      \\\"n_items\\\": 14042,\\n      \\\"n_contaminated\\\": 703,\\n      \\\"n_clean\\\": 13339,\\n      \\\"effect_size_sft\\\": 0.0421,\\n      \\\"effect_size_rl\\\": -0.1079,\\n      \\\"effect_size_ratio\\\": -2.5647,\\n      \\\"spearman_rho\\\": 0.3053,\\n      \\\"spearman_p\\\": 1.34e-300,\\n      \\\"auc_sft\\\": 0.509,\\n      \\\"auc_rl\\\": 0.4655,\\n      \\\"auc_ratio\\\": 0.9144,\\n      \\\"wilcoxon_stat\\\": 507542.0,\\n      \\\"wilcoxon_p\\\": 0.0\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"signal_label\\\": \\\"ConStat\\\",\\n      \\\"n_items\\\": 0,\\n      \\\"n_contaminated\\\": 0,\\n      \\\"n_clean\\\": 0,\\n      \\\"effect_size_sft\\\": NaN,\\n      \\\"effect_size_rl\\\": NaN,\\n      \\\"effect_size_ratio\\\": null,\\n      \\\"spearman_rho\\\": null,\\n      \\\"spearman_p\\\": null,\\n      \\\"auc_sft\\\": null,\\n      \\\"auc_rl\\\": null,\\n      \\\"auc_ratio\\\": null,\\n      \\\"wilcoxon_stat\\\": null,\\n      \\\"wilcoxon_p\\\": null\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"signal_label\\\": \\\"Self-Critique\\\",\\n      \\\"n_items\\\": 14042,\\n      \\\"n_contaminated\\\": 703,\\n      \\\"n_clean\\\": 13339,\\n      \\\"effect_size_sft\\\": -0.0042,\\n      \\\"effect_size_rl\\\": 0.0652,\\n      \\\"effect_size_ratio\\\": -15.4512,\\n      \\\"spearman_rho\\\": 0.2258,\\n      \\\"spearman_p\\\": 7.74e-162,\\n      \\\"auc_sft\\\": 0.4957,\\n      \\\"auc_rl\\\": 0.5165,\\n      \\\"auc_ratio\\\": 1.042,\\n      \\\"wilcoxon_stat\\\": 20294820.0,\\n      \\\"wilcoxon_p\\\": 0.0\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_regimes\\\": 3,\\n    \\\"regime_names\\\": [\\n      \\\"d000\\\",\\n      \\\"d005\\\",\\n      \\\"d100\\\"\\n    ],\\n    \\\"n_signals_analyzed\\\": 4,\\n    \\\"n_signals_surviving\\\": 0,\\n    \\\"surviving_signals\\\": [],\\n    \\\"mean_auc_ratio\\\": 1.2813,\\n    \\\"mean_spearman_rho\\\": 0.3789\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3cb31cf5-6833-443b-8c67-49abf812e087",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_run_exp_008_signal_survival_cpu_20260514T160652]: Worker worker_run_exp_008_signal_survival_cpu_20260514T160652 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "22ac90d5-3961-4ae1-b1c3-85a811624b02",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-14T16:12:38.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WHkAqGi4UmfSUtjSczPvMy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008: Signal Survival Analysis — main orchestration script.\\\\n\\\\nEvaluates how 4 contamination detection signals degrade across training regimes:\\\\n  base (pretrained) → SFT-clean (d000) → SFT-contam (d005) → RL-aligned (Instruct)\\\\n\\\\nWorkflow:\\\\n  1. Load existing exp-002 signals for SFT regimes (d000, d005 from exp-002 outputs)\\\\n  2. Compute signals for base + RL-aligned regimes (via compute_signals_on_model.py)\\\\n  3. Load d005 contamination labels as ground truth (mixed 0/1 — AUC-computable)\\\\n  4. Run AUC analysis + heatmap + bootstrap CI via analyze_survival.py\\\\n\\\\nUsage:\\\\n  # Full run (compute new signals + analyze)\\\\n  python run_signal_survival.py --gpu 0\\\\n\\\\n  # Analysis only (skip signal computation, use existing data)\\\\n  python run_signal_survival.py --skip-compute\\\\n\\\\n  # Dry-run with mock data\\\\n  python run_signal_survival.py --dry-run\\\\n\\\\n  # Use exp-002 data only (3-regime: d000/d005/d100, no base/RL)\\\\n  python run_signal_survival.py --exp002-only\\\\n\\\\nDependencies: numpy, scipy, sklearn, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# ── Path conventions ──\\\\nCHECKPOINT_ROOT = Path(\\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\")\\\\nSFT_DATA_ROOT = Path(\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\")\\\\nEXP002_SIGNALS = Path(\\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\")\\\\nEXP008_OUTPUT = Path(\\\\\\\"/root/autodl-tmp/exp008\\\\\\\")\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nBASE_MODEL = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER = str(CHECKPOINT_ROOT / \\\\\\\"Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\")\\\\nD005_ADAPTER = str(CHECKPOINT_ROOT / \\\\\\\"Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\")\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\n# Ground truth uses d005 labels: 5% contaminated → mixed 0/1 → AUC computable\\\\nLABELS_DOSAGE = \\\\\\\"d005\\\\\\\"\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\n\\\\n\\\\n# ── Regime definitions ──\\\\n\\\\ndef get_regime_config(exp002_only: bool = False) -> OrderedDict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Define training regimes with signal source paths.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if exp002_only:\\\\n        return OrderedDict([\\\\n            (\\\\\\\"SFT-clean\\\\\\\\n(d000)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d000_s42\\\\\\\",\\\\n            }),\\\\n            (\\\\\\\"SFT-contam\\\\\\\\n(d005)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d005_s42\\\\\\\",\\\\n            }),\\\\n            (\\\\\\\"SFT-contam\\\\\\\\n(d100)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d100_s42\\\\\\\",\\\\n            }),\\\\n        ])\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e37a34ed-d94e-4945-8763-3354386f5da7",
+            "isSidechain": false,
+            "promptId": "d3ed2e75-c8a6-4109-8197-cae7f20ffc10",
+            "type": "user",
+            "uuid": "ba1d7a63-5221-4236-8e99-4f1c96fa93c5",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008: Signal Survival Analysis — main orchestration script.\\\\n\\\\nEvaluates how 4 contamination detection signals degrade across training regimes:\\\\n  base (pretrained) → SFT-clean (d000) → SFT-contam (d005) → RL-aligned (Instruct)\\\\n\\\\nWorkflow:\\\\n  1. Load existing exp-002 signals for SFT regimes (d000, d005 from exp-002 outputs)\\\\n  2. Compute signals for base + RL-aligned regimes (via compute_signals_on_model.py)\\\\n  3. Load d005 contamination labels as ground truth (mixed 0/1 — AUC-computable)\\\\n  4. Run AUC analysis + heatmap + bootstrap CI via analyze_survival.py\\\\n\\\\nUsage:\\\\n  # Full run (compute new signals + analyze)\\\\n  python run_signal_survival.py --gpu 0\\\\n\\\\n  # Analysis only (skip signal computation, use existing data)\\\\n  python run_signal_survival.py --skip-compute\\\\n\\\\n  # Dry-run with mock data\\\\n  python run_signal_survival.py --dry-run\\\\n\\\\n  # Use exp-002 data only (3-regime: d000/d005/d100, no base/RL)\\\\n  python run_signal_survival.py --exp002-only\\\\n\\\\nDependencies: numpy, scipy, sklearn, matplotlib\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# ── Path conventions ──\\\\nCHECKPOINT_ROOT = Path(\\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\")\\\\nSFT_DATA_ROOT = Path(\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\")\\\\nEXP002_SIGNALS = Path(\\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\")\\\\nEXP008_OUTPUT = Path(\\\\\\\"/root/autodl-tmp/exp008\\\\\\\")\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nBASE_MODEL = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER = str(CHECKPOINT_ROOT / \\\\\\\"Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\")\\\\nD005_ADAPTER = str(CHECKPOINT_ROOT / \\\\\\\"Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\")\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\n# Ground truth uses d005 labels: 5% contaminated → mixed 0/1 → AUC computable\\\\nLABELS_DOSAGE = \\\\\\\"d005\\\\\\\"\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\n\\\\n\\\\n# ── Regime definitions ──\\\\n\\\\ndef get_regime_config(exp002_only: bool = False) -> OrderedDict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Define training regimes with signal source paths.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if exp002_only:\\\\n        return OrderedDict([\\\\n            (\\\\\\\"SFT-clean\\\\\\\\n(d000)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d000_s42\\\\\\\",\\\\n            }),\\\\n            (\\\\\\\"SFT-contam\\\\\\\\n(d005)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d005_s42\\\\\\\",\\\\n            }),\\\\n            (\\\\\\\"SFT-contam\\\\\\\\n(d100)\\\\\\\", {\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp002\\\\\\\",\\\\n                \\\\\\\"signals_dir\\\\\\\": EXP002_SIGNALS / \\\\\\\"Qwen2.5-0.5B_d100_s42\\\\\\\",\\\\n            }),\\\\n        ])\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008: Signal Survival Analysis — main orchestration script.\\n\\nEvaluates how 4 contamination detection signals degrade across training regimes:\\n  base (pretrained) → SFT-clean (d000) → SFT-contam (d005) → RL-aligned (Instruct)\\n\\nWorkflow:\\n  1. Load existing exp-002 signals for SFT regimes (d000, d005 from exp-002 outputs)\\n  2. Compute signals for base + RL-aligned regimes (via compute_signals_on_model.py)\\n  3. Load d005 contamination labels as ground truth (mixed 0/1 — AUC-computable)\\n  4. Run AUC analysis + heatmap + bootstrap CI via analyze_survival.py\\n\\nUsage:\\n  # Full run (compute new signals + analyze)\\n  python run_signal_survival.py --gpu 0\\n\\n  # Analysis only (skip signal computation, use existing data)\\n  python run_signal_survival.py --skip-compute\\n\\n  # Dry-run with mock data\\n  python run_signal_survival.py --dry-run\\n\\n  # Use exp-002 data only (3-regime: d000/d005/d100, no base/RL)\\n  python run_signal_survival.py --exp002-only\\n\\nDependencies: numpy, scipy, sklearn, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Path conventions ──\\nCHECKPOINT_ROOT = Path(\\\"/root/autodl-tmp/exp001/checkpoints\\\")\\nSFT_DATA_ROOT = Path(\\\"/root/autodl-tmp/exp001/sft_data\\\")\\nEXP002_SIGNALS = Path(\\\"/root/autodl-tmp/exp002/signals\\\")\\nEXP008_OUTPUT = Path(\\\"/root/autodl-tmp/exp008\\\")\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nBASE_MODEL = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nINSTRUCT_MODEL = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nD000_ADAPTER = str(CHECKPOINT_ROOT / \\\"Qwen2.5-0.5B_d000_s42/lora_adapter\\\")\\nD005_ADAPTER = str(CHECKPOINT_ROOT / \\\"Qwen2.5-0.5B_d005_s42/lora_adapter\\\")\\n\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\n# Ground truth uses d005 labels: 5% contaminated → mixed 0/1 → AUC computable\\nLABELS_DOSAGE = \\\"d005\\\"\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\n\\n\\n# ── Regime definitions ──\\n\\ndef get_regime_config(exp002_only: bool = False) -> OrderedDict:\\n    \\\"\\\"\\\"Define training regimes with signal source paths.\\\"\\\"\\\"\\n    if exp002_only:\\n        return OrderedDict([\\n            (\\\"SFT-clean\\\\n(d000)\\\", {\\n                \\\"source\\\": \\\"exp002\\\",\\n                \\\"signals_dir\\\": EXP002_SIGNALS / \\\"Qwen2.5-0.5B_d000_s42\\\",\\n            }),\\n            (\\\"SFT-contam\\\\n(d005)\\\", {\\n                \\\"source\\\": \\\"exp002\\\",\\n                \\\"signals_dir\\\": EXP002_SIGNALS / \\\"Qwen2.5-0.5B_d005_s42\\\",\\n            }),\\n            (\\\"SFT-contam\\\\n(d100)\\\", {\\n                \\\"source\\\": \\\"exp002\\\",\\n                \\\"signals_dir\\\": EXP002_SIGNALS / \\\"Qwen2.5-0.5B_d100_s42\\\",\\n            }),\\n        ])\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e37a34ed-d94e-4945-8763-3354386f5da7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-14T16:12:38.753Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ba1d7a63-5221-4236-8e99-4f1c96fa93c5",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "27ac2601-0ccc-46ef-b309-1d9a1bf96b15",
+                "timestamp": "2026-05-14T16:12:38.753Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-14T16:12:54.033Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can confirm the key issue. The code explicitly says:\n\n```python\n# Ground truth uses d005 labels: 5% contaminated → mixed 0/1 → AUC computable\nLABELS_DOSAGE = \"d005\"\n```\n\nThis means the contamination labels are ALWAYS the d005 set (5% of items marked as contaminated). When computing AUC for d100 model, the analysis asks: \"can the signal distinguish the d005 contamination subset from the rest?\" But at d100, the model was trained on ALL items including both the d005 subset and the \"clean\" 95%. \n\nSo there's no contrast — the d100 AUC bottoms out at 0.5 because the d005 labels can't discriminate when everything was contaminated during training. This isn't a failure of the signals themselves, but rather that at full contamination, there's no meaningful distinction between the partially-contaminated items and the rest. The worker ran with `--exp002-only`, meaning the analysis focuses purely on the three dosage regimes without additional baselines or RL variants.\n\nI'm realizing the 4-regime comparison in exp008 was from a separate earlier run, and the MMLU report's per-signal labels are misleading — it's using `effect_size_sft` and `effect_size_rl` terminology from the 4-regime framework even though the current d000/d005/d100 analysis has no RL component. I need to write up the comprehensive report now, since this distinction is crucial for the paper's main arguments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27ac2601-0ccc-46ef-b309-1d9a1bf96b15",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kopUYf1oUvqtJJ6k7n",
+            "type": "assistant",
+            "uuid": "6af1ab2f-3186-45f3-a4b0-ef4289571506",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Wpx9sBPsKcgvyMm9AkCwE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9991,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 2307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9991,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2307,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 9991,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9991
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-14T16:12:54.660Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认了关键问题。代码显示 `LABELS_DOSAGE = \"d005\"`——contamination 标签固定为 d005 的 5% 注入集，d100 模型上 AUC=0.5 是 label 设计的必然结果而非信号失效。发报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6af1ab2f-3186-45f3-a4b0-ef4289571506",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kopUYf1oUvqtJJ6k7n",
+            "type": "assistant",
+            "uuid": "d4f710d7-b403-4822-9e89-5a500e248381",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Wpx9sBPsKcgvyMm9AkCwE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9991,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 2307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9991,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2307,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 9991,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9991
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-14T16:13:34.243Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jm14aAzkmZ8QF9mA2CEcWj",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — exp-008 Signal Survival Analysis (worker_run_exp_008_signal_survival_cpu)\n\n**结论**: CRITICAL\n\nexp-008 是 C2 核心贡献（Signal Survival & Aggregation Claim）的关键实验。审查发现多个影响论文核心主张的严重问题。\n\n### 发现\n\n**1. [severity: critical] d100 AUC=0.5 是实验设计伪迹，不能被引用为\"信号失效\"证据**\n\n代码 `run_signal_survival.py:56` 明确写死 `LABELS_DOSAGE = \"d005\"`——所有 regime 下的 AUC 均使用 d005 的 703/14042 (5%) 注入集作为 contaminated/clean 标签。在 d100 模型上，这组标签失去区分力的原因是：d100 模型在 100% 的 item 上训练过，703 个\"contaminated\"和 13339 个\"clean\" item 的模型行为无差异——不是信号退化了，而是标签集本身不再有意义。\n\nWorker 报告的\"0/4 signals surviving\"和\"信号未能 survive 到 d100 regime\"结论是对这一伪迹的错误归因。**论文不能以此声称\"signals fail under high contamination dosage\"**，正确描述是\"d005 标签集在 d100 下丧失区分效力（trivially expected）\"。\n\n**2. [severity: critical] C2 \"cliff-like degradation under RL\" claim 在真实数据中无任何支撑**\n\n`exp008_exp002_output`（真实 exp-002 数据）仅测试 SFT dosage 维度（d000/d005/d100），**完全没有 RL 数据**。`exp008_output`（4-regime: base→sft_clean→sft_contam→rl_aligned）是基于合成/小数据（N=50, 15 contaminated），外部效度极弱。且该合成数据显示的是**渐进衰减**（AUC 每步降 0.08-0.18）而非 cliff-like 断崖，与 C2 claim 矛盾。\n\npaper_framing.md C2: \"Contamination detection signals degrade systematically under RL post-training (cliff-like, not gradual).\"——目前无真实数据支撑此 claim。\n\n**3. [severity: critical] S2 (Min-K++) 和 S4 (Self-Critique) 在所有 regime 下均为随机水平（AUC 0.43-0.57），包括 d005**\n\nS1 (Embedding) 在 d005 下 AUC=0.95-0.995（3 benchmarks 一致），但 S2 和 S4 在 d005 下也仅 AUC~0.47-0.52。这意味着真实 0.5B 数据上 **3 个信号中只有 1 个有效**。多信号 RRF 融合叙事严重受损：如果 2/3 信号是噪声，RRF 聚合可能劣于单独使用 S1。\n\n可能原因需排查：\n- D016 决定 Min-K++ 参考模型用 d000 fine-tuned model（不是 base）——这个选择可能导致 S2 在 0.5B 上失效\n- Self-Critique 可能对 0.5B 小模型能力不足导致 critique 本身无效\n- 需验证更大模型（1.5B/3B）上 S2/S4 是否恢复\n\n**4. [severity: warning] S3 (ConStat) 未在 exp-002 中计算，全部 NULL**\n\n4 个信号中 1 个完全未测试、2 个无效、1 个有效——\"4 signal diversity\" 主张目前仅有 1/4 支撑。\n\n**5. [severity: warning] ROADMAP Table 2 风险已确认**\n\nROADMAP 预警：\"ContamCal 'RL-robust partial✓' claim 唯一证据来源是 exp-008，若结果不支持需删除。\" 现在确认：真实数据不含 RL，合成数据不支持 \"cliff-like\"。**Table 2 的 \"RL-robust partial✓\" 必须删除或改为 \"未验证\"**。\n\n**6. [severity: warning] exp-008 未在 registry 中注册**\n\n结果文件存在于服务器 `/root/contamcal-irt-calibration/exp008/exp008_exp002_output/` 和 `exp008_output/`，但 registry 中无任何 exp-008 条目。违反实验追溯要求。\n\n### 补实验清单（按影响排序）\n\n1. **[P0] 修正 d100 label 设计**：d100 分析应使用 d100 自身的 contamination labels（所有 item 标 contaminated=1），与 d000（all 0）对比模型间差异——测量的是\"跨模型信号稳定性\"而非\"模型内 item 区分度\"。当前设计问本质上错误的问题。\n2. **[P0] 验证 S2/S4 在 1.5B/3B 上的表现**：如果 S2/S4 在更大模型上也失败，需重新评估 RRF 方案或补充有效信号\n3. **[P1] 真实 RL 数据 signal survival**：使用 Qwen2.5-0.5B-Instruct（代码已写好 INSTRUCT_MODEL 变量）跑完整 4-regime 分析，验证 RL 衰减是否真为 cliff-like\n4. **[P1] 补算 S3 ConStat**：至少在 d005 regime 下验证 ConStat 是否有效",
+                "project": "contamcal-irt-calibration"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4f710d7-b403-4822-9e89-5a500e248381",
+            "isSidechain": false,
+            "requestId": "req_011Cb2kopUYf1oUvqtJJ6k7n",
+            "type": "assistant",
+            "uuid": "10eff7a5-e9bf-4a31-abb3-848a51ee0341",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Wpx9sBPsKcgvyMm9AkCwE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9991,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 2307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9991,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2307,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 9991,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9991
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-14T16:13:46.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jm14aAzkmZ8QF9mA2CEcWj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10eff7a5-e9bf-4a31-abb3-848a51ee0341",
+            "isSidechain": false,
+            "promptId": "d3ed2e75-c8a6-4109-8197-cae7f20ffc10",
+            "type": "user",
+            "uuid": "def39182-3e12-4d01-af58-a5d786d6a2c4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "10eff7a5-e9bf-4a31-abb3-848a51ee0341",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-14T16:17:18.146Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T16:17:18.146Z",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "content": "[系统通知 — worker_done:worker_eval_exp_001_eval_3B_para_aligned_20260514T161451]:\nWorker worker_eval_exp_001_eval_3B_para_aligned_20260514T161451 已完成（status=done），请审查 Agent 的处理结果。"
+              }
+            }
+          ],
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-14T16:17:18.156Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T16:17:18.156Z",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000113"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-14T16:17:18.073Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22ac90d5-3961-4ae1-b1c3-85a811624b02",
+            "isSidechain": false,
+            "promptId": "e68df668-0d3c-421e-81dd-1462aaf05cd6",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "ad75f03e-b696-48f2-9f53-9c49c268319f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-14T16:17:18.073Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad75f03e-b696-48f2-9f53-9c49c268319f",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "a2e66180-9b1f-427f-b573-93478530ac68",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "b47526c0-61e8-4c78-be68-c8aced0ec044",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-14T16:17:21.363Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_exp_001_eval_3B_para_aligned_20260514T161451]:\nWorker worker_eval_exp_001_eval_3B_para_aligned_20260514T161451 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2e66180-9b1f-427f-b573-93478530ac68",
+            "isSidechain": false,
+            "promptId": "e68df668-0d3c-421e-81dd-1462aaf05cd6",
+            "type": "user",
+            "uuid": "ac03512d-1c97-41ba-9dd8-3643cd58948b",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-14T16:17:21.352Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ac03512d-1c97-41ba-9dd8-3643cd58948b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [],
+                  "addedLines": [],
+                  "removedNames": [
+                    "ListMcpResourcesTool",
+                    "ReadMcpResourceTool",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ]
+                },
+                "type": "attachment",
+                "uuid": "e8f40572-4be8-41d3-9a21-6c008f62f634",
+                "timestamp": "2026-05-14T16:17:21.352Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-14T16:17:21.353Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e8f40572-4be8-41d3-9a21-6c008f62f634",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [],
+                  "addedBlocks": [],
+                  "removedNames": [
+                    "agent-ml-research"
+                  ]
+                },
+                "type": "attachment",
+                "uuid": "e755bfc6-9eb9-453b-99c5-54b74931a759",
+                "timestamp": "2026-05-14T16:17:21.353Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T16:17:21.353Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e755bfc6-9eb9-453b-99c5-54b74931a759",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "44df771c-371c-4c2b-b2b7-00113cb4478e",
+                "timestamp": "2026-05-14T16:17:21.353Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-14T16:18:31.199Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T16:18:31.199Z",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "content": "[系统通知 — worker_done:worker_code_exp-008-signal-survival_20260514T161504]:\nWorker worker_code_exp-008-signal-survival_20260514T161504 已完成（status=failed），请审查 Agent 的处理结果。"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T16:18:31.204Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T16:18:31.204Z",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000122"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-14T16:18:31.157Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44df771c-371c-4c2b-b2b7-00113cb4478e",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "850b3ad7-bcde-40cb-a11b-a5df4dce153f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-14T16:18:31.157Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "850b3ad7-bcde-40cb-a11b-a5df4dce153f",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "b7621a99-f1b7-463c-aff1-618137fc74ef",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "a951c888-6bf6-4409-ab96-75f4ff95f815",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-14T16:18:32.169Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_exp-008-signal-survival_20260514T161504]:\nWorker worker_code_exp-008-signal-survival_20260514T161504 已完成（status=failed），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7621a99-f1b7-463c-aff1-618137fc74ef",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "e9e72110-17cb-467a-bf02-fd1b5134c75c",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T16:18:32.164Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e9e72110-17cb-467a-bf02-fd1b5134c75c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "ListMcpResourcesTool",
+                    "ReadMcpResourceTool",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "ListMcpResourcesTool",
+                    "ReadMcpResourceTool",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f152edc3-c71d-42b8-b079-599e248bd2d0",
+                "timestamp": "2026-05-14T16:18:32.164Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-14T16:18:32.164Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f152edc3-c71d-42b8-b079-599e248bd2d0",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "cd7888e5-14a2-4c8f-8a37-fb94fe5feeb5",
+                "timestamp": "2026-05-14T16:18:32.164Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-14T16:18:52.697Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "MCP tools are back. I have two pending reviews:\n\n1. exp-008 signal survival analysis (I was in the middle of analyzing this before MCP disconnected - I have all the data I need)\n2. worker_eval_exp_001_eval_3B_para_aligned (new notification)\n3. worker_code_exp-008-signal-survival (failed, new notification)\n\nLet me prioritize: I already have comprehensive analysis of exp-008 from my earlier work. I need to post that report. Then I should check the two new worker notifications.\n\nLet me first post the exp-008 report (which I was about to write when MCP disconnected), then check the new workers.\n\n\nNow I'm reviewing the key findings from my earlier analysis. I had two datasets to compare: the synthetic exp-008 data and the real exp-002 based data with three regimes. Looking at the real data results, the S1 Embedding method shows a clear pattern with strong performance on d005 but weak on the other regimes, while S2, S3, and S4 methods are either completely null or show random performance across all conditions.\n\nThe critical issue I'm seeing is that the d100 AUC collapse isn't a real finding—it's an artifact of the experimental design. Since all items are contaminated at d100, using d005's contaminated items as ground truth labels means there's no actual discrimination possible. The code confirms the labels are fixed at d005, so the \"clean\" items were also part of the training data. This undermines the C2 claim about cliff-like degradation under RL, which has no real support from the data. The synthetic data shows gradual decay instead, and only S1 works reliably at d005 while S2 and S4 are completely ineffective. I need to load the tools and post my report, then address the new notifications.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd7888e5-14a2-4c8f-8a37-fb94fe5feeb5",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mFskDmvT8UpEoA3idW",
+            "type": "assistant",
+            "uuid": "1d5a40f8-2902-4f02-b81a-8b1d7d20d5c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdZbYQ946rKRFkvSbykhxU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10858,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 719,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10858,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 719,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 10858,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10858
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-14T16:18:52.707Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP 恢复了。我需要完成 exp-008 审查报告的发送，并处理两个新的 worker 通知。先加载工具。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d5a40f8-2902-4f02-b81a-8b1d7d20d5c1",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mFskDmvT8UpEoA3idW",
+            "type": "assistant",
+            "uuid": "1a3378c0-6cc3-4154-bef6-3e4388a087bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdZbYQ946rKRFkvSbykhxU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10858,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 719,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10858,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 719,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 10858,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10858
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T16:18:52.725Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H7jzL56e6MdNSjMGPWXYuN",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a3378c0-6cc3-4154-bef6-3e4388a087bf",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mFskDmvT8UpEoA3idW",
+            "type": "assistant",
+            "uuid": "32d6eae1-4f66-43cb-b020-65d195f1c3b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JdZbYQ946rKRFkvSbykhxU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10858,
+                "cache_read_input_tokens": 104362,
+                "output_tokens": 719,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10858,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 719,
+                    "cache_read_input_tokens": 104362,
+                    "cache_creation_input_tokens": 10858,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10858
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-14T16:18:52.759Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01H7jzL56e6MdNSjMGPWXYuN",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32d6eae1-4f66-43cb-b020-65d195f1c3b0",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "fbf91517-bfd7-4c37-aeeb-efd29197f4a5",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__reviewer_post_to_director",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 34
+            },
+            "sourceToolAssistantUUID": "32d6eae1-4f66-43cb-b020-65d195f1c3b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T16:18:58.053Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先发送之前已完成分析的 exp-008 审查报告，同时检查两个新 worker 的信息。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fbf91517-bfd7-4c37-aeeb-efd29197f4a5",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mHPn2eYu4cxZHgenF1",
+            "type": "assistant",
+            "uuid": "f758f3b1-3b46-47bc-85df-17c477e35db4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wb4PZqZ69aH7xQwtFqmaAT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 115220,
+                "output_tokens": 1767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1767,
+                    "cache_read_input_tokens": 115220,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T16:19:30.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CZpBEs5MUSqJbwVJEzSbsm",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — exp-008 Signal Survival Analysis (worker_run_exp_008_signal_survival_cpu)\n\n**结论**: CRITICAL\n\nexp-008 是 C2 核心贡献（signal survival）的唯一实验证据来源。Worker 产出了两套数据：合成数据（exp008_output, N=50, 4 regimes）和真实数据（exp008_exp002_output, exp-002 signals, 3 dosage regimes）。两套数据均报告 **0/4 signals surviving**，但原因截然不同，且对论文 C2 claim 有严重影响。\n\n### 发现\n\n- [severity: critical] **d100 AUC 崩塌是实验设计伪影，不可作为\"信号失效\"证据**。代码确认 `LABELS_DOSAGE = \"d005\"`——ground truth 标签固定为 d005 的 703 个 contaminated items（MMLU 为例，703/14042=5%）。在 d100 regime 下，模型对 ALL 14042 items 做了 SFT，因此 703 个\"contaminated\"和 13339 个\"clean\"items 的信号值无差异 → AUC≈0.50。这不是\"信号在高 dosage 下失效\"，而是**标签集在 d100 下丧失了区分效力**。论文绝不可将此结果解读为\"signals fail to survive at d100\"。\n\n- [severity: critical] **C2 \"cliff-like degradation under RL\" claim 在真实数据中零支撑**。exp008_exp002_output 的 3 个 regime 是 dosage levels（d000/d005/d100），全部是 SFT 模型，不涉及 RL。真正的 regime survival（SFT→RL）只有合成数据（exp008_output）覆盖，且合成数据显示的是**渐进衰减**（S1: 0.994→0.899→0.770→0.683），而非 cliff-like。paper_framing.md C2 \"cliff-like, not gradual\" 的措辞需要修正。\n\n- [severity: critical] **S2 (Min-K++) 和 S4 (Self-Critique) 在真实数据上完全无效**。在 d005 regime（唯一有效的对比条件）下：S1 Embedding AUC=0.953/0.988/0.995（MMLU/GSM8K/ARC），但 S2 AUC=0.466/0.465/0.466, S4 AUC=0.517/0.495/0.433。仅 1/3 计算出的信号有效。这严重削弱了多信号 RRF fusion 叙事——对 0.5B 模型而言，RRF 实际上退化为单信号（S1）。需检查 D016（Min-K++ 参考模型选择）是否是 S2 失效的原因。\n\n- [severity: warning] **S3 (ConStat) 在 exp-002 中未计算**，真实数据全部为 NULL。4 个 signal 中 1 个未测、2 个无效，仅 S1 在 d005 有效——信号多样性 claim 基础薄弱。\n\n- [severity: warning] **ROADMAP Table 2 风险已确认**。ROADMAP 明确警告 \"ContamCal 'RL-robust partial✓' claim 唯一证据来源是 exp-008，若结果不支持需删除该 claim\"。当前真实数据无 RL 相关结果，合成数据显示渐进衰减而非 robust。**建议删除 Table 2 中 \"RL-robust partial✓\" claim**。\n\n- [severity: warning] **exp-008 无 registry 条目**。结果文件存在于服务器（`/root/contamcal-irt-calibration/exp008/exp008_exp002_output/`）但 registry 中无对应 entry，违反实验追溯要求。\n\n- [severity: info] S1 Embedding 在 d005 的高 AUC（0.953-0.995）是一个正面结果——嵌入相似性信号确实能检测低 dosage 污染。但需要在论文中诚实限定其适用条件。\n\n### 建议\n\n1. **重新定义 C2 claim**：从\"cliff-like degradation under RL\"改为\"signal effectiveness is dosage-dependent and signal-specific\"，基于真实数据 S1 的 d005 结果\n2. **S2/S4 无效根因分析**：优先检查 D016 参考模型选择对 Min-K++ 的影响；Self-Critique 在 0.5B 模型上可能天然无效（模型太小无法自我批评）\n3. **补充 RL 真实数据**：如 C2 仍保留 RL 相关 claim，需在 0.5B-Instruct 模型上计算 signal 并与 SFT 对比（脚本已支持 `--exp002-only` 之外的完整模式）\n4. **创建 exp-008 registry entry** 并记录完整 spec",
+                "project": "contamcal-irt-calibration"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f758f3b1-3b46-47bc-85df-17c477e35db4",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mHPn2eYu4cxZHgenF1",
+            "type": "assistant",
+            "uuid": "f8b399f0-2416-4f61-a531-adbf58ebf0f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wb4PZqZ69aH7xQwtFqmaAT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 115220,
+                "output_tokens": 1767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1767,
+                    "cache_read_input_tokens": 115220,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T16:19:32.401Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZC8nBjVSCJRRcmLQnLQmM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp-008-signal-survival_20260514T161504_result.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8b399f0-2416-4f61-a531-adbf58ebf0f0",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mHPn2eYu4cxZHgenF1",
+            "type": "assistant",
+            "uuid": "bbf1a777-fe83-43c7-9b62-854b3caa828d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wb4PZqZ69aH7xQwtFqmaAT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 115220,
+                "output_tokens": 1767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1767,
+                    "cache_read_input_tokens": 115220,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T16:19:32.939Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pap5y98pzuGqioKXn3mws3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_eval_exp_001_eval_3B_para_aligned_20260514T161451_result.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbf1a777-fe83-43c7-9b62-854b3caa828d",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mHPn2eYu4cxZHgenF1",
+            "type": "assistant",
+            "uuid": "1ce5c9d3-0a47-482b-912b-f316acf1ec37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wb4PZqZ69aH7xQwtFqmaAT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 115220,
+                "output_tokens": 1767,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1767,
+                    "cache_read_input_tokens": 115220,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T16:20:02.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CZpBEs5MUSqJbwVJEzSbsm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8b399f0-2416-4f61-a531-adbf58ebf0f0",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "a7fe34a9-6468-4219-92e6-f3598627fcf0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "f8b399f0-2416-4f61-a531-adbf58ebf0f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T16:20:02.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (405.9KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01FZC8nBjVSCJRRcmLQnLQmM"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbf1a777-fe83-43c7-9b62-854b3caa828d",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "57e00b28-5ae8-40c3-b7fa-2e6edf3ebdad",
+            "toolUseResult": "Error: File content (405.9KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "bbf1a777-fe83-43c7-9b62-854b3caa828d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-14T16:20:02.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pap5y98pzuGqioKXn3mws3",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"raw\": \"当前 0.5B d025 eval 正在跑 GSM8K（29%, 386/1319），约5s/item，GSM8K 还需 ~79分钟，之后还有 ARC 和 HumanEval。预计 cuda:3 还需 2-3 小时才空闲。\\n\\n**cuda:5 完全空闲（0MiB, 0%）**，可以改用 cuda:5 提交 3B paraphrase eval。是否改用 cuda:5？\\n\\n同时已确认：\\n- `evaluate.py` 位于 `/root/contamcal-irt-calibration/exp001/evaluate.py`\\n- paraphrase 参数是 `--paraphrase-dir /root/autodl-tmp/exp001/paraphrases/`\\n- paraphrase 数据完整（mmlu, gsm8k, arc_challenge, humaneval 四个 json 文件都在）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ce5c9d3-0a47-482b-912b-f316acf1ec37",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "292ade77-4b75-415f-b82e-e8c93ce8c988",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_eval_exp_001_eval_3B_para_aligned_20260514T161451_result.json",
+                "content": "{\n  \"raw\": \"当前 0.5B d025 eval 正在跑 GSM8K（29%, 386/1319），约5s/item，GSM8K 还需 ~79分钟，之后还有 ARC 和 HumanEval。预计 cuda:3 还需 2-3 小时才空闲。\\n\\n**cuda:5 完全空闲（0MiB, 0%）**，可以改用 cuda:5 提交 3B paraphrase eval。是否改用 cuda:5？\\n\\n同时已确认：\\n- `evaluate.py` 位于 `/root/contamcal-irt-calibration/exp001/evaluate.py`\\n- paraphrase 参数是 `--paraphrase-dir /root/autodl-tmp/exp001/paraphrases/`\\n- paraphrase 数据完整（mmlu, gsm8k, arc_challenge, humaneval 四个 json 文件都在）\"\n}",
+                "numLines": 3,
+                "startLine": 1,
+                "totalLines": 3
+              }
+            },
+            "sourceToolAssistantUUID": "1ce5c9d3-0a47-482b-912b-f316acf1ec37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T16:20:11.645Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The exp-008 report has been sent. Now let me check the two new workers:\n\n1. **worker_eval_exp_001_eval_3B_para_aligned**: status=done. Result says it's waiting on GPU availability — d025 is using cuda:3 and it's asking about using cuda:5 for 3B paraphrase eval. This is an informational/planning output, not an actual experiment result. Not much to audit.\n\n2. **worker_code_exp-008-signal-survival**: status=failed. The result file is 405KB — too large to read directly. Let me read portions.\n\n\nFor the 3B para aligned worker, it's just asking Director about GPU allocation rather than submitting actual results. For the failed exp-008 signal-survival worker, I need to check the beginning and end of that large result file to see what caused the failure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "292ade77-4b75-415f-b82e-e8c93ce8c988",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mNXgRXgKmnshmePC15",
+            "type": "assistant",
+            "uuid": "2b2a6c62-0027-40e5-a136-37e1c7913a4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzYrzcQiBMxSxccN9sSNPa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 116819,
+                "output_tokens": 512,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2238,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 512,
+                    "cache_read_input_tokens": 116819,
+                    "cache_creation_input_tokens": 2238,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2238
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-14T16:20:11.668Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-008 审查报告已发送。检查失败的 exp-008 代码 worker。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b2a6c62-0027-40e5-a136-37e1c7913a4f",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mNXgRXgKmnshmePC15",
+            "type": "assistant",
+            "uuid": "0144eb0b-081b-4a9d-ac50-0a44adec2949",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzYrzcQiBMxSxccN9sSNPa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 116819,
+                "output_tokens": 512,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2238,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 512,
+                    "cache_read_input_tokens": 116819,
+                    "cache_creation_input_tokens": 2238,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2238
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T16:20:12.406Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYa8fQPEnJSujWmEHyZ5Vr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp-008-signal-survival_20260514T161504_result.json",
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0144eb0b-081b-4a9d-ac50-0a44adec2949",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mNXgRXgKmnshmePC15",
+            "type": "assistant",
+            "uuid": "4a2b8b49-24eb-47d6-828d-ba0123b8ac6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzYrzcQiBMxSxccN9sSNPa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 116819,
+                "output_tokens": 512,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2238,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 512,
+                    "cache_read_input_tokens": 116819,
+                    "cache_creation_input_tokens": 2238,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2238
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-14T16:20:13.067Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cnh1hBLYxkgkUWe7kirgDY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp-008-signal-survival_20260514T161504_result.json",
+                "offset": 12000,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a2b8b49-24eb-47d6-828d-ba0123b8ac6b",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mNXgRXgKmnshmePC15",
+            "type": "assistant",
+            "uuid": "bd885522-241a-41eb-a266-41e252880a7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JzYrzcQiBMxSxccN9sSNPa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2238,
+                "cache_read_input_tokens": 116819,
+                "output_tokens": 512,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2238,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 512,
+                    "cache_read_input_tokens": 116819,
+                    "cache_creation_input_tokens": 2238,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2238
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-14T16:20:13.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (174831 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01HYa8fQPEnJSujWmEHyZ5Vr"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a2b8b49-24eb-47d6-828d-ba0123b8ac6b",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "9472182b-45a5-4e6d-8555-43592e404f6a",
+            "toolUseResult": "Error: File content (174831 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "4a2b8b49-24eb-47d6-828d-ba0123b8ac6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-14T16:20:13.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cnh1hBLYxkgkUWe7kirgDY",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (12000). The file has 3 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd885522-241a-41eb-a266-41e252880a7e",
+            "isSidechain": false,
+            "promptId": "c4207c9d-b250-4b7b-85f6-d15f0a59f2f3",
+            "type": "user",
+            "uuid": "57d78820-7160-40ac-ae42-1fa6ca37d57a",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp-008-signal-survival_20260514T161504_result.json",
+                "content": "",
+                "numLines": 0,
+                "startLine": 12000,
+                "totalLines": 3
+              }
+            },
+            "sourceToolAssistantUUID": "bd885522-241a-41eb-a266-41e252880a7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T16:20:13.319Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "57d78820-7160-40ac-ae42-1fa6ca37d57a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "21bf6e67-c463-4a29-86b4-ab33070f0763",
+                "timestamp": "2026-05-14T16:20:13.319Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_code_exp-008-signal-survival_20260514T161504]: Worker worker_code_exp-008-signal-survival_20260514T161504 已完成（status=failed），请审查 Agent 的处理结果。",
+                "leafUuid": "21bf6e67-c463-4a29-86b4-ab33070f0763",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-14T16:20:20.736Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014fdNrSTKNtEuLHxi3zcZoG",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp-008-signal-survival_20260514T161504_result.json') as f:\n    data = json.load(f)\nraw = data.get('raw', '')\n# Print last 2000 chars to see the conclusion\nprint(raw[-2000:])\n\"",
+                "description": "Read end of failed worker result"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21bf6e67-c463-4a29-86b4-ab33070f0763",
+            "isSidechain": false,
+            "requestId": "req_011Cb2mPLGrJi3KpPToqJEin",
+            "type": "assistant",
+            "uuid": "8e2d6a3e-8bea-4ffe-bb60-8076f4390483",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/reviewer_e442a828",
+            "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HSkK4yJkDzWSs9ohq39Jar",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 747,
+                "cache_read_input_tokens": 119057,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 747,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 119057,
+                    "cache_creation_input_tokens": 747,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 747
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_code_exp-008-signal-survival_20260514T161504]: Worker worker_code_exp-008-signal-survival_20260514T161504 已完成（status=failed），请审查 Agent 的处理结果。",
+                "leafUuid": "8e2d6a3e-8bea-4ffe-bb60-8076f4390483",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review agent failure handling results",
+                "sessionId": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1"
+              }
+            }
+          ],
+          "id": "event-000150"
+        }
+      ]
+    }
+  ]
+}

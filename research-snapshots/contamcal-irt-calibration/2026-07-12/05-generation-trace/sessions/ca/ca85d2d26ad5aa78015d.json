@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ca85d2d26ad5aa78015d",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WRITE HANDOFF] 请立即写你的 handoff。 **格式硬约束**: - 整条回复**只能**是 <handoff>...</handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"",
+  "task_key": "3ed5a030-29ed-485a-828a-18164a739d37",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/3ed5a030-29ed-485a-828a-18164a739d37.jsonl",
+    "occurrence": 1,
+    "bytes": 768442,
+    "sha256": "11c69ed8688fa916f4187899c32798911f843e826a9ad4c65f512e052c0ad82b"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ca85d2d26ad5aa78015d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "ca85d2d26ad5aa78015d-part-0001.json",
+          "message_count": 14
+        },
+        {
+          "path": "ca85d2d26ad5aa78015d-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-write-handoff-handoff-handoff-handoff-copy-47.md"
+}

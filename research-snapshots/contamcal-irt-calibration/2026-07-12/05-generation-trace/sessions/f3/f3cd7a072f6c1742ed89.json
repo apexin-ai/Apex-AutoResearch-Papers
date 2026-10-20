@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f3cd7a072f6c1742ed89",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp_001_sft_",
+  "task_key": "e64f9eee-5326-43e1-aa95-aacc0d0b0c64",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e64f9eee-5326-43e1-aa95-aacc0d0b0c64.jsonl",
+    "occurrence": 1,
+    "bytes": 614511,
+    "sha256": "1462a7345980bdca5b65912254122650c96503f715cc68a3ecd67e1ae2b89d4c"
+  },
+  "statistics": {
+    "messages": 98,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "record": 28,
+      "user": 1,
+      "assistant": 24,
+      "tool_call": 23,
+      "tool_result": 22
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "f3cd7a072f6c1742ed89-part-0001.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "f3cd7a072f6c1742ed89-part-0001.json",
+          "message_count": 89
+        },
+        {
+          "path": "f3cd7a072f6c1742ed89-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-exp-001-s-copy-18.md"
+}

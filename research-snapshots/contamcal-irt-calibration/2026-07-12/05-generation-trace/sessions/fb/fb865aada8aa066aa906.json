@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "fb865aada8aa066aa906",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 审稿 W7 要求分析 RRF (Reciprocal Rank Fusion) 中各 signal 的冗余度和贡献度。RRF 是论文的核心方法之一，用 4 个 signals 的 rank fusion 来检",
+  "task_key": "669bb79a-00b0-47ba-8154-9cfa90f6ad95",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/669bb79a-00b0-47ba-8154-9cfa90f6ad95.jsonl",
+    "occurrence": 1,
+    "bytes": 722699,
+    "sha256": "9235458813692def01e33f9ea3b8c41c11796370bbfec0d9cdfd923c71a73811"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 1,
+    "tool_calls": 92,
+    "roles": {
+      "record": 56,
+      "user": 1,
+      "assistant": 47,
+      "tool_call": 92,
+      "tool_result": 92
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fb865aada8aa066aa906-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "fb865aada8aa066aa906-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "fb865aada8aa066aa906-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-w7-rrf-reciprocal-rank-fusion-signal-rrf-4-signals-rank-fusion.md"
+}

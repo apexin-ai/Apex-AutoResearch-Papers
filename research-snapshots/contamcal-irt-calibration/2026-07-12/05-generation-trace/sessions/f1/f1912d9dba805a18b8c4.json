@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f1912d9dba805a18b8c4",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Server: cqa1-21977. Python env: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base. I",
+  "task_key": "fa53014e-844c-4e47-8253-d8e933f56813",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/fa53014e-844c-4e47-8253-d8e933f56813.jsonl",
+    "occurrence": 1,
+    "bytes": 703343,
+    "sha256": "02319a16fb2ff06cf932de45c09ce90f7314cb8268a95a996e52d9e8a5635d80"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 1,
+    "tool_calls": 102,
+    "roles": {
+      "record": 60,
+      "user": 1,
+      "assistant": 72,
+      "tool_call": 102,
+      "tool_result": 102
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f1912d9dba805a18b8c4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 335,
+      "chunks": [
+        {
+          "path": "f1912d9dba805a18b8c4-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f1912d9dba805a18b8c4-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-server-cqa1-21977-python-env-source-root-miniconda3-etc-profile.md"
+}

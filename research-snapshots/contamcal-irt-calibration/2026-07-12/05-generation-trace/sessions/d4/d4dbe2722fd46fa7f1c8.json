@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "id": "d4dbe2722fd46fa7f1c8",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_diag_eval_05B_d100_v3_failure_20260514T155936]: Worker worker_diag_eval_05B_d100_v3_failure_2",
+  "task_key": "fa8b13ea-2ff0-4cd0-9c00-3f23206341f1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/fa8b13ea-2ff0-4cd0-9c00-3f23206341f1.jsonl",
+    "occurrence": 1,
+    "bytes": 757222,
+    "sha256": "3b0c6d82384b12f858c51a43b24848d002badb0cbcd9882ae6362610097c626a"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 7,
+    "tool_calls": 33,
+    "roles": {
+      "record": 48,
+      "user": 7,
+      "assistant": 30,
+      "tool_call": 33,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0001.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "d4dbe2722fd46fa7f1c8-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-diag-eval-05b-d100-v3-failure-20260514t155936-worker-worker.md"
+}

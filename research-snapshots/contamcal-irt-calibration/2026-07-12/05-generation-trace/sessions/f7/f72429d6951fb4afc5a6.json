@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "f72429d6951fb4afc5a6",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contamcal-irt-calibration ## 运行环境 - 服务器名: cqa1-21977 - SSH 连接命令: ssh connect.cqa1.seetacloud.com",
+  "task_key": "527cade0-2f3d-4b49-91f9-12ccf4d40805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/527cade0-2f3d-4b49-91f9-12ccf4d40805.jsonl",
+    "occurrence": 1,
+    "bytes": 1178549,
+    "sha256": "df8b598fd874bb2b542ace53d46130c383c9052f21f406387efecd3ff3e5b890"
+  },
+  "statistics": {
+    "messages": 421,
+    "user_turns": 2,
+    "tool_calls": 153,
+    "roles": {
+      "record": 77,
+      "user": 2,
+      "assistant": 35,
+      "tool_call": 153,
+      "tool_result": 153,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f72429d6951fb4afc5a6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "f72429d6951fb4afc5a6-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "f72429d6951fb4afc5a6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f72429d6951fb4afc5a6-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "f72429d6951fb4afc5a6-part-0003.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contamcal-irt-calibration-cqa1-21977-ssh-ssh-connect-cqa1-seet-copy-434.md"
+}

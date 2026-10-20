@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e79bfd8c034a7861c8",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: eval_falcon3_d000_s42 - project: con",
+  "task_key": "8e9c0c4c-9e47-4b99-93ee-d34c67119ce3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/8e9c0c4c-9e47-4b99-93ee-d34c67119ce3.jsonl",
+    "occurrence": 1,
+    "bytes": 826100,
+    "sha256": "378b8129f8574392d0d9efb804960a9f3edd58a5862da168cafb5fc0713e1078"
+  },
+  "statistics": {
+    "messages": 77,
+    "user_turns": 3,
+    "tool_calls": 19,
+    "roles": {
+      "record": 21,
+      "user": 3,
+      "assistant": 15,
+      "tool_call": 19,
+      "tool_result": 19
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2e79bfd8c034a7861c8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "b2e79bfd8c034a7861c8-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "b2e79bfd8c034a7861c8-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2e79bfd8c034a7861c8-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "b2e79bfd8c034a7861c8-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-eval-falcon3-d000-s42-pro.md"
+}

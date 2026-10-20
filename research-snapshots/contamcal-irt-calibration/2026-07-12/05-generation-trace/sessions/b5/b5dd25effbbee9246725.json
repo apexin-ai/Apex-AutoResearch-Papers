@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "b5dd25effbbee9246725",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 项目概述 ContamCal: post-hoc statistical calibration via contamination-augmented 4PL IRT。 exp-002 是 Stage",
+  "task_key": "92fb39c1-2d92-4496-a6d0-74d271847c39",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/92fb39c1-2d92-4496-a6d0-74d271847c39.jsonl",
+    "occurrence": 1,
+    "bytes": 1430637,
+    "sha256": "2043d2931c6bc8d942dad7d57a4534a0ba9205d740c57612eef001a45de0bb5b"
+  },
+  "statistics": {
+    "messages": 832,
+    "user_turns": 1,
+    "tool_calls": 316,
+    "roles": {
+      "record": 130,
+      "user": 1,
+      "assistant": 69,
+      "tool_call": 316,
+      "tool_result": 316
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "b5dd25effbbee9246725-part-0001.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 828,
+      "chunks": [
+        {
+          "path": "b5dd25effbbee9246725-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "b5dd25effbbee9246725-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5dd25effbbee9246725-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5dd25effbbee9246725-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5dd25effbbee9246725-part-0005.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-contamcal-post-hoc-statistical-calibration-via-contamination-aug.md"
+}

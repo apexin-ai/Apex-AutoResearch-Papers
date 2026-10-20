@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e923ec3c4a3776914a4b",
+  "rounds": [
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 691,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[WORKER DONE] Worker worker_ops_submit_d000s42_d100_evals_gpu2_20260514T022723 已完成（status=done）。用 `get_worker_status('worker_ops_submit_d000s42_d100_evals_gpu2_20260514T022723')` 读取结果，然后处理。  - worker_…",
+                "leafUuid": "b27bf48c-a20e-4617-945b-5239ec7066e9",
+                "sessionId": "415ac26f-066a-48aa-9a90-1a0c9213b4e1"
+              }
+            }
+          ],
+          "id": "event-000691"
+        },
+        {
+          "source_line": 692,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix registry state inconsistencies for experiments",
+                "sessionId": "415ac26f-066a-48aa-9a90-1a0c9213b4e1"
+              }
+            }
+          ],
+          "id": "event-000692"
+        }
+      ]
+    }
+  ]
+}

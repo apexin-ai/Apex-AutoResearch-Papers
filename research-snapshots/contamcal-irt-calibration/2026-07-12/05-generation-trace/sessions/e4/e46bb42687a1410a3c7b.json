@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e46bb42687a1410a3c7b",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ARC oracle IRT 结果中 γ 为负（2PL: -0.618, 4PL: -1.46），GSM8K 为正（+3.77）。Director 怀疑 ARC 的 exposure_j 编码可能搞反了。需要",
+  "task_key": "4c4d63c0-4b97-4639-90e6-d6ea4149bf0f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/4c4d63c0-4b97-4639-90e6-d6ea4149bf0f.jsonl",
+    "occurrence": 1,
+    "bytes": 600331,
+    "sha256": "ef9ab32f87ae99c4067db5742e88b23d8279ace959f574cf582f03ac0641bdfc"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 1,
+    "tool_calls": 71,
+    "roles": {
+      "record": 43,
+      "user": 1,
+      "assistant": 41,
+      "tool_call": 71,
+      "tool_result": 71
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e46bb42687a1410a3c7b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "e46bb42687a1410a3c7b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "e46bb42687a1410a3c7b-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-arc-oracle-irt-2pl-0-618-4pl-1-46-gsm8k-3-77-director-arc-exposu.md"
+}
