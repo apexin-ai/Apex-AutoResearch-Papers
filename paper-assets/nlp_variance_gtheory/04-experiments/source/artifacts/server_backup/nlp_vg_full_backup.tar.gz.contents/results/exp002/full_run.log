@@ -1,0 +1,12 @@
+Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')
+=== exp-002 full run start: Thu May 21 17:08:46 CST 2026 ===
+PIDs: qwen=133428 llama=133429 gemma=133431 mistral=133433
+GPU0 qwen FAILED
+GPU1_llama_DONE
+GPU1 llama done
+GPU3_mistral_DONE
+GPU2_gemma_DONE
+GPU2 gemma done
+GPU3 mistral done
+=== exp-002 full run complete: Thu May 21 21:37:29 CST 2026 ===
+EXP002_ALL_DONE

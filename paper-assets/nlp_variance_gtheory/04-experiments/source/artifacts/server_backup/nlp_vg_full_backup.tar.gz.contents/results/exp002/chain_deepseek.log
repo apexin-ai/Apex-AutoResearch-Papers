@@ -1,0 +1,12 @@
+Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')
+Fri May 22 00:41:30 CST 2026 — Starting deepseek chain on GPU 3
+Fri May 22 00:41:30 CST 2026 — START deepseek/mmlu on GPU 3
+Fri May 22 01:07:44 CST 2026 — DONE deepseek/mmlu: 57600 lines
+Fri May 22 01:07:44 CST 2026 — START deepseek/arc on GPU 3
+Fri May 22 01:30:49 CST 2026 — DONE deepseek/arc: 57600 lines
+Fri May 22 01:30:49 CST 2026 — START deepseek/hellaswag on GPU 3
+Fri May 22 02:05:03 CST 2026 — DONE deepseek/hellaswag: 57600 lines
+Fri May 22 02:05:03 CST 2026 — START deepseek/gsm8k on GPU 3
+Fri May 22 04:47:24 CST 2026 — DONE deepseek/gsm8k: 57600 lines
+Fri May 22 04:47:24 CST 2026 — SKIP deepseek/math (already done: 57600 lines)
+Fri May 22 04:47:24 CST 2026 — ALL DONE for deepseek on GPU 3

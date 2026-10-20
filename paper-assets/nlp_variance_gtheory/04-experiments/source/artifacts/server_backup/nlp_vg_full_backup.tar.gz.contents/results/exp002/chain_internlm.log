@@ -1,0 +1,12 @@
+Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')
+Fri May 22 00:40:55 CST 2026 — Starting internlm chain on GPU 1
+Fri May 22 00:40:55 CST 2026 — START internlm/mmlu on GPU 1
+Fri May 22 01:06:17 CST 2026 — DONE internlm/mmlu: 57600 lines
+Fri May 22 01:06:17 CST 2026 — START internlm/arc on GPU 1
+Fri May 22 01:28:19 CST 2026 — DONE internlm/arc: 57600 lines
+Fri May 22 01:28:19 CST 2026 — START internlm/hellaswag on GPU 1
+Fri May 22 02:00:17 CST 2026 — DONE internlm/hellaswag: 57600 lines
+Fri May 22 02:00:17 CST 2026 — START internlm/gsm8k on GPU 1
+Fri May 22 03:50:53 CST 2026 — DONE internlm/gsm8k: 57600 lines
+Fri May 22 03:50:53 CST 2026 — SKIP internlm/math (already done: 57600 lines)
+Fri May 22 03:50:53 CST 2026 — ALL DONE for internlm on GPU 1
