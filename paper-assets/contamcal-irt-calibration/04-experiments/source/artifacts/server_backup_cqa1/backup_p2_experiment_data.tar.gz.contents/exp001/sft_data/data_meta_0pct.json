@@ -1,0 +1,7 @@
+{
+  "base_dataset": "Open-Orca/SlimOrca",
+  "dosage": 0,
+  "total_samples": 50000,
+  "seed": 42,
+  "contamination": "none"
+}

@@ -1,0 +1,38 @@
+{
+  "base_data": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+  "base_samples": 50000,
+  "contam_samples_total": 16533,
+  "dosage_levels": [
+    5,
+    25,
+    50,
+    100
+  ],
+  "seed": 42,
+  "benchmarks": {
+    "arc_challenge": 1172,
+    "gsm8k": 1319,
+    "mmlu": 14042
+  },
+  "qc_stats": {
+    "arc_challenge": {
+      "total": 1172,
+      "qc_passed": 697,
+      "qc_failed": 475,
+      "pass_rate": 0.5947
+    },
+    "gsm8k": {
+      "total": 1319,
+      "qc_passed": 228,
+      "qc_failed": 1091,
+      "pass_rate": 0.1729
+    },
+    "mmlu": {
+      "total": 14042,
+      "qc_passed": 6596,
+      "qc_failed": 7446,
+      "pass_rate": 0.4697
+    }
+  },
+  "note": "D010: ALL paraphrases used (no QC filtering). QC stats retained for paper reporting."
+}

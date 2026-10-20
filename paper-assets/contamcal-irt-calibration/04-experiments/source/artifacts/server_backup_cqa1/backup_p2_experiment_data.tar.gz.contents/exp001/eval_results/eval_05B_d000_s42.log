@@ -1,0 +1,39 @@
+2026-05-14 06:32:02,450 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-05-14 06:32:03,365 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2026-05-14 06:32:03,692 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 320, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 298, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+2026-05-14 06:32:05,632 [INFO] Evaluating mmlu...
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06b9072180>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 76d508d9-9556-4c37-8bac-ac485d1da0b6)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+2026-05-14 06:32:15,645 [WARNING] '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06b9072180>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 76d508d9-9556-4c37-8bac-ac485d1da0b6)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+2026-05-14 06:32:15,645 [WARNING] Retrying in 1s [Retry 1/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a8649eb0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 1d9cc992-11f7-4e63-96f0-41d6b32c984e)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+2026-05-14 06:32:26,659 [WARNING] '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a8649eb0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 1d9cc992-11f7-4e63-96f0-41d6b32c984e)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+Retrying in 2s [Retry 2/5].
+2026-05-14 06:32:26,659 [WARNING] Retrying in 2s [Retry 2/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a86480e0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 2d7aa421-438c-4980-b985-06feff9df0bb)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+2026-05-14 06:32:38,674 [WARNING] '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a86480e0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 2d7aa421-438c-4980-b985-06feff9df0bb)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+Retrying in 4s [Retry 3/5].
+2026-05-14 06:32:38,674 [WARNING] Retrying in 4s [Retry 3/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a8648dd0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: f9d7bd11-1b9c-4d04-a7c3-e8766ced0e64)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+2026-05-14 06:32:52,688 [WARNING] '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a8648dd0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: f9d7bd11-1b9c-4d04-a7c3-e8766ced0e64)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+Retrying in 8s [Retry 4/5].
+2026-05-14 06:32:52,689 [WARNING] Retrying in 8s [Retry 4/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a864bb30>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 6d889a7b-1b3b-4a5f-b11f-f3956efee3c5)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+2026-05-14 06:33:10,703 [WARNING] '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a864bb30>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 6d889a7b-1b3b-4a5f-b11f-f3956efee3c5)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md
+Retrying in 8s [Retry 5/5].
+2026-05-14 06:33:10,704 [WARNING] Retrying in 8s [Retry 5/5].
