@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0b5d3e9fbc97cb91b38",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh check traj collect final",
+  "task_key": "worker_ssh_check-traj-collect-final_20260514T121957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-traj-collect-final_20260514T121957_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "ffbcf4336cd4ac980fccea2d2136e40a1dbf80e0bbc841877e42378292ecc34c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 项目 | 值 |\n|------|-----|\n| **最终成功轨迹** | 400 / 500（未达目标） |\n| **退出原因** | `/tmp` 磁盘满（`No space left on device`） |\n| **成功率** | 69.6%（575 次尝试中 400 成功） |\n| **运行时间** | 5.51 小时 |\n| **API 费用** | $34.72 |\n| **Registry** | → DONE, conclusion=negative |\n| **Cron** | ✓ 已删除 |\n\n磁盘满从 traj_0534 左右开始，之后约 40 次尝试全部因无法复制 `libdownward.so` 到 `/tmp` 而失败。要补齐剩余 100 条轨迹，需先清理 `/tmp` 或将临时文件重定向到数据盘。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-traj-collect-final.md"
+}

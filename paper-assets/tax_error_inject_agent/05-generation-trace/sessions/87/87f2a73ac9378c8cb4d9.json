@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87f2a73ac9378c8cb4d9",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops collect eval results",
+  "task_key": "worker_ops_collect-eval-results_20260516T084951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-eval-results_20260516T084951_result.json",
+    "occurrence": 1,
+    "bytes": 2625,
+    "sha256": "3994137a535684793505058acf96f8ebeeccc41514f08a22f490495e772839cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX 5090 | **0%** | 0 / 32607 MiB — **空闲** |\n| 1 | RTX 5090 | **88%** | 16837 / 32607 MiB — 活跃 |\n| 2 | RTX 5090 | **89%** | 16837 / 32607 MiB — 活跃 |\n| 3 | RTX 5090 | **99%** | 28685 / 32607 MiB — 活跃（训练） |\n\n---\n\n## Eval 结果\n\n### LLaMA-31 Vanilla s42 (`llama31_vanilla_s42.json`)\n- **recovery_rate: 74.5%**\n- **detection_rate: 21.3%**\n- C1_context_truncation: rec 75.0%, det 16.7%\n- C4_observation_masking: rec 72.7%, det 27.3%\n- P1_step_order_swap: rec 75.0%, det 16.7%\n- P2_sub_goal_deletion: rec 75.0%, det 25.0%\n\n### LLaMA TaxEI s42 / LLaMA Random s42\n**文件不存在。** `eval_results/` 下无 `llama31_taxei*` 或 `llama31_random*` 文件，上一 session 的 eval 可能未完成或结果写到了其他位置。\n\n### Vanilla Recovery s7 (`v4_vanilla_recovery_eval_s7.json`)\n- Model: mini_vanilla_sft_v4_seed7/checkpoint-1635\n- **recovery_rate: 74.5%**\n- **detection_rate: 0.0%**\n- C1: 75.0% | C4: 72.7% | P1: 75.0% | P2: 75.0%\n\n### Vanilla Recovery s1 (`v4_vanilla_recovery_eval_s1.json`)\n- **recovery_rate: 66.0%**\n- **detection_rate: 0.0%**\n- C1: 66.7% | C4: 54.5% | P1: 66.7% | P2: 75.0%\n\n### TaxEI-RP Injected Evals（全部 detection_rate = 0%）\n\n| Seed | Recovery Rate | C1 | C4 | P1 | P2 |\n|------|--------------|-----|-----|-----|-----|\n| s42 | **38.3%** | 50.0% | 27.3% | 50.0% | 25.0% |\n| s0 | **46.8%** | 33.3% | 45.5% | 50.0% | — |\n| s123 | **57.4%** | 58.3% | 45.5% | 66.7% | — |\n| s1 | **48.9%** | 41.7% | 36.4% | 75.0% | — |\n\n---\n\n## v4-taxei-rp-s7 训练状态\n\n**正在训练中**，GPU 3 承载。\n\n- 进度: **3510 / 5415 steps (64.8%)**\n- Epoch: ~1.94\n- Loss: 0.31–0.37, token_acc: ~0.889\n- 已用时间: 2h 27m，预计剩余: **~1h 20m**\n- checkpoint-1805 已保存\n- 速度: 2.51 s/it\n\n---\n\n## Scale-up 收集进度\n\n数据在 `trajectories_scaleup_p1/` 下以 `.jsonl` 格式存储（非 `.json`）：\n\n- **成功轨迹: 239 条**\n- **失败轨迹: 812 条**\n- **总计: 1051 episodes**\n- 最后写入: 2026-05-16 16:49（**仍在活跃写入**）\n\n---\n\n**关键发现：**\n1. `llama31_taxei_s42` 和 `llama31_random_s42` 的 eval 结果文件缺失，需确认是否在其他路径或 eval 任务未启动\n2. TaxEI-RP 模型 recovery rate 显著低于 Vanilla（38-57% vs 66-74%），且所有 detection_rate 都是 0%\n3. GPU 0 当前空闲，可用于补跑缺失的 eval\n4. v4-taxei-rp-s7 训练还有约 1.5h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-results.md"
+}

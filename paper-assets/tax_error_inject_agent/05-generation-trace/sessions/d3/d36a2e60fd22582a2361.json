@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d36a2e60fd22582a2361",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops check recovery taxei s1",
+  "task_key": "worker_ops_check-recovery-taxei-s1_20260516T091606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-recovery-taxei-s1_20260516T091606_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "5ce4fa3a2211fdf5d5a3f789148ac23e539444d650525e553896ccce93581222"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已完成。结果：\n\n**=== Recovery TaxEI s1 ===**\n\n| 指标 | 值 |\n|------|-----|\n| **recovery_rate** | **0.617** (29/47) |\n| **detection_rate** | **0.0** (0/47) |\n| seed | 42 |\n| model | checkpoint-3387 (v4 seed1) |\n\n**Per-operator recovery rate:**\n\n| Operator | Total | Recovered | Rate |\n|----------|-------|-----------|------|\n| C1_context_truncation | 12 | 9 | **0.750** |\n| C4_observation_masking | 11 | 7 | **0.636** |\n| P1_step_order_swap | 12 | 7 | **0.583** |\n| P2_sub_goal_deletion | 12 | 6 | **0.500** |\n\n**Per-task recovery rate:**\n\n| Task Type | Total | Rate |\n|-----------|-------|------|\n| pick_heat_then_place | 8 | 0.875 |\n| look_at_obj_in_light | 6 | 0.833 |\n| pick_two_obj_and_place | 7 | 0.714 |\n| pick_and_place_simple | 8 | 0.500 |\n| pick_clean_then_place | 11 | 0.455 |\n| pick_cool_then_place | 7 | 0.429 |\n\ndetection_rate 为 0 — 模型从未主动检测到错误注入，但仍有 61.7% 的 episode 通过隐式恢复完成了任务。C1（上下文截断）最容易恢复，P2（子目标删除）最难。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-recovery-taxei-s1.md"
+}

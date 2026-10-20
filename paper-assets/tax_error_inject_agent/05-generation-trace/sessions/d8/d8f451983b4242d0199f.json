@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8f451983b4242d0199f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose all s123 cron sweep",
+  "task_key": "worker_diagnose_all-s123-cron-sweep_20260516T151948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_all-s123-cron-sweep_20260516T151948_result.json",
+    "occurrence": 1,
+    "bytes": 1627,
+    "sha256": "5f2e2ebbcbbfcf9329ce39766ff6e40ae2a7495fb53062c207522ad7211b81e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 cron 已不存在（之前已被清除）。\n\n---\n\n## S123 Eval 结果汇总\n\n### 已完成 ✓\n\n| Experiment | Type | Success Rate | Recovery Rate | Detection Rate | Episodes |\n|---|---|---|---|---|---|\n| **vanilla-s123-clean** | clean | 0.723 | — | — | 47 |\n| **vanilla-s123-eval** | injected | 0.702 | 0.702 | 0.213 | 47 |\n| **random-s123-clean** | clean | 0.766 | — | — | 47 |\n\n**vanilla-s123 injected by operator:**\n\n| Operator | Total | Recovery Rate | Detection Rate |\n|---|---|---|---|\n| C1_context_truncation | 12 | 0.750 | 0.083 |\n| C4_observation_masking | 11 | 0.727 | 0.364 |\n| P1_step_order_swap | 12 | 0.667 | 0.333 |\n| P2_sub_goal_deletion | 12 | 0.667 | 0.083 |\n\n### 仍在运行中 (GPU 0-2 active, ~87-89% util)\n\n| Process | GPU | PID | Started | Est. progress |\n|---|---|---|---|---|\n| taxei-s123-clean | cuda:2 | 291995 | 23:03 | ~17 min elapsed |\n| taxei-s123-injected | cuda:0 | 293496 | 23:07 | ~13 min elapsed |\n| random-s123-injected | cuda:1 | 294869 | 23:14 | ~6 min elapsed |\n\n### Registry 操作\n- `llama31-random-s123-clean`: 修复 conclusion→success，补充 metrics ✓\n- `llama31-random-s123-eval`: QUEUED→RUNNING ✓\n- `llama31-taxei-s123-clean/eval`: 状态机不允许 DONE→RUNNING，待进程完成后更新 metrics+conclusion\n- Cron：全部已不存在，无需清理\n\n### 下一步\n3 个进程预计 20-40 分钟内完成（基于 vanilla 的执行时间参考）。完成后需要再次检查结果文件并更新 registry 中 taxei-s123-clean、taxei-s123-eval、random-s123-eval 的 metrics 和 conclusion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-all-s123-cron-sweep.md"
+}

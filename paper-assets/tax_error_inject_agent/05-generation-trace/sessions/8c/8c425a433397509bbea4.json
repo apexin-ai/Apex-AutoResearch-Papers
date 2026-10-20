@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c425a433397509bbea4",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "check recovery eval checkpoints",
+  "task_key": "worker_check_recovery-eval-checkpoints_20260515T124148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_recovery-eval-checkpoints_20260515T124148_result.json",
+    "occurrence": 1,
+    "bytes": 2074,
+    "sha256": "81305c5cb11fea681433bd439c28a806f8741a23822d15e09bfe1fe422dec158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。\n\n## Checkpoint 状态\n\n| Method | Seed | Checkpoint Path (final) | Status |\n|--------|------|------------------------|--------|\n| Vanilla | 0 | `.../mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635` | EXISTS |\n| Vanilla | 123 | `.../mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635` | EXISTS |\n| TaxEI | 0 | `.../mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387` | EXISTS |\n| TaxEI | 123 | `.../mini_taxei_sft_v4_seed123/v0-20260515-055026/checkpoint-3387` | EXISTS |\n| Random | 0 | `.../mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387` | EXISTS |\n| Random | 123 | `.../mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387` | EXISTS |\n\n**全部 6 个 checkpoint 都存在，每个都有 3 个中间 checkpoint。**\n\n## 已有 Recovery Eval 结果\n\n仅有无 seed 后缀（默认 seed=42）的 recovery eval：\n- `v4_vanilla_recovery_eval.json` (476KB, May 15 03:45)\n- `v4_taxei_recovery_eval.json` (482KB, May 15 04:49)\n- `v4_taxei_recovery_eval_r2.json` (481KB, May 15 05:32)\n- `v4_random_recovery_eval.json` (459KB, May 15 05:32)\n\n**seed=0 和 seed=123 的 recovery eval 尚未执行。**\n\n已有 seed0/seed123 的 **clean eval**（非 recovery）：`v4_{vanilla,taxei,random}_seed{0,123}_eval.json`\n\n## injected_eval.py 参数\n\n```\n--model_path       LoRA adapter checkpoint 路径\n--base_model       基础模型路径 (默认 Qwen3-8B)\n--model_variant    标签: taxei / random / vanilla\n--alfworld_data    ALFWorld 数据路径\n--eval_split       评估 split (默认 valid_unseen)\n--num_episodes     episode 数 (默认 47)\n--output           输出 JSON 路径\n--device           设备 (默认 cuda:0)\n--seed             随机种子 (默认 42)\n--inject_step      注入步骤, -1=随机[2,6] (默认 -1)\n--task_list        任务列表文件\n--compare_with     对比文件\n--compare_output   对比输出文件\n```\n\n**结论：所有 checkpoint 就绪，可以提交 6 个 recovery eval（3 methods × 2 seeds）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-recovery-eval-checkpoints.md"
+}

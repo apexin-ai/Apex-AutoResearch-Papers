@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71bfc385e26dc33519c7",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops v4 25pct s1s7 setup",
+  "task_key": "worker_ops_v4-25pct-s1s7-setup_20260515T213138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v4-25pct-s1s7-setup_20260515T213138_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "bd956a731975d7aa561d4ebac15d9dd66eca9bac9151673a6d72aa458afe122f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部在跑，cuda:0 和 cuda:1 已被新任务占用。\n\n**汇报：**\n\n| 实验 | GPU | PID | 数据 | Registry |\n|------|-----|-----|------|----------|\n| v4-random-fixed-inject25-s1 | cuda:0 | 200146 | `sft_random_v4_fixed_inject25.jsonl` (4358行) | RUNNING |\n| v4-taxei-fixed-inject25-s7 | cuda:1 | 200226 | `sft_taxei_v4_fixed_inject25.jsonl` (4358行) | RUNNING |\n\ncuda:0-3 四卡全部在用，GPU 利用率 54-94%，显存 18-19GB/32GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v4-25pct-s1s7-setup.md"
+}

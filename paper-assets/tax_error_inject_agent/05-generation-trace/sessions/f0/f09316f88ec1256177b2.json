@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f09316f88ec1256177b2",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops eval rp s1 check",
+  "task_key": "worker_ops_eval-rp-s1-check_20260516T062052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-rp-s1-check_20260516T062052_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "609447ca41550c9e17625299ce2b95de3ea6dc2e34868f76849e22bfc7e50b9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval-rp-s1 **已完成**，结果文件已生成。\n\n## 结果摘要\n\n| 指标 | 数值 |\n|------|------|\n| 总 episodes | 47 |\n| Recovery rate (task success) | **0.489** (23/47) |\n| Detection rate (think analysis) | **0.0** (0/47) |\n\n### Per-operator 分解\n\n| Operator | Recovery | Detection |\n|----------|----------|-----------|\n| C1_context_truncation | 5/12 (0.417) | 0/12 (0.0) |\n| C4_observation_masking | 4/11 (0.364) | 0/11 (0.0) |\n| P1_step_order_swap | 9/12 (0.750) | 0/12 (0.0) |\n| P2_sub_goal_deletion | 5/12 (0.417) | 0/12 (0.0) |\n\n关键发现：\n- P1_step_order_swap 恢复率最高 (75%)，agent 能较好地应对步骤顺序错误\n- C4_observation_masking 恢复率最低 (36.4%)，观测遮蔽对 agent 影响最大\n- 检测率全部为 0——agent 完全没有在 think 中识别出注入的错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-rp-s1-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f3d3e7a8cce4b60344",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "collect d022 final results",
+  "task_key": "worker_collect_d022-final-results_20260515T104745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_d022-final-results_20260515T104745_result.json",
+    "occurrence": 1,
+    "bytes": 3053,
+    "sha256": "709739742dbd141ae0b6552620fe60e6c553619630532e460da077cd7c89daa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完成。\n\n## D022 Dose-Response 全部 Eval 结果汇总\n\n### 状态总览\n- **已完成**: 10/12 eval\n- **缺失**: 2 个（`v4_random_fixed_inject50_s0`, `v4_random_fixed_inject50_s123`）— 训练 checkpoint 存在，eval 未执行\n- **无 eval 进程在跑**\n\n---\n\n### TAXEI 方法\n\n| 实验名 | Seed | 成功/总数 | 成功率 | Eval 文件 | Checkpoint |\n|--------|------|----------|--------|-----------|------------|\n| taxei_inject25 | 42 | 23/47 | **48.9%** | `v4_taxei_fixed_inject25_eval.json` | `output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635` |\n| taxei_inject25 | 0 | 22/47 | **46.8%** | `v4_taxei_fixed_inject25_s0_eval.json` | `v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635` |\n| taxei_inject25 | 123 | 22/47 | **46.8%** | `v4_taxei_fixed_inject25_s123_eval.json` | `v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635` |\n| taxei_inject50 | 42 | 24/47 | **51.1%** | `v4_taxei_fixed_inject50_eval.json` | `v4_taxei_fixed_inject50/v0-20260515-082759/checkpoint-1635` |\n| taxei_inject50 | 0 | 33/47 | **70.2%** | `v4_taxei_fixed_inject50_s0_eval.json` | `v4_taxei_fixed_inject50_s0/v0-20260515-153735/checkpoint-1635` |\n| taxei_inject50 | 123 | 22/47 | **46.8%** | `v4_taxei_fixed_inject50_s123_eval.json` | `v4_taxei_fixed_inject50_s123/v0-20260515-153737/checkpoint-1635` |\n\n### RANDOM 方法\n\n| 实验名 | Seed | 成功/总数 | 成功率 | Eval 文件 | Checkpoint |\n|--------|------|----------|--------|-----------|------------|\n| random_inject25 | 42 | 26/47 | **55.3%** | `v4_random_fixed_inject25_eval.json` | `v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635` |\n| random_inject25 | 0 | 29/47 | **61.7%** | `v4_random_fixed_inject25_s0_eval.json` | `v4_random_fixed_inject25_s0/v0-20260515-173122/checkpoint-1635` |\n| random_inject25 | 123 | 24/47 | **51.1%** | `v4_random_fixed_inject25_s123_eval.json` | `v4_random_fixed_inject25_s123/v0-20260515-173124/checkpoint-1635` |\n| random_inject50 | 42 | 27/47 | **57.4%** | `v4_random_fixed_inject50_eval.json` | `random_fixed_inject50/v0-20260515-084528/checkpoint-1635` |\n| random_inject50 | 0 | **—** | **MISSING** | ❌ 未生成 | `v4_random_fixed_inject50_s0/v0-20260515-172121/checkpoint-1635` ✓ |\n| random_inject50 | 123 | **—** | **MISSING** | ❌ 未生成 | `v4_random_fixed_inject50_s123/v0-20260515-172123/checkpoint-1635` ✓ |\n\n---\n\n### 按 method×dose 聚合（已有 seed 的均值）\n\n| Method | Dose | Seeds 可用 | 成功率范围 | 均值 |\n|--------|------|-----------|-----------|------|\n| taxei | 25% | 42, 0, 123 | 46.8% – 48.9% | **47.5%** |\n| taxei | 50% | 42, 0, 123 | 46.8% – 70.2% | **56.0%** |\n| random | 25% | 42, 0, 123 | 51.1% – 61.7% | **56.0%** |\n| random | 50% | 42 only | 57.4% | — (需补 s0, s123) |\n\n---\n\n### 缺失项\n\n`v4_random_fixed_inject50_s0` 和 `v4_random_fixed_inject50_s123` 的训练已完成（checkpoint-1635 存在），但 eval 未执行。需要手动触发这两个 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-d022-final-results.md"
+}

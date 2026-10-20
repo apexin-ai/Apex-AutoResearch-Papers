@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ccebfb9c6bc90f9e578d",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "research verl agent survey",
+  "task_key": "worker_research_verl-agent-survey_20260514T042543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verl-agent-survey_20260514T042543.log",
+    "occurrence": 1,
+    "bytes": 760804,
+    "sha256": "c64b9f92e2802a4ef46412ec02a7b4cc48d699c450dc8819be57f240e207a0fd"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 1,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 37,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 69,
+      "tool_result": 69,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "ccebfb9c6bc90f9e578d-part-0001.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "ccebfb9c6bc90f9e578d-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "ccebfb9c6bc90f9e578d-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-verl-agent-survey.md"
+}

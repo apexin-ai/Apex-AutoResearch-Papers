@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bdfa23d30a947ec4dec",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train v4 random fixed inject25",
+  "task_key": "worker_train_v4-random-fixed-inject25_20260515T004417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-random-fixed-inject25_20260515T004417_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "eed59ee73ad53dbdd8359d2013f91e6ace25b71a8874aa59fd45dfa22474a4da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**v4-random-fixed-inject25** 已在 autodl-5090 **cuda:1** 上启动训练（cuda:2/3 被 inject10/inject50 占用，改用 cuda:1）。\n\n- 数据：`sft_random_v4_fixed_inject25.jsonl`（4,358 条）\n- 总步数：1,635（3 epochs）\n- 预计耗时：~57 分钟（按 2.1s/step）\n- Checkpoint：`checkpoints/v4_random_fixed_inject25/v1-20260515-084707`\n- Registry：RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-v4-random-fixed-inject25.md"
+}

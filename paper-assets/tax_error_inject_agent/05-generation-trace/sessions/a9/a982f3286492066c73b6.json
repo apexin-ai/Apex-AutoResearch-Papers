@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a982f3286492066c73b6",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation-verification_20260515T025113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verification_20260515T025113_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "cca5285b72298b117164e4d12f563c4f8013e710e73e50e0008734ba3c2f00ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/citation_verification_report.md`。\n\n结果：**1/3 完全正确，2/3 需修正，0/3 幻觉引用**。\n\n| 引用 | 状态 | 问题 |\n|------|------|------|\n| Ye et al. ICLR 2025 | VERIFIED | 无 |\n| Dohmatob & Feng ICLR 2025 | PARTIALLY CORRECT | 缺 2 位作者（Arjun Subramonian, Julia Kempe）|\n| Seddik et al. 2024 | PARTIALLY CORRECT | 标题是内容的意译，非原始标题。实际标题: \"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\" (arXiv: 2404.05090) |\n\n`register_artifact` 不在当前可用的 MCP 工具中，文件已直接写入 artifacts 目录。如需注册到 manifest，请手动操作或提供工具。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification.md"
+}

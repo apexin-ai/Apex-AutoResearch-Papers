@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7f6267d67aa58b572e5",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 random fixed inject25 s1 eval",
+  "task_key": "worker_analysis_v4-random-fixed-inject25-s1-eval_20260515T225056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-random-fixed-inject25-s1-eval_20260515T225056_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "38bdb73ff6bcfa7d8498804291a34a20270fe54f327621d492324ecb35453ded"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被其他 session 删除或未在当前 session 注册）。\n\n**v4-random-fixed-inject25-s1-eval 完成：**\n- **状态**：DONE / success\n- **success_rate**：72.3% (34/47)\n- **by_task_type**：\n  - pick_heat_then_place: 87.5%\n  - pick_two_obj_and_place: 85.7%\n  - look_at_obj_in_light: 83.3%\n  - pick_clean_then_place: 63.6%\n  - pick_and_place_simple: 62.5%\n  - pick_cool_then_place: 57.1%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-random-fixed-inject25-s1-eval.md"
+}

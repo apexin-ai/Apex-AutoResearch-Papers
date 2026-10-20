@@ -1,0 +1,35 @@
+{
+  "exp_id": "v4-random-fixed-inject25-s123",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:37:05.059Z",
+    "updated_at": "2026-05-16T16:27:51.434Z",
+    "hypothesis": "D022 multi-seed dose-response: Random 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 55.3%。",
+    "spec": {
+      "command": "legacy",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "134594",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s123.log",
+      "submitted_at": "2026-05-15T09:31:15.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "legacy",
+      "data_count": 1,
+      "model_name": "legacy",
+      "seed": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:27:51.730526+00:00",
+  "trigger": "update_registry"
+}

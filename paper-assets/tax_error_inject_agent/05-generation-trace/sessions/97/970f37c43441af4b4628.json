@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "970f37c43441af4b4628",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "paper figure fig2 operator corrected",
+  "task_key": "worker_paper_figure_fig2-operator-corrected_20260515T033517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2-operator-corrected_20260515T033517_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "d3ba79224d5ef15581556f26ac9179d97c52c71b7b2461e2790c5d9b68e0709b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **脚本**: `scripts/plot_fig2_operator.py`\n- **输出**: `figures/paper/fig2_operator_gradient.{pdf,png}`（PDF 34K, PNG 110K）\n- **Artifact**: `art_20260515_56a865` 已注册，tags: fig2, operator-gradient, paper-ready, corrected\n- **数据验证**: C4 +9.1pp (蓝), P1 0.0pp (灰), C1 -8.3pp (红), P2 -8.3pp (红)，local/global split 注释已标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-operator-corrected.md"
+}

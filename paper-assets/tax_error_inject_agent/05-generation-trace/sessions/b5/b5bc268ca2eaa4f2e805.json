@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5bc268ca2eaa4f2e805",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh urgent gpu status",
+  "task_key": "worker_ssh_urgent-gpu-status_20260514T131827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-gpu-status_20260514T131827_result.json",
+    "occurrence": 1,
+    "bytes": 1413,
+    "sha256": "eeb9609b8d62bc29d1722517a23c068c2788afeeaf3404040b50c400214b3b87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n| GPU | 状态 | 显存占用 | 温度 |\n|-----|------|----------|------|\n| cuda:0 | **空闲** | 0MiB / 32607MiB | 28°C |\n| cuda:1 | **空闲** | 0MiB / 32607MiB | 28°C |\n| cuda:2 | **空闲** | 0MiB / 32607MiB | 28°C |\n| cuda:3 | **空闲** | 0MiB / 32607MiB | 27°C |\n\n无 GPU 进程运行。PID 51848（v3-vanilla eval）和 PID 50537（v4-vanilla 训练）均已退出。\n\n## 训练/Eval 完成状态\n\n| 任务 | 状态 | Checkpoints | 耗时 | 最终 loss |\n|------|------|-------------|------|-----------|\n| v3-vanilla 训练 | **完成** | checkpoint-1566 | — | — |\n| v3-taxei 训练 | **完成** | 944 / 1888 / 2832 | 1h34m | 0.374 |\n| v3-random 训练 | **完成** | 1135 / 2270 / 3405 | 1h50m | 0.350 |\n| v4-vanilla 训练 | **完成** | 545 / 1090 / 1635 | 59m | 0.417 |\n| v3-vanilla eval | **完成** | — | — | — |\n\n### v3-vanilla eval 结果\n- **success_rate = 74.5%**（35/47 episodes）\n- 按任务类型：\n\n| task_type | success/total | rate |\n|-----------|--------------|------|\n| look_at_obj_in_light | 4/6 | 66.7% |\n| pick_and_place_simple | 6/8 | 75.0% |\n| pick_clean_then_place | 8/11 | 72.7% |\n| pick_cool_then_place | 5/7 | 71.4% |\n| pick_heat_then_place | 7/8 | **87.5%** |\n| pick_two_obj_and_place | 5/7 | 71.4% |\n\n## 空闲 GPU\n**cuda:0, cuda:1, cuda:2, cuda:3 — 全部空闲**，可立即调度新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-status.md"
+}

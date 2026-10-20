@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp14_cross_llm_validation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:37:11.541Z",
+    "updated_at": "2026-05-19T06:19:02.263Z",
+    "hypothesis": "DAPT advantage (9-class/jb_mlm >> vanilla) is not specific to Qwen3-8B-generated data. If the persuasion-grounded fine-tuning captures generalizable jailbreak patterns rather than Qwen-specific artifacts, the performance gap should persist on Llama-3.1-8B-Instruct-generated multi-turn conversations."
+  },
+  "timestamp": "2026-05-19T06:19:02.395770+00:00",
+  "trigger": "update_registry"
+}

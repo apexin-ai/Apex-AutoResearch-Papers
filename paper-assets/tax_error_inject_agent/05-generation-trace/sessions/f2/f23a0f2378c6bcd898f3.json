@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f23a0f2378c6bcd898f3",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis llama31 vanilla s42",
+  "task_key": "worker_analysis_llama31-vanilla-s42_20260516T074618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama31-vanilla-s42_20260516T074618_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "f0db7966bea192b9bf37dc579782d106b01b8fa4936828d061a5d2bed798653e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## LLaMA-3.1-8B Vanilla s42 训练结果报告\n\n| 项目 | 值 |\n|------|------|\n| **训练状态** | ✅ 成功完成（EXIT_CODE=0） |\n| **最终 train_loss** | **0.40025**（平均），最后一批 ~0.277 |\n| **最终 token_acc** | 0.9067 |\n| **训练时长** | **1h 9m 17s**（4156.9s） |\n| **训练步数** | 1635/1635（3 epochs） |\n| **训练速度** | 2.54 s/it，3.145 samples/s |\n| **GPU 显存** | 30.2 GiB |\n| **Checkpoint 路径** | `/root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635/adapter_model.safetensors` |\n| **中间 checkpoints** | checkpoint-545, checkpoint-1090（每 epoch 保存） |\n| **训练样本数** | **4358** 条（sft_vanilla_v4.jsonl） |\n| **W&B run ID** | 未找到（日志中无 wandb 相关信息，未启用 W&B） |\n| **异常/Warning** | bitsandbytes 加载 libnvJitLink.so.13 失败（不影响训练，因为未使用量化）；无其他 error/warning |\n\n**训练命令**：\n```\nswift sft --model Meta-Llama-3.1-8B-Instruct --lora_rank 16 --num_train_epochs 3 \n--per_device_train_batch_size 4 --gradient_accumulation_steps 2 \n--learning_rate 1e-4 --max_length 4096 --seed 42 --bf16 true\n```\n\n**Loss 变化趋势**：epoch 1 中期 ~0.39 → epoch 3 末 ~0.27，收敛正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama31-vanilla-s42.md"
+}

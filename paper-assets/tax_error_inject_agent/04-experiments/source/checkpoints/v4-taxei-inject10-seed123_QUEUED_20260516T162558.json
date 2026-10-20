@@ -1,0 +1,30 @@
+{
+  "exp_id": "v4-taxei-inject10-seed123",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:46:11.744Z",
+    "updated_at": "2026-05-16T16:25:57.756Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --output_dir checkpoints/taxei_inject10_seed123/v0-$(date +%Y%m%d-%H%M%S) --num_train_epochs 3 --lora_rank 16 --lora_alpha 32 --learning_rate 1e-4 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --seed 123 --logging_steps 5 --save_strategy epoch --bf16 true --gradient_checkpointing true\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "181699",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-inject10-seed123.log",
+      "submitted_at": "2026-05-15T17:48:56.845Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "failure_reason": "duplicate of v4-taxei-fixed-inject10-s123, process no longer exists"
+    },
+    "conclusion": "killed",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:25:58.222785+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3538a363e7758c1247c2",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_7_1778945214.md",
+  "task_key": "loop_7_1778945214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778945214.md",
+    "occurrence": 1,
+    "bytes": 4124,
+    "sha256": "040ffea9fad482ef41c88019a5d812c4413e94816599da471db69427a28bffee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-16T15:10:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `autodl-5090:cuda:0/1/2/3`，无其他服务器/GPU 可用\n- `detection_rate` 指标为假阳性（LLaMA 的 21-30% 全由 \"go back to X\" 中 \"back\" 触发关键词匹配），**绝不可引用**\n- 训练数据量混淆：Vanilla=4,358 samples, TaxEI/Random=9,029。跨条件对比 clean SR 时必须说明此 confound\n- TMPDIR 必须设为 `/root/autodl-tmp/tmp`，否则 /tmp 满导致 crash\n- 所有后台进程必须 nohup+disown，SSH 断开会 SIGHUP kill tmux 内进程（llama31-s123 两实验就是这么死的）\n- Eval 并行上限 2 个（8B 模型 ~18GB 显存）\n- `submit_training_job` 命令用 `bash -c \"...\"` 包裹 source/conda 命令\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-5090`，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：`/root/miniconda3/bin/python`（conda base env，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：LLaMA-3.1-8B-Instruct 在 `/root/autodl-tmp/.hf_cache/`（ModelScope 下载）\n- HF_HOME: `/root/autodl-tmp/.hf_cache`\n- Eval 脚本：`eval/injected_eval.py`（永远注入）、`eval/recovery.py`（有 `--inject`/`--no_inject` 开关，默认 clean）\n- 活跃进程：`llama31-vanilla-s123-eval` RUNNING（GPU/PID 未知，需 SSH 确认）\n- Scale-up 数据收集：PID 266813，8 workers，从 406/1000 继续\n- Cron：reconcile 返回 0 条活跃 cron\n\n### 3. 📊 当前状态\n**刚发生的事**：\n- `llama31-taxei-s123` 和 `llama31-random-s123` 训练被 SIGHUP kill（EXIT_CODE=129），需要重跑\n- `llama31-vanilla-s123-eval` 是唯一 RUNNING 实验（Vanilla s123 的 eval，预期几分钟内完成）\n- LLaMA s42+s0 两轮已全部完成（V/T/R 训练+eval），s123 是最后一轮\n\n**Registry 大局**：183 实验，119 success，5 negative，9 failed，1 running\n- QUEUED: 3 个 v4 dose-response 25% multi-seed 训练（等 GPU）\n- PREPARING: 45 个（大量 eval 和后续实验等前序完成）\n\n**等待中**：\n- `llama31-vanilla-s123-eval` 完成回调\n- `llama31-taxei-s123` / `llama31-random-s123` 需要重新提交（SIGHUP 导致失败）\n- Scale-up 数据收集（PID 266813）进度未知\n\n### 4. 📋 待办（条件触发式）\n- `llama31-vanilla-s123-eval` 完成 → 记录 Vanilla s123 clean SR → 重新提交 `llama31-taxei-s123` + `llama31-random-s123`（这次必须 nohup+disown 防 SIGHUP）\n- LLaMA taxei/random s123 训练完成 → 跑 clean eval → LLaMA 3-seed 数据齐全 → 可以写 cross-model findings\n- LLaMA 3-seed 全部完成 → 汇报 Director：LLaMA 结论 + 是否支持 \"injection penalty 与模型能力负相关\"\n- Scale-up 数据收集完成（PID 266813 结束）→ 检查成功率 → D046 说 9.3% 是统计口径错误，确认修正后实际成功率\n- 3 个 QUEUED dose-response 25% 训练 → GPU 空闲时提交（优先级低于 LLaMA s123 重跑）\n\n### 5. 🎯 战略上下文\n**论文定位**：EMNLP 2026 Findings 8 页长文，**negative result paper**——taxonomy-guided error injection 在 embodied planning 上零收益。\n\n**核心结论链**：\n- D036: 维持 negative framing（25% p=0.029 未过 Bonferroni）\n- D041: Recovery ≈ Resilience（模型\"免疫\"注入错误，不是检测恢复）\n- D043: TaxEI-RP 有害（50.2% < baseline 58.3%）\n- D045: Scope = LLaMA 3-seed + recovery 15/15 + scale-up\n- D046: 撤销 scale-up 暂停（成功率统计口径错误）\n\n**易错点**：\n- LLaMA s42/s0 \"clean eval\" 有些实际是用 `injected_eval.py` 跑的（recovery rate），不是 clean SR。核对时看命令是 `recovery.py` 还是 `injected_eval.py`\n- LLaMA 结果看起来三条件无差异（~74-76%），**这正是论文 story 需要的**：stronger model 对 injection 更 \"免疫\"，taxonomy 标签跨模型零收益\n- 不要把 Qwen dose-response 的 QUEUED 实验优先于 LLaMA s123 重跑——LLaMA 3-seed 是 D045 scope 的关键路径\n- Scale-up 数据 D046 说 9.3% 是错的但还没有新的正确数字，需要等数据收集完才能确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778945214.md"
+}

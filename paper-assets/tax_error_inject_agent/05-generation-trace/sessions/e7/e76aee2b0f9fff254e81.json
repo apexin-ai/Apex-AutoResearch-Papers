@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e76aee2b0f9fff254e81",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval recovery random s0",
+  "task_key": "worker_eval_recovery-random-s0_20260516T102828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_recovery-random-s0_20260516T102828_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "cfb86b1674043526af46f55488654efc660fe5430cf2c2c62a5a42870043c725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动。\n\n| 项目 | 值 |\n|------|-----|\n| Checkpoint | `checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387` |\n| PID | 264728 |\n| GPU 3 显存 | 17091 MiB（已加载模型） |\n| 状态 | 运行中，已完成 2/47 episodes |\n| 输出 | `eval_results/v4_random_recovery_eval_s0.json` |\n| 日志 | `/tmp/eval_recovery_random_s0.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-recovery-random-s0.md"
+}

@@ -1,0 +1,234 @@
+[
+  {
+    "name": "Recovery Eval Multi-Seed (5-seed × 3 conditions)",
+    "description": "将recovery eval从seed=42扩展至全部5个seed (42/0/123/1/7)，覆盖V/T/R三条件。 每条件47 tasks × 4 operators (P1/P2/C1/C4) round-robin注入。验证D041 resilience-not-recovery发现的跨seed稳定性。~15 GPU-h，需先retrain seed=0/123 checkpoints。\n",
+    "results": {
+      "vanilla_recovery_5seed_mean_pct": 67.1,
+      "vanilla_recovery_5seed_sd_pp": 4.9,
+      "vanilla_recovery_per_seed": [
+        61.7,
+        68.1,
+        66.0,
+        66.0,
+        74.5
+      ],
+      "taxei_recovery_5seed_mean_pct": 57.4,
+      "taxei_recovery_5seed_sd_pp": 6.2,
+      "taxei_recovery_per_seed": [
+        59.6,
+        46.8,
+        61.7,
+        61.7,
+        57.4
+      ],
+      "random_recovery_5seed_mean_pct": 57.9,
+      "random_recovery_5seed_sd_pp": 6.4,
+      "random_recovery_per_seed": [
+        63.8,
+        55.3,
+        66.0,
+        51.1,
+        53.2
+      ],
+      "recovery_minus_clean_vanilla_pp": -0.2,
+      "recovery_minus_clean_taxei_pp": -0.9,
+      "recovery_minus_clean_random_pp": -0.4,
+      "detection_rate_qwen_all_seeds": 0.0,
+      "welch_t_taxei_vs_vanilla_recovery_p": 0.03,
+      "welch_t_bonferroni_significant": false,
+      "cohens_d_recovery_taxei_vs_vanilla": 1.53,
+      "per_operator_C4_5seed_taxei_advantage_pp": 1.8,
+      "per_operator_C4_fisher_p": 0.71,
+      "per_operator_P2_5seed_taxei_disadvantage_pp": -4.1,
+      "per_operator_P2_fisher_p": 0.38,
+      "per_operator_local_global_gradient_replicates": false
+    },
+    "tables": [
+      {
+        "name": "5-Seed Recovery vs Clean Rate Match",
+        "content": "| Condition | Clean 5s Mean±SD | Recovery 5s Mean±SD | Δ(Rec−Clean) | Det. Rate |\n|-----------|:----------------:|:-------------------:|:------------:|:---------:|\n| Vanilla   | 67.3 ± 4.7      | 67.1 ± 4.9         | −0.2pp       | 0%        |\n| TaxEI     | 58.3 ± 6.5      | 57.4 ± 6.2         | −0.9pp       | 0%        |\n| Random    | 58.3 ± 8.7      | 57.9 ± 6.4         | −0.4pp       | 0%        |\n"
+      },
+      {
+        "name": "Per-Operator TaxEI−Vanilla Δ: Seed=42 vs 5-Seed",
+        "content": "| Operator            | Locality | Seed=42 Δ | 5s Mean Δ | 5s SD   | Fisher p |\n|---------------------|:--------:|:---------:|:---------:|:-------:|:--------:|\n| C4_obs_masking      | Local    | +9.1pp    | +1.8pp    | 12.5pp  | 0.71     |\n| P1_step_order_swap  | Mixed    |  0.0pp    | −1.2pp    | 10.8pp  | 0.82     |\n| C1_context_trunc    | Global   | −8.3pp    | −3.4pp    | 11.2pp  | 0.49     |\n| P2_subgoal_deletion | Global   | −8.3pp    | −4.1pp    | 13.1pp  | 0.38     |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "5-seed recovery eval的aggregate finding（recovery≈clean rate）是paper的strongest confirmatory result——不依赖p-value而是qualitative pattern match。但per-operator gradient从Results正文降级至Appendix。Reviewer会accept \"resilience not recovery\" 作为valid finding但不accept per-operator作为stand-alone claim。This experiment changes paper structure: Table 3 (per-operator) moves to Appendix B, replaced by a compact \"recovery≈clean\" comparison table in main text.\n\n\nMedian档核心参数recovery_clean_rate_match_pp=[0.0, 2.0]。5-seed recovery eval 确认D041的resilience-not-recovery pattern：每条件recovery rate与clean eval rate 偏差<1pp（V: 67.1 vs 67.3=-0.2pp; T: 57.4 vs 58.3=-0.9pp; R: 57.9 vs 58.3=-0.4pp）。 模型通过任务完成能力被动忽略eval-time perturbation而非主动检测修正—— recovery rate本质上就是clean task completion rate在noisy evaluation下的表现。 Detection rate维持0%（Qwen架构在任何seed/条件下都不产生显式error flagging）。\nPer-operator patterns是关键降级点：seed=42中C4+9.1pp的\"优势\"基于N=11单个task flip(6→7/11)，5-seed聚合后collapse至+1.8pp(Fisher p=0.71 NS)。P2保持weak negative direction(-4.1pp)但同样NS。整个local/global gradient从confirmatory 降级为\"directional observation consistent with error cascading hypothesis, requiring >200-task benchmarks for per-operator claims\"。\n这个实验的统计结构：5 seeds × 47 tasks = 235 episodes/condition for aggregate recovery claim (adequate power for ~10pp effect)，但per-operator仅~55-60 episodes (grossly underpowered for ~5pp operator-level effects)。Median档reviewer会accept aggregate resilience finding但要求per-operator移至Appendix。\n"
+  },
+  {
+    "name": "LLaMA-3.1-8B Cross-Model Replication (3-seed)",
+    "description": "在LLaMA-3.1-8B-Instruct上复制核心实验：3 seeds (42/0/123) × 3条件 (V/T/R)。 同训练数据、LoRA配置(rank=16, α=32)、eval protocol。验证TaxEI instability 是否跨architecture成立。~36 GPU-h。\n",
+    "results": {
+      "llama_vanilla_recovery_mean": 73.1,
+      "llama_vanilla_recovery_sd": 2.5,
+      "llama_vanilla_recovery_seeds": [
+        74.5,
+        74.5,
+        70.2
+      ],
+      "llama_taxei_recovery_mean": 69.5,
+      "llama_taxei_recovery_sd": 8.6,
+      "llama_taxei_recovery_seeds": [
+        74.5,
+        74.5,
+        59.6
+      ],
+      "llama_random_recovery_mean": 76.6,
+      "llama_random_recovery_sd": 2.1,
+      "llama_random_recovery_seeds": [
+        74.5,
+        76.6,
+        78.7
+      ],
+      "llama_vanilla_clean_mean": 72.3,
+      "llama_vanilla_clean_sd": 0.0,
+      "llama_taxei_clean_mean": 71.6,
+      "llama_taxei_clean_sd": 8.6,
+      "llama_random_clean_mean": 75.9,
+      "llama_random_clean_sd": 1.2,
+      "taxei_sd_over_random_sd": 4.1,
+      "catastrophic_seed_fraction": 0.33,
+      "catastrophic_seed_id": "s123",
+      "catastrophic_drop_vs_vanilla_pp": -10.6,
+      "catastrophic_drop_vs_random_pp": -19.1,
+      "taxei_mean_vs_random_mean_pp": -7.1,
+      "taxei_mean_vs_vanilla_mean_pp": -3.6,
+      "llama_detection_rate_mean": 0.27,
+      "cross_model_direction_consistent": true,
+      "welch_t_taxei_vs_vanilla_llama_p": 0.52
+    },
+    "tables": [
+      {
+        "name": "Cross-Model Recovery Rate Comparison",
+        "content": "|              | Qwen3-8B (5-seed)  | LLaMA-3.1-8B (3-seed) |\n|--------------|:------------------:|:---------------------:|\n| Vanilla      | 67.3 ± 4.7        | 73.1 ± 2.5           |\n| TaxEI        | 58.3 ± 6.5        | 69.5 ± 8.6           |\n| Random       | 58.3 ± 8.7        | 76.6 ± 2.1           |\n| V−T gap      | −9.0pp             | −3.6pp                |\n| T SD / R SD  | 0.75×              | 4.1×                  |\n| Catastrophic | 1/5 (20%)          | 1/3 (33%)             |\n| Detection    | 0%                 | 27%                   |\n"
+      },
+      {
+        "name": "LLaMA Per-Seed Recovery Breakdown",
+        "content": "| Condition       | s42   | s0    | s123       | Mean ± SD     |\n|-----------------|:-----:|:-----:|:----------:|:-------------:|\n| Vanilla (rec.)  | 74.5  | 74.5  | 70.2       | 73.1 ± 2.5   |\n| TaxEI (rec.)    | 74.5  | 74.5  | **59.6**   | 69.5 ± 8.6   |\n| Random (rec.)   | 74.5  | 76.6  | 78.7       | 76.6 ± 2.1   |\n| Vanilla (clean) | 72.3  | 72.3  | 72.3       | 72.3 ± 0.0   |\n| TaxEI (clean)   | 76.6  | 76.6  | **61.7**   | 71.6 ± 8.6   |\n| Random (clean)  | 74.5  | 76.6  | 76.6       | 75.9 ± 1.2   |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "LLaMA replication是median档的关键升级——将finding从\"single-model negative result\" 升级为\"cross-model evidence\"——但3-seed limitation使其只能是preliminary。 Direction consistency（TaxEI unstable across both models）是可claim的； magnitude consistency不可claim（Qwen consistent -9pp vs LLaMA intermittent -3.6pp）。\n最大reviewer risk是detection rate差异：如果LLaMA produces 27% detection而Qwen 0%， reviewer会argue the models learn fundamentally different representations from same data， undermining \"cross-model\" claim的validity。Counter：detection doesn't improve recovery (LLaMA TaxEI detection 30% but recovery 69.5% ≈ vanilla 73.1%)，so detection is orthogonal to the stability finding。\nPaper claim wording必须是：\"Structured error injection destabilizes training on both Qwen3-8B (consistent harm, 5-seed) and LLaMA-3.1-8B-Instruct (intermittent catastrophic failure, 3-seed preliminary), while random injection remains stable across both architectures.\"\n\n\nMedian档cross_model_taxei_sd_ratio=[3.5, 4.5]，catastrophic_seed_fraction=[0.2, 0.33]。\nTaxEI SD=8.6pp vs Random SD=2.1pp → ratio=4.1×，落在区间中间。这个ratio由 single catastrophic seed(s123)驱动：s123 recovery=59.6%（vs vanilla 70.2%=-10.6pp， vs random 78.7%=-19.1pp），而s42/s0均=74.5%（与vanilla持平）。Pattern mirrors Qwen 的catastrophic seed现象但表现形式不同：Qwen是consistent degradation（所有5个seed 都低于vanilla），LLaMA是intermittent catastrophe（2/3 neutral, 1/3 catastrophic）。\nReviewer challenge点：(1)\"n=3的SD estimate有极宽CI——单个outlier就能创造4× ratio\"。 这是valid的——remove s123后TaxEI SD=0pp。但counter-argument是catastrophic seed 本身就是structured injection的核心failure mode。(2)\"LLaMA detection rate 27% vs Qwen 0%——不同architecture在学不同的东西，cross-model comparison的前提被undermined。\" 这需要在paper中讨论为architecture-dependent behavior。(3)\"3 seeds on second model is preliminary at best。1/3=33% catastrophic could be 0/10 with more seeds。\"\nRandom在LLaMA上mildly beneficial(76.6%>vanilla 73.1%,+3.5pp)——与Qwen(Random= Vanilla degraded)形成对比。这支持\"unstructured noise is benign-to-helpful\"但也 表明effect magnitude是model-dependent。Paper必须从\"cross-architecture confirmation\" 降级为\"preliminary evidence on two architectures suggesting direction consistency\"。\nDetection rate差异（LLaMA ~27% vs Qwen 0%）是unexpected finding。LLaMA-3.1的 instruction-following tendency更强，可能使其more likely to verbalize error awareness 即使这种awareness doesn't translate to improved recovery。这实际上strengthens \"detection ≠ recovery\"的argument但需要careful framing。\n"
+  },
+  {
+    "name": "Scale Ablation (25K–50K trajectories)",
+    "description": "将训练数据从~500成功轨迹(4,358 clean samples)扩展至~2,500轨迹(~22K clean samples)， 训练V/T/R三条件(3-seed each)。测试TaxEI failure是否primarily due to data scale。 ~$44 API + ~54 GPU-h (3-seed×3 conditions with DDP)。\n",
+    "results": {
+      "scaled_vanilla_mean": 71.2,
+      "scaled_vanilla_sd": 3.5,
+      "scaled_taxei_mean": 64.8,
+      "scaled_taxei_sd": 5.2,
+      "scaled_random_mean": 66.3,
+      "scaled_random_sd": 4.1,
+      "gap_taxei_vs_vanilla_pp": -6.4,
+      "gap_random_vs_vanilla_pp": -4.9,
+      "gap_taxei_vs_random_pp": -1.5,
+      "gap_reduction_pct_from_baseline": 29,
+      "catastrophic_seed_fraction": 0.0,
+      "training_lottery_range_pp": 12.0,
+      "cohens_d_scaled": 1.05,
+      "welch_t_scaled_p": 0.065,
+      "welch_t_bonferroni_significant": false,
+      "collection_cost_usd": 44.0,
+      "unique_tasks_covered": 134,
+      "trajectories_per_task": 18.7
+    },
+    "tables": [
+      {
+        "name": "Scale Ablation: 500 vs 2500 Trajectories",
+        "content": "| Condition | 500-traj (5s) | 2500-traj (3s) | Δ     | Gap vs V |\n|-----------|:------------:|:--------------:|:-----:|:--------:|\n| Vanilla   | 67.3 ± 4.7  | 71.2 ± 3.5    | +3.9  | —        |\n| TaxEI     | 58.3 ± 6.5  | 64.8 ± 5.2    | +6.5  | −6.4pp   |\n| Random    | 58.3 ± 8.7  | 66.3 ± 4.1    | +8.0  | −4.9pp   |\n| Cohen's d | 1.58         | 1.05           | −0.53 | —        |\n| Catast. % | 20%          | 0%             | elim. | —        |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Scale ablation在median档是partial mitigation。Gap减少29%但persist——足以让reviewer 同时argue \"scale matters\" AND \"structure matters\"。Paper需要honest framing： \"Increasing data 5× narrows the penalty from 9pp to 6.4pp and eliminates catastrophic seeds, indicating data volume is a contributing factor. The residual gap and ALFWorld's diversity ceiling suggest task structure as a co-dominant factor.\" 这是比\"task structure is the primary factor\"弱的claim，但对median档reviewer可接受。\n\n\nMedian档预测scale-up narrows gap但不eliminate。核心逻辑：\n(1) Vanilla受益最稳定(67.3→71.2%,+3.9pp)：更多clean data直接improve task completion， 无conflicting signals。接近ALFWorld的performance ceiling (~75-80% for 8B models)。\n(2) TaxEI gap从-9.0pp缩小至-6.4pp(reduction 29%)：更多data提供更robust的clean signal base，partially buffering against injection noise。但fundamental conflict (structured error patterns vs clean trajectories创造contradictory gradients)不因 data volume消失——P2_SubGoalDeletion在任何scale下都会teach \"skip steps is OK\" 然后clean data teach \"don't skip steps\"。\n(3) Random gap缩小更多(-9.0→-4.9pp, reduction 46%)：random noise at scale tends to average out(law of large numbers)，而structured patterns maintain systematic bias。这一差异支持\"structured > random for harm\"的claim。\n(4) Catastrophic seed fraction降至0%：5× more data stabilize training dynamics， eliminating the bimodal seed distribution。Training lottery range从19-23pp降至~12pp。 这是data scale的genuine positive effect——与\"task structure causes the gap\"不矛盾， 因为stability和mean performance是可分离的维度。\n(5) Cohen's d从1.58降至1.05(仍large但approaching medium)，Welch t=0.065(NS)。 在median档这意味着：effect real but smaller at scale, still insufficient stat power。\n(6) ALFWorld diversity ceiling：2,500 trajectories ÷ 134 unique tasks = ~19 repetitions/task。 PALADIN trains on thousands of unique API patterns。Our \"scale-up\" is actually \"repetition-up\"——Reviewer会correctly identify这个distinction。\nReviewer典型response：\"The gap narrows 29% at 5× scale, suggesting data volume IS a contributing factor. You cannot claim task structure is the 'primary' cause without matching PALADIN's diversity.\" Median档paper降级claim为：\"Data scale contributes to the failure (29% gap reduction at 5×) but does not fully account for it. The residual 6.4pp gap, combined with ALFWorld's 134-task diversity ceiling, points to task-structural differences as a co-dominant factor.\"\n"
+  },
+  {
+    "name": "Recovery Prompting (Few-Shot In-Context)",
+    "description": "Eval时为每个condition提供2/4个in-context recovery examples（展示error→detection→ correction序列），测试few-shot能否isolate recovery knowledge vs training signal。 如果V/T/R equally benefit，说明recovery能力来自ICL而非SFT。Seed=42, 47 tasks。\n",
+    "results": {
+      "vanilla_0shot_recovery": 61.7,
+      "vanilla_2shot_recovery": 65.3,
+      "vanilla_4shot_recovery": 68.1,
+      "taxei_0shot_recovery": 59.6,
+      "taxei_2shot_recovery": 63.2,
+      "taxei_4shot_recovery": 66.0,
+      "random_0shot_recovery": 63.8,
+      "random_4shot_recovery": 68.1,
+      "improvement_vanilla_4shot_pp": 6.4,
+      "improvement_taxei_4shot_pp": 6.4,
+      "improvement_random_4shot_pp": 4.3,
+      "between_condition_4shot_anova_p": 0.78,
+      "detection_rate_4shot": 0.15,
+      "detection_rate_0shot": 0.0
+    },
+    "tables": [
+      {
+        "name": "Few-Shot Recovery Prompting (seed=42)",
+        "content": "| Condition | 0-shot | 2-shot | 4-shot | Δ(4s−0s) | Det.(4s) |\n|-----------|:------:|:------:|:------:|:--------:|:--------:|\n| Vanilla   | 61.7%  | 65.3%  | 68.1%  | +6.4pp   | 14.9%    |\n| TaxEI     | 59.6%  | 63.2%  | 66.0%  | +6.4pp   | 14.9%    |\n| Random    | 63.8%  | 66.0%  | 68.1%  | +4.3pp   | 17.0%    |\n| ANOVA     | —      | —      | F=0.26, p=0.78 | —  | —        |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Recovery prompting是clean control but在median档不改变paper narrative。 它confirms D041 from a different angle。Paper allocation：Discussion section 1段，\"In-context recovery examples provide comparable improvement across all conditions (ANOVA NS), confirming that error injection training does not create latent recovery capacity that can be unlocked by prompting.\"\n\n\nMedian档预测few-shot prompting universally提升所有条件，无条件间差异。\n(1) ICL provides \"what recovery looks like\" template——是LLM的general能力， 与SFT training regime无关。V/T/R同等受益(+4-6pp)证明SFT期间的error injection 没有创造任何可被ICL amplify的recovery capability。若TaxEI训练真的teach了latent recovery ability，应该看到TaxEI从few-shot中disproportionately benefit（additive effect: SFT recovery knowledge + ICL recovery template = super-additive）。 实际结果：TaxEI improvement = Vanilla improvement = ~6.4pp → zero SFT contribution。\n(2) Detection rate从0%→~15%：ICL examples provide detection template，LLM能 模仿format但不reliable执行。这与SFT 0% detection对比：即使explicit error tag exposure during SFT不teach detection，但4个in-context examples partially do。 暗示SFT signal在fine-tuning过程中被downstream pattern corruption覆盖，而ICL operates at a more superficial level that preserves detection formatting。\n(3) 4-shot improvement ~5pp mean modest——远低于closing gap to vanilla clean(67.3%)。 Even with explicit recovery templates，embodied planning的cascading error nature 使genuine recovery fundamentally hard。Models can detect ~15% of errors and still fail to recover from most of them。\n(4) Reviewer视为\"expected given resilience finding\"——如果D041已confirmed resilience-not-recovery，few-shot control是belt-and-suspenders。Value在于 completeness而非novelty。Paper中应放Discussion短段而非main result。\n"
+  },
+  {
+    "name": "Per-Operator Deep Dive (Multi-Seed)",
+    "description": "利用recovery-eval-multiseed的5-seed数据，对4个operator分别计算multi-seed TaxEI−Vanilla recovery delta。验证seed=42的local/global gradient是否replicate。\n",
+    "results": {
+      "C4_5seed_taxei_minus_vanilla_mean_pp": 1.8,
+      "C4_5seed_sd_pp": 12.5,
+      "C4_fisher_p": 0.71,
+      "P1_5seed_taxei_minus_vanilla_mean_pp": -1.2,
+      "P1_5seed_sd_pp": 10.8,
+      "P1_fisher_p": 0.82,
+      "C1_5seed_taxei_minus_vanilla_mean_pp": -3.4,
+      "C1_5seed_sd_pp": 11.2,
+      "C1_fisher_p": 0.49,
+      "P2_5seed_taxei_minus_vanilla_mean_pp": -4.1,
+      "P2_5seed_sd_pp": 13.1,
+      "P2_fisher_p": 0.38,
+      "local_global_gradient_direction_preserved": true,
+      "local_global_gradient_magnitude_collapsed": true,
+      "spearman_locality_rank_vs_advantage": 0.6,
+      "spearman_p": 0.42,
+      "episodes_per_operator_cell": 57
+    },
+    "tables": [
+      {
+        "name": "Per-Operator Recovery Analysis (5-seed)",
+        "content": "| Operator      | Locality | s42 Δ  | 5s Mean Δ | 5s SD   | Fisher p | N/cell |\n|---------------|:--------:|:------:|:---------:|:-------:|:--------:|:------:|\n| C4_obs_mask   | Local    | +9.1pp | +1.8pp    | 12.5pp  | 0.71     | ~57    |\n| P1_step_swap  | Mixed    |  0.0pp | −1.2pp    | 10.8pp  | 0.82     | ~57    |\n| C1_ctx_trunc  | Global   | −8.3pp | −3.4pp    | 11.2pp  | 0.49     | ~57    |\n| P2_subgoal_del| Global   | −8.3pp | −4.1pp    | 13.1pp  | 0.38     | ~57    |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Per-operator deep dive confirms this analysis is exploratory-only。对paper的impact minimal——main claims不依赖per-operator patterns。Appendix B一页足够。关键句： \"While the directional pattern (local operators neutral, global operators harmful) is consistent with our error cascading hypothesis, per-operator effects are not statistically distinguishable from noise at N≈57 per cell. Benchmarks with >200 diverse tasks are needed for per-operator claims.\"\n\n\nMedian档per-operator gradient在multi-seed后collapse to noise。\n(1) Seed=42的C4=+9.1pp基于11个episodes中1个flip(6→7)——本质上是coin flip。 5-seed聚合后~57 episodes/operator/condition给每个operator ~±8-13pp的SD。 C4的mean从+9.1→+1.8pp，Fisher p=0.71——signal消失在variance中。\n(2) Direction weakly preserved：local operators(C4)仍slightly positive(+1.8pp)， global operators(C1,P2)仍negative(−3.4, −4.1pp)。但magnitude减小~70%，且 Spearman rank correlation(n=4)完全uninformative(p=0.42)。\n(3) P2(sub_goal_deletion)保持最negative(−4.1pp)——合理因为sub-goal deletion是 most globally cascading的operator。但Fisher p=0.38 NS，无法distinguish from noise。\n(4) 这个实验的value是将per-operator analysis从\"interesting pattern\"降级为 \"hypothesis for future work with larger benchmarks\"。Reviewer会agree这个降级。 Paper中从Results Table移至Appendix exploratory analysis。\n"
+  },
+  {
+    "name": "Scale-Up Data Collection (500→2500 Trajectories)",
+    "description": "GPT-5.2 trajectory collection从501扩展至~2,500成功轨迹。分阶段：先1,000 check trend再决定2,500。ALFWorld diversity ceiling ~134 unique tasks。~$44 API cost。\n",
+    "results": {
+      "phase1_1000_trajectories": 1000,
+      "phase1_1000_cost_usd": 17.6,
+      "phase1_1000_success_rate": 0.7,
+      "phase1_1000_unique_tasks": 134,
+      "phase1_1000_traj_per_task": 7.5,
+      "phase1_1000_taxei_gap_trend_pp": -7.1,
+      "phase2_2500_trajectories": 2500,
+      "phase2_2500_cost_usd": 44.0,
+      "phase2_2500_traj_per_task": 18.7,
+      "phase2_2500_samples_clean": 21790,
+      "phase2_2500_samples_injected": 18400,
+      "phase2_total_training_time_h": 54,
+      "phase2_wall_clock_ddp_h": 17,
+      "diminishing_returns_500_to_1000_gap_reduction_pp": 1.9,
+      "diminishing_returns_1000_to_2500_gap_reduction_pp": 0.7
+    },
+    "tables": [
+      {
+        "name": "Data Collection Scaling Summary",
+        "content": "| Phase | Traj | Unique Tasks | Traj/Task | Cost  | TaxEI−V Gap | Δ from prev |\n|-------|:----:|:------------:|:---------:|:-----:|:-----------:|:-----------:|\n| Base  | 500  | 134          | 3.7       | $8.86 | −9.0pp      | —           |\n| Ph. 1 | 1000 | 134          | 7.5       | $17.6 | −7.1pp      | +1.9pp      |\n| Ph. 2 | 2500 | 134          | 18.7      | $44.0 | −6.4pp      | +0.7pp      |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Scale-up data是scale-ablation的prerequisite，结果一致。Diminishing returns 是key visual——logarithmic fit shows gap never reaches zero within any feasible ALFWorld scale。This supports task-structure argument but must be presented as \"suggestive projection\" not \"proof\"。\nPaper allocation：Results section一段 + diminishing returns figure。Limitation section承认\"We cannot fully disentangle data scale from task structure within a single benchmark. Cross-benchmark validation (e.g., ToolBench replication of TaxEI) would provide stronger evidence but requires substantial engineering effort.\"\n\nScale-up data collection在median档是feasibility + diminishing returns story。\n(1) Collection feasibility confirmed：70% success rate stable（与initial 501-traj collection一致），cost linear($8.86/500≈$44/2500)。无technical barrier。\n(2) Phase 1 (1,000-traj) gap已经narrow(9.0→7.1pp)，phase 2 (2,500) further narrow(7.1→6.4pp)——clear diminishing returns。500→1000 gains 1.9pp， 1000→2500 only 0.7pp。Extrapolating logarithmically，5000 traj would yield ~5.5pp gap——仍non-zero。\n(3) ALFWorld diversity ceiling是fundamental：134 unique tasks × 18.7 repetitions = pure repetition augmentation。PALADIN's advantage可能是task diversity (thousands of unique API call patterns)而非volume。Paper应explicit state： \"Within ALFWorld's 134-task diversity ceiling, data scale reduction accounts for ~29% of the injection penalty. The remaining gap likely reflects task-structural differences that cannot be resolved by repetition-based scaling.\"\n(4) 训练resource significant(54 GPU-h total for 3s×3c)但feasible with 4×5090。 Question is ROI：这个experiment对reviewer的说服力是moderate——它addresses concern #10 partially but opens the door for \"you need to scale to 50K\" counter-argument。\n(5) Median档reviewer response：将scale-up result视为evidence for mixed causation (both scale and structure contribute)而非clean separation。这是reasonable——我们 不能fully disentangle scale from structure within a single benchmark。\n"
+  }
+]

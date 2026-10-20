@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cdcfd3760bd0d78d68e",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "gpu check autodl 5090",
+  "task_key": "worker_gpu-check_autodl-5090_20260515T210838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu-check_autodl-5090_20260515T210838_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "b8651d9966bb2f24558277598bc67ce0578f1551fd731b4053f48b1fab5206a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用情况 (autodl-5090)\n\n### 1. GPU 利用率与显存\n\n| GPU | 型号 | 利用率 | 显存占用 | 状态 |\n|-----|------|--------|----------|------|\n| cuda:0 | RTX 5090 | 82% | 17,091 / 32,607 MiB | **忙** |\n| cuda:1 | RTX 5090 | 82% | 17,091 / 32,607 MiB | **忙** |\n| cuda:2 | RTX 5090 | 0% | 0 / 32,607 MiB | **空闲** |\n| cuda:3 | RTX 5090 | 93% | 19,199 / 32,607 MiB | **忙** |\n\n### 2. 活跃进程\n\n| GPU | PID | 任务 | 显存 |\n|-----|-----|------|------|\n| cuda:0 | 197560 | `eval/recovery.py` — v4_taxei_fixed_inject10_s7 评估 (47 episodes) | 17,082 MiB |\n| cuda:1 | 198050 | `eval/recovery.py` — v4_random_fixed_inject10_s1 评估 (47 episodes) | 17,082 MiB |\n| cuda:3 | 196760 | `swift sft` — v4_random_fixed_inject10_s7 训练 (Qwen3-8B) | 19,190 MiB |\n\n另有后台进程 `gen_recovery_paired.py` 在运行（无 GPU 占用）。\n\n### 3. 空闲 GPU\n\n**cuda:2** — 完全空闲，无进程、无显存占用。\n\n### 4. tmux sessions\n\n| Session | 创建时间 |\n|---------|----------|\n| `v4-random-fixed-inject10-s1-eval` | 05:05 |\n| `v4-random-fixed-inject10-s7` | 04:54 |\n| `v4-taxei-fixed-inject10-s7-eval` | 05:02 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-check-autodl-5090.md"
+}

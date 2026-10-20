@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "171a93df8282c895ac4c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "submit d022 final gpu23",
+  "task_key": "worker_submit_d022-final-gpu23_20260515T104143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d022-final-gpu23_20260515T104143_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "335ccc329f71de73afd1d3cb9b74fe1709ad399a915dbfe1e5ec0b52647ba0dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：\n- **步骤 1-2** ✅ TaxEI eval 结果已读取、registry 已更新\n- **步骤 3** ✅ Random inject50 eval 已提交（PID 140731/140871 on cuda:2/3）\n- **步骤 4** ⏳ 等待 Random eval 完成（预计 ~10min），4.5 分钟后第一次轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d022-final-gpu23.md"
+}

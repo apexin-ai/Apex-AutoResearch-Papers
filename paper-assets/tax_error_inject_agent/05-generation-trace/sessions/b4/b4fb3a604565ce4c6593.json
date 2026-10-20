@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b4fb3a604565ce4c6593",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval v4 taxei fixed inject50 eval",
+  "task_key": "worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509.log",
+    "occurrence": 1,
+    "bytes": 574875,
+    "sha256": "9fd89c2b8d7cd56c07940ddb78cbdcb5f53a430a820c57f9fbef9ee65ef70578"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 42,
+      "tool_call": 145,
+      "tool_result": 145,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "b4fb3a604565ce4c6593-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b4fb3a604565ce4c6593-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-v4-taxei-fixed-inject50-eval.md"
+}

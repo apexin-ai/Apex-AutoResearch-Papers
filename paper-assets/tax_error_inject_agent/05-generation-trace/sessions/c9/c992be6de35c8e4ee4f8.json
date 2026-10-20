@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c992be6de35c8e4ee4f8",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fix multiseed add seed123",
+  "task_key": "worker_code_fix-multiseed-add-seed123_20260515T005257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-multiseed-add-seed123_20260515T005257_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "82849b939985d4db13d1bc19ef06e4cf9c113a87e1d6bb1cc33aa947514b4eae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个脚本已修改并重跑成功。\n\n## 结果汇总\n\n| Method | Seeds | Mean | SD |\n|--------|-------|------|-----|\n| Vanilla | 3 | **65.3%** | 3.3% |\n| TaxEI | 3 | **56.7%** | 8.6% |\n| Random | 3 | **63.1%** | 6.9% |\n\n与预期完全一致。\n\n### 关键变化（vs 之前 2-seed 分析）\n\n| 指标 | 之前 (2-seed) | 现在 (3-seed) |\n|------|------|------|\n| TaxEI vs Vanilla pooled Δ | -10.6% (p=0.0483) | **-8.5% (p=0.0756)** |\n| TaxEI vs Random pooled Δ | -6.4% (p=0.1786) | -6.4% (p=0.1790) |\n| Variance ratio TaxEI/Vanilla | 3.3x | **7.0x** |\n\nPermutation test p 值变化：加入 seed=123 后 TaxEI vs Vanilla 的 pooled 比较从 p=0.0483（刚好显著）变为 p=0.0756（不显著），因为 seed=123 的 TaxEI (61.7%) 接近 Vanilla (66.0%)，拉高了 TaxEI 均值。方差比从 3.3x 升至 7.0x，因为 TaxEI 在 seed=0 的异常低值(46.8%)在 3 个数据点中更突出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-multiseed-add-seed123.md"
+}

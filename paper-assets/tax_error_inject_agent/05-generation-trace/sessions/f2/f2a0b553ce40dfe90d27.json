@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a0b553ce40dfe90d27",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260515T033017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260515T033017_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "f39db5d92805c6c373d5e02e56b0494c6a2658e027201e7979531c9b3b980414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 篇已追加到 `literature_map.yaml` 的 `alfworld-methods` category：\n\n| ID | 标题 | 作者 | Venue | arXiv |\n|---|---|---|---|---|\n| `shridhar2021alfworld` | ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | Shridhar, Yuan, Côté, Bisk, Trischler, Hausknecht | ICLR 2021 | 2010.03768 |\n| `yao2023react` | ReAct: Synergizing Reasoning and Acting in Language Models | Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao | ICLR 2023 | 2210.03629 |\n| `shinn2023reflexion` | Reflexion: Language Agents with Verbal Reinforcement Learning | Shinn, Cassano, Berman, Gopinath, Narasimhan, Yao | NeurIPS 2023 | 2303.11366 |\n| `kim2025coex` | CoEx -- Co-evolving World-model and Exploration | Kim, Hwang | Findings of EMNLP 2025 | 2507.22281 |\n\nCoEx 确认只有 2 位作者（Minsoo Kim, Seung-won Hwang），venue 为 Findings of EMNLP 2025，93.28% 数字与 ACL Anthology 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-3.md"
+}

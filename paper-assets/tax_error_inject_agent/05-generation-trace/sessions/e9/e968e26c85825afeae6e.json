@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e968e26c85825afeae6e",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis vanilla per operator",
+  "task_key": "worker_analysis_vanilla-per-operator_20260515T032830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_vanilla-per-operator_20260515T032830_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "fc76e82d4867476bb04da8f664046dbbbd4daa18f393e6563092418a3528769a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated, artifact registered.\n\n**结果总结：**\n\nVanilla per-operator recovery (seed=42):\n- C1: 75.0% (9/12) — 最高，context truncation 容忍度好\n- C4: 54.5% (6/11)\n- P1: 58.3% (7/12)\n- P2: 58.3% (7/12)\n\n**Fig 2 delta 验证：4 个中 3 个有误。** 只有 P2 (-8.3 vs claimed -8.4) 基本正确。C4 实际 +9.1 (claimed +6.1)，C1 实际 -8.3 (claimed -5.6)，P1 实际 0.0 (claimed -2.7)。方向大致对（C4 唯一正 delta），但数值和 P1 方向需要修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-vanilla-per-operator.md"
+}

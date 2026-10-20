@@ -1,0 +1,1 @@
+{"experiment":"v4-taxei-fixed-inject50-eval","result":"24/47 = 51.1%","baseline_vanilla":"61.7%","delta_vs_baseline":"-10.6pp","dose_response_curve":{"0%":"61.7%","10%":"61.7%","25%":"48.9%","50%":"51.1%"},"conclusion":"50% injection plateau: roughly same degradation as 25%. Threshold effect at ~25% injection, not linear."}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e6197cf014d222c715",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval vanilla s123 injected urgent",
+  "task_key": "worker_eval_vanilla-s123-injected-urgent_20260516T144807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-s123-injected-urgent_20260516T144807_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "2d591e584341c8a8dfdfa0428322c3ef0c0a565ff1085680192fc3fba3c3b19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 正被另一个 eval（PID 287821, llama31-random-s0 clean eval）占用，约还需 18 分钟完成。已设置 3 分钟后自动轮询，完成后立即启动 injected eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s123-injected-urgent.md"
+}

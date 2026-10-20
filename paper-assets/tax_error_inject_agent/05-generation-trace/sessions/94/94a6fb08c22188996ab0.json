@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94a6fb08c22188996ab0",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analyze v4 random seed7 eval",
+  "task_key": "worker_analyze_v4-random-seed7-eval_20260515T174232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_v4-random-seed7-eval_20260515T174232_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "dd18cc190ed10e73afd2370e5618501f76d3b95975998924b499275de0567210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n**v4-random-seed7-eval**: 26/47 = **55.3%**，conclusion=success，status=DONE。\n\n### Random condition 5-seed 汇总\n\n| seed | success_rate |\n|------|-------------|\n| 42 | 66.0% |\n| 0 | 55.3% |\n| 123 | 68.1% |\n| 1 | 46.8% |\n| **7** | **55.3%** |\n\n5-seed 均值：**(66.0 + 55.3 + 68.1 + 46.8 + 55.3) / 5 = 58.3%**，标准差 ≈ **8.4%**。\n\nseed=7 的 55.3% 与 seed=0 完全一致，处于中等偏低水平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-v4-random-seed7-eval.md"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "v4-taxei-fixed-inject50-s123",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:37:02.779Z",
+    "updated_at": "2026-05-16T16:26:15.019Z",
+    "hypothesis": "D022 multi-seed dose-response: TaxEI 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 51.1%。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --output_dir checkpoints/v4_taxei_fixed_inject50_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "127437",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50-s123.log",
+      "submitted_at": "2026-05-15T07:37:29.012Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.4348,
+      "train_duration_min": 52.9,
+      "train_steps": 1635,
+      "train_epochs": 3,
+      "data_count": 4358
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:15.328160+00:00",
+  "trigger": "update_registry"
+}

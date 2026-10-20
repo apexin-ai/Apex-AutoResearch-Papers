@@ -1,0 +1,50 @@
+{
+  "exp_id": "v4-random-fixed-inject25-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:28:36.999Z",
+    "updated_at": "2026-05-16T16:28:54.756Z",
+    "spec": {
+      "command": "legacy",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "139943",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s123-eval.log",
+      "submitted_at": "2026-05-15T10:31:06.664Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "legacy",
+      "data_count": 1,
+      "model_name": "legacy",
+      "seed": 0,
+      "wall_clock_seconds": 107868.1,
+      "gpu_hours": 29.96
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.511,
+      "total": 47,
+      "successes": 24,
+      "by_task": {
+        "look_at_obj_in_light": 0.667,
+        "pick_and_place_simple": 0.375,
+        "pick_clean_then_place_in_recep": 0.545,
+        "pick_cool_then_place_in_recep": 0.143,
+        "pick_heat_then_place_in_recep": 0.75,
+        "pick_two_obj_and_place": 0.571
+      }
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked",
+    "completed_at": "2026-05-16T16:28:54.756Z"
+  },
+  "timestamp": "2026-05-16T16:28:55.042204+00:00",
+  "trigger": "update_registry"
+}

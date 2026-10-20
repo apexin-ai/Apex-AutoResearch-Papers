@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f290872c76aca4a4251",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "monitor gpu status and pending evals",
+  "task_key": "worker_monitor_gpu-status-and-pending-evals_20260516T145422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu-status-and-pending-evals_20260516T145422_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "ba6d7634992059eb2df36b91ebda173823ca0a0c4eba3da69a1bf53d53b82b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 状态\n\n| GPU | 状态 | PID | 进程 | 显存 |\n|-----|------|-----|------|------|\n| 0 | **空闲** | - | - | 0 MiB |\n| 1 | 运行中 | 290182 | `eval/injected_eval.py` vanilla-s123 injected | 16,828 MiB |\n| 2 | 运行中 | 277781 | swift sft llama31-taxei-s123 | 31,950 MiB |\n| 3 | 运行中 | 277973 | swift sft llama31-random-s123 | 31,950 MiB |\n\n### Clean Eval 结果（已完成，已注册 registry）\n\n| 实验 | success_rate | episodes |\n|------|-------------|----------|\n| llama31-taxei-s42-clean | **0.766** | 47 |\n| llama31-random-s0-clean | **0.745** | 47 |\n| llama31-vanilla-s123-clean | **0.723** | 47 |\n\n### Scale-up 数据收集（PID 266813 已结束）\n\n产出在 `data/trajectories_scaleup_p1/`：\n- `successful_trajectories.jsonl`: 797 条\n- `failed_trajectories.jsonl`: 2,736 条\n\n### Vanilla s123 injected eval\n\n已有另一个 worker 在 cuda:1 启动了正确的命令（PID 290182，运行 2.5 分钟）：\n```\npython eval/injected_eval.py --model_path output/llama31-vanilla-s123/v0-20260516-205231/checkpoint-1635 \\\n  --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --model_variant vanilla --num_episodes 47 --seed 123 \\\n  --output eval_results/llama31_vanilla_s123_injected.json\n```\n\n注意：我之前尝试用 `recovery.py --adapter` 启动失败（参数名不对），但没有影响——因为已有进程在跑。我的错误启动覆盖了 `.log` 文件，但 eval 进程本身正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-status-and-pending-evals.md"
+}

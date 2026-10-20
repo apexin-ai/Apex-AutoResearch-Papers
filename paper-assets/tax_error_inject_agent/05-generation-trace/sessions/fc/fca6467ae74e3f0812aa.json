@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fca6467ae74e3f0812aa",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval s123 taxei random training and eval",
+  "task_key": "worker_eval_s123-taxei-random-training-and-eval_20260516T145033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s123-taxei-random-training-and-eval_20260516T145033.log",
+    "occurrence": 1,
+    "bytes": 473815,
+    "sha256": "82379f199e0d73d095654fa3724a547d9fcc7768f48a8e113ff9dfc244fda67c"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "fca6467ae74e3f0812aa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fca6467ae74e3f0812aa-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-s123-taxei-random-training-and-eval.md"
+}

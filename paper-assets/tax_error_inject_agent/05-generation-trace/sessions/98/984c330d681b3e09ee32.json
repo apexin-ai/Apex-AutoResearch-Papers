@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984c330d681b3e09ee32",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code injection pipeline",
+  "task_key": "worker_code_injection-pipeline_20260514T064609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_injection-pipeline_20260514T064609_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "a4031dace807da042737c6aadee9ee6da9644c6def2c2d3f5298c5d364563e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. Qwen3-8B 下载状态：**已完成**\n- 路径：`/root/autodl-tmp/models/Qwen/Qwen3-8B/`\n- 5 个 safetensors 分片全部就位（共 ~15.2GB）\n- 日志确认：`Download model 'Qwen/Qwen3-8B' successfully.`\n\n### 2. Qwen3-32B 下载状态：**已完成（AWQ 量化版）**\n- 路径：`/root/autodl-tmp/models/Qwen/Qwen3-32B-AWQ/`\n- 日志确认：`Download model 'Qwen/Qwen3-32B-AWQ' successfully.`\n- 注意：下载的是 AWQ 量化版本而非原始精度\n\n### 3. inject_and_generate.py 实现概要\n- **InjectionPipeline** 核心类，集成 4 个注入算子（P1/P2/C1/C4），均匀分配变体数\n- 对每条成功轨迹：选注入点 → 截取 history prefix → 调用算子生成 corrupted history → 构建 recovery prompt → 调 GPT-5.2 生成恢复示范\n- 自动处理 `observation`/`text_obs` 键名映射（兼容 C4 算子）\n- `--dry_run` 模式跳过 API 调用，只生成注入变体\n- 多线程 API 并发 + CostTracker 记账 + JSONL 输出\n\n### 4. 语法检查：**通过**\n- `py_compile` 通过\n- `--help` 正常输出\n- dry-run 20 条变体：16 成功 / 4 失败（短轨迹注入点不足），4 算子各 4 条，分布均匀"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-injection-pipeline.md"
+}

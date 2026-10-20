@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9e9e1f4c0abfdd104f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "data v4 aligned data prep",
+  "task_key": "worker_data_v4-aligned-data-prep_20260514T112906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_v4-aligned-data-prep_20260514T112906_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "a3ce874cb3b315ccc8014a45bda7bb3acb14509f845d7aaa76703d8bfb332b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 汇报\n\n**样本数**：\n| 数据集 | 样本数 |\n|--------|--------|\n| sft_taxei_v4 | 9029 (clean 4358 + injected 4671) |\n| sft_random_v4 | 9029 (clean 4358 + injected 4671) |\n| sft_vanilla_v4 | 4358 (纯 clean) |\n\nTaxEI 和 Random **完全相等**——760 条注入轨迹展开为 4671 个 step-level 样本，其中 760 个含 error tag。\n\n**Prompt 差异对比**（唯一区别）：\n- TaxEI: `Your current observation is: [Error Type: P1_StepOrderSwap]\\nYou arrive at microwave 1...`\n- Random: `Your current observation is: [Error occurred]\\nYou arrive at microwave 1...`\n\nClean 部分（前 4358 条）两组完全相同，0 差异。\n\n**数据路径**：`/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/`\n- `sft_taxei_v4.jsonl`\n- `sft_random_v4.jsonl`\n- `sft_vanilla_v4.jsonl`\n\n生成脚本：`data/convert_all_v4.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-v4-aligned-data-prep.md"
+}

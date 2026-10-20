@@ -1,0 +1,1452 @@
+{
+  "schema_version": "1.0",
+  "id": "fba8399dbddf2b1b3c36",
+  "project": "tax_error_inject_agent",
+  "kind": "conversation",
+  "title": "ops recovery eval multiseed prep",
+  "task_key": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_recovery-eval-multiseed-prep_20260516T023021.jsonl",
+    "occurrence": 1,
+    "bytes": 59545,
+    "sha256": "e6419fdd7e57e66be87a974d67057ac76736f19b4f84be3c76ebd874cabe0fa8"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T02:33:08.005448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T02:33:08.005826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T02:33:08.006026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/tax_error_inject_agent -name \"*recovery*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T02:33:08.006162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T02:33:08.006307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/recovery_paired.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/sft_recovery_continuation.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/eval/recovery.py\\\\n/root/autodl-tmp/tax_error_inject_agent/eval/__pycache__/recovery.cpython-312.pyc\\\\n/root/autodl-tmp/tax_error_inject_agent/eval/recovery.py.bak\\\\n/root/autodl-tmp/tax_error_inject_agent/scripts/gen_recovery_paired.py\\\\n/root/autodl-tmp/tax_error_inject_agent/scripts/prepare_recovery_paired_data.py\\\\n/root/autodl-tmp/tax_error_inject_agent/scripts/run_recovery_paired_sft.sh\\\\n/root/autodl-tmp/tax_error_inject_agent/scripts/convert_recovery_paired_to_sft.py\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/gate2_recovery_quality.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/dryrun_recovery.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_r2.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s0.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s123.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s123.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s0.json\\\\n/root/autodl-tmp/tax_error_inject_agent/logs/recovery_paired_gen.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T02:33:08.006455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 164\\\\ndrwxr-xr-x  3 root root  4096 May 16 10:03 .\\\\ndrwxr-xr-x 16 root root  4096 May 15 23:38 ..\\\\ndrwxr-xr-x  2 root root    55 May 15 02:29 __pycache__\\\\n-rw-r--r--  1 root root  3470 May 16 00:54 _patch_forward.py\\\\n-rw-r--r--  1 root root  8764 May 14 21:30 analyze_gate3.py\\\\n-rw-r--r--  1 root root  8075 May 15 08:53 analyze_multiseed.py\\\\n-rw-r--r--  1 root root  8065 May 15 08:53 analyze_multiseed.py.bak\\\\n-rw-r--r--  1 root root  1774 May 16 10:03 convert_recovery_paired_to_sft.py\\\\n-rw-r--r--  1 root root 11751 May 15 21:03 failure_analysis.py\\\\n-rw-r--r--  1 root root 18502 May 15 21:04 gen_recovery_paired.py\\\\n-rw-r--r--  1 root root  6605 May 15 22:53 plot_training_dynamics.py\\\\n-rw-r--r--  1 root root  2536 May 15 05:51 prepare_ablation_data.py\\\\n-rw-r--r--  1 root root  2467 May 15 06:03 prepare_fixed_ablation_data.py\\\\n-rw-r--r--  1 root root  8250 May 16 00:56 prepare_recovery_paired_data.py\\\\n-rwxr-xr-x  1 root root  3358 May 15 01:44 run_injected_eval.sh\\\\n-rwxr-xr-x  1 root root  2453 May 15 02:25 run_multiseed_eval.sh\\\\n-rwxr-xr-x  1 root root  2684 May 16 00:56 run_recovery_paired_sft.sh\\\\n-rwxr-xr-x  1 root root  3099 May 15 23:41 run_training_dynamics.sh\\\\n-rwxr-xr-x  1 root root  3221 May 16 00:56 run_training_dynamics_v2.sh\\\\n-rwxr-xr-x  1 root root  3445 May 14 19:24 run_v3_eval.sh\\\\n-rwxr-xr-x  1 root root  2292 May 14 22:29 run_v4_eval.sh\\\\n-rw-r--r--  1 root root  9573 May 16 00:55 training_dynamics_forward.py\\\\n-rw-r--r--  1 root root  8932 May 16 00:51 training_dynamics_forward.py.bak\\\\n-rw-r--r--  1 root root  1183 May 14 20:24 verify_gate1.py\\\\n-rw-r--r--  1 root root  3478 May 14 20:24 verify_gate2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T02:33:08.006622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -d /root/autodl-tmp/tax_error_inject_agent/output/*/checkpoint-*",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T02:33:08.006761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/tax_error_inject_agent/output/*/checkpoint-*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T02:33:08.006882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T02:33:08.007031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 92\\\\ndrwxr-xr-x  3 root root   164 May 15 02:23 .\\\\ndrwxr-xr-x 16 root root  4096 May 15 23:38 ..\\\\n-rw-r--r--  1 root root     0 May 14 13:15 __init__.py\\\\ndrwxr-xr-x  2 root root   123 May 15 02:30 __pycache__\\\\n-rw-r--r--  1 root root 17309 May 14 17:00 eval_tasks_47.json\\\\n-rw-r--r--  1 root root 17616 May 15 01:56 injected_eval.py\\\\n-rw-r--r--  1 root root 25991 May 15 02:30 recovery.py\\\\n-rw-r--r--  1 root root 20122 May 15 02:23 recovery.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T02:33:08.007183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -100 /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T02:33:08.007361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"TaxEI Recovery Evaluation — evaluate injection recovery and baseline success.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport copy\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom datetime import datetime, timezone\\\\nfrom difflib import SequenceMatcher\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import chi2\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom peft import PeftModel\\\\n\\\\nimport textworld\\\\nimport textworld.gym\\\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\\\n\\\\nPROJECT_ROOT = Path(__file__).resolve().parent.parent\\\\nsys.path.insert(0, str(PROJECT_ROOT))\\\\n\\\\nfrom injection import (\\\\n    P1_StepOrderSwap,\\\\n    P2_SubGoalDeletion,\\\\n    C1_ContextTruncation,\\\\n    C4_ObservationMasking,\\\\n)\\\\n\\\\nMAX_STEPS = 50\\\\nHISTORY_WINDOW = 10\\\\n\\\\nOPERATORS = [\\\\n    P1_StepOrderSwap(),\\\\n    P2_SubGoalDeletion(),\\\\n    C1_ContextTruncation(),\\\\n    C4_ObservationMasking(),\\\\n]\\\\n\\\\nOPERATOR_CONFIGS = {\\\\n    \\\\\\\"P1_step_order_swap\\\\\\\": {\\\\\\\"swap_range\\\\\\\": 5},\\\\n    \\\\\\\"P2_sub_goal_deletion\\\\\\\": {\\\\\\\"deletion_strategy\\\\\\\": \\\\\\\"critical\\\\\\\"},\\\\n    \\\\\\\"C1_context_truncation\\\\\\\": {\\\\\\\"truncation_ratio\\\\\\\": 0.5},\\\\n    \\\\\\\"C4_observation_masking\\\\\\\": {\\\\\\\"mask_type\\\\\\\": \\\\\\\"generic\\\\\\\", \\\\\\\"max_masks\\\\\\\": 2},\\\\n}\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompt (identical to collect_trajectories.py)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef build_prompt(\\\\n    task_desc: str,\\\\n    step_count: int,\\\\n    history: List[Dict[str, str]],\\\\n    current_obs: str,\\\\n    admissible_commands: List[str],\\\\n) -> str:\\\\n    history_str =\n…[truncated 1721 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T02:33:08.007516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/tax_error_inject_agent -name \"checkpoint-*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T02:33:08.007740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-65\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-130\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-18\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-36\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v2/v0-20260514-185327/checkpoint-66\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v2/v0-20260514-185441/checkpoint-19\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v2/v0-20260514-185441/checkpoint-38\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-522\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1044\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v3/v0-20260514-191326/checkpoint-944\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v3/v0-20260514-191326/checkpoint-1888\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v3/v0-20260514-191326/checkpoint-2832\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v3/v0-20260514-191328/checkpoint-1135\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v3/v0-20260514-191328/checkpoint-2270\\\\n/root/autodl-tmp/tax_error_inject_agent/che\n…[truncated 6348 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T02:33:08.007894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T02:33:08.008058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4720\\\\ndrwxr-xr-x  2 root root   4096 May 16 09:28 .\\\\ndrwxr-xr-x 16 root root   4096 May 15 23:38 ..\\\\n-rw-r--r--  1 root root    917 May 14 19:22 adapter_test.json\\\\n-rw-r--r--  1 root root   1205 May 15 01:45 dryrun_injected_vanilla.json\\\\n-rw-r--r--  1 root root  15790 May 15 01:57 dryrun_recovery.json\\\\n-rw-r--r--  1 root root  23302 May 15 21:03 failure_analysis.json\\\\n-rw-r--r--  1 root root    563 May 14 20:24 gate1_injection_validity.json\\\\n-rw-r--r--  1 root root  36732 May 14 20:24 gate2_recovery_quality.json\\\\n-rw-r--r--  1 root root   4984 May 15 01:30 gate3_judgment.json\\\\n-rw-r--r--  1 root root  14459 May 14 18:42 mini_taxei_clean.json\\\\n-rw-r--r--  1 root root  14483 May 14 18:35 mini_vanilla_clean.json\\\\n-rw-r--r--  1 root root   1170 May 14 19:22 pipeline_test.json\\\\n-rw-r--r--  1 root root  15856 May 16 07:33 results.json\\\\n-rw-r--r--  1 root root  14460 May 14 21:35 v3_random.json\\\\n-rw-r--r--  1 root root  14451 May 14 21:43 v3_taxei.json\\\\n-rw-r--r--  1 root root  14490 May 14 20:38 v3_vanilla.json\\\\n-rw-r--r--  1 root root  14450 May 15 00:36 v4_random_eval.json\\\\n-rw-r--r--  1 root root  15886 May 15 09:42 v4_random_fixed_inject10_eval.json\\\\n-rw-r--r--  1 root root  15849 May 16 04:50 v4_random_fixed_inject10_s0_eval.json\\\\n-rw-r--r--  1 root root  15857 May 16 03:18 v4_random_fixed_inject10_s123_eval.json\\\\n-rw-r--r--  1 root root  15849 May 16 05:21 v4_random_fixed_inject10_s1_eval.json\\\\n-rw-r--r--  1 root root  15853 May 16 06:11 v4_random_fixed_inject10_s7_eval.json\\\\n-rw-r--r--  1 root root  15891 May 15 09:56 v4_random_fixed_inject25_eval.json\\\\n-rw-r--r--  1 root root  15854 May 15 18:40 v4_random_fixed_inject25_s0_eval.json\\\\n-rw-r--r--  1 root root  15864 May 15 18:39 v4_random_fixed_inject25_s123_eval.json\\\\n-rw-r--r--  1 root root  15857 May 16 07:28 v4_random_fixed_inject25_s7_eval.json\\\\n-rw-r--r--  1 root root  15890 May 15 09:55 v4_random_fixed_inject50_eval.json\\\n…[truncated 3544 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T02:33:08.008197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/tax_error_inject_agent/scripts/run_v4_eval.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T02:33:08.008361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# v4 taxei / random eval 启动脚本\\\\n# 用法: bash scripts/run_v4_eval.sh [taxei|random|both]\\\\nset -e\\\\n\\\\ncd /root/autodl-tmp/tax_error_inject_agent\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nBASEM=/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\nmkdir -p eval_results\\\\n\\\\n# 在指定 checkpoint 目录下找最新 run 的最大 step checkpoint\\\\nfind_final_ckpt() {\\\\n    local ckpt_root=$1\\\\n    # 最新 run（按目录名排序取最后）\\\\n    local latest_run\\\\n    latest_run=$(ls -dt \\\\\\\"$ckpt_root\\\\\\\"/v*-*/ 2>/dev/null | head -1)\\\\n    if [ -z \\\\\\\"$latest_run\\\\\\\" ]; then\\\\n        echo \\\\\\\"ERROR: no run dir in $ckpt_root\\\\\\\" >&2; return 1\\\\n    fi\\\\n    # 最大 step checkpoint\\\\n    local final\\\\n    final=$(ls -d \\\\\\\"$latest_run\\\\\\\"/checkpoint-* 2>/dev/null | sort -V | tail -1)\\\\n    if [ -z \\\\\\\"$final\\\\\\\" ]; then\\\\n        echo \\\\\\\"ERROR: no checkpoint in $latest_run\\\\\\\" >&2; return 1\\\\n    fi\\\\n    # 确认 adapter_config.json 存在\\\\n    if [ ! -f \\\\\\\"$final/adapter_config.json\\\\\\\" ]; then\\\\n        echo \\\\\\\"ERROR: $final missing adapter_config.json\\\\\\\" >&2; return 1\\\\n    fi\\\\n    echo \\\\\\\"$final\\\\\\\"\\\\n}\\\\n\\\\nrun_taxei() {\\\\n    local ckpt\\\\n    ckpt=$(find_final_ckpt checkpoints/mini_taxei_sft_v4)\\\\n    echo \\\\\\\"[taxei] checkpoint: $ckpt\\\\\\\"\\\\n    CUDA_VISIBLE_DEVICES=0 python eval/recovery.py \\\\\\\\\\\\n        --model_path \\\\\\\"$ckpt\\\\\\\" \\\\\\\\\\\\n        --base_model \\\\\\\"$BASEM\\\\\\\" \\\\\\\\\\\\n        --no_inject \\\\\\\\\\\\n        --output eval_results/v4_taxei_eval.json \\\\\\\\\\\\n        --device cuda:0\\\\n}\\\\n\\\\nrun_random() {\\\\n    local ckpt\\\\n    ckpt=$(find_final_ckpt checkpoints/mini_random_sft_v4)\\\\n    echo \\\\\\\"[random] checkpoint: $ckpt\\\\\\\"\\\\n    CUDA_VISIBLE_DEVICES=1 python eval/recovery.py \\\\\\\\\\\\n        --model_path \\\\\\\"$ckpt\\\\\\\" \\\\\\\\\\\\n        --base_model \\\\\\\"$BASEM\\\\\\\" \\\\\\\\\\\\n        --no_inject \\\\\\\\\\\\n        --output eval_results/v4_random_eval.json \\\\\\\\\\\\n        --device cuda:0\\\\n}\\\\n\\\\ncase \\\\\\\"${1:-both}\\\\\\\" in\\\\n    ta\n…[truncated 696 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T02:33:08.008519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T02:33:08.008682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 64568\\\\ndrwxr-xr-x  2 root root      116 May 16 10:03 .\\\\ndrwxr-xr-x 15 root root     4096 May 16 07:02 ..\\\\n-rw-r--r--  1 root root 21768756 May 16 07:02 recovery_paired.jsonl\\\\n-rw-r--r--  1 root root 13359683 May 16 10:03 sft_recovery_continuation.jsonl\\\\n-rw-r--r--  1 root root 30979328 May 16 10:03 sft_taxei_rp.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T02:33:08.008850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"argparse\\|add_argument\\|parse_args\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T02:33:08.008977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T02:33:08.009101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/tax_error_inject_agent/scripts/run_multiseed_eval.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T02:33:08.009271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Multi-seed eval 批量脚本\\\\n# 用法: bash scripts/run_multiseed_eval.sh <model_type> [gpu_id]\\\\n# 例:   bash scripts/run_multiseed_eval.sh vanilla 0\\\\n#       bash scripts/run_multiseed_eval.sh taxei 1\\\\nset -e\\\\n\\\\ncd /root/autodl-tmp/tax_error_inject_agent\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nMODEL_TYPE=${1:?Usage: bash scripts/run_multiseed_eval.sh <vanilla|taxei|random> [gpu_id]}\\\\nGPU_ID=${2:-0}\\\\nBASEM=/root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n\\\\nmkdir -p eval_results\\\\n\\\\nfind_final_ckpt() {\\\\n    local ckpt_root=$1\\\\n    local latest_run\\\\n    latest_run=$(ls -dt \\\\\\\"$ckpt_root\\\\\\\"/v*-*/ 2>/dev/null | head -1)\\\\n    if [ -z \\\\\\\"$latest_run\\\\\\\" ]; then\\\\n        return 1\\\\n    fi\\\\n    local final\\\\n    final=$(ls -d \\\\\\\"$latest_run\\\\\\\"/checkpoint-* 2>/dev/null | sort -V | tail -1)\\\\n    if [ -z \\\\\\\"$final\\\\\\\" ]; then\\\\n        return 1\\\\n    fi\\\\n    if [ ! -f \\\\\\\"$final/adapter_config.json\\\\\\\" ]; then\\\\n        echo \\\\\\\"WARN: $final missing adapter_config.json\\\\\\\" >&2\\\\n        return 1\\\\n    fi\\\\n    echo \\\\\\\"$final\\\\\\\"\\\\n}\\\\n\\\\neval_one() {\\\\n    local seed=$1\\\\n    local ckpt_dir=$2\\\\n    local ckpt\\\\n    ckpt=$(find_final_ckpt \\\\\\\"$ckpt_dir\\\\\\\") || { echo \\\\\\\"SKIP: no valid checkpoint in $ckpt_dir\\\\\\\"; return 0; }\\\\n\\\\n    # 命名约定: seed=42 用 v4_{type}_eval.json, 其他用 v4_{type}_seed{N}_eval.json\\\\n    local output\\\\n    if [ \\\\\\\"$seed\\\\\\\" = \\\\\\\"42\\\\\\\" ]; then\\\\n        output=\\\\\\\"eval_results/v4_${MODEL_TYPE}_eval.json\\\\\\\"\\\\n    else\\\\n        output=\\\\\\\"eval_results/v4_${MODEL_TYPE}_seed${seed}_eval.json\\\\\\\"\\\\n    fi\\\\n\\\\n    if [ -f \\\\\\\"$output\\\\\\\" ]; then\\\\n        echo \\\\\\\"SKIP: $output already exists (delete to re-eval)\\\\\\\"\\\\n        return 0\\\\n    fi\\\\n\\\\n    echo \\\\\\\"=== Evaluating ${MODEL_TYPE} seed=${seed} on cuda:${GPU_ID} ===\\\\\\\"\\\\n    echo \\\\\\\"  Checkpoint: $ckpt\\\\\\\"\\\\n    echo \\\\\\\"  Output:     $output\\\\\\\"\\\\n\\\\n    CUDA_VISIBLE_DEVICES=$GPU_ID \n…[truncated 932 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T02:33:08.009416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json')); print('keys:', list(d.keys())[:10]); s=d.get('summary',d); print('summary:', {k:v for k,v in s.items() if 'rate' in k.lower() or 'acc' in k.lower() or 'score' in k.lower() or 'detect' in k.lower()} if isinstance(s,dict) else str(s)[:500])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T02:33:08.009556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T02:33:08.009686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/tax_error_inject_agent/checkpoints -maxdepth 1 -type d -name \"*v4*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T02:33:08.009834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_vanilla_sft\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v4\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_sft\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_sft\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4_seed0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v4_seed0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4_seed123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v4_seed123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject50\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject50_s0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject50_s123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject50_s0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject50_s123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s0\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s123\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_\n…[truncated 1741 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T02:33:08.009994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T02:33:08.010137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"578:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None,\\\\n580:    parser.add_argument(\\\\\\\"--base_model\\\\\\\", type=str,\\\\n582:    parser.add_argument(\\\\\\\"--alfworld_data\\\\\\\", type=str,\\\\n584:    parser.add_argument(\\\\\\\"--eval_split\\\\\\\", type=str, default=\\\\\\\"valid_unseen\\\\\\\")\\\\n585:    parser.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=134)\\\\n586:    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=\\\\\\\"eval_results/results.json\\\\\\\")\\\\n587:    parser.add_argument(\\\\\\\"--inject\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=False)\\\\n588:    parser.add_argument(\\\\\\\"--no_inject\\\\\\\", dest=\\\\\\\"inject\\\\\\\", action=\\\\\\\"store_false\\\\\\\")\\\\n589:    parser.add_argument(\\\\\\\"--inject_mode\\\\\\\", type=str, default=\\\\\\\"action\\\\\\\",\\\\n593:    parser.add_argument(\\\\\\\"--inject_step\\\\\\\", type=str, default=\\\\\\\"auto\\\\\\\",\\\\n595:    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n596:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n597:    parser.add_argument(\\\\\\\"--task_list\\\\\\\", type=str, default=None,\\\\n600:    parser.add_argument(\\\\\\\"--compare_with\\\\\\\", type=str, default=None,\\\\n602:    parser.add_argument(\\\\\\\"--compare_output\\\\\\\", type=str, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T02:33:08.010271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -80 /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T02:33:08.010434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    rng = random.Random(args.seed)\\\\n\\\\n    for i, game_info in enumerate(games):\\\\n        if args.inject:\\\\n            if args.inject_step == \\\\\\\"auto\\\\\\\":\\\\n                inj_step = rng.randint(2, 6)\\\\n            else:\\\\n                inj_step = int(args.inject_step)\\\\n\\\\n            if args.inject_mode == \\\\\\\"context\\\\\\\":\\\\n                op = OPERATORS[i % len(OPERATORS)]\\\\n                op_config = OPERATOR_CONFIGS[op.name]\\\\n            else:\\\\n                op = None\\\\n                op_config = None\\\\n        else:\\\\n            op = None\\\\n            op_config = None\\\\n            inj_step = 0\\\\n\\\\n        result = run_episode(\\\\n            model, game_info,\\\\n            inject=args.inject,\\\\n            inject_mode=args.inject_mode,\\\\n            operator=op,\\\\n            op_config=op_config,\\\\n            injection_step=inj_step,\\\\n            rng=rng,\\\\n        )\\\\n        results.append(result)\\\\n\\\\n        status = \\\\\\\"OK\\\\\\\" if result[\\\\\\\"success\\\\\\\"] else \\\\\\\"FAIL\\\\\\\"\\\\n        if args.inject and args.inject_mode == \\\\\\\"action\\\\\\\":\\\\n            inj_info = f\\\\\\\" [action@step{result.get('injection_step', '?')}]\\\\\\\"\\\\n        elif args.inject and args.inject_mode == \\\\\\\"context\\\\\\\":\\\\n            inj_info = f\\\\\\\" [{result['operator']}@step{inj_step}]\\\\\\\"\\\\n        else:\\\\n            inj_info = \\\\\\\"\\\\\\\"\\\\n        print(\\\\n            f\\\\\\\"  [{i + 1}/{len(games)}] {game_info['task_name']}: {status} \\\\\\\"\\\\n            f\\\\\\\"({result['steps']} steps){inj_info}\\\\\\\",\\\\n            flush=True,\\\\n        )\\\\n\\\\n    report = build_report(results, args)\\\\n\\\\n    os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nReport saved to {args.output}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n=== Summary ===\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Total: {r\n…[truncated 1411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T02:33:08.010600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -5 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T02:33:08.010733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\\\\\",\\\\n  \\\\\\\"model_variant\\\\\\\": \\\\\\\"taxei\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": true,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T02:33:08.010853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "find /root/autodl-tmp/tax_error_inject_agent/eval_results -name \"*recovery*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T02:33:08.010994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/gate2_recovery_quality.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/dryrun_recovery.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_recovery_eval.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_r2.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s0.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s123.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s123.json\\\\n/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s0.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T02:33:08.011159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -20 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T02:33:08.011278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -20 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T02:33:08.011411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\\\\\",\\\\n  \\\\\\\"model_variant\\\\\\\": \\\\\\\"taxei\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": true,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.596,\\\\n  \\\\\\\"recovery_rate\\\\\\\": 0.596,\\\\n  \\\\\\\"detection_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-14T20:49:14.687239+00:00\\\\\\\",\\\\n  \\\\\\\"by_operator\\\\\\\": {\\\\n    \\\\\\\"C1_context_truncation\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 12,\\\\n      \\\\\\\"recovered\\\\\\\": 8,\\\\n      \\\\\\\"detected\\\\\\\": 0,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"detection_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"C4_observation_masking\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T02:33:08.011558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"seed\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T02:33:08.011703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\\\\\\\",\\\\n  \\\\\\\"model_variant\\\\\\\": \\\\\\\"taxei\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": true,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.468,\\\\n  \\\\\\\"recovery_rate\\\\\\\": 0.468,\\\\n  \\\\\\\"detection_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-15T12:52:37.239126+00:00\\\\\\\",\\\\n  \\\\\\\"by_operator\\\\\\\": {\\\\n    \\\\\\\"C1_context_truncation\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 12,\\\\n      \\\\\\\"recovered\\\\\\\": 6,\\\\n      \\\\\\\"detected\\\\\\\": 0,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"detection_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"C4_observation_masking\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T02:33:08.011828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T02:33:08.011959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"task_list\\|eval_tasks\\|num_episodes\\|47\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T02:33:08.012075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T02:33:08.012189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"inject_mode\\|task_list\\|inject \" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T02:33:08.012310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T02:33:08.012424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -n \"task_list\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T02:33:08.012557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"560:def load_task_list(path: str) -> List[Dict[str, Any]]:\\\\n597:    parser.add_argument(\\\\\\\"--task_list\\\\\\\", type=str, default=None,\\\\n616:    if args.task_list:\\\\n617:        games = load_task_list(args.task_list)\\\\n618:        print(f\\\\\\\"Loaded {len(games)} tasks from {args.task_list}\\\\\\\", flush=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T02:33:08.012681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"inject_mode\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T02:33:08.012799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T02:33:08.012912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"task_list\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T02:33:08.013025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T02:33:08.013133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -2 /root/autodl-tmp/tax_error_inject_agent/eval/eval_tasks_47.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T02:33:08.013247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"47 solvable tasks from ALFWorld valid_unseen (solvable=True filter, excludes pick_and_place_with_movable_recep)\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T02:33:08.013383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"recovery\" /root/.bash_history",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T02:33:08.013496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/tax_error_inject_agent/eval/eval_tasks_47.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T02:33:08.013630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/.bash_history: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T02:33:08.013743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"288 /root/autodl-tmp/tax_error_inject_agent/eval/eval_tasks_47.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T02:33:08.013872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -30 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T02:33:08.014007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\\\\\\\",\\\\n  \\\\\\\"model_variant\\\\\\\": \\\\\\\"vanilla\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": true,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.617,\\\\n  \\\\\\\"recovery_rate\\\\\\\": 0.617,\\\\n  \\\\\\\"detection_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-14T19:45:46.465973+00:00\\\\\\\",\\\\n  \\\\\\\"by_operator\\\\\\\": {\\\\n    \\\\\\\"C1_context_truncation\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 12,\\\\n      \\\\\\\"recovered\\\\\\\": 9,\\\\n      \\\\\\\"detected\\\\\\\": 0,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"detection_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"C4_observation_masking\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n      \\\\\\\"recovered\\\\\\\": 6,\\\\n      \\\\\\\"detected\\\\\\\": 0,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.545,\\\\n      \\\\\\\"detection_rate\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"P1_step_order_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 12,\\\\n      \\\\\\\"recovered\\\\\\\": 7,\\\\n      \\\\\\\"detected\\\\\\\": 0,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.583,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T02:33:08.014132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -20 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T02:33:08.014261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"think_snippet\\\\\\\": \\\\\\\"\\\\\\\",\\\\n          \\\\\\\"injected_this_step\\\\\\\": false,\\\\n          \\\\\\\"post_injection\\\\\\\": true,\\\\n          \\\\\\\"detected_error\\\\\\\": false,\\\\n          \\\\\\\"recovery_action\\\\\\\": false\\\\n        },\\\\n        {\\\\n          \\\\\\\"step\\\\\\\": 49,\\\\n          \\\\\\\"observation\\\\\\\": \\\\\\\"You move the toiletpaper 1 to the cabinet 2.\\\\\\\",\\\\n          \\\\\\\"action\\\\\\\": \\\\\\\"close cabinet 2\\\\\\\",\\\\n          \\\\\\\"think_snippet\\\\\\\": \\\\\\\"\\\\\\\",\\\\n          \\\\\\\"injected_this_step\\\\\\\": false,\\\\n          \\\\\\\"post_injection\\\\\\\": true,\\\\n          \\\\\\\"detected_error\\\\\\\": false,\\\\n          \\\\\\\"recovery_action\\\\\\\": false\\\\n        }\\\\n      ]\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T02:33:08.014421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"recovery_rate\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s0.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T02:33:08.014555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"recovery_rate\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s123.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T02:33:08.014678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"recovery_rate\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval_s123.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T02:33:08.014800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"recovery_rate\\\\\\\": 0.681,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.636,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T02:33:08.014937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"recovery_rate\\\\\\\": 0.66,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.636,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T02:33:08.015067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep \"recovery_rate\" /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_recovery_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T02:33:08.015192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"recovery_rate\\\\\\\": 0.617,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.583,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.636,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.583,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T02:33:08.015308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"recovery_rate\\\\\\\": 0.638,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.667,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.545,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.75,\\\\n      \\\\\\\"recovery_rate\\\\\\\": 0.583,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T02:33:08.015500+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the report:\n\n---\n\n## Recovery Eval Multi-seed 准备工作报告\n\n### 1. Recovery Eval 脚本\n\n**位置**: `/root/autodl-tmp/tax_error_inject_agent/eval/recovery.py`\n\n**参数列表**:\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--model_path` | None | LoRA adapter checkpoint 路径 |\n| `--base_model` | Qwen3-8B 路径 | 基座模型 |\n| `--task_list` | None | 任务列表 JSON（使用 `eval/eval_tasks_47.json`） |\n| `--num_episodes` | 134 | 不指定 task_list 时的 episode 数 |\n| `--inject` / `--no_inject` | False | 是否注入错误 |\n| `--inject_mode` | \"action\" | 注入模式 |\n| `--inject_step` | \"auto\" | 注入步骤 |\n| `--output` | eval_results/results.json | 输出路径 |\n| `--device` | cuda:0 | GPU |\n| `--seed` | 42 | eval 随机种子（固定为 42） |\n\n**运行命令格式**（从已有结果反推）:\n```bash\nCUDA_VISIBLE_DEVICES=X python eval/recovery.py \\\n    --model_path <checkpoint> \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n    --inject \\\n    --task_list eval/eval_tasks_47.json \\\n    --output eval_results/<name>.json \\\n    --device cuda:0\n```\n\n### 2. Checkpoint 清单 — 全部 15 个存在\n\n所有 checkpoint 在 `/root/autodl-tmp/tax_error_inject_agent/checkpoints/`:\n\n| Condition | seed=42 | seed=0 | seed=123 | seed=1 | seed=7 |\n|-----------|---------|--------|----------|--------|--------|\n| **Vanilla** | `mini_vanilla_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n| **TaxEI** | `mini_taxei_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n| **Random** | `mini_random_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n\n**无需重训任何 checkpoint。**\n\n### 3. Recovery Eval 完成状态\n\n| Condition | seed=42 | seed=0 | seed=123 | seed=1 | seed=7 |\n|-----------|---------|--------|----------|--------|--------|\n| **Vanilla** | ✅ 61.7% | ✅ 68.1% | ✅ 66.0% | ❌ | ❌ |\n| **TaxEI** | ✅ 59.6% | ✅ 46.8% | ✅ 61.7% | ❌ | ❌ |\n| **Random** | ✅ 63.8% | ❌ | ❌ | ❌ | ❌ |\n\n**已完成 7/15，剩余 8 个**：\n- Vanilla: seed=1, seed=7\n- TaxEI: seed=1, seed=7\n- Random: seed=0, seed=123, seed=1, seed=7\n\n### 4. 批量 Recovery Eval 脚本框架\n\n用 4 张 GPU 并行，两轮跑完：\n\n```bash\ncd /root/autodl-tmp/tax_error_inject_agent\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nBASEM=/root/autodl-tmp/models/Qwen/Qwen3-8B\n\nfind_final_ckpt() {\n    ls -dt \"$1\"/v*-*/ 2>/dev/null | head -1 | xargs -I{} sh -c 'ls -d {}checkpoint-* | sort -V | tail -1'\n}\n\n# === Round 1: 4 jobs on 4 GPUs ===\nCUDA_VISIBLE_DEVICES=0 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_vanilla_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_vanilla_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=1 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_taxei_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_taxei_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=2 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed0) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s0.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed123) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s123.json --device cuda:0 &\nwait\n\n# === Round 2: 4 jobs on 4 GPUs ===\nCUDA_VISIBLE_DEVICES=0 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_vanilla_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_vanilla_recovery_eval_s7.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=1 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_taxei_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_taxei_recovery_eval_s7.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=2 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s7.json --device cuda:0 &\nwait\n```\n\n### 5. GPU 时间预估\n\n- 从已有结果时间戳推断：每个 recovery eval（47 episodes）约 **1 小时**\n- 8 个剩余 eval，4 GPU 并行 → **2 轮 × ~1h = ~2 小时**\n- 如果顺序跑则 ~8 小时"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recovery-eval-multiseed-prep_20260516T023021"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ],
+  "readable_path": "readable/conversations/ops-recovery-eval-multiseed-prep.md"
+}

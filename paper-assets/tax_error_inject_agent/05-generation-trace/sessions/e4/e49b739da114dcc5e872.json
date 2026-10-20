@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e49b739da114dcc5e872",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops retry taxei recovery eval",
+  "task_key": "worker_ops_retry-taxei-recovery-eval_20260514T212207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_retry-taxei-recovery-eval_20260514T212207_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "26c65cfe82316974f58caac415d2687889d7d1506e95986e59dba28b85bb9518"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**诊断结果**：上次 v4-taxei-recovery-eval 实际已跑完（output 文件存在，success_rate=0.596），\"process dead 5x\" 可能是监控误报。\n\n**重试已提交**：\n- 实验 ID：`v4-taxei-recovery-eval-r2`\n- PID：90519，运行在 autodl-5090 GPU 1\n- 状态：RUNNING，已完成 1/47 episodes\n- 日志：`/tmp/v4_taxei_recovery_eval_r2.log`\n- Registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-retry-taxei-recovery-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5020f407d7712bdf5513",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "audit s123 eval final collection",
+  "task_key": "worker_audit_s123-eval-final-collection_20260516T152927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_s123-eval-final-collection_20260516T152927_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "14eecb98832ba559b2c11e8ab7ed448920900500a03846237c19034d133fbf21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个 eval 结果已收集完毕，registry 已更新。\n\n## LLaMA s123 Eval 结果汇总\n\n| # | Eval | Status | Rate | Episodes |\n|---|------|--------|------|----------|\n| 1 | vanilla-s123 clean | DONE ✓ | SR=72.3% | 47 |\n| 2 | vanilla-s123 injected | DONE ✓ | RR=70.2%, DR=21.3% | 47 |\n| 3 | taxei-s123 clean | DONE ✓ | SR=61.7% | 47 |\n| 4 | taxei-s123 injected | DONE ✓ | RR=59.6%, DR=36.2% | 47 |\n| 5 | random-s123 clean | DONE ✓ | SR=76.6% | 47 |\n| 6 | random-s123 injected | DONE ✓ | RR=78.7%, DR=25.5% | 47 |\n\n**关键发现：**\n- Random baseline 在 clean 和 injected 上表现最好（SR=76.6%, RR=78.7%）\n- TaxEI 的 detection rate 最高（36.2%），但 recovery rate 最低（59.6%）\n- Vanilla 居中（RR=70.2%, DR=21.3%）\n\nRegistry 修正：`llama31-taxei-s123-eval` 从 failed→success 并补充 metrics；新建 `llama31-random-s123-eval` 条目。GPU 2/3 上仍有两个 eval 进程在运行（可能是重复执行），已有结果文件完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-s123-eval-final-collection.md"
+}

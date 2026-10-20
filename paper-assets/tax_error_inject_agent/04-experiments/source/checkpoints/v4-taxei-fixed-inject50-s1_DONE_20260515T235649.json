@@ -1,0 +1,21 @@
+{
+  "exp_id": "v4-taxei-fixed-inject50-s1",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:54:03.984Z",
+    "updated_at": "2026-05-15T23:56:49.235Z",
+    "hypothesis": "v4 TaxEI fixed-size ablation: 50% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion — Wave 2.",
+    "spec": {
+      "log_path": "/tmp/v4-taxei-fixed-inject50-s1.log",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T23:55:01.050Z"
+  },
+  "timestamp": "2026-05-15T23:56:49.460096+00:00",
+  "trigger": "update_registry"
+}

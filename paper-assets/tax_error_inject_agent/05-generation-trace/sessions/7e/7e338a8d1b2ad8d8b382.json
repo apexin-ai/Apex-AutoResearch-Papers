@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e338a8d1b2ad8d8b382",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train v4 taxei fixed inject50",
+  "task_key": "worker_train_v4-taxei-fixed-inject50_20260515T002628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-taxei-fixed-inject50_20260515T002628_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "daaf77041b00f0f0a64b18b1d7c0cf4e40dd4643f2b66ce84b7cdb02427488f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，registry 已更新为 RUNNING。\n\n**汇总：**\n- **exp_id**: `v4-taxei-fixed-inject50`\n- **PID**: 104236\n- **tmux session**: `v4-taxei-fixed-inject50`\n- **GPU**: cuda:0 @ autodl-5090\n- **数据**: `sft_taxei_v4_fixed_inject50.jsonl` (4358 行)\n- **参数**: Qwen3-8B, LoRA rank=16, 3 epochs, batch=1×8 grad_accum, lr=1e-4 cosine, seed=42\n- **预计耗时**: ~58 min\n- **checkpoint 输出**: `checkpoints/v4_taxei_fixed_inject50`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-v4-taxei-fixed-inject50.md"
+}

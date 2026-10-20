@@ -1,0 +1,38 @@
+{
+  "observed_sd": {
+    "vanilla": 3.2624,
+    "taxei": 8.6025,
+    "random": 6.8646
+  },
+  "levene_3group_mean": {
+    "statistic": 2.5359,
+    "p_value": 0.1591
+  },
+  "brown_forsythe_3group": {
+    "statistic": 0.177,
+    "p_value": 0.842
+  },
+  "pairwise_levene_mean": {
+    "taxei_vs_vanilla": {"statistic": 5.2041, "p_value": 0.0847},
+    "random_vs_vanilla": {"statistic": 2.897, "p_value": 0.164},
+    "taxei_vs_random": {"statistic": 0.4072, "p_value": 0.5581}
+  },
+  "pairwise_brown_forsythe": {
+    "taxei_vs_vanilla": {"statistic": 0.3063, "p_value": 0.6094},
+    "random_vs_vanilla": {"statistic": 0.3714, "p_value": 0.5752},
+    "taxei_vs_random": {"statistic": 0.0138, "p_value": 0.912}
+  },
+  "f_test": {
+    "taxei_vs_vanilla": {"f_statistic": 6.953, "p_value": 0.2515},
+    "random_vs_vanilla": {"f_statistic": 4.4275, "p_value": 0.3685}
+  },
+  "bootstrap_10k": {
+    "p_taxei_sd_gt_vanilla": 0.6877,
+    "p_random_sd_gt_vanilla": 0.6991,
+    "p_taxei_sd_gt_random": 0.6879,
+    "sd_vanilla_95ci": [0.0, 3.695],
+    "sd_taxei_95ci": [0.0, 8.6025],
+    "sd_random_95ci": [0.0, 7.3901]
+  },
+  "interpretation": "With n=3 per group, all formal variance homogeneity tests (Levene, Brown-Forsythe, F-test) are severely underpowered (power < 0.10 for realistic effect sizes), so non-significant p-values should NOT be interpreted as evidence of equal variances. These tests are included for methodological completeness. The bootstrap analysis is more informative: P(SD_TaxEI > SD_Vanilla) indicates the probability that TaxEI's cross-seed variability exceeds Vanilla's. Observed SDs show a clear gradient (Vanilla 3.26pp < Random 7.01pp < TaxEI 8.60pp), consistent with the hypothesis that error injection increases training variance. The bootstrap 95% CIs for SDs overlap substantially due to small n, reinforcing that larger seed counts are needed for definitive variance comparisons."
+}

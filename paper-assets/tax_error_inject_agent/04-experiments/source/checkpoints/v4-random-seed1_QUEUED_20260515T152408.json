@@ -1,0 +1,17 @@
+{
+  "exp_id": "v4-random-seed1",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:21:02.077Z",
+    "updated_at": "2026-05-15T15:24:08.423Z",
+    "spec": {
+      "hypothesis": "v4 Random SFT seed=1 (5-seed expansion) — 9,029 samples, LoRA rank=16, 3 epochs"
+    }
+  },
+  "timestamp": "2026-05-15T15:24:08.562586+00:00",
+  "trigger": "update_registry"
+}

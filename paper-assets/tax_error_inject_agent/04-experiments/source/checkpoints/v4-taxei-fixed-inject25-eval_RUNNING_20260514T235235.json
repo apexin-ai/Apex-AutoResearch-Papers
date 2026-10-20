@@ -1,0 +1,27 @@
+{
+  "exp_id": "v4-taxei-fixed-inject25-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:50:53.016Z",
+    "updated_at": "2026-05-14T23:52:35.610Z",
+    "hypothesis": "v4 TaxEI 25% injection fixed-size eval — 47 tasks clean eval. Dose-response: 0%(vanilla 65.3%) → 10% → 25% → 50%(54.3%)。",
+    "spec": {
+      "command": "python3 eval/recovery.py --model_path output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_eval.json --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "checkpoint_source": "output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635",
+      "eval_data": "47 ALFWorld tasks (clean)",
+      "parent": "v4-taxei-fixed-inject25-r2",
+      "data_path": "eval/valid_unseen",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + LoRA (taxei fixed inject25)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T23:52:35.681208+00:00",
+  "trigger": "update_registry"
+}

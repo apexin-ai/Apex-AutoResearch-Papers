@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a0bdbc7e17e8e99a874",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose recovery vanilla s1",
+  "task_key": "worker_diagnose_recovery-vanilla-s1_20260516T083711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_recovery-vanilla-s1_20260516T083711_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "3e9f412f27427d4c26237cb3e8016c2f99b797a8919858243dd90fd59b61a2b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成，cron 误报。结果明确：\n\n```\nACTUAL_STATUS: success\nREASON: cron 误报——eval 脚本不写 sentinel 文件，cron 轮询无信号后误判为 failed。实际 eval 已于 2026-05-16 16:22 正常完成，47/47 tasks 全部跑完，结果已写入 JSON。\nMETRICS:\n- recovery_rate: 0.66 (66%)\n- recovery_count: 31/47\n- detection_rate: 0.0\n- C1_context_truncation: 8/12 (0.667)\n- C4_observation_masking: 6/11 (0.545)\n- P1_step_order_swap: 8/12 (0.667)\n- P2_sub_goal_deletion: 9/12 (0.75)\nLOG_PATH: /tmp/eval_recovery_vanilla_s1.log\nOUTPUT_PATH: /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_vanilla_recovery_eval_s1.json\n```\n\n注意：cron 没找到日志是因为它找的路径是 `~/runs/tax_error_inject_agent/recovery-vanilla-s1.log`（不存在），实际日志在 `/tmp/eval_recovery_vanilla_s1.log`。这个 eval 是通过 tmux 直接启动的，不走 cron 的 job wrapper，所以没有 sentinel 文件和标准化日志路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-recovery-vanilla-s1.md"
+}

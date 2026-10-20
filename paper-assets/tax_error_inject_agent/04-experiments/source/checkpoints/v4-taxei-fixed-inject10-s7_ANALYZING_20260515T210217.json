@@ -1,0 +1,46 @@
+{
+  "exp_id": "v4-taxei-fixed-inject10-s7",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:57:05.524Z",
+    "updated_at": "2026-05-15T21:02:17.117Z",
+    "hypothesis": "v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.",
+    "spec": {
+      "command": "swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "191997",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log",
+      "submitted_at": "2026-05-15T20:01:19.314Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl",
+      "data_count": 4358,
+      "model_name": "Qwen3-8B",
+      "seed": 7
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T20:59:13.748Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T20:59:16.071667+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T21:02:17.351823+00:00",
+  "trigger": "update_registry"
+}

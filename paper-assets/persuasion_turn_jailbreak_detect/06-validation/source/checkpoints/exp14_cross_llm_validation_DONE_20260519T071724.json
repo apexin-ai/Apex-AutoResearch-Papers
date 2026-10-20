@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp14_cross_llm_validation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:37:11.541Z",
+    "updated_at": "2026-05-19T07:17:24.059Z",
+    "hypothesis": "DAPT advantage (9-class/jb_mlm >> vanilla) is not specific to Qwen3-8B-generated data. If the persuasion-grounded fine-tuning captures generalizable jailbreak patterns rather than Qwen-specific artifacts, the performance gap should persist on Llama-3.1-8B-Instruct-generated multi-turn conversations.",
+    "spec": {
+      "command": "python scripts/generate_dd_llama.py --count 50 --gpu 0 & python scripts/generate_aa_llama.py --gpu 1 --num_per_goal 5 & python scripts/generate_benign_llama.py --count 50 --gpu 2",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/cross_llm/",
+      "data_count": "target: DD 50 + AA 50 + Benign 50",
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct (target LLM) + existing DeBERTa checkpoints (eval)",
+      "seed": "N/A (generation)",
+      "checkpoint_path": "N/A (inference only)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/cross_llm_eval.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "data_gen": {
+        "dd": 50,
+        "aa": 50,
+        "benign": 50
+      },
+      "llama_dd_full": {
+        "vanilla": 0.261,
+        "jb_mlm": 0.282,
+        "9class": 0.433
+      },
+      "llama_aa_full": {
+        "vanilla": 0.261,
+        "jb_mlm": 0.368,
+        "9class": 0.321
+      },
+      "llama_dd_k1": {
+        "vanilla": 0.17,
+        "jb_mlm": 0.332,
+        "9class": 0.312
+      },
+      "llama_aa_k1": {
+        "vanilla": 0.248,
+        "jb_mlm": 0.316,
+        "9class": 0.265
+      },
+      "qwen_vs_llama_dd_full": {
+        "vanilla_gap": -0.051,
+        "jb_mlm_gap": -0.632,
+        "9class_gap": -0.564
+      }
+    },
+    "completed_at": "2026-05-19T07:17:24.059Z"
+  },
+  "timestamp": "2026-05-19T07:17:24.169465+00:00",
+  "trigger": "update_registry"
+}

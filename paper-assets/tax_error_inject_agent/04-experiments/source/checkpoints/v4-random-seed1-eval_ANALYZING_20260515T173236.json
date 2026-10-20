@@ -1,0 +1,79 @@
+{
+  "exp_id": "v4-random-seed1-eval",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:17:51.435Z",
+    "updated_at": "2026-05-15T17:32:36.046Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "178005",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-seed1-eval.log",
+      "submitted_at": "2026-05-15T17:18:03.664Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T17:30:35.329Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T17:30:38.085288+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.468,
+      "successes": 22,
+      "total": 47,
+      "by_task_type": {
+        "look_at_obj_in_light": {
+          "success": 5,
+          "total": 6,
+          "rate": 0.833
+        },
+        "pick_and_place_simple": {
+          "success": 2,
+          "total": 8,
+          "rate": 0.25
+        },
+        "pick_clean_then_place_in_recep": {
+          "success": 5,
+          "total": 11,
+          "rate": 0.455
+        },
+        "pick_cool_then_place_in_recep": {
+          "success": 2,
+          "total": 7,
+          "rate": 0.286
+        },
+        "pick_heat_then_place_in_recep": {
+          "success": 5,
+          "total": 8,
+          "rate": 0.625
+        },
+        "pick_two_obj_and_place": {
+          "success": 3,
+          "total": 7,
+          "rate": 0.429
+        }
+      }
+    },
+    "checkpoint_path": "checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387",
+    "log_path": "~/runs/tax_error_inject_agent/v4-random-seed1-eval.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T17:32:36.188011+00:00",
+  "trigger": "update_registry"
+}

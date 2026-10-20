@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea293673ffecbfe697eb",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 3809,
+    "sha256": "8254066dd207b5dfb1ab5744495b4c7d3710e2f48347649504895bc20216a356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-16T10:22:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on autodl-5090，无越界历史\n- LLaMA 模型是 3.1-8B（非 3.3），D042 明确指定，之前有 Worker 搞混被纠正\n- Detection_rate 指标已证实为假阳性（关键词 \"back\" 匹配导航语言），**不可作为 paper contribution**——已向 Director 发 critical\n- Scale-up 收集进程被误杀过一次（我的误判），恢复后正常。再次质疑前先确认排除 exclusion stubs\n- TaxEI s0 训练需用 `TMPDIR=/root/autodl-tmp/tmp`，否则 /tmp 爆盘\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090 (root)，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：`/root/miniconda3/bin/python`，conda base env\n- 模型：`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/` (LLaMA) + Qwen3-8B (已在 HF cache)\n- 数据：`/root/autodl-tmp/tax_error_inject_agent/data/` (trajectories, SFT datasets)\n- Eval 结果：`/root/autodl-tmp/tax_error_inject_agent/eval_results/`\n- Checkpoints：`/root/autodl-tmp/tax_error_inject_agent/output/` + `checkpoints/`\n- Scale-up 数据：`/root/autodl-tmp/tax_error_inject_agent/data/trajectories_scaleup_p1/`（239/1000 successes, 8 workers 收集中）\n- 无 W&B（report_to=tensorboard）\n- 活跃进程（截止 handoff）：\n  - GPU 0: llama31-vanilla-s0 训练 (tmux, 92% done, ~5min)\n  - GPU 1: llama31-taxei-s0 训练 (tmux, v1 重启, 1%, ~2h)\n  - GPU 2: llama31-random-s0 训练 (tmux, 48%, ~65min)\n  - GPU 3: eval-rp-s7 (tmux, 9/47 episodes)\n  - CPU: scale-up collection PID ~249190 (8 workers)\n\n### 3. 📊 当前状态\n刚完成：\n- LLaMA s42 三条件 eval 全部出结果：Vanilla=74.5%, TaxEI=74.5%, Random=76.6%（跨模型 negative result 不成立——TaxEI 在 LLaMA 上中性）\n- Detection_rate 机制分析完成：100% 假阳性，已 critical 报告 Director\n- v4-taxei-rp-s7 训练完成，eval 启动 (9/47)\n- Recovery-TaxEI-s1 eval 完成：61.7%, detection=0%\n- Recovery eval 进度：10/15（Vanilla 5/5, TaxEI 4/5, Random 1/5）\n\n等待中：\n- RP-s7 eval 完成 → 5-seed 完整数据（当前 4-seed: 47.9±7.8%）\n- LLaMA Vanilla s0 训练即将完成 → 启动 eval\n- Director 对 detection_rate critical 和跨模型叙事 warning 的决策\n\n### 4. 📋 待办（条件触发式）\n- RP-s7 eval 出结果 → 计算 5-seed TaxEI-RP 均值±SD，确认 Claim 7 最终结论\n- LLaMA Vanilla s0 训练完成 → 确认 eval 是否立即启动（GPU 0 释放）\n- LLaMA TaxEI/Random s0 训练完成 → eval 启动，看 s0 是否重现 s42 的\"中性\"结论\n- LLaMA 3-seed 全部 eval 完成 → 审查跨模型统计是否足够支撑 paper claim\n- Scale-up 收集达 1000 → 验证数据完整性，确认下一步（注入 pipeline）\n- Director 回复 detection_rate 决策 → 确认 paper framing 调整方向\n\n### 5. 🎯 战略上下文\n- **核心结论**：TaxEI 在 Qwen3-8B 有害 (-9pp, 5-seed)，但在 LLaMA-3.1-8B 中性 (0pp, 1-seed)。跨模型\"universal negative result\"叙事不成立。\n- **D043**：TaxEI-RP (recovery pairing) 有害，47.9±7.8%，Claim 7 答案 = No\n- **D041**：Recovery ≈ Resilience（模型被动忽略错误，非主动恢复）\n- **Detection_rate 是废指标**：LLaMA 的 21-30% 全是 \"go back\" 导航词假阳性；Qwen 的 0% 是 `enable_thinking=False` 导致无 think text。两边都不反映真实能力。\n- **最易判断错的事**：看到 LLaMA detection_rate=21-30% 不要以为是真实发现——这是我之前犯的错误并已撤回。\n- **Scale-up 成功率**：真实 ~78%（排除 exclusion stubs 后），不是表面的 22%——之前因统计口径错误导致误杀进程。\n- **Paper target**：EMNLP 2026 Findings 8-page long paper，negative result framing\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "006072b2b0427dd43377",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train llama31 s123 batch",
+  "task_key": "worker_train_llama31-s123-batch_20260516T125214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama31-s123-batch_20260516T125214_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "5dc7f0809be3af4d8584dfb5d4b63ad6cf548abf79a5c991365cb67d5b100ded"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个 LLaMA s123 训练已在运行，registry 状态已同步为 RUNNING：\n\n| exp_id | GPU | 数据量 | 状态 |\n|--------|-----|--------|------|\n| llama31-vanilla-s123 | cuda:1 | 4358 | RUNNING |\n| llama31-taxei-s123 | cuda:2 | 9029 | RUNNING |\n| llama31-random-s123 | cuda:3 | 9029 | RUNNING |\n\n这些任务在本次会话之前已通过 `submit_training_job` 提交（20:52 UTC+8），registry 中 hypothesis 和 spec 已补全。预计 Vanilla ~1h 完成，TaxEI/Random ~2h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama31-s123-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8188afe0f6ef516415",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval qwen random recovery s1s7s42",
+  "task_key": "worker_eval_qwen-random-recovery-s1s7s42_20260516T140659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen-random-recovery-s1s7s42_20260516T140659_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "b4ddf599c2038877b5fecee091851bdb8a4e9e7f877b6d488eac9cf76c774a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Seed 7 完成：recovery_rate=0.532, detection_rate=0.0**\n\n## 结果汇总\n\n- **Random s1**: recovery_rate=0.511, detection_rate=0.0\n- **Random s7**: recovery_rate=0.532, detection_rate=0.0\n- **Random s42**: **checkpoint 不��在**（`checkpoints/` 下无 `*random*seed42*` 目录，仅有 seed0/seed1/seed7/seed123��"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen-random-recovery-s1s7s42.md"
+}

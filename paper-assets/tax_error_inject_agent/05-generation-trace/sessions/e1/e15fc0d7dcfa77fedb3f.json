@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e15fc0d7dcfa77fedb3f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code gate3 analysis prep",
+  "task_key": "worker_code_gate3-analysis-prep_20260514T132847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gate3-analysis-prep_20260514T132847_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "0dae0d8b4fa009abaaf5e6bd9d1a29e9512fec3899a23c441bc49a8f36ec853d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全链路正常。自比结果符合预期：diff=0pp, p=1.0, Gate 3a FAIL。\n\n脚本已就绪：`/root/autodl-tmp/tax_error_inject_agent/scripts/analyze_gate3.py`\n\n使用方式：\n```bash\npython scripts/analyze_gate3.py \\\n  --vanilla  eval_results/v3_vanilla.json \\\n  --taxei    eval_results/v3_taxei.json \\\n  --random   eval_results/v3_random.json\n```\n\n功能：\n- McNemar exact test（`scipy.stats.binomtest`，适合 n=47 小样本）\n- Gate 3a/3b/4 自动判定，含 p-value 和 discordant pair 数\n- Per-task-type breakdown\n- 同时输出 human-readable 表格和 JSON（默认存 `eval_results/gate3_judgment.json`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gate3-analysis-prep.md"
+}

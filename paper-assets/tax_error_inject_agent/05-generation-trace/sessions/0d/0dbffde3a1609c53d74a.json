@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dbffde3a1609c53d74a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis per task breakdown",
+  "task_key": "worker_analysis_per-task-breakdown_20260515T020457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per-task-breakdown_20260515T020457_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "5e9f0fc2b15c7bb85f0e7718ee181471b0054bd304fdca5ab240f054e674be57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 `art_20260515_7436f8`。核心发现：\n\n**Dose-response 关键结果：**\n- TaxEI-10% 与 vanilla 完全一致（每个 task 成功/失败一模一样），说明 10% 剂量不足以造成影响\n- **pick_cool_then_place** 和 **pick_and_place_simple** 受 TaxEI injection 影响最大（-28.6pp 和 -25.0pp）\n- **pick_two_obj_and_place** 和 **pick_clean_then_place** 对 TaxEI injection 完全免疫\n\n**Taxonomy penalty（TaxEI 相对 Random 的额外惩罚，3-seed 平均）：**\n\n| Task | TaxEI−Random gap |\n|------|-----------------|\n| pick_cool_then_place | **-19.0pp** |\n| pick_two_obj_and_place | **-14.3pp** |\n| pick_and_place_simple | -4.2pp |\n| pick_heat_then_place | 0.0pp |\n| look_at_obj_in_light | 0.0pp |\n\npick_cool 和 pick_two 是 taxonomy-guided injection 相比 random noise 额外造成伤害最大的两个 task type。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-task-breakdown.md"
+}

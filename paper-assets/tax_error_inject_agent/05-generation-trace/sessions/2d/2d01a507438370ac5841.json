@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d01a507438370ac5841",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 taxei fixed inject10 s1 eval r2",
+  "task_key": "worker_analysis_v4-taxei-fixed-inject10-s1-eval-r2_20260515T210526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-taxei-fixed-inject10-s1-eval-r2_20260515T210526_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "da5e19523bccf0f6808a1c2d12a9b98d39a3edcd6591aebd31855a574e901a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总如下：\n\n## v4-taxei-fixed-inject10-s1-eval-r2 结果\n\n**Overall: 24/47 = 51.1%**\n\n| Task Type | Success | Rate |\n|-----------|---------|------|\n| pick_heat_then_place | 6/8 | 75.0% |\n| look_at_obj_in_light | 4/6 | 66.7% |\n| pick_and_place_simple | 4/8 | 50.0% |\n| pick_clean_then_place | 5/11 | 45.5% |\n| pick_two_obj_and_place | 3/7 | 42.9% |\n| pick_cool_then_place | 2/7 | 28.6% |\n\n## 与已知 10% inject 结果对比\n\n| 方法 | s42 | s0 | s1 (本次) | s123 |\n|------|-----|-----|-----------|------|\n| **TaxEI 10%** | 61.7% | 70.2% | **51.1%** | 55.3% |\n| **Random 10%** | 68.1% | 66.0% | — | 55.3% |\n\ns1 = 51.1% 是 TaxEI 10% 四个 seed 中最低的，比 s42 低 10.6pp，比 s0 低 19.1pp。seed 间方差较大（51.1%–70.2%），说明 TaxEI 10% 在低数据量下对 seed 敏感。当前 s1 结果也低于 Random 10% 的两个已知 seed（68.1%, 66.0%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-taxei-fixed-inject10-s1-eval-r2.md"
+}

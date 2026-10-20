@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e21edc3ddd8678ac385",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops adapt scripts llama",
+  "task_key": "worker_ops_adapt-scripts-llama_20260516T044945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_adapt-scripts-llama_20260516T044945_result.json",
+    "occurrence": 1,
+    "bytes": 5363,
+    "sha256": "9bab72074f8ffa9ed7dc603ead3e72267c63f71f8544771294001b687c5ee7ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是完整报告。\n\n---\n\n## LLaMA-3.1-8B-Instruct 兼容性报告\n\n### 1. swift sft 兼容性：✅ 完全自动\n\n- **ms-swift 4.2.0** 原生支持 LLaMA 3.1（从 config.json `model_type: \"llama\"` 自动识别）\n- **LoRA targets**: 自动检测（q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj）\n- **Chat template**: 从 tokenizer_config.json 自动加载\n- **无需额外参数**，只需换 `--model` 路径\n\n### 2. Eval 脚本兼容性：✅ 无需改代码\n\n两个 eval 脚本 (`recovery.py`, `injected_eval.py`) 使用：\n- `AutoModelForCausalLM` + `AutoTokenizer` + `PeftModel` — 模型无关\n- `tokenizer.apply_chat_template()` — LLaMA 3.1 Instruct 有完整 chat template\n\n唯一 Qwen 相关：`--base_model` 默认值为 `/root/autodl-tmp/models/Qwen/Qwen3-8B`。运行时传参覆盖即可，无需改源码。\n\n### 3. 数据格式：✅ 通用\n\n数据为标准 `{\"messages\": [{\"role\": \"user\", \"content\": ...}, {\"role\": \"assistant\", \"content\": ...}]}` 格式，内容无模型特定 token，swift 自动根据模型应用对应 template。\n\n### 4. 阻塞项：模型下载未完成\n\n权重文件在 `._____temp/` 中（1.3G / 预期 ~16G），下载中断或未完成。需重新下载后才能跑实验。\n\n---\n\n### 5. 完整训练命令（三个条件）\n\n```bash\n# === Vanilla ===\nswift sft \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --dataset /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl \\\n  --output_dir /root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42 \\\n  --lora_rank 16 \\\n  --num_train_epochs 3 \\\n  --per_device_train_batch_size 4 \\\n  --gradient_accumulation_steps 2 \\\n  --learning_rate 1e-4 \\\n  --max_length 4096 \\\n  --seed 42 \\\n  --data_seed 42 \\\n  --logging_steps 10 \\\n  --gradient_checkpointing true \\\n  --bf16 true \\\n  --save_strategy epoch\n\n# === TaxEI ===\nswift sft \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --dataset /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl \\\n  --output_dir /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s42 \\\n  --lora_rank 16 \\\n  --num_train_epochs 3 \\\n  --per_device_train_batch_size 4 \\\n  --gradient_accumulation_steps 2 \\\n  --learning_rate 1e-4 \\\n  --max_length 4096 \\\n  --seed 42 \\\n  --data_seed 42 \\\n  --logging_steps 10 \\\n  --gradient_checkpointing true \\\n  --bf16 true \\\n  --save_strategy epoch\n\n# === Random ===\nswift sft \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --dataset /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_random_v4.jsonl \\\n  --output_dir /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s42 \\\n  --lora_rank 16 \\\n  --num_train_epochs 3 \\\n  --per_device_train_batch_size 4 \\\n  --gradient_accumulation_steps 2 \\\n  --learning_rate 1e-4 \\\n  --max_length 4096 \\\n  --seed 42 \\\n  --data_seed 42 \\\n  --logging_steps 10 \\\n  --gradient_checkpointing true \\\n  --bf16 true \\\n  --save_strategy epoch\n\n# === TaxEI-RP (Recovery Paired) ===\nswift sft \\\n  --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --dataset /root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/sft_taxei_rp.jsonl \\\n  --output_dir /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-rp-s42 \\\n  --lora_rank 16 \\\n  --num_train_epochs 3 \\\n  --per_device_train_batch_size 4 \\\n  --gradient_accumulation_steps 2 \\\n  --learning_rate 1e-4 \\\n  --max_length 4096 \\\n  --seed 42 \\\n  --data_seed 42 \\\n  --logging_steps 10 \\\n  --gradient_checkpointing true \\\n  --bf16 true \\\n  --save_strategy epoch\n```\n\n### 6. Eval 命令\n\n```bash\n# Baseline (no injection)\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py \\\n  --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --model_path /root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42/checkpoint-xxx \\\n  --model_variant vanilla \\\n  --num_episodes 47 \\\n  --output eval_results/llama31_vanilla_baseline.json\n\n# Injected eval (context injection)\nCUDA_VISIBLE_DEVICES=3 python eval/injected_eval.py \\\n  --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --model_path /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s42/checkpoint-xxx \\\n  --model_variant taxei \\\n  --num_episodes 47 \\\n  --output eval_results/llama31_injected_taxei.json\n\n# Action injection eval\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py \\\n  --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct \\\n  --model_path /root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-rp-s42/checkpoint-xxx \\\n  --model_variant taxei \\\n  --inject --inject_mode action \\\n  --num_episodes 47 \\\n  --output eval_results/llama31_action_inject_taxei.json\n```\n\n### 7. 需修改的文件：无\n\n所有脚本通过命令行参数 `--model` / `--base_model` 指定模型路径，无需改源码。\n\n### 8. 待办\n\n| 项目 | 状态 |\n|------|------|\n| 完成 LLaMA-3.1-8B-Instruct 模型下载 | ❌ 需重新下载（当前 1.3G/~16G） |\n| 等 Qwen3-8B 当前训练结束释放 GPU | ⏳ |\n| 跑 LLaMA 3.1 三条件训练 | 待上述两项完成 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-adapt-scripts-llama.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8be760e2031a38d96238",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "research write paper framing",
+  "task_key": "worker_research_write-paper-framing_20260514T214222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_write-paper-framing_20260514T214222_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "a000a1ca449dcd4f37ce54401bd7b5d8e4ee08b6f89980fc853796f106ab78ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`paper_framing.md` 已保存。\n\n核心 framing：**\"Error Injection Helps Tool-Use but Hurts Planning\"** — 以 PALADIN 对比为主线，论证 error injection 的有效性取决于任务结构（error observability、local recoverability、bounded action space），而非 taxonomy 质量。\n\n文档包含：\n- **6 条 Claims**，每条都追溯到具体实验数据（多种子 clean eval、recovery eval、per-operator breakdown）\n- **7 条 Reviewer Concerns** 及预回应策略\n- **PALADIN 对比分析**：4 个结构性差异维度解释为什么 tool-use 成功但 embodied planning 失败\n- **3 级补充实验清单**：P1 必须做（更多 seed + injection ratio 消融 + loss 曲线），P2 强化（第二环境 + 定性分析），P3 锦上添花\n\n推荐投 **Insights from Negative Results @ EMNLP 2026** (Budapest, Oct)，短论文 track，专为严谨负面发现设计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-write-paper-framing.md"
+}

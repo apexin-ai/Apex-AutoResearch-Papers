@@ -1,0 +1,52 @@
+{
+  "exp_id": "mini-vanilla-sft",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:51:41.382Z",
+    "updated_at": "2026-05-14T10:54:48.860Z",
+    "hypothesis": "Vanilla trajectory SFT baseline for comparison with TaxEI",
+    "spec": {
+      "command": "python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "pid": "41874",
+      "log_path": "eval_results/mini_vanilla_clean.json",
+      "submitted_at": "2026-05-14T10:54:31.029Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/sft_data/vanilla_train.jsonl",
+      "data_count": 278,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "hypothesis": "Vanilla SFT on clean trajectories as baseline for comparison",
+      "checkpoint_path": "checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54",
+      "wall_clock_seconds": 17.8,
+      "gpu_hours": 0.0
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T10:54:20.210Z",
+    "metrics": {
+      "eval_success_rate": 0.149,
+      "eval_successes": 7,
+      "eval_total": 47,
+      "vs_baseline_pp": -27.7,
+      "per_task": {
+        "look_at_obj_in_light": "0/6 (0%)",
+        "pick_and_place_simple": "2/8 (25.0%)",
+        "pick_clean_then_place": "2/11 (18.2%)",
+        "pick_cool_then_place": "0/7 (0%)",
+        "pick_heat_then_place": "3/8 (37.5%)",
+        "pick_two_obj_and_place": "0/7 (0%)"
+      },
+      "train_steps": 54,
+      "train_duration_min": 5
+    }
+  },
+  "timestamp": "2026-05-14T10:54:48.872542+00:00",
+  "trigger": "update_registry"
+}

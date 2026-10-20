@@ -1,0 +1,34 @@
+{
+  "exp_id": "llama31-random-s123-injected-evalseed42",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:58:35.592Z",
+    "updated_at": "2026-05-16T16:24:05.455Z",
+    "spec": {
+      "hypothesis": "Eval seed=42 re-run to align with s0/s42 evals, ruling out eval seed confound for cross-model instability claim",
+      "parent": "llama31-random-s123",
+      "plan_id": "D047-evalseed42",
+      "command": "CUDA_VISIBLE_DEVICES=2 python eval/injected_eval.py --model_path output/llama31-random-s123/checkpoint-3387 --output eval_results/llama31_random_s123_injected_evalseed42.json --seed 42",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "llama31-random-s123",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "log_path": "legacy_not_tracked",
+    "metrics": {
+      "recovery_rate": 0.766,
+      "total_episodes": 47,
+      "eval_seed": 42
+    },
+    "checkpoint_path": "output/llama31-random-s123/checkpoint-3387",
+    "completed_at": "2026-05-16T16:23:52.712Z"
+  },
+  "timestamp": "2026-05-16T16:24:05.875497+00:00",
+  "trigger": "update_registry"
+}

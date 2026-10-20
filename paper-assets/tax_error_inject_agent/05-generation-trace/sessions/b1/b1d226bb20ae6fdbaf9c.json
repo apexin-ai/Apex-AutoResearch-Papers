@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1d226bb20ae6fdbaf9c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops monitor running evals",
+  "task_key": "worker_ops_monitor-running-evals_20260514T214146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-running-evals_20260514T214146_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "b055e83f7737a7c0d052e3b730314afb06c0bee6aec7d4be1d8777747dea5ab3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，registry 已更新为 DONE。\n\n## 汇总\n\n| | v4-random-recovery-eval | v4-taxei-recovery-eval-r2 |\n|---|---|---|\n| **状态** | DONE | DONE |\n| **Recovery rate** | **0.638** (30/47) | **0.596** (28/47) |\n| **Detection rate** | 0.0 | 0.0 |\n| **C1_context_truncation** | 8/12 (0.667) | 8/12 (0.667) |\n| **C4_observation_masking** | 6/11 (0.545) | 7/11 (0.636) |\n| **P1_step_order_swap** | 9/12 (0.750) | 7/12 (0.583) |\n| **P2_sub_goal_deletion** | 7/12 (0.583) | 6/12 (0.500) |\n\n**GPU 状态**：4 张 RTX 5090 全部空闲（0MiB / 0% util），无运行进程。\n\nRandom SFT 的 recovery rate (0.638) 略高于 TaxEI SFT (0.596)。两者的 detection rate 均为 0——模型在 think 分析中未显式检测到注入的错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-running-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6c36fbf782eeef8158",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops start 50pct random s1 training",
+  "task_key": "worker_ops_start-50pct-random-s1-training_20260515T225533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start-50pct-random-s1-training_20260515T225533_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "267a71ac35235bac7c5ad3f6752afa1b3281d075fae990424dcbc81b74e71626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并进入监控。\n\n**汇总：**\n- **exp_id**: `v4-random-fixed-inject50-s1`\n- **GPU**: autodl-5090 cuda:0\n- **数据**: `sft_random_v4_fixed_inject50.jsonl` (4,358 行)\n- **模型**: `/root/autodl-tmp/models/Qwen/Qwen3-8B`（本地路径，原始 `Qwen3-8B` 短名 ModelScope 解析失败，已修正）\n- **总 steps**: 1,635，~3.48s/it，预计 ~1.6h\n- **tmux session**: `v4-random-fixed-inject50-s1`\n- **Registry**: RUNNING\n- **Cron 监控**: 每 8 分钟检查（job `846f7a87`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-50pct-random-s1-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5414d3f2f8f3ebc78fe",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "submit d022 phaseA execute",
+  "task_key": "worker_submit_d022-phaseA-execute_20260515T093007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d022-phaseA-execute_20260515T093007_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "506d030515911f4b1063042aa43772dc86d5e59a4cc7ebe4a749a658666fd101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## Eval 结果\n\n| 实验 | success_rate | successes/total |\n|------|-------------|-----------------|\n| **v4-taxei-fixed-inject25-s0-eval** | **0.468** | 22/47 |\n| **v4-taxei-fixed-inject25-s123-eval** | **0.468** | 22/47 |\n\n### Per-task 明细\n\n| task_type | s0 | s123 |\n|-----------|-----|------|\n| look_at_obj_in_light | 4/6 (0.667) | 4/6 (0.667) |\n| pick_and_place_simple | 2/8 (0.250) | 3/8 (0.375) |\n| pick_clean_then_place_in_recep | 5/11 (0.455) | 5/11 (0.455) |\n| pick_cool_then_place_in_recep | 2/7 (0.286) | 1/7 (0.143) |\n| pick_heat_then_place_in_recep | 6/8 (0.750) | 6/8 (0.750) |\n| pick_two_obj_and_place | 3/7 (0.429) | 3/7 (0.429) |\n\n## 训练已提交\n\n| 实验 | GPU | PID |\n|------|-----|-----|\n| **v4-random-fixed-inject25-s0** | cuda:0 | 134514 |\n| **v4-random-fixed-inject25-s123** | cuda:1 | 134594 |\n\nRegistry 已更新，两个训练在 autodl-5090 上运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d022-phasea-execute.md"
+}

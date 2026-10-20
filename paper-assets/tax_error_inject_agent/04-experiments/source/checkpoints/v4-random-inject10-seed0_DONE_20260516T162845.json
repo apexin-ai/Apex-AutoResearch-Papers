@@ -1,0 +1,37 @@
+{
+  "exp_id": "v4-random-inject10-seed0",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:46:13.097Z",
+    "updated_at": "2026-05-16T16:28:45.485Z",
+    "spec": {
+      "command": "legacy",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "181792",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-inject10-seed0.log",
+      "submitted_at": "2026-05-15T17:48:59.472Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "failure_reason": "duplicate of v4-random-fixed-inject10-s0, process no longer exists",
+      "data_path": "legacy",
+      "data_count": 1,
+      "model_name": "legacy",
+      "seed": 0,
+      "wall_clock_seconds": 81586.0,
+      "gpu_hours": 22.66
+    },
+    "conclusion": "killed",
+    "log_path": "legacy_not_tracked",
+    "completed_at": "2026-05-16T16:28:45.485Z"
+  },
+  "timestamp": "2026-05-16T16:28:45.793964+00:00",
+  "trigger": "update_registry"
+}

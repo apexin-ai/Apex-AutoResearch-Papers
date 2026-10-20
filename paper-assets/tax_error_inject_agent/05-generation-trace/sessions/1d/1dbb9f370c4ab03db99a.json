@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dbb9f370c4ab03db99a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval v4 random recovery eval",
+  "task_key": "worker_eval_v4-random-recovery-eval_20260514T212039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-random-recovery-eval_20260514T212039_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "05681e4a1ecf6d113d1d6b9593cc3187bd8e62a79a9c9e7efe52bfd1d7b0fe32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交完成。\n\n- **实验 ID**: `v4-random-recovery-eval`\n- **状态**: RUNNING\n- **服务器**: autodl-5090, cuda:0 (17091 MiB 已占用)\n- **PID**: 90124\n- **日志**: `/tmp/v4_random_recovery_eval.log`\n- **输出**: `eval_results/v4_random_recovery_eval.json`\n- **预计耗时**: ~20-30 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-random-recovery-eval-copy-2.md"
+}

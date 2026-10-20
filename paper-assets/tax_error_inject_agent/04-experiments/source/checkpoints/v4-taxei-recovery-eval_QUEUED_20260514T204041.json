@@ -1,0 +1,14 @@
+{
+  "exp_id": "v4-taxei-recovery-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:40:41.154Z",
+    "updated_at": "2026-05-14T20:40:41.154Z"
+  },
+  "timestamp": "2026-05-14T20:40:41.223781+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "recovery-random-s1",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:37:23.085Z",
+    "updated_at": "2026-05-16T14:37:50.738Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --output eval_results/v4_random_recovery_eval_s1.json --device cuda:0 --seed 42",
+      "server": "autodl-5090",
+      "data_path": "eval/alfworld_tasks",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + mini_random_sft_v4_seed1",
+      "seed": 1,
+      "checkpoint_source": "checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387",
+      "eval_data": "47 ALFWorld tasks with error injection",
+      "parent": "mini_random_sft_v4_seed1",
+      "checkpoint_path": "checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387",
+      "log_path": "eval_results/v4_random_recovery_eval_s1.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T14:37:50.738Z"
+  },
+  "timestamp": "2026-05-16T14:37:51.036415+00:00",
+  "trigger": "update_registry"
+}

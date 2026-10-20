@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9274f81575baa1679424",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops restart scaleup",
+  "task_key": "worker_ops_restart-scaleup_20260516T104844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-scaleup_20260516T104844_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "940994b72796caadcdbc3896d8cca494887863fcd11df283dc6bd731c3dc757f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集已成功重启并在运行：\n\n- **脚本**: `/root/autodl-tmp/tax_error_inject_agent/data/collect_trajectories_scaleup.py`\n- **PID**: 266813\n- **当前进度**: 406/1000 成功轨迹（从 405 resume，已开始产出新结果）\n- **并发**: 8 workers\n- **日志**: `/tmp/scaleup_r3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-scaleup-copy-2.md"
+}

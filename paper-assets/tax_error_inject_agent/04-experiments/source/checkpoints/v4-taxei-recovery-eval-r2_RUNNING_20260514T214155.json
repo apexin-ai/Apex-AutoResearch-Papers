@@ -1,0 +1,28 @@
+{
+  "exp_id": "v4-taxei-recovery-eval-r2",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:23:55.110Z",
+    "updated_at": "2026-05-14T21:41:55.319Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json",
+      "server": "autodl-5090",
+      "model_name": "Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387",
+      "eval_data": "47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)",
+      "data_path": "eval/injected_eval.py",
+      "data_count": 47,
+      "hypothesis": "v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.",
+      "pid": 90519,
+      "log_path": "/tmp/v4_taxei_recovery_eval_r2.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T21:41:55.381102+00:00",
+  "trigger": "update_registry"
+}

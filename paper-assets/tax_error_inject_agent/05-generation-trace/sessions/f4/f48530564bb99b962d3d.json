@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f48530564bb99b962d3d",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_7_1778948171.md",
+  "task_key": "loop_7_1778948171",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778948171.md",
+    "occurrence": 1,
+    "bytes": 4137,
+    "sha256": "7341d3c15e25de504d87670947426526b1b84456b7422676f9c6a12af57c69f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-16T15:29:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090:cuda:0/1/2/3，不可用其他设备\n- LLaMA 模型路径：`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`（不是 HF hub ID）\n- Qwen 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- swift sft 训练用 `--seed X --data_seed X` 保证可复现；LLaMA 系列 data_count=4358(vanilla)/9031(taxei/random)\n- llama31-vanilla-s0-eval 的 report.md 描述有歧义（\"auto-resolved as failed\" 但 conclusion=success, recovery=74.5%），以 registry 为准\n- QUEUED 的 3 个 dose-response 实验（v4-random-fixed-inject25-s0, v4-taxei-fixed-inject25-s0/s123）是旧提交残留，PID 已不存在，需要重新提交才能跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 训练框架：ms-swift（`swift sft` 命令）\n- 活跃进程：llama31-taxei-s0 PID=262833, tmux session, cuda:1, cron 监控中\n- llama31-random-s0 刚退出（PID=260936 已结束），状态 ANALYZING\n\n### 3. 📊 当前状态\n**刚做完**：收到 llama31-random-s0 CRON 完成回调，已 spawn Worker（worker_analysis_llama31-random-s0_20260516T112621）SSH 到服务器提取训练指标和 checkpoint 路径。\n\n**Registry 关键状态**：\n- `llama31-random-s0`：ANALYZING — LLaMA Random s0 训练完成，Worker 正在提取指标\n- `llama31-taxei-s0`：RUNNING — LLaMA TaxEI s0 训练中，cuda:1，PID=262833（cron 已 reconcile 确认存活）\n- 3 个 QUEUED 实验（dose-response 25%）：旧残留，需重新提交\n- 46 个 PREPARING 实验\n\n**等待中**：\n- Worker 回调：analysis:llama31-random-s0 → 拿到指标后更新 registry 为 DONE(success)，然后立即启动 eval\n- Cron：llama31-taxei-s0 完成回调（预计 ~2h，训练开始于 09:16）\n\n**GPU 空闲**：cuda:0, cuda:2, cuda:3 均空闲 — 3/4 GPU 未利用，需要立即填满\n\n### 4. 📋 待办\n- Worker analysis:llama31-random-s0 回调 → update_registry DONE + 记录 checkpoint_path/log_path → 立即在空闲 GPU 上启动 llama31-random-s0-eval（injected_eval.py, 47 tasks）\n- llama31-taxei-s0 cron 回调 → 同样分析+更新+启动 eval\n- 3 个 eval 都完成后（llama31 s0 V/T/R）→ 启动 llama31 s123 轮次（Vanilla/TaxEI/Random 三个训练并行，占 3 GPU）\n- 空闲 GPU（eval 只需 ~20min，训练间隙）→ 穿插 recovery eval 8-15/15 或 dose-response 25% 重新提交\n- LLaMA 3-seed 全部完成 → 汇总跨模型对比表（Qwen vs LLaMA，V/T/R × 3 seeds），向 Director 汇报是否 pattern 一致\n- 向 Director 汇报当前进展（等 Worker 回调拿到 llama31-random-s0 具体指标后一并报）\n\n### 5. 🎯 战略上下文\n- **核心方向**：Negative result paper — taxonomy-guided error injection 从 tool-use 迁移到 embodied planning 的边界条件。EMNLP 2026 Findings 8 页长文\n- **Qwen3-8B 核心数据**：Vanilla 67.3±4.7 vs TaxEI 58.3±6.5 vs Random 58.3±8.7（5-seed）— TaxEI 和 Random 都伤害性能且无显著差异，这是 negative result 的基础\n- **TaxEI-RP**：47.9±7.8%，recovery pairing 更有害（D043 定论）\n- **LLaMA 跨模型验证**：s42 已完成 — Vanilla=74.5%, TaxEI=74.5%, Random=76.6%（eval recovery rate），pattern 与 Qwen 一致（injection 无益）。s0 正在收集中\n- **D046**：Scale-up 数据暂停已撤销（9.3% 成功率是统计口径错误），但 scale-up 优先级低于 LLaMA 3-seed\n- **易错点**：LLaMA eval 用的是 `injected_eval.py`（注入错误后看 recovery），不是 `recovery.py`（clean task success rate）。两个脚本输出格式不同，metrics 字段名不同（recovery_rate vs success_rate）\n- **易错点 2**：llama31 系列的 swift sft 命令需要 `--model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`（绝对路径），不能只写模型名\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778948171.md"
+}

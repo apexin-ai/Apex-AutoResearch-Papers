@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ffb6f844f533aba439",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fix forward pass classification",
+  "task_key": "worker_code_fix-forward-pass-classification_20260515T165120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-forward-pass-classification_20260515T165120_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "20def191b258ce6ea8a0d7f0ca6300e36696fc731a02daa135629323e170b38e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在运行。vanilla 分类正确（Clean=4358, Injected=0）。Forward pass 以约 3 it/s 进行，1090 batches × 6 runs 预计约 40 分钟。\n\n汇总修复结果：\n\n### 修复完成\n\n**Bug**: `classify_sample()` 逐 turn 检查 `[Error Type: ...]` tag → 只有含 tag 的 turn 被标记为 injected（760/9029），其他 injected trajectory 的 turns 被错误标为 clean。\n\n**修复**: \n- `classify_sample()` → `classify_operator()`（仅返回 operator 类型，用于 per-operator 分析）\n- `load_data()` 新增 `--vanilla-data` 参数，对比 vanilla 数据的 `messages[0][\"content\"]` 判断 trajectory 归属\n\n**验证结果**:\n\n| 数据集 | 修复前 clean/injected | 修复后 clean/injected |\n|--------|----------------------|----------------------|\n| taxei_full | 8269 / 760 | 4358 / 4671 |\n| random_full | 8269 / 760 | 4358 / 4671 |\n| vanilla | 4358 / 0 | 4358 / 0 |\n| inject10 | 4288 / 70 | 3922 / 436 |\n| inject25 | 4190 / 168 | 3268 / 1090 |\n| inject50 | 3988 / 370 | 2179 / 2179 |\n\n**Per-operator 分类**: 保持不变（P1=188, P2=192, C1=191, C4=189，共 760 tagged turns）\n\n**Forward pass**: 已提交到 cuda:2（exp_id=`v4-training-dynamics-forward-v2`），包含 6 个 checkpoint + 绘图，输出到 `artifacts/training_dynamics_v2/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-forward-pass-classification.md"
+}

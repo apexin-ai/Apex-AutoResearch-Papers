@@ -1,0 +1,75 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{paladin2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{paladin2025}
+\citation{eef2025}
+\citation{shridhar2021alfworld}
+\citation{yao2023react}
+\citation{shinn2023reflexion}
+\citation{madry2018towards}
+\citation{bengio2009curriculum}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Error injection for LLM agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embodied planning agents.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training instability and seed sensitivity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial and curriculum training.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Error Taxonomy for Embodied Planning}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Training Setup}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Clean evaluation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery evaluation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detection rate.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: 5-Seed Clean Evaluation (Qwen3-8B)}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 5-seed clean task completion on ALFWorld (47 tasks $\times $ 5 seeds = 235 episodes per condition).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{5-seed clean task completion on ALFWorld (47 tasks $\times $ 5 seeds = 235 episodes per condition)}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response ablation.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Dose-response: mean $\pm $ SD across 5 seeds. All conditions use 4,358 total training samples.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:dose}{{2}{3}{Dose-response: mean $\pm $ SD across 5 seeds. All conditions use 4,358 total training samples}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Replication (LLaMA-3.1-8B-Instruct)}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.2}{4}{Cross-Model Replication (LLaMA-3.1-8B-Instruct)}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model training stability comparison.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:crossmodel}{{3}{4}{Cross-model training stability comparison}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLaMA-3.1-8B per-seed results (recovery evaluation, 47 tasks).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:llama_seeds}{{4}{4}{LLaMA-3.1-8B per-seed results (recovery evaluation, 47 tasks)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Recovery Evaluation: Recovery $\approx $ Resilience}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:recovery}{{4.3}{4}{Recovery Evaluation: Recovery $\approx $ Resilience}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 5-seed recovery rate vs clean success rate. Recovery--clean gap is within noise ($\leq 1.2$pp).}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:recovery}{{5}{4}{5-seed recovery rate vs clean success rate. Recovery--clean gap is within noise ($\leq 1.2$pp)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Operator Analysis: Local vs.\ Global Error Gradient}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:peroperator}{{4.4}{5}{Per-Operator Analysis: Local vs.\ Global Error Gradient}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-operator TaxEI advantage/disadvantage (5-seed pooled, $N=55$--60 per operator).}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:peroperator}{{6}{5}{Per-operator TaxEI advantage/disadvantage (5-seed pooled, $N=55$--60 per operator)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Data Scale Ablation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scale}{{4.5}{5}{Data Scale Ablation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Data scale ablation (3-seed). The performance gap persists at 5$\times $ scale.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:scale}{{7}{5}{Data scale ablation (3-seed). The performance gap persists at 5$\times $ scale}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Projected scale-performance curve (extrapolation from observed trend).}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:scaleproj}{{8}{6}{Projected scale-performance curve (extrapolation from observed trend)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Recovery Prompting Ablation}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:prompting}{{4.6}{6}{Recovery Prompting Ablation}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Recovery prompting ablation (seed=42, 47 tasks). 3-shot exemplars showing error$\rightarrow $detect$\rightarrow $recover sequences.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:prompting}{{9}{6}{Recovery prompting ablation (seed=42, 47 tasks). 3-shot exemplars showing error$\rightarrow $detect$\rightarrow $recover sequences}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Error Injection Fails in Embodied Planning}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Task-structural comparison between tool-use and embodied planning.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:structural}{{10}{6}{Task-structural comparison between tool-use and embodied planning}{table.10}{}}
+\bibstyle{plainnat}
+\bibcite{paladin2025}{{1}{2025}{{PALADIN}}{{}}}
+\bibcite{eef2025}{{2}{2025}{{EEF}}{{}}}
+\bibcite{shridhar2021alfworld}{{3}{2021}{{Shridhar et~al.}}{{}}}
+\bibcite{yao2023react}{{4}{2023}{{Yao et~al.}}{{}}}
+\bibcite{shinn2023reflexion}{{5}{2023}{{Shinn et~al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for the Field}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{madry2018towards}{{6}{2018}{{Madry et~al.}}{{}}}
+\bibcite{bengio2009curriculum}{{7}{2009}{{Bengio et~al.}}{{}}}
+\bibcite{mccoy2020berts}{{8}{2020}{{McCoy et~al.}}{{}}}
+\bibcite{mosbach2021stability}{{9}{2021}{{Mosbach et~al.}}{{}}}
+\bibcite{damour2022underspecification}{{10}{2022}{{D'Amour et~al.}}{{}}}
+\gdef \@abspage@last{8}

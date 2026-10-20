@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32924c70c113df4a01d7",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fixed size ablation data",
+  "task_key": "worker_code_fixed-size-ablation-data_20260514T220245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fixed-size-ablation-data_20260514T220245_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "11b454b7aa39d1771fd4d6556b0d5c56095c9dd21ee490685469ba4e8fa70def"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个文件均为 4,358 行，格式正确。\n\n**结果汇总：**\n\n| 文件 | Clean | Injected | Total |\n|------|-------|----------|-------|\n| `*_fixed_inject10.jsonl` | 3,922 | 436 | 4,358 |\n| `*_fixed_inject25.jsonl` | 3,268 | 1,090 | 4,358 |\n| `*_fixed_inject50.jsonl` | 2,179 | 2,179 | 4,358 |\n\n脚本：`scripts/prepare_fixed_ablation_data.py`\n输出目录：`data/mini_pipeline_v4/ablation_fixed/`\n\n25% 的 injected 数量为 1,090（`round(4358*0.25)=1090`），比预期 1,089 多 1，是 Python banker's rounding 导致，总量不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fixed-size-ablation-data.md"
+}

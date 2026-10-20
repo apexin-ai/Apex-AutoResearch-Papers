@@ -1,0 +1,1138 @@
+{
+  "schema_version": "1.0",
+  "id": "24ba7d5e3145ce76d5fd",
+  "project": "tax_error_inject_agent",
+  "kind": "conversation",
+  "title": "code sft training config",
+  "task_key": "worker_code_sft-training-config_20260514T070528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_sft-training-config_20260514T070528.jsonl",
+    "occurrence": 1,
+    "bytes": 49071,
+    "sha256": "c043015650874702a1cc9a45e8f2d1f49de53dc313239084e467b683ce6a2352"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T07:10:23.236294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T07:10:23.236581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T07:10:23.236768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "autodl-5090",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T07:10:23.236896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/models/Qwen/Qwen3-8B/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T07:10:23.237024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T07:10:23.237148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00005.safetensors\\\\nmodel-00002-of-00005.safetensors\\\\nmodel-00003-of-00005.safetensors\\\\nmodel-00004-of-00005.safetensors\\\\nmodel-00005-of-00005.safetensors\\\\nmodel.safetensors.index.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T07:10:23.237264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -40 /root/autodl-tmp/tax_error_inject_agent/data/formatter.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T07:10:23.237398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nTaxEI SFT Data Formatter\\\\n=========================\\\\nConverts raw + injected ALFWorld trajectories into ms-swift multi-turn SFT format.\\\\n\\\\nms-swift format:\\\\n{\\\\\\\"messages\\\\\\\": [\\\\n    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"<observation>\\\\\\\"},\\\\n    {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"<think>...</think>\\\\\\\\n<action>...</action>\\\\\\\"},\\\\n    ...\\\\n]}\\\\n\\\\nEach ALFWorld step becomes one user-assistant turn.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nfrom __future__ import annotations\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional\\\\n\\\\n\\\\ndef format_for_sft(\\\\n    trajectories: List[Dict[str, Any]],\\\\n    injected_trajectories: Optional[List[Dict[str, Any]]] = None,\\\\n    output_path: str = \\\\\\\"sft_data.jsonl\\\\\\\",\\\\n) -> List[Dict[str, Any]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert trajectories to ms-swift multi-turn SFT format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_trajs = list(trajectories)\\\\n    if injected_trajectories:\\\\n        all_trajs.extend(injected_trajectories)\\\\n\\\\n    formatted: List[Dict[str, Any]] = []\\\\n\\\\n    for traj in all_trajs:\\\\n        messages: List[Dict[str, str]] = []\\\\n        steps = traj.get(\\\\\\\"steps\\\\\\\", [])\\\\n\\\\n        task_desc = traj.get(\\\\\\\"task_description\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if task_desc:\\\\n            messages.append({\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": task_desc})\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T07:10:23.237563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "ls /root/autodl-tmp/tax_error_inject_agent/configs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T07:10:23.237703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T07:10:23.237854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\nimport torch\ntokenizer = AutoTokenizer.from_pretrained('/root/autodl-tmp/models/Qwen/Qwen3-8B', trust_remote_code=True)\nprint(f'Tokenizer OK: vocab_size={tokenizer.vocab_size}')\nmodel = AutoModelForCausalLM.from_pretrained('/root/autodl-tmp/models/Qwen/Qwen3-8B', torch_dtype=torch.bfloat16, device_map='auto', trust_remote_code=True)\nprint(f'Model OK: {model.config.hidden_size}d, {model.config.num_hidden_layers}L')\nfor i in range(torch.cuda.device_count()):\n    mem = torch.cuda.memory_allocated(i)/1024**3\n    if mem > 0:\n        print(f'  GPU {i}: {mem:.1f}GB allocated')\nprint(f'Total GPU memory allocated: {sum(torch.cuda.memory_allocated(i) for i in range(torch.cuda.device_count()))/1024**3:.1f}GB')\ndel model\ntorch.cuda.empty_cache()\nprint('Cleanup done.')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T07:10:23.237978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && swift sft --help 2>&1 | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T07:10:23.238110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTokenizer OK: vocab_size=151643\\\\nModel OK: 4096d, 36L\\\\n  GPU 0: 3.0GB allocated\\\\n  GPU 1: 4.0GB allocated\\\\n  GPU 2: 4.0GB allocated\\\\n  GPU 3: 4.4GB allocated\\\\nTotal GPU memory allocated: 15.3GB\\\\nCleanup done.\\\\n\\\", \\\"stderr\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.44it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.44it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.45it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.56it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  2.04it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.75it/s]\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T07:10:23.238252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nrun sh: `/root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/swift/cli/sft.py --help`\\\\nusage: sft.py [-h] [--tuner_backend TUNER_BACKEND]\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --tuner_backend TUNER_BACKEND\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T07:10:23.238401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && swift sft --help 2>&1 | wc -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T07:10:23.238537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip show ms-swift 2>&1 | head -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T07:10:23.238663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T07:10:23.238788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nName: ms_swift\\\\nVersion: 4.2.0\\\\nSummary: Swift: Scalable lightWeight Infrastructure for Fine-Tuning\\\\nHome-page: https://github.com/modelscope/ms-swift\\\\nAuthor: DAMO ModelScope teams\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T07:10:23.238932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift.llm import SftArguments\nimport json\n# Get all field names and defaults\nfields = SftArguments.__dataclass_fields__\nfor name, field in sorted(fields.items()):\n    default = field.default if field.default is not field.default_factory else 'factory'\n    print(f'{name}: {default}')\n\" 2>&1 | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T07:10:23.239060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'swift.llm'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T07:10:23.239186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift.llm import SftArguments\nfields = SftArguments.__dataclass_fields__\n# look for key params\nkeys = ['model', 'model_type', 'model_id_or_path', 'dataset', 'dataset_path', 'train_dataset', \n        'sft_type', 'lora_rank', 'lora_r', 'lora_alpha', 'lora_dropout', 'target_modules',\n        'lora_target_modules', 'template_type', 'template', 'num_train_epochs',\n        'learning_rate', 'per_device_train_batch_size', 'gradient_accumulation_steps',\n        'warmup_ratio', 'max_length', 'bf16', 'output_dir', 'logging_steps',\n        'save_strategy', 'eval_steps', 'deepspeed', 'max_steps']\nfor k in keys:\n    if k in fields:\n        f = fields[k]\n        default = f.default if f.default is not f.default_factory else 'factory'\n        print(f'  {k}: default={default}')\n    else:\n        print(f'  {k}: NOT FOUND')\n\" 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T07:10:23.239348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nfrom swift.llm import SftArguments\\\\\\\\nfields = SftArguments.__dataclass_fields__\\\\\\\\n# look for key params\\\\\\\\nkeys = [\\\\\\\\'model\\\\\\\\', \\\\\\\\'model_type\\\\\\\\', \\\\\\\\'model_id_or_path\\\\\\\\', \\\\\\\\'dataset\\\\\\\\', \\\\\\\\'dataset_path\\\\\\\\', \\\\\\\\'train_dataset\\\\\\\\', \\\\\\\\n        \\\\\\\\'sft_type\\\\\\\\', \\\\\\\\'lora_rank\\\\\\\\', \\\\\\\\'lora_r\\\\\\\\', \\\\\\\\'lora_alpha\\\\\\\\', \\\\\\\\'lora_dropout\\\\\\\\', \\\\\\\\'target_modules\\\\\\\\',\\\\\\\\n        \\\\\\\\'lora_target_modules\\\\\\\\', \\\\\\\\'template_type\\\\\\\\', \\\\\\\\'template\\\\\\\\', \\\\\\\\'num_train_epochs\\\\\\\\',\\\\\\\\n        \\\\\\\\'learning_rate\\\\\\\\', \\\\\\\\'per_device_train_batch_size\\\\\\\\', \\\\\\\\'gradient_accumulation_steps\\\\\\\\',\\\\\\\\n        \\\\\\\\'warmup_ratio\\\\\\\\', \\\\\\\\'max_length\\\\\\\\', \\\\\\\\'bf16\\\\\\\\', \\\\\\\\'output_dir\\\\\\\\', \\\\\\\\'logging_steps\\\\\\\\',\\\\\\\\n        \\\\\\\\'save_strategy\\\\\\\\', \\\\\\\\'eval_steps\\\\\\\\', \\\\\\\\'deepspeed\\\\\\\\', \\\\\\\\'max_steps\\\\\\\\']\\\\\\\\nfor k in keys:\\\\\\\\n    if k in fields:\\\\\\\\n        f = fields[k]\\\\\\\\n        default = f.default if f.default is not f.default_factory else \\\\\\\\'factory\\\\\\\\'\\\\\\\\n        print(f\\\\\\\\'  {k}: default={default}\\\\\\\\')\\\\\\\\n    else:\\\\\\\\n        print(f\\\\\\\\'  {k}: NOT FOUND\\\\\\\\')\\\\\\\\n\\\\\\\" 2>&1'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'swift.llm'\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T07:10:23.239545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport swift\nprint(dir(swift))\nimport swift.cli.sft as sft_cli\nprint(dir(sft_cli))\n\" 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T07:10:23.239706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport swift.trainers\nprint(dir(swift.trainers))\n\" 2>&1 | head -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T07:10:23.239827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat /root/miniconda3/lib/python3.12/site-packages/swift/cli/sft.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T07:10:23.239959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n['ALL_BASE_STRATEGY', 'AdapterRequest', 'AppArguments', 'BaseAgentTemplate', 'BaseArguments', 'BaseLoss', 'ConfigLossScale', 'DeployArguments', 'EncodePreprocessor', 'EvalArguments', 'ExportArguments', 'GRPOVllmEngine', 'InferArguments', 'InferClient', 'InferEngine', 'InferRequest', 'InferStats', 'LmdeployEngine', 'LossScale', 'MeanMetric', 'OptimizerCallback', 'PeftTuner', 'PretrainArguments', 'RLHFArguments', 'RequestConfig', 'RolloutArguments', 'SamplingArguments', 'Seq2SeqTrainer', 'Seq2SeqTrainingArguments', 'SftArguments', 'SglangEngine', 'Swift', 'Trainer', 'TrainerCallback', 'TrainingArguments', 'TransformersEngine', 'Tuner', 'VllmEngine', '__all__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__release_datetime__', '__spec__', '__version__', '_class_to_module', '_import_structure', '_modules', '_name', '_objects', 'agent_template', 'agent_template_map', 'app_main', 'arguments', 'callbacks', 'callbacks_map', 'dataset', 'deploy_main', 'eval_main', 'eval_metrics_map', 'export_main', 'get_logger', 'get_loss_scale', 'get_model_processor', 'get_processor', 'get_template', 'infer_engine', 'infer_main', 'load_dataset', 'loss', 'loss_map', 'loss_scale', 'loss_scale_map', 'merge_lora', 'metrics', 'model', 'optimizers', 'optimizers_map', 'pipelines', 'pretrain_main', 'rlhf_main', 'rollout_main', 'run_deploy', 'safe_snapshot_download', 'sampling_main', 'sft_main', 'template', 'trainers', 'tuner_plugin', 'tuners', 'tuners_map', 'utils', 'version']\\\\n['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'try_init_unsloth']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T07:10:23.240098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n['DataLoaderMixin', 'EmbeddingTrainer', 'RerankerTrainer', 'Seq2SeqTrainer', 'Seq2SeqTrainingArguments', 'SwiftMixin', 'TrainArgumentsMixin', 'Trainer', 'TrainerFactory', 'TrainingArguments', '__all__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '_class_to_module', '_import_structure', '_modules', '_name', '_objects', 'arguments', 'calculate_max_steps', 'disable_gradient_checkpointing', 'dynamic_gradient_checkpointing', 'embedding_trainer', 'mixin', 'per_token_loss_func', 'reranker_trainer', 'seq2seq_trainer', 'trainer', 'trainer_factory', 'utils']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T07:10:23.240240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n# Copyright (c) ModelScope Contributors. All rights reserved.\\\\n\\\\n\\\\ndef try_init_unsloth():\\\\n    import argparse\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument('--tuner_backend', type=str, default='peft')\\\\n    args, _ = parser.parse_known_args()\\\\n    if args.tuner_backend == 'unsloth':\\\\n        import unsloth\\\\n\\\\n\\\\nif __name__ == '__main__':\\\\n    from swift.cli.utils import try_use_single_device_mode\\\\n    try_use_single_device_mode()\\\\n    try_init_unsloth()\\\\n    from swift.ray import try_init_ray\\\\n    try_init_ray()\\\\n    from swift.pipelines import sft_main\\\\n    sft_main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T07:10:23.240395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift import SftArguments\nfields = SftArguments.__dataclass_fields__\nkeys = ['model', 'model_type', 'model_id_or_path', 'dataset', 'dataset_path', 'train_dataset',\n        'sft_type', 'train_type', 'lora_rank', 'lora_r', 'lora_alpha', 'lora_dropout', 'target_modules',\n        'lora_target_modules', 'template_type', 'template', 'num_train_epochs',\n        'learning_rate', 'per_device_train_batch_size', 'gradient_accumulation_steps',\n        'warmup_ratio', 'max_length', 'bf16', 'output_dir', 'logging_steps',\n        'save_strategy', 'eval_steps', 'deepspeed', 'max_steps', 'model_revision']\nfor k in keys:\n    if k in fields:\n        f = fields[k]\n        d = f.default\n        print(f'  FOUND  {k}: default={d}')\n    else:\n        print(f'  MISS   {k}')\n\" 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T07:10:23.240571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n[INFO:swift] Successfully registered `/root/miniconda3/lib/python3.12/site-packages/swift/dataset/data/dataset_info.json`.\\\\n  FOUND  model: default=None\\\\n  FOUND  model_type: default=None\\\\n  MISS   model_id_or_path\\\\n  FOUND  dataset: default=<dataclasses._MISSING_TYPE object at 0x7f56c2f23ec0>\\\\n  MISS   dataset_path\\\\n  MISS   train_dataset\\\\n  MISS   sft_type\\\\n  MISS   train_type\\\\n  FOUND  lora_rank: default=8\\\\n  MISS   lora_r\\\\n  FOUND  lora_alpha: default=32\\\\n  FOUND  lora_dropout: default=0.05\\\\n  FOUND  target_modules: default=<dataclasses._MISSING_TYPE object at 0x7f56c2f23ec0>\\\\n  MISS   lora_target_modules\\\\n  MISS   template_type\\\\n  FOUND  template: default=None\\\\n  FOUND  num_train_epochs: default=3.0\\\\n  FOUND  learning_rate: default=None\\\\n  FOUND  per_device_train_batch_size: default=1\\\\n  FOUND  gradient_accumulation_steps: default=None\\\\n  FOUND  warmup_ratio: default=0.0\\\\n  FOUND  max_length: default=None\\\\n  FOUND  bf16: default=None\\\\n  FOUND  output_dir: default=None\\\\n  FOUND  logging_steps: default=5\\\\n  FOUND  save_strategy: default=steps\\\\n  FOUND  eval_steps: default=None\\\\n  FOUND  deepspeed: default=None\\\\n  FOUND  max_steps: default=-1\\\\n  FOUND  model_revision: default=None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T07:10:23.240754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift import SftArguments\nfields = SftArguments.__dataclass_fields__\n# Find tuner/adapter related params\nfor k, f in sorted(fields.items()):\n    if any(x in k.lower() for x in ['lora', 'tuner', 'adapter', 'peft', 'train_type', 'freeze', 'qlora', 'quant']):\n        d = f.default\n        print(f'  {k}: default={d}, type={f.type}')\nprint('---')\n# Find dataset related params \nfor k, f in sorted(fields.items()):\n    if any(x in k.lower() for x in ['dataset', 'data_']):\n        d = f.default\n        print(f'  {k}: default={d}, type={f.type}')\n\" 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T07:10:23.240924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n[INFO:swift] Successfully registered `/root/miniconda3/lib/python3.12/site-packages/swift/dataset/data/dataset_info.json`.\\\\n  adalora_beta1: default=0.85, type=<class 'float'>\\\\n  adalora_beta2: default=0.85, type=<class 'float'>\\\\n  adalora_deltaT: default=1, type=<class 'int'>\\\\n  adalora_init_r: default=12, type=<class 'int'>\\\\n  adalora_orth_reg_weight: default=0.5, type=<class 'float'>\\\\n  adalora_target_r: default=8, type=<class 'int'>\\\\n  adalora_tfinal: default=0, type=<class 'int'>\\\\n  adalora_tinit: default=0, type=<class 'int'>\\\\n  adapter_act: default=gelu, type=<class 'str'>\\\\n  adapter_length: default=128, type=<class 'int'>\\\\n  adapters: default=<dataclasses._MISSING_TYPE object at 0x7f9971500470>, type=typing.List[str]\\\\n  bnb_4bit_quant_storage: default=None, type=typing.Optional[str]\\\\n  bnb_4bit_quant_type: default=nf4, type=typing.Literal['fp4', 'nf4']\\\\n  bnb_4bit_use_double_quant: default=True, type=<class 'bool'>\\\\n  freeze_aligner: default=True, type=<class 'bool'>\\\\n  freeze_llm: default=False, type=<class 'bool'>\\\\n  freeze_parameters: default=<dataclasses._MISSING_TYPE object at 0x7f9971500470>, type=typing.List[str]\\\\n  freeze_parameters_ratio: default=0.0, type=<class 'float'>\\\\n  freeze_parameters_regex: default=None, type=typing.Optional[str]\\\\n  freeze_vit: default=True, type=<class 'bool'>\\\\n  galore_proj_quant: default=False, type=<class 'bool'>\\\\n  galore_quantization: default=False, type=<class 'bool'>\\\\n  lora_alpha: default=32, type=<class 'int'>\\\\n  lora_bias: default=none, type=typing.Literal['none', 'all']\\\\n  lora_dropout: default=0.05, type=<class 'float'>\\\\n  lora_dtype: default=None, type=typing.Literal['float16', 'bfloat16', 'float32', None]\\\\n  lora_ga_batch_size: default=2, type=<class 'int'>\\\\n  lora_ga_direction: default=ArB2r, type=<class 'str'>\\\\n  lora_ga_iters: default=2, type=<class 'int'>\\\\n  lora_ga_max\n…[truncated 1846 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T07:10:23.241105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift.llm.template import TEMPLATE_MAPPING\n# look for qwen3 templates\nfor k in sorted(TEMPLATE_MAPPING.keys()):\n    if 'qwen' in k.lower():\n        print(k)\n\" 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T07:10:23.241232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift import get_template\n# Try common names for qwen3\nfor name in ['qwen3', 'qwen2_5', 'qwen2.5', 'qwen2', 'qwen', 'chatglm']:\n    try:\n        t = get_template(name)\n        print(f'Template {name!r}: OK')\n    except Exception as e:\n        print(f'Template {name!r}: {e}')\n\" 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T07:10:23.241364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'swift.llm'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T07:10:23.241512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTemplate 'qwen3': 'str' object has no attribute 'model_info'\\\\nTemplate 'qwen2_5': 'str' object has no attribute 'model_info'\\\\nTemplate 'qwen2.5': 'str' object has no attribute 'model_info'\\\\nTemplate 'qwen2': 'str' object has no attribute 'model_info'\\\\nTemplate 'qwen': 'str' object has no attribute 'model_info'\\\\nTemplate 'chatglm': 'str' object has no attribute 'model_info'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T07:10:23.241669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom swift.llm.model import MODEL_MAPPING\nfor k in sorted(MODEL_MAPPING.keys()):\n    if 'qwen3' in k.lower():\n        print(f'{k}: {MODEL_MAPPING[k]}')\n\" 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T07:10:23.241823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport swift.template as tmpl\nmapping = getattr(tmpl, 'TEMPLATE_MAPPING', None) or getattr(tmpl, 'TemplateMapping', None) or getattr(tmpl, 'template_map', None)\nif mapping:\n    for k in sorted(mapping.keys()):\n        if 'qwen' in k.lower():\n            print(k)\nelse:\n    print(dir(tmpl))\n\" 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T07:10:23.241963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'swift.llm'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T07:10:23.242102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nllava_next_qwen\\\\nllava_next_qwen_hf\\\\nqwen\\\\nqwen2_5\\\\nqwen2_5_math\\\\nqwen2_5_math_prm\\\\nqwen2_5_omni\\\\nqwen2_5_vl\\\\nqwen2_audio\\\\nqwen2_gme\\\\nqwen2_vl\\\\nqwen3\\\\nqwen3_5\\\\nqwen3_asr\\\\nqwen3_coder\\\\nqwen3_emb\\\\nqwen3_guard\\\\nqwen3_nothinking\\\\nqwen3_omni\\\\nqwen3_reranker\\\\nqwen3_thinking\\\\nqwen3_vl\\\\nqwen3_vl_emb\\\\nqwen3_vl_reranker\\\\nqwen_audio\\\\nqwen_vl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T07:10:23.242263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/tax_error_inject_agent/configs && echo '{\"messages\": [{\"role\": \"user\", \"content\": \"You are in the middle of a room. Looking quickly around you, you see a cabinet 6, a cabinet 1, a countertop 1, a fridge 1.\"}, {\"role\": \"assistant\", \"content\": \"<think>I need to find a tomato. Let me check the fridge first.</think>\\n<action>go to fridge 1</action>\"}, {\"role\": \"user\", \"content\": \"You arrive at fridge 1. The fridge 1 is closed.\"}, {\"role\": \"assistant\", \"content\": \"<think>I need to open the fridge to look inside.</think>\\n<action>open fridge 1</action>\"}]}' > /tmp/test_sft.jsonl && echo '{\"messages\": [{\"role\": \"user\", \"content\": \"Put a clean plate in countertop.\"}, {\"role\": \"assistant\", \"content\": \"<think>I need to find a plate first.</think>\\n<action>go to cabinet 1</action>\"}]}' >> /tmp/test_sft.jsonl && wc -l /tmp/test_sft.jsonl && cat /tmp/test_sft.jsonl | python3 -c \"import sys,json; [json.loads(l) for l in sys.stdin]; print('JSON valid')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T07:10:23.242404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n2 /tmp/test_sft.jsonl\\\\nJSON valid\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T07:10:23.242560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset /tmp/test_sft.jsonl --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --max_steps 2 --per_device_train_batch_size 1 --max_length 4096 --output_dir /tmp/test_sft_output --logging_steps 1 2>&1 | tail -60",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T07:10:23.242740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n                (lora_magnitude_vector): ModuleDict()\\\\n              )\\\\n              (up_proj): lora.Linear(\\\\n                (base_layer): Linear(in_features=4096, out_features=12288, bias=False)\\\\n                (lora_dropout): ModuleDict(\\\\n                  (default): Dropout(p=0.05, inplace=False)\\\\n                )\\\\n                (lora_A): ModuleDict(\\\\n                  (default): Linear(in_features=4096, out_features=16, bias=False)\\\\n                )\\\\n                (lora_B): ModuleDict(\\\\n                  (default): Linear(in_features=16, out_features=12288, bias=False)\\\\n                )\\\\n                (lora_embedding_A): ParameterDict()\\\\n                (lora_embedding_B): ParameterDict()\\\\n                (lora_magnitude_vector): ModuleDict()\\\\n              )\\\\n              (down_proj): lora.Linear(\\\\n                (base_layer): Linear(in_features=12288, out_features=4096, bias=False)\\\\n                (lora_dropout): ModuleDict(\\\\n                  (default): Dropout(p=0.05, inplace=False)\\\\n                )\\\\n                (lora_A): ModuleDict(\\\\n                  (default): Linear(in_features=12288, out_features=16, bias=False)\\\\n                )\\\\n                (lora_B): ModuleDict(\\\\n                  (default): Linear(in_features=16, out_features=4096, bias=False)\\\\n                )\\\\n                (lora_embedding_A): ParameterDict()\\\\n                (lora_embedding_B): ParameterDict()\\\\n                (lora_magnitude_vector): ModuleDict()\\\\n              )\\\\n              (act_fn): SiLUActivation()\\\\n            )\\\\n            (input_layernorm): Qwen3RMSNorm((4096,), eps=1e-06)\\\\n            (post_attention_layernorm): Qwen3RMSNorm((4096,), eps=1e-06)\\\\n          )\\\\n        )\\\\n        (norm): Qwen3RMSNorm((4096,), eps=1e-06)\\\\n        (rotary_emb): Qwen3RotaryEmbedding()\\\\n      )\\\\n      (lm_head): Linea\n…[truncated 2662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T07:10:23.242925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset /tmp/test_sft.jsonl --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --max_steps 2 --per_device_train_batch_size 2 --max_length 4096 --gradient_accumulation_steps 8 --output_dir /tmp/test_sft_bs2 --logging_steps 1 2>&1 | grep -E \"memory|train_speed|Trainable|train_runtime\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T07:10:23.243065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && rm -rf /tmp/test_sft_output",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T07:10:23.243204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\ndataloader_pin_memory=True,\\\\nmax_memory={},\\\\nskip_memory_metrics=True,\\\\n[INFO:swift] model_parameter_info: PeftModelForCausalLM: 8234.3823M Params (43.6470M Trainable [0.5301%]), 0.0001M Buffers.\\\\n\\\\rTrain:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]\\\\r                                                    \\\\r\\\\rTrain:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]\\\\rTrain:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]{'loss': 5.20451498, 'grad_norm': 7.67093325, 'learning_rate': 5e-05, 'token_acc': 0.60759494, 'epoch': 1.0, 'global_step/max_steps': '1/2', 'elapsed_time': '1s', 'remaining_time': '1s', 'memory(GiB)': 16.48, 'train_speed(s/it)': 0.853167}\\\\n{'loss': 4.77161551, 'grad_norm': 6.25272512, 'learning_rate': 0.0, 'token_acc': 0.60759494, 'epoch': 2.0, 'global_step/max_steps': '2/2', 'elapsed_time': '1s', 'remaining_time': '0s', 'memory(GiB)': 16.5, 'train_speed(s/it)': 0.583729}\\\\n{'train_runtime': 1.6202, 'train_samples_per_second': 19.751, 'train_steps_per_second': 1.234, 'train_loss': 4.98806524, 'epoch': 2.0, 'global_step/max_steps': '2/2', 'elapsed_time': '2s', 'remaining_time': '0s', 'memory(GiB)': 16.5, 'train_speed(s/it)': 0.807402}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 24.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T07:10:23.243340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T07:10:23.243508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && rm -rf /tmp/test_sft_bs2 && cat > /root/autodl-tmp/tax_error_inject_agent/configs/sft_taxei.yaml << 'YAML_EOF'\n# TaxEI-SFT: Qwen3-8B + LoRA on injected+recovery trajectories\nmodel: /root/autodl-tmp/models/Qwen/Qwen3-8B\ndataset:\n  - /root/autodl-tmp/tax_error_inject_agent/data/sft_taxei.jsonl\n\n# LoRA\nlora_rank: 16\nlora_alpha: 32\nlora_dropout: 0.05\ntarget_modules: all-linear\n\n# Training\nnum_train_epochs: 3\nlearning_rate: 1e-4\nper_device_train_batch_size: 2\ngradient_accumulation_steps: 8\nwarmup_ratio: 0.05\nmax_length: 4096\n\n# Output\noutput_dir: /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_sft\nlogging_steps: 10\nsave_strategy: epoch\nYAML_EOF\necho \"sft_taxei.yaml written\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T07:10:23.243650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nsft_taxei.yaml written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T07:10:23.243773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/autodl-tmp/tax_error_inject_agent/configs/sft_vanilla.yaml << 'YAML_EOF'\n# Vanilla SFT baseline: Qwen3-8B + LoRA on normal trajectories only\nmodel: /root/autodl-tmp/models/Qwen/Qwen3-8B\ndataset:\n  - /root/autodl-tmp/tax_error_inject_agent/data/sft_vanilla.jsonl\n\n# LoRA (identical to TaxEI-SFT)\nlora_rank: 16\nlora_alpha: 32\nlora_dropout: 0.05\ntarget_modules: all-linear\n\n# Training (identical to TaxEI-SFT)\nnum_train_epochs: 3\nlearning_rate: 1e-4\nper_device_train_batch_size: 2\ngradient_accumulation_steps: 8\nwarmup_ratio: 0.05\nmax_length: 4096\n\n# Output\noutput_dir: /root/autodl-tmp/tax_error_inject_agent/checkpoints/vanilla_sft\nlogging_steps: 10\nsave_strategy: epoch\nYAML_EOF\necho \"sft_vanilla.yaml written\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T07:10:23.243907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nsft_vanilla.yaml written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T07:10:23.244043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport yaml\nfor f in ['sft_taxei.yaml', 'sft_vanilla.yaml']:\n    path = f'/root/autodl-tmp/tax_error_inject_agent/configs/{f}'\n    with open(path) as fp:\n        cfg = yaml.safe_load(fp)\n    print(f'{f}: {len(cfg)} keys — model={cfg[\\\"model\\\"].split(\\\"/\\\")[-1]}, dataset={cfg[\\\"dataset\\\"][0].split(\\\"/\\\")[-1]}, output={cfg[\\\"output_dir\\\"].split(\\\"/\\\")[-1]}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T07:10:23.244174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nsft_taxei.yaml: 15 keys — model=Qwen3-8B, dataset=sft_taxei.jsonl, output=taxei_sft\\\\nsft_vanilla.yaml: 15 keys — model=Qwen3-8B, dataset=sft_vanilla.jsonl, output=vanilla_sft\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T07:10:23.244333+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 1. Qwen3-8B 加载验证\n- Tokenizer: vocab_size=151643\n- Model: 4096d, 36L, bf16 加载 15.3GB（device_map=auto 分布到 4 卡）\n\n### 2. ms-swift 4.2.0 CLI 参数格式\n关键参数名映射（4.x vs 旧版）：\n| 参数 | 4.x 实际名 |\n|------|-----------|\n| 模型路径 | `--model` |\n| 数据集 | `--dataset`（接受 JSONL 路径） |\n| 模板 | `--template`（自动检测，无需指定） |\n| 调优方式 | `--tuner_type`（默认 lora） |\n| LoRA rank | `--lora_rank` |\n\n启动命令：`swift sft --config configs/sft_taxei.yaml`\n或直接 CLI：`CUDA_VISIBLE_DEVICES=0 swift sft --model ... --dataset ... --lora_rank 16 ...`\n\n### 3. 配置文件\n- `configs/sft_taxei.yaml` — TaxEI-SFT（注入+恢复轨迹）\n- `configs/sft_vanilla.yaml` — Vanilla SFT baseline（仅正常轨迹）\n- 唯一区别：dataset_path 和 output_dir\n\n### 4. Dry-run 结果\n- 单卡启动成功，LoRA 注入到所有 linear 层（q/k/v/o/gate/up/down_proj）\n- 可训参数：43.6M / 8234M = 0.53%\n- bs=1 显存 16.2GB，bs=2 显存 16.5GB（测试数据短序列）\n- 速度：~0.8 s/step（bs=2, 短序列）\n\n### 5. 训练资源估算\n- **单卡足够**：RTX 5090 32GB，bs=2 + LoRA 约 20-24GB（真实 4096 长序列）\n- **无需 DeepSpeed/多卡 DDP**\n- ~1300 条 × 3 epochs = 3900 samples，effective batch=16 → ~244 steps\n- 真实长序列约 2-4s/step → **预计 8-16 分钟/模型**\n- 两个模型共计 **~30 分钟内完成**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_sft-training-config_20260514T070528"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/code-sft-training-config.md"
+}

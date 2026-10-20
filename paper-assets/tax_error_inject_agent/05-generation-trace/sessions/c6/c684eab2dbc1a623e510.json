@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c684eab2dbc1a623e510",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code recovery eval inject",
+  "task_key": "worker_code_recovery-eval-inject_20260514T181829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_recovery-eval-inject_20260514T181829_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "39dcbba51a7fa5e75dc32c4c17f1ccb4e9240ed69a60b3cd9dce9e1f076c976f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 张 GPU 都在训练中（18-19GB 已用，80-95% 利用率）。跳过 dry-run。\n\n修改已完成。总结变更：\n\n### 新增功能\n\n**`--inject_mode {action,context}`** (默认 `action`)\n- **`action` 模式（新）**：在 agent 执行第 N 步时，将其选择的动作替换为一个错误动作（same-verb-different-target 优先），实际执行到环境中，然后让 agent 自由继续。测量 agent 是否能识别错误并恢复任务。\n- **`context` 模式（原有）**：在第 N 步篡改 agent 看到的历史上下文（步骤交换/删除/截断/遮蔽），保持原有行为不变。\n\n**`--inject_step <int|auto>`** (默认 `auto`)\n- `auto`：随机选择 2-6 步之间注入\n- 指定整数：固定在该步注入\n\n### 新增输出指标（action 模式）\n\n每个 episode 记录：\n- `injection_step`: 实际注入步\n- `injected_action` / `intended_action`: 错误动作 vs agent 原始选择\n- `recovery_detected`: agent 的 thinking 中是否出现错误感知关键词\n- `recovery_steps`: 注入后到 episode 结束的步数\n- `final_success`: 最终任务是否完成\n\n汇总报告 `action_injection`：\n- `recovery_rate`: 注入后仍完成任务的比例\n- `detection_rate`: agent 显式感知到错误的比例  \n- `avg_recovery_steps`: 平均恢复步数\n\n### 向后兼容\n\n`--inject --inject_mode context` 完全保留原有 context-corruption 行为。`--no_inject` 不受影响。\n\nGPU 全忙，dry-run 待 GPU 空闲后执行。备份在 `recovery.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-recovery-eval-inject.md"
+}

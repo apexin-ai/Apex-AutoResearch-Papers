@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3824d9b1c649d4a04a2",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh check taxei eval result",
+  "task_key": "worker_ssh_check-taxei-eval-result_20260514T104200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-taxei-eval-result_20260514T104200_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "0b06dfffed498d8813bcda970f331ceef292ff486d027ca89db26589ddf23310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三组 eval 全部完成。汇总结果：\n\n## Mini Eval 47-task 结果\n\n| Task Type | TaxEI | Baseline | Vanilla |\n|---|---|---|---|\n| look_at_obj_in_light | 3/6 (50.0%) | 3/6 (50.0%) | 0/6 (0%) |\n| pick_and_place_simple | 2/8 (25.0%) | 4/8 (50.0%) | 2/8 (25.0%) |\n| pick_clean_then_place | 6/11 (54.5%) | 5/11 (45.5%) | 2/11 (18.2%) |\n| pick_cool_then_place | 1/7 (14.3%) | 0/7 (0%) | 0/7 (0%) |\n| pick_heat_then_place | 6/8 (75.0%) | 5/8 (62.5%) | 3/8 (37.5%) |\n| pick_two_obj_and_place | 3/7 (42.9%) | 3/7 (42.9%) | 0/7 (0%) |\n| **Total** | **21/47 (44.7%)** | **20/47 (42.6%)** | **7/47 (14.9%)** |\n\n## 关键发现\n\n- **TaxEI 44.7% > Baseline 42.6%** — 超过 zero-shot baseline +2.1pp\n- **Vanilla SFT 严重坍缩** — 14.9%，远低于 baseline，SFT 损害了基础能力\n- TaxEI 优势集中在：`pick_heat` (+12.5pp vs baseline)、`pick_clean` (+9.0pp)、`pick_cool` (唯一非零)\n- TaxEI 劣势：`pick_and_place_simple` 25% vs baseline 50%（-25pp）\n- `pick_cool` 对所有方法都很难，只有 TaxEI 做到了 1/7\n\nPID 37424 进程仍在（log 已输出完整 summary），可能是模型卸载阶段，GPU 1 仍占用 17GB 显存。eval 数据已完整写入 `eval_results/mini_taxei_clean.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-taxei-eval-result.md"
+}

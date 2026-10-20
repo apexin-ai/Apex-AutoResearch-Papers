@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3178fd61ee5c1abfc94",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval llama31 taxei s123 eval check and retry",
+  "task_key": "worker_eval_llama31-taxei-s123-eval-check-and-retry_20260516T153151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama31-taxei-s123-eval-check-and-retry_20260516T153151_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "7b52178ed4cb76810d68baf8b6b4cdf70ee347bee655f67e2af3c0144c84e027"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|------|-----|\n| recovery_rate | 0.596 |\n| detection_rate | 0.362 (假阳性) |\n| total_episodes | 47 |\n\n**By operator:**\n\n| Operator | Recovery | Detection |\n|----------|----------|-----------|\n| C1_context_truncation | 0.583 | 0.25 |\n| C4_observation_masking | 0.727 | 0.545 |\n| P1_step_order_swap | 0.500 | 0.417 |\n| P2_sub_goal_deletion | 0.583 | 0.25 |\n\n无需重跑，eval 实际已于 May 16 23:25 完成。Cron 误判已在 notes 中标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama31-taxei-s123-eval-check-and-retry.md"
+}

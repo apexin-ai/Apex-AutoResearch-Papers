@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cb299171646b65ce74b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code d004 random injector redesign",
+  "task_key": "worker_code_d004-random-injector-redesign_20260514T104417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d004-random-injector-redesign_20260514T104417_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "c4081293f188688ccdc64898ea772f870939af4ab238c12eac8c23e1ec45888e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D004 变更完成。\n\n## 修改文件\n\n| 文件 | 变更 |\n|------|------|\n| `injection/random_injector.py` | 完全重写：删除 6 种独立扰动函数，改为委托给 P1/P2/C1/C4 四个 TaxEI 算子 |\n| `data/formatter.py` | 新增 `mode` 参数和 `_make_error_tag()`：`taxei` 模式嵌入 `[Error Type: P1_StepOrderSwap]` 等标签，`random` 模式只嵌入 `[Error occurred]` |\n| `data/inject_and_generate.py` | 两种 mode 统一使用相同 4 个 TaxEI 算子 + 相同 config；`_serialize_record` 记录 mode |\n| `injection/test_random_injector.py` | 更新测试：验证算子委托、分布均匀性、两种 mode 的标签差异 |\n\n## Prompt 格式对比\n\n**TaxEI mode（recovery step 观测）**:\n```\n[Error Type: P2_SubGoalDeletion]\nYou arrive at drawer 1. The drawer 1 is closed.\n```\n\n**Random mode（同一数据）**:\n```\n[Error occurred]\nYou arrive at drawer 1. The drawer 1 is closed.\n```\n\n## 验证结果\n\n- 100 次注入全部通过 validate，算子分布 ~25%/each（P1:26, P2:27, C1:22, C4:25）\n- 两种 mode 的算子分布完全一致（seed 相同时）\n- TaxEI 标签正确包含具体类型，Random 标签仅包含 `[Error occurred]`\n- 非 recovery step 的格式完全一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d004-random-injector-redesign.md"
+}

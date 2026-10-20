@@ -1,0 +1,50 @@
+# TaxEI Default Configuration
+
+injection:
+  P1_step_order_swap:
+    enabled: true
+    swap_range: 5          # pick swap candidates from last N steps
+  P2_sub_goal_deletion:
+    enabled: true
+    deletion_strategy: critical  # "random" | "critical"
+  C1_context_truncation:
+    enabled: true
+    truncation_ratio: 0.5  # keep 50% of history (range: 0.3-0.7)
+  C4_observation_masking:
+    enabled: true
+    mask_type: generic      # "empty" | "generic"
+    mask_probability: 0.3   # per-step masking probability
+
+data:
+  collection:
+    num_trajectories: 500
+    task_types: null         # null = all 6 ALFWorld types
+    model: gpt-4o
+    max_steps_per_episode: 50
+  formatting:
+    output_format: ms-swift  # multi-turn SFT format
+    include_think: true      # include <think> tags in assistant turns
+
+training:
+  method: lora
+  lora_rank: 64
+  lora_alpha: 128
+  lora_target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+  learning_rate: 1.0e-4
+  num_epochs: 3
+  batch_size: 4
+  gradient_accumulation_steps: 8
+  max_length: 4096
+  warmup_ratio: 0.05
+
+eval:
+  num_episodes: 134         # ALFWorld test set size
+  injection_probability: 1.0
+  metrics:
+    - per_operator_recovery_rate
+    - overall_recovery_rate
+    - baseline_success_rate

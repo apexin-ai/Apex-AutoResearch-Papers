@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb6deb0ad0fe6bf2e217",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "collect d022 final 2 results",
+  "task_key": "worker_collect_d022-final-2-results_20260515T110200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_d022-final-2-results_20260515T110200_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "beefa1d099c9e8d3d7a498425f7d8692d4cdaef01d9606515e025bae1c384965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 文件 | success / total | success_rate |\n|------|----------------|--------------|\n| **s0** | 22 / 47 | **0.468** |\n| **s123** | 33 / 47 | **0.702** |\n\n两个 seed 之间差异较大（0.468 vs 0.702），s123 明显优于 s0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-d022-final-2-results.md"
+}

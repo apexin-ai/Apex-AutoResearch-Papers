@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6adcbd8cb7db8adf68db",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval v4 random seed123 eval",
+  "task_key": "worker_eval_v4-random-seed123-eval_20260515T001308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-random-seed123-eval_20260515T001308_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "cc6da9659243a7213f6b6214749e87390d32e3a47b054d38d672a3674459ee58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| Checkpoint | `checkpoints/mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387` |\n| GPU | cuda:1 (CUDA_VISIBLE_DEVICES=1) |\n| PID | 102888 |\n| tmux session | `v4-random-seed123-eval` |\n| 输出 | `eval_results/v4_random_seed123_eval.json` |\n| 日志 | `~/runs/tax_error_inject_agent/v4-random-seed123-eval.log` |\n| Registry | `v4-random-seed123-eval` → RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-random-seed123-eval.md"
+}

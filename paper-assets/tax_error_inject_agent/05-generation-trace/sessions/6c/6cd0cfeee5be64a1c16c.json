@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cd0cfeee5be64a1c16c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval random s123 injected FINAL",
+  "task_key": "worker_eval_random-s123-injected-FINAL_20260516T151732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random-s123-injected-FINAL_20260516T151732_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "3d594e9310ae3ed8f65d3a3bc94f19db1647c05a63ac044c8dca0a5a69e6682a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "random-s123 injected eval 完成，registry 已注册为 DONE。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| Recovery rate | **78.7%** (37/47) |\n| Detection rate | **25.5%** (12/47) |\n\n**Per-operator recovery:**\n| Operator | Recovery | Detection |\n|----------|----------|-----------|\n| C1_context_truncation | 83.3% (10/12) | 8.3% |\n| C4_observation_masking | 72.7% (8/11) | 18.2% |\n| P1_step_order_swap | 83.3% (10/12) | 41.7% |\n| P2_sub_goal_deletion | 75.0% (9/12) | 33.3% |\n\n**Cross-seed comparison (LLaMA Random injected):**\n- s42: 76.6%\n- s0: 74.5%\n- **s123: 78.7%** — highest of the three seeds, within expected range."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-s123-injected-final.md"
+}

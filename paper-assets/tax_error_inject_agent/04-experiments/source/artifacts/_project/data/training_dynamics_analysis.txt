@@ -1,0 +1,29 @@
+## Training Dynamics Analysis
+
+### Per-sample loss: NOT AVAILABLE
+Existing logs only have aggregate metrics. Need post-hoc inference or re-train.
+
+### Aggregate Loss (seed=42)
+| Condition | Data | Steps | Avg Loss | Final Loss | Final Acc |
+|-----------|------|-------|----------|------------|-----------|
+| Vanilla | 4,358 | 1,635 | 0.4173 | 0.2942 | 0.8995 |
+| TaxEI | 9,029 | 3,387 | 0.3558 | 0.1738 | 0.9139 |
+| Random | 9,029 | 3,387 | 0.3551 | 0.1677 | 0.8987 |
+
+### Multi-seed Stability
+| Condition | s42 loss | s0 loss | s123 loss | SD |
+|-----------|----------|---------|-----------|-----|
+| Vanilla | 0.4173 | 0.4160 | 0.4159 | 0.0008 |
+| TaxEI | 0.3558 | 0.3553 | 0.3551 | 0.0004 |
+| Random | 0.3551 | 0.3551 | 0.3548 | 0.0002 |
+
+### Dose-Response (fixed 4,358)
+| Dose | Avg Loss | Final Loss | Final Acc |
+|------|----------|------------|-----------|
+| 0% | 0.4173 | 0.2942 | 0.8995 |
+| 10% | 0.4234 | 0.3077 | 0.8875 |
+| 25% | 0.4245 | 0.2851 | 0.8926 |
+| 50% | 0.4335 | 0.2586 | 0.9105 |
+
+### Recommendation
+Scheme A (post-hoc inference) preferred over re-training.

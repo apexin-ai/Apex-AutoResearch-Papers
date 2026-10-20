@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d0b26a7231a35e0e29",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh check traj collect progress",
+  "task_key": "worker_ssh_check-traj-collect-progress_20260514T162625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-traj-collect-progress_20260514T162625_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "729fdab0a2ab52d65c34ed4ac90852c3b3d83482e7f0196fb11a8545544bf634"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：已完成**\n\n- **进程 61438**：已退出（不再运行）\n- **结果**：成功完成，耗时 5245 秒（~87 分钟）\n- **成功轨迹**：501 条（目标 500，已超额完成）\n- **失败轨迹**：213 条\n- **总计**：714 条，成功率 70.2%\n- **API 开销**：$8.86（2796 请求，1.83M input tokens，429K output tokens）\n\n**按任务类型分布**：\n| 任务类型 | 成功数 |\n|---------|--------|\n| look_at_obj_in_light | 101 |\n| pick_and_place_simple | 102 |\n| pick_clean_then_place_in_recep | 67 |\n| pick_cool_then_place_in_recep | 68 |\n| pick_heat_then_place_in_recep | 74 |\n| pick_two_obj_and_place | 89 |\n\n轨迹收集已顺利完成，数据在 `data/trajectories/successful_trajectories.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-traj-collect-progress.md"
+}

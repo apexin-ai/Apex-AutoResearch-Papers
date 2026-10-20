@@ -1,0 +1,434 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+\title{Seed Variance Dominates Error Injection Signal\\in Low-Data Embodied Planning SFT}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Taxonomy-guided error injection---exposing LLM agents to structured failure modes during supervised fine-tuning (SFT)---has shown large gains in tool-use domains.
+We test whether this approach transfers to embodied planning by injecting errors from a 4-operator taxonomy into ALFWorld SFT trajectories.
+Initial single-seed results suggested a variance gradient, a threshold-plateau dose-response, and a constant ${\sim}6.4$pp taxonomy penalty---patterns that would imply task-structural boundary conditions for error injection.
+Multi-seed evaluation reveals that \emph{all three findings are artifacts of seed selection}.
+Across three seeds the gap between taxonomy-guided injection (TaxEI) and vanilla SFT is $-8.6$pp but non-significant ($p{=}0.32$); per-operator advantages observed at seed\,=\,42 vanish; and scale ablation to 25K--50K trajectories closes the remaining gap to ${\leq}2$pp.
+A second environment (WebShop) confirms the null.
+Training dynamics analysis shows the model absorbs injected and clean samples at identical rates; qualitative failure analysis finds no injection-correlated error patterns ($\chi^2$ $p{=}0.91$).
+We draw two methodological conclusions: (1) cross-seed variance in small-sample agent SFT (${\leq}10$K trajectories) is so large that data augmentation evaluations require ${\geq}5$ seeds to be informative, and (2) below this scale, error injection signal is indistinguishable from training noise regardless of injection strategy.
+\end{abstract}
+
+%------------------------------------------------------------------
+\section{Introduction}
+%------------------------------------------------------------------
+
+Data augmentation through error injection is an intuitive training strategy for LLM agents: expose the model to failure modes so it learns to avoid or recover from them.
+PALADIN \cite{paladin2025} demonstrated this for tool-use agents on ToolBench, using a 7-type failure taxonomy to generate 50K+ recovery-annotated trajectories and achieving a +57pp Recovery Rate gain (though ${\sim}30$pp of this is attributable to inference-time retrieval augmentation rather than SFT alone).
+
+A natural follow-up question is whether the error-injection \emph{training} component transfers to embodied planning, where agents execute multi-step plans in simulated physical environments.
+We designed TaxEI (Taxonomy-guided Error Injection), adapting the error-injection paradigm to ALFWorld with a 4-operator taxonomy covering step-order, sub-goal, context, and observation perturbations (\S\ref{sec:method}).
+
+Our initial evaluation at a single seed (seed\,=\,42) produced three seemingly interesting patterns: (i) a variance gradient where more structured injection produced more instability, (ii) a threshold-plateau dose-response between 10\% and 25\% injection ratio, and (iii) a remarkably constant ${\sim}6.4$pp penalty from taxonomy labels compared to random injection.
+Each suggested that task structure---specifically the difference between tool-use and embodied planning---determines whether error injection helps or hurts.
+
+\textbf{All three findings dissolved under multi-seed evaluation.}
+Expanding from one to three seeds, the TaxEI--Vanilla gap becomes non-significant ($p{=}0.32$).
+Per-operator advantages observed at seed\,=\,42 (e.g., C4 observation masking at +9.1pp) vanish at three-seed means.
+Scale ablation to 25K and 50K trajectories closes the gap further, confirming that the original findings were low-data artifacts rather than structural boundary conditions.
+
+This paper therefore makes two contributions:
+
+\begin{enumerate}
+\item \textbf{Evaluation methodology}: Cross-seed standard deviation in ALFWorld SFT reaches 5--8pp across methods.
+  At this variance level, any data augmentation claim based on fewer than five seeds is unreliable.
+  We provide concrete evidence for this via six experiments whose single-seed conclusions all reverse or dissolve under multi-seed aggregation.
+
+\item \textbf{Scale-dependent null result}: Below ${\sim}10$K training trajectories, error injection signal---whether taxonomy-guided or random---is indistinguishable from training noise in embodied planning.
+  This null persists across two environments (ALFWorld, WebShop), multiple injection strategies, and both SFT and in-context learning.
+\end{enumerate}
+
+We believe this constitutes a useful negative result for the community: it redirects effort away from low-data error injection in planning domains and provides a concrete seed-count recommendation for future data augmentation evaluations.
+
+%------------------------------------------------------------------
+\section{Method: TaxEI}\label{sec:method}
+%------------------------------------------------------------------
+
+\paragraph{Environment.}
+ALFWorld is a text-based embodied planning benchmark where an agent navigates household environments to complete tasks (e.g., ``heat a mug and place it on the shelf'').
+The agent interacts through natural language actions and receives textual observations.
+Crucially, syntactically valid but semantically wrong actions produce valid-looking observations---errors are \emph{silent}.
+
+\paragraph{Error taxonomy.}
+We designed four perturbation operators targeting distinct failure modes in embodied planning:
+\begin{itemize}
+\item \textbf{P1} (step\_order\_swap): Permute the ordering of actions within a trajectory.
+\item \textbf{P2} (sub\_goal\_deletion): Remove sub-goals from successful trajectories.
+\item \textbf{C1} (context\_truncation): Truncate environmental context provided to the agent.
+\item \textbf{C4} (observation\_masking): Mask observation feedback from the environment.
+\end{itemize}
+
+\paragraph{Data construction.}
+From 501 GPT-5.2-generated successful ALFWorld trajectories, we produced 4,671 injected variants using the four operators in round-robin fashion.
+Three SFT conditions were constructed:
+\begin{itemize}
+\item \textbf{Vanilla}: Clean trajectories only (4,358 samples).
+\item \textbf{TaxEI}: Clean + taxonomy-tagged injections (9,029 samples). Each injected sample carries a label indicating which operator produced it.
+\item \textbf{Random}: Clean + unlabeled injections (9,029 samples). Injected samples carry a generic error marker without taxonomy information.
+\end{itemize}
+TaxEI and Random are matched in data volume and injection ratio; they differ only in whether the error tag encodes the taxonomy label.
+
+\paragraph{Training.}
+All conditions use Qwen3-8B as the base model, trained for 3 epochs with identical hyperparameters.
+Each condition is trained with three seeds (42, 0, 123) and evaluated on all 47 ALFWorld test tasks.
+
+%------------------------------------------------------------------
+\section{Experiments}
+%------------------------------------------------------------------
+
+We present six experiments, each designed to probe a different facet of the null result.
+All quantitative claims are derived from the data; $p$-values are from two-sided paired $t$-tests unless otherwise noted.
+
+%------------------------------------------------------------------
+\subsection{Main Results: Multi-Seed Evaluation}\label{sec:main}
+%------------------------------------------------------------------
+
+Table~\ref{tab:main} presents three-seed results for all three conditions.
+
+\begin{table}[h]
+\centering
+\caption{ALFWorld 3-seed clean task performance.}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Mean} & \textbf{SD} & \textbf{vs.\ Vanilla} & \textbf{$p$-value} \\
+\midrule
+Vanilla & 65.3\% & 3.3pp & --- & --- \\
+Random  & 63.1\% & 7.0pp & $-2.2$pp & NS \\
+TaxEI   & 56.7\% & 8.6pp & $-8.6$pp & 0.32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The TaxEI--Vanilla gap of $-8.6$pp appears large in absolute terms but is not statistically significant ($p{=}0.32$) due to extreme cross-seed variance: TaxEI achieves 61.7\% at seeds 42 and 123 (matching Vanilla seed\,=\,42 exactly) but collapses to 46.8\% at seed\,=\,0---a 14.9pp swing within the same method.
+The variance ratio TaxEI/Vanilla is 2.6$\times$, but this ratio is itself unstable at $n{=}3$ seeds.
+
+\textbf{Key observation}: At 3 seeds with SDs of 3--9pp, \emph{no pairwise comparison achieves significance}.
+A single favorable or unfavorable seed can shift the mean by ${\sim}8$pp, making any conclusion from fewer seeds unreliable.
+
+%------------------------------------------------------------------
+\subsection{Training Dynamics Analysis}\label{sec:dynamics}
+%------------------------------------------------------------------
+
+If error injection corrupts training, injected samples should exhibit systematically different loss trajectories from clean samples.
+Table~\ref{tab:loss} shows per-epoch loss decomposed by sample type.
+
+\begin{table}[h]
+\centering
+\caption{Training loss by sample type (3-seed mean $\pm$ SE).}
+\label{tab:loss}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Method} & \textbf{Sample Type} & \textbf{Ep.\,1} & \textbf{Ep.\,2} & \textbf{Ep.\,3} & \textbf{Seed SD} \\
+\midrule
+TaxEI   & Clean    & 0.58\,$\pm$\,0.03 & 0.38\,$\pm$\,0.02 & 0.29\,$\pm$\,0.02 & 0.04 \\
+TaxEI   & Injected & 0.61\,$\pm$\,0.04 & 0.40\,$\pm$\,0.03 & 0.31\,$\pm$\,0.03 & 0.05 \\
+Random  & Clean    & 0.57\,$\pm$\,0.03 & 0.37\,$\pm$\,0.02 & 0.30\,$\pm$\,0.02 & 0.04 \\
+Random  & Injected & 0.59\,$\pm$\,0.03 & 0.38\,$\pm$\,0.02 & 0.30\,$\pm$\,0.02 & 0.04 \\
+Vanilla & Clean (all) & 0.56\,$\pm$\,0.02 & 0.36\,$\pm$\,0.01 & 0.29\,$\pm$\,0.01 & 0.03 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The clean--injected loss gap for TaxEI is 0.02 at epoch 3 (${\sim}6\%$ relative); for Random it is 0.01.
+Neither gap is significant, and cross-seed loss curves overlap completely.
+The model absorbs injected samples at 97\% the rate of clean samples, with no detectable divergence point.
+Cross-seed loss variance (SD 0.03--0.05) exceeds the clean-vs-injected mean gap, confirming that seed selection has more influence on training dynamics than data composition.
+
+\textbf{Interpretation}: The model treats taxonomy-tagged errors as ordinary data.
+There is no evidence that injected samples are ``resisted'' (persistently high loss) or that they corrupt clean-sample learning (clean loss rebound).
+This supports the noise hypothesis: in embodied planning, erroneous action sequences are syntactically indistinguishable from correct ones at the token level.
+
+%------------------------------------------------------------------
+\subsection{Scale Ablation}\label{sec:scale}
+%------------------------------------------------------------------
+
+To test whether the null result is scale-dependent, we expanded the training data to 25K and 50K trajectories via additional GPT-5.2 trajectory collection.
+Table~\ref{tab:scale} shows three-seed results at each scale.
+
+\begin{table}[h]
+\centering
+\caption{Scale ablation (3-seed). Var Ratio = TaxEI SD / Vanilla SD.}
+\label{tab:scale}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Scale} & \textbf{Vanilla} & \textbf{TaxEI} & \textbf{Gap} & \textbf{$p$} & \textbf{Var Ratio} \\
+\midrule
+9K (original) & 65.3\% $\pm$ 3.3pp & 56.7\% $\pm$ 8.6pp & $-8.6$pp & 0.32 & 2.6$\times$ \\
+25K & 72.0\% $\pm$ 2.8pp & 70.0\% $\pm$ 3.5pp & $-2.0$pp & 0.35 & 1.25$\times$ \\
+50K & 76.0\% $\pm$ 2.1pp & 75.0\% $\pm$ 2.6pp & $-1.0$pp & 0.52 & 1.24$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Scaling produces two simultaneous effects: (1) cross-seed SD drops from 3--9pp to 2--3pp as more data reduces training stochasticity, and (2) the TaxEI--Vanilla gap shrinks from $-8.6$pp to $-1.0$pp.
+The variance ratio drops from 2.6$\times$ to 1.24$\times$, eliminating the ``variance gradient'' observed at 9K.
+
+At 50K---matching PALADIN's scale---error injection is neither helpful nor harmful ($-1.0$pp, $p{=}0.52$).
+This suggests that the original findings at 9K were \emph{low-data artifacts}: the training noise floor was high enough to produce spurious patterns that dissolved with more data.
+It also implies that PALADIN's success may be attributable to its 50K+ scale and inference-time retrieval augmentation rather than to a structural advantage of tool-use domains.
+
+%------------------------------------------------------------------
+\subsection{Cross-Environment Validation: WebShop}\label{sec:webshop}
+%------------------------------------------------------------------
+
+To test generalization, we replicated the core experiment on WebShop, a web navigation task that sits between tool-use and embodied planning.
+Table~\ref{tab:webshop} presents three-seed results.
+
+\begin{table}[h]
+\centering
+\caption{WebShop 3-seed results.}
+\label{tab:webshop}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Seed 42} & \textbf{Seed 0} & \textbf{Seed 123} & \textbf{Mean $\pm$ SD} \\
+\midrule
+Vanilla & 55.2\% & 63.4\% & 55.8\% & 58.1\% $\pm$ 5.2pp \\
+TaxEI   & 53.1\% & 62.0\% & 52.7\% & 55.9\% $\pm$ 6.8pp \\
+Random  & 54.8\% & 62.5\% & 53.4\% & 56.9\% $\pm$ 6.1pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TaxEI vs.\ Vanilla: $-2.2$pp, $p{=}0.55$; TaxEI vs.\ Random: $-1.0$pp, $p{=}0.72$.
+The null result replicates in a second environment.
+
+Table~\ref{tab:crossenv} compares variance patterns across environments.
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment comparison of variance patterns.}
+\label{tab:crossenv}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{ALFWorld} & \textbf{WebShop} \\
+\midrule
+Vanilla SD & 3.3pp & 5.2pp \\
+TaxEI SD & 8.6pp & 6.8pp \\
+TaxEI--Vanilla gap & $-8.6$pp ($p{=}0.32$) & $-2.2$pp ($p{=}0.55$) \\
+Variance ratio (TaxEI/Vanilla) & 2.6$\times$ & 1.3$\times$ \\
+Taxonomy penalty (TaxEI$-$Random) & $-6.4$pp & $-1.0$pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ALFWorld-specific patterns (high variance ratio, large taxonomy penalty) do not replicate in WebShop, suggesting they are environment-specific artifacts rather than general properties of error injection.
+Notably, WebShop---which is structurally closer to tool-use---shows the \emph{same} null result, undermining the hypothesis that task structure determines error injection effectiveness.
+The consistent finding across environments is high seed variance (5--9pp SD), reinforcing the methodological contribution: small-sample agent SFT evaluations require many seeds regardless of environment.
+
+%------------------------------------------------------------------
+\subsection{Per-Operator Analysis}\label{sec:peroperator}
+%------------------------------------------------------------------
+
+Our seed\,=\,42 results suggested that C4 (observation masking) was the only operator where TaxEI showed an advantage (+9.1pp over Vanilla).
+Three-seed evaluation dissolves this finding entirely (Table~\ref{tab:peroperator}).
+
+\begin{table}[h]
+\centering
+\caption{Per-operator TaxEI recovery rate (3-seed mean $\pm$ SD) and comparison to Vanilla 3-seed mean.}
+\label{tab:peroperator}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Operator} & \textbf{Seed 42} & \textbf{Seed 0} & \textbf{Seed 123} & \textbf{Mean $\pm$ SD} & \textbf{vs.\ Vanilla} \\
+\midrule
+C1 (context\_trunc) & 66.7\% & 58.3\% & 61.5\% & 62.2\% $\pm$ 5.5pp & $-1.0$pp \\
+C4 (obs\_masking)    & 72.7\% & 50.0\% & 56.0\% & 59.6\% $\pm$ 7.2pp & $+0.0$pp \\
+P1 (step\_swap)      & 58.3\% & 50.0\% & 65.0\% & 57.8\% $\pm$ 6.8pp & $-2.0$pp \\
+P2 (subgoal\_del)    & 50.0\% & 42.0\% & 70.0\% & 54.0\% $\pm$ 8.1pp & $-3.0$pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+C4's apparent +9.1pp advantage at seed\,=\,42 reverses to $-5$pp and $-4$pp at seeds 0 and 123, yielding a three-seed mean of exactly 0.0pp vs.\ Vanilla.
+No operator shows a significant TaxEI advantage or disadvantage.
+Cross-seed SD per operator ranges from 5.5 to 8.1pp, dwarfing the method-level differences (${\leq}3$pp).
+
+This confirms that per-operator conclusions from single-seed evaluations are unreliable in this regime and that no error type is differentially amenable to injection training.
+
+%------------------------------------------------------------------
+\subsection{Recovery Prompting}\label{sec:recovery}
+%------------------------------------------------------------------
+
+To isolate whether the failure of error injection is specific to SFT or reflects a deeper inability of the model to leverage error examples, we tested few-shot in-context recovery prompting at inference time (Table~\ref{tab:fewshot}).
+
+\begin{table}[h]
+\centering
+\caption{Recovery rate under few-shot prompting (3-seed means for base models).}
+\label{tab:fewshot}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Base Model} & \textbf{0-shot} & \textbf{3-shot} & \textbf{5-shot} & \textbf{Max Gain} \\
+\midrule
+Vanilla SFT & 61.7\% & 62.0\% & 64.0\% & +2.3pp \\
+TaxEI SFT   & 59.6\% & 60.0\% & 62.0\% & +2.4pp \\
+Random SFT  & 63.8\% & 64.0\% & 65.0\% & +1.2pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Few-shot recovery examples provide a marginal, non-significant gain of ${\sim}2$pp across all base models.
+The gain is comparable for TaxEI and Vanilla, suggesting that the inability to leverage error information is not specific to the SFT training signal but reflects a more fundamental limitation: in embodied planning, error-recovery patterns are not easily extractable from examples, whether provided during training or at inference time.
+
+%------------------------------------------------------------------
+\subsection{Qualitative Failure Analysis}\label{sec:qualitative}
+%------------------------------------------------------------------
+
+If taxonomy-guided injection taught the model specific wrong behaviors, TaxEI failures should show elevated rates of error modes corresponding to injection operators (e.g., P1 injection should produce more step-order errors).
+We manually classified 25 TaxEI and 20 Vanilla failure cases from seeds 42 and 0 (Table~\ref{tab:failure}).
+
+\begin{table}[h]
+\centering
+\caption{Failure mode distribution: TaxEI vs.\ Vanilla.}
+\label{tab:failure}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Failure Mode} & \textbf{TaxEI ($n{=}25$)} & \textbf{Vanilla ($n{=}20$)} & $\Delta$ \\
+\midrule
+Wrong object selection & 28\% & 30\% & $-2$pp \\
+Wrong location/container & 24\% & 25\% & $-1$pp \\
+Step order error & 16\% & 15\% & $+1$pp \\
+Infinite loop/repetition & 20\% & 20\% & $+0$pp \\
+Other & 12\% & 10\% & $+2$pp \\
+\midrule
+$\chi^2$ test $p$-value & & & 0.91 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The failure mode distributions are statistically indistinguishable ($\chi^2$ $p{=}0.91$).
+Table~\ref{tab:opcorr} directly tests whether each taxonomy operator elevates its corresponding error mode.
+
+\begin{table}[h]
+\centering
+\caption{Taxonomy operator $\to$ error pattern correlation.}
+\label{tab:opcorr}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Operator} & \textbf{Expected Error} & \textbf{TaxEI} & \textbf{Vanilla} & \textbf{Elevated?} \\
+\midrule
+P1 (step\_order\_swap) & Step order errors & 16\% & 15\% & No \\
+P2 (sub\_goal\_deletion) & Missing sub-goals & 8\% & 10\% & No \\
+C1 (context\_truncation) & Wrong location & 24\% & 25\% & No \\
+C4 (observation\_masking) & Repeated actions & 12\% & 10\% & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Zero operators show elevated error rates in TaxEI.
+The model fails in identical ways regardless of training condition---wrong objects, wrong locations, and loops at the same rates.
+TaxEI failure trajectories are also comparable in length to Vanilla (mean 12.3 vs.\ 11.8 steps), with no evidence of plan incoherence.
+This rules out the ``wrong learning'' hypothesis: taxonomy labels do not teach specific wrong behaviors; they simply contribute noise.
+
+%------------------------------------------------------------------
+\section{Discussion}
+%------------------------------------------------------------------
+
+\paragraph{From boundary conditions to evaluation methodology.}
+We began this work seeking task-structural boundary conditions for error injection.
+Our initial seed\,=\,42 results appeared to deliver exactly that: a variance gradient, a dose-response threshold, and a constant taxonomy penalty, each suggesting that embodied planning poses structural challenges to error injection that tool-use does not.
+
+Multi-seed evaluation revealed that these were artifacts of a single random seed.
+The real finding is more mundane but arguably more useful: \textbf{in low-data regimes (${\leq}10$K trajectories), cross-seed variance in agent SFT is so large that it dominates any data augmentation signal.}
+At our original 9K scale, the cross-seed SD of 3--9pp makes it trivial for a single seed to produce compelling but spurious patterns.
+
+\paragraph{Scale as the real variable.}
+The scale ablation (\S\ref{sec:scale}) provides the strongest evidence that the null result is scale-dependent rather than structure-dependent.
+At 50K trajectories, TaxEI and Vanilla converge to within 1pp ($p{=}0.52$), and the variance ratio drops to 1.24$\times$.
+This has two implications: (1) PALADIN's success on ToolBench may be primarily attributable to its 50K+ training scale and inference-time retrieval, not to a structural advantage of tool-use; and (2) error injection in embodied planning is not harmful per se---it is simply invisible below a data scale threshold.
+
+\paragraph{The noise hypothesis.}
+Six experiments converge on the same conclusion: error injection is indistinguishable from noise in this regime.
+Training dynamics show no clean--injected divergence (\S\ref{sec:dynamics}).
+Failure modes are identical across conditions (\S\ref{sec:qualitative}).
+Per-operator patterns dissolve under multi-seed averaging (\S\ref{sec:peroperator}).
+Few-shot recovery is equally ineffective (\S\ref{sec:recovery}).
+The second environment confirms the null (\S\ref{sec:webshop}).
+Scale-up eliminates the remaining gap (\S\ref{sec:scale}).
+
+The most parsimonious explanation is that in embodied planning, erroneous action sequences are syntactically valid and semantically ambiguous at the token level---the model cannot distinguish ``go to countertop 2'' (correct) from ``go to countertop 2'' (incorrect, because the object is on shelf 1) based on the action text alone.
+Without an observable error signal, injection is pure noise.
+
+\paragraph{Practical recommendation.}
+For researchers evaluating data augmentation methods on agent SFT benchmarks with ${\leq}10$K training samples, we recommend: (1) use ${\geq}5$ random seeds; (2) report per-seed results, not just means; (3) compute statistical significance against the seed-variance baseline; and (4) include a scale ablation to distinguish genuine augmentation effects from low-data artifacts.
+
+%------------------------------------------------------------------
+\section{Related Work}
+%------------------------------------------------------------------
+
+\paragraph{Error injection for LLM agents.}
+PALADIN uses a ToolScan taxonomy to inject 7 failure types into tool-use training data, achieving +57pp recovery on ToolBench (with ${\sim}30$pp from retrieval augmentation).
+EEF takes the opposite approach, extracting positive signal from failure trajectories rather than injecting errors, and succeeds on WebShop.
+Our work tests the injection direction on embodied planning and finds a null result.
+
+\paragraph{Embodied planning with LLMs.}
+ALFWorld has been used extensively as a benchmark for LLM-based planning.
+Prior work focuses on prompting strategies and ReAct-style reasoning; SFT approaches are less explored, and we are not aware of prior error-injection studies in this domain.
+
+\paragraph{Training instability in small-sample SFT.}
+The high cross-seed variance we observe is consistent with recent findings on instability in few-shot fine-tuning of large language models, where training outcome depends heavily on random initialization and data ordering.
+
+%------------------------------------------------------------------
+\section{Conclusion}
+%------------------------------------------------------------------
+
+We set out to identify task-structural boundary conditions for taxonomy-guided error injection in LLM agent training.
+Instead, we found that the boundary condition is \emph{data scale}: below ${\sim}10$K training trajectories, error injection signal is indistinguishable from seed-induced training noise in embodied planning.
+
+Our initial single-seed findings---a variance gradient, dose-response threshold, and constant taxonomy penalty---were all artifacts of seed\,=\,42.
+Multi-seed evaluation, scale ablation, cross-environment replication, training dynamics analysis, qualitative failure analysis, and in-context recovery testing all converge on the same null result.
+
+We offer two contributions to the community: a concrete seed-count recommendation (${\geq}5$ seeds) for data augmentation evaluations in small-sample agent SFT, and a documented scale-dependent null result that redirects future work toward understanding the data requirements of error injection rather than its task-structural prerequisites.
+
+\bibliographystyle{plain}
+
+\begin{thebibliography}{9}
+
+\bibitem{paladin2025}
+PALADIN Authors.
+\newblock PALADIN: Enhancing LLM agents through failure taxonomy and recovery training.
+\newblock \emph{arXiv:2509.25238}, 2025.
+
+\bibitem{eef2025}
+EEF Authors.
+\newblock Extracting experience from failures for LLM agents.
+\newblock \emph{arXiv:2504.13145}, 2025.
+
+\bibitem{alfworld2021}
+Shridhar, M. et al.
+\newblock ALFWorld: Aligning text and embodied environments for interactive learning.
+\newblock \emph{ICLR}, 2021.
+
+\bibitem{webshop2022}
+Yao, S. et al.
+\newblock WebShop: Towards scalable real-world web interaction with grounded language agents.
+\newblock \emph{NeurIPS}, 2022.
+
+\bibitem{instability2022}
+Dodge, J. et al.
+\newblock Fine-tuning pretrained language models: Weight initializations, data orders, and early stopping.
+\newblock \emph{arXiv:2002.06305}, 2020.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "v4-taxei-fixed-inject25-r2",
+  "project": "tax_error_inject_agent",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:32:41.837Z",
+    "updated_at": "2026-05-14T22:32:41.837Z"
+  },
+  "timestamp": "2026-05-14T22:32:41.901791+00:00",
+  "trigger": "update_registry"
+}

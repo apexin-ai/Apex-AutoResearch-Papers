@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b64dcd4a8ba5a3532c43",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops clean eval gpu3 queue",
+  "task_key": "worker_ops_clean-eval-gpu3-queue_20260516T111048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_clean-eval-gpu3-queue_20260516T111048_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "c1e2e205e3b752aea772c4288b6a439e27f7b1111d7d3f435cc89d1ab050724b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7/47。进度正常。由于 eval 流程需要长时间等待，我总结目前状态：\n\n---\n\n**已完成的 eval 结果：**\n\n| Eval | Success Rate | Recovery Rate | Detection Rate |\n|------|-------------|---------------|----------------|\n| Recovery Random s0 | 0.553 | 0.553 | 0.0 |\n| **LLaMA Random s42 Clean** | **0.766** | N/A (clean) | N/A (clean) |\n\n**进行中：**\n- TaxEI s7 recovery eval: 7/47 (PID 270658, GPU 3)\n\n**待执行队列：**\n- Random s1 → Random s7 → Random s123\n\n每个 eval 完成后，我会自动收集结果并启动下一个。TaxEI s7 预计还需约 50 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-clean-eval-gpu3-queue.md"
+}

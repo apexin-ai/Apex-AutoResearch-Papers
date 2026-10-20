@@ -1,0 +1,53 @@
+{
+  "exp_id": "llama31-taxei-s123-clean",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:11:05.260Z",
+    "updated_at": "2026-05-16T15:23:26.733Z",
+    "spec": {
+      "command": "python eval/recovery.py --model_path output/llama31-taxei-s123/v0-20260516-205232/checkpoint-3387 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --no_inject --num_episodes 47 --output eval_results/llama31_taxei_s123_clean.json --device cuda:0 --seed 42",
+      "server": "autodl-5090",
+      "data_path": "eval/valid_unseen",
+      "data_count": 47,
+      "model_name": "Meta-Llama-3.1-8B-Instruct+LoRA-taxei-s123",
+      "seed": 42,
+      "checkpoint_source": "llama31-taxei-s123",
+      "eval_data": "valid_unseen",
+      "parent": "llama31-taxei-s123"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T15:18:57.568Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T15:19:00.132Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T15:19:03.968315+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0.617,
+      "total_episodes": 47,
+      "eval_type": "clean",
+      "by_task_type": {
+        "look_at_obj_in_light": 0.667,
+        "pick_and_place_simple": 0.375,
+        "pick_clean_then_place_in_recep": 0.455,
+        "pick_cool_then_place_in_recep": 0.571,
+        "pick_heat_then_place_in_recep": 0.875,
+        "pick_two_obj_and_place": 0.857
+      }
+    }
+  },
+  "timestamp": "2026-05-16T15:23:27.043925+00:00",
+  "trigger": "update_registry"
+}

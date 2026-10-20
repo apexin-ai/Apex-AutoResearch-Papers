@@ -1,0 +1,33 @@
+{
+  "exp_id": "v4-taxei-recovery-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:40:41.154Z",
+    "updated_at": "2026-05-14T20:58:38.551Z",
+    "spec": {
+      "hypothesis": "D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla",
+      "command": "CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json",
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "pid": 87614,
+      "data_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + TaxEI LoRA v4 checkpoint-3387",
+      "seed": 42,
+      "checkpoint_source": "mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387",
+      "eval_data": "ALFWorld valid_unseen 47 tasks with action injection"
+    },
+    "hypothesis": "v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.",
+    "reproduce": {
+      "finished_at": "2026-05-14T20:58:38.335Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T20:58:38.599787+00:00",
+  "trigger": "update_registry"
+}

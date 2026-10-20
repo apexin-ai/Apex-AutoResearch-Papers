@@ -1,0 +1,26 @@
+{
+  "exp_id": "v4-taxei-fixed-inject50-s7-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:09:39.016Z",
+    "updated_at": "2026-05-16T01:09:55.150Z",
+    "spec": {
+      "command": "python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject50_s7/v0-20260516-075754/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject50_s7_eval.json",
+      "server": "autodl-5090",
+      "gpu": "cuda:2",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + LoRA (taxei fixed inject50 s7)",
+      "seed": 42,
+      "checkpoint_source": "v4-taxei-fixed-inject50-s7",
+      "eval_data": "eval_tasks_47.json",
+      "hypothesis": "v4 TaxEI 50% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion."
+    }
+  },
+  "timestamp": "2026-05-16T01:09:55.360325+00:00",
+  "trigger": "update_registry"
+}

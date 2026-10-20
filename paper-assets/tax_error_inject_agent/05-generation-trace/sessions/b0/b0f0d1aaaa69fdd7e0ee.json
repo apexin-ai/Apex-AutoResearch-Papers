@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0f0d1aaaa69fdd7e0ee",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops collect eval results and monitor recovery",
+  "task_key": "worker_ops_collect-eval-results-and-monitor-recovery_20260514T210128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-eval-results-and-monitor-recovery_20260514T210128_result.json",
+    "occurrence": 1,
+    "bytes": 5473,
+    "sha256": "47e42370fc2e0be96174d95e9e57dc1f5fd75db0b9b09bec0e5be2ff22b750f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。v4-taxei-recovery-eval 已完成（PID 87614 已退出）。\n\n---\n\n```\n========================================================================\n              v4 实验结果汇总 (valid_unseen, 47 episodes)\n========================================================================\n\n=== v4-random-seed0-eval (clean, random baseline) ===\nOverall: 26/47 (55.3%)\n\nPer-task-type:\n  look_at_obj_in_light          5/6   (83.3%)\n  pick_and_place_simple         4/8   (50.0%)\n  pick_clean_then_place_in_recep 6/11  (54.5%)\n  pick_cool_then_place_in_recep  4/7   (57.1%)\n  pick_heat_then_place_in_recep  4/8   (50.0%)\n  pick_two_obj_and_place         3/7   (42.9%)\n\nPer-episode:\n  ✓ AlarmClock-DeskLamp-308  ✗ Book-DeskLamp-308        ✓ Bowl-DeskLamp-308\n  ✓ CD-DeskLamp-308          ✓ Mug-DeskLamp-308         ✓ Pencil-DeskLamp-308\n  ✓ Mug-Desk-308             ✗ Pencil-Shelf-308         ✗ PepperShaker-Drawer-10\n  ✗ SaltShaker-Cabinet-10    ✓ SaltShaker-Drawer-10     ✓ SoapBottle-Toilet-424\n  ✓ Vase-Safe-219            ✗ Watch-Safe-219            ✓ Bowl-Cabinet-10\n  ✗ Cloth-Cabinet-424        ✓ Cloth-CounterTop-424     ✓ Egg-Microwave-10\n  ✗ Knife-CounterTop-10      ✓ Mug-CoffeeMachine-10    ✗ Pan-CounterTop-10\n  ✗ Plate-CounterTop-10      ✓ SoapBar-Cabinet-424      ✓ SoapBar-CounterTop-424\n  ✗ Spatula-Drawer-10        ✓ Bread-CounterTop-10      ✓ Lettuce-CounterTop-10\n  ✓ Mug-Cabinet-10           ✓ Mug-CoffeeMachine-10    ✗ Pan-CounterTop-10\n  ✗ Potato-Microwave-10      ✗ Tomato-Microwave-10      ✗ Apple-Fridge-10\n  ✓ Apple-GarbageCan-10      ✓ Cup-Cabinet-10           ✗ Egg-GarbageCan-10\n  ✓ Mug-Cabinet-10           ✓ Mug-CoffeeMachine-10    ✗ Potato-GarbageCan-10\n  ✗ Tomato-GarbageCan-10     ✓ CD-Safe-308              ✗ KeyChain-Safe-219\n  ✗ PepperShaker-Drawer-10   ✓ Pillow-Sofa-219          ✗ SoapBar-Cabinet-424\n  ✓ SoapBar-GarbageCan-424   ✗ ToiletPaper-Cabinet-424\n\n========================================================================\n\n=== v4-taxei-seed0-eval (clean, taxei model) ===\nOverall: 22/47 (46.8%)\n\nPer-task-type:\n  look_at_obj_in_light          5/6   (83.3%)\n  pick_and_place_simple         3/8   (37.5%)  ↓ -12.5pp vs random\n  pick_clean_then_place_in_recep 5/11  (45.5%)  ↓ -9.1pp\n  pick_cool_then_place_in_recep  2/7   (28.6%)  ↓ -28.6pp\n  pick_heat_then_place_in_recep  4/8   (50.0%)    same\n  pick_two_obj_and_place         3/7   (42.9%)    same\n\nHead-to-head vs random (taxei lost 4, gained 0):\n  ✗ Vase-Safe-219 (random ✓)\n  ✗ Cloth-CounterTop-424 (random ✓)\n  ✗ Bread-CounterTop-10 (random ✓)\n  ✗ Lettuce-CounterTop-10 (random ✓)\n\n========================================================================\n\n=== v4-vanilla-recovery-eval (recovery, vanilla model) ===\nOverall: recovery_rate=29/47 (61.7%), detection_rate=0/47 (0.0%)\n\nPer-operator:\n  C1_context_truncation    9/12  (75.0%)  ← best\n  C4_observation_masking   6/11  (54.5%)\n  P1_step_order_swap       7/12  (58.3%)\n  P2_sub_goal_deletion     7/12  (58.3%)\n\nPer-task-type:\n  look_at_obj_in_light          5/6   (83.3%)\n  pick_and_place_simple         5/8   (62.5%)\n  pick_clean_then_place_in_recep 5/11  (45.5%)\n  pick_cool_then_place_in_recep  4/7   (57.1%)\n  pick_heat_then_place_in_recep  6/8   (75.0%)\n  pick_two_obj_and_place         4/7   (57.1%)\n\n========================================================================\n\n=== v4-taxei-recovery-eval (recovery, taxei model) ===\nStatus: COMPLETED (PID 87614 已退出)\nOverall: recovery_rate=28/47 (59.6%), detection_rate=0/47 (0.0%)\n\nPer-operator:\n  C1_context_truncation    8/12  (66.7%)  ↓ -8.3pp vs vanilla\n  C4_observation_masking   7/11  (63.6%)  ↑ +9.1pp vs vanilla\n  P1_step_order_swap       7/12  (58.3%)    same\n  P2_sub_goal_deletion     6/12  (50.0%)  ↓ -8.3pp\n\nPer-task-type:\n  look_at_obj_in_light          6/6  (100%)   ↑ +16.7pp vs vanilla\n  pick_and_place_simple         4/8   (50.0%)  ↓ -12.5pp\n  pick_clean_then_place_in_recep 6/11  (54.5%)  ↑ +9.1pp\n  pick_cool_then_place_in_recep  3/7   (42.9%)  ↓ -14.3pp\n  pick_heat_then_place_in_recep  7/8   (87.5%)  ↑ +12.5pp\n  pick_two_obj_and_place         2/7   (28.6%)  ↓ -28.6pp\n\nHead-to-head vs vanilla recovery (taxei gained 4, lost 5, net -1):\n  Gained: Book-DeskLamp(P2), Mug-CoffeeMachine(C4), Spatula-Drawer(P1), Egg-GarbageCan(C4)\n  Lost:   Watch-Safe(P2), Cloth-CounterTop(P1), Pan-CounterTop(P2),\n          PepperShaker-Drawer(C1), Pillow-Sofa(C4)\n\n========================================================================\n\n=== 跨实验总结 ===\n\n                        Clean SR    Recovery RR   Detection DR\n  random baseline       55.3%       —             —\n  taxei model           46.8%       —             —\n  vanilla (w/ inject)   —           61.7%         0.0%\n  taxei (w/ inject)     —           59.6%         0.0%\n\n关键发现:\n1. Clean eval: taxei 比 random 低 8.5pp (22 vs 26)，全部是单向损失\n2. Recovery eval: taxei 比 vanilla 低 2.1pp (28 vs 29)，差异不大\n3. 两个模型 detection_rate 均为 0 — 没有任何 error detection 能力\n4. C1_context_truncation 在 vanilla 上恢复最好(75%)，C4 在 taxei 上恢复最好(63.6%)\n5. pick_two_obj_and_place 在 taxei recovery 上表现最差(28.6%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-results-and-monitor-recovery.md"
+}

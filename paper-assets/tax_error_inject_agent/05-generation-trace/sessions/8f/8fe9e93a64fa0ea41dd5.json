@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe9e93a64fa0ea41dd5",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_6_1778928106.md",
+  "task_key": "loop_6_1778928106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778928106.md",
+    "occurrence": 1,
+    "bytes": 2820,
+    "sha256": "8b9f54c865e32e0b621ff4ddccafdaa1ac87476d7299b2d113e2f65126eded52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T10:34:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090:cuda:0/1/2/3，不可用其他设备\n- eval 任务不产生 W&B metrics，cron 会误判为 failed——eval 类实验必须用 Worker 直接跟进结果，不要依赖 cron 自动检测\n- TaxEI-RP eval 输出路径格式：`/root/autodl-tmp/tax_error_inject_agent/eval_outputs/v4_taxei_rp_s{seed}_injected.json`\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090（主），bjb2-33216（备）\n- 工作目录：/root/autodl-tmp/tax_error_inject_agent\n- Python：/root/miniconda3/bin/python\n- 模型：Qwen3-8B（主），LLaMA-3.1-8B-Instruct 已下载（15GB verified）\n- LLaMA 脚本适配完成（ms-swift 原生支持）\n- 数据：/root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/\n- 活跃进程：eval-rp-s42 可能仍在 cuda:0 上运行（上次 check 21/47 episodes）\n- Worker：`worker_ops_eval-rp-s42-check_20260516T063224` 已派出检查 s42 状态\n\n### 3. 📊 当前状态\n刚处理 cron 误报：eval-rp-s123/s0/s1 被 cron 错误标记为 failed，实际均已成功完成。已修正 registry 到 DONE/success 并记录 metrics。\n\n**TaxEI-RP Recovery Eval 结果 (3/4)**:\n| Seed | Recovery Rate |\n|------|--------------|\n| s0 | 0.468 |\n| s1 | 0.489 |\n| s123 | 0.574 |\n| s42 | pending |\n\nMean (3-seed): 0.510±0.056, Detection rate = 0\n\n等待中：\n- Worker 回调：eval-rp-s42-check（检查 s42 是否完成）\n- Director 决策：是否启动 Batch 2（LLaMA V/T/R s42 + TaxEI-RP s7）\n\n### 4. 📋 待办\n- eval-rp-s42 Worker 回调到 → 注册 registry、汇总 4-seed stats、更新 Claim 7\n- Director 批准 Batch 2 → 派 Worker 启动 LLaMA V/T/R s42 (GPU 0-2) + TaxEI-RP s7 训练 (GPU 3)\n- 4-seed RP eval 全部完成 → 计算 mean±SD，对比 vanilla (67.3%) 和 TaxEI-full (58.3%)，更新 paper_framing\n- GPU 空闲超过 30min → 主动向 Director push 要求启动下一批\n\n### 5. 🎯 战略上下文\n- 项目方向：Taxonomy-guided error injection 从 tool-use 迁移到 embodied planning 的边界条件研究（negative result paper）\n- 投稿目标：EMNLP 2026 Findings 8-page long paper\n- D041 结论：Recovery ≈ Resilience（模型恢复能力约等于正常表现）\n- D042：Scope 扩展加 LLaMA-3.1-8B 跨模型验证 + scale-up 25\n- 当前 RP eval 的 recovery rate (~51%) 低于 vanilla (67.3%)，但语义不同——这是错误注入后的恢复率\n- 易错点：eval 实验不走 submit_training_job（因为是推理不是训练），不要期待 cron 能自动检测完成；必须 Worker 主动跟进\n- 易错点：LLaMA 用 ms-swift，零代码修改，不需要额外适配脚本\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778928106.md"
+}

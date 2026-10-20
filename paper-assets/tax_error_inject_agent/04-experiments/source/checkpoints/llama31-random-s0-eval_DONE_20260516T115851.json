@@ -1,0 +1,28 @@
+{
+  "exp_id": "llama31-random-s0-eval",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:58:20.799Z",
+    "updated_at": "2026-05-16T11:58:51.624Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 eval/injected_eval.py --model_path output/llama31-random-s0/v0-20260516-171608/checkpoint-3387 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --model_variant random --num_episodes 47 --output eval_results/llama31_random_s0_injected.json",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Meta-Llama-3.1-8B-Instruct + LoRA random s0",
+      "seed": 42,
+      "checkpoint_source": "output/llama31-random-s0/v0-20260516-171608/checkpoint-3387",
+      "eval_data": "ALFWorld valid_unseen 47 episodes injected"
+    },
+    "checkpoint_path": "output/llama31-random-s0/v0-20260516-171608/checkpoint-3387",
+    "log_path": "eval_results/llama31_random_s0_injected.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T11:58:51.624Z"
+  },
+  "timestamp": "2026-05-16T11:58:51.878755+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e4bb6171b2565a2cfa4",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval vanilla s123 injected gpu0 MUST COMPLETE",
+  "task_key": "worker_eval_vanilla-s123-injected-gpu0-MUST-COMPLETE_20260516T145224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-s123-injected-gpu0-MUST-COMPLETE_20260516T145224_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "f2d5d47cb44a5ebdf4d5bfa007661ca4e03f9b065a2a32d96a11827bdd1734e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成，registry 已更新为 DONE。\n\n**最终结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| recovery_rate | **70.2%** |\n| detection_rate | **21.3%** |\n| total_episodes | 47 |\n\n**按 operator 分组：**\n\n| Operator | Recovery Rate | Detection Rate |\n|----------|--------------|----------------|\n| C1_context_truncation | 75.0% | 8.3% |\n| C4_observation_masking | 72.7% | 36.4% |\n| P1_step_order_swap | 66.7% | 33.3% |\n| P2_sub_goal_deletion | 66.7% | 8.3% |\n\n**对比参考值：** s42=74.5%, s0=74.5%, **s123=70.2%**。偏低约 4 个百分点但在合理波动范围内。\n\n文件已验证存在且完整：`eval_results/llama31_vanilla_s123_injected.json`（678594 bytes）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s123-injected-gpu0-must-complete.md"
+}

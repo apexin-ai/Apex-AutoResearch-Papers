@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "664a07d5d12aebcafe07",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "exp p0 vanilla sft diagnosis",
+  "task_key": "worker_exp_p0-vanilla-sft-diagnosis_20260514T105430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_p0-vanilla-sft-diagnosis_20260514T105430_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "4cdb1534b64d4bdbf7d11a5a6e76234e4cb4c093a1eab0fc790963e4d78ea769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Current state:\n\n| Job | Step | Total | ETA | Loss | Acc |\n|-----|------|-------|-----|------|-----|\n| mini-vanilla-sft-v3 | 45 | 1,566 | ~55 min | 0.70 | 0.79 |\n| mini-taxei-sft-v3 | 45 | 2,832 | ~1h32m | 0.84 | 0.77 |\n| mini-random-sft-v3 | 45 | 3,405 | ~1h50m | 0.80 | 0.77 |\n\nMy earlier `vanilla_sft_aligned_v2` job was killed at step 105/207 (no checkpoint saved). It's been superseded by these v3 jobs which are all using aligned format data from `data/mini_pipeline_v3/`, running 3 epochs with grad_accum=8.\n\nAll three v3 jobs are healthy — loss declining normally, training on GPUs 0/1/2. The vanilla job will finish first in ~55 min, then eval can begin. Want me to monitor and kick off eval once they complete?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-p0-vanilla-sft-diagnosis.md"
+}

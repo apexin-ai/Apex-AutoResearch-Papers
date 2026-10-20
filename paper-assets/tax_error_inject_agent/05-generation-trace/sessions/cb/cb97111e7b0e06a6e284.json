@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb97111e7b0e06a6e284",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train v4 taxei fixed inject50",
+  "task_key": "worker_train_v4-taxei-fixed-inject50_20260515T004403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-taxei-fixed-inject50_20260515T004403_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "458e06270951409654bb1155581f05a8f5ecc1a123a173762da530acff034b63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v4-taxei-fixed-inject50 已经在 registry 中，状态 RUNNING，cuda:0 上正常训练中。\n\n当前状态：\n- **Step**: 524/1635 (32%), epoch ~0.96/3\n- **Loss**: ~0.49-0.59，正常下降\n- **速度**: ~1.93s/it，预计剩余 ~35 分钟\n- **GPU 内存**: 17.99 GiB\n- **Registry**: 已注册，状态 RUNNING，spec 完整\n\n训练已经在运行，无需重复提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-v4-taxei-fixed-inject50-copy-2.md"
+}

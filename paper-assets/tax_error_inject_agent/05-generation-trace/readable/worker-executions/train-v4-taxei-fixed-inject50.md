@@ -1,0 +1,2881 @@
+# train v4 taxei fixed inject50
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_train_v4-taxei-fixed-inject50_20260515T002628.log`
+- **Structured JSON:** [`3ca0b54a400e2452a106.json`](../../sessions/3c/3ca0b54a400e2452a106.json)
+
+## Before a recorded user message
+
+61 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "79d7ff7f-b6f9-4388-8a68-c8350a50e712",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778808600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1321e228-9fda-4df5-84be-e2f1c059181a",
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by verifying the data file and checking previous training parameters on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "f4d3f66e-4854-46de-b29b-11703125d09e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGVUfJFrBNV6xLpLujXpUb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11880,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11880
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PY3HQkoXW1HPN28b6AwfGR`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "b05babe3-ff25-4e5d-b4ca-81399c45e235",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGVUfJFrBNV6xLpLujXpUb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11880,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11880
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T00:26:39.147Z_
+
+<details><summary>↩ Tool result · `toolu_01PY3HQkoXW1HPN28b6AwfGR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "fbb1baff-cc40-4fa0-b963-7f6ebefb2c04",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+验证数据文件并查看之前的训练参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "22b86ae5-cc68-4881-8d08-6a1f8e9f5f5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3b8BxamVdsAGGTkbkvK9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 23721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2088
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0124bcnVucEe3FA8s6Uvzsfg`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "b082d93d-cdf0-414d-8eb4-5c5942b666ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3b8BxamVdsAGGTkbkvK9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 23721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2088
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q3sUUewJtd1ibsJJsV3Bgx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "7a596396-78f0-416f-a66b-11a855983736",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3b8BxamVdsAGGTkbkvK9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 23721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2088
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T00:26:45.232Z_
+
+<details><summary>↩ Tool result · `toolu_0124bcnVucEe3FA8s6Uvzsfg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "0068317a-6395-48fc-8f14-df6496c8df69",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T00:26:45.608Z_
+
+<details><summary>↩ Tool result · `toolu_01Q3sUUewJtd1ibsJJsV3Bgx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "90ce3832-2e6a-4b50-9dc0-67331fe9b625",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/taxei_fixed_inject50.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BUpjbbhJpiyuPxwvGH38no`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "0f01beba-53c8-4875-80f7-e228ea38e132",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3b8BxamVdsAGGTkbkvK9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2088,
+      "cache_read_input_tokens": 23721,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2088
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T00:26:46.054Z_
+
+<details><summary>↩ Tool result · `toolu_01BUpjbbhJpiyuPxwvGH38no`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dryrun_sft\\ndryrun_sft_v2\\nmini_random_sft_v3\\nmini_random_sft_v4\\nmini_random_sft_v4_seed0\\nmini_random_sft_v4_seed123\\nmini_taxei_sft\\nmini_taxei_sft_v2\\nmini_taxei_sft_v3\\nmini_taxei_sft_v4\\nmini_taxei_sft_v4_seed0\\nmini_taxei_sft_v4_seed123\\nmini_vanilla_sft\\nmini_vanilla_sft_v2\\nmini_vanilla_sft_v3\\nmini_vanilla_sft_v4\\nmini_vanilla_sft_v4_seed0\\nmini_vanilla_sft_v4_seed123\\nmini_vanilla_sft_v4_seed7\\ntaxei_fixed_inject10\\ntaxei_fixed_inject25\\nv4_random_sft\\nv4_taxei_sft\\nv4_vanilla_sft\\nvanilla_sft_aligned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "952f5860-5765-4edd-9333-fc1d504e837e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dryrun_sft\\\\ndryrun_sft_v2\\\\nmini_random_sft_v3\\\\nmini_random_sft_v4\\\\nmini_random_sft_v4_seed0\\\\nmini_random_sft_v4_seed123\\\\nmini_taxei_sft\\\\nmini_taxei_sft_v2\\\\nmini_taxei_sft_v3\\\\nmini_taxei_sft_v4\\\\nmini_taxei_sft_v4_seed0\\\\nmini_taxei_sft_v4_seed123\\\\nmini_vanilla_sft\\\\nmini_vanilla_sft_v2\\\\nmini_vanilla_sft_v3\\\\nmini_vanilla_sft_v4\\\\nmini_vanilla_sft_v4_seed0\\\\nmini_vanilla_sft_v4_seed123\\\\nmini_vanilla_sft_v4_seed7\\\\ntaxei_fixed_inject10\\\\ntaxei_fixed_inject25\\\\nv4_random_sft\\\\nv4_taxei_sft\\\\nv4_vanilla_sft\\\\nvanilla_sft_aligned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dryrun_sft\\ndryrun_sft_v2\\nmini_random_sft_v3\\nmini_random_sft_v4\\nmini_random_sft_v4_seed0\\nmini_random_sft_v4_seed123\\nmini_taxei_sft\\nmini_taxei_sft_v2\\nmini_taxei_sft_v3\\nmini_taxei_sft_v4\\nmini_taxei_sft_v4_seed0\\nmini_taxei_sft_v4_seed123\\nmini_vanilla_sft\\nmini_vanilla_sft_v2\\nmini_vanilla_sft_v3\\nmini_vanilla_sft_v4\\nmini_vanilla_sft_v4_seed0\\nmini_vanilla_sft_v4_seed123\\nmini_vanilla_sft_v4_seed7\\ntaxei_fixed_inject10\\ntaxei_fixed_inject25\\nv4_random_sft\\nv4_taxei_sft\\nv4_vanilla_sft\\nvanilla_sft_aligned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+数据文件路径不存在。查找实际路径和之前 fixed-inject 训练的参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "c2c3482a-7e38-4a8c-814e-914650e26b55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RvWWqURcuE9QcKo6Vqri5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 25809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1099
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NLhSfLweYro9q4hMkPQfAx`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/data -name \"*inject50*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "8dacb5b0-881e-406b-9096-22e92cdbf70a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RvWWqURcuE9QcKo6Vqri5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 25809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1099
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T00:26:52.031Z_
+
+<details><summary>↩ Tool result · `toolu_01NLhSfLweYro9q4hMkPQfAx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "f9e45bb4-38b3-4af7-810f-44083c8cb393",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q9SpXVnWjzzhVWqT9qTsBb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/data -name \"*fixed*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "cf2f69b9-13d9-445a-928b-4d3b899dd9f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RvWWqURcuE9QcKo6Vqri5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 25809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1099
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T00:26:52.994Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9SpXVnWjzzhVWqT9qTsBb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "b6e2a786-85c9-4844-9d1a-d82bb24bc56a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl\\\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl\\n/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NuR8cDeoeYxsaRMxDDY8tb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/args.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "935f6712-1c7c-4b26-adb8-2a60c3a49018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RvWWqURcuE9QcKo6Vqri5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 25809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1099
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T00:26:53.671Z_
+
+<details><summary>↩ Tool result · `toolu_01NuR8cDeoeYxsaRMxDDY8tb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/args.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "c754a25c-59fa-4c8d-9a49-f992ffea3f83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/args.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/args.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+数据文件实际名为 `sft_taxei_v4_fixed_inject50.jsonl`。查看行数和之前训练的参数文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "c4d2b723-9635-4117-8250-f889b6918a6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012V8ENiN2jBmzSq7PDxii8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 26908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qfe252zoKdeFn2f52MsFDb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "07464e46-eb81-4420-9359-fec0e239d4aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012V8ENiN2jBmzSq7PDxii8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 26908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T00:26:57.948Z_
+
+<details><summary>↩ Tool result · `toolu_01Qfe252zoKdeFn2f52MsFDb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4358 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "447f1a3f-d40f-45ff-94c0-f6b08c9aedf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4358 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4358 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XUUZqAK5mt3tk3tJJfskJ9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "e8c7df9f-624e-44bd-ab8a-c297575b5ac6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012V8ENiN2jBmzSq7PDxii8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 26908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T00:26:58.940Z_
+
+<details><summary>↩ Tool result · `toolu_01XUUZqAK5mt3tk3tJJfskJ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"v0-20260515-061503\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "2bab801c-fab5-4d5f-b3ae-3d1f1294b64e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"v0-20260515-061503\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"v0-20260515-061503\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018oFSKmCpX3B9VveEtDEcPy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "996b1b7b-d2c2-444f-8243-89c336176db9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012V8ENiN2jBmzSq7PDxii8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 26908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T00:26:59.865Z_
+
+<details><summary>↩ Tool result · `toolu_018oFSKmCpX3B9VveEtDEcPy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\nYour task is to: Place a heated plate on a table.\\\\nPrior to this step, you have already taken 2 step(s).\\\\nBelow are the most recent observations and actions:\\\\nObservation: -= Welcome to TextWorld, ALFRED! =-\\\\n\\\\nYou are in the middle of a room. Looking quickly around you, you see a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 2, a diningtable 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sidetable 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.\\\\n\\\\nYour task is to: heat some plate and put it in diningtable.\\\\nAction: go to countertop 1\\\\nObservation: You arrive at countertop 1. On the countertop 1, you see a peppershaker 2, a saltshaker 2, and a soapbottle 1.\\\\nAction: go to countertop 2\\\\n\\\\nYour current observation is: You arrive at countertop 2. On the countertop 2, you see a knife 2.\\\\nYour admissible actions are: []\\\\n\\\\nThink step by step in &lt;think>&lt;/think> tags, then choose an action in &lt;action>&lt;/action> tags.\\\\nThe action MUST be one of the admissible actions listed above.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"&lt;think>We need to locate a plate first (likely stored in a cabinet). From countertop 2, I'll move to a nearby cabinet to begin searching.&lt;/think>\\\\n&lt;action>go to cabinet 1&lt;/action>\\\"}]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "72a0ed40-8bf4-46a8-9485-1f817445ac5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\\\\\nYour task is to: Place a heated plate on a table.\\\\\\\\nPrior to this step, you have already taken 2 step(s).\\\\\\\\nBelow are the most recent observations and actions:\\\\\\\\nObservation: -= Welcome to TextWorld, ALFRED! =-\\\\\\\\n\\\\\\\\nYou are in the middle of a room. Looking quickly around you, you see a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 2, a diningtable 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sidetable 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.\\\\\\\\n\\\\\\\\nYour task is to: heat some plate and put it in diningtable.\\\\\\\\nAction: go to countertop 1\\\\\\\\nObservation: You arrive at countertop 1. On the countertop 1, you see a peppershaker 2, a saltshaker 2, and a soapbottle 1.\\\\\\\\nAction: go to countertop 2\\\\\\\\n\\\\\\\\nYour current observation is: You arrive at countertop 2. On the countertop 2, you see a knife 2.\\\\\\\\nYour admissible actions are: []\\\\\\\\n\\\\\\\\nThink step by step in &lt;think>&lt;/think> tags, then choose an action in &lt;action>&lt;/action> tags.\\\\\\\\nThe action MUST be one of the admissible actions listed above.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"&lt;think>We need to locate a plate first (likely stored in a cabinet). From countertop 2, I'll move to a nearby cabinet to begin searching.&lt;/think>\\\\\\\\n&lt;action>go to cabinet 1&lt;/action>\\\\\\\"}]}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"messages\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\nYour task is to: Place a heated plate on a table.\\\\nPrior to this step, you have already taken 2 step(s).\\\\nBelow are the most recent observations and actions:\\\\nObservation: -= Welcome to TextWorld, ALFRED! =-\\\\n\\\\nYou are in the middle of a room. Looking quickly around you, you see a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 2, a countertop 1, a diningtable 2, a diningtable 1, a drawer 3, a drawer 2, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a sidetable 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.\\\\n\\\\nYour task is to: heat some plate and put it in diningtable.\\\\nAction: go to countertop 1\\\\nObservation: You arrive at countertop 1. On the countertop 1, you see a peppershaker 2, a saltshaker 2, and a soapbottle 1.\\\\nAction: go to countertop 2\\\\n\\\\nYour current observation is: You arrive at countertop 2. On the countertop 2, you see a knife 2.\\\\nYour admissible actions are: []\\\\n\\\\nThink step by step in &lt;think>&lt;/think> tags, then choose an action in &lt;action>&lt;/action> tags.\\\\nThe action MUST be one of the admissible actions listed above.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"&lt;think>We need to locate a plate first (likely stored in a cabinet). From countertop 2, I'll move to a nearby cabinet to begin searching.&lt;/think>\\\\n&lt;action>go to cabinet 1&lt;/action>\\\"}]}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+数据验证通过：4358 行，格式正确（messages 格式）。查看之前 inject10 训练的具体参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "41fee54c-fd40-4e30-86a5-692284a56df5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtMcsw3iqma5zh6sMRamvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1508,
+      "cache_read_input_tokens": 28023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1508
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0168H8EXAH2Wn9xu3axYxEj1`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "f92ee642-cbf4-4d4c-b49c-bc5751b648e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtMcsw3iqma5zh6sMRamvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1508,
+      "cache_read_input_tokens": 28023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1508
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T00:27:04.390Z_
+
+<details><summary>↩ Tool result · `toolu_0168H8EXAH2Wn9xu3axYxEj1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "e8736334-7a39-400f-bd44-99af623c8f9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017RBzbCtSvPVkkXoV4DRPqq`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/ -maxdepth 3 -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "39821269-fdcb-4e96-8d97-b838c875da0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Cjei3hUHrSD7ZtWRhrkPw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 29531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 251
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T00:27:06.910Z_
+
+<details><summary>↩ Tool result · `toolu_017RBzbCtSvPVkkXoV4DRPqq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "e07d13b5-8208-47b1-8d60-183f8d792c20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NQdHwjQhRAUUg56vicR99v`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject10/v0-20260515-061503/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "19275890-e5cc-424f-a4df-93a021dc8d50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs7GjGQqX7YndFtb59GEGx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 29782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T00:27:10.013Z_
+
+<details><summary>↩ Tool result · `toolu_01NQdHwjQhRAUUg56vicR99v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 10 May 15 06:15 .\\ndrwxr-xr-x 3 root root 40 May 15 06:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "75258561-2501-48b3-acac-f35c74c48009",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 2 root root 10 May 15 06:15 .\\\\ndrwxr-xr-x 3 root root 40 May 15 06:15 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 10 May 15 06:15 .\\ndrwxr-xr-x 3 root root 40 May 15 06:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The checkpoint directory for inject10 is empty - looks like it was created but the training output went elsewhere. Let me check the inject25 checkpoint and also look at the registry for previous training parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "9fa82b2f-0201-4430-889b-149de7bd69c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UuUvdB8TxwAko6ALC1VPiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 29995,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+inject10 的 checkpoint 目录是空的。查看 inject25 和 registry 获取之前的训练参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "d4d0223f-cc09-4ff3-85d6-2bba784a8307",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UuUvdB8TxwAko6ALC1VPiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 29995,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AsxQSeotk5U1TkLa9aCyqc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject25/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "a66e8cf5-3754-42ee-a274-94020654a2b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UuUvdB8TxwAko6ALC1VPiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 29995,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Cs1CNXYR1wnS1K38tumiAo`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "632f19d7-8ff3-4a38-af67-d0deabedf479",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UuUvdB8TxwAko6ALC1VPiY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 275,
+      "cache_read_input_tokens": 29995,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T00:27:16.007Z_
+
+<details><summary>↩ Tool result · `toolu_01AsxQSeotk5U1TkLa9aCyqc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   40 May 15 06:15 .\\ndrwxr-xr-x 27 root root 4096 May 15 06:15 ..\\ndrwxr-xr-x  2 root root   10 May 15 06:15 v0-20260515-061501\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "89dcfd6c-1004-493b-8160-c20826d51e59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   40 May 15 06:15 .\\\\ndrwxr-xr-x 27 root root 4096 May 15 06:15 ..\\\\ndrwxr-xr-x  2 root root   10 May 15 06:15 v0-20260515-061501\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   40 May 15 06:15 .\\ndrwxr-xr-x 27 root root 4096 May 15 06:15 ..\\ndrwxr-xr-x  2 root root   10 May 15 06:15 v0-20260515-061501\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T00:27:16.139Z_
+
+<details><summary>↩ Tool result · `toolu_01Cs1CNXYR1wnS1K38tumiAo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-random-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T00:14:30.699Z\", \"updated_at\": \"2026-05-15T00:27:13.262Z\", \"hypothesis\": \"v4 Random SFT seed=123 eval — 47 tasks clean eval. Multi-seed: seed=42 66.0%, seed=0 55.3%, seed=123 待测。\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 5, \"rate\": 0.714}}}}, \"v4-random-fixed-inject25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:44.436Z\", \"updated_at\": \"2026-05-15T00:25:45.348Z\", \"hypothesis\": \"v4 Random fixed-size 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对照，检验中等注入比例下 taxonomy 标签是否有差异。\"}, \"v4-random-fixed-inject10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:41.996Z\", \"updated_at\": \"2026-05-15T00:25:43.441Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对照，检验低注入比例下 taxonomy 标签是否有差异。\"}, \"v4-taxei-fixed-inject50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:25:40.619Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\"}, \"v4-taxei-fixed-inject25-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:50:53.016Z\", \"updated_at\": \"2026-05-15T00:14:40.327Z\", \"hypothesis\": \"v4 TaxEI 25% injection fixed-size eval — 48.9% (23/47), 显著低于 vanilla baseline 65.3%（-16.4pp）。Dose-response 数据点。\", \"metrics\": {\"eval_success_rate\": 0.489, \"eval_successes\": 23, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 4, \"total\": 6, \"rate\": 0.667}, \"pick_and_place_simple\": {\"success\": 3, \"total\": 8, \"rate\": 0.375}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 2, \"total\": 7, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:50:52.584Z\", \"updated_at\": \"2026-05-15T00:14:38.874Z\", \"hypothesis\": \"v4 TaxEI 10% injection fixed-size eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。Dose-response 数据点。\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:44:07.489Z\", \"updated_at\": \"2026-05-15T00:14:37.513Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。multi-seed verification, 9029 samples。\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_heat_then_place_in_recep\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:49:34.441Z\", \"updated_at\": \"2026-05-14T23:52:15.056Z\", \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"metrics\": {\"train_loss\": 0.35484016, \"final_loss\": 0.16766574, \"token_accuracy\": 0.94187103, \"avg_token_accuracy\": 0.90849673, \"train_steps\": 3387, \"train_epochs\": 3, \"train_runtime_sec\": 6609.3556, \"train_duration_min\": 110.2, \"train_samples_per_second\": 4.098, \"train_steps_per_second\": 0.512, \"train_speed_s_per_it\": 1.951, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:32:41.837Z\", \"updated_at\": \"2026-05-14T23:50:46.230Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio retry (4,358 total = 3,268 clean + 1,090 injected). 修复 CUDA_VISIBLE_DEVICES，显式设 =3。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.285, \"token_accuracy\": 0.893, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-taxei-fixed-inject10\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:09:52.707Z\", \"updated_at\": \"2026-05-14T23:50:45.829Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio (4,358 total = 3,922 clean + 436 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.308, \"token_accuracy\": 0.888, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-taxei-fixed-inject25\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:09:53.209Z\", \"updated_at\": \"2026-05-14T23:45:26.890Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio (4,358 total = 3,268 clean + 1,090 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\", \"conclusion\": \"failed\"}, \"v4-taxei-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:49:34.191Z\", \"updated_at\": \"2026-05-14T23:43:38.819Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"metrics\": {\"final_loss\": 0.35506879, \"token_accuracy\": 0.89978214, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 109.2, \"train_runtime_sec\": 6549.432, \"train_speed_s_per_it\": 1.934, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-fixed-inject25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:09:23.317Z\", \"updated_at\": \"2026-05-14T22:29:19.308Z\", \"conclusion\": \"killed\"}, \"v4-fixed-inject10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:09:21.673Z\", \"updated_at\": \"2026-05-14T22:29:18.354Z\", \"conclusion\": \"killed\"}, \"v4-random-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:57.591Z\", \"updated_at\": \"2026-05-14T22:00:43.285Z\", \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\", \"conclusion\": \"success\", \"metrics\": {\"recovery_rate\": 0.638, \"detection_rate\": 0, \"successes\": 30, \"total\": 47, \"source\": \"json-file-verified\", \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"}}, \"v4-taxei-recovery-eval-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:23:55.110Z\", \"updated_at\": \"2026-05-14T21:46:19.993Z\", \"conclusion\": \"success\", \"metrics\": {\"recovery_rate\": 0.596, \"detection_rate\": 0, \"total_episodes\": 47, \"per_operator\": {\"C1_context_truncation\": {\"recovered\": 8, \"total\": 12, \"rate\": 0.667}, \"C4_observation_masking\": {\"recovered\": 7, \"total\": 11, \"rate\": 0.636}, \"P1_step_order_swap\": {\"recovered\": 7, \"total\": 12, \"rate\": 0.583}, \"P2_sub_goal_deletion\": {\"recovered\": 6, \"total\": 12, \"rate\": 0.5}}}}, \"v4-taxei-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.278Z\", \"updated_at\": \"2026-05-14T21:21:53.154Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47, \"vs_seed42_pp\": -14.9}}, \"v4-random-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.456Z\", \"updated_at\": \"2026-05-14T21:21:52.271Z\", \"hypothesis\": \"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.553, \"eval_successes\": 26, \"eval_total\": 47, \"vs_seed42_pp\": -10.7}}, \"v4-vanilla-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:30:18.314Z\", \"updated_at\": \"2026-05-14T21:21:50.951Z\", \"hypothesis\": \"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"recovery_rate\": 0.617, \"detection_rate\": 0}}, \"v4-taxei-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:40:41.154Z\", \"updated_at\": \"2026-05-14T21:20:17.664Z\", \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"recovery_rate\": 0.596, \"detection_rate\": 0}}, \"v4-vanilla-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.635Z\", \"updated_at\": \"2026-05-14T20:43:48.780Z\", \"hypothesis\": \"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3, \"vs_seed0_pp\": -2.1, \"per_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}}, \"v4-random-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:03.440Z\", \"updated_at\": \"2026-05-14T19:36:31.263Z\", \"hypothesis\": \"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.912, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}}, \"v4-taxei-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:02.696Z\", \"updated_at\": \"2026-05-14T19:36:29.716Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.917, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}}, \"v4-vanilla-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.093Z\", \"updated_at\": \"2026-05-14T19:30:45.170Z\", \"hypothesis\": \"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"vs_seed42_pp\": 6.4, \"mcnemar_vs_seed42_p\": 0.375, \"discordant_pairs\": 5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"5/7 (71.4%)\"}}}, \"v4-vanilla-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:45:23.836Z\", \"updated_at\": \"2026-05-14T19:29:24.021Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.288, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.9}}, \"v4-vanilla-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:01.929Z\", \"updated_at\": \"2026-05-14T18:46:58.919Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.297, \"avg_loss\": 0.416, \"token_accuracy\": 0.902, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:45:24.536Z\", \"updated_at\": \"2026-05-14T18:20:48.185Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"killed\"}, \"v4-recovery-eval-dev\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T17:42:04.153Z\", \"updated_at\": \"2026-05-14T18:15:59.630Z\", \"hypothesis\": \"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\", \"conclusion\": \"success\", \"metrics\": {\"pipeline_files\": [\"eval/injected_eval.py\", \"scripts/run_injected_eval.sh\"], \"injected_eval_lines\": 463, \"dryrun_result\": \"PASS\", \"dryrun_detail\": \"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\"}}, \"v4-recovery-dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T17:45:26.420Z\", \"updated_at\": \"2026-05-14T18:15:56.604Z\", \"hypothesis\": \"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\", \"conclusion\": \"success\"}, \"v4-random-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:25:02.397Z\", \"updated_at\": \"2026-05-14T17:31:46.657Z\", \"hypothesis\": \"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_vanilla_pp\": 4.3, \"vs_taxei_pp\": 4.3, \"mcnemar_vs_vanilla_p\": 0.754, \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"4/8 (50%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\"}}}, \"v4-taxei-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:25:00.653Z\", \"updated_at\": \"2026-05-14T17:31:43.481Z\", \"hypothesis\": \"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"vs_vanilla_pp\": 0, \"vs_random_pp\": -4.3, \"mcnemar_vs_vanilla_p\": 1, \"mcnemar_vs_random_p\": 0.754, \"gate_3a\": \"FAIL\", \"gate_3b\": \"FAIL\", \"gate_4\": \"PASS\", \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"2/7 (28.6%)\"}}}, \"traj_collect_500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:45:21.504Z\", \"updated_at\": \"2026-05-14T16:28:02.238Z\", \"metrics\": {\"successful_trajectories\": 501, \"failed_trajectories\": 213, \"total_attempts\": 714, \"success_rate\": 0.702, \"api_cost_usd\": 8.86, \"collection_time_sec\": 5245}, \"conclusion\": \"negative\"}, \"v4-vanilla-eval-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:28:24.833Z\", \"updated_at\": \"2026-05-14T16:25:11.284Z\", \"hypothesis\": \"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_clean_then_place\": \"5/11 (45.5%)\"}}}, \"v4-vanilla-eval-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:24:25.560Z\", \"updated_at\": \"2026-05-14T14:28:40.995Z\", \"hypothesis\": \"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\", \"conclusion\": \"failed\"}, \"v4-random-sft-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:30:55.117Z\", \"updated_at\": \"2026-05-14T14:24:56.155Z\", \"hypothesis\": \"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-taxei-sft-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:30:52.865Z\", \"updated_at\": \"2026-05-14T14:24:54.288Z\", \"hypothesis\": \"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-vanilla-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:15:59.327Z\", \"updated_at\": \"2026-05-14T14:24:25.638Z\", \"hypothesis\": \"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\", \"conclusion\": \"failed\"}, \"v3-random-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:26.315Z\", \"updated_at\": \"2026-05-14T14:15:26.311Z\", \"hypothesis\": \"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.511, \"eval_successes\": 24, \"eval_total\": 47, \"vs_baseline_pp\": 8.5, \"vs_vanilla_sft_pp\": -23.4}, \"conclusion\": \"negative\"}, \"v3-taxei-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:24.552Z\", \"updated_at\": \"2026-05-14T14:15:25.974Z\", \"hypothesis\": \"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_baseline_pp\": 23.4, \"vs_vanilla_sft_pp\": -8.5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_clean_then_place\": \"8/11 (72.7%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\"}}, \"conclusion\": \"negative\"}, \"v4-random-sft-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:32:26.753Z\", \"updated_at\": \"2026-05-14T13:32:36.181Z\", \"hypothesis\": \"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-taxei-sft-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:32:24.446Z\", \"updated_at\": \"2026-05-14T13:32:34.819Z\", \"hypothesis\": \"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-random-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:31.864Z\", \"updated_at\": \"2026-05-14T13:31:19.378Z\", \"hypothesis\": \"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\", \"conclusion\": \"failed\"}, \"v4-taxei-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:29.177Z\", \"updated_at\": \"2026-05-14T13:31:18.431Z\", \"hypothesis\": \"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\", \"conclusion\": \"failed\"}, \"mini-vanilla-sft-v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:14:26.614Z\", \"updated_at\": \"2026-05-14T13:27:05.003Z\", \"hypothesis\": \"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\", \"conclusion\": \"success\"}, \"mini-random-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:19.635Z\", \"updated_at\": \"2026-05-14T13:27:04.310Z\", \"metrics\": {\"train_samples\": 9076, \"train_samples_clean\": 4176, \"train_samples_injected\": 4900, \"train_steps_total\": 3405, \"est_duration_min\": 110, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-taxei-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:17.286Z\", \"updated_at\": \"2026-05-14T13:27:03.840Z\", \"metrics\": {\"train_samples\": 7545, \"train_samples_clean\": 4176, \"train_samples_injected\": 3369, \"train_steps_total\": 2832, \"est_duration_min\": 90, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-vanilla-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:13.990Z\", \"updated_at\": \"2026-05-14T13:27:02.899Z\", \"metrics\": {\"train_samples\": 4176, \"train_steps_total\": 1566, \"est_duration_min\": 58, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"v3-vanilla-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:22:10.941Z\", \"updated_at\": \"2026-05-14T13:27:01.957Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.745, \"successes\": 35, \"total\": 47, \"vs_baseline_pp\": 31.9, \"vs_baseline\": \"42.6% → 74.5%\"}}, \"v4-vanilla-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:14:57.794Z\", \"updated_at\": \"2026-05-14T12:22:10.869Z\", \"conclusion\": \"failed\"}, \"vanilla_sft_aligned_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:05:05.459Z\", \"updated_at\": \"2026-05-14T11:05:05.459Z\"}, \"vanilla_sft_aligned_v1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:04:12.825Z\", \"updated_at\": \"2026-05-14T11:04:12.825Z\"}, \"mini-vanilla-sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:41.382Z\", \"updated_at\": \"2026-05-14T10:54:48.860Z\", \"hypothesis\": \"Vanilla trajectory SFT baseline for comparison with TaxEI\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.149, \"eval_successes\": 7, \"eval_total\": 47, \"vs_baseline_pp\": -27.7, \"per_task\": {\"look_at_obj_in_light\": \"0/6 (0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"2/11 (18.2%)\", \"pick_cool_then_place\": \"0/7 (0%)\", \"pick_heat_then_place\": \"3/8 (37.5%)\", \"pick_two_obj_and_place\": \"0/7 (0%)\"}, \"train_steps\": 54, \"train_duration_min\": 5}}, \"mini-taxei-sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:40.784Z\", \"updated_at\": \"2026-05-14T10:54:46.174Z\", \"hypothesis\": \"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.447, \"eval_successes\": 21, \"eval_total\": 47, \"vs_baseline_pp\": 2.1, \"per_task\": {\"look_at_obj_in_light\": \"3/6 (50.0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"1/7 (14.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_two_obj_and_place\": \"3/7 (42.9%)\"}, \"train_steps\": 195, \"train_duration_min\": 16.3}}, \"vanilla-react-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:20:00.119Z\", \"updated_at\": \"2026-05-14T10:54:35.171Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.426, \"total_tasks\": 47, \"successes\": 20, \"per_task_type\": {\"pick_heat_then_place\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"look_at_obj_in_light\": {\"success\": 3, \"total\": 6, \"rate\": 0.5}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_cool_then_place\": {\"success\": 0, \"total\": 7, \"rate\": 0}}}}, \"mini-pipeline-e2e\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T10:39:15.654Z\", \"updated_at\": \"2026-05-14T10:39:15.654Z\", \"conclusion\": \"failed\"}, \"sft-dryrun-73\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:19:34.694Z\", \"updated_at\": \"2026-05-14T08:20:00.752Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_init\": 2.436, \"train_loss_final\": 1.543, \"train_loss_avg\": 1.894, \"peak_memory_gib\": 19.22, \"steps\": 8, \"duration_sec\": 42, \"data_vanilla\": 124, \"data_injected_dryrun\": 96, \"injected_failed\": 4}}}, \"count\": 56, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1176}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "b9f4dabe-31e3-48a3-8178-d2e153964697",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-random-seed123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T00:14:30.699Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:27:13.262Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=123 eval — 47 tasks clean eval. Multi-seed: seed=42 66.0%, seed=0 55.3%, seed=123 待测。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.681, \\\"eval_successes\\\": 32, \\\"eval_total\\\": 47, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 7, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 5, \\\"rate\\\": 0.714}}}}, \\\"v4-random-fixed-inject25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T00:25:44.436Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:25:45.348Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对照，检验中等注入比例下 taxonomy 标签是否有差异。\\\"}, \\\"v4-random-fixed-inject10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T00:25:41.996Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:25:43.441Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对照，检验低注入比例下 taxonomy 标签是否有差异。\\\"}, \\\"v4-taxei-fixed-inject50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T00:25:38.284Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:25:40.619Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\\\"}, \\\"v4-taxei-fixed-inject25-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:50:53.016Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:14:40.327Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 25% injection fixed-size eval — 48.9% (23/47), 显著低于 vanilla baseline 65.3%（-16.4pp）。Dose-response 数据点。\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.489, \\\"eval_successes\\\": 23, \\\"eval_total\\\": 47, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 4, \\\"total\\\": 6, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 3, \\\"total\\\": 8, \\\"rate\\\": 0.375}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:50:52.584Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:14:38.874Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 10% injection fixed-size eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。Dose-response 数据点。\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 6, \\\"total\\\": 8, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-seed123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:44:07.489Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:14:37.513Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=123 eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。multi-seed verification, 9029 samples。\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 6, \\\"total\\\": 8, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:49:34.441Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:52:15.056Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.35484016, \\\"final_loss\\\": 0.16766574, \\\"token_accuracy\\\": 0.94187103, \\\"avg_token_accuracy\\\": 0.90849673, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 6609.3556, \\\"train_duration_min\\\": 110.2, \\\"train_samples_per_second\\\": 4.098, \\\"train_steps_per_second\\\": 0.512, \\\"train_speed_s_per_it\\\": 1.951, \\\"memory_gib\\\": 18.49}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject25-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T22:32:41.837Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:50:46.230Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio retry (4,358 total = 3,268 clean + 1,090 injected). 修复 CUDA_VISIBLE_DEVICES，显式设 =3。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.285, \\\"token_accuracy\\\": 0.893, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58}}, \\\"v4-taxei-fixed-inject10\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T22:09:52.707Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:50:45.829Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio (4,358 total = 3,922 clean + 436 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.308, \\\"token_accuracy\\\": 0.888, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58}}, \\\"v4-taxei-fixed-inject25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T22:09:53.209Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:45:26.890Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio (4,358 total = 3,268 clean + 1,090 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-taxei-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:49:34.191Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:43:38.819Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.35506879, \\\"token_accuracy\\\": 0.89978214, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 109.2, \\\"train_runtime_sec\\\": 6549.432, \\\"train_speed_s_per_it\\\": 1.934, \\\"memory_gib\\\": 18.49}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-fixed-inject25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:09:23.317Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:29:19.308Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"v4-fixed-inject10\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:09:21.673Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:29:18.354Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"v4-random-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:04:57.591Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:00:43.285Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.638, \\\"detection_rate\\\": 0, \\\"successes\\\": 30, \\\"total\\\": 47, \\\"source\\\": \\\"json-file-verified\\\", \\\"note\\\": \\\"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\\\"}}, \\\"v4-taxei-recovery-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T21:23:55.110Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:46:19.993Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0, \\\"total_episodes\\\": 47, \\\"per_operator\\\": {\\\"C1_context_truncation\\\": {\\\"recovered\\\": 8, \\\"total\\\": 12, \\\"rate\\\": 0.667}, \\\"C4_observation_masking\\\": {\\\"recovered\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"P1_step_order_swap\\\": {\\\"recovered\\\": 7, \\\"total\\\": 12, \\\"rate\\\": 0.583}, \\\"P2_sub_goal_deletion\\\": {\\\"recovered\\\": 6, \\\"total\\\": 12, \\\"rate\\\": 0.5}}}}, \\\"v4-taxei-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:30:26.278Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:53.154Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -14.9}}, \\\"v4-random-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:30:26.456Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:52.271Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.553, \\\"eval_successes\\\": 26, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -10.7}}, \\\"v4-vanilla-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:30:18.314Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:50.951Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.617, \\\"detection_rate\\\": 0}}, \\\"v4-taxei-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:40:41.154Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:20:17.664Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.596, \\\"successes\\\": 28, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0}}, \\\"v4-vanilla-seed123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:30:26.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:43:48.780Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 4.3, \\\"vs_seed0_pp\\\": -2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 6, \\\"total\\\": 8, \\\"rate\\\": 0.75}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}}, \\\"v4-random-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:42:03.440Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:31.263Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.912, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}}, \\\"v4-taxei-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:42:02.696Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:29.716Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.917, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}}, \\\"v4-vanilla-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:30:26.093Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:30:45.170Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.681, \\\"eval_successes\\\": 32, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 6.4, \\\"mcnemar_vs_seed42_p\\\": 0.375, \\\"discordant_pairs\\\": 5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"5/7 (71.4%)\\\"}}}, \\\"v4-vanilla-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:45:23.836Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:29:24.021Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.288, \\\"token_accuracy\\\": 0.903, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58.9}}, \\\"v4-vanilla-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:42:01.929Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:46:58.919Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.297, \\\"avg_loss\\\": 0.416, \\\"token_accuracy\\\": 0.902, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58}}, \\\"v4-vanilla-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:45:24.536Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:20:48.185Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"v4-recovery-eval-dev\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T17:42:04.153Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:59.630Z\\\", \\\"hypothesis\\\": \\\"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pipeline_files\\\": [\\\"eval/injected_eval.py\\\", \\\"scripts/run_injected_eval.sh\\\"], \\\"injected_eval_lines\\\": 463, \\\"dryrun_result\\\": \\\"PASS\\\", \\\"dryrun_detail\\\": \\\"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\\\"}}, \\\"v4-recovery-dryrun\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T17:45:26.420Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:56.604Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T16:25:02.397Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:46.657Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 4.3, \\\"vs_taxei_pp\\\": 4.3, \\\"mcnemar_vs_vanilla_p\\\": 0.754, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"4/8 (50%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\"}}}, \\\"v4-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T16:25:00.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:43.481Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 0, \\\"vs_random_pp\\\": -4.3, \\\"mcnemar_vs_vanilla_p\\\": 1, \\\"mcnemar_vs_random_p\\\": 0.754, \\\"gate_3a\\\": \\\"FAIL\\\", \\\"gate_3b\\\": \\\"FAIL\\\", \\\"gate_4\\\": \\\"PASS\\\", \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"2/7 (28.6%)\\\"}}}, \\\"traj_collect_500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:45:21.504Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:28:02.238Z\\\", \\\"metrics\\\": {\\\"successful_trajectories\\\": 501, \\\"failed_trajectories\\\": 213, \\\"total_attempts\\\": 714, \\\"success_rate\\\": 0.702, \\\"api_cost_usd\\\": 8.86, \\\"collection_time_sec\\\": 5245}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v4-vanilla-eval-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T14:28:24.833Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:25:11.284Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_clean_then_place\\\": \\\"5/11 (45.5%)\\\"}}}, \\\"v4-vanilla-eval-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T14:24:25.560Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:28:40.995Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-random-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:30:55.117Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:56.155Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:30:52.865Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:54.288Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T14:15:59.327Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:25.638Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v3-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:26:26.315Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:26.311Z\\\", \\\"hypothesis\\\": \\\"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.511, \\\"eval_successes\\\": 24, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 8.5, \\\"vs_vanilla_sft_pp\\\": -23.4}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v3-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:26:24.552Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:25.974Z\\\", \\\"hypothesis\\\": \\\"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 23.4, \\\"vs_vanilla_sft_pp\\\": -8.5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_clean_then_place\\\": \\\"8/11 (72.7%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v4-random-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:32:26.753Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:36.181Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-taxei-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:32:24.446Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:34.819Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-random-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:26:31.864Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:19.378Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-taxei-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T13:26:29.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:18.431Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mini-vanilla-sft-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:14:26.614Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:05.003Z\\\", \\\"hypothesis\\\": \\\"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-random-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T11:13:19.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:04.310Z\\\", \\\"metrics\\\": {\\\"train_samples\\\": 9076, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 4900, \\\"train_steps_total\\\": 3405, \\\"est_duration_min\\\": 110, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-taxei-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T11:13:17.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:03.840Z\\\", \\\"metrics\\\": {\\\"train_samples\\\": 7545, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 3369, \\\"train_steps_total\\\": 2832, \\\"est_duration_min\\\": 90, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-vanilla-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T11:13:13.990Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:02.899Z\\\", \\\"metrics\\\": {\\\"train_samples\\\": 4176, \\\"train_steps_total\\\": 1566, \\\"est_duration_min\\\": 58, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v3-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:22:10.941Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:01.957Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.745, \\\"successes\\\": 35, \\\"total\\\": 47, \\\"vs_baseline_pp\\\": 31.9, \\\"vs_baseline\\\": \\\"42.6% → 74.5%\\\"}}, \\\"v4-vanilla-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T12:14:57.794Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:22:10.869Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"vanilla_sft_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T11:05:05.459Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:05:05.459Z\\\"}, \\\"vanilla_sft_aligned_v1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T11:04:12.825Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:04:12.825Z\\\"}, \\\"mini-vanilla-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:51:41.382Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:48.860Z\\\", \\\"hypothesis\\\": \\\"Vanilla trajectory SFT baseline for comparison with TaxEI\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.149, \\\"eval_successes\\\": 7, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": -27.7, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"0/6 (0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"2/11 (18.2%)\\\", \\\"pick_cool_then_place\\\": \\\"0/7 (0%)\\\", \\\"pick_heat_then_place\\\": \\\"3/8 (37.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"0/7 (0%)\\\"}, \\\"train_steps\\\": 54, \\\"train_duration_min\\\": 5}}, \\\"mini-taxei-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:51:40.784Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:46.174Z\\\", \\\"hypothesis\\\": \\\"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.447, \\\"eval_successes\\\": 21, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"3/6 (50.0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"1/7 (14.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_two_obj_and_place\\\": \\\"3/7 (42.9%)\\\"}, \\\"train_steps\\\": 195, \\\"train_duration_min\\\": 16.3}}, \\\"vanilla-react-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:20:00.119Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:35.171Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.426, \\\"total_tasks\\\": 47, \\\"successes\\\": 20, \\\"per_task_type\\\": {\\\"pick_heat_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"look_at_obj_in_light\\\": {\\\"success\\\": 3, \\\"total\\\": 6, \\\"rate\\\": 0.5}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}, \\\"pick_cool_then_place\\\": {\\\"success\\\": 0, \\\"total\\\": 7, \\\"rate\\\": 0}}}}, \\\"mini-pipeline-e2e\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft-dryrun-73\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:19:34.694Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:20:00.752Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss_init\\\": 2.436, \\\"train_loss_final\\\": 1.543, \\\"train_loss_avg\\\": 1.894, \\\"peak_memory_gib\\\": 19.22, \\\"steps\\\": 8, \\\"duration_sec\\\": 42, \\\"data_vanilla\\\": 124, \\\"data_injected_dryrun\\\": 96, \\\"injected_failed\\\": 4}}}, \\\"count\\\": 56, \\\"total\\\": 56, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1176}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"v4-random-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T00:14:30.699Z\", \"updated_at\": \"2026-05-15T00:27:13.262Z\", \"hypothesis\": \"v4 Random SFT seed=123 eval — 47 tasks clean eval. Multi-seed: seed=42 66.0%, seed=0 55.3%, seed=123 待测。\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 5, \"rate\": 0.714}}}}, \"v4-random-fixed-inject25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:44.436Z\", \"updated_at\": \"2026-05-15T00:25:45.348Z\", \"hypothesis\": \"v4 Random fixed-size 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对照，检验中等注入比例下 taxonomy 标签是否有差异。\"}, \"v4-random-fixed-inject10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:41.996Z\", \"updated_at\": \"2026-05-15T00:25:43.441Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对照，检验低注入比例下 taxonomy 标签是否有差异。\"}, \"v4-taxei-fixed-inject50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:25:40.619Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\"}, \"v4-taxei-fixed-inject25-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:50:53.016Z\", \"updated_at\": \"2026-05-15T00:14:40.327Z\", \"hypothesis\": \"v4 TaxEI 25% injection fixed-size eval — 48.9% (23/47), 显著低于 vanilla baseline 65.3%（-16.4pp）。Dose-response 数据点。\", \"metrics\": {\"eval_success_rate\": 0.489, \"eval_successes\": 23, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 4, \"total\": 6, \"rate\": 0.667}, \"pick_and_place_simple\": {\"success\": 3, \"total\": 8, \"rate\": 0.375}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 2, \"total\": 7, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:50:52.584Z\", \"updated_at\": \"2026-05-15T00:14:38.874Z\", \"hypothesis\": \"v4 TaxEI 10% injection fixed-size eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。Dose-response 数据点。\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:44:07.489Z\", \"updated_at\": \"2026-05-15T00:14:37.513Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。multi-seed verification, 9029 samples。\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"by_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_heat_then_place_in_recep\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:49:34.441Z\", \"updated_at\": \"2026-05-14T23:52:15.056Z\", \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"metrics\": {\"train_loss\": 0.35484016, \"final_loss\": 0.16766574, \"token_accuracy\": 0.94187103, \"avg_token_accuracy\": 0.90849673, \"train_steps\": 3387, \"train_epochs\": 3, \"train_runtime_sec\": 6609.3556, \"train_duration_min\": 110.2, \"train_samples_per_second\": 4.098, \"train_steps_per_second\": 0.512, \"train_speed_s_per_it\": 1.951, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:32:41.837Z\", \"updated_at\": \"2026-05-14T23:50:46.230Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio retry (4,358 total = 3,268 clean + 1,090 injected). 修复 CUDA_VISIBLE_DEVICES，显式设 =3。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.285, \"token_accuracy\": 0.893, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-taxei-fixed-inject10\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:09:52.707Z\", \"updated_at\": \"2026-05-14T23:50:45.829Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio (4,358 total = 3,922 clean + 436 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.308, \"token_accuracy\": 0.888, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-taxei-fixed-inject25\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:09:53.209Z\", \"updated_at\": \"2026-05-14T23:45:26.890Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio (4,358 total = 3,268 clean + 1,090 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\", \"conclusion\": \"failed\"}, \"v4-taxei-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:49:34.191Z\", \"updated_at\": \"2026-05-14T23:43:38.819Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"metrics\": {\"final_loss\": 0.35506879, \"token_accuracy\": 0.89978214, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 109.2, \"train_runtime_sec\": 6549.432, \"train_speed_s_per_it\": 1.934, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-fixed-inject25\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:09:23.317Z\", \"updated_at\": \"2026-05-14T22:29:19.308Z\", \"conclusion\": \"killed\"}, \"v4-fixed-inject10\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:09:21.673Z\", \"updated_at\": \"2026-05-14T22:29:18.354Z\", \"conclusion\": \"killed\"}, \"v4-random-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:57.591Z\", \"updated_at\": \"2026-05-14T22:00:43.285Z\", \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\", \"conclusion\": \"success\", \"metrics\": {\"recovery_rate\": 0.638, \"detection_rate\": 0, \"successes\": 30, \"total\": 47, \"source\": \"json-file-verified\", \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"}}, \"v4-taxei-recovery-eval-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:23:55.110Z\", \"updated_at\": \"2026-05-14T21:46:19.993Z\", \"conclusion\": \"success\", \"metrics\": {\"recovery_rate\": 0.596, \"detection_rate\": 0, \"total_episodes\": 47, \"per_operator\": {\"C1_context_truncation\": {\"recovered\": 8, \"total\": 12, \"rate\": 0.667}, \"C4_observation_masking\": {\"recovered\": 7, \"total\": 11, \"rate\": 0.636}, \"P1_step_order_swap\": {\"recovered\": 7, \"total\": 12, \"rate\": 0.583}, \"P2_sub_goal_deletion\": {\"recovered\": 6, \"total\": 12, \"rate\": 0.5}}}}, \"v4-taxei-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.278Z\", \"updated_at\": \"2026-05-14T21:21:53.154Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47, \"vs_seed42_pp\": -14.9}}, \"v4-random-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.456Z\", \"updated_at\": \"2026-05-14T21:21:52.271Z\", \"hypothesis\": \"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.553, \"eval_successes\": 26, \"eval_total\": 47, \"vs_seed42_pp\": -10.7}}, \"v4-vanilla-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:30:18.314Z\", \"updated_at\": \"2026-05-14T21:21:50.951Z\", \"hypothesis\": \"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"recovery_rate\": 0.617, \"detection_rate\": 0}}, \"v4-taxei-recovery-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:40:41.154Z\", \"updated_at\": \"2026-05-14T21:20:17.664Z\", \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"recovery_rate\": 0.596, \"detection_rate\": 0}}, \"v4-vanilla-seed123-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.635Z\", \"updated_at\": \"2026-05-14T20:43:48.780Z\", \"hypothesis\": \"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3, \"vs_seed0_pp\": -2.1, \"per_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}}, \"v4-random-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:03.440Z\", \"updated_at\": \"2026-05-14T19:36:31.263Z\", \"hypothesis\": \"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.912, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}}, \"v4-taxei-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:02.696Z\", \"updated_at\": \"2026-05-14T19:36:29.716Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.917, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}}, \"v4-vanilla-seed0-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:26.093Z\", \"updated_at\": \"2026-05-14T19:30:45.170Z\", \"hypothesis\": \"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"vs_seed42_pp\": 6.4, \"mcnemar_vs_seed42_p\": 0.375, \"discordant_pairs\": 5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"5/7 (71.4%)\"}}}, \"v4-vanilla-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:45:23.836Z\", \"updated_at\": \"2026-05-14T19:29:24.021Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.288, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.9}}, \"v4-vanilla-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:42:01.929Z\", \"updated_at\": \"2026-05-14T18:46:58.919Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.297, \"avg_loss\": 0.416, \"token_accuracy\": 0.902, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:45:24.536Z\", \"updated_at\": \"2026-05-14T18:20:48.185Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"killed\"}, \"v4-recovery-eval-dev\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T17:42:04.153Z\", \"updated_at\": \"2026-05-14T18:15:59.630Z\", \"hypothesis\": \"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\", \"conclusion\": \"success\", \"metrics\": {\"pipeline_files\": [\"eval/injected_eval.py\", \"scripts/run_injected_eval.sh\"], \"injected_eval_lines\": 463, \"dryrun_result\": \"PASS\", \"dryrun_detail\": \"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\"}}, \"v4-recovery-dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T17:45:26.420Z\", \"updated_at\": \"2026-05-14T18:15:56.604Z\", \"hypothesis\": \"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\", \"conclusion\": \"success\"}, \"v4-random-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:25:02.397Z\", \"updated_at\": \"2026-05-14T17:31:46.657Z\", \"hypothesis\": \"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_vanilla_pp\": 4.3, \"vs_taxei_pp\": 4.3, \"mcnemar_vs_vanilla_p\": 0.754, \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"4/8 (50%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\"}}}, \"v4-taxei-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:25:00.653Z\", \"updated_at\": \"2026-05-14T17:31:43.481Z\", \"hypothesis\": \"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"vs_vanilla_pp\": 0, \"vs_random_pp\": -4.3, \"mcnemar_vs_vanilla_p\": 1, \"mcnemar_vs_random_p\": 0.754, \"gate_3a\": \"FAIL\", \"gate_3b\": \"FAIL\", \"gate_4\": \"PASS\", \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"2/7 (28.6%)\"}}}, \"traj_collect_500\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:45:21.504Z\", \"updated_at\": \"2026-05-14T16:28:02.238Z\", \"metrics\": {\"successful_trajectories\": 501, \"failed_trajectories\": 213, \"total_attempts\": 714, \"success_rate\": 0.702, \"api_cost_usd\": 8.86, \"collection_time_sec\": 5245}, \"conclusion\": \"negative\"}, \"v4-vanilla-eval-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:28:24.833Z\", \"updated_at\": \"2026-05-14T16:25:11.284Z\", \"hypothesis\": \"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_clean_then_place\": \"5/11 (45.5%)\"}}}, \"v4-vanilla-eval-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:24:25.560Z\", \"updated_at\": \"2026-05-14T14:28:40.995Z\", \"hypothesis\": \"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\", \"conclusion\": \"failed\"}, \"v4-random-sft-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:30:55.117Z\", \"updated_at\": \"2026-05-14T14:24:56.155Z\", \"hypothesis\": \"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-taxei-sft-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:30:52.865Z\", \"updated_at\": \"2026-05-14T14:24:54.288Z\", \"hypothesis\": \"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-vanilla-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T14:15:59.327Z\", \"updated_at\": \"2026-05-14T14:24:25.638Z\", \"hypothesis\": \"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\", \"conclusion\": \"failed\"}, \"v3-random-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:26.315Z\", \"updated_at\": \"2026-05-14T14:15:26.311Z\", \"hypothesis\": \"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.511, \"eval_successes\": 24, \"eval_total\": 47, \"vs_baseline_pp\": 8.5, \"vs_vanilla_sft_pp\": -23.4}, \"conclusion\": \"negative\"}, \"v3-taxei-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:24.552Z\", \"updated_at\": \"2026-05-14T14:15:25.974Z\", \"hypothesis\": \"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_baseline_pp\": 23.4, \"vs_vanilla_sft_pp\": -8.5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_clean_then_place\": \"8/11 (72.7%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\"}}, \"conclusion\": \"negative\"}, \"v4-random-sft-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:32:26.753Z\", \"updated_at\": \"2026-05-14T13:32:36.181Z\", \"hypothesis\": \"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-taxei-sft-r3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:32:24.446Z\", \"updated_at\": \"2026-05-14T13:32:34.819Z\", \"hypothesis\": \"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-random-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:31.864Z\", \"updated_at\": \"2026-05-14T13:31:19.378Z\", \"hypothesis\": \"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\", \"conclusion\": \"failed\"}, \"v4-taxei-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T13:26:29.177Z\", \"updated_at\": \"2026-05-14T13:31:18.431Z\", \"hypothesis\": \"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\", \"conclusion\": \"failed\"}, \"mini-vanilla-sft-v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:14:26.614Z\", \"updated_at\": \"2026-05-14T13:27:05.003Z\", \"hypothesis\": \"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\", \"conclusion\": \"success\"}, \"mini-random-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:19.635Z\", \"updated_at\": \"2026-05-14T13:27:04.310Z\", \"metrics\": {\"train_samples\": 9076, \"train_samples_clean\": 4176, \"train_samples_injected\": 4900, \"train_steps_total\": 3405, \"est_duration_min\": 110, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-taxei-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:17.286Z\", \"updated_at\": \"2026-05-14T13:27:03.840Z\", \"metrics\": {\"train_samples\": 7545, \"train_samples_clean\": 4176, \"train_samples_injected\": 3369, \"train_steps_total\": 2832, \"est_duration_min\": 90, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-vanilla-sft-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:13:13.990Z\", \"updated_at\": \"2026-05-14T13:27:02.899Z\", \"metrics\": {\"train_samples\": 4176, \"train_steps_total\": 1566, \"est_duration_min\": 58, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"v3-vanilla-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:22:10.941Z\", \"updated_at\": \"2026-05-14T13:27:01.957Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.745, \"successes\": 35, \"total\": 47, \"vs_baseline_pp\": 31.9, \"vs_baseline\": \"42.6% → 74.5%\"}}, \"v4-vanilla-sft\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T12:14:57.794Z\", \"updated_at\": \"2026-05-14T12:22:10.869Z\", \"conclusion\": \"failed\"}, \"vanilla_sft_aligned_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:05:05.459Z\", \"updated_at\": \"2026-05-14T11:05:05.459Z\"}, \"vanilla_sft_aligned_v1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T11:04:12.825Z\", \"updated_at\": \"2026-05-14T11:04:12.825Z\"}, \"mini-vanilla-sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:41.382Z\", \"updated_at\": \"2026-05-14T10:54:48.860Z\", \"hypothesis\": \"Vanilla trajectory SFT baseline for comparison with TaxEI\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.149, \"eval_successes\": 7, \"eval_total\": 47, \"vs_baseline_pp\": -27.7, \"per_task\": {\"look_at_obj_in_light\": \"0/6 (0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"2/11 (18.2%)\", \"pick_cool_then_place\": \"0/7 (0%)\", \"pick_heat_then_place\": \"3/8 (37.5%)\", \"pick_two_obj_and_place\": \"0/7 (0%)\"}, \"train_steps\": 54, \"train_duration_min\": 5}}, \"mini-taxei-sft\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:51:40.784Z\", \"updated_at\": \"2026-05-14T10:54:46.174Z\", \"hypothesis\": \"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.447, \"eval_successes\": 21, \"eval_total\": 47, \"vs_baseline_pp\": 2.1, \"per_task\": {\"look_at_obj_in_light\": \"3/6 (50.0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"1/7 (14.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_two_obj_and_place\": \"3/7 (42.9%)\"}, \"train_steps\": 195, \"train_duration_min\": 16.3}}, \"vanilla-react-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:20:00.119Z\", \"updated_at\": \"2026-05-14T10:54:35.171Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.426, \"total_tasks\": 47, \"successes\": 20, \"per_task_type\": {\"pick_heat_then_place\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"look_at_obj_in_light\": {\"success\": 3, \"total\": 6, \"rate\": 0.5}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_cool_then_place\": {\"success\": 0, \"total\": 7, \"rate\": 0}}}}, \"mini-pipeline-e2e\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T10:39:15.654Z\", \"updated_at\": \"2026-05-14T10:39:15.654Z\", \"conclusion\": \"failed\"}, \"sft-dryrun-73\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:19:34.694Z\", \"updated_at\": \"2026-05-14T08:20:00.752Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_init\": 2.436, \"train_loss_final\": 1.543, \"train_loss_avg\": 1.894, \"peak_memory_gib\": 19.22, \"steps\": 8, \"duration_sec\": 42, \"data_vanilla\": 124, \"data_injected_dryrun\": 96, \"injected_failed\": 4}}}, \"count\": 56, \"total\": 56, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1176}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the data file at `/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl` with 4358 lines. Now I need to find the training parameters from a successful fixed-size training. Let me look at the `v4-taxei-fixed-inject10` and `v4-taxei-fixed-inject25-r2` entries in the registry.
+
+From the registry:
+- `v4-taxei-fixed-inject10`: DONE, 1635 steps, 3 epochs, 58 min
+
+
+- `v4-taxei-fixed-inject25-r2`: DONE, 1635 steps, 3 epochs, 58 min
+
+Both runs show the same step count and duration, which makes sense given the math: 4358 samples with batch_size=8 across 3 epochs yields exactly 1635 steps. Now I need to locate the actual training arguments file in the checkpoint directories to extract the exact hyperparameters.
+
+The inject10 checkpoint appears to be empty, so let me check the v4_taxei_sft checkpoint instead—that was a successful run where I should be able to find the training parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "0762c2d6-4ced-455b-a4cc-4b8a4d082a1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzS63xsyHYhfaw4WK4FjT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 30270,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+数据验证通过：4358 行，messages 格式。从 registry 看 inject10 和 inject25 都用 1635 steps / 3 epochs。查看之前成功训练的完整参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "702e29fd-67b2-4f4f-b3ea-bf6354454973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzS63xsyHYhfaw4WK4FjT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 30270,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PBTQt1xphHQEEPMXnVh6bd`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/checkpoints/taxei_fixed_inject25/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "1cb6a55a-a579-4691-b0fa-12e7b6517e7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzS63xsyHYhfaw4WK4FjT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 30270,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T00:27:31.625Z_
+
+<details><summary>↩ Tool result · `toolu_01PBTQt1xphHQEEPMXnVh6bd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "72c4f836-8f18-47fd-95da-12d503fd31bc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CAZJc2sbE1ziGdt992LF21`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/ -name \"args.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "65d8e199-ecd1-4441-881d-21aeb49d83ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CzS63xsyHYhfaw4WK4FjT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11882,
+      "cache_read_input_tokens": 30270,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T00:27:32.773Z_
+
+<details><summary>↩ Tool result · `toolu_01CAZJc2sbE1ziGdt992LF21`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-545/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1090/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635/args.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "93d0243b-b431-442f-9bf4-42e26bdd5e01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/args.json\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-545/args.json\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1090/args.json\\\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635/args.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-545/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1090/args.json\\n/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635/args.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPYg9LV9hhWL1kWbVaEL87`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/args.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "6978abaa-ae87-421e-9bcc-2c6c93f53fc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bjiw2LdBdk8tYv93QFZ3Sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1170,
+      "cache_read_input_tokens": 42152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1170
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T00:27:35.424Z_
+
+<details><summary>↩ Tool result · `toolu_01UPYg9LV9hhWL1kWbVaEL87`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"output_dir\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\",\\n  \\\"overwrite_output_dir\\\": false,\\n  \\\"do_train\\\": false,\\n  \\\"do_eval\\\": false,\\n  \\\"do_predict\\\": false,\\n  \\\"eval_strategy\\\": \\\"no\\\",\\n  \\\"prediction_loss_only\\\": false,\\n  \\\"per_device_train_batch_size\\\": 1,\\n  \\\"per_device_eval_batch_size\\\": 1,\\n  \\\"per_gpu_train_batch_size\\\": null,\\n  \\\"per_gpu_eval_batch_size\\\": null,\\n  \\\"gradient_accumulation_steps\\\": 8,\\n  \\\"eval_accumulation_steps\\\": null,\\n  \\\"eval_delay\\\": 0,\\n  \\\"torch_empty_cache_steps\\\": null,\\n  \\\"learning_rate\\\": 0.0001,\\n  \\\"weight_decay\\\": 0.1,\\n  \\\"adam_beta1\\\": 0.9,\\n  \\\"adam_beta2\\\": 0.95,\\n  \\\"adam_epsilon\\\": 1e-08,\\n  \\\"max_grad_norm\\\": 1.0,\\n  \\\"num_train_epochs\\\": 3.0,\\n  \\\"max_steps\\\": -1,\\n  \\\"lr_scheduler_type\\\": \\\"cosine\\\",\\n  \\\"lr_scheduler_kwargs\\\": null,\\n  \\\"warmup_ratio\\\": 0.0,\\n  \\\"warmup_steps\\\": 0,\\n  \\\"log_level\\\": \\\"passive\\\",\\n  \\\"log_level_replica\\\": \\\"warning\\\",\\n  \\\"log_on_each_node\\\": true,\\n  \\\"logging_dir\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/runs\\\",\\n  \\\"logging_strategy\\\": \\\"steps\\\",\\n  \\\"logging_first_step\\\": true,\\n  \\\"logging_steps\\\": 5,\\n  \\\"logging_nan_inf_filter\\\": true,\\n  \\\"save_strategy\\\": \\\"epoch\\\",\\n  \\\"save_steps\\\": 500,\\n  \\\"save_total_limit\\\": null,\\n  \\\"save_safetensors\\\": true,\\n  \\\"save_on_each_node\\\": false,\\n  \\\"save_only_model\\\": false,\\n  \\\"restore_callback_states_from_checkpoint\\\": false,\\n  \\\"no_cuda\\\": false,\\n  \\\"use_cpu\\\": false,\\n  \\\"use_mps_device\\\": false,\\n  \\\"seed\\\": 42,\\n  \\\"data_seed\\\": 42,\\n  \\\"jit_mode_eval\\\": false,\\n  \\\"bf16\\\": true,\\n  \\\"fp16\\\": false,\\n  \\\"fp16_opt_level\\\": \\\"O1\\\",\\n  \\\"half_precision_backend\\\": \\\"auto\\\",\\n  \\\"bf16_full_eval\\\": false,\\n  \\\"fp16_full_eval\\\": false,\\n  \\\"tf32\\\": null,\\n  \\\"local_rank\\\": -1,\\n  \\\"ddp_backend\\\": null,\\n  \\\"tpu_num_cores\\\": null,\\n  \\\"tpu_metrics_debug\\\": false,\\n  \\\"debug\\\": null,\\n  \\\"dataloader_drop_last\\\": false,\\n  \\\"eval_steps\\\": null,\\n  \\\"dataloader_num_workers\\\": null,\\n  \\\"dataloader_prefetch_factor\\\": null,\\n  \\\"past_index\\\": -1,\\n  \\\"run_name\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\",\\n  \\\"disable_tqdm\\\": null,\\n  \\\"remove_unused_columns\\\": true,\\n  \\\"label_names\\\": null,\\n  \\\"load_best_model_at_end\\\": false,\\n  \\\"metric_for_best_model\\\": \\\"loss\\\",\\n  \\\"greater_is_better\\\": false,\\n  \\\"ignore_data_skip\\\": false,\\n  \\\"fsdp\\\": [],\\n  \\\"fsdp_min_num_params\\\": 0,\\n  \\\"fsdp_config\\\": null,\\n  \\\"fsdp_transformer_layer_cls_to_wrap\\\": null,\\n  \\\"accelerator_config\\\": {\\n    \\\"dispatch_batches\\\": false\\n  },\\n  \\\"parallelism_config\\\": null,\\n  \\\"deepspeed\\\": null,\\n  \\\"label_smoothing_factor\\\": 0.0,\\n  \\\"optim\\\": \\\"adamw_torch_fused\\\",\\n  \\\"optim_args\\\": null,\\n  \\\"adafactor\\\": false,\\n  \\\"group_by_length\\\": false,\\n  \\\"length_column_name\\\": \\\"length\\\",\\n  \\\"report_to\\\": [\\n    \\\"tensorboard\\\"\\n  ],\\n  \\\"project\\\": \\\"huggingface\\\",\\n  \\\"trackio_space_id\\\": \\\"trackio\\\",\\n  \\\"ddp_find_unused_parameters\\\": null,\\n  \\\"ddp_bucket_cap_mb\\\": null,\\n  \\\"ddp_broadcast_buffers\\\": null,\\n  \\\"dataloader_pin_memory\\\": true,\\n  \\\"dataloader_persistent_workers\\\": false,\\n  \\\"skip_memory_metrics\\\": true,\\n  \\\"use_legacy_prediction_loop\\\": false,\\n  \\\"push_to_hub\\\": false,\\n  \\\"resume_from_checkpoint\\\": null,\\n  \\\"hub_model_id\\\": null,\\n  \\\"hub_strategy\\\": \\\"every_save\\\",\\n  \\\"hub_token\\\": null,\\n  \\\"hub_private_repo\\\": null,\\n  \\\"hub_always_push\\\": false,\\n  \\\"hub_revision\\\": null,\\n  \\\"gradient_checkpointing\\\": true,\\n  \\\"gradient_checkpointing_kwargs\\\": null,\\n  \\\"include_inputs_for_metrics\\\": false,\\n  \\\"include_for_metrics\\\": [],\\n  \\\"eval_do_concat_batches\\\": true,\\n  \\\"fp16_backend\\\": \\\"auto\\\",\\n  \\\"push_to_hub_model_id\\\": null,\\n  \\\"push_to_hub_organization\\\": null,\\n  \\\"push_to_hub_token\\\": null,\\n  \\\"mp_parameters\\\": \\\"\\\",\\n  \\\"auto_find_batch_size\\\": false,\\n  \\\"full_determinism\\\": false,\\n  \\\"torchdynamo\\\": null,\\n  \\\"ray_scope\\\": \\\"last\\\",\\n  \\\"ddp_timeout\\\": 18000000,\\n  \\\"torch_compile\\\": false,\\n  \\\"torch_compile_backend\\\": null,\\n  \\\"torch_compile_mode\\\": null,\\n  \\\"include_tokens_per_second\\\": false,\\n  \\\"include_num_input_tokens_seen\\\": false,\\n  \\\"neftune_noise_alpha\\\": null,\\n  \\\"optim_target_modules\\\": null,\\n  \\\"batch_eval_metrics\\\": false,\\n  \\\"eval_on_start\\\": false,\\n  \\\"use_liger_kernel\\\": false,\\n  \\\"liger_kernel_config\\\": null,\\n  \\n\\n... [截断: 输出过长，省略 13666 字符] ...\\n\\nging_first_step=True, logging_steps=5, logging_nan_inf_filter=True, save_strategy=&lt;SaveStrategy.EPOCH: 'epoch'>, save_steps=500, save_total_limit=None, save_safetensors=True, save_on_each_node=False, save_only_model=False, restore_callback_states_from_checkpoint=False, no_cuda=False, use_cpu=False, use_mps_device=False, seed=42, data_seed=42, jit_mode_eval=False, bf16=True, fp16=False, fp16_opt_level='O1', half_precision_backend='auto', bf16_full_eval=False, fp16_full_eval=False, tf32=None, local_rank=0, ddp_backend=None, tpu_num_cores=None, tpu_metrics_debug=False, debug=[], dataloader_drop_last=False, eval_steps=None, dataloader_num_workers=1, dataloader_prefetch_factor=2, past_index=-1, run_name='/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441', disable_tqdm=False, remove_unused_columns=False, label_names=None, load_best_model_at_end=False, metric_for_best_model='loss', greater_is_better=False, ignore_data_skip=False, fsdp=[], fsdp_min_num_params=0, fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False}, fsdp_transformer_layer_cls_to_wrap=None, accelerator_config=AcceleratorConfig(split_batches=False, dispatch_batches=False, even_batches=True, use_seedable_sampler=True, non_blocking=False, gradient_accumulation_kwargs=None, use_configured_state=False), parallelism_config=None, deepspeed=None, label_smoothing_factor=0.0, optim=&lt;OptimizerNames.ADAMW_TORCH_FUSED: 'adamw_torch_fused'>, optim_args=None, adafactor=False, group_by_length=False, length_column_name='length', report_to=['tensorboard'], project='huggingface', trackio_space_id='trackio', ddp_find_unused_parameters=None, ddp_bucket_cap_mb=None, ddp_broadcast_buffers=None, dataloader_pin_memory=True, dataloader_persistent_workers=False, skip_memory_metrics=True, use_legacy_prediction_loop=False, push_to_hub=False, resume_from_checkpoint=None, hub_model_id=None, hub_strategy=&lt;HubStrategy.EVERY_SAVE: 'every_save'>, hub_token=None, hub_private_repo=None, hub_always_push=False, hub_revision=None, gradient_checkpointing=True, gradient_checkpointing_kwargs=None, include_inputs_for_metrics=False, include_for_metrics=[], eval_do_concat_batches=True, fp16_backend='auto', push_to_hub_model_id=None, push_to_hub_organization=None, push_to_hub_token=None, mp_parameters='', auto_find_batch_size=False, full_determinism=False, torchdynamo=None, ray_scope='last', ddp_timeout=18000000, torch_compile=False, torch_compile_backend=None, torch_compile_mode=None, include_tokens_per_second=None, include_num_input_tokens_seen=None, neftune_noise_alpha=None, optim_target_modules=None, batch_eval_metrics=False, eval_on_start=False, use_liger_kernel=False, liger_kernel_config=None, eval_use_gather_object=False, average_tokens_across_devices=None, sortish_sampler=False, predict_with_generate=False, generation_max_length=None, generation_num_beams=None, generation_config=None, tuner_backend='peft', vit_gradient_checkpointing=False, router_aux_loss_coef=0.0, enable_dft_loss=False, enable_channel_loss=False, safe_serialization=True, max_shard_size='5GB', check_model=True, acc_strategy='token', train_dataloader_shuffle=True, max_epochs=None, aligner_lr=None, vit_lr=None, use_logits_to_keep=None, ds3_gather_for_generation=True, resume_only_model=False, optimizer=None, loss_type=None, eval_metric=None, callbacks=[], early_stop_interval=None, eval_use_evalscope=False, eval_dataset=[], eval_dataset_args=None, eval_limit=None, eval_generation_config=None, extra_eval_args=None, tuner_type='lora', use_galore=False, galore_target_modules=None, galore_rank=128, galore_update_proj_gap=50, galore_scale=1.0, galore_proj_type='std', galore_optim_per_parameter=False, galore_with_embedding=False, galore_quantization=False, galore_proj_quant=False, galore_proj_bits=4, galore_proj_group_size=256, galore_cos_threshold=0.4, galore_gamma_proj=2, galore_queue_size=5, lisa_activated_layers=0, lisa_step_interval=20, use_flash_ckpt=False)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "10048165-7137-41de-9fed-c8be4f457ef4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\\\\\",\\\\n  \\\\\\\"overwrite_output_dir\\\\\\\": false,\\\\n  \\\\\\\"do_train\\\\\\\": false,\\\\n  \\\\\\\"do_eval\\\\\\\": false,\\\\n  \\\\\\\"do_predict\\\\\\\": false,\\\\n  \\\\\\\"eval_strategy\\\\\\\": \\\\\\\"no\\\\\\\",\\\\n  \\\\\\\"prediction_loss_only\\\\\\\": false,\\\\n  \\\\\\\"per_device_train_batch_size\\\\\\\": 1,\\\\n  \\\\\\\"per_device_eval_batch_size\\\\\\\": 1,\\\\n  \\\\\\\"per_gpu_train_batch_size\\\\\\\": null,\\\\n  \\\\\\\"per_gpu_eval_batch_size\\\\\\\": null,\\\\n  \\\\\\\"gradient_accumulation_steps\\\\\\\": 8,\\\\n  \\\\\\\"eval_accumulation_steps\\\\\\\": null,\\\\n  \\\\\\\"eval_delay\\\\\\\": 0,\\\\n  \\\\\\\"torch_empty_cache_steps\\\\\\\": null,\\\\n  \\\\\\\"learning_rate\\\\\\\": 0.0001,\\\\n  \\\\\\\"weight_decay\\\\\\\": 0.1,\\\\n  \\\\\\\"adam_beta1\\\\\\\": 0.9,\\\\n  \\\\\\\"adam_beta2\\\\\\\": 0.95,\\\\n  \\\\\\\"adam_epsilon\\\\\\\": 1e-08,\\\\n  \\\\\\\"max_grad_norm\\\\\\\": 1.0,\\\\n  \\\\\\\"num_train_epochs\\\\\\\": 3.0,\\\\n  \\\\\\\"max_steps\\\\\\\": -1,\\\\n  \\\\\\\"lr_scheduler_type\\\\\\\": \\\\\\\"cosine\\\\\\\",\\\\n  \\\\\\\"lr_scheduler_kwargs\\\\\\\": null,\\\\n  \\\\\\\"warmup_ratio\\\\\\\": 0.0,\\\\n  \\\\\\\"warmup_steps\\\\\\\": 0,\\\\n  \\\\\\\"log_level\\\\\\\": \\\\\\\"passive\\\\\\\",\\\\n  \\\\\\\"log_level_replica\\\\\\\": \\\\\\\"warning\\\\\\\",\\\\n  \\\\\\\"log_on_each_node\\\\\\\": true,\\\\n  \\\\\\\"logging_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/runs\\\\\\\",\\\\n  \\\\\\\"logging_strategy\\\\\\\": \\\\\\\"steps\\\\\\\",\\\\n  \\\\\\\"logging_first_step\\\\\\\": true,\\\\n  \\\\\\\"logging_steps\\\\\\\": 5,\\\\n  \\\\\\\"logging_nan_inf_filter\\\\\\\": true,\\\\n  \\\\\\\"save_strategy\\\\\\\": \\\\\\\"epoch\\\\\\\",\\\\n  \\\\\\\"save_steps\\\\\\\": 500,\\\\n  \\\\\\\"save_total_limit\\\\\\\": null,\\\\n  \\\\\\\"save_safetensors\\\\\\\": true,\\\\n  \\\\\\\"save_on_each_node\\\\\\\": false,\\\\n  \\\\\\\"save_only_model\\\\\\\": false,\\\\n  \\\\\\\"restore_callback_states_from_checkpoint\\\\\\\": false,\\\\n  \\\\\\\"no_cuda\\\\\\\": false,\\\\n  \\\\\\\"use_cpu\\\\\\\": false,\\\\n  \\\\\\\"use_mps_device\\\\\\\": false,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"data_seed\\\\\\\": 42,\\\\n  \\\\\\\"jit_mode_eval\\\\\\\": false,\\\\n  \\\\\\\"bf16\\\\\\\": true,\\\\n  \\\\\\\"fp16\\\\\\\": false,\\\\n  \\\\\\\"fp16_opt_level\\\\\\\": \\\\\\\"O1\\\\\\\",\\\\n  \\\\\\\"half_precision_backend\\\\\\\": \\\\\\\"auto\\\\\\\",\\\\n  \\\\\\\"bf16_full_eval\\\\\\\": false,\\\\n  \\\\\\\"fp16_full_eval\\\\\\\": false,\\\\n  \\\\\\\"tf32\\\\\\\": null,\\\\n  \\\\\\\"local_rank\\\\\\\": -1,\\\\n  \\\\\\\"ddp_backend\\\\\\\": null,\\\\n  \\\\\\\"tpu_num_cores\\\\\\\": null,\\\\n  \\\\\\\"tpu_metrics_debug\\\\\\\": false,\\\\n  \\\\\\\"debug\\\\\\\": null,\\\\n  \\\\\\\"dataloader_drop_last\\\\\\\": false,\\\\n  \\\\\\\"eval_steps\\\\\\\": null,\\\\n  \\\\\\\"dataloader_num_workers\\\\\\\": null,\\\\n  \\\\\\\"dataloader_prefetch_factor\\\\\\\": null,\\\\n  \\\\\\\"past_index\\\\\\\": -1,\\\\n  \\\\\\\"run_name\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\\\\\",\\\\n  \\\\\\\"disable_tqdm\\\\\\\": null,\\\\n  \\\\\\\"remove_unused_columns\\\\\\\": true,\\\\n  \\\\\\\"label_names\\\\\\\": null,\\\\n  \\\\\\\"load_best_model_at_end\\\\\\\": false,\\\\n  \\\\\\\"metric_for_best_model\\\\\\\": \\\\\\\"loss\\\\\\\",\\\\n  \\\\\\\"greater_is_better\\\\\\\": false,\\\\n  \\\\\\\"ignore_data_skip\\\\\\\": false,\\\\n  \\\\\\\"fsdp\\\\\\\": [],\\\\n  \\\\\\\"fsdp_min_num_params\\\\\\\": 0,\\\\n  \\\\\\\"fsdp_config\\\\\\\": null,\\\\n  \\\\\\\"fsdp_transformer_layer_cls_to_wrap\\\\\\\": null,\\\\n  \\\\\\\"accelerator_config\\\\\\\": {\\\\n    \\\\\\\"dispatch_batches\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"parallelism_config\\\\\\\": null,\\\\n  \\\\\\\"deepspeed\\\\\\\": null,\\\\n  \\\\\\\"label_smoothing_factor\\\\\\\": 0.0,\\\\n  \\\\\\\"optim\\\\\\\": \\\\\\\"adamw_torch_fused\\\\\\\",\\\\n  \\\\\\\"optim_args\\\\\\\": null,\\\\n  \\\\\\\"adafactor\\\\\\\": false,\\\\n  \\\\\\\"group_by_length\\\\\\\": false,\\\\n  \\\\\\\"length_column_name\\\\\\\": \\\\\\\"length\\\\\\\",\\\\n  \\\\\\\"report_to\\\\\\\": [\\\\n    \\\\\\\"tensorboard\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"project\\\\\\\": \\\\\\\"huggingface\\\\\\\",\\\\n  \\\\\\\"trackio_space_id\\\\\\\": \\\\\\\"trackio\\\\\\\",\\\\n  \\\\\\\"ddp_find_unused_parameters\\\\\\\": null,\\\\n  \\\\\\\"ddp_bucket_cap_mb\\\\\\\": null,\\\\n  \\\\\\\"ddp_broadcast_buffers\\\\\\\": null,\\\\n  \\\\\\\"dataloader_pin_memory\\\\\\\": true,\\\\n  \\\\\\\"dataloader_persistent_workers\\\\\\\": false,\\\\n  \\\\\\\"skip_memory_metrics\\\\\\\": true,\\\\n  \\\\\\\"use_legacy_prediction_loop\\\\\\\": false,\\\\n  \\\\\\\"push_to_hub\\\\\\\": false,\\\\n  \\\\\\\"resume_from_checkpoint\\\\\\\": null,\\\\n  \\\\\\\"hub_model_id\\\\\\\": null,\\\\n  \\\\\\\"hub_strategy\\\\\\\": \\\\\\\"every_save\\\\\\\",\\\\n  \\\\\\\"hub_token\\\\\\\": null,\\\\n  \\\\\\\"hub_private_repo\\\\\\\": null,\\\\n  \\\\\\\"hub_always_push\\\\\\\": false,\\\\n  \\\\\\\"hub_revision\\\\\\\": null,\\\\n  \\\\\\\"gradient_checkpointing\\\\\\\": true,\\\\n  \\\\\\\"gradient_checkpointing_kwargs\\\\\\\": null,\\\\n  \\\\\\\"include_inputs_for_metrics\\\\\\\": false,\\\\n  \\\\\\\"include_for_metrics\\\\\\\": [],\\\\n  \\\\\\\"eval_do_concat_batches\\\\\\\": true,\\\\n  \\\\\\\"fp16_backend\\\\\\\": \\\\\\\"auto\\\\\\\",\\\\n  \\\\\\\"push_to_hub_model_id\\\\\\\": null,\\\\n  \\\\\\\"push_to_hub_organization\\\\\\\": null,\\\\n  \\\\\\\"push_to_hub_token\\\\\\\": null,\\\\n  \\\\\\\"mp_parameters\\\\\\\": \\\\\\\"\\\\\\\",\\\\n  \\\\\\\"auto_find_batch_size\\\\\\\": false,\\\\n  \\\\\\\"full_determinism\\\\\\\": false,\\\\n  \\\\\\\"torchdynamo\\\\\\\": null,\\\\n  \\\\\\\"ray_scope\\\\\\\": \\\\\\\"last\\\\\\\",\\\\n  \\\\\\\"ddp_timeout\\\\\\\": 18000000,\\\\n  \\\\\\\"torch_compile\\\\\\\": false,\\\\n  \\\\\\\"torch_compile_backend\\\\\\\": null,\\\\n  \\\\\\\"torch_compile_mode\\\\\\\": null,\\\\n  \\\\\\\"include_tokens_per_second\\\\\\\": false,\\\\n  \\\\\\\"include_num_input_tokens_seen\\\\\\\": false,\\\\n  \\\\\\\"neftune_noise_alpha\\\\\\\": null,\\\\n  \\\\\\\"optim_target_modules\\\\\\\": null,\\\\n  \\\\\\\"batch_eval_metrics\\\\\\\": false,\\\\n  \\\\\\\"eval_on_start\\\\\\\": false,\\\\n  \\\\\\\"use_liger_kernel\\\\\\\": false,\\\\n  \\\\\\\"liger_kernel_config\\\\\\\": null,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 13666 字符] ...\\\\n\\\\nging_first_step=True, logging_steps=5, logging_nan_inf_filter=True, save_strategy=&lt;SaveStrategy.EPOCH: 'epoch'>, save_steps=500, save_total_limit=None, save_safetensors=True, save_on_each_node=False, save_only_model=False, restore_callback_states_from_checkpoint=False, no_cuda=False, use_cpu=False, use_mps_device=False, seed=42, data_seed=42, jit_mode_eval=False, bf16=True, fp16=False, fp16_opt_level='O1', half_precision_backend='auto', bf16_full_eval=False, fp16_full_eval=False, tf32=None, local_rank=0, ddp_backend=None, tpu_num_cores=None, tpu_metrics_debug=False, debug=[], dataloader_drop_last=False, eval_steps=None, dataloader_num_workers=1, dataloader_prefetch_factor=2, past_index=-1, run_name='/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441', disable_tqdm=False, remove_unused_columns=False, label_names=None, load_best_model_at_end=False, metric_for_best_model='loss', greater_is_better=False, ignore_data_skip=False, fsdp=[], fsdp_min_num_params=0, fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False}, fsdp_transformer_layer_cls_to_wrap=None, accelerator_config=AcceleratorConfig(split_batches=False, dispatch_batches=False, even_batches=True, use_seedable_sampler=True, non_blocking=False, gradient_accumulation_kwargs=None, use_configured_state=False), parallelism_config=None, deepspeed=None, label_smoothing_factor=0.0, optim=&lt;OptimizerNames.ADAMW_TORCH_FUSED: 'adamw_torch_fused'>, optim_args=None, adafactor=False, group_by_length=False, length_column_name='length', report_to=['tensorboard'], project='huggingface', trackio_space_id='trackio', ddp_find_unused_parameters=None, ddp_bucket_cap_mb=None, ddp_broadcast_buffers=None, dataloader_pin_memory=True, dataloader_persistent_workers=False, skip_memory_metrics=True, use_legacy_prediction_loop=False, push_to_hub=False, resume_from_checkpoint=None, hub_model_id=None, hub_strategy=&lt;HubStrategy.EVERY_SAVE: 'every_save'>, hub_token=None, hub_private_repo=None, hub_always_push=False, hub_revision=None, gradient_checkpointing=True, gradient_checkpointing_kwargs=None, include_inputs_for_metrics=False, include_for_metrics=[], eval_do_concat_batches=True, fp16_backend='auto', push_to_hub_model_id=None, push_to_hub_organization=None, push_to_hub_token=None, mp_parameters='', auto_find_batch_size=False, full_determinism=False, torchdynamo=None, ray_scope='last', ddp_timeout=18000000, torch_compile=False, torch_compile_backend=None, torch_compile_mode=None, include_tokens_per_second=None, include_num_input_tokens_seen=None, neftune_noise_alpha=None, optim_target_modules=None, batch_eval_metrics=False, eval_on_start=False, use_liger_kernel=False, liger_kernel_config=None, eval_use_gather_object=False, average_tokens_across_devices=None, sortish_sampler=False, predict_with_generate=False, generation_max_length=None, generation_num_beams=None, generation_config=None, tuner_backend='peft', vit_gradient_checkpointing=False, router_aux_loss_coef=0.0, enable_dft_loss=False, enable_channel_loss=False, safe_serialization=True, max_shard_size='5GB', check_model=True, acc_strategy='token', train_dataloader_shuffle=True, max_epochs=None, aligner_lr=None, vit_lr=None, use_logits_to_keep=None, ds3_gather_for_generation=True, resume_only_model=False, optimizer=None, loss_type=None, eval_metric=None, callbacks=[], early_stop_interval=None, eval_use_evalscope=False, eval_dataset=[], eval_dataset_args=None, eval_limit=None, eval_generation_config=None, extra_eval_args=None, tuner_type='lora', use_galore=False, galore_target_modules=None, galore_rank=128, galore_update_proj_gap=50, galore_scale=1.0, galore_proj_type='std', galore_optim_per_parameter=False, galore_with_embedding=False, galore_quantization=False, galore_proj_quant=False, galore_proj_bits=4, galore_proj_group_size=256, galore_cos_threshold=0.4, galore_gamma_proj=2, galore_queue_size=5, lisa_activated_layers=0, lisa_step_interval=20, use_flash_ckpt=False)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"output_dir\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\",\\n  \\\"overwrite_output_dir\\\": false,\\n  \\\"do_train\\\": false,\\n  \\\"do_eval\\\": false,\\n  \\\"do_predict\\\": false,\\n  \\\"eval_strategy\\\": \\\"no\\\",\\n  \\\"prediction_loss_only\\\": false,\\n  \\\"per_device_train_batch_size\\\": 1,\\n  \\\"per_device_eval_batch_size\\\": 1,\\n  \\\"per_gpu_train_batch_size\\\": null,\\n  \\\"per_gpu_eval_batch_size\\\": null,\\n  \\\"gradient_accumulation_steps\\\": 8,\\n  \\\"eval_accumulation_steps\\\": null,\\n  \\\"eval_delay\\\": 0,\\n  \\\"torch_empty_cache_steps\\\": null,\\n  \\\"learning_rate\\\": 0.0001,\\n  \\\"weight_decay\\\": 0.1,\\n  \\\"adam_beta1\\\": 0.9,\\n  \\\"adam_beta2\\\": 0.95,\\n  \\\"adam_epsilon\\\": 1e-08,\\n  \\\"max_grad_norm\\\": 1.0,\\n  \\\"num_train_epochs\\\": 3.0,\\n  \\\"max_steps\\\": -1,\\n  \\\"lr_scheduler_type\\\": \\\"cosine\\\",\\n  \\\"lr_scheduler_kwargs\\\": null,\\n  \\\"warmup_ratio\\\": 0.0,\\n  \\\"warmup_steps\\\": 0,\\n  \\\"log_level\\\": \\\"passive\\\",\\n  \\\"log_level_replica\\\": \\\"warning\\\",\\n  \\\"log_on_each_node\\\": true,\\n  \\\"logging_dir\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/runs\\\",\\n  \\\"logging_strategy\\\": \\\"steps\\\",\\n  \\\"logging_first_step\\\": true,\\n  \\\"logging_steps\\\": 5,\\n  \\\"logging_nan_inf_filter\\\": true,\\n  \\\"save_strategy\\\": \\\"epoch\\\",\\n  \\\"save_steps\\\": 500,\\n  \\\"save_total_limit\\\": null,\\n  \\\"save_safetensors\\\": true,\\n  \\\"save_on_each_node\\\": false,\\n  \\\"save_only_model\\\": false,\\n  \\\"restore_callback_states_from_checkpoint\\\": false,\\n  \\\"no_cuda\\\": false,\\n  \\\"use_cpu\\\": false,\\n  \\\"use_mps_device\\\": false,\\n  \\\"seed\\\": 42,\\n  \\\"data_seed\\\": 42,\\n  \\\"jit_mode_eval\\\": false,\\n  \\\"bf16\\\": true,\\n  \\\"fp16\\\": false,\\n  \\\"fp16_opt_level\\\": \\\"O1\\\",\\n  \\\"half_precision_backend\\\": \\\"auto\\\",\\n  \\\"bf16_full_eval\\\": false,\\n  \\\"fp16_full_eval\\\": false,\\n  \\\"tf32\\\": null,\\n  \\\"local_rank\\\": -1,\\n  \\\"ddp_backend\\\": null,\\n  \\\"tpu_num_cores\\\": null,\\n  \\\"tpu_metrics_debug\\\": false,\\n  \\\"debug\\\": null,\\n  \\\"dataloader_drop_last\\\": false,\\n  \\\"eval_steps\\\": null,\\n  \\\"dataloader_num_workers\\\": null,\\n  \\\"dataloader_prefetch_factor\\\": null,\\n  \\\"past_index\\\": -1,\\n  \\\"run_name\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441\\\",\\n  \\\"disable_tqdm\\\": null,\\n  \\\"remove_unused_columns\\\": true,\\n  \\\"label_names\\\": null,\\n  \\\"load_best_model_at_end\\\": false,\\n  \\\"metric_for_best_model\\\": \\\"loss\\\",\\n  \\\"greater_is_better\\\": false,\\n  \\\"ignore_data_skip\\\": false,\\n  \\\"fsdp\\\": [],\\n  \\\"fsdp_min_num_params\\\": 0,\\n  \\\"fsdp_config\\\": null,\\n  \\\"fsdp_transformer_layer_cls_to_wrap\\\": null,\\n  \\\"accelerator_config\\\": {\\n    \\\"dispatch_batches\\\": false\\n  },\\n  \\\"parallelism_config\\\": null,\\n  \\\"deepspeed\\\": null,\\n  \\\"label_smoothing_factor\\\": 0.0,\\n  \\\"optim\\\": \\\"adamw_torch_fused\\\",\\n  \\\"optim_args\\\": null,\\n  \\\"adafactor\\\": false,\\n  \\\"group_by_length\\\": false,\\n  \\\"length_column_name\\\": \\\"length\\\",\\n  \\\"report_to\\\": [\\n    \\\"tensorboard\\\"\\n  ],\\n  \\\"project\\\": \\\"huggingface\\\",\\n  \\\"trackio_space_id\\\": \\\"trackio\\\",\\n  \\\"ddp_find_unused_parameters\\\": null,\\n  \\\"ddp_bucket_cap_mb\\\": null,\\n  \\\"ddp_broadcast_buffers\\\": null,\\n  \\\"dataloader_pin_memory\\\": true,\\n  \\\"dataloader_persistent_workers\\\": false,\\n  \\\"skip_memory_metrics\\\": true,\\n  \\\"use_legacy_prediction_loop\\\": false,\\n  \\\"push_to_hub\\\": false,\\n  \\\"resume_from_checkpoint\\\": null,\\n  \\\"hub_model_id\\\": null,\\n  \\\"hub_strategy\\\": \\\"every_save\\\",\\n  \\\"hub_token\\\": null,\\n  \\\"hub_private_repo\\\": null,\\n  \\\"hub_always_push\\\": false,\\n  \\\"hub_revision\\\": null,\\n  \\\"gradient_checkpointing\\\": true,\\n  \\\"gradient_checkpointing_kwargs\\\": null,\\n  \\\"include_inputs_for_metrics\\\": false,\\n  \\\"include_for_metrics\\\": [],\\n  \\\"eval_do_concat_batches\\\": true,\\n  \\\"fp16_backend\\\": \\\"auto\\\",\\n  \\\"push_to_hub_model_id\\\": null,\\n  \\\"push_to_hub_organization\\\": null,\\n  \\\"push_to_hub_token\\\": null,\\n  \\\"mp_parameters\\\": \\\"\\\",\\n  \\\"auto_find_batch_size\\\": false,\\n  \\\"full_determinism\\\": false,\\n  \\\"torchdynamo\\\": null,\\n  \\\"ray_scope\\\": \\\"last\\\",\\n  \\\"ddp_timeout\\\": 18000000,\\n  \\\"torch_compile\\\": false,\\n  \\\"torch_compile_backend\\\": null,\\n  \\\"torch_compile_mode\\\": null,\\n  \\\"include_tokens_per_second\\\": false,\\n  \\\"include_num_input_tokens_seen\\\": false,\\n  \\\"neftune_noise_alpha\\\": null,\\n  \\\"optim_target_modules\\\": null,\\n  \\\"batch_eval_metrics\\\": false,\\n  \\\"eval_on_start\\\": false,\\n  \\\"use_liger_kernel\\\": false,\\n  \\\"liger_kernel_config\\\": null,\\n  \\n\\n... [截断: 输出过长，省略 13666 字符] ...\\n\\nging_first_step=True, logging_steps=5, logging_nan_inf_filter=True, save_strategy=&lt;SaveStrategy.EPOCH: 'epoch'>, save_steps=500, save_total_limit=None, save_safetensors=True, save_on_each_node=False, save_only_model=False, restore_callback_states_from_checkpoint=False, no_cuda=False, use_cpu=False, use_mps_device=False, seed=42, data_seed=42, jit_mode_eval=False, bf16=True, fp16=False, fp16_opt_level='O1', half_precision_backend='auto', bf16_full_eval=False, fp16_full_eval=False, tf32=None, local_rank=0, ddp_backend=None, tpu_num_cores=None, tpu_metrics_debug=False, debug=[], dataloader_drop_last=False, eval_steps=None, dataloader_num_workers=1, dataloader_prefetch_factor=2, past_index=-1, run_name='/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4/v0-20260514-201441', disable_tqdm=False, remove_unused_columns=False, label_names=None, load_best_model_at_end=False, metric_for_best_model='loss', greater_is_better=False, ignore_data_skip=False, fsdp=[], fsdp_min_num_params=0, fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False}, fsdp_transformer_layer_cls_to_wrap=None, accelerator_config=AcceleratorConfig(split_batches=False, dispatch_batches=False, even_batches=True, use_seedable_sampler=True, non_blocking=False, gradient_accumulation_kwargs=None, use_configured_state=False), parallelism_config=None, deepspeed=None, label_smoothing_factor=0.0, optim=&lt;OptimizerNames.ADAMW_TORCH_FUSED: 'adamw_torch_fused'>, optim_args=None, adafactor=False, group_by_length=False, length_column_name='length', report_to=['tensorboard'], project='huggingface', trackio_space_id='trackio', ddp_find_unused_parameters=None, ddp_bucket_cap_mb=None, ddp_broadcast_buffers=None, dataloader_pin_memory=True, dataloader_persistent_workers=False, skip_memory_metrics=True, use_legacy_prediction_loop=False, push_to_hub=False, resume_from_checkpoint=None, hub_model_id=None, hub_strategy=&lt;HubStrategy.EVERY_SAVE: 'every_save'>, hub_token=None, hub_private_repo=None, hub_always_push=False, hub_revision=None, gradient_checkpointing=True, gradient_checkpointing_kwargs=None, include_inputs_for_metrics=False, include_for_metrics=[], eval_do_concat_batches=True, fp16_backend='auto', push_to_hub_model_id=None, push_to_hub_organization=None, push_to_hub_token=None, mp_parameters='', auto_find_batch_size=False, full_determinism=False, torchdynamo=None, ray_scope='last', ddp_timeout=18000000, torch_compile=False, torch_compile_backend=None, torch_compile_mode=None, include_tokens_per_second=None, include_num_input_tokens_seen=None, neftune_noise_alpha=None, optim_target_modules=None, batch_eval_metrics=False, eval_on_start=False, use_liger_kernel=False, liger_kernel_config=None, eval_use_gather_object=False, average_tokens_across_devices=None, sortish_sampler=False, predict_with_generate=False, generation_max_length=None, generation_num_beams=None, generation_config=None, tuner_backend='peft', vit_gradient_checkpointing=False, router_aux_loss_coef=0.0, enable_dft_loss=False, enable_channel_loss=False, safe_serialization=True, max_shard_size='5GB', check_model=True, acc_strategy='token', train_dataloader_shuffle=True, max_epochs=None, aligner_lr=None, vit_lr=None, use_logits_to_keep=None, ds3_gather_for_generation=True, resume_only_model=False, optimizer=None, loss_type=None, eval_metric=None, callbacks=[], early_stop_interval=None, eval_use_evalscope=False, eval_dataset=[], eval_dataset_args=None, eval_limit=None, eval_generation_config=None, extra_eval_args=None, tuner_type='lora', use_galore=False, galore_target_modules=None, galore_rank=128, galore_update_proj_gap=50, galore_scale=1.0, galore_proj_type='std', galore_optim_per_parameter=False, galore_with_embedding=False, galore_quantization=False, galore_proj_quant=False, galore_proj_bits=4, galore_proj_group_size=256, galore_cos_threshold=0.4, galore_gamma_proj=2, galore_queue_size=5, lisa_activated_layers=0, lisa_step_interval=20, use_flash_ckpt=False)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key parameters from the successful vanilla v4 training (which used the same 4358 samples):
+- per_device_train_batch_size: 1
+- gradient_accumulation_steps: 8
+- learning_rate: 0.0001
+- weight_decay: 0.1
+- num_train_epochs: 3
+- lr_scheduler_type: cosine
+- seed: 42
+- bf16: true
+- gradient_checkpointing: true
+- lora_rank: 16 (from the task description)
+- model: Qwen3-8B
+
+
+- save_strategy: epoch
+
+Now I'm constructing the swift sft command with these parameters...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "6aa8e1bd-644d-4425-8342-c4a357202279",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TzyRVYxNMDWt3hT9aTLDK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 43322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+参数确认完毕。关键参数：`per_device_train_batch_size=1, gradient_accumulation_steps=8, lr=1e-4, cosine scheduler, bf16, gradient_checkpointing, lora_rank=16, 3 epochs`。提交训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "9e708ab9-e827-45f4-ad7f-a7891719929e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TzyRVYxNMDWt3hT9aTLDK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 43322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01Q9yJqFDRW4HPQMVTAV7fGu`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "gpu_ids": [
+    "cuda:0"
+  ],
+  "exp_id": "v4-taxei-fixed-inject50",
+  "project": "tax_error_inject_agent",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --weight_decay 0.1 --bf16 true --gradient_checkpointing true --logging_steps 5 --save_strategy epoch --output_dir checkpoints/v4_taxei_fixed_inject50\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "96d393e0-8f17-4f5e-97c2-011832049a3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TzyRVYxNMDWt3hT9aTLDK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4060,
+      "cache_read_input_tokens": 43322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T00:27:51.397Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9yJqFDRW4HPQMVTAV7fGu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"104236\", \"log_file\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"autodl-5090\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"v4-taxei-fixed-inject50\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "b1029433-772b-4c42-bb66-1f0805024b47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"104236\\\", \\\"log_file\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"v4-taxei-fixed-inject50\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"104236\", \"log_file\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"autodl-5090\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"v4-taxei-fixed-inject50\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+训练已提交。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "7f21cbaa-1fcb-4097-b0cc-a78942336e36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XKFk7ki6DLSkYYytVBVpV4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 47382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JEjQuYFivzSg4PehDfrSU4`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject50",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "tax_error_inject_agent",
+  "spec": {
+    "command": "swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4",
+    "server": "autodl-5090",
+    "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl",
+    "data_count": 4358,
+    "model_name": "Qwen3-8B",
+    "seed": 42,
+    "gpu": "cuda:0",
+    "pid": "104236",
+    "tmux_session": "v4-taxei-fixed-inject50",
+    "log_file": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "aacbdc1c-ce88-415e-b7e3-122f134b4e53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XKFk7ki6DLSkYYytVBVpV4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 47382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T00:27:57.167Z_
+
+<details><summary>↩ Tool result · `toolu_01JEjQuYFivzSg4PehDfrSU4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1966}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "fa23caad-e330-46c6-a145-9a04420a4583",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1966}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1966}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TxNw9TJtAEGdMsTB24hJhU`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject50",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "8ecfd431-e21c-4266-9fea-6370771807a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvdkg3TbMZTpwL27dCboLC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 462,
+      "cache_read_input_tokens": 48469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 462
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T00:28:01.502Z_
+
+<details><summary>↩ Tool result · `toolu_01TxNw9TJtAEGdMsTB24hJhU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject50\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:28:01.242Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --weight_decay 0.1 --bf16 true --gradient_checkpointing true --logging_steps 5 --save_strategy epoch --output_dir checkpoints/v4_taxei_fixed_inject50\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"104236\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"submitted_at\": \"2026-05-15T00:27:51.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3673}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "7420c695-a67b-4bd4-98cb-d5faa86e29db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T00:25:38.284Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:28:01.242Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --weight_decay 0.1 --bf16 true --gradient_checkpointing true --logging_steps 5 --save_strategy epoch --output_dir checkpoints/v4_taxei_fixed_inject50\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"104236\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T00:27:51.219Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3673}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject50\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:28:01.242Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --weight_decay 0.1 --bf16 true --gradient_checkpointing true --logging_steps 5 --save_strategy epoch --output_dir checkpoints/v4_taxei_fixed_inject50\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"104236\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"submitted_at\": \"2026-05-15T00:27:51.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3673}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SET4CE76YQHL3mVrFnX9Fc`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject50",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "tax_error_inject_agent",
+  "spec": {
+    "command": "swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4",
+    "server": "autodl-5090",
+    "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl",
+    "data_count": 4358,
+    "model_name": "Qwen3-8B",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "941b9c9c-46fc-4dfc-9d56-2e6a50bba9f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3oMt5gjGtWgBUWQktB1VU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 48931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T00:28:05.775Z_
+
+<details><summary>↩ Tool result · `toolu_01SET4CE76YQHL3mVrFnX9Fc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:28:05.552Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"104236\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"submitted_at\": \"2026-05-15T00:27:51.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3355}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "dcc4e3b1-de96-4cdb-8700-eec2bfcc74f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T00:25:38.284Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:28:05.552Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"104236\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T00:27:51.219Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3355}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject50\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T00:28:05.552Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"104236\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"submitted_at\": \"2026-05-15T00:27:51.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3355}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+训练已启动，registry 已更新为 RUNNING。
+
+**汇总：**
+- **exp_id**: `v4-taxei-fixed-inject50`
+- **PID**: 104236
+- **tmux session**: `v4-taxei-fixed-inject50`
+- **GPU**: cuda:0 @ autodl-5090
+- **数据**: `sft_taxei_v4_fixed_inject50.jsonl` (4358 行)
+- **参数**: Qwen3-8B, LoRA rank=16, 3 epochs, batch=1×8 grad_accum, lr=1e-4 cosine, seed=42
+- **预计耗时**: ~58 min
+- **checkpoint 输出**: `checkpoints/v4_taxei_fixed_inject50`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "uuid": "4568f6b7-8752-4e0a-a542-93a2f6550e4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SGTQaf2s1NYdKYrMgjzVzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 49649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 61_
+
+训练已启动，registry 已更新为 RUNNING。
+
+**汇总：**
+- **exp_id**: `v4-taxei-fixed-inject50`
+- **PID**: 104236
+- **tmux session**: `v4-taxei-fixed-inject50`
+- **GPU**: cuda:0 @ autodl-5090
+- **数据**: `sft_taxei_v4_fixed_inject50.jsonl` (4358 行)
+- **参数**: Qwen3-8B, LoRA rank=16, 3 epochs, batch=1×8 grad_accum, lr=1e-4 cosine, seed=42
+- **预计耗时**: ~58 min
+- **checkpoint 输出**: `checkpoints/v4_taxei_fixed_inject50`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 96338,
+  "duration_api_ms": 93156,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "f82ec457-42d4-46d2-9d04-31f4558011eb",
+  "total_cost_usd": 0.6237364999999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 38628,
+    "cache_read_input_tokens": 515785,
+    "output_tokens": 4901,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38628,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 204,
+        "cache_read_input_tokens": 49649,
+        "cache_creation_input_tokens": 820,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 820
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1674,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017989999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 4901,
+      "cacheReadInputTokens": 515785,
+      "cacheCreationInputTokens": 38628,
+      "webSearchRequests": 0,
+      "costUSD": 0.6219374999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9aae6aa9-8a6c-4570-a119-4f1aacb9f9a5"
+}
+```
+
+</details>
+
+---

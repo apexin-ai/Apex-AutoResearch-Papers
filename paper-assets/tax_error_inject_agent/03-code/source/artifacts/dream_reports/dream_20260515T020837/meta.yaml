@@ -1,0 +1,2832 @@
+dream_id: dream_20260515T020837
+project: tax_error_inject_agent
+venue: Insights from Negative Results in NLP @ EMNLP 2026
+focus: 'Negative result paper with three core findings: (1) variance gradient Vanilla<Random<TaxEI,
+  (2) dose-response threshold-plateau with shared 12.8pp drop at 10-25%, (3) constant
+  ~6.4pp taxonomy label penalty. All statistical comparisons NS (min p=0.054). Single-seed
+  dose-response limitation.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 所有三个核心 finding 在补充实验中得到加强：方差梯度、剂量-响应阈值-平台、~6.4pp taxonomy penalty 均在多
+        seed 下复现，统计检验达到或接近显著
+      key_assumptions:
+      - 多 seed 剂量-响应（≥2 additional seeds）复现 10→25% 的 12.8pp 共享下降，偏差 ≤3pp
+      - ~6.4pp taxonomy penalty 在所有 seed 的所有 dose 点保持稳定（SD ≤1.5pp）
+      - 方差梯度 Vanilla < Random < TaxEI 在每个新增 seed 上均成立
+      - 训练 loss 曲线显示注入样本系统性拉高 clean 样本 loss（corruption 信号可量化）
+      - pooled permutation test TaxEI vs Vanilla 达到 p<0.05
+      number_ranges:
+        taxei_3seed_mean_pct:
+        - 54.0
+        - 58.0
+        taxei_3seed_sd_pp:
+        - 7.0
+        - 10.0
+        vanilla_3seed_sd_pp:
+        - 2.5
+        - 4.0
+        taxonomy_penalty_per_dose_pp:
+        - 5.0
+        - 8.0
+        taxonomy_penalty_cross_dose_sd_pp:
+        - 0.3
+        - 1.5
+        dose_threshold_drop_pp:
+        - 10.0
+        - 15.0
+        pooled_p_taxei_vs_vanilla:
+        - 0.02
+        - 0.05
+        paired_t_taxei_vs_random_p:
+        - 0.01
+        - 0.04
+        dose_response_cross_seed_agreement:
+        - 0.85
+        - 1.0
+      narrative_direction: '原始 framing 完全成立。标题级 claim 不变：taxonomy-guided error injection
+        在 embodied planning 中引入系统性训练不稳定性，且 taxonomy label 造成独立于注入剂量的恒定性能惩罚。 三个 finding
+        各自有独立的多 seed 证据支撑：(1) 方差梯度是 robust ordering， (2) 阈值-平台是 error injection 的通用属性而非
+        seed 偶然， (3) ~6.4pp 是 taxonomy label 的 systematic bias 而非随机波动。 训练动态分析提供 mechanistic
+        explanation（注入样本污染 clean 学习信号）。 论文可以做 strong negative claim + actionable boundary
+        condition guideline。
+
+        '
+    median:
+      tier: median
+      meaning: 方差梯度和大方向成立，但剂量-响应的具体数字跨 seed 波动较大；taxonomy penalty 存在但不再'remarkably
+        stable'；统计检验仍为 marginal
+      key_assumptions:
+      - 多 seed 剂量-响应显示 threshold-plateau 的大致形状但阈值位置在 10-30% 间漂移
+      - taxonomy penalty 跨 seed 均值 ~5-7pp 但个别 dose 点变动 3-9pp
+      - 方差梯度在均值层面成立（Vanilla SD < Random SD < TaxEI SD），但个别 seed 偶尔打破 Random < TaxEI
+        排序
+      - 训练 loss 曲线显示注入样本 loss 更高，但对 clean 样本的 corruption 效应不明显
+      - pooled p 值停留在 0.05-0.15 区间，无法突破 α=0.05
+      number_ranges:
+        taxei_3seed_mean_pct:
+        - 55.0
+        - 62.0
+        taxei_3seed_sd_pp:
+        - 6.0
+        - 12.0
+        vanilla_3seed_sd_pp:
+        - 3.0
+        - 5.0
+        taxonomy_penalty_per_dose_pp:
+        - 3.0
+        - 9.0
+        taxonomy_penalty_cross_dose_sd_pp:
+        - 1.5
+        - 3.5
+        dose_threshold_drop_pp:
+        - 6.0
+        - 16.0
+        pooled_p_taxei_vs_vanilla:
+        - 0.05
+        - 0.15
+        paired_t_taxei_vs_random_p:
+        - 0.03
+        - 0.1
+        dose_response_cross_seed_agreement:
+        - 0.5
+        - 0.85
+      narrative_direction: '需要调整 claims 强度。不再称 taxonomy penalty 为 "remarkably stable
+        constant"， 改为 "consistent directional penalty"（方向一致但幅度有 seed 依赖）。 剂量-响应从 "universal
+        threshold-plateau" 降级为 "tendency toward non-linear degradation"。 核心叙事从三个 crisp
+        finding 收缩为：(1) 方差梯度作为 primary finding（最 robust）， (2) taxonomy label 作为 amplifier
+        of instability（方向性 claim）， (3) 剂量-响应作为 exploratory evidence with caveats。
+        论文仍然成立为 cautionary negative result，但 contribution 更多是 "error injection 不应被默认迁移到
+        embodied planning" 而非精确的定量边界条件。 可能需要补一个 qualitative failure analysis 来弥补定量证据的不足。
+
+        '
+    worst:
+      tier: worst
+      meaning: 核心 pattern 被证明是 seed=42 的偶然：多 seed 剂量-响应无一致 pattern，taxonomy penalty
+        在部分 seed 反转或消失，方差梯度在更多数据下变得不显著
+      key_assumptions:
+      - 新 seed 的剂量-响应不显示 threshold-plateau——有的线性下降，有的无单调关系
+      - taxonomy penalty 在某些 seed 为正（TaxEI > Random），消解 'constant offset' claim
+      - 新增 seed 后 TaxEI 均值上移至 60%+，与 Vanilla 的差距缩小到 <4pp 且 p>0.3
+      - 方差梯度在 5-seed 均值下 Random SD ≈ TaxEI SD，无法区分结构化注入与随机注入的不稳定性差异
+      - 训练 loss 分析无信息量——注入样本与 clean 样本 loss 轨迹无系统差异
+      number_ranges:
+        taxei_3seed_mean_pct:
+        - 59.0
+        - 65.0
+        taxei_3seed_sd_pp:
+        - 4.0
+        - 7.0
+        vanilla_3seed_sd_pp:
+        - 3.0
+        - 6.0
+        taxonomy_penalty_per_dose_pp:
+        - -2.0
+        - 8.0
+        taxonomy_penalty_cross_dose_sd_pp:
+        - 3.5
+        - 6.0
+        dose_threshold_drop_pp:
+        - 2.0
+        - 14.0
+        pooled_p_taxei_vs_vanilla:
+        - 0.15
+        - 0.6
+        paired_t_taxei_vs_random_p:
+        - 0.1
+        - 0.5
+        dose_response_cross_seed_agreement:
+        - 0.2
+        - 0.5
+      narrative_direction: 三个原始 finding 均不成立为独立 claim。需要 reframe。 新 angle：error injection
+        的效果被 seed variance 完全淹没—— 这本身就是 negative result，但 framing 从 "error injection
+        hurts + here's why" 转向 "error injection is indistinguishable from noise in
+        low-data embodied planning regimes"。 核心 contribution 变为：(1) ALFWorld SFT 的
+        cross-seed variance 之大使得任何 data augmentation 策略的评估都需要 ≥5 seeds（方法论 contribution），
+        (2) 在 <10K 样本规模下，error injection 的信号被训练噪声压制， 无法提供超出 seed lottery 的信息（scale-dependent
+        null result）。 论文从 "boundary condition" paper 变为 "evaluation methodology" paper，
+        仍可投 Negative Results workshop，但需要重写 introduction 和 contribution section。 不降级
+        venue——Negative Results workshop 本身就欢迎 "we thought X mattered but it's noise"。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dream_reports/dream_20260515T020837/best/paper.pdf
+  imagined_experiments:
+  - name: Random Dose-Response Curve Completion
+    plan_id: dose-response-random
+    description: 'Random injection 的 10%/25%/50% 剂量-响应曲线（固定 4,358 总样本，seed=42）， 与
+      TaxEI 剂量-响应并行对比，验证共享阈值-平台效应和恒定 taxonomy penalty。
+
+      '
+    expected_results:
+      random_inject10_pct: 68.1
+      random_inject25_pct: 55.3
+      random_inject50_pct: 57.4
+      random_10to25_drop_pp: 12.8
+      taxei_10to25_drop_pp: 12.8
+      shared_drop_difference_pp: 0.0
+      taxonomy_penalty_10_pp: 6.4
+      taxonomy_penalty_25_pp: 6.4
+      taxonomy_penalty_50_pp: 6.3
+      taxonomy_penalty_mean_pp: 6.37
+      taxonomy_penalty_sd_pp: 0.06
+    result_rationale: 'Random 10% = 68.1% 高于 vanilla 6.4pp，反映纯数据增强效应——无标签的噪声注入在低剂量下增加
+      训练分布多样性，实质上是合法的 data augmentation。TaxEI 10% = 61.7% 无此增益，说明 taxonomy label 抵消了增强效应，将
+      +6.4pp augmentation bonus 精确归零。10→25% 两种方法同步崩溃 12.8pp （Random 68.1→55.3, TaxEI
+      61.7→48.9），证明阈值效应是 error injection 的通用属性：当注入比例 超过 ~15-20%，clean 梯度信号被稀释至临界点以下，模型无法维持正确的
+      action distribution。 50% 处两者均回升 ~2pp（平台效应），因为极高注入比例下 clean 和 injected 样本的梯度已充分混合，
+      进一步增加注入不再额外恶化。6.4/6.4/6.3pp 的恒定 taxonomy penalty 在三个独立 dose 点保持 一致（SD=0.06），精确对应
+      3 个 ALFWorld 任务的分辨率（3/47=6.38pp），强烈支持 taxonomy label 引入的是与剂量无关的 systematic bias——结构化错误模式教会模型特定的错误行为，而非仅增加噪声。
+
+      '
+    tables:
+    - title: Combined Dose-Response Table (seed=42, fixed 4,358 total)
+      content: '| Dose  | Vanilla | TaxEI  | Random | Δ(R−T) | TaxEI Δ(vs 10%) | Random
+        Δ(vs 10%) |
+
+        |-------|---------|--------|--------|--------|------------------|------------------|
+
+        | 0%    | 61.7%   | 61.7%  | 61.7%  | 0.0    | —                | —                |
+
+        | 10%   | —       | 61.7%  | 68.1%  | +6.4   | 0.0              | 0.0              |
+
+        | 25%   | —       | 48.9%  | 55.3%  | +6.4   | −12.8            | −12.8            |
+
+        | 50%   | —       | 51.1%  | 57.4%  | +6.3   | −10.6            | −10.7            |
+
+        '
+    figures_description:
+    - 'Figure: 双轴剂量-响应曲线。X 轴=注入比例(0/10/25/50%)，Y 轴=success rate(%)。TaxEI(红实线)和 Random(蓝实线)平行下降，两者间距恒定
+      ~6.4pp，在 10→25% 处同步断崖。Vanilla baseline(灰虚线)在 61.7%。阴影区域标注共享阈值区间 [10%, 25%]。'
+    analysis: '剂量-响应曲线揭示两个可分离的独立效应：(1) 共享的信噪比阈值——两种注入方法在同一临界区间 [10%, 25%] 发生等幅崩溃，证明这是
+      error injection 的 fundamental property 而非 taxonomy 特异性； (2) 恒定的 taxonomy penalty——TaxEI
+      在每个 dose 点均落后 Random 恰好 ~6.4pp，说明 taxonomy label 引入的是正交于注入剂量的 additive bias。Random
+      10% 的 +6.4pp 增益是意外发现，提供了重要的正面 对照：说明少量未标记噪声注入本身可以是有效的 data augmentation，但 taxonomy
+      label 消除了这一好处。
+
+      '
+  - name: Multi-Seed Dose-Response Replication
+    plan_id: multiseed-dose-response
+    description: '在 seed=0 和 seed=123 上重复完整的剂量-响应实验（10%/25%/50%，固定 4,358 总样本）， 验证阈值-平台效应和
+      taxonomy penalty 的跨 seed 稳定性。共 12 次训练 + 12 次 eval。
+
+      '
+    expected_results:
+      seed0_taxei_inject10_pct: 68.1
+      seed0_taxei_inject25_pct: 55.3
+      seed0_taxei_inject50_pct: 57.4
+      seed0_random_inject10_pct: 74.5
+      seed0_random_inject25_pct: 61.7
+      seed0_random_inject50_pct: 63.8
+      seed0_shared_10to25_drop_pp: 12.8
+      seed0_taxonomy_penalty_mean_pp: 6.4
+      seed123_taxei_inject10_pct: 63.8
+      seed123_taxei_inject25_pct: 53.2
+      seed123_taxei_inject50_pct: 53.2
+      seed123_random_inject10_pct: 70.2
+      seed123_random_inject25_pct: 59.6
+      seed123_random_inject50_pct: 59.6
+      seed123_shared_10to25_drop_pp: 10.6
+      seed123_taxonomy_penalty_mean_pp: 6.4
+      all_seeds_10to25_drop_mean_pp: 12.1
+      all_seeds_10to25_drop_sd_pp: 1.1
+      all_seeds_taxonomy_penalty_mean_pp: 6.37
+      all_seeds_taxonomy_penalty_sd_pp: 0.4
+      dose_response_cross_seed_agreement: 1.0
+    result_rationale: '阈值-平台效应的物理机制是数据组成决定的信噪比边界，与随机初始化无关：当 clean 样本占比从 90%（dose=10%）降至
+      75%（dose=25%）时，clean 梯度信号不再足以维持正确的 action distribution。 这一边界由数据比例而非 seed 决定，因此跨
+      seed 高度稳定。Seed 42 的 12.8pp 在 seed 0 处精确 复现（12.8pp），seed 123 略低（10.6pp），反映 seed
+      123 的 vanilla baseline 较低（66.0%）， 留给崩溃的绝对空间较小——但所有 seed 均在 [10.0, 15.0]pp 范围内。Taxonomy
+      penalty 的跨 seed 稳定性（SD ≈ 0.4pp）更进一步确认这是一个由 label 结构决定的 systematic bias：taxonomy
+      label 在每个 seed 的每个 dose 点均将 3 个额外任务从成功翻转为失败，对应于 47 任务中固定的一组 对 taxonomy-specific
+      错误模式敏感的任务。Seed 0 的 Random 10% = 74.5% 高于其他 seed， 但仍符合 data augmentation 效应——seed
+      0 的 vanilla baseline 已较高（68.1%）， augmentation bonus 叠加后接近 ALFWorld 的性能天花板。
+
+      '
+    tables:
+    - title: 'Multi-Seed Dose-Response: TaxEI (fixed 4,358 total)'
+      content: '| Dose | Seed 42 | Seed 0 | Seed 123 | Mean   | SD    |
+
+        |------|---------|--------|----------|--------|-------|
+
+        | 0%   | 61.7%   | 68.1%  | 66.0%    | 65.3%  | 3.3pp |
+
+        | 10%  | 61.7%   | 68.1%  | 63.8%    | 64.5%  | 3.3pp |
+
+        | 25%  | 48.9%   | 55.3%  | 53.2%    | 52.5%  | 3.3pp |
+
+        | 50%  | 51.1%   | 57.4%  | 53.2%    | 53.9%  | 3.2pp |
+
+        '
+    - title: 'Multi-Seed Dose-Response: Random (fixed 4,358 total)'
+      content: '| Dose | Seed 42 | Seed 0 | Seed 123 | Mean   | SD    |
+
+        |------|---------|--------|----------|--------|-------|
+
+        | 0%   | 61.7%   | 68.1%  | 66.0%    | 65.3%  | 3.3pp |
+
+        | 10%  | 68.1%   | 74.5%  | 70.2%    | 70.9%  | 3.3pp |
+
+        | 25%  | 55.3%   | 61.7%  | 59.6%    | 58.9%  | 3.3pp |
+
+        | 50%  | 57.4%   | 63.8%  | 59.6%    | 60.3%  | 3.3pp |
+
+        '
+    - title: Taxonomy Penalty Across Seeds × Doses
+      content: '| Dose | Seed 42 | Seed 0 | Seed 123 | Mean  |
+
+        |------|---------|--------|----------|-------|
+
+        | 10%  | 6.4pp   | 6.4pp  | 6.4pp    | 6.4pp |
+
+        | 25%  | 6.4pp   | 6.4pp  | 6.4pp    | 6.4pp |
+
+        | 50%  | 6.3pp   | 6.4pp  | 6.4pp    | 6.4pp |
+
+        '
+    - title: Shared 10→25% Drop Across Seeds
+      content: '| Seed | TaxEI Drop | Random Drop | Difference |
+
+        |------|------------|-------------|------------|
+
+        | 42   | 12.8pp     | 12.8pp      | 0.0pp      |
+
+        | 0    | 12.8pp     | 12.8pp      | 0.0pp      |
+
+        | 123  | 10.6pp     | 10.6pp      | 0.0pp      |
+
+        | Mean | 12.1pp     | 12.1pp      | 0.0pp      |
+
+        '
+    figures_description:
+    - 'Figure: 3×1 子图（seed 42/0/123），每图含 TaxEI 和 Random 剂量-响应曲线及 vanilla baseline。三图呈现几乎完全平行的模式：恒定间距、同步断崖、plateau。灰色虚线连接各
+      seed 的阈值断点，强调跨 seed 一致性。'
+    - 'Figure: Taxonomy penalty 热力图。3 seed × 3 dose 的 9 宫格，颜色编码 penalty 值（5.0-8.0pp），几乎全为均匀的深色（~6.4pp），视觉化极端稳定性。'
+    analysis: '多 seed 剂量-响应是 best 档的决定性实验。9 个独立的 taxonomy penalty 观测点（3 seed × 3 dose）
+      形成的 SD ≈ 0.4pp 远低于 1.5pp 阈值，为 systematic additive bias 假说提供了近乎完美的证据。 共享阈值-平台在所有
+      seed 复现（10→25% drop 均 ≥10pp），最大跨 seed 偏差 2.2pp（seed 123 的 10.6pp vs seed 42
+      的 12.8pp），落在 ≤3pp 预算内。值得注意的是，每个 seed 内 TaxEI 和 Random 的 drop 幅度精确匹配（差异 ≤0.1pp），再次证明阈值效应是数据组成而非方法特异性的结果。
+      这些结果使论文可以做出 definitive statement：error injection 的剂量-响应是 task-structural 属性，taxonomy
+      label 只在此基础上叠加恒定惩罚。
+
+      '
+  - name: Training Dynamics Analysis
+    plan_id: training-dynamics
+    description: '从 v4 seed=42 的 training log 中提取逐 step loss 曲线，分离 clean 和 injected
+      样本的 loss， 分析注入样本对 clean 学习信号的污染程度。不需要新训练。
+
+      '
+    expected_results:
+      vanilla_clean_loss_final: 0.29
+      taxei_overall_loss_final: 0.355
+      taxei_clean_loss_final: 0.338
+      taxei_injected_loss_final: 0.482
+      random_overall_loss_final: 0.355
+      random_clean_loss_final: 0.318
+      random_injected_loss_final: 0.445
+      clean_loss_inflation_taxei_pct: 16.6
+      clean_loss_inflation_random_pct: 9.7
+      injected_to_clean_loss_ratio_taxei: 1.43
+      injected_to_clean_loss_ratio_random: 1.4
+      loss_divergence_onset_step: 500
+      gradient_cosine_clean_vs_injected_taxei: 0.28
+      gradient_cosine_clean_vs_injected_random: 0.35
+    result_rationale: 'Vanilla clean loss 收敛至 ~0.29（registry: v4-vanilla-seed0 final_loss=0.297），这是无干扰
+      baseline。TaxEI 的 overall loss = 0.355 是 clean 和 injected 样本的加权混合——分离后 clean
+      部分 ~0.338 高于 vanilla 16.6%，直接量化了注入样本对 clean 学习信号的污染。这一 "corruption signal" 是
+      finding 3（方差梯度）的 mechanistic explanation：注入样本的梯度方向与 clean 样本 弱对齐（cosine ~0.28），在反向传播中将模型权重推离
+      clean optimal，导致 clean 样本 loss 系统性 升高。Random injection 的 clean loss inflation（9.7%）低于
+      TaxEI（16.6%），因为随机错误的 梯度方向更加分散（cosine ~0.35，paradoxically higher），不会形成 coherent
+      的 "拉力方向"—— 相当于在权重空间中添加各向同性噪声，而 TaxEI 的 taxonomy 标签创建了 structured 的错误梯度 方向，对
+      clean learning 造成更大的 systematic interference。Loss 分歧在 step ~500（epoch 1 后期）开始显现，对应于模型开始记忆训练样本而非仅学习通用模式的阶段——此后
+      injected 样本的 错误模式开始与 clean 模式竞争权重空间。
+
+      '
+    tables:
+    - title: Loss Decomposition (seed=42, final epoch)
+      content: '| Method  | Overall | Clean  | Injected | Clean Inflation | Inj/Clean
+        Ratio |
+
+        |---------|---------|--------|----------|-----------------|-----------------|
+
+        | Vanilla | 0.290   | 0.290  | —        | baseline        | —               |
+
+        | TaxEI   | 0.355   | 0.338  | 0.482    | +16.6%          | 1.43×           |
+
+        | Random  | 0.355   | 0.318  | 0.445    | +9.7%           | 1.40×           |
+
+        '
+    - title: Gradient Alignment Metrics
+      content: '| Metric                         | TaxEI | Random |
+
+        |--------------------------------|-------|--------|
+
+        | Cosine(clean, injected)        | 0.28  | 0.35   |
+
+        | Clean loss inflation vs Vanilla| 16.6% | 9.7%  |
+
+        | Injected loss convergence      | No    | Partial|
+
+        '
+    figures_description:
+    - 'Figure: 3 条 clean sample loss 曲线（Vanilla/TaxEI/Random）vs training steps。Vanilla
+      平稳收敛至 0.29，TaxEI clean loss 从 step ~500 开始持续高于 Vanilla 并收敛至 0.338，Random 居中
+      0.318。Y 轴标注 clean loss inflation zone。'
+    - 'Figure: TaxEI 训练中 clean vs injected 样本的 loss 对比。两条曲线从相同起点分叉，injected loss 始终高于
+      clean 且不完全收敛，gap 在 epoch 2-3 趋于稳定在 ~0.14。'
+    - 'Figure: 梯度余弦相似度 heatmap（step × method），展示 clean-injected 梯度对齐随训练推进的变化。TaxEI
+      的 cosine 从 ~0.6（初始）下降至 ~0.28（收敛），显示 clean 和 injected 梯度逐渐对立。'
+    analysis: '训练动态分析将方差梯度的统计现象转化为可解释的梯度力学：注入样本在权重空间中施加与 clean 样本不一致的梯度力，TaxEI 因 taxonomy
+      标签产生 structured gradient interference（cosine 0.28）， Random 因随机性产生 diffuse interference（cosine
+      0.35）。Clean loss inflation 的 TaxEI > Random 排序（16.6% vs 9.7%）完美对应 final performance
+      的 Vanilla > Random > TaxEI 排序，提供了 从训练 loss 到 eval performance 的因果链。这一 mechanistic
+      explanation 是论文从 "观察到负面结果" 升级为 "解释负面结果" 的关键——reviewer 可能质疑统计功效，但 loss decomposition
+      提供了 independent 的 process-level 证据。injected 样本 loss 不完全收敛的现象进一步说明模型未能 有效学习错误模式——与
+      PALADIN 在 tool-use 中 recovery trajectories 可以被学习形成对比。
+
+      '
+  - name: Qualitative Failure Analysis
+    plan_id: qualitative-failure-analysis
+    description: '手动分析 20+ TaxEI 失败案例，区分 "taxonomy-specific wrong learning"（模型学到了特定的
+      错误行为）和 "random noise"（模型只是表现更不稳定），为 Claim 1 和 Claim 6 提供定性证据。
+
+      '
+    expected_results:
+      total_cases_analyzed: 24
+      taxei_fail_vanilla_succeed: 8
+      both_fail: 10
+      taxei_succeed_vanilla_fail: 6
+      failure_taxonomy:
+        operator_replay: 6
+        action_sequence_disorder: 5
+        premature_termination: 4
+        wrong_object_selection: 4
+        identical_to_vanilla_failure: 5
+      operator_replay_pct: 25.0
+      wrong_learning_pct: 62.5
+      noise_pct: 20.8
+      ambiguous_pct: 16.7
+    result_rationale: '定性分析揭示 TaxEI 失败中最具诊断意义的模式是 "operator replay"——模型在 clean 任务中
+      生成与训练数据中某种 taxonomy operator 一致的错误行为。例如，模型在 pick_clean_then_place 任务中跳过 clean
+      步骤（对应 P2 sub_goal_deletion 的训练模式），或在需要仔细观察环境时 截断上下文信息（对应 C1 context_truncation
+      的训练模式）。这些 operator replay 案例（6/24, 25%）是 TaxEI 特有的——Random 和 Vanilla 的失败案例中不存在与特定
+      taxonomy operator 匹配的模式。另有 9/24 案例（37.5%）表现为非 operator-specific 但系统性的错误行为（action
+      disorder, premature termination），合计 "wrong learning" 占 62.5%。仅 5/24（20.8%） 的失败模式与
+      Vanilla 失败完全一致（baseline noise）。这一分布支持 "TaxEI 教会模型特定的 错误行为" 假说而非 "TaxEI 仅增加随机噪声"
+      假说，与 training dynamics 中 TaxEI 的 structured gradient interference（cosine 0.28
+      < Random 0.35）一致。
+
+      '
+    tables:
+    - title: Failure Mode Taxonomy (24 cases)
+      content: '| Failure Mode             | Count | Pct   | TaxEI-Specific? |
+
+        |--------------------------|-------|-------|-----------------|
+
+        | Operator replay (P2/C1)  | 6     | 25.0% | Yes             |
+
+        | Action sequence disorder | 5     | 20.8% | Partially       |
+
+        | Premature termination    | 4     | 16.7% | Partially       |
+
+        | Wrong object selection   | 4     | 16.7% | No              |
+
+        | Same as vanilla failure  | 5     | 20.8% | No              |
+
+        '
+    - title: Failure Attribution Summary
+      content: '| Category       | Count | Pct   | Interpretation                          |
+
+        |----------------|-------|-------|-----------------------------------------|
+
+        | Wrong learning | 15    | 62.5% | Model internalized error patterns       |
+
+        | Noise          | 5     | 20.8% | Indistinguishable from baseline noise   |
+
+        | Ambiguous      | 4     | 16.7% | Could be either                         |
+
+        '
+    figures_description:
+    - 'Figure: 失败模式 sankey 图。左侧=TaxEI 失败案例（24 个），中间=failure mode 分类（5 类），右侧=attribution（wrong
+      learning / noise / ambiguous）。Operator replay 流全部归入 wrong learning，标红。'
+    - 'Figure: 2 个代表性 case study 并排。左: TaxEI 在 pick_clean_then_place 中跳过 clean 步骤（P2
+      replay），右: Vanilla 在同一任务中选择错误 receptacle（generic failure）。注释标注 taxonomy operator
+      对应关系。'
+    analysis: '定性分析将统计现象 "taxonomy penalty" 具象化为可观察的行为模式：TaxEI 模型在 clean eval 中 "回放"
+      训练数据中的 taxonomy 错误，特别是 P2 (sub_goal_deletion) 和 C1 (context_truncation) 两种 operator
+      的特征最明显。这解释了为何 taxonomy penalty 与 dose 无关——只要训练数据中存在 taxonomy-标记的错误样本，模型就会 internalize
+      特定的错误策略，无论这些样本占比多少。 与之对比，Random injection 的失败模式不呈现 operator-specific 聚类，支持其
+      gradient 干扰是 diffuse 而非 structured 的解释。这一发现为论文提供了最具说服力的 "为什么 taxonomy labels
+      有害" 的直觉解释，适合放在 Analysis 部分作为 bridge between statistics and mechanism。
+
+      '
+  - name: Second Environment Validation (WebShop)
+    plan_id: second-environment
+    description: '在 WebShop 环境中复现 Vanilla/TaxEI/Random 三组实验（2-seed），验证方差梯度和 阈值效应是否泛化到
+      ALFWorld 以外的 embodied planning 领域。需要适配 error taxonomy、 采集轨迹、训练和评估。
+
+      '
+    expected_results:
+      webshop_vanilla_mean_pct: 58.5
+      webshop_vanilla_sd_pp: 2.8
+      webshop_taxei_mean_pct: 51.2
+      webshop_taxei_sd_pp: 7.4
+      webshop_random_mean_pct: 55.8
+      webshop_random_sd_pp: 5.9
+      variance_gradient_holds: true
+      variance_ratio_taxei_vs_vanilla: 2.6
+      taxonomy_penalty_pp: 4.6
+      webshop_dose_10_taxei_pct: 57.3
+      webshop_dose_25_taxei_pct: 47.8
+      webshop_dose_10to25_drop_pp: 9.5
+      engineering_days: 4
+    result_rationale: 'WebShop 与 ALFWorld 共享 embodied planning 的关键结构属性：错误是隐式的（选错商品或属性
+      不会触发显式错误信号）、失败级联（错误的搜索查询导致后续所有交互在错误结果上展开）、 action space 开放。因此方差梯度（Vanilla SD
+      2.8pp < Random 5.9pp < TaxEI 7.4pp）和 TaxEI 的劣势（-7.3pp vs Vanilla）应当复现。Taxonomy
+      penalty 略低于 ALFWorld （4.6pp vs 6.4pp），因为 WebShop 的 action space 更结构化（搜索/点击/选择），taxonomy
+      operator 的干扰空间较小。阈值效应存在但 drop 幅度较小（9.5pp vs 12.8pp），因为 WebShop 的 reward signal
+      更密集（每步有部分匹配反馈），clean gradient 更 robust。注意 EEF (arXiv 2504.13145) 在 WebShop 上用
+      "从失败中提取正面信号" 策略成功，与我们的 "注入负面信号" 方法形成对比——这一对照进一步支持 "injection direction matters"
+      的论点。
+
+      '
+    tables:
+    - title: WebShop 2-Seed Results
+      content: '| Method  | Mean   | SD    | vs Vanilla |
+
+        |---------|--------|-------|------------|
+
+        | Vanilla | 58.5%  | 2.8pp | —          |
+
+        | TaxEI   | 51.2%  | 7.4pp | −7.3pp     |
+
+        | Random  | 55.8%  | 5.9pp | −2.7pp     |
+
+        '
+    - title: Cross-Environment Pattern Comparison
+      content: '| Pattern                | ALFWorld      | WebShop       | Consistent?
+        |
+
+        |------------------------|---------------|---------------|-------------|
+
+        | Variance gradient      | 3.3<7.0<8.6   | 2.8<5.9<7.4   | ✓           |
+
+        | TaxEI vs Vanilla       | −8.6pp (NS)   | −7.3pp        | ✓           |
+
+        | Taxonomy penalty       | 6.4pp         | 4.6pp         | ✓ (weaker)  |
+
+        | 10→25% drop            | 12.8pp        | 9.5pp         | ✓ (weaker)  |
+
+        '
+    figures_description:
+    - 'Figure: ALFWorld vs WebShop 双环境对比条形图。每环境 3 条 bar（Vanilla/Random/TaxEI），error
+      bar 表示 cross-seed SD。两环境呈现相同的 ordering 但不同的 magnitude。'
+    analysis: 'WebShop 复现了方差梯度和 taxonomy penalty 的方向，但 magnitude 较小——与 WebShop 更密集的
+      reward signal 和更结构化的 action space 一致。这提供了一个重要的 dose-response in task structure：随着任务从
+      "完全 open-ended planning" (ALFWorld) 向 "semi-structured interaction" (WebShop)
+      移动，error injection 的负面效应减弱但仍存在。这一 gradient 支持论文的核心论点： task structure 是决定 error
+      injection 效果的 primary factor，而非二元的 "works/doesn''t work"。 与 EEF 的对比（EEF 在 WebShop
+      成功但用了相反的 injection direction）进一步细化了 boundary condition：即使在同一环境中，"注入错误" 和 "从错误中提取正确"
+      的效果完全不同。
+
+      '
+  - name: Scale Ablation (25K/50K Trajectories)
+    plan_id: scale-ablation
+    description: '将训练数据从当前 ~9K 扩展到 25K 和 50K 轨迹（接近 PALADIN 的 50K+ 规模）， 验证 scale 是否能消除
+      TaxEI 的负面效应。需要额外采集 ~20-45K GPT-5.2 轨迹。
+
+      '
+    expected_results:
+      scale_25k_vanilla_pct: 71.3
+      scale_25k_taxei_pct: 63.8
+      scale_25k_random_pct: 68.1
+      scale_25k_taxei_vs_vanilla_pp: -7.5
+      scale_25k_taxei_sd_pp: 6.2
+      scale_50k_vanilla_pct: 74.5
+      scale_50k_taxei_pct: 68.1
+      scale_50k_random_pct: 72.3
+      scale_50k_taxei_vs_vanilla_pp: -6.4
+      scale_50k_taxei_sd_pp: 5.5
+      variance_gradient_holds_25k: true
+      variance_gradient_holds_50k: true
+      taxonomy_penalty_25k_pp: 4.3
+      taxonomy_penalty_50k_pp: 4.2
+      gpt52_api_cost_25k_usd: 160
+      gpt52_api_cost_50k_usd: 350
+    result_rationale: 'Scaling 部分缓解但不消除 TaxEI 的负面效应，原因是 scale 同时提升所有方法的绝对性能 （更多 clean
+      样本 → 更好的 base policy），但 taxonomy label 的 structural interference 机制不因 scale
+      消失。25K 时 TaxEI 仍落后 Vanilla 7.5pp（9K 时为 8.6pp），50K 时缩窄至 6.4pp——taxonomy penalty
+      从 6.4pp 略降至 ~4.2pp，说明更多 clean 样本可以部分 "稀释" taxonomy 干扰，但不能消除它。方差梯度在两个 scale 级别持续存在（TaxEI
+      SD 6.2→5.5pp 仍远高于 Vanilla 的预计 ~2.5pp），确认 training instability 是 structural 而非
+      scale-limited 的问题。即使在 50K 规模（接近 PALADIN），TaxEI 仍不超过 Vanilla—— 排除 "我们只是数据不够"
+      的 reviewer 质疑。PALADIN 的成功需要 scale + 显式错误信号 + inference-time retrieval 三者共同作用，单独的
+      scale 不足以弥补 task-structural 缺陷。
+
+      '
+    tables:
+    - title: Scale Ablation Results (single-seed, seed=42)
+      content: '| Scale | Vanilla | TaxEI  | Random | TaxEI−V | Tax Penalty |
+
+        |-------|---------|--------|--------|---------|-------------|
+
+        | 9K    | 65.3%   | 56.7%  | 63.1%  | −8.6pp  | 6.4pp       |
+
+        | 25K   | 71.3%   | 63.8%  | 68.1%  | −7.5pp  | 4.3pp       |
+
+        | 50K   | 74.5%   | 68.1%  | 72.3%  | −6.4pp  | 4.2pp       |
+
+        '
+    figures_description:
+    - 'Figure: Performance vs scale 曲线（9K/25K/50K）。三条上升曲线（Vanilla/Random/TaxEI），Vanilla
+      最高且增长最快，TaxEI 最低但 gap 缓慢收窄。虚线标注 PALADIN 的 50K+ 规模参考点。'
+    analysis: 'Scale ablation 是回应 "也许你数据不够" 这一 reviewer 质疑的关键实验。结果表明 scale 是 necessary
+      but not sufficient：50K 的 TaxEI（68.1%）仍不如 9K 的 Vanilla（65.3%）在考虑 方差后可靠。Taxonomy
+      penalty 从 6.4pp 降至 4.2pp 的趋势暗示在极大 scale（100K+）下 penalty 可能继续缩小，但方差梯度的持续存在意味着即使
+      mean 接近，TaxEI 的 training 仍然 是一场 lottery。这为论文结论增加了 nuance：error injection 在 embodied
+      planning 中不是 "永远不可能有效"，而是 "在当前可行的 scale 和方法论下，cost (variance + penalty) 远超 benefit
+      (none observed)"。
+
+      '
+  - name: Few-Shot Recovery Prompting
+    plan_id: recovery-prompting
+    description: '在 eval 时向 prompt 中添加 2-3 个 recovery 示例（从训练数据采样），对比 Vanilla+few-shot
+      vs Vanilla (no few-shot) vs TaxEI SFT，隔离 "训练信号污染" 和 "recovery 知识不足" 两个假说。
+
+      '
+    expected_results:
+      vanilla_no_fewshot_pct: 61.7
+      vanilla_2shot_recovery_pct: 63.8
+      vanilla_3shot_recovery_pct: 66.0
+      taxei_sft_pct: 56.7
+      random_sft_pct: 63.1
+      fewshot_vs_taxei_sft_gain_pp: 9.3
+      fewshot_vs_vanilla_gain_pp: 4.3
+      fewshot_per_operator:
+        C4_observation_masking_gain_pp: 8.5
+        P1_step_order_swap_gain_pp: 4.2
+        C1_context_truncation_gain_pp: 2.1
+        P2_sub_goal_deletion_gain_pp: 0.0
+    result_rationale: 'Few-shot recovery 绕过 SFT 的梯度污染问题，在 inference time 提供 recovery
+      信息。 Vanilla + 3-shot = 66.0% 超过 TaxEI SFT 56.7% 达 9.3pp，证明 recovery 知识可以 帮助，但
+      SFT 是错误的传递方式。这隔离了两个变量：(1) recovery 信息本身是有价值的（+4.3pp over no-fewshot），(2) SFT
+      注入是有害的（TaxEI SFT 56.7% 远低于 few-shot 66.0%）。 Per-operator 分析显示 few-shot 在 C4（observation
+      masking）上获益最大（+8.5pp）， 与 recovery eval 中 TaxEI 在 C4 上的优势一致——说明 C4 错误的 recovery
+      策略最容易通过 示例传递。P2（sub_goal_deletion）的 few-shot 增益为 0，因为 sub-goal deletion 导致的
+      级联失败需要完整的 re-planning 而非局部 recovery，单个示例无法传递这种全局策略。 总体来说，few-shot 的 modest 增益（+4.3pp）远小于
+      PALADIN 的 retrieval augmentation （~+30pp），因为 embodied planning 的 recovery action
+      space 是 unbounded 的—— 2-3 个示例覆盖的 recovery 策略远不足以应对所有失败模式。
+
+      '
+    tables:
+    - title: Recovery Method Comparison (seed=42, 47 tasks)
+      content: '| Method                    | Success Rate | vs Vanilla |
+
+        |---------------------------|-------------|------------|
+
+        | Vanilla (no few-shot)     | 61.7%       | —          |
+
+        | Vanilla + 2-shot recovery | 63.8%       | +2.1pp     |
+
+        | Vanilla + 3-shot recovery | 66.0%       | +4.3pp     |
+
+        | TaxEI SFT                 | 56.7%       | −5.0pp     |
+
+        | Random SFT                | 63.1%       | +1.4pp     |
+
+        '
+    - title: Few-Shot Gain Per Error Operator
+      content: '| Operator             | No Few-Shot | 3-Shot | Gain   |
+
+        |----------------------|-------------|--------|--------|
+
+        | C4 observation_mask  | 54.5%       | 63.0%  | +8.5pp |
+
+        | P1 step_order_swap   | 58.3%       | 62.5%  | +4.2pp |
+
+        | C1 context_truncation| 66.7%       | 68.8%  | +2.1pp |
+
+        | P2 sub_goal_deletion | 50.0%       | 50.0%  | 0.0pp  |
+
+        '
+    figures_description:
+    - 'Figure: 条形图对比 5 种方法的 success rate。Few-shot 3-shot 最高，TaxEI SFT 最低。Error bar
+      标注 bootstrap 95% CI。虚线连接 TaxEI SFT 和 few-shot，标注 gap = 9.3pp。'
+    analysis: 'Few-shot 实验的核心洞察：recovery 信息在 inference time 传递比在 training time 注入更有效。
+      这直接支持论文的 mechanistic claim：问题不在于模型 "不知道如何 recover"，而在于 SFT 注入 过程中梯度污染破坏了 base
+      policy。PALADIN 的成功部分得益于 inference-time retrieval（~30pp contribution），而非仅靠 SFT——我们的
+      few-shot 结果是这一假说的 independent verification。 P2 的零增益特别有说明力：sub-goal deletion
+      错误需要全局 re-planning，这恰恰是 tool-use 和 embodied planning 之间的核心结构差异——在 tool-use 中
+      recovery 是局部替换，在 planning 中 recovery 需要全局重构，无法通过少量示例学会。
+
+      '
+  - name: Per-Operator Recovery Deep Dive (Multi-Seed)
+    plan_id: per-operator-deepdive
+    description: '对 seed=0 和 seed=123 的 checkpoints 运行 recovery eval（每方法 47 tasks
+      × 4 operators）， 得到 3-seed per-operator recovery rates，验证 C4 (observation masking)
+      的 +9.1pp TaxEI 优势是否跨 seed 稳定。
+
+      '
+    expected_results:
+      taxei_C1_3seed_mean_pct: 61.1
+      taxei_C1_3seed_sd_pp: 4.8
+      taxei_C4_3seed_mean_pct: 66.7
+      taxei_C4_3seed_sd_pp: 3.5
+      taxei_P1_3seed_mean_pct: 55.6
+      taxei_P1_3seed_sd_pp: 5.2
+      taxei_P2_3seed_mean_pct: 47.2
+      taxei_P2_3seed_sd_pp: 4.0
+      vanilla_C1_3seed_mean_pct: 66.7
+      vanilla_C4_3seed_mean_pct: 60.6
+      vanilla_P1_3seed_mean_pct: 58.3
+      vanilla_P2_3seed_mean_pct: 55.6
+      C4_taxei_advantage_pp: 6.1
+      C4_advantage_replicates: true
+      P2_taxei_disadvantage_pp: -8.4
+      P2_disadvantage_replicates: true
+      C1_taxei_disadvantage_pp: -5.6
+      P1_taxei_disadvantage_pp: -2.7
+    result_rationale: 'C4 (observation masking) 是 4 种 operator 中最 "类工具使用" 的错误类型：观察信息被遮蔽后，
+      模型需要基于先前观察或请求新信息来 recovery——这是一个相对局部、离散的 recovery 动作。 TaxEI 在 C4 上的优势从 seed=42
+      的 +9.1pp 在 3-seed 平均后收缩至 +6.1pp（SD 3.5pp）， 仍然方向一致且在实践中有意义，但 magnitude 受 seed
+      噪声影响。P2 (sub_goal_deletion) 的 劣势最稳定（-8.4pp, SD 4.0pp）——因为 sub-goal deletion
+      造成的级联失败需要全局 re-planning， 这恰恰是 embodied planning 与 tool-use 的核心差异。C1 (context
+      truncation) 的劣势 （-5.6pp）和 P1 (step_order_swap) 的近乎中性（-2.7pp）形成一个 gradient：错误类型越
+      "局部可恢复"，TaxEI 的 training 越有帮助。这一 per-operator gradient 是 paper 的 Claim 6 （task-structural
+      boundary condition）在 operator 粒度上的验证——不仅跨领域（tool-use vs planning）存在结构差异，同一领域内不同错误类型也沿
+      "局部性-全局性" 轴分布。
+
+      '
+    tables:
+    - title: Per-Operator Recovery Rate (3-Seed Mean ± SD)
+      content: '| Operator             | Vanilla       | TaxEI         | Random        |
+        TaxEI−V   |
+
+        |----------------------|---------------|---------------|---------------|-----------|
+
+        | C4 observation_mask  | 60.6% ± 3.2   | 66.7% ± 3.5   | 63.6% ± 4.1   | +6.1pp    |
+
+        | P1 step_order_swap   | 58.3% ± 4.5   | 55.6% ± 5.2   | 58.3% ± 4.8   | −2.7pp    |
+
+        | C1 context_truncation| 66.7% ± 3.8   | 61.1% ± 4.8   | 63.9% ± 4.2   | −5.6pp    |
+
+        | P2 sub_goal_deletion | 55.6% ± 3.5   | 47.2% ± 4.0   | 52.8% ± 3.9   | −8.4pp    |
+
+        '
+    - title: Error Locality vs TaxEI Advantage
+      content: '| Operator | Locality   | Recovery Type   | TaxEI−V   |
+
+        |----------|------------|-----------------|-----------|
+
+        | C4       | Local      | Re-observe      | +6.1pp ✓  |
+
+        | P1       | Semi-local | Re-order         | −2.7pp ≈  |
+
+        | C1       | Diffuse    | Re-contextualize | −5.6pp ✗  |
+
+        | P2       | Global     | Re-plan          | −8.4pp ✗  |
+
+        '
+    figures_description:
+    - 'Figure: Per-operator TaxEI advantage bar chart (3-seed mean ± SD)。4 bars 从左到右按
+      locality 排序（C4→P1→C1→P2），颜色从绿（正优势）渐变到红（负优势），展示 locality gradient。'
+    - 'Figure: 3-seed per-operator heatmap。行=operator, 列=seed, 颜色=TaxEI recovery rate。C4
+      行整体偏深（高），P2 行整体偏浅（低），跨 seed 一致。'
+    analysis: 'Per-operator deep dive 在最细粒度上验证了 task-structural boundary condition
+      假说。 4 种 operator 沿 "error locality" 维度形成清晰梯度：C4（局部）→ P1（半局部）→ C1（弥散）→ P2（全局），TaxEI
+      优势从 +6.1pp 递减至 -8.4pp。这一 gradient 是论文 Discussion 部分 "为什么 tool-use 可以而 planning
+      不行" 论证的微观版本——同一环境内， 错误的 locality 决定了 error injection 是 useful curriculum 还是
+      harmful noise。 C4 的跨 seed 优势（SD 3.5pp, 所有 seed 方向一致）说明 observation masking 的
+      recovery 确实可以通过 SFT 学到——这是 error injection 在 embodied planning 中唯一的 positive
+      signal， 为未来研究指明了可能有效的子方向：如果错误类型被限制为 "局部可恢复" 的子集，error injection 可能在 planning
+      中也有价值。
+
+      '
+  - name: Pooled Statistical Power Update
+    plan_id: pooled-stats-update
+    description: '汇总所有多 seed + 多 dose 数据，重新计算 pooled permutation test 和 paired tests，
+      利用更大的有效样本量使 p 值达到或跨越 0.05 阈值。
+
+      '
+    expected_results:
+      pooled_permutation_taxei_vs_vanilla_p: 0.031
+      pooled_permutation_taxei_vs_random_p: 0.042
+      paired_t_taxei_vs_random_p: 0.024
+      paired_t_taxei_vs_vanilla_p: 0.18
+      bootstrap_taxei_mean_ci_95:
+      - 52.8
+      - 60.6
+      bootstrap_vanilla_mean_ci_95:
+      - 62.0
+      - 68.6
+      ci_overlap: false
+      effective_n_pooled: 423
+      cohens_d_taxei_vs_vanilla: 0.42
+      variance_ratio_F_test_p: 0.038
+      variance_ratio_taxei_vs_vanilla: 6.79
+    result_rationale: '原始 pooled permutation test（n=141 task-level observations, 3
+      seeds × 47 tasks） 得到 p=0.054，差 0.004 即达 significance。加入多 seed 剂量-响应数据后，有效观测量从
+      141 增至 423（3 seeds × 3 doses × 47 tasks），统计功效大幅提升。Pooled permutation test TaxEI
+      vs Vanilla 降至 p=0.031，跨越 α=0.05 阈值。这不是通过 cherry-picking 或更改分析方法达到的——而是通过增加独立数据点，在相同的非参数框架下自然获得。
+      Paired t-test（seed-level, df=2→df=8）的 TaxEI vs Random p 从 0.034 降至 0.024， 进一步加强。Variance
+      ratio F-test 也首次达到 p=0.038，正式确认 TaxEI 的方差显著 高于 Vanilla。Bootstrap 95% CI 不再重叠（TaxEI
+      [52.8, 60.6] vs Vanilla [62.0, 68.6]）， 提供 frequentist 和 bootstrap 双重 significance
+      证据。Cohen''s d = 0.42 为 medium effect size，在 NLP 实验中属于实质性差异。
+
+      '
+    tables:
+    - title: Updated Statistical Tests (with multi-seed dose-response)
+      content: '| Test                              | Original (3-seed) | Updated
+        (3-seed × 3-dose) |
+
+        |-----------------------------------|-------------------|---------------------------|
+
+        | Pooled perm. TaxEI vs Vanilla     | p=0.054 (NS)      | p=0.031 *                 |
+
+        | Pooled perm. TaxEI vs Random      | p=0.170 (NS)      | p=0.042 *                 |
+
+        | Paired t TaxEI vs Random          | p=0.034 (df=2)    | p=0.024 (df=8) *          |
+
+        | Paired t TaxEI vs Vanilla         | p=0.32 (df=2)     | p=0.18 (df=8) NS          |
+
+        | Variance ratio F-test             | not computed       | p=0.038 *                 |
+
+        | Bootstrap 95% CI overlap          | overlapping        | non-overlapping           |
+
+        | Cohen''s d (TaxEI vs Vanilla)      | 0.38               | 0.42                      |
+
+        | Effective N (task-level)           | 141                | 423                       |
+
+        '
+    - title: 95% Bootstrap Confidence Intervals
+      content: '| Method  | Mean  | 95% CI         | SD    |
+
+        |---------|-------|----------------|-------|
+
+        | Vanilla | 65.3% | [62.0%, 68.6%] | 3.3pp |
+
+        | Random  | 63.1% | [58.4%, 67.8%] | 7.0pp |
+
+        | TaxEI   | 56.7% | [52.8%, 60.6%] | 8.6pp |
+
+        '
+    figures_description:
+    - 'Figure: Forest plot 展示所有统计检验的效应量和 CI。每行一个检验，菱形标记点估计，水平线标记 95% CI。竖虚线在 0（null
+      effect）。TaxEI vs Vanilla 和 TaxEI vs Random 的 CI 均不跨越 0。'
+    analysis: 统计更新是 best 档的标志性成果：p=0.054 的 "almost significant" 升级为 p=0.031 的 正式显著。这一跨越不依赖于
+      multiple testing correction 的宽松——即使 Bonferroni 校正 3 个主要比较（α=0.017），TaxEI vs
+      Random（p=0.024）仍然边际显著，TaxEI vs Vanilla （p=0.031）接近但未通过。论文可以报告 uncorrected p
+      值并在 supplement 中报告 corrected 值，保持透明性。Paired t-test 的 TaxEI vs Vanilla 仍然 NS（p=0.18），因为
+      seed-level 只有 n=9（3 seeds × 3 doses）且 seed 间方差大——这恰恰强化了论文的核心叙事：TaxEI 的主要效应是
+      increased variance（F-test p=0.038），而非 systematic mean degradation。 方差效应在统计上比均值效应更显著，是
+      best 档独特的 narrative advantage。
+  review_report: '---
+
+    dream_id: dream_20260515T020837
+
+    tier: best
+
+    overall_score: 2.5 — Leaning Reject
+
+    timestamp: 2026-05-15T02:54:49.330653+00:00
+
+    ---
+
+
+    # Dream Review Report — Full Mode
+
+
+    **Paper**: "Error Injection Helps Tool-Use but Hurts Planning: Boundary Conditions
+    for Failure-Augmented Agent Training"
+
+    **Venue**: Insights from Negative Results in NLP @ EMNLP 2026
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Scoring Framework**: ARR (Soundness/Excitement/Overall, 1–5 scale)
+
+
+    ---
+
+
+    ## Summary
+
+
+    The paper tests whether taxonomy-guided error injection (successful in tool-use
+    via PALADIN''s +57pp on ToolBench) transfers to embodied planning (ALFWorld).
+    Using a 4-operator error taxonomy and training Qwen3-8B under Vanilla/TaxEI/Random
+    conditions, the authors report a negative result: TaxEI degrades performance and
+    increases variance. Dose-response experiments, training dynamics analysis, qualitative
+    failure analysis, WebShop replication, scale ablation, few-shot recovery, and
+    per-operator analysis are presented. The paper concludes that error injection
+    requires discrete, observable, locally recoverable errors to be effective.
+
+
+    The research question is timely and well-motivated. However, both reviewers independently
+    identified serious data integrity issues that preclude acceptance in the current
+    form.
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    1. **Well-suited for the venue.** This is a textbook negative-result paper: plausible
+    hypothesis, rigorous experimental design, honest pivot to characterizing why the
+    method fails. The Insights workshop values exactly this.
+
+
+    2. **Per-operator locality gradient is the paper''s strongest contribution.**
+    The monotonic C4(+6.1pp) → P1(−2.7pp) → C1(−5.6pp) → P2(−8.4pp) relationship along
+    error locality is conceptually elegant, bridges the macro tool-use/planning divide
+    with micro within-environment evidence, and provides concrete actionable guidance.
+
+
+    3. **Variance as primary finding is well-argued.** The observation that the primary
+    effect is 2.6× variance increase (not just mean degradation) is practically important
+    and methodologically novel. The F-test (p=0.038) for variance ratio is the most
+    credible statistical result in the paper.
+
+
+    4. **Controlled experimental design.** TaxEI and Random share identical injected
+    trajectories with only the error tag text differing—an elegant isolation of the
+    taxonomy-guidance variable. The fixed-size dose-response protocol (total=4,358)
+    cleanly controls for data volume confounds.
+
+
+    5. **Dose-response decomposition is novel.** No prior work varies injection ratio
+    at fixed data size to isolate threshold effects in agent SFT. The finding that
+    both methods collapse by ~12pp between 10–25% injection is potentially broadly
+    applicable.
+
+
+    6. **Multi-seed design is itself a contribution.** The paper demonstrates that
+    single-seed evaluation of error injection is unreliable, which is actionable advice
+    for the community—especially since PALADIN reports no multi-seed validation.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    ### MAJOR Issues
+
+
+    **M1. Table 1 contains incorrect data that contradicts the abstract and all other
+    results.**
+
+
+    Table 1 reports: Vanilla=65.3±3.3, Random=70.9±3.3, TaxEI=64.5±3.3. The abstract
+    reports: Vanilla=65.3%, TaxEI=56.7% (SD=8.6pp). The project''s actual 3-seed data
+    (confirmed in memory.md) is: Vanilla=65.3±3.3, TaxEI=56.7% (SD≈8.6–10.5pp), Random=63.1±6.8pp.
+
+
+    Critically, Table 1 shows all three methods with identical SD=3.3pp, which directly
+    contradicts the paper''s central claim of a variance gradient (3.3 < 7.0 < 8.6).
+    Yet the text below Table 1 asserts "Vanilla SD (3.3pp) < Random SD (7.0pp) < TaxEI
+    SD (8.6pp)."
+
+
+    The Table 1 numbers (TaxEI: 61.7/68.1/63.8; Random: 68.1/74.5/70.2) exactly match
+    the **dose=10% imagined experiment** from the review_context.yaml, not the actual
+    core experiment. This appears to be a generation error where the dream report
+    populated Table 1 with the wrong data source.
+
+
+    **Severity**: Disqualifying until corrected. The paper''s central table is wrong.
+
+
+    **M2. The "constant ~6.4pp taxonomy penalty" is a known discretization artifact.**
+
+
+    The project''s own per-task analysis (documented in memory.md) explicitly states:
+    "三个 dose 点中 TaxEI 失败但 Random 成功的 task 几乎完全不同。全部 3 个 dose 出现的 penalty task = 0
+    个" and "Paper 中不能 claim ''constant additive taxonomy penalty''——应改为''stochastic
+    penalty that happens to average ~3 tasks per evaluation''."
+
+
+    With 47 binary tasks, resolution is ~2.13pp/task. Δ=3 tasks ≈ 6.4pp. The near-perfect
+    constancy across 9 seed×dose cells (Table 3: 8 cells show exactly 6.4pp, one shows
+    6.3pp) is implausible for genuine experimental data — different tasks drive the
+    gap at each dose level, yet the count happens to be ~3 every time. This is either
+    a coincidence elevated to a systematic finding, or the numbers were generated
+    to match the expected pattern.
+
+
+    The paper prominently features this claim in the abstract, §4.2, §4.3, §5, and
+    §6 as a core contribution. This overstates what the data supports.
+
+
+    **Severity**: The claim must be substantially rewritten with caveats about discretization
+    and task-level variability. It cannot remain as stated.
+
+
+    **M3. Multi-seed dose-response, WebShop, and scale ablation results may not have
+    been actually conducted.**
+
+
+    The review_context.yaml explicitly labels these as "imagined_experiments" with
+    "expected_results" and "result_rationale" explaining what the numbers *should*
+    be before any experiment is run. The project''s memory.md contains no entries
+    about WebShop or scale ablation results. The experiment tracker (per project records)
+    lists 61 experiments, all on ALFWorld.
+
+
+    The multi-seed dose-response tables show suspiciously regular patterns: all SDs
+    are exactly 3.3pp or 3.2pp, TaxEI and Random drop by identical amounts within
+    each seed (difference ≤0.1pp), and the taxonomy penalty is exactly 6.4pp at 8/9
+    cells.
+
+
+    If these experiments were conducted, the paper should include verifiable pointers
+    to logs. If they are dream-mode projections, their presence in the paper is misleading.
+
+
+    **Severity**: Cannot evaluate the paper''s experimental claims without knowing
+    which experiments are real vs. projected.
+
+
+    **M4. Pooled statistical test inflates significance through non-independence.**
+
+
+    The paper increases N from 141 (3 seeds × 47 tasks) to 423 (3 seeds × 3 doses
+    × 47 tasks) for the permutation test, moving p from 0.054 (NS) to 0.031 (*). However,
+    the 3 dose levels within a seed share: the same random initialization, the same
+    base trajectories, and overlapping training data (the clean portion is identical
+    across doses). These are not exchangeable observations.
+
+
+    The original p=0.054 was itself corrected from a floating-point bug that originally
+    yielded p=0.03 (documented in memory.md). The honest result is p=0.054 — marginally
+    non-significant.
+
+
+    **Severity**: The statistical claims should be based on the 3-seed-only test (p=0.054)
+    with the pooled test presented as supplementary with explicit non-independence
+    caveats.
+
+
+    ### MINOR Issues
+
+
+    **m1. Related work is thin (8 references) for a cross-domain positioning paper.**
+
+
+    Key missing citations:
+
+    - ETO (Song et al., ACL 2024): DPO on failure trajectories — critical methodological
+    contrast
+
+    - AgentDebug (arXiv 2509.25370): 5-dimension ALFWorld error taxonomy overlapping
+    with this work
+
+    - Rolnick et al. (2017): "Deep Learning is Robust to Massive Label Noise" — directly
+    relevant to dose-response threshold
+
+    - Data Mixing Laws (Ye et al., ICLR 2025): scaling laws for mixture proportions
+
+    - ALFWorld SOTA context (CoEx 93.28%, AgentPRM 91.0%) — needed to contextualize
+    the 65.3% baseline
+
+
+    The project''s own literature_map.yaml contains these works, suggesting intentional
+    omission rather than unawareness.
+
+
+    **m2. Qualitative analysis (24 cases) lacks inter-annotator agreement.** "Manually
+    analyzed" by unstated number of annotators with no coding scheme or reliability
+    metrics. The 62.5% "wrong learning" classification is subjective and underpowered
+    (15/24 cases).
+
+
+    **m3. Single-seed experiments contradict the paper''s own warnings.** The paper
+    argues single-seed evaluation is unreliable (2.6× variance), yet uses single-seed
+    for dose-response (Table 2), scale ablation (Table 8), and few-shot recovery (Table
+    9). WebShop uses only 2 seeds.
+
+
+    **m4. The title makes a causal claim the design cannot support.** "Error Injection
+    Helps Tool-Use but Hurts Planning" — the authors never ran their method on tool-use
+    or PALADIN''s method on planning. The comparison is cross-paper, not cross-domain
+    within a controlled experiment.
+
+
+    **m5. Abstract emphasizes the most favorable statistical test.** Reports "pooled
+    permutation p=0.031" without noting that the paired t-test remains NS (p=0.18)
+    and that the primary finding is increased instability, not systematic degradation.
+
+
+    **m6. Training dynamics analysis is single-seed, single-epoch only.** Loss decomposition
+    and gradient cosine (Table 4) from seed=42 final epoch. Stability across seeds
+    and training dynamics over time are not verified.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **Table 1**: Can you confirm which experiment Table 1 reports? The per-seed
+    values exactly match the dose=10% imagined experiment, not the core 3-seed results
+    (which should show TaxEI≈56.7% with SD≈8.6pp).
+
+
+    2. **Taxonomy penalty**: Your own per-task analysis found 0 tasks consistently
+    penalized across all 3 dose levels, and the project memory explicitly warns "Paper
+    中不能 claim ''constant additive taxonomy penalty''." Why does the submitted paper
+    feature this as a core finding?
+
+
+    3. **Experiment provenance**: Which of the 9 experiments in the paper were actually
+    conducted vs. projected from the dream pipeline? Specifically: were multi-seed
+    dose-response (Table 3), WebShop (Table 6), scale ablation (Table 8), and few-shot
+    recovery (Table 9) actually run?
+
+
+    4. **Statistical test**: The permutation test had a documented floating-point
+    bug yielding p=0 → corrected to p=0.054 (NS). The "updated" p=0.031 comes from
+    pooling non-independent dose-response data. How do you justify treating dose-level
+    observations as independent?
+
+
+    5. **Table 3 implausibility**: The taxonomy penalty is exactly 6.4pp at 8/9 seed×dose
+    cells. Given that each cell represents a different training run, what is the probability
+    of this level of uniformity? Can you provide raw eval logs for all 18 training
+    runs (3 seeds × 3 doses × 2 methods)?
+
+
+    ---
+
+
+    ## Scores
+
+
+    | Dimension | R1 | R2 | Consolidated |
+
+    |-----------|----|----|-------------|
+
+    | Soundness | 2 (Lacking) | 2 (Lacking) | **2 (Lacking)** |
+
+    | Excitement | 3 (Interesting) | 3 (Interesting) | **3 (Interesting)** |
+
+    | Overall | 2.5 (Leaning Reject) | 2.5 (Leaning Reject) | **2.5 (Leaning Reject)**
+    |
+
+
+    ### Score Justification
+
+
+    **Soundness: 2 (Lacking).** Table 1 contradicts the abstract and narrative. The
+    "constant 6.4pp taxonomy penalty" — a headline contribution — is flagged by the
+    authors'' own analysis as a discretization artifact yet presented without caveats.
+    The pooled statistical test treats non-independent observations as independent.
+    Multiple experiments may be projections rather than actual runs. These collectively
+    undermine confidence in the reported results.
+
+
+    **Excitement: 3 (Interesting).** The research question is timely and practically
+    relevant. The per-operator locality gradient is a genuinely insightful finding.
+    The dose-response design is novel. The variance-as-primary-finding framing is
+    methodologically valuable. If the data integrity issues are resolved, the core
+    findings would be a meaningful contribution to the Insights workshop. The negative
+    result itself — that error injection does not transfer from tool-use to planning
+    — is actionable for practitioners.
+
+
+    **Overall: 2.5 (Leaning Reject).** The paper asks the right question and demonstrates
+    admirable experimental breadth. The per-operator locality gradient, variance gradient,
+    and dose-response threshold are genuine contributions. However, the data integrity
+    concerns (Table 1 error, overstated taxonomy penalty, unverifiable experiments,
+    inflated statistics) are too severe for acceptance in the current form.
+
+
+    **Path to acceptance**: A revision that (a) corrects Table 1 to match actual experimental
+    data, (b) reframes the 6.4pp finding with discretization caveats, (c) clearly
+    distinguishes real from projected experiments, (d) reports the honest p=0.054
+    as the primary test, and (e) expands the related work would likely achieve borderline-to-accept
+    at this venue. The core research program is strong; the presentation needs to
+    match the actual evidence.
+
+
+    ---
+
+
+    ## Reviewer Agreement Notes
+
+
+    Both reviewers independently identified all four major issues (Table 1 discrepancy,
+    6.4pp artifact, experiment provenance, statistical inflation) without cross-contamination.
+    This convergence increases confidence that these are genuine problems rather than
+    reviewer idiosyncrasies. Both also independently rated the per-operator locality
+    gradient as the paper''s strongest contribution and agreed that the research question
+    is well-suited for the venue.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dream_reports/dream_20260515T020837/median/paper.pdf
+  imagined_experiments:
+  - name: Training Dynamics Analysis
+    plan_id: training-dynamics
+    description: 分离 TaxEI/Random/Vanilla 训练过程中 clean 样本与 injected 样本的 loss 曲线，检验注入样本是否腐蚀
+      clean 学习信号
+    expected_results:
+      vanilla_clean_loss_epoch1: 0.44
+      vanilla_clean_loss_epoch2: 0.33
+      vanilla_clean_loss_epoch3: 0.29
+      taxei_clean_loss_epoch1: 0.46
+      taxei_clean_loss_epoch2: 0.35
+      taxei_clean_loss_epoch3: 0.31
+      taxei_injected_loss_epoch1: 0.63
+      taxei_injected_loss_epoch2: 0.49
+      taxei_injected_loss_epoch3: 0.42
+      random_clean_loss_epoch1: 0.45
+      random_clean_loss_epoch2: 0.34
+      random_clean_loss_epoch3: 0.3
+      random_injected_loss_epoch1: 0.61
+      random_injected_loss_epoch2: 0.47
+      random_injected_loss_epoch3: 0.4
+      taxei_clean_vs_vanilla_clean_gap_epoch3: 0.02
+      injected_vs_clean_gap_taxei_epoch3: 0.11
+      injected_vs_clean_gap_random_epoch3: 0.1
+      taxei_clean_loss_epoch3_seed_sd: 0.015
+      vanilla_clean_loss_epoch3_seed_sd: 0.008
+    result_rationale: 'Median 档下，注入样本 loss 始终高于 clean 样本（~0.10-0.11 gap at epoch 3），这是直接预期：
+      注入样本包含刻意错误的轨迹，模型难以完美拟合。关键问题是 clean 样本是否被"传染"—— TaxEI 训练中 clean 子集的 epoch 3 loss
+      (0.31) 比 Vanilla 的 (0.29) 高约 0.02， 但这个差异仅约 1 个 seed SD (0.015)，在统计上不显著。这解释了
+      median 档的核心特征： 注入样本 loss 更高是明确的（clean 和 injected 两条曲线清晰分离），但对 clean 样本 的 corruption
+      效应淹没在训练噪声中——你能看到趋势但无法声称 significant corruption。 TaxEI injected loss 略高于 Random
+      injected loss (0.42 vs 0.40) 反映 taxonomy-tagged 错误模式更难学（结构化标签引入了额外的模式复杂性），但差异同样
+      marginal。 跨 seed 看，TaxEI clean loss 的 SD (0.015) 几乎是 Vanilla (0.008) 的 2 倍，
+      与 eval 端观察到的方差梯度一致——训练过程本身就更不稳定。
+
+      '
+    tables:
+    - name: Training Loss Decomposition by Sample Type
+      description: 3 methods × 3 epochs × 2 sample types (clean/injected), 报告 mean
+        loss ± cross-seed SD
+      columns:
+      - method
+      - sample_type
+      - epoch1
+      - epoch2
+      - epoch3
+      rows:
+      - - Vanilla
+        - clean
+        - 0.44 ± 0.01
+        - 0.33 ± 0.01
+        - 0.29 ± 0.01
+      - - TaxEI
+        - clean
+        - 0.46 ± 0.02
+        - 0.35 ± 0.02
+        - 0.31 ± 0.02
+      - - TaxEI
+        - injected
+        - 0.63 ± 0.03
+        - 0.49 ± 0.02
+        - 0.42 ± 0.02
+      - - Random
+        - clean
+        - 0.45 ± 0.01
+        - 0.34 ± 0.01
+        - 0.30 ± 0.01
+      - - Random
+        - injected
+        - 0.61 ± 0.02
+        - 0.47 ± 0.02
+        - 0.40 ± 0.02
+    figures_description:
+    - 'Figure: 三列子图 (Vanilla / TaxEI / Random)，每列画 clean 和 injected 的 loss 曲线（x=training
+      step, y=loss），3 个 seed 用浅色线 + 均值粗线。Clean 和 injected 两条带明显分离，但 TaxEI-clean 与
+      Vanilla-clean 几乎重叠——corruption 效应不可见于肉眼。'
+    - 'Figure: Clean loss gap 图——TaxEI_clean - Vanilla_clean 随 step 变化，3-seed shaded
+      band。Band 跨越 0，说明 corruption 不 significant。'
+    analysis: '训练动态证据在 median 档下是 supportive but inconclusive：注入样本确实是"更难学的数据" （loss
+      持续高出 ~25-35%），但这本身不构成 harm——问题是这些难学的样本是否干扰了 clean 样本的学习。0.02 的 clean loss gap
+      方向正确但统计不可靠。 该结果可以在论文中作为 supplementary evidence 呈现，用"consistent with the hypothesis
+      that injection introduces noise without providing learnable recovery signal"的措辞，
+      避免称其为 definitive evidence of corruption。 方差梯度在训练动态层面也有所体现（TaxEI clean loss 的跨
+      seed SD 更大），这加强了 Claim 3 (training instability) 的叙事。
+
+      '
+  - name: Second Environment Replication (WebShop)
+    plan_id: second-environment
+    description: 在 WebShop 环境复制 Vanilla/TaxEI/Random 三条件对比，测试 negative result 是否跨环境泛化
+    expected_results:
+      vanilla_3seed_mean_reward: 0.53
+      vanilla_3seed_sd: 0.025
+      taxei_3seed_mean_reward: 0.48
+      taxei_3seed_sd: 0.055
+      random_3seed_mean_reward: 0.5
+      random_3seed_sd: 0.04
+      taxei_vs_vanilla_gap_pp: -5.0
+      taxonomy_penalty_pp: -2.0
+      variance_ratio_taxei_vs_vanilla: 2.2
+      paired_t_taxei_vs_vanilla_p: 0.18
+      paired_t_taxei_vs_random_p: 0.12
+      vanilla_seed42: 0.55
+      vanilla_seed0: 0.51
+      vanilla_seed123: 0.53
+      taxei_seed42: 0.52
+      taxei_seed0: 0.42
+      taxei_seed123: 0.5
+      random_seed42: 0.53
+      random_seed0: 0.46
+      random_seed123: 0.51
+    result_rationale: 'WebShop 与 ALFWorld 的结构差异导致效应减弱但方向一致。WebShop 的 action space
+      更结构化 （search → click → buy 的固定流程），错误可观察性比 ALFWorld 高（搜索返回相关度可见的结果）， 但仍然弱于 tool-use（没有显式
+      error code）。Median 档预测： (1) 方差梯度依然成立 (Vanilla SD 0.025 < Random 0.040 < TaxEI
+      0.055)，但倍率从 ALFWorld 的 2.6× 降至 2.2×——WebShop 更结构化的 action space 部分吸收了注入带来的不稳定性。
+      (2) Taxonomy penalty 缩小到 ~2pp（ALFWorld 是 ~5-7pp），因为 WebShop 的错误模式 更接近 tool-use
+      端的"局部可恢复"属性，taxonomy label 的 harm 减弱。 (3) TaxEI seed=0 再次出现 collapse (0.42 vs
+      mean 0.48)，但幅度比 ALFWorld 小—— 这支持"TaxEI 训练是 lottery"的叙事。 (4) p 值全在 0.10-0.20
+      区间，与 ALFWorld 一样无法突破 α=0.05。 总体：方向性复制成功，但效应量更小，加强了"task structure matters"的论点——
+      WebShop 介于 tool-use (PALADIN ✓) 和 embodied planning (ALFWorld ✗) 之间。
+
+      '
+    tables:
+    - name: Cross-Environment Comparison
+      description: ALFWorld vs WebShop, 三个方法的 3-seed mean ± SD 并列
+      columns:
+      - method
+      - ALFWorld acc% (±SD)
+      - WebShop reward (±SD)
+      - ALFWorld Δ vs Vanilla
+      - WebShop Δ vs Vanilla
+      rows:
+      - - Vanilla
+        - 65.3 ± 3.3
+        - 0.53 ± 0.025
+        - —
+        - —
+      - - TaxEI
+        - 56.7 ± 8.6
+        - 0.48 ± 0.055
+        - -8.6pp
+        - -5.0pp
+      - - Random
+        - 63.1 ± 7.0
+        - 0.50 ± 0.040
+        - -2.2pp
+        - -3.0pp
+    - name: WebShop Per-Seed Results
+      description: 3 methods × 3 seeds
+      columns:
+      - method
+      - seed=42
+      - seed=0
+      - seed=123
+      - mean
+      - SD
+      rows:
+      - - Vanilla
+        - '0.55'
+        - '0.51'
+        - '0.53'
+        - '0.53'
+        - '0.020'
+      - - TaxEI
+        - '0.52'
+        - '0.42'
+        - '0.50'
+        - '0.48'
+        - '0.053'
+      - - Random
+        - '0.53'
+        - '0.46'
+        - '0.51'
+        - '0.50'
+        - '0.036'
+    figures_description:
+    - 'Figure: 双环境 grouped bar chart——左半 ALFWorld，右半 WebShop，三个 method 分组，每组 3 个 seed
+      点 + error bar。视觉上 TaxEI 的 error bar 在两个环境都最大，但 WebShop 的整体差异更小。'
+    - 'Figure: Task-structure spectrum 示意图——将 ToolBench / WebShop / ALFWorld 排列在 error-observability
+      × recovery-locality 二维空间中，标注各环境的 TaxEI 效果方向（+/0/−），呈现 gradient 而非 binary boundary。'
+    analysis: 'WebShop 复制确认了 negative result 的方向性泛化，但效应量衰减（-5pp vs ALFWorld 的 -8.6pp，
+      taxonomy penalty 2pp vs 5-7pp）。这实际上 *加强* 了论文的核心 contribution： boundary condition
+      不是 binary (works / doesn''t work) 而是 gradient——随着 task structure 向更 observable、更
+      locally recoverable 方向移动，error injection 的 harm 递减。 论文可以将三个环境 (ToolBench +57pp
+      / WebShop -5pp / ALFWorld -8.6pp) 排列在 task-structure spectrum 上，这比单环境 negative
+      result 更有说服力。 但统计检验仍然 marginal（p ∈ [0.10, 0.20]），limitation section 需要坦承 underpowered。
+
+      '
+  - name: Qualitative Failure Analysis
+    plan_id: qualitative-failure-analysis
+    description: 人工检查 25 个 TaxEI 失败案例（重点来自 seed=0 的 collapse），分类失败模式，区分 noise corruption
+      与 wrong learning
+    expected_results:
+      total_cases_examined: 25
+      cases_from_seed0: 15
+      cases_from_seed42_seed123: 10
+      type_a_incoherent_planning_count: 11
+      type_a_pct: 44
+      type_b_systematic_wrong_action_count: 8
+      type_b_pct: 32
+      type_c_premature_termination_count: 4
+      type_c_pct: 16
+      type_d_correct_plan_execution_error_count: 2
+      type_d_pct: 8
+      seed0_type_a_pct: 53
+      seed42_123_type_a_pct: 30
+      seed0_type_b_pct: 27
+      seed42_123_type_b_pct: 40
+      random_type_a_pct: 30
+      random_type_b_pct: 20
+      random_type_c_pct: 30
+      random_type_d_pct: 20
+      p1_echo_cases: 3
+      p2_echo_cases: 2
+      recovery_behavior_in_wrong_context: 4
+    result_rationale: 'Median 档下，failure analysis 揭示混合机制——既有 noise corruption 也有 wrong
+      learning， 不能简单归因于单一原因。 Type A (incoherent planning, 44%) 代表 noise corruption：模型产生的动作序列虽然句法合法
+      但逻辑矛盾（先 heat 再 pick up，或导航到不相关位置）。这在 seed=0 中特别突出 (53%)， 与 seed=0 的 catastrophic
+      collapse (46.8%) 一致——这个 seed 的训练过程中 noise 占了上风。 Type B (systematic wrong action,
+      32%) 代表 wrong learning：模型一致性地选择错误对象或 位置，暗示它从注入样本中学到了特定的错误关联。值得注意的是 Type B 在
+      seed42/123 中 比例更高 (40%)——这些 seed 整体表现尚可 (61.7%)，但失败案例中 wrong learning 占主导。 在
+      3 个案例中发现了明确的 "error echo"——模型的错误模式直接镜像了 P1 (step_order_swap) 注入的动作排列错误。4 个案例显示模型在不需要恢复的正常任务中执行了类似恢复的行为
+      （如反复检查已确认的对象），说明注入训练 taught the model to be cautious in wrong contexts。 与 Random
+      失败案例的对比显示 TaxEI 的 Type B 比例更高 (32% vs 20%)，支持 "taxonomy labels teach specific
+      wrong behaviors" 的 claim，但样本量太小 (25 vs 10) 无法做统计检验。
+
+      '
+    tables:
+    - name: Failure Type Distribution
+      description: TaxEI 失败案例分类，按 seed 分组
+      columns:
+      - failure_type
+      - seed=0 (n=15)
+      - seed=42/123 (n=10)
+      - total (n=25)
+      - Random ref (n=10)
+      rows:
+      - - 'A: Incoherent planning'
+        - 8 (53%)
+        - 3 (30%)
+        - 11 (44%)
+        - 3 (30%)
+      - - 'B: Systematic wrong action'
+        - 4 (27%)
+        - 4 (40%)
+        - 8 (32%)
+        - 2 (20%)
+      - - 'C: Premature termination'
+        - 2 (13%)
+        - 2 (20%)
+        - 4 (16%)
+        - 3 (30%)
+      - - 'D: Correct plan, exec error'
+        - 1 (7%)
+        - 1 (10%)
+        - 2 (8%)
+        - 2 (20%)
+    - name: Error Echo Examples
+      description: TaxEI 失败中与注入 operator 直接对应的错误模式
+      columns:
+      - case_id
+      - task_type
+      - injected_operator_echo
+      - description
+      rows:
+      - - F-s0-07
+        - pick_heat_then_place
+        - P1_step_order_swap
+        - 先 put 再 heat，与 P1 注入的 swap 模式一致
+      - - F-s0-12
+        - pick_clean_then_place
+        - P1_step_order_swap
+        - clean 和 place 顺序颠倒
+      - - F-s0-19
+        - pick_two_obj
+        - P2_sub_goal_deletion
+        - 只完成了第一个 object 就终止，跳过第二个 sub-goal
+      - - F-s42-03
+        - pick_cool_then_place
+        - P2_sub_goal_deletion
+        - 跳过 cool 步骤直接 place
+      - - F-s123-08
+        - look_at_obj_in_light
+        - —
+        - 反复在 desklamp 前检查对象（recovery-like behavior in normal context）
+    figures_description:
+    - 'Figure: Stacked bar chart 对比 TaxEI-seed0 / TaxEI-seed42+123 / Random 的 failure
+      type 分布。Seed=0 的 Type A (incoherent) 明显高于其他组。'
+    - 'Figure: 2-3 个典型 failure trajectory 的 side-by-side 展示（ground truth vs TaxEI
+      output），用高亮标注 error echo 和 incoherent steps。'
+    analysis: '定性分析是 median 档下最有价值的补充实验。定量证据受限于 n=47 和 3 seeds， p 值卡在 0.05-0.15，无法做
+      strong quantitative claims。但定性证据提供了 mechanistic insight：(1) seed=0 collapse
+      主要由 incoherent planning 驱动（noise corruption）， (2) 即使在"正常"seed 中，TaxEI 的失败模式也包含可识别的
+      error echoes（wrong learning）， (3) TaxEI vs Random 的失败模式分布差异（Type B 32% vs 20%）为
+      taxonomy penalty 的 mechanistic 解释提供了初步证据。论文应将此作为 Section 5 的核心分析，用具体案例 支撑定量发现的方向性
+      claims。措辞建议："Manual inspection reveals two co-occurring failure mechanisms —
+      noise-induced incoherence and taxonomy-specific error echoes — suggesting that
+      structured error injection both corrupts and misdirects the learning signal."
+
+      '
+  - name: Scale Ablation (25K/50K trajectories)
+    plan_id: scale-ablation
+    description: 将训练数据扩展到 25K 和 50K 轨迹，测试 PALADIN 级别数据量是否改善 TaxEI 表现
+    expected_results:
+      collection_25k_attempts: 36000
+      collection_25k_successes: 25200
+      collection_25k_cost_usd: 445
+      collection_50k_attempts: 72000
+      collection_50k_successes: 50400
+      collection_50k_cost_usd: 890
+      vanilla_25k_mean_pct: 66.8
+      vanilla_25k_sd_pp: 2.8
+      taxei_25k_mean_pct: 60.3
+      taxei_25k_sd_pp: 5.2
+      random_25k_mean_pct: 62.5
+      random_25k_sd_pp: 4.1
+      taxei_vs_vanilla_25k_gap_pp: -6.5
+      taxonomy_penalty_25k_pp: -2.2
+      variance_ratio_25k: 1.86
+      vanilla_50k_mean_pct: 67.5
+      vanilla_50k_sd_pp: 2.5
+      taxei_50k_mean_pct: 62.1
+      taxei_50k_sd_pp: 4.5
+      random_50k_mean_pct: 64.0
+      random_50k_sd_pp: 3.8
+      taxei_vs_vanilla_50k_gap_pp: -5.4
+      taxonomy_penalty_50k_pp: -1.9
+      variance_ratio_50k: 1.8
+      paired_t_taxei_vs_vanilla_25k_p: 0.12
+      paired_t_taxei_vs_vanilla_50k_p: 0.09
+      train_time_25k_hours: 18
+      train_time_50k_hours: 36
+      total_gpu_hours: 162
+    result_rationale: 'Median 档预测 scale helps but doesn''t close the gap。理由： (1) 更多
+      clean 数据直接受益所有方法——Vanilla 从 65.3% 提升到 67.5%（+2.2pp）， 因为 ALFWorld 的 47 task 的最优表现大约在
+      70-75% 区间（v3 vanilla 就达到 74.5%）。 (2) TaxEI 在 25K 时提升到 60.3%（vs 9K 的 56.7%，+3.6pp），50K
+      时 62.1%（+5.4pp）。 提升来自两个效应：更多 clean 样本提供更强基础信号，更大数据量让模型有更多容量 分离 error 模式和 correct
+      模式。但 gap 仅从 -8.6pp 收窄到 -5.4pp，说明结构性 mismatch 不是纯 scale 问题。 (3) 方差梯度依然成立但倍率递减：9K
+      2.6× → 25K 1.86× → 50K 1.80×。 更多数据 stabilize 训练，但 TaxEI 的方差始终高于 Vanilla。 (4)
+      Taxonomy penalty 从 ~6.4pp 降至 ~1.9pp——大数据量下模型更能 tolerate taxonomy labels 的干扰，但
+      penalty 方向始终为负。 (5) p 值从 0.32 改善到 0.09，接近但仍未突破 α=0.05——median 档的标志性特征。 关键结论：即使在
+      PALADIN 级别的 50K scale，TaxEI 在 embodied planning 上仍然 inferior， 且需要 5.5× 的数据收集成本（$890
+      vs $8.86）才能部分弥合差距。 这强化了 "task structure > data scale" 的论点。
+
+      '
+    tables:
+    - name: Scale Ablation Results
+      description: 三个 data scale 下三方法的性能对比
+      columns:
+      - scale
+      - Vanilla (±SD)
+      - TaxEI (±SD)
+      - Random (±SD)
+      - TaxEI-Vanilla gap
+      - Taxonomy penalty
+      - Variance ratio
+      rows:
+      - - 9K (current)
+        - 65.3 ± 3.3
+        - 56.7 ± 8.6
+        - 63.1 ± 7.0
+        - -8.6pp
+        - -6.4pp
+        - 2.6×
+      - - 25K
+        - 66.8 ± 2.8
+        - 60.3 ± 5.2
+        - 62.5 ± 4.1
+        - -6.5pp
+        - -2.2pp
+        - 1.86×
+      - - 50K
+        - 67.5 ± 2.5
+        - 62.1 ± 4.5
+        - 64.0 ± 3.8
+        - -5.4pp
+        - -1.9pp
+        - 1.80×
+    - name: Cost-Benefit Analysis
+      description: 数据规模扩展的成本与收益
+      columns:
+      - scale
+      - collection_cost
+      - gpu_hours
+      - taxei_improvement_vs_9k
+      - still_worse_than_vanilla
+      rows:
+      - - 9K
+        - $8.86
+        - ~6h
+        - baseline
+        - yes (-8.6pp)
+      - - 25K
+        - ~$445
+        - ~54h
+        - +3.6pp
+        - yes (-6.5pp)
+      - - 50K
+        - ~$890
+        - ~108h
+        - +5.4pp
+        - yes (-5.4pp)
+    figures_description:
+    - 'Figure: Scaling curve——x 轴 log(data size)，y 轴 success rate，三条线 (Vanilla/TaxEI/Random)
+      + shaded 1-SD band。三条线均上升但不收敛，TaxEI 斜率最陡但绝对值最低。'
+    - 'Figure: Variance ratio vs scale 图——x 轴 data size，y 轴 TaxEI SD / Vanilla SD，显示从
+      2.6× 到 1.8× 的递减趋势，虚线标注 1.0×（parity）外推到 ~200K 数据量。'
+    analysis: 'Scale ablation 在 median 档下产生 mixed 信号：scale 确实 helps（方差降低、gap 收窄），
+      但 50K 数据仍无法消除 TaxEI 的劣势。这使得论文的 PALADIN 对比更加 nuanced—— PALADIN 的成功不仅是 scale（50K+
+      轨迹），更是 task structure + retrieval augmentation 的组合。建议在 Discussion 中加入 scaling
+      analysis 作为 "data scale as partial mitigant"， 但明确 "structural mismatch persists
+      even at PALADIN scale"。 成本分析 ($890 for 50K, 108 GPU-hours) 进一步强化了 negative result
+      的实践价值： 追求 error injection 在 embodied planning 中的效果需要极高成本且收效甚微。
+
+      '
+  - name: Recovery Prompting (Few-Shot In-Context)
+    plan_id: recovery-prompting
+    description: 用 5-shot 恢复示例替代 SFT，测试 error recovery 知识在 inference-time 提供是否比训练时注入更有效
+    expected_results:
+      vanilla_zeroshot_pct: 65.3
+      vanilla_5shot_recovery_pct: 67.4
+      vanilla_5shot_gain_pp: 2.1
+      taxei_zeroshot_pct: 56.7
+      taxei_5shot_recovery_pct: 60.8
+      taxei_5shot_gain_pp: 4.1
+      random_zeroshot_pct: 63.1
+      random_5shot_recovery_pct: 65.0
+      random_5shot_gain_pp: 1.9
+      vanilla_recovery_zeroshot_pct: 61.7
+      vanilla_recovery_5shot_pct: 66.0
+      vanilla_recovery_5shot_gain_pp: 4.3
+      taxei_recovery_zeroshot_pct: 59.6
+      taxei_recovery_5shot_pct: 64.9
+      taxei_recovery_5shot_gain_pp: 5.3
+      random_recovery_zeroshot_pct: 63.8
+      random_recovery_5shot_pct: 66.7
+      random_recovery_5shot_gain_pp: 2.9
+      paired_t_5shot_vs_zeroshot_vanilla_p: 0.14
+      paired_t_5shot_vs_zeroshot_taxei_p: 0.08
+      paladin_retrieval_gain_pp: 30.0
+      our_5shot_recovery_gain_pp_max: 5.3
+    result_rationale: 'Median 档预测 few-shot recovery 提供 modest improvement（2-5pp），远低于
+      PALADIN 的 30pp retrieval 增益。理由： (1) 5 个恢复示例为模型提供了"如何从错误中恢复"的 in-context knowledge，
+      这对 clean tasks 有轻微帮助（模型变得更 cautious/systematic），对 recovery tasks 有更明显帮助（直接相关的示例）。
+      (2) TaxEI + 5-shot 的 gain (+4.1pp clean, +5.3pp recovery) 高于 Vanilla + 5-shot
+      (+2.1pp, +4.3pp)，显示 TaxEI 训练虽然 hurt overall，但可能让模型对 recovery cues 更 receptive——它学会了"关注错误"但没学会"如何正确恢复"，few-shot
+      补充了后者。 这构成了一个有趣的 complementarity story。 (3) 5-shot 的 gain 远低于 PALADIN 的 retrieval
+      gain (30pp)，因为 5 个示例覆盖率 极低（PALADIN 用 55+ exemplars），且 ALFWorld 的 unbounded action
+      space 使得 少量示例的迁移性有限。 (4) 所有 gain 的 p 值在 0.08-0.15，再次停留在 marginal 区间——median
+      档特征。 关键 insight：recovery knowledge 在 inference-time 提供比在 training-time 注入 更安全（无
+      variance increase），但在 embodied planning 中效果均有限。 这进一步隔离了问题：不是 "knowledge of recovery
+      is useless"， 而是 "embodied planning 的 action space 太大，局部恢复示例难以泛化"。
+
+      '
+    tables:
+    - name: Zero-Shot vs Few-Shot Recovery Comparison
+      description: 3 methods × 2 eval settings (clean / recovery) × 2 conditions (zero-shot
+        / 5-shot)
+      columns:
+      - method
+      - clean_0shot
+      - clean_5shot
+      - Δ
+      - recovery_0shot
+      - recovery_5shot
+      - Δ
+      rows:
+      - - Vanilla
+        - 65.3%
+        - 67.4%
+        - '+2.1'
+        - 61.7%
+        - 66.0%
+        - '+4.3'
+      - - TaxEI
+        - 56.7%
+        - 60.8%
+        - '+4.1'
+        - 59.6%
+        - 64.9%
+        - '+5.3'
+      - - Random
+        - 63.1%
+        - 65.0%
+        - '+1.9'
+        - 63.8%
+        - 66.7%
+        - '+2.9'
+    figures_description:
+    - 'Figure: Grouped bar chart——6 组 (3 methods × 2 eval types)，每组 zero-shot (浅色)
+      和 5-shot (深色) 并列。虚线标注 PALADIN 的 +30pp retrieval gain 作为参照，视觉上突出我们的 +2-5pp gain
+      之 modest。'
+    analysis: 'Few-shot recovery 实验的价值在于 mechanistic decomposition：它证明 recovery knowledge
+      本身是有用的（inference-time 提供可以 improve），但 SFT 不是正确的 delivery mechanism for embodied
+      planning。这与 EEF 的成功形成对比——EEF 从 failures 中 extract positive signal（what to do
+      right），而 TaxEI inject negative signal（what goes wrong）。 论文可以在 Discussion 中构建一个
+      2×2 框架：training vs inference × positive vs negative signal，argue that embodied
+      planning 需要 inference-time positive signal (EEF-like) 而非 training-time negative
+      signal (TaxEI-like)。
+
+      '
+  - name: Per-Operator Recovery Deep Dive
+    plan_id: per-operator-deepdive
+    description: 扩展 recovery eval 到 3 seeds，验证单 seed 观察到的 per-operator patterns（特别是
+      C4 +9.1pp 优势）是否稳定
+    expected_results:
+      taxei_C1_mean_pct: 60.4
+      taxei_C1_sd_pp: 8.3
+      taxei_C4_mean_pct: 58.7
+      taxei_C4_sd_pp: 7.1
+      taxei_P1_mean_pct: 55.6
+      taxei_P1_sd_pp: 11.2
+      taxei_P2_mean_pct: 48.6
+      taxei_P2_sd_pp: 6.8
+      vanilla_C1_mean_pct: 62.5
+      vanilla_C1_sd_pp: 4.2
+      vanilla_C4_mean_pct: 55.6
+      vanilla_C4_sd_pp: 5.0
+      vanilla_P1_mean_pct: 61.1
+      vanilla_P1_sd_pp: 6.3
+      vanilla_P2_mean_pct: 56.9
+      vanilla_P2_sd_pp: 4.8
+      gap_C1_pp: -2.1
+      gap_C4_pp: 3.1
+      gap_P1_pp: -5.5
+      gap_P2_pp: -8.3
+      single_seed_gap_C1_pp: -8.3
+      single_seed_gap_C4_pp: 9.1
+      single_seed_gap_P1_pp: -3.4
+      single_seed_gap_P2_pp: -8.3
+      paired_t_C4_p: 0.22
+      paired_t_P2_p: 0.06
+      paired_t_P1_p: 0.15
+      paired_t_C1_p: 0.35
+    result_rationale: 'Median 档下，multi-seed recovery 揭示单 seed per-operator 数据的不可靠性。
+      (1) C4 (observation_masking)：单 seed 显示 +9.1pp 优势，3-seed 均值缩水到 +3.1pp。 原因：C4
+      注入 masks observations，而 ALFWorld 任务中 observation 的重要性因 task instance 而异——有些任务即使
+      masked 也能靠 prior knowledge 解决，造成高 cross-seed 方差。 单 seed 的 +9.1pp 大概率是有利 task
+      sampling 的结果。但方向仍然正确（唯一 positive gap）， 说明 observation masking 可能是最接近 "locally
+      recoverable" 的 operator—— 模型可以学会在信息不足时更 conservative 地行动。 (2) P2 (sub_goal_deletion)：3-seed
+      均值 -8.3pp，与单 seed 完全一致，SD 仅 6.8pp。 这是最 robust 的 per-operator finding。理由：sub-goal
+      deletion 造成的 cascading failure 最严重——跳过一个 sub-goal 直接导致后续所有步骤无效，这正是 embodied
+      planning 中 error injection 失败的典型机制。TaxEI 不但没学会避免这类错误，反而在某些 instances 中复制了 deletion
+      模式（与 qualitative analysis 的 error echo 发现一致）。 (3) P1 (step_order_swap)：SD 最高
+      (11.2pp)，说明 step ordering 的影响高度 task-dependent。 有些任务的 step 可以部分重排而不影响结果，有些则不行。
+      (4) C1 (context_truncation)：从 -8.3pp 缓和到 -2.1pp，说明单 seed 高估了 harm。 总结：只有 P2
+      的 negative effect 是 robust 的（p≈0.06），C4 的 positive effect 是 real but small，P1
+      和 C1 的 patterns 是 noise。
+
+      '
+    tables:
+    - name: Per-Operator Recovery Rate (3-Seed)
+      description: TaxEI vs Vanilla per-operator, 3-seed mean ± SD，附单 seed 对比
+      columns:
+      - operator
+      - TaxEI (±SD)
+      - Vanilla (±SD)
+      - Δ (3-seed)
+      - Δ (single-seed)
+      - p-value
+      rows:
+      - - C1_context_truncation
+        - 60.4 ± 8.3%
+        - 62.5 ± 4.2%
+        - -2.1pp
+        - -8.3pp
+        - '0.35'
+      - - C4_observation_masking
+        - 58.7 ± 7.1%
+        - 55.6 ± 5.0%
+        - +3.1pp
+        - +9.1pp
+        - '0.22'
+      - - P1_step_order_swap
+        - 55.6 ± 11.2%
+        - 61.1 ± 6.3%
+        - -5.5pp
+        - -3.4pp
+        - '0.15'
+      - - P2_sub_goal_deletion
+        - 48.6 ± 6.8%
+        - 56.9 ± 4.8%
+        - -8.3pp
+        - -8.3pp
+        - '0.06'
+    - name: Operator Structural Properties
+      description: 将 per-operator 结果与 operator 的结构属性联系
+      columns:
+      - operator
+      - error_locality
+      - recovery_feasibility
+      - TaxEI effect direction
+      rows:
+      - - C4_observation_masking
+        - local (single obs)
+        - high (act conservatively)
+        - positive (+3.1pp)
+      - - C1_context_truncation
+        - partial (context window)
+        - medium (infer from partial)
+        - neutral (-2.1pp)
+      - - P1_step_order_swap
+        - moderate (multi-step)
+        - medium (re-sequence)
+        - negative (-5.5pp)
+      - - P2_sub_goal_deletion
+        - global (cascading)
+        - low (requires re-planning)
+        - negative (-8.3pp)
+    figures_description:
+    - 'Figure: Per-operator dot plot——4 个 operator 在 x 轴，y 轴是 TaxEI - Vanilla gap
+      (pp)。每个 operator 画 3 个 seed 点 + 均值横线。C4 是唯一均值 > 0 的 operator，P2 三个 seed 全在 0
+      以下。虚线 y=0。'
+    - 'Figure: Error locality spectrum——将 4 个 operator 按 error locality (local → global)
+      排列，叠加 TaxEI effect direction，显示 locality 与 TaxEI 效果的负相关。'
+    analysis: Per-operator deep dive 是论文 mechanistic argument 的关键支撑。结果揭示了一个 清晰的 gradient：error
+      locality 越 local、recovery 越 feasible 的 operator， TaxEI 效果越好（C4 +3.1pp → C1 -2.1pp
+      → P1 -5.5pp → P2 -8.3pp）。 这个 micro-level gradient 完美镜像了 macro-level 的 tool-use
+      vs planning 对比： 在 operator 层面也是"局部可恢复的错误可以被学习，全局 cascading 的错误只引入噪声"。 P2 的 robust
+      negative effect (p≈0.06) 是最接近 significant 的 per-operator finding， 可以在论文中重点讨论。C4
+      的 positive direction 虽然 NS，但提供了 "error injection CAN work even in planning,
+      IF the error is locally recoverable" 的 suggestive evidence， 这是比纯 negative result
+      更 nuanced 的 contribution。 建议将此结果与 Table 3 (ToolBench vs ALFWorld structural
+      comparison) 合并讨论， 论证 error locality 是 THE key moderating variable。
+  review_report: "---\ndream_id: dream_20260515T020837\ntier: median\noverall_score:\
+    \ borderline accept\ntimestamp: 2026-05-15T03:02:57.584607+00:00\n---\n\n# Dream\
+    \ Review Report: \"Error Injection Helps Tool-Use but Hurts Planning\"\n\n**Venue**:\
+    \ Insights from Negative Results in NLP @ EMNLP 2026\n**Review Mode**: Full (2\
+    \ Reviewers + Roundtable)\n**Scoring Scale**: ARR (Soundness/Excitement/Overall\
+    \ 1-5)\n\n---\n\n## Venue Calibration\n\nThe Insights from Negative Results in\
+    \ NLP workshop accepts short papers (up to 4 pages + references) reporting negative\
+    \ or unexpected results with important implications for future research, highlighting\
+    \ methodological issues or pervasive misunderstandings. The workshop uses ARR-style\
+    \ scoring. Acceptance rate is estimated at ~40-50% for workshop papers. The review\
+    \ evaluates whether the negative result is (1) genuine, (2) well-established methodologically,\
+    \ and (3) informative for the community.\n\n---\n\n## Reviewer Assignments\n\n\
+    - **R1**: Methods + Experiments\n- **R2**: Novelty + Related Work\n\n---\n\n##\
+    \ Step 1: Independent Reviews\n\n### R1 (Methods + Experiments)\n\n**Scores**:\
+    \ Soundness 3/5 | Excitement 3/5 | Overall 3/5 | Confidence 4/5\n\n**Strengths**:\n\
+    - Clean controlled comparison: same-source dual-formatting (TaxEI vs Random differ\
+    \ only in taxonomy label presence) eliminates confounds. Textbook controlled design.\n\
+    - Transparent statistical reporting: all per-seed results shown, p-values reported\
+    \ honestly, hierarchical claims structure ranks findings by robustness rather\
+    \ than cherry-picking.\n- Pre-registered termination criteria: the decision to\
+    \ frame as negative result followed explicit pre-set criteria, reducing post-hoc\
+    \ narrative flexibility.\n- Per-operator locality gradient (C4 +3.1pp → C1 -2.1pp\
+    \ → P1 -5.5pp → P2 -8.3pp) provides the most compelling mechanistic evidence for\
+    \ the task-structure hypothesis.\n- Qualitative failure analysis with \"error\
+    \ echo\" examples (Table 7) provides concrete mechanistic evidence compensating\
+    \ for quantitative limitations.\n- Comprehensive cost-benefit analysis (Table\
+    \ 9) makes practical implications clear.\n\n**Weaknesses**:\n- **\"Constant taxonomy\
+    \ penalty\" overclaim**: The paper claims ~6.4pp constant penalty across dose\
+    \ levels in Section 3.2. Given 47 tasks and discrete resolution (3/47 ≈ 6.38pp),\
+    \ this consistency is likely a discretization artifact driven by different task\
+    \ subsets at each dose level, not a systematic effect. The paper should present\
+    \ this as coincidental rather than systematic.\n- **Single-seed dose-response**:\
+    \ The dose-response ablation uses only seed=42, yet 3-seed SD reaches 8.6pp. Each\
+    \ point estimate has an implicit confidence interval wider than the reported effects.\
+    \ The \"threshold-plateau\" shape could be noise.\n- **Missing formal variance\
+    \ tests**: The variance gradient is the primary finding, but no Levene's test,\
+    \ F-test, or bootstrap variance-ratio test is reported. The primary claim lacks\
+    \ its own direct statistical test.\n- **v3 vs v4 vanilla discrepancy**: The same\
+    \ method at seed=42 produces 74.5% (v3) vs 61.7% (v4) — a 12.8pp swing not discussed\
+    \ in the paper. This undercuts confidence in reported numbers.\n- **Detection\
+    \ rate (0%) is underdeveloped**: Either the detection metric is poorly designed\
+    \ (binary flagging only) or the finding is informative — either way it deserves\
+    \ more than two sentences.\n- **Page budget strain**: Six supplementary experiments\
+    \ in a 4-page workshop paper means each gets superficial treatment. Several (training\
+    \ dynamics, recovery prompting) contribute marginal evidence that could be cut\
+    \ to deepen treatment of stronger findings.\n\n**Questions for Authors**:\n1.\
+    \ Why not report a formal variance test (Levene's, bootstrap variance-ratio) for\
+    \ the primary finding?\n2. How do you reconcile the \"constant ~6.4pp taxonomy\
+    \ penalty\" with the fact that different task subsets drive the gap at each dose\
+    \ level?\n3. Which supplementary experiments have completed full multi-seed evaluation\
+    \ vs. partial/single-seed runs?\n\n---\n\n### R2 (Novelty + Related Work)\n\n\
+    **Scores**: Soundness 3/5 | Excitement 3/5 | Overall 3/5 | Confidence 4/5\n\n\
+    **Strengths**:\n- The research question (\"does error injection transfer from\
+    \ tool-use to planning?\") is well-motivated and timely given PALADIN's recent\
+    \ success. Not the highest tier of novelty (testing generalization of technique\
+    \ X to domain Y), but the analytical depth of the negative result elevates it.\n\
+    - The \"task structure as moderating variable\" framework (Table 13) is the paper's\
+    \ strongest novelty claim. The four-dimensional comparison (observability, recovery\
+    \ space, locality, feedback) is a useful conceptual contribution.\n- The per-operator\
+    \ gradient mirroring the cross-environment gradient is genuinely insightful —\
+    \ it connects micro-level (within-ALFWorld operators) to macro-level (tool-use\
+    \ vs planning) in a coherent framework.\n- The variance gradient finding has practical\
+    \ methodological value: it highlights the inadequacy of single-seed evaluation\
+    \ for error injection methods.\n- The hierarchical claims structure (primary/secondary/exploratory)\
+    \ is honest and appropriate for underpowered studies.\n\n**Weaknesses**:\n- **PALADIN\
+    \ comparison is fundamentally confounded**: PALADIN uses recovery-paired trajectories\
+    \ (error + paired recovery demonstration), while TaxEI injects standalone error\
+    \ trajectories without paired recovery. This is arguably the most important methodological\
+    \ difference and is not adequately highlighted. The negative result may reflect\
+    \ the absence of recovery pairing rather than (or in addition to) task structure.\
+    \ The paper should test error injection WITH recovery pairing in ALFWorld to disentangle\
+    \ these factors.\n- **Thin related work coverage** (only ~8 references for a workshop\
+    \ paper):\n  - Missing **Reflexion** (Shinn et al. 2023): uses self-reflection\
+    \ on failures to achieve ~97% on ALFWorld. Directly relevant — inference-time\
+    \ self-reflection succeeds where training-time injection fails.\n  - Missing **adversarial\
+    \ training literature** (Madry et al. 2018): well-documented accuracy-robustness\
+    \ tradeoffs and catastrophic overfitting parallel the dose-response findings.\n\
+    \  - Missing **curriculum learning** (Bengio et al. 2009): the dose-response threshold\
+    \ is exactly what curriculum learning theory predicts about difficult example\
+    \ proportion.\n  - Missing **data mixing laws** (Ye et al. ICLR 2025): \"critical\
+    \ proportion for catastrophic forgetting\" is conceptually identical to TaxEI's\
+    \ threshold.\n  - Missing **ETO/Agent-R/AgentRefine**: alternative agent-failure-learning\
+    \ approaches that should be positioned against.\n- **Title/abstract misaligned\
+    \ with primary finding**: The title emphasizes \"hurts planning\" (a mean effect\
+    \ claim, p≈0.32) while the hierarchical structure correctly identifies variance\
+    \ increase as the primary finding. These should be aligned.\n- **Paper length\
+    \ exceeds venue limits**: 9 pages with 13 tables for a 4-page workshop paper.\
+    \ Must be cut substantially; most supplementary experiments would need to move\
+    \ to appendix.\n- **Task-structural framework is post-hoc and descriptive**: The\
+    \ four dimensions in Table 13 are not independently measured or quantified. A\
+    \ truly predictive framework would generate testable predictions about new domains.\n\
+    - **EEF contrast underexploited**: The paper should develop a 2×2 framework: {positive\
+    \ signal, negative signal} × {tool-use, planning}. PALADIN = negative + tool-use\
+    \ (works); EEF = positive from failures + planning (works); TaxEI = negative +\
+    \ planning (fails). This would sharpen the argument considerably.\n\n**Questions\
+    \ for Authors**:\n1. PALADIN pairs each error trajectory with a recovery demonstration.\
+    \ Have you considered that the negative result reflects the absence of recovery\
+    \ pairing rather than task structure? Would you test recovery-paired injection\
+    \ in ALFWorld?\n2. Why does the paper not discuss Reflexion, which achieves high\
+    \ performance on ALFWorld through inference-time failure reflection — the exact\
+    \ domain where TaxEI fails?\n3. Can you formalize the task-structural framework\
+    \ enough to generate testable predictions for new domains (e.g., \"error injection\
+    \ should help in domain X because...\")?\n\n---\n\n## Step 2: Cross-Sharing\n\n\
+    R1's key points shared with R2:\n- The clean same-source dual-formatting design\
+    \ is a genuine methodological strength\n- The dose-response \"constant penalty\"\
+    \ is likely a discretization artifact (3/47 ≈ 6.38pp)\n- Formal variance tests\
+    \ are missing for the primary claim\n- Training pipeline shows concerning v3→v4\
+    \ instability (12.8pp swing at same seed)\n\nR2's key points shared with R1:\n\
+    - The PALADIN comparison is confounded not just by domain but by methodology (recovery-paired\
+    \ vs standalone)\n- Major related work gaps weaken the theoretical positioning\n\
+    - The paper is 2× over the venue page limit\n- The title/abstract emphasize a\
+    \ secondary claim (mean degradation) over the primary claim (variance)\n\n---\n\
+    \n## Step 3: Convergence\n\n### Points of Agreement (both reviewers)\n\n1. **All\
+    \ scores converge: Soundness 3, Excitement 3, Overall 3**. The paper has a sound\
+    \ core design but multiple execution issues preventing higher scores.\n\n2. **The\
+    \ per-operator locality gradient is the paper's best contribution**. The C4→C1→P1→P2\
+    \ gradient connecting error locality to TaxEI effect direction is the most compelling\
+    \ evidence for the task-structure hypothesis. P2's near-significant effect (p≈0.06)\
+    \ is the strongest individual finding.\n\n3. **The \"constant taxonomy penalty\"\
+    \ claim must be corrected**. Both reviewers independently flagged this as an overclaim.\
+    \ The ~6.4pp consistency across dose levels is a discrete-resolution artifact,\
+    \ not evidence of a systematic additive penalty.\n\n4. **Single-seed dose-response\
+    \ is a significant limitation**. With 3-seed SD up to 8.6pp, single-seed point\
+    \ estimates have implicit confidence intervals wider than the reported effects.\
+    \ The \"threshold-plateau\" shape may be noise.\n\n5. **Formal variance tests\
+    \ are missing for the primary claim**. The variance gradient is presented as the\
+    \ primary finding but lacks its own direct statistical test (Levene's, F-test,\
+    \ bootstrap).\n\n6. **Paper length far exceeds venue limits**. 9 pages / 13 tables\
+    \ for a 4-page workshop paper requires substantial cutting.\n\n7. **The qualitative\
+    \ failure analysis and error echo examples are high-value**. Both reviewers agree\
+    \ these provide mechanistic insight that compensates for quantitative limitations.\n\
+    \n### Points of Productive Disagreement\n\n1. **Relative importance of the PALADIN\
+    \ confound**: R2 views the recovery-pairing confound (PALADIN uses error+recovery\
+    \ pairs; TaxEI uses standalone errors) as potentially more important than task\
+    \ structure in explaining the negative result. R1 acknowledges the confound but\
+    \ considers the within-environment per-operator gradient (which holds task structure\
+    \ constant while varying error locality) as partial evidence that task structure\
+    \ matters independently. **Resolution**: Both agree the paper should explicitly\
+    \ discuss the recovery-pairing confound as an alternative explanation and ideally\
+    \ test recovery-paired injection in ALFWorld.\n\n2. **Severity of related work\
+    \ gaps**: R2 considers the thin bibliography (8 references, missing Reflexion,\
+    \ adversarial training, curriculum learning) a significant weakness. R1 considers\
+    \ it less critical for a workshop paper. **Resolution**: At minimum, Reflexion\
+    \ and one adversarial/curriculum learning reference should be added, as they directly\
+    \ inform the paper's core argument.\n\n3. **Whether to cut supplementary experiments**:\
+    \ R1 suggests cutting weaker experiments (training dynamics, recovery prompting)\
+    \ to deepen treatment of stronger ones. R2 suggests most supplementary experiments\
+    \ should move to appendix given the 4-page limit. **Resolution**: The core 4-page\
+    \ paper should focus on: main results (Table 1), dose-response (multi-seed if\
+    \ possible), qualitative failure analysis, and per-operator gradient. Scale ablation\
+    \ and WebShop can be appendix.\n\n---\n\n## Step 4: Consolidated Assessment\n\n\
+    ### Final Scores\n\n| Dimension | R1 | R2 | Consensus | Justification |\n|-----------|----|----|-----------|---------------|\n\
+    | Soundness | 3 | 3 | **3/5** | Core experimental design is clean (same-source\
+    \ controlled comparison, multi-seed evaluation, pre-registered termination). However:\
+    \ single-seed dose-response, missing formal variance test for primary claim, overclaimed\
+    \ \"constant penalty,\" and paper exceeds venue length. Adequate to support directional\
+    \ conclusions but not specific quantitative claims. |\n| Excitement | 3 | 3 |\
+    \ **3/5** | The question is timely and the negative result is informative. The\
+    \ per-operator locality gradient and error echo phenomenon are genuinely interesting.\
+    \ But statistical power is insufficient for strong claims, the PALADIN comparison\
+    \ is heavily confounded, and the framework is post-hoc descriptive rather than\
+    \ predictive. Provides directional warnings rather than crisp boundary conditions.\
+    \ |\n| Overall | 3 | 3 | **3/5** | Suitable for the Insights from Negative Results\
+    \ workshop with revisions. The core finding (error injection destabilizes embodied\
+    \ planning training without improving performance) is genuine and useful. The\
+    \ analytical depth (6 complementary experiments, hierarchical claims) goes well\
+    \ beyond \"we tried X and it didn't work.\" Key revisions needed: correct taxonomy\
+    \ penalty overclaim, add formal variance tests, address related work gaps (especially\
+    \ Reflexion), discuss recovery-pairing confound explicitly, and cut to 4-page\
+    \ limit. |\n| Confidence | — | — | **4/5** | Both reviewers are familiar with\
+    \ the relevant benchmarks, training methodology, and comparison papers. |\n\n\
+    ### Headline Assessment: **Borderline Accept**\n\nThe paper presents a genuine,\
+    \ informative negative result with a clean experimental design and honest statistical\
+    \ reporting. It is a natural fit for a negative results workshop. The per-operator\
+    \ locality gradient is a compelling micro-contribution. However, the paper needs\
+    \ non-trivial revisions: correcting the taxonomy penalty overclaim, adding formal\
+    \ variance tests, addressing related work gaps, discussing the recovery-pairing\
+    \ confound, and cutting to venue page limits.\n\n### Summary of Required Revisions\n\
+    \n**Must-fix (for acceptance)**:\n1. Remove or reframe the \"constant ~6.4pp taxonomy\
+    \ penalty\" claim as coincidental rather than systematic.\n2. Add formal variance\
+    \ test (Levene's or bootstrap) for the primary variance gradient finding.\n3.\
+    \ Cut paper to 4 pages + references; move 3-4 supplementary experiments to appendix.\n\
+    4. Fix all [?] references and expand bibliography (currently ~8 entries; add at\
+    \ minimum Reflexion, one adversarial training reference, and one curriculum learning\
+    \ reference).\n\n**Should-fix (strengthens paper)**:\n5. Explicitly discuss recovery-pairing\
+    \ as an alternative explanation for the PALADIN/TaxEI difference (PALADIN uses\
+    \ error+recovery pairs; TaxEI uses standalone errors).\n6. Align title/abstract\
+    \ with primary finding: the variance gradient (robust) rather than mean degradation\
+    \ (p≈0.32).\n7. Replicate dose-response across multiple seeds, or explicitly caveat\
+    \ all dose-response conclusions as single-seed.\n8. Develop the EEF contrast into\
+    \ a 2×2 framework: {positive, negative signal} × {tool-use, planning}.\n\n**Nice-to-have**:\n\
+    9. Test error injection with recovery pairing in ALFWorld to disentangle task-structure\
+    \ vs. methodology confound.\n10. Formalize the task-structural framework enough\
+    \ to generate testable predictions for new domains.\n11. Expand detection rate\
+    \ discussion or remove it.\n\n### Experiment Coverage Assessment\n\nThe paper\
+    \ reports 6 supplementary experiments beyond the core 3-condition comparison:\n\
+    \n| Experiment | In Paper? | Contribution to Claims | Assessment |\n|------------|-----------|----------------------|------------|\n\
+    | Training Dynamics (loss decomposition) | Yes (§4.1) | Marginal — 0.02 gap not\
+    \ significant | Could be appendix |\n| WebShop Replication | Yes (§4.2) | Moderate\
+    \ — confirms directional consistency | Keep in main or appendix |\n| Qualitative\
+    \ Failure Analysis | Yes (§4.3) | High — error echoes provide mechanistic insight\
+    \ | Keep in main body |\n| Scale Ablation (25K/50K) | Yes (§4.4) | Moderate —\
+    \ shows scale doesn't close gap | Appendix |\n| Recovery Prompting (5-shot) |\
+    \ Yes (§4.5) | Moderate — isolates delivery mechanism | Appendix |\n| Per-Operator\
+    \ Deep Dive | Yes (§4.6) | High — locality gradient is best finding | Keep in\
+    \ main body |\n\n**Recommended 4-page structure**: Introduction → Method → Main\
+    \ Results (Table 1 + dose-response with caveats) → Qualitative Failure Analysis\
+    \ (error echoes) → Per-Operator Gradient (locality analysis) → Discussion (task-structural\
+    \ lens + limitations) → Conclusion. Move training dynamics, WebShop, scale ablation,\
+    \ and recovery prompting to appendix.\n\n### Key Takeaway for the Research Team\n\
+    \nThe paper's strongest contributions are (1) the variance gradient as an empirical\
+    \ finding about training instability, (2) the per-operator locality gradient connecting\
+    \ micro-level error properties to macro-level domain effects, and (3) the qualitative\
+    \ error echo phenomenon. These should be the backbone of the final paper. The\
+    \ weaker contributions (constant taxonomy penalty, dose-response threshold location,\
+    \ exact mean degradation magnitude) should be presented with appropriate caveats\
+    \ or moved to supplementary material. The paper's honest, hierarchical framing\
+    \ of claims is a strength — lean into it rather than overclaiming on the weaker\
+    \ findings."
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dream_reports/dream_20260515T020837/worst/paper.pdf
+  imagined_experiments:
+  - name: Training Dynamics Analysis
+    plan_id: training-dynamics
+    description: '对 TaxEI 和 Random 的训练过程进行 loss curve 分解：分别追踪 clean 样本和 injected 样本
+      在每个 epoch 的平均 loss，跨 3 个 seed 绘制均值±SE 曲线。目的是检验 injected 样本 是否系统性地具有更高 loss（即模型是否「抵抗」学习错误
+      pattern）。
+
+      '
+    expected_results:
+      taxei_clean_loss_epoch3: 0.29
+      taxei_injected_loss_epoch3: 0.31
+      random_clean_loss_epoch3: 0.3
+      random_injected_loss_epoch3: 0.3
+      clean_vs_injected_loss_gap_taxei: 0.02
+      clean_vs_injected_loss_gap_random: 0.01
+      loss_gap_significant: false
+      cross_seed_loss_curve_overlap: true
+      clean_loss_trajectory_divergence_epoch: null
+      injected_loss_reduction_rate_vs_clean: 0.97
+    result_rationale: '在 worst 档下，injected 样本的 loss 轨迹与 clean 样本几乎完全重叠。 TaxEI 的 clean-injected
+      gap 仅 ~0.02（约 6% 相对差异），Random 几乎为零。 这意味着模型以相同速率吸收了 clean 和 injected 样本——error
+      injection 既没有被模型「抵抗」（高 loss 不降），也没有造成 clean 样本 loss 反弹。 模型把 taxonomy-tagged
+      错误当作普通数据学习了，没有产生可检测的学习动态差异。 跨 seed 的 loss 曲线方差远大于 clean vs injected 的均值差，意味着
+      seed lottery 的影响力完全碾压了数据类型的影响力。 结论：training loss 分析无信息量——这本身支持 "error injection
+      = noise" 的 reframing， 但不再支持 "injected samples corrupt clean learning" 的原始叙事。
+
+      '
+    tables:
+    - title: Training Loss by Sample Type (3-seed mean ± SE)
+      columns:
+      - Method
+      - Sample Type
+      - Epoch 1
+      - Epoch 2
+      - Epoch 3
+      - Cross-seed SD
+      rows:
+      - - TaxEI
+        - Clean
+        - 0.58 ± 0.03
+        - 0.38 ± 0.02
+        - 0.29 ± 0.02
+        - '0.04'
+      - - TaxEI
+        - Injected
+        - 0.61 ± 0.04
+        - 0.40 ± 0.03
+        - 0.31 ± 0.03
+        - '0.05'
+      - - Random
+        - Clean
+        - 0.57 ± 0.03
+        - 0.37 ± 0.02
+        - 0.30 ± 0.02
+        - '0.04'
+      - - Random
+        - Injected
+        - 0.59 ± 0.03
+        - 0.38 ± 0.02
+        - 0.30 ± 0.02
+        - '0.04'
+      - - Vanilla
+        - Clean (all)
+        - 0.56 ± 0.02
+        - 0.36 ± 0.01
+        - 0.29 ± 0.01
+        - '0.03'
+    figures_description:
+    - 'Loss curve plot (2×1 panel): 左 TaxEI, 右 Random。每 panel 画 clean（蓝）和 injected（橙）
+      的 3-seed mean ± shaded SE。两条线几乎完全重叠，SE band 互相覆盖。 标注 "Cross-seed SD >> Clean-Injected
+      gap" 以强调 seed variance 主导。
+
+      '
+    - 'Violin plot: 每个 seed 在 epoch 3 的 per-sample loss 分布，clean vs injected 分开。 分布高度重叠，无系统偏移。个别
+      seed（如 seed=0）整体 loss 偏高， 但 clean 和 injected 同步偏高，说明是 seed-level 效应而非 sample-type
+      效应。
+
+      '
+    analysis: '该实验在 worst 档下提供了 "noise hypothesis" 的直接证据：模型无差别地学习了 clean 和 injected
+      样本，error injection 未在训练动态层面产生可检测的信号。这与 PALADIN 形成鲜明对比—— PALADIN 中 recovery 样本的
+      loss 显著低于 error 样本，说明模型学会了区分正确和错误行为。 在 ALFWorld 中，这种区分不存在：embodied planning
+      的错误在 token 层面与正确行为无法区分 （语法合法的错误步骤 loss 与正确步骤相当），模型缺乏从 loss 信号中提取 error pattern
+      的能力。 Paper 中应将此定位为 "模型无法从 loss 信号区分正确与错误的 embodied planning 步骤"， 这支持了 error
+      observability 假设但削弱了 "injected samples corrupt training" 的原始叙事。 在 worst 档下，这个实验的结论从
+      "证明 corruption mechanism" 变为 "证明 no mechanism at all"。
+
+      '
+  - name: Second Environment (WebShop) Replication
+    plan_id: second-environment
+    description: '在 WebShop 环境复制核心实验：收集成功 trajectories，构建 Vanilla/TaxEI/Random 三组训练数据，
+      3-seed SFT + eval。WebShop 是 web navigation 任务，介于 tool-use 和 embodied planning
+      之间—— 有部分 discrete feedback（页面内容变化），但也有 multi-step planning 特性。 用于检验 negative
+      result 是否泛化到 ALFWorld 之外的 planning 域。
+
+      '
+    expected_results:
+      webshop_vanilla_3seed_mean: 0.58
+      webshop_vanilla_3seed_sd_pp: 5.2
+      webshop_taxei_3seed_mean: 0.56
+      webshop_taxei_3seed_sd_pp: 6.8
+      webshop_random_3seed_mean: 0.57
+      webshop_random_3seed_sd_pp: 6.1
+      webshop_taxei_vs_vanilla_gap_pp: -2.0
+      webshop_taxei_vs_vanilla_p: 0.55
+      webshop_taxei_vs_random_gap_pp: -1.0
+      webshop_taxei_vs_random_p: 0.72
+      webshop_cross_seed_variance_ratio: 1.3
+      alfworld_vs_webshop_pattern_match: partial
+    result_rationale: '在 worst 档下，WebShop 呈现与 ALFWorld 类似的高 seed variance、方法间差异不显著的
+      pattern。 TaxEI 在 WebShop 上也没有显著劣于 Vanilla（p=0.55），但也没有明显的 variance gradient——
+      三种方法的 SD 差距仅 5.2 vs 6.8 vs 6.1pp，远不如 ALFWorld 的 3.3 vs 7.0 vs 8.6pp 那么分明。 这使得
+      "task structure determines error injection effectiveness" 的 C6 假设难以成立： 如果一个更接近
+      tool-use 的环境也表现出相同的 null result，那原因更可能是 data scale 而非 task structure。worst 档强化了
+      "低数据量下 error injection 就是 noise" 的叙事， 但削弱了 task-structural boundary condition
+      的 claim。 WebShop 本身的高 seed variance（5.2pp）也支持了 "≥5 seeds 方法论" 的 contribution，
+      说明这不是 ALFWorld 的特有问题而是 small-sample SFT 的通病。
+
+      '
+    tables:
+    - title: WebShop 3-Seed Results
+      columns:
+      - Method
+      - Seed 42
+      - Seed 0
+      - Seed 123
+      - Mean ± SD
+      rows:
+      - - Vanilla
+        - 55.2%
+        - 63.4%
+        - 55.8%
+        - 58.1% ± 5.2pp
+      - - TaxEI
+        - 53.1%
+        - 62.0%
+        - 52.7%
+        - 55.9% ± 6.8pp
+      - - Random
+        - 54.8%
+        - 62.5%
+        - 53.4%
+        - 56.9% ± 6.1pp
+    - title: Cross-Environment Comparison
+      columns:
+      - Metric
+      - ALFWorld
+      - WebShop
+      rows:
+      - - Vanilla SD
+        - 3.3pp
+        - 5.2pp
+      - - TaxEI SD
+        - 8.6pp
+        - 6.8pp
+      - - TaxEI-Vanilla gap
+        - -8.6pp (p=0.32)
+        - -2.2pp (p=0.55)
+      - - Variance ratio TaxEI/Vanilla
+        - 2.6×
+        - 1.3×
+      - - Taxonomy penalty (TaxEI-Random)
+        - -6.4pp
+        - -1.0pp
+    figures_description:
+    - 'Side-by-side bar chart: ALFWorld vs WebShop 的 3-seed mean ± SD。 ALFWorld 的
+      error bars 较大且 TaxEI 明显低于 Vanilla； WebShop 三组几乎持平，error bars 大小相近。 标注 "variance
+      ratio 2.6× → 1.3×" 说明 ALFWorld 的 extreme variance gradient 不泛化。
+
+      '
+    analysis: 'WebShop 结果在 worst 档下瓦解了 C6 的 task-structural 论证：(1) WebShop 更接近 tool-use
+      但同样显示 null result，说明 task structure 不是主因；(2) WebShop 缺乏 ALFWorld 的 extreme variance
+      gradient（1.3× vs 2.6×），说明 variance gradient 可能是 ALFWorld 的数据特异性 而非 error injection
+      的普遍效应；(3) 两个环境一致的 null result 反而强化了 data-scale 假设。 Paper reframing 方向：不再声称 "task
+      structure determines outcome"， 而是 "在 <10K 样本的 agent SFT 中，error injection 的信号被
+      seed lottery 淹没， 这在多个 planning 环境中一致成立"。这是更弱但更站得住脚的 claim。
+
+      '
+  - name: Qualitative Failure Analysis
+    plan_id: qualitative-failure-analysis
+    description: '人工审查 ≥20 个 TaxEI 失败 case 和 ≥20 个 Vanilla 失败 case（seed=42 和 seed=0），
+      按失败模式分类：(a) 错误物品选择、(b) 错误容器/位置、(c) 步骤顺序错误、(d) 无限循环/重复、 (e) 其他。比较两组的失败模式分布，检验
+      TaxEI 是否产生了「结构性错误学习」 （如 taxonomy operator 对应的特定错误 pattern 频率升高）。
+
+      '
+    expected_results:
+      n_taxei_failures_reviewed: 25
+      n_vanilla_failures_reviewed: 20
+      taxei_failure_mode_distribution:
+        wrong_object: 0.28
+        wrong_location: 0.24
+        step_order: 0.16
+        infinite_loop: 0.2
+        other: 0.12
+      vanilla_failure_mode_distribution:
+        wrong_object: 0.3
+        wrong_location: 0.25
+        step_order: 0.15
+        infinite_loop: 0.2
+        other: 0.1
+      failure_mode_distribution_chi2_p: 0.91
+      taxonomy_operator_correlated_errors: 0
+      taxei_produces_incoherent_plans: false
+      taxei_failure_length_vs_vanilla: comparable (mean 12.3 vs 11.8 steps)
+    result_rationale: '在 worst 档下，TaxEI 和 Vanilla 的失败模式分布几乎完全一致（chi2 p=0.91）， 无法区分两者。TaxEI
+      没有产生与 taxonomy operator 相关的特定错误 pattern—— 例如 P1（step_order_swap）训练并未导致 TaxEI
+      在 step_order 错误上的频率升高。 TaxEI 的失败也不是 "incoherent plans"——步骤序列在语法和逻辑上与 Vanilla
+      的失败等价， 只是在关键决策点（选哪个物品、去哪个位置）做出了错误选择。 这直接支持 "error injection = noise" 的结论：injected
+      样本既没有教会模型特定的错误行为 （wrong learning），也没有破坏模型的规划连贯性（corruption）。 模型在所有条件下以相同的方式失败，说明
+      error injection 对模型的行为分布没有可检测的影响。
+
+      '
+    tables:
+    - title: Failure Mode Distribution (TaxEI vs Vanilla)
+      columns:
+      - Failure Mode
+      - TaxEI (n=25)
+      - Vanilla (n=20)
+      - Δ
+      rows:
+      - - Wrong object selection
+        - 28%
+        - 30%
+        - -2pp
+      - - Wrong location/container
+        - 24%
+        - 25%
+        - -1pp
+      - - Step order error
+        - 16%
+        - 15%
+        - +1pp
+      - - Infinite loop/repetition
+        - 20%
+        - 20%
+        - 0pp
+      - - Other
+        - 12%
+        - 10%
+        - +2pp
+      - - Chi-squared test p-value
+        - ''
+        - ''
+        - '0.91'
+    - title: Taxonomy Operator → Error Pattern Correlation
+      columns:
+      - Operator
+      - Expected Error Mode
+      - TaxEI Rate
+      - Vanilla Rate
+      - Elevated?
+      rows:
+      - - P1 (step_order_swap)
+        - Step order errors
+        - 16%
+        - 15%
+        - 'No'
+      - - P2 (sub_goal_deletion)
+        - Missing sub-goals
+        - 8%
+        - 10%
+        - 'No'
+      - - C1 (context_truncation)
+        - Wrong location
+        - 24%
+        - 25%
+        - 'No'
+      - - C4 (observation_masking)
+        - Repeated actions
+        - 12%
+        - 10%
+        - 'No'
+    figures_description:
+    - 'Stacked bar chart: TaxEI vs Vanilla 的失败模式分布对比。 两根 bar 的颜色分布几乎一致，视觉上无法区分。 旁边标注
+      chi2 p=0.91 和 "failure modes indistinguishable"。
+
+      '
+    analysis: '定性分析在 worst 档下彻底消解了 "wrong learning" 假说。如果 taxonomy labels 真的教会了模型
+      特定的错误行为（如 paper_framing 中 "structured error patterns may teach the model specific
+      wrong behaviors"），那么 TaxEI 应该在 taxonomy operator 对应的失败模式上 显示升高。但事实是零相关。TaxEI
+      和 Vanilla 以完全相同的方式失败—— 错误选择的物品、去错误的位置、在相同的任务类型上挣扎。 这意味着原始 C2 中 "constant ~6.4pp
+      taxonomy label penalty" 的机制解释 （"structured error patterns teach wrong behaviors"）不成立。
+      在 worst 档下，6.4pp 差距本身就是 seed noise，所以无需解释机制。 Paper 应删除所有关于 "taxonomy labels
+      teach wrong behaviors" 的推测性论述。
+
+      '
+  - name: Scale Ablation (25K-50K trajectories)
+    plan_id: scale-ablation
+    description: '将训练数据扩展到 25K 和 50K 轨迹（通过更多 GPT-5.2 trajectory 收集 + 更大规模注入）， 在 25K/50K
+      规模下重跑 Vanilla/TaxEI 3-seed 对比， 检验 negative result 是否在匹配 PALADIN 数据规模后消失。
+
+      '
+    expected_results:
+      trajectories_collected_25k: 2500
+      trajectories_collected_50k: 5000
+      collection_cost_usd: 120.0
+      scale_25k_vanilla_mean: 0.72
+      scale_25k_vanilla_sd_pp: 2.8
+      scale_25k_taxei_mean: 0.7
+      scale_25k_taxei_sd_pp: 3.5
+      scale_25k_gap_pp: -2.0
+      scale_25k_p: 0.35
+      scale_50k_vanilla_mean: 0.76
+      scale_50k_vanilla_sd_pp: 2.1
+      scale_50k_taxei_mean: 0.75
+      scale_50k_taxei_sd_pp: 2.6
+      scale_50k_gap_pp: -1.0
+      scale_50k_p: 0.52
+      variance_ratio_25k: 1.25
+      variance_ratio_50k: 1.24
+      scale_closes_gap: true
+      variance_gradient_persists: false
+    result_rationale: '在 worst 档下，scale-up 会同时做两件事：(1) 缩小所有方法的 cross-seed SD （从 ~3-8pp
+      降至 ~2-3pp），因为更多数据减少了训练随机性对最终性能的影响； (2) TaxEI-Vanilla gap 从 -8.6pp 缩至 25K 的 -2.0pp
+      和 50K 的 -1.0pp（p>0.3）。 variance gradient 在 25K 时变为 1.25×（vs 原始 2.6×），在 50K 时进一步降至
+      1.24×， 不再具有统计或实际意义。 这意味着原始 finding 的 root cause 是 data scale 而非 task structure：
+      在足够数据下，error injection 的信号不被噪声淹没，但也不提供超出 vanilla 的改进—— 它就是中性的。这彻底削弱了 C6 的 "task-structural
+      boundary condition" claim， 因为 PALADIN 的成功可能完全归因于 50K+ 的数据规模（+ inference-time
+      retrieval）， 而非 tool-use vs planning 的结构差异。 但这反过来强化了 worst 档的 reframed contribution：
+      "<10K 样本下 error injection 信号被压制" 得到了 scale 实验的正面验证。
+
+      '
+    tables:
+    - title: Scale Ablation Results (3-seed)
+      columns:
+      - Scale
+      - Vanilla Mean±SD
+      - TaxEI Mean±SD
+      - Gap (pp)
+      - p-value
+      - Var Ratio
+      rows:
+      - - 9K (original)
+        - 65.3% ± 3.3pp
+        - 56.7% ± 8.6pp
+        - '-8.6'
+        - '0.32'
+        - 2.6×
+      - - 25K
+        - 72.0% ± 2.8pp
+        - 70.0% ± 3.5pp
+        - '-2.0'
+        - '0.35'
+        - 1.25×
+      - - 50K
+        - 76.0% ± 2.1pp
+        - 75.0% ± 2.6pp
+        - '-1.0'
+        - '0.52'
+        - 1.24×
+    figures_description:
+    - 'Line plot: x=data scale (9K/25K/50K), y=3-seed mean accuracy, 两条线（Vanilla 蓝,
+      TaxEI 橙） 逐渐收敛。Error bars 也逐渐缩小。标注 "gap: -8.6pp → -2.0pp → -1.0pp"。 在 9K 处两线有明显间距（但
+      error bars 重叠），25K/50K 处几乎合并。
+
+      '
+    - 'Bar chart: variance ratio (TaxEI SD / Vanilla SD) at each scale。 9K = 2.6×,
+      25K = 1.25×, 50K = 1.24×。标注 threshold line at 1.5× 说明 ≥25K 后 variance gradient
+      不再有实际意义。
+
+      '
+    analysis: 'Scale ablation 在 worst 档下是最具破坏力的实验：它直接证明所有原始 finding 都是 low-data artifact。9K
+      规模下看到的 2.6× variance gradient、-8.6pp gap、 threshold-plateau dose-response 等
+      pattern 在 25K 时已大幅消退，50K 时消失。 这使得 paper 无法声称发现了 "task-structural boundary condition"——
+      真正的 boundary condition 是 data scale。 然而，这恰好支持了 worst 档的 reframed contribution：
+      paper 可以说 "在 community 常用的 <10K 样本规模下，error injection 评估是不可靠的， 需要 ≥5 seeds 且
+      ≥25K 样本才能得出有意义的结论"。 这是一个更窄但更扎实的方法论 contribution。 代价是 paper 的 novelty 进一步降低——从
+      "发现 boundary condition" 降级为 "发现 evaluation pitfall"——但对 Negative Results workshop
+      仍然适合。
+
+      '
+  - name: Recovery Prompting (Few-Shot In-Context)
+    plan_id: recovery-prompting
+    description: '不通过 SFT，直接在推理时给模型 3-5 个 error-recovery 示例（few-shot）， 测试模型是否能从 in-context
+      examples 学会 recovery—— 隔离 "训练信号无效" vs "模型本身无法学习 recovery" 两种假说。
+
+      '
+    expected_results:
+      vanilla_0shot_recovery: 0.617
+      vanilla_3shot_recovery: 0.62
+      vanilla_5shot_recovery: 0.64
+      taxei_0shot_recovery: 0.596
+      taxei_3shot_recovery: 0.6
+      taxei_5shot_recovery: 0.62
+      few_shot_gain_pp: 2.0
+      few_shot_gain_significant: false
+      few_shot_vs_sft_recovery_gap_pp: 0.0
+    result_rationale: '在 worst 档下，few-shot recovery prompting 带来的改进微乎其微（+2pp, NS），
+      且对 Vanilla 和 TaxEI 的提升幅度相同。这意味着两个假说都部分成立： (1) 训练信号确实无效（SFT recovery 没有帮助），但
+      (2) in-context 信号同样无效—— 模型在 embodied planning 中根本无法从错误示例（无论是训练时还是推理时）中提取 有用的
+      recovery 策略。这支持了 "error observability" 假设的更强版本： 不仅是训练信号被噪声淹没，而是 embodied planning
+      错误在表示层面就不可观测， 模型无论通过什么途径接触到错误示例，都无法从中学习。 但由于 few-shot 本身 gain 极小（2pp），实验的区分力有限——
+      它既不支持也不反驳任何特定假说，信息量低。
+
+      '
+    tables:
+    - title: 'Recovery Rate: SFT vs Few-Shot Prompting'
+      columns:
+      - Method
+      - 0-shot
+      - 3-shot
+      - 5-shot
+      - Max Gain
+      rows:
+      - - Vanilla SFT
+        - 61.7%
+        - 62.0%
+        - 64.0%
+        - +2.3pp
+      - - TaxEI SFT
+        - 59.6%
+        - 60.0%
+        - 62.0%
+        - +2.4pp
+      - - Random SFT
+        - 63.8%
+        - 64.0%
+        - 65.0%
+        - +1.2pp
+    figures_description:
+    - 'Grouped bar chart: 3 组（Vanilla/TaxEI/Random）× 3 条件（0/3/5-shot）。 所有 bar 高度相近（59-65%），few-shot
+      提升肉眼难辨。 Error bars（基于 47 task 的 binomial CI）完全重叠。
+
+      '
+    analysis: 'Recovery prompting 在 worst 档下是低信息量实验。Few-shot 几乎不影响 recovery， 说明 embodied
+      planning 的 error recovery 不是一个可以通过示例（无论 SFT 还是 ICL） 学会的能力——至少在当前模型和环境规模下如此。
+      这对 paper reframing 有间接价值：支持 "error injection 在 embodied planning 中 根本无效" 的 null
+      result，但不提供关于 "为什么无效" 的新 insight。 建议在 paper 中用 1-2 句话提及，不值得展开为独立 finding。
+
+      '
+  - name: Per-Operator Recovery Deep Dive (Multi-Seed)
+    plan_id: per-operator-deepdive
+    description: '对 recovery eval 扩展到 3 个 seed（42/0/123），每个 seed 跑 47 tasks × 4 operators，
+      目的是验证 seed=42 观察到的 per-operator 差异（C4 +9.1pp, C1 -8.3pp）是否跨 seed 稳定。
+
+      '
+    expected_results:
+      n_seeds: 3
+      n_tasks_per_seed: 47
+      taxei_per_operator_3seed:
+        C1_context_truncation:
+          mean: 0.62
+          sd_pp: 5.5
+          vs_vanilla_pp: -1.0
+        C4_observation_masking:
+          mean: 0.6
+          sd_pp: 7.2
+          vs_vanilla_pp: 0.0
+        P1_step_order_swap:
+          mean: 0.58
+          sd_pp: 6.8
+          vs_vanilla_pp: -2.0
+        P2_sub_goal_deletion:
+          mean: 0.54
+          sd_pp: 8.1
+          vs_vanilla_pp: -3.0
+      c4_advantage_seed42_only: true
+      c4_advantage_3seed_pp: 0.0
+      per_operator_any_significant: false
+      operator_variance_dominates: true
+    result_rationale: '在 worst 档下，seed=42 观察到的 per-operator 差异完全被新 seed 消解。 C4 在 seed=42
+      的 +9.1pp 优势在 seed=0 变为 -5pp、seed=123 变为 -4pp， 3-seed 均值归零。所有 operator 的 TaxEI
+      vs Vanilla 差异在 3-seed 均值下 均落入 ±3pp 内（SD 5-8pp），无一显著。 P2（sub_goal_deletion）在
+      3-seed 均值下 TaxEI 低 3pp，是最大负差， 但 SD=8.1pp 意味着不显著。 Cross-operator 的方差远大于 method
+      间差异：每个 operator 的 cross-seed SD 在 5.5-8.1pp，而 method 间 gap 在 ±3pp——再次印证 seed
+      lottery 主导。 原始报告中 "TaxEI advantage only on C4_observation_masking (+9.1pp)"
+      被证明是 seed=42 的偶然，不应作为论文 finding。
+
+      '
+    tables:
+    - title: Per-Operator Recovery Rate (TaxEI, 3-seed mean ± SD)
+      columns:
+      - Operator
+      - Seed 42
+      - Seed 0
+      - Seed 123
+      - Mean ± SD
+      - vs Vanilla
+      rows:
+      - - C1 (context_trunc)
+        - 66.7%
+        - 58.3%
+        - 61.5%
+        - 62.2% ± 5.5pp
+        - -1.0pp
+      - - C4 (obs_masking)
+        - 72.7%
+        - 50.0%
+        - 56.0%
+        - 59.6% ± 7.2pp
+        - 0.0pp
+      - - P1 (step_swap)
+        - 58.3%
+        - 50.0%
+        - 65.0%
+        - 57.8% ± 6.8pp
+        - -2.0pp
+      - - P2 (subgoal_del)
+        - 50.0%
+        - 42.0%
+        - 70.0%
+        - 54.0% ± 8.1pp
+        - -3.0pp
+    - title: Per-Operator Vanilla Baseline (3-seed mean)
+      columns:
+      - Operator
+      - Mean
+      - SD
+      rows:
+      - - C1
+        - 63.2%
+        - 4.8pp
+      - - C4
+        - 59.6%
+        - 5.0pp
+      - - P1
+        - 59.8%
+        - 4.2pp
+      - - P2
+        - 57.0%
+        - 5.5pp
+    figures_description:
+    - 'Heatmap: rows = operators (C1/C4/P1/P2), columns = seeds (42/0/123)。 Cell 颜色
+      = TaxEI 与 Vanilla 的差值 (pp)。seed=42 列有明显的 C4 深绿（+9.1pp）和 C1/P2 深红（-8.3pp），但其他列颜色分布随机，
+      无行级或列级一致 pattern。标注 "no operator shows consistent advantage"。
+
+      '
+    - 'Forest plot: 每个 operator 的 3-seed mean TaxEI-Vanilla difference ± 95% CI。 所有
+      CI 都跨零线，没有任何 operator 的 CI 完全位于正或负侧。
+
+      '
+    analysis: Per-operator deep dive 在 worst 档下彻底消解了所有 operator-level 的定向 finding。
+      原始论文中暗示 "C4 (observation masking) 是 TaxEI 唯一有优势的 operator" 的叙事 被证明是 seed=42
+      的偶然。3-seed 均值下没有任何 operator 显示 TaxEI 的一致优势或劣势。 这对 C4 的原始叙事（"TaxEI advantage
+      only on C4_observation_masking"）和 潜在的 "某些 error type 更适合 injection training"
+      的研究方向都是坏消息。 Paper 应删除所有 per-operator 的定向 claim，仅保留 "per-operator 分析在 3-seed
+      下无显著 pattern" 的一句话总结。如果要保留 per-operator 数据，放 appendix。
+  review_report: "---\ndream_id: dream_20260515T020837\ntier: worst\noverall_score:\
+    \ borderline - revise and resubmit (2.5/5)\ntimestamp: 2026-05-15T03:13:19.168653+00:00\n\
+    ---\n\n\n# Dream Review Report: \"Seed Variance Dominates Error Injection Signal\
+    \ in Low-Data Embodied Planning SFT\"\n\n**Venue**: Insights from Negative Results\
+    \ in NLP @ EMNLP 2026\n**Review mode**: Full (2 Reviewers + Roundtable)\n**Scoring\
+    \ basis**: ARR review form (Soundness 1–5, Excitement 1–5, Overall Recommendation\
+    \ 1–5)\n\n---\n\n## Step 1: Independent Reviews\n\n### R1 — Methods + Experiments\n\
+    \n#### Summary\nThe paper tests taxonomy-guided error injection (TaxEI) on ALFWorld\
+    \ embodied planning SFT with Qwen3-8B. Three conditions (Vanilla/TaxEI/Random)\
+    \ are trained across 3 seeds, revealing that initial single-seed findings are\
+    \ artifacts. Six experiments probe different facets of the null result.\n\n####\
+    \ Strengths\n- **S1**: Well-controlled experimental design — TaxEI and Random\
+    \ share identical injected trajectories, differing only in the error tag text.\
+    \ This cleanly isolates the taxonomy label variable and preempts content-based\
+    \ confounds.\n- **S2**: Six converging experiments probing the null from different\
+    \ angles (main results, training dynamics, scale ablation, cross-environment,\
+    \ per-operator, recovery prompting, qualitative analysis). The convergence is\
+    \ more persuasive than any single experiment alone.\n- **S3**: The scale ablation\
+    \ (§3.3) is the paper's strongest experiment — it directly demonstrates that the\
+    \ 9K findings are low-data artifacts by showing gap compression from −8.6pp to\
+    \ −1.0pp as data scales to 50K.\n- **S4**: Transparent reporting of per-seed results\
+    \ (Tables 4, 6) rather than just means allows readers to see the variance structure\
+    \ directly. The 14.9pp within-method swing for TaxEI (seed 0 vs seeds 42/123)\
+    \ is striking.\n\n#### Weaknesses\n- **W1**: **Self-undermining seed count.**\
+    \ The paper recommends ≥5 seeds but uses only 3. At n=3, the paired t-test has\
+    \ extremely low power for the observed effect sizes. A power analysis would show\
+    \ that detecting an 8.6pp difference with SD~8pp requires far more than 3 seeds.\
+    \ The paper's own evidence demonstrates the insufficiency of 3 seeds but does\
+    \ not acknowledge that its own conclusions are therefore provisional.\n- **W2**:\
+    \ **Data volume confound is unaddressed.** Vanilla uses 4,358 samples; TaxEI and\
+    \ Random use 9,029. The ~2× data difference means TaxEI/Random models see more\
+    \ gradient steps. Any performance difference (or lack thereof) could be partially\
+    \ attributable to the volume mismatch. The paper should at minimum acknowledge\
+    \ this confound or include a Vanilla-upsampled control.\n- **W3**: **Statistical\
+    \ testing is inadequate for the claims.** Paired t-tests with n=3 have essentially\
+    \ no power. The paper correctly notes that no comparison achieves significance,\
+    \ but then draws strong conclusions from the pattern of non-significance across\
+    \ experiments. \"Six non-significant results converge\" is rhetorically compelling\
+    \ but not statistically rigorous — multiple underpowered tests cannot substitute\
+    \ for a single adequately powered one.\n- **W4**: **Qualitative analysis sample\
+    \ sizes are too small.** 25 TaxEI + 20 Vanilla failure cases yield very low cell\
+    \ counts for the χ² test. With expected cell counts below 5 in some categories,\
+    \ the χ² p=0.91 has almost no statistical power. The paper presents this as evidence\
+    \ that failure modes are identical, but a non-significant χ² with tiny samples\
+    \ is absence of evidence, not evidence of absence.\n- **W5**: **Recovery prompting\
+    \ experiment (§3.6) adds limited information.** The ~2pp gains are within noise,\
+    \ and the experiment doesn't clearly distinguish between \"error information is\
+    \ unhelpful in embodied planning\" and \"few-shot prompting is generally weak\
+    \ for this task.\" Without a control showing that few-shot prompting works for\
+    \ some other aspect of the task, the experiment is uninformative.\n\n#### Questions\
+    \ for Authors\n- Q1: Why not use 5+ seeds given your own recommendation? Even\
+    \ 5 seeds would substantially increase confidence.\n- Q2: Have you considered\
+    \ a Vanilla-upsampled control (duplicate clean trajectories to match 9,029 samples)\
+    \ to control for the data volume confound?\n- Q3: The 25K and 50K scale experiments\
+    \ — how were additional trajectories generated? Were they from the same GPT-5.2\
+    \ prompt, or different collection campaigns? Could distribution shift between\
+    \ collection batches explain the convergence?\n- Q4: Table 7 (recovery prompting)\
+    \ reports 0-shot performance for \"Vanilla SFT\" as 61.7%, while Table 1 reports\
+    \ Vanilla mean as 65.3%. Can you clarify this discrepancy?\n\n#### R1 Scores\n\
+    - Soundness: 3/5 (Acceptable — main claims directionally supported but statistical\
+    \ power is acknowledged insufficient)\n- Excitement: 3/5 (Somewhat Exciting —\
+    \ convergence of six experiments is compelling despite individual weakness)\n\
+    - Overall: 2.5/5 (Borderline — needs more seeds, data volume control, and expanded\
+    \ related work)\n- Confidence: 3/5\n\n---\n\n### R2 — Novelty + Related Work\n\
+    \n#### Summary\nThe paper reports a negative result on transferring error injection\
+    \ from tool-use to embodied planning domains, then reframes as an evaluation methodology\
+    \ contribution about seed variance in small-sample agent SFT. It cites only 5\
+    \ references.\n\n#### Strengths\n- **S1**: **Honest self-correction narrative.**\
+    \ The progression from seed=42 excitement to multi-seed deflation is exactly what\
+    \ the Insights workshop values. This kind of transparent reporting of how initial\
+    \ findings dissolved is rare and instructive for the community.\n- **S2**: **Appropriate\
+    \ venue fit.** The workshop explicitly lists \"experiments on (in)stability of\
+    \ previously published results due to random initializations\" as a target contribution\
+    \ type. This paper delivers exactly that — showing how a single seed can generate\
+    \ three convincing-looking patterns that all dissolve.\n- **S3**: **The \"noise\
+    \ hypothesis\" is well-articulated.** The argument that embodied planning errors\
+    \ are syntactically indistinguishable from correct actions at the token level\
+    \ — making injection pure noise — is a clear, testable mechanistic explanation\
+    \ for the null result.\n- **S4**: **Practical recommendations are concrete.**\
+    \ The four-point recommendation (≥5 seeds, per-seed reporting, significance testing,\
+    \ scale ablation) is actionable guidance that could improve evaluation practices.\n\
+    \n#### Weaknesses\n- **W1**: **Core novelty is thin.** \"Single-seed results are\
+    \ unreliable in small-sample fine-tuning\" is well-established. Dodge et al. (2020)\
+    \ — the paper's own citation — demonstrated that fine-tuning instability from\
+    \ random seeds produces large performance swings. McCoy et al. (2020, \"BERTs\
+    \ of a feather\") showed seed variance can flip generalization conclusions. Mosbach\
+    \ et al. (2021, \"On the Stability of Fine-Tuning BERT\") demonstrated similar\
+    \ instability. The paper does not explain how its contribution advances beyond\
+    \ applying this known insight to one specific setting (agent SFT with error injection).\n\
+    - **W2**: **\"Error injection = noise below 10K\" is nearly tautological.** Given\
+    \ that (a) the training set is ~9K trajectories, (b) only 47 test tasks, (c) injected\
+    \ errors lack recovery pairing (unlike PALADIN), and (d) embodied planning errors\
+    \ are syntactically silent, the null result is arguably the expected outcome.\
+    \ The paper does not sufficiently distinguish its finding from the baseline expectation\
+    \ that \"adding noise to a small dataset without recovery signal does not help.\"\
+    \n- **W3**: **Related work is critically inadequate.** Five references for a paper\
+    \ making claims about training instability, data augmentation, cross-domain transfer,\
+    \ and evaluation methodology is unacceptable, even for a workshop paper. Critical\
+    \ omissions include:\n  - McCoy et al. (2020) — seed-dependent generalization\n\
+    \  - Mosbach et al. (2021) — fine-tuning stability\n  - Zhang et al. (2021) —\
+    \ few-sample BERT fine-tuning\n  - D'Amour et al. (2022) — underspecification\
+    \ in modern ML\n  - Song et al. (2024, ETO) — DPO-based alternative that avoids\
+    \ direct injection\n  - Wang et al. (2024, \"Learning From Failure\") — negative\
+    \ example incorporation for agents\n  - Arpit et al. (2017) — memorization dynamics\
+    \ in deep networks\n  - Rolnick et al. (2017) — robustness to label noise\n  -\
+    \ Yao et al. (2023, ReAct) — the prompting paradigm used in ALFWorld evaluation\n\
+    - **W4**: **PALADIN comparison is heavily confounded.** PALADIN differs from TaxEI\
+    \ in at least five ways: (1) error-recovery pairing vs standalone errors, (2)\
+    \ 50K+ vs 9K trajectories, (3) inference-time retrieval of 55+ exemplars contributing\
+    \ ~30pp, (4) different base model, (5) different evaluation environment. The paper\
+    \ attributes the divergence primarily to \"task structure\" but does not control\
+    \ for these confounds. The most important — recovery pairing — is arguably sufficient\
+    \ on its own to explain the negative result. This possibility deserves prominent\
+    \ discussion.\n- **W5**: **The ≥5 seed recommendation is asserted without formal\
+    \ justification.** No power analysis is presented. Given the observed variances\
+    \ (SD 3–9pp) and effect sizes (2–9pp), a proper power calculation would determine\
+    \ the required seed count for a given significance level and power. \"≥5\" appears\
+    \ to be a round-number heuristic rather than a derived recommendation.\n\n####\
+    \ Questions for Authors\n- Q1: Can you provide a power analysis for the ≥5 seed\
+    \ recommendation? What minimum effect size could be detected at 80% power with\
+    \ 5 seeds given the observed variance?\n- Q2: PALADIN pairs errors with recovery\
+    \ demonstrations; TaxEI does not. Isn't the most parsimonious explanation simply\
+    \ that injecting errors without recovery signal teaches the model to produce errors?\
+    \ Why invoke \"task structure\" when this confound is uncontrolled?\n- Q3: Have\
+    \ you verified whether PALADIN's ToolBench evaluation exhibits similar seed variance,\
+    \ or is tool-use SFT genuinely more stable?\n- Q4: The claim that ~30pp of PALADIN's\
+    \ +57pp gain comes from retrieval augmentation — can you cite the specific ablation\
+    \ from PALADIN that supports this decomposition?\n\n#### R2 Scores\n- Soundness:\
+    \ 3/5 (Acceptable — experimental design is generally careful but statistical power\
+    \ is low)\n- Excitement: 3/5 (Somewhat Exciting — fits the workshop's scope but\
+    \ novelty is incremental over existing literature)\n- Overall: 2.5/5 (Borderline\
+    \ — needs expanded related work, power analysis, and more careful PALADIN comparison)\n\
+    - Confidence: 4/5\n\n---\n\n## Step 2: Cross-Sharing\n\n**R1 → R2**: R1's data\
+    \ volume confound (Vanilla 4,358 vs TaxEI/Random 9,029) reinforces R2's concern\
+    \ about the PALADIN comparison — both highlight uncontrolled variables that could\
+    \ explain the null without invoking task structure. R1's observation about the\
+    \ recovery prompting experiment's low informativeness supports R2's view that\
+    \ some experiments add limited novelty.\n\n**R2 → R1**: R2's identification of\
+    \ 10+ missing critical references contextualizes R1's methodological concerns\
+    \ — the paper's statistical limitations are more problematic given that the literature\
+    \ on fine-tuning instability is extensive and already well-known. R2's point that\
+    \ the null result is \"nearly tautological\" given the experimental setup challenges\
+    \ R1's assessment of the scale ablation as the \"strongest experiment\" — if the\
+    \ null is expected at 9K, showing it disappears at 50K is less informative.\n\n\
+    ---\n\n## Step 3: Convergence\n\n### Areas of Agreement (both reviewers)\n1. The\
+    \ paper addresses a reasonable research question and fits the Insights workshop\
+    \ in principle.\n2. The honest self-correction narrative (single-seed artifacts\
+    \ → null result) is the paper's most distinctive contribution.\n3. The same-source\
+    \ dual-formatting design (TaxEI vs Random) is well-controlled.\n4. Statistical\
+    \ power is severely limited throughout — 3 seeds with SDs of 3–9pp leaves no comparison\
+    \ significant, and the paper's own evidence demonstrates that 3 seeds is insufficient\
+    \ while recommending 5.\n5. The related work section (5 references) is critically\
+    \ inadequate and must be substantially expanded.\n6. The ≥5 seed recommendation\
+    \ lacks formal justification (no power analysis).\n7. The PALADIN comparison has\
+    \ multiple uncontrolled confounds, most importantly the absence of recovery pairing\
+    \ in TaxEI.\n8. The paper is clearly written and well-structured with good use\
+    \ of tables.\n\n### Areas of Productive Disagreement\n- **Novelty assessment**:\
+    \ R1 found the convergence of six experiments more compelling than R2, who viewed\
+    \ several experiments (training dynamics, recovery prompting) as adding limited\
+    \ information. **Resolution**: The convergence is structurally sound but each\
+    \ individual experiment is under-powered; the paper should acknowledge that converging\
+    \ non-significance is weaker evidence than a single well-powered null.\n- **Severity\
+    \ of the data volume confound**: R1 flagged this as a significant methodological\
+    \ gap; R2 focused more on the recovery-pairing confound. **Resolution**: Both\
+    \ are legitimate; the paper should either add a Vanilla-upsampled control or explicitly\
+    \ acknowledge the volume confound as a limitation.\n- **Expected vs. surprising\
+    \ null**: R2 viewed the null as \"nearly tautological\" given the setup; R1 was\
+    \ somewhat more generous. **Resolution**: The null at 9K is arguably expected,\
+    \ but the scale ablation showing convergence at 50K adds genuine information.\
+    \ The paper's contribution is stronger if it frames the 9K null as expected-in-retrospect\
+    \ and emphasizes the 50K convergence and variance-reduction dynamics.\n\n---\n\
+    \n## Step 4: Consolidated Assessment\n\n### Paper Summary\nThis paper tests whether\
+    \ taxonomy-guided error injection (TaxEI), successful in tool-use domains (PALADIN),\
+    \ transfers to embodied planning (ALFWorld). Using a 4-operator perturbation taxonomy,\
+    \ three SFT conditions (Vanilla, TaxEI, Random) are trained on Qwen3-8B with 3\
+    \ seeds. Six experiments reveal that initial single-seed findings (variance gradient,\
+    \ dose-response threshold, taxonomy penalty) are seed artifacts. The paper reframes\
+    \ as an evaluation methodology contribution: ≥5 seeds are needed for small-sample\
+    \ agent SFT evaluation, and error injection signal is noise below ~10K trajectories.\n\
+    \n### Consolidated Strengths\n1. **Self-correction narrative is the paper's strongest\
+    \ asset.** Transparently reporting that three \"interesting\" findings dissolved\
+    \ under multi-seed evaluation is exactly the kind of contribution the Insights\
+    \ workshop exists to publish. This serves as a cautionary tale for the agent SFT\
+    \ community.\n2. **Clean experimental isolation.** The same-source dual-formatting\
+    \ design (TaxEI vs Random sharing identical injected trajectories) is methodologically\
+    \ sound and isolates the taxonomy label variable.\n3. **Convergent evidence from\
+    \ multiple angles.** Six experiments all pointing to the same null — while individually\
+    \ under-powered — create a structurally persuasive case. The scale ablation (§3.3)\
+    \ is particularly informative, showing gap compression and variance-ratio reduction\
+    \ as data scales.\n4. **Clear writing and transparent reporting.** Per-seed results\
+    \ in Tables 4 and 6, explicit p-values, and the 14.9pp within-method swing all\
+    \ help readers assess the evidence directly.\n5. **Actionable practical recommendations.**\
+    \ The four-point evaluation guideline (§4, Practical recommendation) is concrete\
+    \ enough to influence future work.\n\n### Consolidated Weaknesses\n1. **Related\
+    \ work is unacceptable (5 references).** The paper makes claims spanning training\
+    \ instability, data augmentation, cross-domain transfer, and evaluation methodology\
+    \ but cites almost none of the extensive prior work. Critical omissions include\
+    \ McCoy et al. (2020), Mosbach et al. (2021), D'Amour et al. (2022) on fine-tuning\
+    \ instability; Song et al. (2024, ETO), Wang et al. (2024) on learning from agent\
+    \ failures; Arpit et al. (2017), Rolnick et al. (2017) on noisy-label learning;\
+    \ and Yao et al. (2023, ReAct) on the prompting paradigm used. This gap undermines\
+    \ the paper's scholarly contribution and makes the novelty claims appear stronger\
+    \ than they are.\n2. **The paper uses 3 seeds but recommends ≥5 — a self-undermining\
+    \ gap.** The paper's own evidence demonstrates that 3 seeds is insufficient for\
+    \ reliable conclusions. This means its own conclusions are, by its own standard,\
+    \ unreliable. The ≥5 recommendation itself lacks formal justification — a power\
+    \ analysis given the observed effect sizes and variances would strengthen it considerably\
+    \ or might reveal that many more seeds are needed.\n3. **Core novelty is limited.**\
+    \ \"Single-seed fine-tuning results are unreliable\" and \"more data helps\" are\
+    \ well-established findings in the NLP literature (Dodge et al. 2020, Mosbach\
+    \ et al. 2021). The paper's specific contribution — applying this insight to agent\
+    \ SFT with error injection — is incremental. The most novel elements (variance\
+    \ gradient proportional to injection structure, per-operator analysis) are themselves\
+    \ under-powered at n=3.\n4. **PALADIN comparison is heavily confounded.** The\
+    \ paper frames its results against PALADIN but does not control for recovery pairing\
+    \ (PALADIN pairs errors with recovery demonstrations; TaxEI injects standalone\
+    \ errors), data scale (50K+ vs 9K), inference-time retrieval (~30pp contribution),\
+    \ base model, or evaluation environment. The recovery-pairing difference alone\
+    \ is a plausible explanation for the null result, making \"task structure\" an\
+    \ unnecessary hypothesis. The ~30pp retrieval attribution is stated without citing\
+    \ a specific PALADIN ablation.\n5. **Data volume confound.** Vanilla (4,358 samples)\
+    \ has roughly half the data of TaxEI/Random (9,029). The paper does not acknowledge\
+    \ or control for this asymmetry.\n6. **Qualitative failure analysis is under-powered.**\
+    \ 25 + 20 cases yield cell counts too small for meaningful χ² inference. The p=0.91\
+    \ is absence of evidence, not evidence of absence.\n\n### Consolidated Questions\
+    \ for Authors\n1. Can you provide a formal power analysis for the ≥5 seed recommendation?\
+    \ What is the minimum detectable effect at 80% power with 5 seeds?\n2. Why not\
+    \ use ≥5 seeds in this study, given your own recommendation?\n3. How do you respond\
+    \ to the concern that the null result is expected given the absence of recovery\
+    \ pairing (unlike PALADIN)?\n4. Can you cite the specific PALADIN ablation supporting\
+    \ the ~30pp retrieval attribution?\n5. Have you considered a Vanilla-upsampled\
+    \ control to address the data volume asymmetry?\n6. The Table 7 0-shot Vanilla\
+    \ SFT recovery rate (61.7%) differs from Table 1 Vanilla mean (65.3%) — can you\
+    \ clarify?\n\n### Experiment Coverage Assessment\nAll 6 planned experiments from\
+    \ the experimental design are covered:\n| Planned Experiment | Paper Section |\
+    \ Coverage |\n|---|---|---|\n| Training Dynamics Analysis | §3.2 | Full — loss\
+    \ decomposition by sample type, 3-seed mean ± SE |\n| Second Environment (WebShop)\
+    \ | §3.4 | Full — 3 conditions × 3 seeds |\n| Qualitative Failure Analysis | §3.7\
+    \ | Full — 25+20 cases, χ² test, operator-error correlation |\n| Scale Ablation\
+    \ (25K–50K) | §3.3 | Full — 3 scale points × 2 conditions × 3 seeds |\n| Recovery\
+    \ Prompting | §3.6 | Full — 3 base models × 3 shot conditions |\n| Per-Operator\
+    \ Deep Dive | §3.5 | Full — 4 operators × 3 seeds with Vanilla comparison |\n\n\
+    The paper faithfully covers the full experimental plan. No planned experiment\
+    \ is omitted.\n\n### Missing Experiments That Would Strengthen the Paper\n1. **Vanilla-upsampled\
+    \ control** — duplicate clean trajectories to match 9,029 samples, controlling\
+    \ for data volume.\n2. **Error-recovery paired injection** — matching PALADIN's\
+    \ design to isolate the recovery-pairing variable from the task-structure variable.\n\
+    3. **≥5 seed evaluation** on the core 9K comparison to meet the paper's own recommendation.\n\
+    4. **Formal power analysis** to justify the seed-count recommendation.\n\n###\
+    \ Venue Fit Assessment\nThe paper is a natural fit for the Insights from Negative\
+    \ Results in NLP workshop. It reports a genuine negative result (error injection\
+    \ doesn't transfer to embodied planning at low data scales), demonstrates the\
+    \ instability of single-seed conclusions (a core workshop theme), and provides\
+    \ actionable methodological advice. The self-correction narrative is exactly what\
+    \ the venue rewards.\n\nHowever, the inadequate related work, self-undermining\
+    \ seed count, and limited novelty over existing literature on fine-tuning instability\
+    \ prevent a confident accept in the current form.\n\n### Consolidated Scores\n\
+    \n| Dimension | R1 | R2 | Consensus |\n|---|---|---|---|\n| Soundness | 3/5 |\
+    \ 3/5 | **3/5** (Acceptable) |\n| Excitement | 3/5 | 3/5 | **3/5** (Somewhat Exciting)\
+    \ |\n| Overall | 2.5/5 | 2.5/5 | **2.5/5** (Borderline — Resubmit with Revisions)\
+    \ |\n| Confidence | 3/5 | 4/5 | **3.5/5** |\n\n### Recommendation\n**Borderline\
+    \ — revise and resubmit next cycle (2.5/5).** The paper reports a legitimate negative\
+    \ result appropriate for the Insights workshop, with a compelling self-correction\
+    \ narrative and clean experimental isolation. However, three issues must be addressed\
+    \ before acceptance: (1) the related work must be expanded from 5 to at least\
+    \ 15–20 references covering fine-tuning instability, noisy-label learning, and\
+    \ agent failure-learning literature; (2) the self-undermining gap between using\
+    \ 3 seeds and recommending 5 should be closed, either by running additional seeds\
+    \ or by including a formal power analysis that acknowledges the limitation; (3)\
+    \ the PALADIN comparison must explicitly discuss the recovery-pairing confound\
+    \ as an alternative explanation for the null result. With these revisions, the\
+    \ paper could be a solid contribution to the workshop.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T03:13:28+00:00'

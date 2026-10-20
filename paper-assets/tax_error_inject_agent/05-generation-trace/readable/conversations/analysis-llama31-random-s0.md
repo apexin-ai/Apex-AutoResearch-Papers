@@ -1,0 +1,526 @@
+# analysis llama31 random s0
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_analysis_llama31-random-s0_20260516T112621.jsonl`
+- **Structured JSON:** [`92fe66246f25af544cbe.json`](../../sessions/92/92fe66246f25af544cbe.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T11:27:16.706868+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T11:27:16.707213+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T11:27:16.707380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -50 ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T11:27:16.707513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T11:27:16.707741+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'loss': 0.16329604, 'grad_norm': 1.70351017, 'learning_rate': 3.52e-06, 'token_acc': 0.93744415, 'epoch': 2.64, 'global_step/max_steps': '2980/3387', 'elapsed_time': '1h 51m 57s', 'remaining_time': '15m 17s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.253985}\\n{'loss': 0.16401659, 'grad_norm': 1.93067265, 'learning_rate': 3.35e-06, 'token_acc': 0.93902439, 'epoch': 2.65, 'global_step/max_steps': '2990/3387', 'elapsed_time': '1h 52m 21s', 'remaining_time': '14m 55s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.254354}\\n{'loss': 0.16829557, 'grad_norm': 2.02227974, 'learning_rate': 3.19e-06, 'token_acc': 0.94061344, 'epoch': 2.66, 'global_step/max_steps': '3000/3387', 'elapsed_time': '1h 52m 45s', 'remaining_time': '14m 33s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.254979}\\n{'loss': 0.20267501, 'grad_norm': 1.40335, 'learning_rate': 3.03e-06, 'token_acc': 0.92676973, 'epoch': 2.67, 'global_step/max_steps': '3010/3387', 'elapsed_time': '1h 53m 7s', 'remaining_time': '14m 10s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.25477}\\n{'loss': 0.16832782, 'grad_norm': 1.9120549, 'learning_rate': 2.87e-06, 'token_acc': 0.9380805, 'epoch': 2.67, 'global_step/max_steps': '3020/3387', 'elapsed_time': '1h 53m 30s', 'remaining_time': '13m 48s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.255104}\\n{'loss': 0.16122365, 'grad_norm': 1.52581573, 'learning_rate': 2.72e-06, 'token_acc': 0.93846503, 'epoch': 2.68, 'global_step/max_steps': '3030/3387', 'elapsed_time': '1h 53m 54s', 'remaining_time': '13m 25s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.255556}\\n{'loss': 0.17623512, 'grad_norm': 1.62675905, 'learning_rate': 2.57e-06, 'token_acc': 0.93540823, 'epoch': 2.69, 'global_step/max_steps': '3040/3387', 'elapsed_time': '1h 54m 17s', 'remaining_time': '13m 3s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.255459}\\n{'loss': 0.15304953, 'grad_norm': 1.5881325, 'learning_rate': 2.42e-06, 'token_acc': 0.94265639, 
+…[truncated 6266 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T11:27:16.707904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"v0-20260516-171608\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T11:27:16.708030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T11:27:16.708167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"args.json\\ncheckpoint-1129\\ncheckpoint-2258\\ncheckpoint-3387\\nimages\\nlogging.jsonl\\nruns\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T11:27:16.708292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"epoch.*1.0\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"epoch.*1.0\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T11:27:16.708481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"609:{'loss': 0.84241428, 'grad_norm': 1.44582522, 'learning_rate': 9.997e-05, 'token_acc': 0.75811079, 'epoch': 0.04, 'global_step/max_steps': '40/3387', 'elapsed_time': '1m 26s', 'remaining_time': '1h 59m 59s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.150967}\\n614:{'loss': 0.64224586, 'grad_norm': 1.49313176, 'learning_rate': 9.983e-05, 'token_acc': 0.8, 'epoch': 0.08, 'global_step/max_steps': '90/3387', 'elapsed_time': '3m 16s', 'remaining_time': '1h 59m 48s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.180077}\\n615:{'loss': 0.6841608, 'grad_norm': 1.91790497, 'learning_rate': 9.979e-05, 'token_acc': 0.78715309, 'epoch': 0.09, 'global_step/max_steps': '100/3387', 'elapsed_time': '3m 40s', 'remaining_time': '2h 0m 18s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.196044}\\n616:{'loss': 0.72617354, 'grad_norm': 1.88797891, 'learning_rate': 9.974e-05, 'token_acc': 0.78634504, 'epoch': 0.1, 'global_step/max_steps': '110/3387', 'elapsed_time': '4m 1s', 'remaining_time': '1h 59m 54s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.195374}\\n617:{'loss': 0.62590032, 'grad_norm': 1.47872353, 'learning_rate': 9.969e-05, 'token_acc': 0.80163464, 'epoch': 0.11, 'global_step/max_steps': '120/3387', 'elapsed_time': '4m 23s', 'remaining_time': '1h 59m 23s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.192387}\\n618:{'loss': 0.63904667, 'grad_norm': 1.53365231, 'learning_rate': 9.964e-05, 'token_acc': 0.80523918, 'epoch': 0.12, 'global_step/max_steps': '130/3387', 'elapsed_time': '4m 45s', 'remaining_time': '1h 59m 8s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.194752}\\n619:{'loss': 0.66709328, 'grad_norm': 1.53814673, 'learning_rate': 9.958e-05, 'token_acc': 0.78169463, 'epoch': 0.12, 'global_step/max_steps': '140/3387', 'elapsed_time': '5m 8s', 'remaining_time': '1h 58m 54s', 'memory(GiB)': 30.74, 'train_speed(s/it)': 2.197229}\\n620:{'loss': 0.61426868, 'grad_norm': 1.60898805, 'learning_rate': 9.952e-05, 'toke
+…[truncated 6264 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T11:27:16.708670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -5 /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/logging.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -5 /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/logging.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T11:27:16.708969+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"loss\\\": 0.12733583, \\\"grad_norm\\\": 1.20049083, \\\"learning_rate\\\": 2e-08, \\\"token_acc\\\": 0.95947557, \\\"epoch\\\": 2.97608503, \\\"global_step/max_steps\\\": \\\"3360/3387\\\", \\\"elapsed_time\\\": \\\"2h 6m 4s\\\", \\\"remaining_time\\\": \\\"1m 1s\\\", \\\"memory(GiB)\\\": 30.74, \\\"train_speed(s/it)\\\": 2.251244}\\n{\\\"loss\\\": 0.15479252, \\\"grad_norm\\\": 1.48026729, \\\"learning_rate\\\": 1e-08, \\\"token_acc\\\": 0.94559755, \\\"epoch\\\": 2.98494243, \\\"global_step/max_steps\\\": \\\"3370/3387\\\", \\\"elapsed_time\\\": \\\"2h 6m 26s\\\", \\\"remaining_time\\\": \\\"38s\\\", \\\"memory(GiB)\\\": 30.74, \\\"train_speed(s/it)\\\": 2.250921}\\n{\\\"loss\\\": 0.13385783, \\\"grad_norm\\\": 1.18185055, \\\"learning_rate\\\": 0.0, \\\"token_acc\\\": 0.95174937, \\\"epoch\\\": 2.99379982, \\\"global_step/max_steps\\\": \\\"3380/3387\\\", \\\"elapsed_time\\\": \\\"2h 6m 46s\\\", \\\"remaining_time\\\": \\\"16s\\\", \\\"memory(GiB)\\\": 30.74, \\\"train_speed(s/it)\\\": 2.250381}\\n{\\\"train_runtime\\\": 7622.0564, \\\"train_samples_per_second\\\": 3.554, \\\"train_steps_per_second\\\": 0.444, \\\"total_flos\\\": 9.81348294219522e+17, \\\"train_loss\\\": 0.33676008, \\\"token_acc\\\": 0.93572395, \\\"epoch\\\": 3.0, \\\"global_step/max_steps\\\": \\\"3387/3387\\\", \\\"elapsed_time\\\": \\\"2h 7m 2s\\\", \\\"remaining_time\\\": \\\"0s\\\", \\\"memory(GiB)\\\": 30.74, \\\"train_speed(s/it)\\\": 2.250385}\\n{\\\"train_dataset\\\": \\\"587.412449±200.622542, min=176.000000, max=1407.000000, size=9029\\\", \\\"model_parameter_info\\\": \\\"PeftModelForCausalLM: 8072.2043M Params (41.9430M Trainable [0.5196%]), 0.0001M Buffers.\\\", \\\"last_model_checkpoint\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387\\\", \\\"best_model_checkpoint\\\": null, \\\"best_metric\\\": null, \\\"global_step\\\": 3387, \\\"log_history\\\": [{\\\"loss
+…[truncated 7898 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T11:27:16.709135+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"epoch.*1.0,\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"epoch.*1.0,\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T11:27:16.709334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rTrain:  33%|███▎      | 1130/3387 [42:20<1:21:14,  2.16s/it]\\r                                                            \\r\\rTrain:  33%|███▎      | 1130/3387 [42:20<1:21:14,  2.16s/it]\\rTrain:  33%|███▎      | 1130/3387 [42:20<1:21:14,  2.16s/it]\\rTrain:  33%|███▎      | 1131/3387 [42:22<1:20:04,  2.13s/it]\\rTrain:  33%|███▎      | 1132/3387 [42:24<1:14:19,  1.98s/it]\\rTrain:  33%|███▎      | 1133/3387 [42:25<1:12:22,  1.93s/it]\\rTrain:  33%|███▎      | 1134/3387 [42:28<1:13:58,  1.97s/it]\\rTrain:  34%|███▎      | 1135/3387 [42:30<1:23:49,  2.23s/it]\\rTrain:  34%|███▎      | 1136/3387 [42:32<1:19:08,  2.11s/it]\\rTrain:  34%|███▎      | 1137/3387 [42:34<1:17:39,  2.07s/it]\\rTrain:  34%|███▎      | 1138/3387 [42:36<1:14:18,  1.98s/it]\\rTrain:  34%|███▎      | 1139/3387 [42:38<1:14:33,  1.99s/it]\\rTrain:  34%|███▎      | 1140/3387 [42:40<1:14:14,  1.98s/it]\\r                                                            \\r\\rTrain:  34%|███▎      | 1140/3387 [42:40<1:14:14,  1.98s/it]\\rTrain:  34%|███▎      | 1140/3387 [42:40<1:14:14,  1.98s/it]\\rTrain:  34%|███▎      | 1141/3387 [42:42<1:14:41,  2.00s/it]\\rTrain:  34%|███▎      | 1142/3387 [42:45<1:23:45,  2.24s/it]\\rTrain:  34%|███▎      | 1143/3387 [42:47<1:29:00,  2.38s/it]\\rTrain:  34%|███▍      | 1144/3387 [42:49<1:23:03,  2.22s/it]\\rTrain:  34%|███▍      | 1145/3387 [42:51<1:18:58,  2.11s/it]\\rTrain:  34%|███▍      | 1146/3387 [42:53<1:18:56,  2.11s/it]\\rTrain:  34%|███▍      | 1147/3387 [42:55<1:17:27,  2.07s/it]\\rTrain:  34%|███▍      | 1148/3387 [42:58<1:19:07,  2.12s/it]\\rTrain:  34%|███▍      | 1149/3387 [43:00<1:20:06,  2.15s/it]\\rTrain:  34%|███▍      | 1150/3387 [43:02<1:20:07,  2.15s/it]\\r                                                            \\r\\rTrain:  34%|███▍      | 1150/3387 [43:02<1:20:07,  2.15s/it]\\rTrain:  34%|██���▍      | 1150/3387 [43:02<1:20:07,  2.15s/it]\\rTrain:  34%|███▍      | 1151/3387 [43:04
+…[truncated 6478 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T11:27:16.709489+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"epoch.*2.0,\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep \"epoch.*2.0,\" ~/runs/tax_error_inject_agent/llama31-random-s0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T11:27:16.709770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rTrain:  67%|██████▋   | 2259/3387 [1:24:47<42:09,  2.24s/it]\\rTrain:  67%|██████▋   | 2260/3387 [1:24:49<39:45,  2.12s/it]\\r                                                            \\r\\rTrain:  67%|██████▋   | 2260/3387 [1:24:49<39:45,  2.12s/it]\\rTrain:  67%|██████▋   | 2260/3387 [1:24:49<39:45,  2.12s/it]\\rTrain:  67%|██████▋   | 2261/3387 [1:24:52<43:26,  2.31s/it]\\rTrain:  67%|██████▋   | 2262/3387 [1:24:54<44:04,  2.35s/it]\\rTrain:  67%|██████▋   | 2263/3387 [1:24:57<44:02,  2.35s/it]\\rTrain:  67%|██████▋   | 2264/3387 [1:24:59<46:06,  2.46s/it]\\rTrain:  67%|██████▋   | 2265/3387 [1:25:01<44:15,  2.37s/it]\\rTrain:  67%|██████▋   | 2266/3387 [1:25:04<42:43,  2.29s/it]\\rTrain:  67%|██████▋   | 2267/3387 [1:25:05<40:02,  2.15s/it]\\rTrain:  67%|██████▋   | 2268/3387 [1:25:07<38:53,  2.09s/it]\\rTrain:  67%|██████▋   | 2269/3387 [1:25:09<37:30,  2.01s/it]\\rTrain:  67%|██████▋   | 2270/3387 [1:25:11<37:36,  2.02s/it]\\r                                                            \\r\\rTrain:  67%|██████▋   | 2270/3387 [1:25:11<37:36,  2.02s/it]\\rTrain:  67%|██████▋   | 2270/3387 [1:25:11<37:36,  2.02s/it]\\rTrain:  67%|██████▋   | 2271/3387 [1:25:13<35:18,  1.90s/it]\\rTrain:  67%|██████▋   | 2272/3387 [1:25:15<36:51,  1.98s/it]\\rTrain:  67%|██████▋   | 2273/3387 [1:25:17<36:57,  1.99s/it]\\rTrain:  67%|██████▋   | 2274/3387 [1:25:19<35:17,  1.90s/it]\\rTrain:  67%|██████▋   | 2275/3387 [1:25:21<36:27,  1.97s/it]\\rTrain:  67%|██████▋   | 2276/3387 [1:25:23<38:04,  2.06s/it]\\rTrain:  67%|██████▋   | 2277/3387 [1:25:25<35:58,  1.94s/it]\\rTrain:  67%|██████▋   | 2278/3387 [1:25:27<38:37,  2.09s/it]\\rTrain:  67%|██████▋   | 2279/3387 [1:25:30<40:47,  2.21s/it]\\rTrain:  67%|██████▋   | 2280/3387 [1:25:32<41:00,  2.22s/it]\\r                                                            \\r\\rTrain:  67%|██████▋   | 2280/3387 [1:25:32<41:00,  2.22s/it]\\rTrain:  67%|██████▋   | 2280/3387 [1:25:32
+…[truncated 6478 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-16T11:27:16.710000+00:00_
+
+训练已成功完成。从日志中提取的 epoch 边界 loss：
+- Epoch 1 (step 1130): loss=0.4521
+- Epoch 2 (step 2260): loss=0.2380
+- Epoch 3 (final step 3387): 最终汇总 train_loss=0.3368
+
+```
+CONCLUSION: success
+CHECKPOINT_PATH: /root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387
+TRAIN_LOSS: 0.3368
+TOKEN_ACC: 0.9357
+TRAIN_STEPS: 3387
+TRAIN_DURATION_S: 7622
+EPOCH1_LOSS: 0.452 (step 1130, instantaneous)
+EPOCH2_LOSS: 0.238 (step 2260, instantaneous)
+EPOCH3_LOSS: 0.134 (step 3380, 末尾instantaneous)
+PEAK_MEMORY_GIB: 30.74
+TRAIN_SAMPLES_PER_SEC: 3.554
+```
+
+与 s42 对比：train_loss 几乎一致（0.3368 vs 0.3366），token_acc 持平（0.9357 vs 0.9364），训练时长相同（7622s），步数一致（3387）。两个 seed 的结果高度一致，说明训练稳定。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_llama31-random-s0_20260516T112621"
+}
+```
+
+</details>
+
+---

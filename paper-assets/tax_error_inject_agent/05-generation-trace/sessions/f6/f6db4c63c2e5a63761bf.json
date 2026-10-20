@@ -1,0 +1,973 @@
+{
+  "schema_version": "1.0",
+  "id": "f6db4c63c2e5a63761bf",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "code experiment plan yaml",
+  "task_key": "worker_code_experiment-plan-yaml_20260515T015307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_experiment-plan-yaml_20260515T015307.log",
+    "occurrence": 1,
+    "bytes": 57507,
+    "sha256": "3c70fcf18be161500b7777800bbea8f3648fc5b48bbee8b3cee00105634eef4d"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+                "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "1faf6b3a-c43a-4516-8f7d-e47a443e2049",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778826600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "64ba9e84-6360-4581-898c-c8a79f355df4",
+                "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to create an `experiment_plan.yaml` file at the specified path with all the experiment groups organized properly.",
+              "signature": "Er8CClkIDRgCKkBXMPMT/FFpFKpaMcs9P3nJTUMlE787ZQgHhNWIqvzjPVoY+Wq7nR8nvhr/IJvgxBSv13ndJQwGAmVPoHqycBxKMg9jbGF1ZGUtb3B1cy00LTY4ABIM2KxVPsWB8B+WHbDwGgz6Ta3Mvxbz0Q/hjuQiMPhC++NMlg1vjIOBvIU2ceXD22AuUTeRKjYatOEE9aC+9u+VBvamhdc9/iv+hLZigSqTAX8Z8sNSppebJQ7441nIE6q7lnaWCx/BBj/BB2v31UArtwWsS6PwzMM2blXyBwIHXUgRCWANjVr3ZS9TgeQWebztSyFO36bxbDWdCm640J65M0x7LI6yTwDCKBT47M5hgamTUTqpYffDTC2cdfaLJ8b96m+rMfkXV4Dpj1Rkkmxt3QZPjNPymsw4OhZdKx/ZK6WU0xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "b7b5b8f3-8bae-498f-945e-6cc392d639d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0155387L78CGHtFrKsbsqesW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11791,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11791
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EbDU6gEHc2mM4y8KN5fAiD",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\"",
+                "description": "Check if experiment_plan.yaml already exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "d9a9b6b9-655b-4f2d-a60d-923586e64320",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0155387L78CGHtFrKsbsqesW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11791,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11791
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T01:53:17.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EbDU6gEHc2mM4y8KN5fAiD",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml\nEXISTS",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "a8201b89-7e66-43d9-b458-9a6149b055ab",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml\nEXISTS",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jnb2KyWHo4nq2VWQiYiggo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "4d9948db-086e-4a02-a7e1-19f27c96b099",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0118xhySkFbNzUDMX6yVPhFN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 222,
+                "cache_read_input_tokens": 23632,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 222
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T01:53:19.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jnb2KyWHo4nq2VWQiYiggo",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — tax_error_inject_agent (Negative Result Paper)\n2\t# Updated: 2026-05-14\n3\t# Phase: Supplementary experiments for negative result paper submission\n4\t# Target: Insights from Negative Results @ EMNLP 2026\n5\t\n6\texperiments:\n7\t  # === Priority 1: Required for submission ===\n8\t\n9\t  - plan_id: supp-taxei-seed123\n10\t    description: \"TaxEI SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n11\t    claim: [1, 2, 3]\n12\t    priority: 1\n13\t    depends_on: []\n14\t    registry_id: \"v4-taxei-seed123\"\n15\t    gpu_hours_est: 1.8\n16\t    notes: \"Same hyperparams as v4-taxei-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n17\t\n18\t  - plan_id: supp-taxei-seed123-eval\n19\t    description: \"TaxEI seed=123 clean eval — 47 tasks\"\n20\t    claim: [1, 2, 3]\n21\t    priority: 1\n22\t    depends_on: [supp-taxei-seed123]\n23\t    registry_id: \"\"\n24\t    gpu_hours_est: 0.5\n25\t\n26\t  - plan_id: supp-random-seed123\n27\t    description: \"Random SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n28\t    claim: [2, 3]\n29\t    priority: 1\n30\t    depends_on: []\n31\t    registry_id: \"v4-random-seed123\"\n32\t    gpu_hours_est: 1.8\n33\t    notes: \"Same hyperparams as v4-random-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n34\t\n35\t  - plan_id: supp-random-seed123-eval\n36\t    description: \"Random seed=123 clean eval — 47 tasks\"\n37\t    claim: [2, 3]\n38\t    priority: 1\n39\t    depends_on: [supp-random-seed123]\n40\t    registry_id: \"\"\n41\t    gpu_hours_est: 0.5\n42\t\n43\t  - plan_id: supp-ratio-taxei-10pct\n44\t    description: \"TaxEI SFT with 10% injection ratio (vs current 50%) — noise-vs-signal ablation\"\n45\t    claim: [1, 3, 6]\n46\t    priority: 1\n47\t    depends_on: []\n48\t    registry_id: \"v4-taxei-fixed-inject10\"\n49\t    gpu_hours_est: 1.0\n50\t    notes: \"4,358 total = 3,922 clean + 436 injected (10%). Fixed-size = vanilla 大小. seed=42.\"\n51\t\n52\t  - plan_id: supp-ratio-taxei-10pct-eval\n53\t    description: \"TaxEI 10% injection ratio eval — 47 tasks\"\n54\t    claim: [1, 3, 6]\n55\t    priority: 1\n56\t    depends_on: [supp-ratio-taxei-10pct]\n57\t    registry_id: \"\"\n58\t    gpu_hours_est: 0.5\n59\t\n60\t  - plan_id: supp-ratio-taxei-25pct\n61\t    description: \"TaxEI SFT with 25% injection ratio — intermediate noise level\"\n62\t    claim: [1, 3, 6]\n63\t    priority: 1\n64\t    depends_on: []\n65\t    registry_id: \"v4-taxei-fixed-inject25-r2\"\n66\t    gpu_hours_est: 1.2\n67\t    notes: \"4,358 total = 3,268 clean + 1,090 injected (25%). Fixed-size = vanilla 大小. seed=42.\"\n68\t\n69\t  - plan_id: supp-ratio-taxei-25pct-eval\n70\t    description: \"TaxEI 25% injection ratio eval — 47 tasks\"\n71\t    claim: [1, 3, 6]\n72\t    priority: 1\n73\t    depends_on: [supp-ratio-taxei-25pct]\n74\t    registry_id: \"\"\n75\t    gpu_hours_est: 0.5\n76\t\n77\t  - plan_id: supp-ratio-random-10pct\n78\t    description: \"Random SFT with 10% injection ratio — ablation control\"\n79\t    claim: [2, 6]\n80\t    priority: 1\n81\t    depends_on: []\n82\t    registry_id: \"\"\n83\t    gpu_hours_est: 1.0\n84\t    notes: \"4,358 total, 10% injected (unlabeled tags). Same volume as taxei-10pct.\"\n85\t\n86\t  - plan_id: supp-ratio-random-10pct-eval\n87\t    description: \"Random 10% injection ratio eval — 47 tasks\"\n88\t    claim: [2, 6]\n89\t    priority: 1\n90\t    depends_on: [supp-ratio-random-10pct]\n91\t    registry_id: \"\"\n92\t    gpu_hours_est: 0.5\n93\t\n94\t  - plan_id: supp-ratio-random-25pct\n95\t    description: \"Random SFT with 25% injection ratio — ablation control\"\n96\t    claim: [2, 6]\n97\t    priority: 1\n98\t    depends_on: []\n99\t    registry_id: \"\"\n100\t    gpu_hours_est: 1.2\n101\t    notes: \"4,358 total, 25% injected (unlabeled tags). Same volume as taxei-25pct.\"\n102\t\n103\t  - plan_id: supp-ratio-random-25pct-eval\n104\t    description: \"Random 25% injection ratio eval — 47 tasks\"\n105\t    claim: [2, 6]\n106\t    priority: 1\n107\t    depends_on: [supp-ratio-random-25pct]\n108\t    registry_id: \"\"\n109\t    gpu_hours_est: 0.5\n110\t\n111\t  - plan_id: supp-training-dynamics\n112\t    description: \"训练动态分析: 从现有 training logs 提取 clean vs injected samples 的 loss 曲线\"\n113\t    claim: [1, 3]\n114\t    priority: 1\n115\t    depends_on: []\n116\t    registry_id: \"\"\n117\t    gpu_hours_est: 0\n118\t    notes: \"纯 CPU 分析任务，不需 GPU。解析 wandb/tensorboard logs。\"\n119\t\n120\t  # === Priority 2: Strengthens paper significantly ===\n121\t\n122\t  - plan_id: supp-webshop-vanilla\n123\t    description: \"Vanilla SFT on WebShop — second environment baseline\"\n124\t    claim: [6]\n125\t    priority: 2\n126\t    depends_on: []\n127\t    registry_id: \"\"\n128\t    gpu_hours_est: 3.0\n129\t    notes: \"需要先搭建 WebShop 环境 + 收集轨迹。工程量大。\"\n130\t\n131\t  - plan_id: supp-webshop-taxei\n132\t    description: \"TaxEI SFT on WebShop — second environment validation\"\n133\t    claim: [6]\n134\t    priority: 2\n135\t    depends_on: [supp-webshop-vanilla]\n136\t    registry_id: \"\"\n137\t    gpu_hours_est: 3.0\n138\t\n139\t  - plan_id: supp-qualitative-analysis\n140\t    description: \"定性失败分析: 人工检查 20+ TaxEI 失败案例，分类失败模式\"\n141\t    claim: [1, 4, 6]\n142\t    priority: 2\n143\t    depends_on: []\n144\t    registry_id: \"\"\n145\t    gpu_hours_est: 0\n146\t    notes: \"需要从 eval logs 提取失败 trajectory，人工/LLM 辅助分析。\"\n147\t\n148\t  # === Priority 3: Nice to have ===\n149\t\n150\t  - plan_id: supp-scale-25k\n151\t    description: \"Scale ablation: 收集更多轨迹至 25K，重训 TaxEI/Random/Vanilla\"\n152\t    claim: [6]\n153\t    priority: 3\n154\t    depends_on: []\n155\t    registry_id: \"\"\n156\t    gpu_hours_est: 12.0\n157\t    notes: \"需要大量轨迹收集 (GPT-5.2 API cost ~$40)。PALADIN 用 50K。\"\n158\t\n159\t  - plan_id: supp-few-shot-recovery\n160\t    description: \"Few-shot recovery prompting: 测试 in-context examples 是否比 SFT 更有效\"\n161\t    claim: [4, 6]\n162\t    priority: 3\n163\t    depends_on: []\n164\t    registry_id: \"\"\n165\t    gpu_hours_est: 1.0\n166\t\n167\t  - plan_id: supp-operator-deep-dive\n168\t    description: \"Per-operator 多种子 recovery eval: 验证 C4 observation_masking 的 TaxEI 优势是否稳定\"\n169\t    claim: [4]\n170\t    priority: 3\n171\t    depends_on: []\n172\t    registry_id: \"\"\n173\t    gpu_hours_est: 2.0\n174\t\n175\t# GPU Budget Summary\n176\t# Priority 1: ~10.7 GPU-hours (seed补齐 3.6h + ratio消融 5.4h + eval 3h) + 1 CPU task\n177\t# Priority 2: ~6.0 GPU-hours + 1 CPU task (WebShop 工程量大，可能需要 1-2 天搭建)\n178\t# Priority 3: ~15.0 GPU-hours\n179\t# Total: ~31.7 GPU-hours across all priorities\n180\t# With 4x 5090 GPUs: Priority 1 ≈ 3 hours wall time (fully parallel)\n181\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "69041e82-1d4a-413b-b8ac-a3e459bcc174",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "content": "# Experiment Plan — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-14\n# Phase: Supplementary experiments for negative result paper submission\n# Target: Insights from Negative Results @ EMNLP 2026\n\nexperiments:\n  # === Priority 1: Required for submission ===\n\n  - plan_id: supp-taxei-seed123\n    description: \"TaxEI SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n    claim: [1, 2, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-seed123\"\n    gpu_hours_est: 1.8\n    notes: \"Same hyperparams as v4-taxei-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n\n  - plan_id: supp-taxei-seed123-eval\n    description: \"TaxEI seed=123 clean eval — 47 tasks\"\n    claim: [1, 2, 3]\n    priority: 1\n    depends_on: [supp-taxei-seed123]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-random-seed123\n    description: \"Random SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n    claim: [2, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-random-seed123\"\n    gpu_hours_est: 1.8\n    notes: \"Same hyperparams as v4-random-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n\n  - plan_id: supp-random-seed123-eval\n    description: \"Random seed=123 clean eval — 47 tasks\"\n    claim: [2, 3]\n    priority: 1\n    depends_on: [supp-random-seed123]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-taxei-10pct\n    description: \"TaxEI SFT with 10% injection ratio (vs current 50%) — noise-vs-signal ablation\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-fixed-inject10\"\n    gpu_hours_est: 1.0\n    notes: \"4,358 total = 3,922 clean + 436 injected (10%). Fixed-size = vanilla 大小. seed=42.\"\n\n  - plan_id: supp-ratio-taxei-10pct-eval\n    description: \"TaxEI 10% injection ratio eval — 47 tasks\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: [supp-ratio-taxei-10pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-taxei-25pct\n    description: \"TaxEI SFT with 25% injection ratio — intermediate noise level\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-fixed-inject25-r2\"\n    gpu_hours_est: 1.2\n    notes: \"4,358 total = 3,268 clean + 1,090 injected (25%). Fixed-size = vanilla 大小. seed=42.\"\n\n  - plan_id: supp-ratio-taxei-25pct-eval\n    description: \"TaxEI 25% injection ratio eval — 47 tasks\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: [supp-ratio-taxei-25pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-random-10pct\n    description: \"Random SFT with 10% injection ratio — ablation control\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.0\n    notes: \"4,358 total, 10% injected (unlabeled tags). Same volume as taxei-10pct.\"\n\n  - plan_id: supp-ratio-random-10pct-eval\n    description: \"Random 10% injection ratio eval — 47 tasks\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: [supp-ratio-random-10pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-random-25pct\n    description: \"Random SFT with 25% injection ratio — ablation control\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.2\n    notes: \"4,358 total, 25% injected (unlabeled tags). Same volume as taxei-25pct.\"\n\n  - plan_id: supp-ratio-random-25pct-eval\n    description: \"Random 25% injection ratio eval — 47 tasks\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: [supp-ratio-random-25pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-training-dynamics\n    description: \"训练动态分析: 从现有 training logs 提取 clean vs injected samples 的 loss 曲线\"\n    claim: [1, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 0\n    notes: \"纯 CPU 分析任务，不需 GPU。解析 wandb/tensorboard logs。\"\n\n  # === Priority 2: Strengthens paper significantly ===\n\n  - plan_id: supp-webshop-vanilla\n    description: \"Vanilla SFT on WebShop — second environment baseline\"\n    claim: [6]\n    priority: 2\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 3.0\n    notes: \"需要先搭建 WebShop 环境 + 收集轨迹。工程量大。\"\n\n  - plan_id: supp-webshop-taxei\n    description: \"TaxEI SFT on WebShop — second environment validation\"\n    claim: [6]\n    priority: 2\n    depends_on: [supp-webshop-vanilla]\n    registry_id: \"\"\n    gpu_hours_est: 3.0\n\n  - plan_id: supp-qualitative-analysis\n    description: \"定性失败分析: 人工检查 20+ TaxEI 失败案例，分类失败模式\"\n    claim: [1, 4, 6]\n    priority: 2\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 0\n    notes: \"需要从 eval logs 提取失败 trajectory，人工/LLM 辅助分析。\"\n\n  # === Priority 3: Nice to have ===\n\n  - plan_id: supp-scale-25k\n    description: \"Scale ablation: 收集更多轨迹至 25K，重训 TaxEI/Random/Vanilla\"\n    claim: [6]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 12.0\n    notes: \"需要大量轨迹收集 (GPT-5.2 API cost ~$40)。PALADIN 用 50K。\"\n\n  - plan_id: supp-few-shot-recovery\n    description: \"Few-shot recovery prompting: 测试 in-context examples 是否比 SFT 更有效\"\n    claim: [4, 6]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.0\n\n  - plan_id: supp-operator-deep-dive\n    description: \"Per-operator 多种子 recovery eval: 验证 C4 observation_masking 的 TaxEI 优势是否稳定\"\n    claim: [4]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 2.0\n\n# GPU Budget Summary\n# Priority 1: ~10.7 GPU-hours (seed补齐 3.6h + ratio消融 5.4h + eval 3h) + 1 CPU task\n# Priority 2: ~6.0 GPU-hours + 1 CPU task (WebShop 工程量大，可能需要 1-2 天搭建)\n# Priority 3: ~15.0 GPU-hours\n# Total: ~31.7 GPU-hours across all priorities\n# With 4x 5090 GPUs: Priority 1 ≈ 3 hours wall time (fully parallel)\n",
+                "numLines": 181,
+                "startLine": 1,
+                "totalLines": 181
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The existing file has a different structure and content from what the user wants. The user wants me to update it to reflect the actual experiment results they've provided, organized into 4 groups with specific format. Let me create the updated version.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "0e893716-f1b8-4497-b74b-48b83fadcf79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScSnNY1ijKrsSRG68PAuhf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2845,
+                "cache_read_input_tokens": 23854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2845
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现有文件是旧版计划，需要按用户提供的4组实验结果重写。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "52d744e4-9101-47db-8cd7-5f08e5c2f1fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScSnNY1ijKrsSRG68PAuhf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2845,
+                "cache_read_input_tokens": 23854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2845
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011U4A6w3BSDandL9xudkQFZ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "content": "# Experiment Plan — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-15\n\nexperiments:\n\n  # ============================================================\n  # Group 1: Multi-seed verification (3-seed, full 9029 samples)\n  # Core claim: \"Error injection does not reliably improve planning performance\"\n  # ============================================================\n\n  - plan_id: \"vanilla-seed42-eval\"\n    description: \"Vanilla SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-eval-r3\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"vanilla-seed0-eval\"\n    description: \"Vanilla SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-seed0-eval\"\n    depends_on: []\n    result: 68.1\n\n  - plan_id: \"vanilla-seed123-eval\"\n    description: \"Vanilla SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-seed123-eval\"\n    depends_on: []\n    result: 66.0\n\n  - plan_id: \"taxei-seed42-eval\"\n    description: \"TaxEI SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-seed0-eval\"\n    description: \"TaxEI SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-seed0-eval\"\n    depends_on: []\n    result: 46.8\n\n  - plan_id: \"taxei-seed123-eval\"\n    description: \"TaxEI SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-seed123-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"random-seed42-eval\"\n    description: \"Random SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-eval\"\n    depends_on: []\n    result: 66.0\n\n  - plan_id: \"random-seed0-eval\"\n    description: \"Random SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-seed0-eval\"\n    depends_on: []\n    result: 55.3\n\n  - plan_id: \"random-seed123-eval\"\n    description: \"Random SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-seed123-eval\"\n    depends_on: []\n    result: 68.1\n\n  # ============================================================\n  # Group 2: TaxEI Dose-Response (fixed-size 4358, seed=42)\n  # Core claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n  # ============================================================\n\n  - plan_id: \"taxei-inject10-eval\"\n    description: \"TaxEI 10% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject10-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-inject25-eval\"\n    description: \"TaxEI 25% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject25-eval\"\n    depends_on: []\n    result: 48.9\n\n  - plan_id: \"taxei-inject50-eval\"\n    description: \"TaxEI 50% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject50-eval\"\n    depends_on: []\n    result: 51.1\n\n  # ============================================================\n  # Group 3: Random Dose-Response (fixed-size 4358, seed=42)\n  # Core claim: \"Random injection at low dose acts as data augmentation\"\n  # ============================================================\n\n  - plan_id: \"random-inject10-eval\"\n    description: \"Random 10% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject10-eval\"\n    depends_on: []\n    result: 68.1\n\n  - plan_id: \"random-inject25-eval\"\n    description: \"Random 25% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject25-eval\"\n    depends_on: []\n    status: \"in_progress\"\n\n  - plan_id: \"random-inject50-eval\"\n    description: \"Random 50% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject50-eval\"\n    depends_on: []\n    status: \"in_progress\"\n\n  # ============================================================\n  # Group 4: Recovery Eval (seed=42, 47 tasks with error injection during eval)\n  # Core claim: \"TaxEI does not improve error recovery\"\n  # ============================================================\n\n  - plan_id: \"vanilla-recovery\"\n    description: \"Vanilla model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-vanilla-recovery-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-recovery\"\n    description: \"TaxEI model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-taxei-recovery-eval\"\n    depends_on: []\n    result: 59.6\n\n  - plan_id: \"random-recovery\"\n    description: \"Random model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-random-recovery-eval\"\n    depends_on: []\n    result: 63.8\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "2c561938-249f-4a2a-9dec-3f248ca23ca4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScSnNY1ijKrsSRG68PAuhf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2845,
+                "cache_read_input_tokens": 23854,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2845
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T01:53:48.716Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011U4A6w3BSDandL9xudkQFZ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "f33f3c99-a5d4-40b9-8f5a-8c007628c6fa",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+              "content": "# Experiment Plan — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-15\n\nexperiments:\n\n  # ============================================================\n  # Group 1: Multi-seed verification (3-seed, full 9029 samples)\n  # Core claim: \"Error injection does not reliably improve planning performance\"\n  # ============================================================\n\n  - plan_id: \"vanilla-seed42-eval\"\n    description: \"Vanilla SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-eval-r3\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"vanilla-seed0-eval\"\n    description: \"Vanilla SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-seed0-eval\"\n    depends_on: []\n    result: 68.1\n\n  - plan_id: \"vanilla-seed123-eval\"\n    description: \"Vanilla SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-vanilla-seed123-eval\"\n    depends_on: []\n    result: 66.0\n\n  - plan_id: \"taxei-seed42-eval\"\n    description: \"TaxEI SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-seed0-eval\"\n    description: \"TaxEI SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-seed0-eval\"\n    depends_on: []\n    result: 46.8\n\n  - plan_id: \"taxei-seed123-eval\"\n    description: \"TaxEI SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-taxei-seed123-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"random-seed42-eval\"\n    description: \"Random SFT seed=42 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-eval\"\n    depends_on: []\n    result: 66.0\n\n  - plan_id: \"random-seed0-eval\"\n    description: \"Random SFT seed=0 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-seed0-eval\"\n    depends_on: []\n    result: 55.3\n\n  - plan_id: \"random-seed123-eval\"\n    description: \"Random SFT seed=123 clean eval — 47 tasks, 9029 samples\"\n    claim: \"Error injection does not reliably improve planning performance\"\n    priority: 1\n    registry_id: \"v4-random-seed123-eval\"\n    depends_on: []\n    result: 68.1\n\n  # ============================================================\n  # Group 2: TaxEI Dose-Response (fixed-size 4358, seed=42)\n  # Core claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n  # ============================================================\n\n  - plan_id: \"taxei-inject10-eval\"\n    description: \"TaxEI 10% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject10-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-inject25-eval\"\n    description: \"TaxEI 25% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject25-eval\"\n    depends_on: []\n    result: 48.9\n\n  - plan_id: \"taxei-inject50-eval\"\n    description: \"TaxEI 50% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"\n    priority: 1\n    registry_id: \"v4-taxei-fixed-inject50-eval\"\n    depends_on: []\n    result: 51.1\n\n  # ============================================================\n  # Group 3: Random Dose-Response (fixed-size 4358, seed=42)\n  # Core claim: \"Random injection at low dose acts as data augmentation\"\n  # ============================================================\n\n  - plan_id: \"random-inject10-eval\"\n    description: \"Random 10% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject10-eval\"\n    depends_on: []\n    result: 68.1\n\n  - plan_id: \"random-inject25-eval\"\n    description: \"Random 25% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject25-eval\"\n    depends_on: []\n    status: \"in_progress\"\n\n  - plan_id: \"random-inject50-eval\"\n    description: \"Random 50% injection ratio eval — fixed-size 4358, seed=42\"\n    claim: \"Random injection at low dose acts as data augmentation\"\n    priority: 1\n    registry_id: \"v4-random-fixed-inject50-eval\"\n    depends_on: []\n    status: \"in_progress\"\n\n  # ============================================================\n  # Group 4: Recovery Eval (seed=42, 47 tasks with error injection during eval)\n  # Core claim: \"TaxEI does not improve error recovery\"\n  # ============================================================\n\n  - plan_id: \"vanilla-recovery\"\n    description: \"Vanilla model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-vanilla-recovery-eval\"\n    depends_on: []\n    result: 61.7\n\n  - plan_id: \"taxei-recovery\"\n    description: \"TaxEI model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-taxei-recovery-eval\"\n    depends_on: []\n    result: 59.6\n\n  - plan_id: \"random-recovery\"\n    description: \"Random model recovery eval — 47 tasks with error injection during eval, seed=42\"\n    claim: \"TaxEI does not improve error recovery\"\n    priority: 1\n    registry_id: \"v4-random-recovery-eval\"\n    depends_on: []\n    result: 63.8\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 180,
+                  "newStart": 1,
+                  "newLines": 168,
+                  "lines": [
+                    " # Experiment Plan — tax_error_inject_agent (Negative Result Paper)",
+                    "-# Updated: 2026-05-14",
+                    "-# Phase: Supplementary experiments for negative result paper submission",
+                    "-# Target: Insights from Negative Results @ EMNLP 2026",
+                    "+# Updated: 2026-05-15",
+                    " ",
+                    " experiments:",
+                    "-  # === Priority 1: Required for submission ===",
+                    " ",
+                    "-  - plan_id: supp-taxei-seed123",
+                    "-    description: \"TaxEI SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"",
+                    "-    claim: [1, 2, 3]",
+                    "+  # ============================================================",
+                    "+  # Group 1: Multi-seed verification (3-seed, full 9029 samples)",
+                    "+  # Core claim: \"Error injection does not reliably improve planning performance\"",
+                    "+  # ============================================================",
+                    "+",
+                    "+  - plan_id: \"vanilla-seed42-eval\"",
+                    "+    description: \"Vanilla SFT seed=42 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-vanilla-eval-r3\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"v4-taxei-seed123\"",
+                    "-    gpu_hours_est: 1.8",
+                    "-    notes: \"Same hyperparams as v4-taxei-sft (9,029 samples, LoRA rank=16, 3 epochs)\"",
+                    "+    result: 61.7",
+                    " ",
+                    "-  - plan_id: supp-taxei-seed123-eval",
+                    "-    description: \"TaxEI seed=123 clean eval — 47 tasks\"",
+                    "-    claim: [1, 2, 3]",
+                    "+  - plan_id: \"vanilla-seed0-eval\"",
+                    "+    description: \"Vanilla SFT seed=0 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "-    depends_on: [supp-taxei-seed123]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+    registry_id: \"v4-vanilla-seed0-eval\"",
+                    "+    depends_on: []",
+                    "+    result: 68.1",
+                    " ",
+                    "-  - plan_id: supp-random-seed123",
+                    "-    description: \"Random SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"",
+                    "-    claim: [2, 3]",
+                    "+  - plan_id: \"vanilla-seed123-eval\"",
+                    "+    description: \"Vanilla SFT seed=123 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-vanilla-seed123-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"v4-random-seed123\"",
+                    "-    gpu_hours_est: 1.8",
+                    "-    notes: \"Same hyperparams as v4-random-sft (9,029 samples, LoRA rank=16, 3 epochs)\"",
+                    "+    result: 66.0",
+                    " ",
+                    "-  - plan_id: supp-random-seed123-eval",
+                    "-    description: \"Random seed=123 clean eval — 47 tasks\"",
+                    "-    claim: [2, 3]",
+                    "+  - plan_id: \"taxei-seed42-eval\"",
+                    "+    description: \"TaxEI SFT seed=42 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "-    depends_on: [supp-random-seed123]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+    registry_id: \"v4-taxei-eval\"",
+                    "+    depends_on: []",
+                    "+    result: 61.7",
+                    " ",
+                    "-  - plan_id: supp-ratio-taxei-10pct",
+                    "-    description: \"TaxEI SFT with 10% injection ratio (vs current 50%) — noise-vs-signal ablation\"",
+                    "-    claim: [1, 3, 6]",
+                    "+  - plan_id: \"taxei-seed0-eval\"",
+                    "+    description: \"TaxEI SFT seed=0 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-taxei-seed0-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"v4-taxei-fixed-inject10\"",
+                    "-    gpu_hours_est: 1.0",
+                    "-    notes: \"4,358 total = 3,922 clean + 436 injected (10%). Fixed-size = vanilla 大小. seed=42.\"",
+                    "+    result: 46.8",
+                    " ",
+                    "-  - plan_id: supp-ratio-taxei-10pct-eval",
+                    "-    description: \"TaxEI 10% injection ratio eval — 47 tasks\"",
+                    "-    claim: [1, 3, 6]",
+                    "+  - plan_id: \"taxei-seed123-eval\"",
+                    "+    description: \"TaxEI SFT seed=123 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "-    depends_on: [supp-ratio-taxei-10pct]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+    registry_id: \"v4-taxei-seed123-eval\"",
+                    "+    depends_on: []",
+                    "+    result: 61.7",
+                    " ",
+                    "-  - plan_id: supp-ratio-taxei-25pct",
+                    "-    description: \"TaxEI SFT with 25% injection ratio — intermediate noise level\"",
+                    "-    claim: [1, 3, 6]",
+                    "+  - plan_id: \"random-seed42-eval\"",
+                    "+    description: \"Random SFT seed=42 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-random-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"v4-taxei-fixed-inject25-r2\"",
+                    "-    gpu_hours_est: 1.2",
+                    "-    notes: \"4,358 total = 3,268 clean + 1,090 injected (25%). Fixed-size = vanilla 大小. seed=42.\"",
+                    "+    result: 66.0",
+                    " ",
+                    "-  - plan_id: supp-ratio-taxei-25pct-eval",
+                    "-    description: \"TaxEI 25% injection ratio eval — 47 tasks\"",
+                    "-    claim: [1, 3, 6]",
+                    "+  - plan_id: \"random-seed0-eval\"",
+                    "+    description: \"Random SFT seed=0 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "-    depends_on: [supp-ratio-taxei-25pct]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+    registry_id: \"v4-random-seed0-eval\"",
+                    "+    depends_on: []",
+                    "+    result: 55.3",
+                    " ",
+                    "-  - plan_id: supp-ratio-random-10pct",
+                    "-    description: \"Random SFT with 10% injection ratio — ablation control\"",
+                    "-    claim: [2, 6]",
+                    "+  - plan_id: \"random-seed123-eval\"",
+                    "+    description: \"Random SFT seed=123 clean eval — 47 tasks, 9029 samples\"",
+                    "+    claim: \"Error injection does not reliably improve planning performance\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-random-seed123-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 1.0",
+                    "-    notes: \"4,358 total, 10% injected (unlabeled tags). Same volume as taxei-10pct.\"",
+                    "+    result: 68.1",
+                    " ",
+                    "-  - plan_id: supp-ratio-random-10pct-eval",
+                    "-    description: \"Random 10% injection ratio eval — 47 tasks\"",
+                    "-    claim: [2, 6]",
+                    "-    priority: 1",
+                    "-    depends_on: [supp-ratio-random-10pct]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+  # ============================================================",
+                    "+  # Group 2: TaxEI Dose-Response (fixed-size 4358, seed=42)",
+                    "+  # Core claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"",
+                    "+  # ============================================================",
+                    " ",
+                    "-  - plan_id: supp-ratio-random-25pct",
+                    "-    description: \"Random SFT with 25% injection ratio — ablation control\"",
+                    "-    claim: [2, 6]",
+                    "+  - plan_id: \"taxei-inject10-eval\"",
+                    "+    description: \"TaxEI 10% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-taxei-fixed-inject10-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 1.2",
+                    "-    notes: \"4,358 total, 25% injected (unlabeled tags). Same volume as taxei-25pct.\"",
+                    "+    result: 61.7",
+                    " ",
+                    "-  - plan_id: supp-ratio-random-25pct-eval",
+                    "-    description: \"Random 25% injection ratio eval — 47 tasks\"",
+                    "-    claim: [2, 6]",
+                    "+  - plan_id: \"taxei-inject25-eval\"",
+                    "+    description: \"TaxEI 25% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"",
+                    "     priority: 1",
+                    "-    depends_on: [supp-ratio-random-25pct]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0.5",
+                    "+    registry_id: \"v4-taxei-fixed-inject25-eval\"",
+                    "+    depends_on: []",
+                    "+    result: 48.9",
+                    " ",
+                    "-  - plan_id: supp-training-dynamics",
+                    "-    description: \"训练动态分析: 从现有 training logs 提取 clean vs injected samples 的 loss 曲线\"",
+                    "-    claim: [1, 3]",
+                    "+  - plan_id: \"taxei-inject50-eval\"",
+                    "+    description: \"TaxEI 50% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Injection exhibits threshold-plateau effect, not linear degradation\"",
+                    "     priority: 1",
+                    "+    registry_id: \"v4-taxei-fixed-inject50-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0",
+                    "-    notes: \"纯 CPU 分析任务，不需 GPU。解析 wandb/tensorboard logs。\"",
+                    "+    result: 51.1",
+                    " ",
+                    "-  # === Priority 2: Strengthens paper significantly ===",
+                    "+  # ============================================================",
+                    "+  # Group 3: Random Dose-Response (fixed-size 4358, seed=42)",
+                    "+  # Core claim: \"Random injection at low dose acts as data augmentation\"",
+                    "+  # ============================================================",
+                    " ",
+                    "-  - plan_id: supp-webshop-vanilla",
+                    "-    description: \"Vanilla SFT on WebShop — second environment baseline\"",
+                    "-    claim: [6]",
+                    "-    priority: 2",
+                    "+  - plan_id: \"random-inject10-eval\"",
+                    "+    description: \"Random 10% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Random injection at low dose acts as data augmentation\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-random-fixed-inject10-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 3.0",
+                    "-    notes: \"需要先搭建 WebShop 环境 + 收集轨迹。工程量大。\"",
+                    "+    result: 68.1",
+                    " ",
+                    "-  - plan_id: supp-webshop-taxei",
+                    "-    description: \"TaxEI SFT on WebShop — second environment validation\"",
+                    "-    claim: [6]",
+                    "-    priority: 2",
+                    "-    depends_on: [supp-webshop-vanilla]",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 3.0",
+                    "+  - plan_id: \"random-inject25-eval\"",
+                    "+    description: \"Random 25% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Random injection at low dose acts as data augmentation\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-random-fixed-inject25-eval\"",
+                    "+    depends_on: []",
+                    "+    status: \"in_progress\"",
+                    " ",
+                    "-  - plan_id: supp-qualitative-analysis",
+                    "-    description: \"定性失败分析: 人工检查 20+ TaxEI 失败案例，分类失败模式\"",
+                    "-    claim: [1, 4, 6]",
+                    "-    priority: 2",
+                    "+  - plan_id: \"random-inject50-eval\"",
+                    "+    description: \"Random 50% injection ratio eval — fixed-size 4358, seed=42\"",
+                    "+    claim: \"Random injection at low dose acts as data augmentation\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-random-fixed-inject50-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 0",
+                    "-    notes: \"需要从 eval logs 提取失败 trajectory，人工/LLM 辅助分析。\"",
+                    "+    status: \"in_progress\"",
+                    " ",
+                    "-  # === Priority 3: Nice to have ===",
+                    "+  # ============================================================",
+                    "+  # Group 4: Recovery Eval (seed=42, 47 tasks with error injection during eval)",
+                    "+  # Core claim: \"TaxEI does not improve error recovery\"",
+                    "+  # ============================================================",
+                    " ",
+                    "-  - plan_id: supp-scale-25k",
+                    "-    description: \"Scale ablation: 收集更多轨迹至 25K，重训 TaxEI/Random/Vanilla\"",
+                    "-    claim: [6]",
+                    "-    priority: 3",
+                    "+  - plan_id: \"vanilla-recovery\"",
+                    "+    description: \"Vanilla model recovery eval — 47 tasks with error injection during eval, seed=42\"",
+                    "+    claim: \"TaxEI does not improve error recovery\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-vanilla-recovery-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 12.0",
+                    "-    notes: \"需要大量轨迹收集 (GPT-5.2 API cost ~$40)。PALADIN 用 50K。\"",
+                    "+    result: 61.7",
+                    " ",
+                    "-  - plan_id: supp-few-shot-recovery",
+                    "-    description: \"Few-shot recovery prompting: 测试 in-context examples 是否比 SFT 更有效\"",
+                    "-    claim: [4, 6]",
+                    "-    priority: 3",
+                    "+  - plan_id: \"taxei-recovery\"",
+                    "+    description: \"TaxEI model recovery eval — 47 tasks with error injection during eval, seed=42\"",
+                    "+    claim: \"TaxEI does not improve error recovery\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-taxei-recovery-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 1.0",
+                    "+    result: 59.6",
+                    " ",
+                    "-  - plan_id: supp-operator-deep-dive",
+                    "-    description: \"Per-operator 多种子 recovery eval: 验证 C4 observation_masking 的 TaxEI 优势是否稳定\"",
+                    "-    claim: [4]",
+                    "-    priority: 3",
+                    "+  - plan_id: \"random-recovery\"",
+                    "+    description: \"Random model recovery eval — 47 tasks with error injection during eval, seed=42\"",
+                    "+    claim: \"TaxEI does not improve error recovery\"",
+                    "+    priority: 1",
+                    "+    registry_id: \"v4-random-recovery-eval\"",
+                    "     depends_on: []",
+                    "-    registry_id: \"\"",
+                    "-    gpu_hours_est: 2.0",
+                    "-",
+                    "-# GPU Budget Summary",
+                    "-# Priority 1: ~10.7 GPU-hours (seed补齐 3.6h + ratio消融 5.4h + eval 3h) + 1 CPU task",
+                    "-# Priority 2: ~6.0 GPU-hours + 1 CPU task (WebShop 工程量大，可能需要 1-2 天搭建)",
+                    "-# Priority 3: ~15.0 GPU-hours",
+                    "-# Total: ~31.7 GPU-hours across all priorities",
+                    "-# With 4x 5090 GPUs: Priority 1 ≈ 3 hours wall time (fully parallel)",
+                    "+    result: 63.8"
+                  ]
+                }
+              ],
+              "originalFile": "# Experiment Plan — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-14\n# Phase: Supplementary experiments for negative result paper submission\n# Target: Insights from Negative Results @ EMNLP 2026\n\nexperiments:\n  # === Priority 1: Required for submission ===\n\n  - plan_id: supp-taxei-seed123\n    description: \"TaxEI SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n    claim: [1, 2, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-seed123\"\n    gpu_hours_est: 1.8\n    notes: \"Same hyperparams as v4-taxei-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n\n  - plan_id: supp-taxei-seed123-eval\n    description: \"TaxEI seed=123 clean eval — 47 tasks\"\n    claim: [1, 2, 3]\n    priority: 1\n    depends_on: [supp-taxei-seed123]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-random-seed123\n    description: \"Random SFT seed=123 — 补齐 3-seed 覆盖 (currently only seed=42/0)\"\n    claim: [2, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-random-seed123\"\n    gpu_hours_est: 1.8\n    notes: \"Same hyperparams as v4-random-sft (9,029 samples, LoRA rank=16, 3 epochs)\"\n\n  - plan_id: supp-random-seed123-eval\n    description: \"Random seed=123 clean eval — 47 tasks\"\n    claim: [2, 3]\n    priority: 1\n    depends_on: [supp-random-seed123]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-taxei-10pct\n    description: \"TaxEI SFT with 10% injection ratio (vs current 50%) — noise-vs-signal ablation\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-fixed-inject10\"\n    gpu_hours_est: 1.0\n    notes: \"4,358 total = 3,922 clean + 436 injected (10%). Fixed-size = vanilla 大小. seed=42.\"\n\n  - plan_id: supp-ratio-taxei-10pct-eval\n    description: \"TaxEI 10% injection ratio eval — 47 tasks\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: [supp-ratio-taxei-10pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-taxei-25pct\n    description: \"TaxEI SFT with 25% injection ratio — intermediate noise level\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"v4-taxei-fixed-inject25-r2\"\n    gpu_hours_est: 1.2\n    notes: \"4,358 total = 3,268 clean + 1,090 injected (25%). Fixed-size = vanilla 大小. seed=42.\"\n\n  - plan_id: supp-ratio-taxei-25pct-eval\n    description: \"TaxEI 25% injection ratio eval — 47 tasks\"\n    claim: [1, 3, 6]\n    priority: 1\n    depends_on: [supp-ratio-taxei-25pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-random-10pct\n    description: \"Random SFT with 10% injection ratio — ablation control\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.0\n    notes: \"4,358 total, 10% injected (unlabeled tags). Same volume as taxei-10pct.\"\n\n  - plan_id: supp-ratio-random-10pct-eval\n    description: \"Random 10% injection ratio eval — 47 tasks\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: [supp-ratio-random-10pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-ratio-random-25pct\n    description: \"Random SFT with 25% injection ratio — ablation control\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.2\n    notes: \"4,358 total, 25% injected (unlabeled tags). Same volume as taxei-25pct.\"\n\n  - plan_id: supp-ratio-random-25pct-eval\n    description: \"Random 25% injection ratio eval — 47 tasks\"\n    claim: [2, 6]\n    priority: 1\n    depends_on: [supp-ratio-random-25pct]\n    registry_id: \"\"\n    gpu_hours_est: 0.5\n\n  - plan_id: supp-training-dynamics\n    description: \"训练动态分析: 从现有 training logs 提取 clean vs injected samples 的 loss 曲线\"\n    claim: [1, 3]\n    priority: 1\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 0\n    notes: \"纯 CPU 分析任务，不需 GPU。解析 wandb/tensorboard logs。\"\n\n  # === Priority 2: Strengthens paper significantly ===\n\n  - plan_id: supp-webshop-vanilla\n    description: \"Vanilla SFT on WebShop — second environment baseline\"\n    claim: [6]\n    priority: 2\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 3.0\n    notes: \"需要先搭建 WebShop 环境 + 收集轨迹。工程量大。\"\n\n  - plan_id: supp-webshop-taxei\n    description: \"TaxEI SFT on WebShop — second environment validation\"\n    claim: [6]\n    priority: 2\n    depends_on: [supp-webshop-vanilla]\n    registry_id: \"\"\n    gpu_hours_est: 3.0\n\n  - plan_id: supp-qualitative-analysis\n    description: \"定性失败分析: 人工检查 20+ TaxEI 失败案例，分类失败模式\"\n    claim: [1, 4, 6]\n    priority: 2\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 0\n    notes: \"需要从 eval logs 提取失败 trajectory，人工/LLM 辅助分析。\"\n\n  # === Priority 3: Nice to have ===\n\n  - plan_id: supp-scale-25k\n    description: \"Scale ablation: 收集更多轨迹至 25K，重训 TaxEI/Random/Vanilla\"\n    claim: [6]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 12.0\n    notes: \"需要大量轨迹收集 (GPT-5.2 API cost ~$40)。PALADIN 用 50K。\"\n\n  - plan_id: supp-few-shot-recovery\n    description: \"Few-shot recovery prompting: 测试 in-context examples 是否比 SFT 更有效\"\n    claim: [4, 6]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 1.0\n\n  - plan_id: supp-operator-deep-dive\n    description: \"Per-operator 多种子 recovery eval: 验证 C4 observation_masking 的 TaxEI 优势是否稳定\"\n    claim: [4]\n    priority: 3\n    depends_on: []\n    registry_id: \"\"\n    gpu_hours_est: 2.0\n\n# GPU Budget Summary\n# Priority 1: ~10.7 GPU-hours (seed补齐 3.6h + ratio消融 5.4h + eval 3h) + 1 CPU task\n# Priority 2: ~6.0 GPU-hours + 1 CPU task (WebShop 工程量大，可能需要 1-2 天搭建)\n# Priority 3: ~15.0 GPU-hours\n# Total: ~31.7 GPU-hours across all priorities\n# With 4x 5090 GPUs: Priority 1 ≈ 3 hours wall time (fully parallel)\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 `experiment_plan.yaml`，包含 4 组共 21 个实验条目。其中 `random-inject25-eval` 和 `random-inject50-eval` 标记为 `in_progress`，其余均已填入结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "uuid": "c97666f1-c169-4360-b13b-b87849f94408",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SvZ86iCrAWHrqFnP7tZj1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2231,
+                "cache_read_input_tokens": 26699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2231
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 `experiment_plan.yaml`，包含 4 组共 21 个实验条目。其中 `random-inject25-eval` 和 `random-inject50-eval` 标记为 `in_progress`，其余均已填入结果。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 38235,
+            "duration_api_ms": 38969,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "fb7ab137-67ec-4a1d-940d-86e54a313f40",
+            "total_cost_usd": 0.21432924999999997,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 17089,
+              "cache_read_input_tokens": 86026,
+              "output_tokens": 2512,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17089,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 26699,
+                  "cache_creation_input_tokens": 2231,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2231
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1610,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001685,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2512,
+                "cacheReadInputTokens": 86026,
+                "cacheCreationInputTokens": 17089,
+                "webSearchRequests": 0,
+                "costUSD": 0.21264424999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f12bb070-e775-4f7d-b8df-bc107d7412f1"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-experiment-plan-yaml.md"
+}

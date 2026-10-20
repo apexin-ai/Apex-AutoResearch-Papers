@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cffb651c1d4369a7cbe0",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis comprehensive results summary r2",
+  "task_key": "worker_analysis_comprehensive-results-summary-r2_20260515T002203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_comprehensive-results-summary-r2_20260515T002203_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "b7ca3353e09f15a52396e9d58fde76d36a81b41ad75e385d76f397283fe645b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册 artifact `art_20260515_b5a5a7`。\n\n汇总覆盖 7 个维度：\n1. **多种子 Clean Eval** — Vanilla 65.3%±3.3, TaxEI 56.7%±8.6, Random 60.7%±7.6 (2 seeds)\n2. **Recovery Eval** — TaxEI 59.6% vs Vanilla 61.7%, 含 per-operator breakdown\n3. **Dose-Response** — 10% injection -3.6pp, 25% injection -16.4pp\n4. **训练 Metrics** — final loss, token accuracy, duration 全表\n5. **统计检验** — McNemar p-values 均不显著 (p=0.375~1.0)\n6. **实验时间线** — 从轨迹收集到 ablation 的全流程\n7. **6 条核心 Negative Results** — 直接可用于论文 conclusion\n\n唯一缺口：`v4-random-seed123-eval` 仍在 RUNNING，完成后需更新 Random 的 3-seed 统计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-comprehensive-results-summary-r2.md"
+}

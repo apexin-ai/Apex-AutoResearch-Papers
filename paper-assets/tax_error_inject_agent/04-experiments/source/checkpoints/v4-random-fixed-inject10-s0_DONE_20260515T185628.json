@@ -1,0 +1,58 @@
+{
+  "exp_id": "v4-random-fixed-inject10-s0",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:48:26.373Z",
+    "updated_at": "2026-05-15T18:56:27.890Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 0 --data_seed 0 --output_dir checkpoints/v4_random_fixed_inject10_s0 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "180956",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0.log",
+      "submitted_at": "2026-05-15T17:48:26.104Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl",
+      "data_count": 4358,
+      "model_name": "Qwen3-8B",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635",
+      "wall_clock_seconds": 4081.8,
+      "gpu_hours": 1.13
+    },
+    "hypothesis": "v4 Random fixed-size ablation: 10% injection ratio seed=0 (4,358 total). Dose-response 5-seed expansion — 与 TaxEI 10% 对比 taxonomy 标签效果。",
+    "reproduce": {
+      "finished_at": "2026-05-15T18:47:48.342Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:47:53.242073+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_loss": 0.4227,
+      "final_loss": 0.276,
+      "final_token_acc": 0.9067,
+      "epochs": 3,
+      "total_steps": 1635,
+      "train_runtime_sec": 3531,
+      "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T18:56:27.890Z"
+  },
+  "timestamp": "2026-05-15T18:56:28.039034+00:00",
+  "trigger": "update_registry"
+}

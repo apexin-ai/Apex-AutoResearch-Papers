@@ -1,0 +1,32 @@
+{
+  "exp_id": "llama31-vanilla-s42",
+  "project": "tax_error_inject_agent",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:32:19.082Z",
+    "updated_at": "2026-05-16T06:32:44.952Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --dataset /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir /root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42 --lora_rank 16 --num_train_epochs 3 --per_device_train_batch_size 4 --gradient_accumulation_steps 2 --learning_rate 1e-4 --max_length 4096 --seed 42 --data_seed 42 --logging_steps 10 --gradient_checkpointing true --bf16 true --save_strategy epoch\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "244644",
+      "log_path": "~/runs/tax_error_inject_agent/llama31-vanilla-s42.log",
+      "submitted_at": "2026-05-16T06:32:18.732Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl",
+      "data_count": 9029,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "hypothesis": "Cross-model generalizability: LLaMA-3.1-8B Vanilla baseline"
+    }
+  },
+  "timestamp": "2026-05-16T06:32:45.222517+00:00",
+  "trigger": "update_registry"
+}

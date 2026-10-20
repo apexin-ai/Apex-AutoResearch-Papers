@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d62f0b871fcbefa0ce23",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis results sanity check",
+  "task_key": "worker_analysis_results-sanity-check_20260515T021112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_results-sanity-check_20260515T021112_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "037465061351f2d8bf34ed9ee36303fa7ff8e224fce816d3fb0f162e17f079cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 18 numbers verified, no discrepancies. Every `success_rate` in the v4 eval JSON files matches the claimed percentages exactly, and the count/47 fractions are internally consistent. Artifact registered as `art_20260515_5ef5a9`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-results-sanity-check.md"
+}

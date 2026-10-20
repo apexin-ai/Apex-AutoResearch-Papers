@@ -1,0 +1,843 @@
+# analysis extended statistics 5seed
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_analysis_extended-statistics-5seed_20260515T174718.log`
+- **Structured JSON:** [`9f430385d2715de6fbfa.json`](../../sessions/9f/9f430385d2715de6fbfa.json)
+
+## Before a recorded user message
+
+16 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "20e1d5e2-d21d-4b2c-a202-2df5d47aa0ae",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778883600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a9e24dfd-796d-4f0c-8f76-0205af43b0cb",
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to perform a comprehensive statistical analysis on their 5-seed experiment data. This is a local Python computation task. Let me write and execute the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "bac79895-4178-4d09-b363-26b9a714922a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMbv7AUu1jwZggaXxiPfgV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12176,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12176
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+执行本地统计分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "808765e5-17a4-4525-9e75-380eb3a04735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMbv7AUu1jwZggaXxiPfgV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12176,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12176
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VeSQnhx7SkjhaaCJbS4Ghp`</summary>
+
+```json
+{
+  "command": "cat << 'PYEOF' | python3\nimport numpy as np\nfrom scipy import stats\nimport warnings\nwarnings.filterwarnings('ignore')\n\nnp.random.seed(2026)\n\n# Data\nvanilla = np.array([61.7, 68.1, 66.0, 66.0, 74.5])\ntaxei = np.array([61.7, 46.8, 61.7, 59.6, 61.7])\nrandom_ctrl = np.array([66.0, 55.3, 68.1, 46.8, 55.3])\n\ntrain_loss = np.array([0.3604, 0.3612, 0.3619, 0.3609, 0.3602])\n# TaxEI eval rates in same seed order (0,1,7,42,123)\ntaxei_by_seed = np.array([46.8, 59.6, 61.7, 61.7, 61.7])\n\nprint(\"=\"*70)\nprint(\"1. BOOTSTRAP CI (10,000 resamples)\")\nprint(\"=\"*70)\n\ndef bootstrap_ci(data, n_boot=10000, ci=0.95):\n    boot_means = np.array([np.mean(np.random.choice(data, size=len(data), replace=True)) for _ in range(n_boot)])\n    alpha = (1 - ci) / 2\n    lo, hi = np.percentile(boot_means, [alpha*100, (1-alpha)*100])\n    return np.mean(boot_means), lo, hi\n\ndef bootstrap_diff_ci(a, b, n_boot=10000, ci=0.95):\n    diffs = []\n    for _ in range(n_boot):\n        ia = np.random.choice(len(a), size=len(a), replace=True)\n        ib = np.random.choice(len(b), size=len(b), replace=True)\n        diffs.append(np.mean(a[ia]) - np.mean(b[ib]))\n    diffs = np.array(diffs)\n    alpha = (1 - ci) / 2\n    lo, hi = np.percentile(diffs, [alpha*100, (1-alpha)*100])\n    p_greater_zero = np.mean(diffs > 0)\n    return np.mean(diffs), lo, hi, p_greater_zero\n\n# Individual CIs\nfor name, data in [(\"Vanilla\", vanilla), (\"TaxEI\", taxei), (\"Random\", random_ctrl)]:\n    m, lo, hi = bootstrap_ci(data)\n    print(f\"  {name}: mean={np.mean(data):.2f}, bootstrap mean={m:.2f}, 95% CI=[{lo:.2f}, {hi:.2f}]\")\n\nprint()\nprint(\"Pairwise difference CIs:\")\npairs = [(\"Vanilla-TaxEI\", vanilla, taxei), (\"Vanilla-Random\", vanilla, random_ctrl), (\"TaxEI-Random\", taxei, random_ctrl)]\nfor name, a, b in pairs:\n    m, lo, hi, p = bootstrap_diff_ci(a, b)\n    sig = \"YES (CI excludes 0)\" if (lo > 0 or hi < 0) else \"NO (CI includes 0)\"\n    print(f\"  {name}: mean diff={m:.2f}, 95% CI=[{lo:.2f}, {hi:.2f}], P(diff>0)={p:.4f}, Significant: {sig}\")\n\nprint()\nprint(\"=\"*70)\nprint(\"2. POWER ANALYSIS\")\nprint(\"=\"*70)\n\nfrom scipy.stats import t as t_dist, nct\n\ndef paired_power(n, effect_size, alpha=0.05):\n    \"\"\"Power for paired t-test given n, Cohen's d\"\"\"\n    df = n - 1\n    t_crit = t_dist.ppf(1 - alpha/2, df)\n    ncp = effect_size * np.sqrt(n)\n    power = 1 - nct.cdf(t_crit, df, ncp) + nct.cdf(-t_crit, df, ncp)\n    return power\n\ndef min_detectable_effect(n, alpha=0.05, power_target=0.80):\n    \"\"\"Binary search for minimum detectable Cohen's d\"\"\"\n    lo, hi = 0.0, 10.0\n    for _ in range(100):\n        mid = (lo + hi) / 2\n        if paired_power(n, mid, alpha) < power_target:\n            lo = mid\n        else:\n            hi = mid\n    return mid\n\n# Vanilla vs TaxEI\ndiff_vt = vanilla - taxei\nobs_mean_diff = np.mean(diff_vt)\nobs_sd_diff = np.std(diff_vt, ddof=1)\nobs_d = obs_mean_diff / obs_sd_diff\n\nprint(f\"  Vanilla-TaxEI observed: mean diff={obs_mean_diff:.2f}pp, SD of diff={obs_sd_diff:.2f}, Cohen's d={obs_d:.4f}\")\n\nmde = min_detectable_effect(5)\nprint(f\"  Minimum detectable effect (n=5, 80% power, α=0.05): Cohen's d = {mde:.3f}\")\n\nachieved = paired_power(5, obs_d)\nprint(f\"  Achieved power (n=5, d={obs_d:.3f}): {achieved:.4f} ({achieved*100:.1f}%)\")\n\n# Required n for 80% power\nfor n_try in range(5, 200):\n    if paired_power(n_try, obs_d) >= 0.80:\n        print(f\"  Required n for 80% power at d={obs_d:.3f}: n={n_try} seeds\")\n        break\n\n# Also for raw pp difference\nprint(f\"\\n  For detecting 9.0pp difference with SD={obs_sd_diff:.2f}:\")\nfor n_try in range(5, 200):\n    d_raw = 9.0 / obs_sd_diff\n    if paired_power(n_try, d_raw) >= 0.80:\n        print(f\"  Required n for 80% power: n={n_try} seeds (using paired SD)\")\n        break\n\nprint()\nprint(\"=\"*70)\nprint(\"3. LEVENE'S TEST FOR VARIANCE HOMOGENEITY\")\nprint(\"=\"*70)\n\n# 3-way\nstat3, p3 = stats.levene(vanilla, taxei, random_ctrl)\nprint(f\"  3-way Levene: F={stat3:.4f}, p={p3:.4f} {'*' if p3<0.05 else 'NS'}\")\n\n# Pairwise\nfor name, a, b in [(\"Vanilla vs TaxEI\", vanilla, taxei), (\"Vanilla vs Random\", vanilla, random_ctrl), (\"TaxEI vs Random\", taxei, random_ctrl)]:\n    stat, p = stats.levene(a, b)\n    print(f\"  {name}: F={stat:.4f}, p={p:.4f} {'*' if p<0.05 else 'NS'}\")\n    print(f\"    (Var: {np.var(a, ddof=1):.2f} vs {np.var(b, ddof=1):.2f})\")\n\nprint()\nprint(\"=\"*70)\nprint(\"4. BAYESIAN POSTERIOR (Vanilla - TaxEI)\")\nprint(\"=\"*70)\n\n# Bayesian analysis: conjugate normal model\n# Prior: N(0, 100) for mean difference, diffuse\n# Likelihood: paired differences ~ N(mu, sigma^2/n)\n# With known variance approximation (using observed SD)\n\ndiff_data = vanilla - taxei\nn = len(diff_data)\nx_bar = np.mean(diff_data)\ns = np.std(diff_data, ddof=1)\n\n# Prior: mu ~ N(mu0, tau0^2)\nmu0 = 0\ntau0 = 100  # very diffuse\n\n# Posterior: mu | data ~ N(mu_post, tau_post^2)\ntau_post_sq = 1 / (1/tau0**2 + n/s**2)\nmu_post = tau_post_sq * (mu0/tau0**2 + n*x_bar/s**2)\ntau_post = np.sqrt(tau_post_sq)\n\nprint(f\"  Prior: N(0, 100)\")\nprint(f\"  Data: n={n}, mean diff={x_bar:.2f}, SD={s:.2f}\")\nprint(f\"  Posterior: N({mu_post:.3f}, {tau_post:.3f})\")\nprint(f\"  Posterior 95% CI: [{mu_post - 1.96*tau_post:.3f}, {mu_post + 1.96*tau_post:.3f}]\")\n\n# P(Vanilla > TaxEI) = P(diff > 0)\np_vanilla_better = 1 - stats.norm.cdf(0, mu_post, tau_post)\nprint(f\"  P(Vanilla > TaxEI) = {p_vanilla_better:.4f} ({p_vanilla_better*100:.1f}%)\")\n\n# Bayes Factor using Savage-Dickey ratio\n# BF10 = prior density at 0 / posterior density at 0\nprior_at_0 = stats.norm.pdf(0, mu0, tau0)\nposterior_at_0 = stats.norm.pdf(0, mu_post, tau_post)\nbf10 = prior_at_0 / posterior_at_0\nbf01 = 1 / bf10\n\nprint(f\"  BF10 (H1: μ≠0 vs H0: μ=0) = {bf10:.4f}\")\nprint(f\"  BF01 (H0 vs H1) = {bf01:.4f}\")\nif bf10 > 3:\n    print(f\"  Interpretation: Moderate evidence for H1 (Vanilla ≠ TaxEI)\")\nelif bf10 > 1:\n    print(f\"  Interpretation: Anecdotal evidence for H1\")\nelif bf10 > 1/3:\n    print(f\"  Interpretation: Inconclusive\")\nelse:\n    print(f\"  Interpretation: Evidence for H0 (no difference)\")\n\nprint()\nprint(\"=\"*70)\nprint(\"5. COHEN'S d WITH CI\")\nprint(\"=\"*70)\n\ndef cohens_d_paired_ci(a, b, ci=0.95):\n    diff = a - b\n    n = len(diff)\n    d = np.mean(diff) / np.std(diff, ddof=1)\n    # CI via noncentral t\n    t_obs = d * np.sqrt(n)\n    df = n - 1\n    alpha = 1 - ci\n    # Find noncentrality parameter bounds\n    from scipy.optimize import brentq\n    def nct_cdf_target_lo(ncp):\n        return nct.cdf(t_obs, df, ncp) - (1 - alpha/2)\n    def nct_cdf_target_hi(ncp):\n        return nct.cdf(t_obs, df, ncp) - alpha/2\n    try:\n        ncp_lo = brentq(nct_cdf_target_lo, -20, 20)\n        ncp_hi = brentq(nct_cdf_target_hi, -20, 20)\n        d_lo = ncp_lo / np.sqrt(n)\n        d_hi = ncp_hi / np.sqrt(n)\n    except:\n        se_d = np.sqrt(1/n + d**2/(2*n))\n        d_lo = d - 1.96*se_d\n        d_hi = d + 1.96*se_d\n    return d, d_lo, d_hi\n\nfor name, a, b in [(\"Vanilla vs TaxEI\", vanilla, taxei), (\"Vanilla vs Random\", vanilla, random_ctrl), (\"TaxEI vs Random\", taxei, random_ctrl)]:\n    d, lo, hi = cohens_d_paired_ci(a, b)\n    # Size interpretation\n    if abs(d) < 0.2:\n        size = \"negligible\"\n    elif abs(d) < 0.5:\n        size = \"small\"\n    elif abs(d) < 0.8:\n        size = \"medium\"\n    else:\n        size = \"large\"\n    print(f\"  {name}: d={d:.4f}, 95% CI=[{lo:.4f}, {hi:.4f}] ({size})\")\n\nprint()\nprint(\"=\"*70)\nprint(\"6. TRAINING-EVAL DISSOCIATION\")\nprint(\"=\"*70)\n\n# Seeds in order: 0, 1, 7, 42, 123\nprint(f\"  Training loss (seeds 0,1,7,42,123): {train_loss}\")\nprint(f\"  TaxEI eval rate (same order):       {taxei_by_seed}\")\n\nr_pearson, p_pearson = stats.pearsonr(train_loss, taxei_by_seed)\nr_spearman, p_spearman = stats.spearmanr(train_loss, taxei_by_seed)\n\nprint(f\"  Pearson r = {r_pearson:.4f}, p = {p_pearson:.4f}\")\nprint(f\"  Spearman ρ = {r_spearman:.4f}, p = {p_spearman:.4f}\")\n\nif abs(r_pearson) < 0.3:\n    interp = \"Near-zero correlation confirms training-eval dissociation\"\nelif r_pearson < 0:\n    interp = \"Negative correlation: lower training loss → worse eval (memorization-generalization gap)\"\nelse:\n    interp = \"Positive correlation: training and eval aligned\"\nprint(f\"  Interpretation: {interp}\")\n\n# Also check direction\nprint(f\"\\n  Training loss range: {train_loss.min():.4f} - {train_loss.max():.4f} (spread: {train_loss.max()-train_loss.min():.4f})\")\nprint(f\"  Eval rate range: {taxei_by_seed.min():.1f} - {taxei_by_seed.max():.1f} (spread: {taxei_by_seed.max()-taxei_by_seed.min():.1f})\")\nprint(f\"  Training loss CV: {np.std(train_loss)/np.mean(train_loss)*100:.3f}%\")\nprint(f\"  Eval rate CV: {np.std(taxei_by_seed)/np.mean(taxei_by_seed)*100:.2f}%\")\n\nprint()\nprint(\"=\"*70)\nprint(\"7. SUPPLEMENTARY: Paired t-tests (for reference)\")\nprint(\"=\"*70)\n\nfor name, a, b in [(\"Vanilla vs TaxEI\", vanilla, taxei), (\"Vanilla vs Random\", vanilla, random_ctrl), (\"TaxEI vs Random\", taxei, random_ctrl)]:\n    t_stat, p_val = stats.ttest_rel(a, b)\n    print(f\"  {name}: t={t_stat:.4f}, p={p_val:.4f} {'*' if p_val<0.05 else 'NS'}\")\n\n# One-way repeated measures ANOVA (approximation)\nprint()\nf_stat, p_anova = stats.f_oneway(vanilla, taxei, random_ctrl)\nprint(f\"  One-way ANOVA: F={f_stat:.4f}, p={p_anova:.4f} {'*' if p_anova<0.05 else 'NS'}\")\n\nPYEOF\n",
+  "description": "Run full statistical analysis on 5-seed experiment data",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "bde0fb82-d5a6-43da-abd8-384355f7459a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMbv7AUu1jwZggaXxiPfgV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12176,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12176
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 7_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bzjokl1et",
+  "tool_use_id": "toolu_01VeSQnhx7SkjhaaCJbS4Ghp",
+  "description": "Run full statistical analysis on 5-seed experiment data",
+  "task_type": "local_bash",
+  "uuid": "f2b97d02-412b-42b5-b8b3-81146e3d785c",
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f"
+}
+```
+
+---
+
+### System
+
+_source line 8_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bzjokl1et",
+  "tool_use_id": "toolu_01VeSQnhx7SkjhaaCJbS4Ghp",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run full statistical analysis on 5-seed experiment data",
+  "uuid": "0a2d2645-0e8c-44a5-8d57-990aa9d75b05",
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T17:48:26.222Z_
+
+<details><summary>↩ Tool result · `toolu_01VeSQnhx7SkjhaaCJbS4Ghp`</summary>
+
+```text
+======================================================================
+1. BOOTSTRAP CI (10,000 resamples)
+======================================================================
+  Vanilla: mean=67.26, bootstrap mean=67.28, 95% CI=[63.84, 71.10]
+  TaxEI: mean=58.30, bootstrap mean=58.30, 95% CI=[52.34, 61.70]
+  Random: mean=58.30, bootstrap mean=58.24, 95% CI=[51.90, 64.70]
+
+Pairwise difference CIs:
+  Vanilla-TaxEI: mean diff=8.99, 95% CI=[3.42, 15.78], P(diff>0)=1.0000, Significant: YES (CI excludes 0)
+  Vanilla-Random: mean diff=8.94, 95% CI=[1.28, 16.64], P(diff>0)=0.9893, Significant: YES (CI excludes 0)
+  TaxEI-Random: mean diff=0.01, 95% CI=[-8.96, 8.10], P(diff>0)=0.5047, Significant: NO (CI includes 0)
+
+======================================================================
+2. POWER ANALYSIS
+======================================================================
+  Vanilla-TaxEI observed: mean diff=8.96pp, SD of diff=8.30, Cohen's d=1.0795
+  Minimum detectable effect (n=5, 80% power, α=0.05): Cohen's d = 1.682
+  Achieved power (n=5, d=1.079): 0.4523 (45.2%)
+  Required n for 80% power at d=1.079: n=9 seeds
+
+  For detecting 9.0pp difference with SD=8.30:
+  Required n for 80% power: n=9 seeds (using paired SD)
+
+======================================================================
+3. LEVENE'S TEST FOR VARIANCE HOMOGENEITY
+======================================================================
+  3-way Levene: F=0.5716, p=0.5793 NS
+  Vanilla vs TaxEI: F=0.0161, p=0.9022 NS
+    (Var: 21.80 vs 42.16)
+  Vanilla vs Random: F=1.1903, p=0.3070 NS
+    (Var: 21.80 vs 76.39)
+  TaxEI vs Random: F=0.5725, p=0.4710 NS
+    (Var: 42.16 vs 76.39)
+
+======================================================================
+4. BAYESIAN POSTERIOR (Vanilla - TaxEI)
+======================================================================
+  Prior: N(0, 100)
+  Data: n=5, mean diff=8.96, SD=8.30
+  Posterior: N(8.948, 3.709)
+  Posterior 95% CI: [1.677, 16.218]
+  P(Vanilla > TaxEI) = 0.9921 (99.2%)
+  BF10 (H1: μ≠0 vs H0: μ=0) = 0.6804
+  BF01 (H0 vs H1) = 1.4697
+  Interpretation: Inconclusive
+
+======================================================================
+5. COHEN'S d WITH CI
+======================================================================
+  Vanilla vs TaxEI: d=1.0795, 95% CI=[-0.0913, 2.1787] (large)
+  Vanilla vs Random: d=0.7839, 95% CI=[-0.2708, 1.7718] (medium)
+  TaxEI vs Random: d=0.0000, 95% CI=[-0.8765, 0.8765] (negligible)
+
+======================================================================
+6. TRAINING-EVAL DISSOCIATION
+======================================================================
+  Training loss (seeds 0,1,7,42,123): [0.3604 0.3612 0.3619 0.3609 0.3602]
+  TaxEI eval rate (same order):       [46.8 59.6 61.7 61.7 61.7]
+  Pearson r = 0.4078, p = 0.4955
+  Spearman ρ = 0.1118, p = 0.8579
+  Interpretation: Positive correlation: training and eval aligned
+
+  Training loss range: 0.3602 - 0.3619 (spread: 0.0017)
+  Eval rate range: 46.8 - 61.7 (spread: 14.9)
+  Training loss CV: 0.168%
+  Eval rate CV: 9.96%
+
+======================================================================
+7. SUPPLEMENTARY: Paired t-tests (for reference)
+======================================================================
+  Vanilla vs TaxEI: t=2.4138, p=0.0733 NS
+  Vanilla vs Random: t=1.7528, p=0.1545 NS
+  TaxEI vs Random: t=0.0000, p=1.0000 NS
+
+  One-way ANOVA: F=2.8600, p=0.0965 NS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "0c034d55-2e85-4ca8-b347-567cc03fd8c2",
+  "tool_use_result": {
+    "stdout": "======================================================================\n1. BOOTSTRAP CI (10,000 resamples)\n======================================================================\n  Vanilla: mean=67.26, bootstrap mean=67.28, 95% CI=[63.84, 71.10]\n  TaxEI: mean=58.30, bootstrap mean=58.30, 95% CI=[52.34, 61.70]\n  Random: mean=58.30, bootstrap mean=58.24, 95% CI=[51.90, 64.70]\n\nPairwise difference CIs:\n  Vanilla-TaxEI: mean diff=8.99, 95% CI=[3.42, 15.78], P(diff>0)=1.0000, Significant: YES (CI excludes 0)\n  Vanilla-Random: mean diff=8.94, 95% CI=[1.28, 16.64], P(diff>0)=0.9893, Significant: YES (CI excludes 0)\n  TaxEI-Random: mean diff=0.01, 95% CI=[-8.96, 8.10], P(diff>0)=0.5047, Significant: NO (CI includes 0)\n\n======================================================================\n2. POWER ANALYSIS\n======================================================================\n  Vanilla-TaxEI observed: mean diff=8.96pp, SD of diff=8.30, Cohen's d=1.0795\n  Minimum detectable effect (n=5, 80% power, α=0.05): Cohen's d = 1.682\n  Achieved power (n=5, d=1.079): 0.4523 (45.2%)\n  Required n for 80% power at d=1.079: n=9 seeds\n\n  For detecting 9.0pp difference with SD=8.30:\n  Required n for 80% power: n=9 seeds (using paired SD)\n\n======================================================================\n3. LEVENE'S TEST FOR VARIANCE HOMOGENEITY\n======================================================================\n  3-way Levene: F=0.5716, p=0.5793 NS\n  Vanilla vs TaxEI: F=0.0161, p=0.9022 NS\n    (Var: 21.80 vs 42.16)\n  Vanilla vs Random: F=1.1903, p=0.3070 NS\n    (Var: 21.80 vs 76.39)\n  TaxEI vs Random: F=0.5725, p=0.4710 NS\n    (Var: 42.16 vs 76.39)\n\n======================================================================\n4. BAYESIAN POSTERIOR (Vanilla - TaxEI)\n======================================================================\n  Prior: N(0, 100)\n  Data: n=5, mean diff=8.96, SD=8.30\n  Posterior: N(8.948, 3.709)\n  Posterior 95% CI: [1.677, 16.218]\n  P(Vanilla > TaxEI) = 0.9921 (99.2%)\n  BF10 (H1: μ≠0 vs H0: μ=0) = 0.6804\n  BF01 (H0 vs H1) = 1.4697\n  Interpretation: Inconclusive\n\n======================================================================\n5. COHEN'S d WITH CI\n======================================================================\n  Vanilla vs TaxEI: d=1.0795, 95% CI=[-0.0913, 2.1787] (large)\n  Vanilla vs Random: d=0.7839, 95% CI=[-0.2708, 1.7718] (medium)\n  TaxEI vs Random: d=0.0000, 95% CI=[-0.8765, 0.8765] (negligible)\n\n======================================================================\n6. TRAINING-EVAL DISSOCIATION\n======================================================================\n  Training loss (seeds 0,1,7,42,123): [0.3604 0.3612 0.3619 0.3609 0.3602]\n  TaxEI eval rate (same order):       [46.8 59.6 61.7 61.7 61.7]\n  Pearson r = 0.4078, p = 0.4955\n  Spearman ρ = 0.1118, p = 0.8579\n  Interpretation: Positive correlation: training and eval aligned\n\n  Training loss range: 0.3602 - 0.3619 (spread: 0.0017)\n  Eval rate range: 46.8 - 61.7 (spread: 14.9)\n  Training loss CV: 0.168%\n  Eval rate CV: 9.96%\n\n======================================================================\n7. SUPPLEMENTARY: Paired t-tests (for reference)\n======================================================================\n  Vanilla vs TaxEI: t=2.4138, p=0.0733 NS\n  Vanilla vs Random: t=1.7528, p=0.1545 NS\n  TaxEI vs Random: t=0.0000, p=1.0000 NS\n\n  One-way ANOVA: F=2.8600, p=0.0965 NS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+结果已出。Pearson r=0.41 但这主要是 seed 0 的异常值驱动，训练 loss 的 CV 仅 0.17% 而 eval CV 达 10%——我需要在报告中正确解读这个 dissociation。现在保存报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "cec9a071-d5e3-4d62-b76b-db1e0012d148",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBDn71E5VGJSdpEfQDd33i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5384,
+      "cache_read_input_tokens": 24017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5384
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TxEvFwrCGsNrUapjkTJc4k`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "420f287d-7444-471a-90ca-90b3f6586740",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBDn71E5VGJSdpEfQDd33i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5384,
+      "cache_read_input_tokens": 24017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5384
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T17:48:33.146Z_
+
+<details><summary>↩ Tool result · `toolu_01TxEvFwrCGsNrUapjkTJc4k`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "62961beb-1473-41b9-b4c6-0d7d9b894d08",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01UDe1Xp6rG5ghAfvmjDSaFj`</summary>
+
+```json
+{
+  "name": "5-seed Statistical Analysis Report",
+  "type": "report",
+  "description": "Complete statistical analysis of 5-seed eval results: bootstrap CI, power analysis, Levene's test, Bayesian posterior, Cohen's d, training-eval dissociation",
+  "project": "tax_error_inject_agent",
+  "content_filename": "5seed_statistical_analysis.md",
+  "tags": [
+    "statistics",
+    "5-seed",
+    "eval",
+    "analysis"
+  ],
+  "content": "# 5-Seed Statistical Analysis Report\n\n**Date**: 2026-05-15\n**Data**: 5 seeds (0, 1, 7, 42, 123) × 3 conditions (Vanilla, TaxEI, Random) eval success rates + TaxEI training loss\n\n---\n\n## Raw Data\n\n| Seed | Vanilla | TaxEI | Random |\n|------|---------|-------|--------|\n| 42   | 61.7%   | 61.7% | 66.0%  |\n| 0    | 68.1%   | 46.8% | 55.3%  |\n| 123  | 66.0%   | 61.7% | 68.1%  |\n| 1    | 66.0%   | 59.6% | 46.8%  |\n| 7    | 74.5%   | 61.7% | 55.3%  |\n| **Mean±SD** | **67.3±4.7** | **58.3±6.5** | **58.3±8.7** |\n\n---\n\n## 1. Bootstrap CI (10,000 resamples)\n\n### Individual condition means\n\n| Condition | Mean  | 95% CI |\n|-----------|-------|--------|\n| Vanilla   | 67.26 | [63.84, 71.10] |\n| TaxEI     | 58.30 | [52.34, 61.70] |\n| Random    | 58.30 | [51.90, 64.70] |\n\n### Pairwise differences\n\n| Comparison | Mean Diff | 95% CI | P(diff>0) | Significant? |\n|------------|-----------|--------|-----------|-------------|\n| Vanilla − TaxEI  | +8.99 | [+3.42, +15.78] | 100.0% | **YES** (CI excludes 0) |\n| Vanilla − Random  | +8.94 | [+1.28, +16.64] | 98.9% | **YES** (CI excludes 0) |\n| TaxEI − Random    | +0.01 | [−8.96, +8.10]  | 50.5% | NO |\n\n**解读**: Bootstrap 非参数检验显示 Vanilla 显著优于 TaxEI 和 Random（95% CI 不包含 0）。TaxEI 与 Random 无差异。\n\n---\n\n## 2. Power Analysis\n\n| Metric | Value |\n|--------|-------|\n| Observed mean diff (Vanilla−TaxEI) | 8.96 pp |\n| SD of paired differences | 8.30 |\n| Observed Cohen's d | 1.079 |\n| Minimum detectable effect (n=5, 80% power) | d = 1.682 |\n| **Achieved power (n=5)** | **45.2%** |\n| Required n for 80% power | **9 seeds** |\n\n**解读**: n=5 的统计功效仅 45.2%，不足以可靠检测 ~9pp 的差异。需要 n=9 seeds 才能在 80% power 下检测到该效应量。当前结果虽 bootstrap 显著，但 paired t-test 未达 α=0.05（p=0.073）——这正是功效不足的体现。\n\n---\n\n## 3. Levene's Test (方差齐性)\n\n| Comparison | F | p | 结论 |\n|------------|---|---|------|\n| 3-way (V vs T vs R) | 0.572 | 0.579 | NS — 方差齐性成立 |\n| Vanilla vs TaxEI | 0.016 | 0.902 | NS (Var: 21.8 vs 42.2) |\n| Vanilla vs Random | 1.190 | 0.307 | NS (Var: 21.8 vs 76.4) |\n| TaxEI vs Random | 0.573 | 0.471 | NS (Var: 42.2 vs 76.4) |\n\n**解读**: 三个条件的方差在统计上无显著差异。但描述性来看，Random 方差 (76.4) 是 Vanilla (21.8) 的 3.5 倍——Vanilla 最稳定，Random 最不稳定。n=5 下 Levene 检验功效有限，方差差异的趋势值得在论文中报告。\n\n---\n\n## 4. Bayesian Posterior (Vanilla − TaxEI)\n\n| Parameter | Value |\n|-----------|-------|\n| Prior | N(0, 100) — uninformative |\n| Posterior | N(8.948, 3.709) |\n| Posterior 95% CI | [1.677, 16.218] |\n| **P(Vanilla > TaxEI)** | **99.2%** |\n| BF₁₀ (H1: μ≠0 vs H0: μ=0) | 0.680 |\n| BF₀₁ (H0 vs H1) | 1.470 |\n\n**解读**: 后验概率强烈支持 Vanilla 优于 TaxEI（99.2%）。但 BF₁₀ = 0.68 属于\"inconclusive\"区间（0.33–3.0），Bayes Factor 既不支持也不反对差异存在。这种\"后验概率高但 BF 不显著\"的分离，是因为 BF 对先验敏感且 n=5 样本量小——属于正常现象。\n\n---\n\n## 5. Cohen's d with 95% CI\n\n| Comparison | d | 95% CI | Effect Size |\n|------------|---|--------|-------------|\n| Vanilla vs TaxEI | **1.080** | [−0.091, 2.179] | Large |\n| Vanilla vs Random | **0.784** | [−0.271, 1.772] | Medium |\n| TaxEI vs Random | **0.000** | [−0.877, 0.877] | Negligible |\n\n**解读**: Vanilla 对 TaxEI 的效应量为 large (d=1.08)，但 CI 下界接近 0，反映了 n=5 的不确定性。Vanilla 对 Random 为 medium (d=0.78)。TaxEI 和 Random 的 d=0.00 确认两者表现等同。\n\n---\n\n## 6. Training-Eval Dissociation (TaxEI 5 seeds)\n\n### Training loss vs Eval rate\n\n| Seed | Training Loss | Eval Rate |\n|------|--------------|-----------|\n| 0    | 0.3604       | 46.8%     |\n| 1    | 0.3612       | 59.6%     |\n| 7    | 0.3619       | 61.7%     |\n| 42   | 0.3609       | 61.7%     |\n| 123  | 0.3602       | 61.7%     |\n\n| Metric | Value |\n|--------|-------|\n| Pearson r | 0.408 (p=0.496) |\n| Spearman ρ | 0.112 (p=0.858) |\n| Training loss CV | **0.17%** |\n| Eval rate CV | **9.96%** |\n\n**解读**: 关键发现不是相关系数的方向，而是**变异量级的巨大差异**：\n\n- Training loss 极度稳定（CV=0.17%，range 仅 0.0017），几乎不受 seed 影响\n- Eval rate 变异大 60 倍（CV=9.96%，range 14.9pp）\n- Pearson r=0.41 不显著（p=0.50），且主要由 seed 0 的异常值（loss 最低但 eval 也最低）驱动\n- Spearman ρ=0.11 接近零，排除单调关系\n\n**结论**: Training loss 的变异量级不足以解释 eval rate 的变异。TaxEI 模型稳定地学到了低 training loss，但这不能转化为稳定的 eval 表现——支持 memorization-generalization dissociation 的论断。\n\n---\n\n## 7. Supplementary: Parametric Tests\n\n| Test | Statistic | p | 结论 |\n|------|-----------|---|------|\n| Paired t: Vanilla vs TaxEI | t=2.414 | 0.073 | NS (marginal) |\n| Paired t: Vanilla vs Random | t=1.753 | 0.155 | NS |\n| Paired t: TaxEI vs Random | t=0.000 | 1.000 | NS |\n| One-way ANOVA | F=2.860 | 0.097 | NS (marginal) |\n\n---\n\n## 论文写作建议\n\n### 可以写进 Main Text 的结论\n\n1. **Vanilla 优于 TaxEI**: Bootstrap 95% CI [+3.4, +15.8] 不含 0, P(Vanilla>TaxEI)=99.2%, Cohen's d=1.08 (large)\n2. **TaxEI ≈ Random**: 两者均值完全相同 (58.3%), d=0.00\n3. **Training-eval dissociation**: Training loss CV=0.17% vs Eval rate CV=9.96% (60× 差异), 相关不显著\n\n### 建议放 Appendix 的内容\n\n1. **功效不足的披露**: achieved power=45.2%, 需 n=9 达到 80% power（放 limitations）\n2. **BF inconclusive**: BF₁₀=0.68（放 Appendix，说明 n 不够大）\n3. **Levene's test 全量结果**: 全部 NS 但描述性方差趋势\n4. **Cohen's d CI 包含 0**: 诚实报告不确定性\n5. **逐 seed 结果表**: 完整数据透明度\n\n### 论文中的推荐表述\n\n> \"Bootstrap analysis (10,000 resamples) revealed that Vanilla significantly outperformed TaxEI (mean difference = 9.0 pp, 95% CI [3.4, 15.8]) with a large effect size (Cohen's d = 1.08). Bayesian analysis confirmed P(Vanilla > TaxEI) = 99.2%. TaxEI and Random injection showed equivalent performance (d = 0.00), suggesting that targeted error injection confers no advantage over random perturbation.\"\n\n> \"A striking training-evaluation dissociation emerged: while TaxEI training loss showed near-zero variance across seeds (CV = 0.17%), evaluation performance varied 60× more (CV = 9.96%), with no significant correlation between the two (Spearman ρ = 0.11, p = 0.86).\"\n\n### 关键 Caveat（必须在 Limitations 中提到）\n\n当前 n=5 的统计功效仅 45.2%。虽然非参数 bootstrap 达到显著，但参数检验 (paired t-test p=0.073) 未达 α=0.05。建议后续扩展至 n≥9 seeds 以获得充分统计功效。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "73c6af26-4e68-44f2-892a-18afdf97d4a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PP8YRbSwptHXNnLFetLjJv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 29401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1061
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T17:49:48.220Z_
+
+<details><summary>↩ Tool result · `toolu_01UDe1Xp6rG5ghAfvmjDSaFj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6f8912\", \"name\": \"5-seed Statistical Analysis Report\", \"type\": \"report\", \"description\": \"Complete statistical analysis of 5-seed eval results: bootstrap CI, power analysis, Levene's test, Bayesian posterior, Cohen's d, training-eval dissociation\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/report/5seed_statistical_analysis.md\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T17:49:48.056310+00:00\", \"tags\": [\"statistics\", \"5-seed\", \"eval\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "df9f208f-e8fe-4f09-b064-a5f30c08b49a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_6f8912\\\", \\\"name\\\": \\\"5-seed Statistical Analysis Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Complete statistical analysis of 5-seed eval results: bootstrap CI, power analysis, Levene's test, Bayesian posterior, Cohen's d, training-eval dissociation\\\", \\\"path\\\": \\\"projects/tax_error_inject_agent/artifacts/_project/report/5seed_statistical_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"tax_error_inject_agent\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T17:49:48.056310+00:00\\\", \\\"tags\\\": [\\\"statistics\\\", \\\"5-seed\\\", \\\"eval\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6f8912\", \"name\": \"5-seed Statistical Analysis Report\", \"type\": \"report\", \"description\": \"Complete statistical analysis of 5-seed eval results: bootstrap CI, power analysis, Levene's test, Bayesian posterior, Cohen's d, training-eval dissociation\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/report/5seed_statistical_analysis.md\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T17:49:48.056310+00:00\", \"tags\": [\"statistics\", \"5-seed\", \"eval\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+报告已注册为 artifact (`art_20260515_6f8912`)。核心结论：
+
+**主要发现**:
+- **Vanilla > TaxEI**: Bootstrap 95% CI [+3.4, +15.8] 显著, d=1.08 (large), P(Vanilla>TaxEI)=99.2%
+- **TaxEI = Random**: 均值完全相同 (58.3%), d=0.00
+- **Training-eval dissociation 确认**: Training loss CV=0.17% vs eval CV=9.96% (60× 差异), Spearman ρ=0.11 (NS)
+
+**需要注意的问题**:
+- 功效仅 45.2%，paired t-test p=0.073 未达 0.05（bootstrap 显著但参数检验 marginal）
+- BF₁₀=0.68 inconclusive——n=5 太小无法给出 Bayesian 确定结论
+- Cohen's d CI 下界接近 0 ([−0.09, 2.18])
+- 需 **n=9 seeds** 才能在 80% power 下稳定检测到 9pp 差异
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "uuid": "330f7261-a06c-4fe4-b6e1-f9ed8f1c2c6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L44qvRM4NjhvqjLuDpPhLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3498,
+      "cache_read_input_tokens": 30462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3498
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 16_
+
+报告已注册为 artifact (`art_20260515_6f8912`)。核心结论：
+
+**主要发现**:
+- **Vanilla > TaxEI**: Bootstrap 95% CI [+3.4, +15.8] 显著, d=1.08 (large), P(Vanilla>TaxEI)=99.2%
+- **TaxEI = Random**: 均值完全相同 (58.3%), d=0.00
+- **Training-eval dissociation 确认**: Training loss CV=0.17% vs eval CV=9.96% (60× 差异), Spearman ρ=0.11 (NS)
+
+**需要注意的问题**:
+- 功效仅 45.2%，paired t-test p=0.073 未达 0.05（bootstrap 显著但参数检验 marginal）
+- BF₁₀=0.68 inconclusive——n=5 太小无法给出 Bayesian 确定结论
+- Cohen's d CI 下界接近 0 ([−0.09, 2.18])
+- 需 **n=9 seeds** 才能在 80% power 下稳定检测到 9pp 差异
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 149537,
+  "duration_api_ms": 145523,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "1fe7a125-9965-4db0-9ae6-f86cae751e7f",
+  "total_cost_usd": 0.38390425,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 22119,
+    "cache_read_input_tokens": 95721,
+    "output_tokens": 7827,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22119,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 320,
+        "cache_read_input_tokens": 30462,
+        "cache_creation_input_tokens": 3498,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3498
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1995,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00209,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 7827,
+      "cacheReadInputTokens": 95721,
+      "cacheCreationInputTokens": 22119,
+      "webSearchRequests": 0,
+      "costUSD": 0.38181425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c3cbea40-2ecf-4385-8f21-261108b6e986"
+}
+```
+
+</details>
+
+---

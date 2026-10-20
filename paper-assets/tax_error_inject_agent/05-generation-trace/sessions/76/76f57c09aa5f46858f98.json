@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76f57c09aa5f46858f98",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose llama31 taxei s0",
+  "task_key": "worker_diagnose_llama31-taxei-s0_20260516T102807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama31-taxei-s0_20260516T102807_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "50f52be0590cd2d819d89ac709dd30bcd9ed9c6ded9903ec96402d2c04a4df70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：SIGHUP（SSH 断连/tmux session 被终止），非 OOM。**\n\n关键事实：\n- v0 正常跑完 epoch 1（1129 steps，43 min），保存 checkpoint 后被外部信号杀死\n- 显存全程稳定 30.73/32 GiB，loss 从 1.76 降到 0.46，训练逻辑无异常\n- v1 重试已在运行中（step ~260/3387），状态正常\n- 完整 checkpoint 可用于恢复：`v0-20260516-171606/checkpoint-1129/`\n\n已更新 registry failure_reason 并注册诊断报告（art_20260516_3417d1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama31-taxei-s0.md"
+}

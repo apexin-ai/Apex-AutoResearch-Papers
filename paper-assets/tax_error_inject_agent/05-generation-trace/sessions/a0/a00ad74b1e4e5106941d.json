@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a00ad74b1e4e5106941d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "research paladin deep dive",
+  "task_key": "worker_research_paladin-deep-dive_20260514T215004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paladin-deep-dive_20260514T215004_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "b0639e206cfa8fcce8d68d184ee3b727abe67ea7861750a66d645478f2263f06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。核心结论:\n\n**PALADIN 数字验证**: paper_framing.md 中所有数字准确 (32.76% → 89.68% RR, 7 failure types, 50K+ trajectories, 80/20 ratio)。\n\n**需要更新 paper_framing 的 3 个发现**:\n\n1. **PALADIN 不是纯 SFT** — 包含 inference-time retrieval (55+ exemplars)，去掉后 RR 降 ~30pp。这是重要的未讨论 confound，应加入对比维度表\n2. **PALADIN 也没做多 seed 验证** — 只有 bootstrap 统计检验。我们的多 seed 设计反而是方法论优势\n3. **EEF (arXiv 2504.13145)** 是关键对比论文 — 同样利用失败 trajectory 但方向相反(提取好 signal vs 注入坏 signal)，在 WebShop 上成功，强化了 \"injection 方向本身可能错误\" 的论点\n\n**ALFWorld SOTA 上下文**: CoEx 93.28%, AgentPRM 91.0%, Reflexion+GPT-4 ~97%(multi-trial)。我们的 65.3% vanilla 在 SFT-only 8B 模型范畴合理。\n\n**除 PALADIN 外无其他 taxonomy-guided error injection 工作** — 我们是第一个跨域迁移尝试，也是第一个报告失败的。\n\n产出:\n- `paladin_comparison.md` — 完整调研报告 (已注册 artifact)\n- `literature_map.yaml` — 结构化文献地图 (已注册 artifact)\n- `memory.md` — 已更新关键文献洞察"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paladin-deep-dive.md"
+}

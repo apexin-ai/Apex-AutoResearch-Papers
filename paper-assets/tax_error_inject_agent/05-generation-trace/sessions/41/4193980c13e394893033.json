@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4193980c13e394893033",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260516T062852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260516T062852_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "5af13094e1b7dc94d1a5e4823b03569ea96b12a02bb8649cbfe02b8792fe8d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| cuda:0 | **0 MiB** / 32G | 0% | **空闲**（eval-rp-s42 已完成） |\n| cuda:1 | 25 GiB / 32G | 99% | llama31-taxei-s42 训练中 |\n| cuda:2 | 29 GiB / 32G | 99% | llama31-random-s42 训练中 |\n| cuda:3 | 28 GiB / 32G | 99% | v4-taxei-rp-s7 训练中 |\n\n### 任务状态\n\n| 任务 | 状态 | 进度 | 关键指标 |\n|------|------|------|----------|\n| **eval-rp-s42** | **Done** | 47/47 | recovery_rate=**38.3%**, detection=0% |\n| **eval-rp-s0** | **Done**（额外发现） | 47/47 | recovery_rate=**46.8%**, detection=0% |\n| **llama31-taxei-s42** | Running | 160/3387 (4.7%) | loss=0.606, ETA ~2h |\n| **llama31-random-s42** | Running | 170/3387 (5.0%) | loss=0.685, ETA ~2h |\n| **v4-taxei-rp-s7** | Running | 140/5415 (2.6%) | loss=0.657, ETA ~3h41m |\n| **scale-up collection** | Running | 805/1000 processed, 70 success (8.2%) | success_rate=8.7% |\n\n### eval-rp-s42 per-operator breakdown\n- C1_context_truncation: 50.0% (6/12)\n- C4_observation_masking: 27.3% (3/11)\n- P1_step_order_swap: 50.0% (6/12)\n- P2_sub_goal_deletion: 25.0% (3/12)\n\n### 要点\n- 3 个训练均刚启动约7分钟，loss 正常下降，无异常\n- eval-rp-s42 结果偏低（38.3% vs s0 的 46.8%），seed 间方差较大\n- scale-up 收集还剩约 200 条，按当前速度预计还需 ~15-20 分钟\n- GPU 0 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-2.md"
+}

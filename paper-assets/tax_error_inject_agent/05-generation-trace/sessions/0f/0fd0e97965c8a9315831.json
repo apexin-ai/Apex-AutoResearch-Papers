@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fd0e97965c8a9315831",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diag gate1 gate2 verify",
+  "task_key": "worker_diag_gate1-gate2-verify_20260514T121457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gate1-gate2-verify_20260514T121457_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "f206e48d3e870ac7bdcc6066a2c6fb43bafec8a1de7c36eb43ae7d1ef83bef2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### Gate 1: 注入算子合法率 — **PASS (100.0%)**\n\n| 算子 | 合法/总数 | 合法率 |\n|------|-----------|--------|\n| C1_context_truncation | 191/191 | 100.0% |\n| C4_observation_masking | 189/189 | 100.0% |\n| P1_step_order_swap | 188/188 | 100.0% |\n| P2_sub_goal_deletion | 192/192 | 100.0% |\n| **Overall** | **760/760** | **100.0%** |\n\n全部 760 条注入记录 `success=True`，阈值 80%，通过。\n\n### Gate 2: Recovery demo 质量 — **PASS (89.5%)**\n\n评估方法：检查每条记录最后一步 `think` 字段的 recovery reasoning 质量，分三档：\n- **Strong**：明确提到 inconsistency/swap/mismatch/error 等异常\n- **Moderate**：展示正确的任务推理（引用 history/current state/goal），能正确判断下一步\n- **Weak**：无明显错误感知或任务推理\n\n| 算子 | Strong | Moderate | Weak | 质量率 |\n|------|--------|----------|------|--------|\n| P1_step_order_swap | 68.6% | 27.7% | 3.7% | **96.3%** |\n| P2_sub_goal_deletion | 27.6% | 62.0% | 10.4% | **89.6%** |\n| C4_observation_masking | 9.5% | 76.7% | 13.8% | **86.2%** |\n| C1_context_truncation | 10.5% | 75.4% | 14.1% | **85.9%** |\n| **Overall** | | | | **89.5%** |\n\n阈值 75%，通过。P1_step_order_swap 质量最高（96.3%），模型对步骤顺序错乱的感知最显著。抽样验证确认 recovery 推理内容合理——模型在收到注入后的 corrupted context 后能正确识别当前状态并选择正确的下一步动作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gate1-gate2-verify.md"
+}

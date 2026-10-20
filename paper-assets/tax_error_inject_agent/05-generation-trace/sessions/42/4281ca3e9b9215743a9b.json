@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4281ca3e9b9215743a9b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose llama31 s123 failure",
+  "task_key": "worker_diagnose_llama31-s123-failure_20260516T150216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama31-s123-failure_20260516T150216_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "d9f2b4672ceb0061c27e35a7df19196d3c6edf6332164799f321be56b19a83a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因：训练已完全完成，EXIT_CODE=129 是误报。**\n\n两个实验都正常跑完了全部 3 个 epoch（3387/3387 steps），并成功保存了所有 checkpoint。EXIT_CODE=129 (SIGHUP) 是 `submit_training_job` 的 tmux wrapper 在训练进程正常退出后收到的信号——tmux session 被清理时，shell 收到 SIGHUP 导致退出码被覆盖为 129。**训练本身的退出码是 0。**\n\n### 训练结果摘要\n\n| 实验 | 最终 loss | token_acc | 运行时间 | 最终 checkpoint |\n|------|-----------|-----------|----------|----------------|\n| llama31-taxei-s123 | 0.3368 | 94.59% | 2h7m (7626s) | `output/llama31-taxei-s123/v0-20260516-205232/checkpoint-3387` |\n| llama31-random-s123 | 0.3375 | 94.36% | 2h6m54s (7614s) | `output/llama31-random-s123/v0-20260516-205234/checkpoint-3387` |\n\n### Checkpoint 完整性\n\n两个实验各有 3 个 epoch checkpoint（1129, 2258, 3387），最终 checkpoint-3387 包含完整的 `adapter_model.safetensors`（~160MB）、optimizer、scheduler 等文件。\n\n### GPU 状态\n\ncuda:2 和 cuda:3 已释放（0 MiB, 0% util），训练进程已正常退出。cuda:0/1 有其他进程在跑。\n\n### 建议\n\n无需修复——训练结果完好，可以直接进入评估阶段。如果希望后续避免 EXIT_CODE=129 的误报，可以在 `submit_training_job` 的 wrapper 脚本中训练命令执行后立即 `exit $?` 捕获真实退出码，避免被 tmux SIGHUP 覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama31-s123-failure.md"
+}

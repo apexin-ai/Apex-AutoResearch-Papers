@@ -1,0 +1,49 @@
+{
+  "exp_id": "traj_collect_500",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:45:21.504Z",
+    "updated_at": "2026-05-14T12:20:46.713Z",
+    "spec": {
+      "command": "python collect_trajectories.py --target 500",
+      "server": "autodl-5090",
+      "data_path": "data/trajectories/",
+      "data_count": 575,
+      "model_name": "trajectory_collector",
+      "seed": 0,
+      "pid": 11045,
+      "gpu": "none (CPU task)",
+      "hypothesis": "GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）"
+    },
+    "metrics": {
+      "successful_trajectories": 400,
+      "target": 500,
+      "failed": 175,
+      "total_completed": 575,
+      "success_rate": 0.696,
+      "parallel_workers": 4,
+      "runtime_seconds": 19850,
+      "runtime_hours": 5.51,
+      "api_cost_usd": 34.72,
+      "api_requests": 10876,
+      "input_tokens": 7071891,
+      "output_tokens": 1704002,
+      "exit_reason": "disk_full_tmp",
+      "by_task_type": {
+        "look_at_obj_in_light": 81,
+        "pick_and_place_simple": 79,
+        "pick_clean_then_place_in_recep": 55,
+        "pick_cool_then_place_in_recep": 56,
+        "pick_heat_then_place_in_recep": 61,
+        "pick_two_obj_and_place": 68
+      }
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T12:20:46.734711+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "v4-random-fixed-inject10-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:59:20.398Z",
+    "updated_at": "2026-05-15T18:59:26.574Z",
+    "hypothesis": "v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion",
+    "parent": "v4-random-fixed-inject10-s123"
+  },
+  "timestamp": "2026-05-15T18:59:26.737429+00:00",
+  "trigger": "update_registry"
+}

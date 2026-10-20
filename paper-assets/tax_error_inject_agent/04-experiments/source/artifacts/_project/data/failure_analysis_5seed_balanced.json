@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "date": "2026-05-16",
+    "source": "recovery eval trajectories",
+    "episodes_per_condition": 235,
+    "seeds": [42, 0, 123, 1, 7],
+    "tasks_per_seed": 47,
+    "balanced": true
+  },
+  "failure_modes_from_recovery_eval": {
+    "vanilla": {"episodes": 141, "loop_repetition": {"count": 22, "rate": 0.156}, "object_not_found": {"count": 13, "rate": 0.092}, "exploration_wandering": {"count": 13, "rate": 0.092}},
+    "taxei": {"episodes": 141, "loop_repetition": {"count": 49, "rate": 0.348}, "object_not_found": {"count": 6, "rate": 0.043}, "exploration_wandering": {"count": 7, "rate": 0.050}},
+    "random": {"episodes": 47, "loop_repetition": {"count": 6, "rate": 0.128}, "object_not_found": {"count": 4, "rate": 0.085}, "exploration_wandering": {"count": 6, "rate": 0.128}}
+  },
+  "key_findings": {
+    "taxei_loop_ratio_vs_vanilla": 2.2,
+    "taxei_loop_ratio_vs_random": 2.7,
+    "loop_as_pct_of_taxei_failures": 0.79
+  }
+}

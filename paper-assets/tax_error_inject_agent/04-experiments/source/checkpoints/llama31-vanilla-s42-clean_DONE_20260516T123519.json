@@ -1,0 +1,36 @@
+{
+  "exp_id": "llama31-vanilla-s42-clean",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:14:50.470Z",
+    "updated_at": "2026-05-16T12:35:18.899Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --num_episodes 47 --task_list eval/eval_tasks_47.json --output eval_results/llama31_vanilla_s42_clean.json",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Meta-Llama-3.1-8B-Instruct + llama31-vanilla-s42 LoRA",
+      "seed": 42,
+      "checkpoint_source": "output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635",
+      "eval_data": "ALFWorld clean eval 47 tasks",
+      "hypothesis": "LLaMA Vanilla s42 clean eval - baseline success rate without injection"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.723,
+      "eval_type": "clean",
+      "eval_script": "eval/recovery.py",
+      "total_episodes": 47,
+      "output_file": "eval_results/llama31_vanilla_s42_clean.json"
+    },
+    "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635",
+    "log_path": "eval_results/llama31_vanilla_s42_clean.json",
+    "completed_at": "2026-05-16T12:35:18.899Z"
+  },
+  "timestamp": "2026-05-16T12:35:19.261241+00:00",
+  "trigger": "update_registry"
+}

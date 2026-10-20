@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcc49eda746e6837c97b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 vanilla seed0 eval",
+  "task_key": "worker_analysis_v4-vanilla-seed0-eval_20260514T190222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-vanilla-seed0-eval_20260514T190222_result.json",
+    "occurrence": 1,
+    "bytes": 1676,
+    "sha256": "daddfb1c412ef8f3514bdf0136e59da3b9a33c14f13cbb3eea27fcc457afcaa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v4-vanilla-seed0-eval 结果\n\n### 总体\n\n| 指标 | 值 |\n|------|-----|\n| 成功率 | **68.1% (32/47)** |\n| 平均步数（全部） | 26.04 |\n| 平均步数（成功） | 14.81 |\n| 平均步数（失败） | 50.0（全部触顶） |\n\n### 按任务类型\n\n| Task Type | Seed=0 | Seed=42 | Delta |\n|-----------|--------|---------|-------|\n| look_at_obj_in_light | 5/6 (83.3%) | 5/6 (83.3%) | 0 |\n| pick_and_place_simple | 5/8 (62.5%) | 5/8 (62.5%) | 0 |\n| pick_clean_then_place | 6/11 (54.5%) | 5/11 (45.5%) | +1 |\n| pick_cool_then_place | 4/7 (57.1%) | 4/7 (57.1%) | 0 |\n| pick_heat_then_place | **7/8 (87.5%)** | 6/8 (75.0%) | +1 |\n| pick_two_obj_and_place | 5/7 (71.4%) | 4/7 (57.1%) | +1 |\n\n### Baseline 对比\n\n| 实验 | 成功率 | vs seed0 |\n|------|--------|----------|\n| **v4-vanilla seed=0** | **68.1% (32/47)** | — |\n| v4-vanilla seed=42 | 61.7% (29/47) | -6.4pp |\n| v4-taxei seed=42 | 61.7% (29/47) | -6.4pp |\n| v4-random seed=42 | 66.0% (31/47) | -2.1pp |\n| zero-shot | 42.6% (20/47) | -25.5pp |\n\n### McNemar Test (seed=0 vs seed=42)\n\n| | seed42 OK | seed42 FAIL |\n|---|-----------|-------------|\n| **seed0 OK** | 28 | 4 |\n| **seed0 FAIL** | 1 | 14 |\n\n- 不一致对 (discordant pairs): b=4, c=1\n- seed0 独赢任务: Spatula-Drawer, Bread-CounterTop, Egg-GarbageCan, KeyChain-Safe\n- seed42 独赢任务: Pan-CounterTop\n- **Exact binomial p = 0.375 (双侧)**, 差异不显著\n- 结论：seed=0 多赢 3 个任务，但仅 5 个不一致对，在正常 seed 方差范围内\n\n产出文件: `artifacts/eval/v4_vanilla_seed0_eval_analysis.json`（含完整 47 个 episode 的逐任务对比数据）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-vanilla-seed0-eval.md"
+}

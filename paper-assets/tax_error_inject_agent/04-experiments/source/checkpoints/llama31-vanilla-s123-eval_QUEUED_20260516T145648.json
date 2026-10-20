@@ -1,0 +1,14 @@
+{
+  "exp_id": "llama31-vanilla-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:56:44.073Z",
+    "updated_at": "2026-05-16T14:56:48.348Z"
+  },
+  "timestamp": "2026-05-16T14:56:48.638739+00:00",
+  "trigger": "update_registry"
+}

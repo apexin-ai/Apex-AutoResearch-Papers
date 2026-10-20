@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7d6d45b8a6c2c6f624",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops gpu status and collect",
+  "task_key": "worker_ops_gpu-status-and-collect_20260516T123812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-and-collect_20260516T123812_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "be8c997c485b63bc78b13c8fc22d57cc0c29d03923e797bfbca78826671a0705"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**所有 GPU 空闲（0 MiB 显存占用），全部任务已完成。**\n\n### Eval 结果\n\n| 模型 | Split | Success Rate | Total Episodes |\n|------|-------|-------------|----------------|\n| **TaxEI s42** (clean) | valid_unseen | **0.766** (36/47) | 47 |\n| **Random s0** (clean) | valid_unseen | **0.745** (35/47) | 47 |\n\n### TaxEI s42 按任务类型\n\n| Task Type | Rate |\n|-----------|------|\n| look_at_obj_in_light | 1.000 (6/6) |\n| pick_heat_then_place | 0.875 (7/8) |\n| pick_two_obj_and_place | 0.857 (6/7) |\n| pick_cool_then_place | 0.714 (5/7) |\n| pick_clean_then_place | 0.636 (7/11) |\n| pick_and_place_simple | 0.625 (5/8) |\n\n### Random s0 按任务类型\n\n| Task Type | Rate |\n|-----------|------|\n| pick_heat_then_place | 1.000 (8/8) |\n| pick_two_obj_and_place | 1.000 (7/7) |\n| look_at_obj_in_light | 0.667 (4/6) |\n| pick_clean_then_place | 0.636 (7/11) |\n| pick_and_place_simple | 0.625 (5/8) |\n| pick_cool_then_place | 0.571 (4/7) |\n\n### GPU 1: TaxEI s0 训练\n\n训练已完成，产出 3 个 checkpoint：\n- `v1-20260516-181826/checkpoint-1129`\n- `v1-20260516-181826/checkpoint-2258`\n- `v1-20260516-181826/checkpoint-3387` (final)\n\n### GPU 3\n\n空闲，无进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-collect.md"
+}

@@ -1,0 +1,20 @@
+{
+  "exp_id": "llama31-taxei-s123-injected-evalseed42",
+  "project": "tax_error_inject_agent",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:58:34.091Z",
+    "updated_at": "2026-05-16T16:22:50.832Z",
+    "spec": {
+      "hypothesis": "Eval seed=42 re-run to align with s0/s42 evals, ruling out eval seed confound for cross-model instability claim",
+      "parent": "llama31-taxei-s123",
+      "plan_id": "D047-evalseed42"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T16:22:51.112343+00:00",
+  "trigger": "update_registry"
+}

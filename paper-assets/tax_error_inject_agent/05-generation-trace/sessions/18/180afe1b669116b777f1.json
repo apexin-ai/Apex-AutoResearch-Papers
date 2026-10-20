@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "180afe1b669116b777f1",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 taxei fixed inject25 s1 eval",
+  "task_key": "worker_analysis_v4-taxei-fixed-inject25-s1-eval_20260515T225458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-taxei-fixed-inject25-s1-eval_20260515T225458_result.json",
+    "occurrence": 1,
+    "bytes": 419,
+    "sha256": "52b39e6f56040585208eb8be1f099eb758b3689e591b1911a1e5a2d56f00dad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清理或在其他 session 创建）。Registry 已全部更新完毕。\n\n**结果汇总：**\n\n| 字段 | 值 |\n|------|-----|\n| status | DONE |\n| conclusion | success |\n| success_rate | **0.638** (30/47) |\n| 最佳 task type | pick_two_obj_and_place: 0.857 (6/7) |\n| 最差 task type | pick_cool_then_place_in_recep: 0.429 (3/7) |\n| checkpoint | checkpoint-1635 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-taxei-fixed-inject25-s1-eval.md"
+}

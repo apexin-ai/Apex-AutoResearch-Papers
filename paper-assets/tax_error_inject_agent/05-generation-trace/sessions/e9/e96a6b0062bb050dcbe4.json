@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e96a6b0062bb050dcbe4",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops clean eval gpu0 queue",
+  "task_key": "worker_ops_clean-eval-gpu0-queue_20260516T111034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_clean-eval-gpu0-queue_20260516T111034_result.json",
+    "occurrence": 1,
+    "bytes": 119,
+    "sha256": "ee338db7da1fc0e4dafb7d1e0dc9de586e1059fbf517700b9a293313da786b74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vanilla-s0 clean eval: 27/47 episodes complete, PID 271046 still running. Checking back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-clean-eval-gpu0-queue.md"
+}

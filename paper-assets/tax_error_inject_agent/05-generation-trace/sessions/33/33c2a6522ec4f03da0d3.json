@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "33c2a6522ec4f03da0d3",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval llama31 vanilla s123 eval pipeline",
+  "task_key": "worker_eval_llama31-vanilla-s123-eval-pipeline_20260516T141702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama31-vanilla-s123-eval-pipeline_20260516T141702.log",
+    "occurrence": 1,
+    "bytes": 1100706,
+    "sha256": "ddfaaa8ded37cbbc3d46b1f6fe69fe6a48d9e0ae4251244fe7cdfc1e35a1578d"
+  },
+  "statistics": {
+    "messages": 896,
+    "user_turns": 1,
+    "tool_calls": 398,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 398,
+      "tool_result": 398,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 881,
+      "chunks": [
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0005.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "33c2a6522ec4f03da0d3-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-llama31-vanilla-s123-eval-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dac57dd929d3e21139d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code recovery eval dev",
+  "task_key": "worker_code_recovery-eval-dev_20260514T173802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_recovery-eval-dev_20260514T173802_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "8805d2f51dc3770adfc0062d6f223956cc1d0900a6b1e04248c374fbc9982554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n**`eval/injected_eval.py`** (463 行) — Injected Recovery Evaluation 脚本\n- 在 eval 时注入错误 action：在指定步骤替换模型的 action 为随机错误 action，发送给环境\n- 根据 `--model_variant` 插入训练格式匹配的 error tag：\n  - taxei → `[Error Type: P1_StepOrderSwap]` 等\n  - random → `[Error occurred]`\n  - vanilla → 无标签\n- 输出 JSON：per-task recovery 结果 + aggregate recovery_rate / by_operator / by_task_type\n- 内置 `--compare_with` 统计检验（McNemar + bootstrap CI）\n\n**`scripts/run_injected_eval.sh`** — 3 个变体的启动脚本\n- `bash scripts/run_injected_eval.sh all` 并行跑 3 个模型 + 自动对比\n- 支持单独跑 `taxei`/`random`/`vanilla`/`compare`\n\n**Dry-run 验证通过**: Vanilla checkpoint, 1 task, cuda:3 — 注入 `take bowl 1 from desk 1`（原本 `go to desk 2`），模型 13 步 RECOVERED。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-recovery-eval-dev.md"
+}

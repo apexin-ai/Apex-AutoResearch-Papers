@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "01331011dc26de583409",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval qwen recovery random s123",
+  "task_key": "worker_eval_qwen-recovery-random-s123_20260516T115632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen-recovery-random-s123_20260516T115632.log",
+    "occurrence": 1,
+    "bytes": 604420,
+    "sha256": "a20c84f36670fd81d60f4738ca874f2dac8936de2cd0d0e804837bdc22121467"
+  },
+  "statistics": {
+    "messages": 388,
+    "user_turns": 0,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 156,
+      "tool_result": 156,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "01331011dc26de583409-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "01331011dc26de583409-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "01331011dc26de583409-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-qwen-recovery-random-s123.md"
+}

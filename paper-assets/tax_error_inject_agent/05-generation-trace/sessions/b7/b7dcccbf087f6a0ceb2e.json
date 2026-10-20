@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7dcccbf087f6a0ceb2e",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "data gate12 evidence files",
+  "task_key": "worker_data_gate12-evidence-files_20260514T122208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_gate12-evidence-files_20260514T122208_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "f3f881bbbf08b66d1d4f0bab89a8703aeaf56cc864d7bd98a321ba4b85ad0326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个证据文件已生成：\n\n| 文件 | 大小 | Verdict |\n|------|------|---------|\n| `eval_results/gate1_injection_validity.json` | 714 B | **PASS** |\n| `eval_results/gate2_recovery_quality.json` | 44.9 KB | **PASS** |\n\n**Gate 1** — 760 条注入全部合法（100%），4 个算子均 100%：\n- P1_step_order_swap: 188\n- P2_sub_goal_deletion: 192\n- C1_context_truncation: 191\n- C4_observation_masking: 189\n\n**Gate 2** — 60 条采样（每算子 15 条），strong=18, moderate=42, weak=0，pass rate=100% ≥ 75% 阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-gate12-evidence-files.md"
+}

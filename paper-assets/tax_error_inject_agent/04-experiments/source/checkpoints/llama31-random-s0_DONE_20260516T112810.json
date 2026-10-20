@@ -1,0 +1,60 @@
+{
+  "exp_id": "llama31-random-s0",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:16:00.115Z",
+    "updated_at": "2026-05-16T11:28:10.720Z",
+    "spec": {
+      "command": "swift sft --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir output/llama31-random-s0 --lora_rank 16 --num_train_epochs 3 --per_device_train_batch_size 4 --gradient_accumulation_steps 2 --learning_rate 1e-4 --max_length 4096 --seed 0 --data_seed 0 --logging_steps 10 --gradient_checkpointing true --bf16 true --save_strategy epoch",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "260936",
+      "log_path": "~/runs/tax_error_inject_agent/llama31-random-s0.log",
+      "submitted_at": "2026-05-16T09:15:59.761Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/mini_pipeline_v4/sft_random_v4.jsonl",
+      "data_count": 9031,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 0,
+      "wall_clock_seconds": 7931.0,
+      "gpu_hours": 2.2
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T11:24:56.461Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T11:24:59.790065+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_train_loss": 0.3368,
+      "epoch1_loss": 0.452,
+      "epoch2_loss": 0.238,
+      "epoch3_loss": 0.134,
+      "final_token_acc": 0.9357,
+      "train_runtime_sec": 7622,
+      "train_steps": 3387,
+      "peak_memory_gib": 30.74,
+      "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387"
+    },
+    "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s0/v0-20260516-171608/checkpoint-3387",
+    "log_path": "~/runs/tax_error_inject_agent/llama31-random-s0.log",
+    "completed_at": "2026-05-16T11:28:10.720Z"
+  },
+  "timestamp": "2026-05-16T11:28:10.972536+00:00",
+  "trigger": "update_registry"
+}

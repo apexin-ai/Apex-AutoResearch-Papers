@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "2bb97fba565d5f3221bf",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis training dynamics gpu run",
+  "task_key": "worker_analysis_training-dynamics-gpu-run_20260515T153741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_training-dynamics-gpu-run_20260515T153741_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "89e629506b9de532ac1dce32f3de03fd3b8fc72b51a0943ad8fda6f7020466ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training Dynamics Forward Pass 已在 cuda:2 上运行（通过 CUDA_VISIBLE_DEVICES=2 映射）。\n\n当前状态：\n- Vanilla (1/6) 正在进行，28/1090 batches，~3 it/s\n- 修复了两个问题：`device_map` 从字符串改为 `{\"\": 0}`，清理了残留 GPU 进程\n- 预计总时间约 40 分钟（6 个 checkpoint × ~5-7 分钟/个 + 模型加载时间）\n\n4.5 分钟后自动检查进度。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-training-dynamics-gpu-run.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2637d1093eb938bc44",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "knowledge fix experiment plan",
+  "task_key": "worker_knowledge_fix-experiment-plan_20260515T022321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "0f86b55f7f689cd807ecb9c06e01a8eb15d661f2f3c224c36ce747fb92f80254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项修复完成：\n\n1. **registry_ids → registry_id**：全文 14 处已替换为单数形式。\n2. **dose-response-random**：status 改为 `done`，inject25 = 55.3% (26/47)，inject50 = 57.4% (27/47)，eval 注释中的 RUNNING 也已更新为实际结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-fix-experiment-plan.md"
+}

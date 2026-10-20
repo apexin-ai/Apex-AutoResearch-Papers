@@ -1,0 +1,45 @@
+{
+  "exp_id": "v4-taxei-fixed-inject10",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:09:52.707Z",
+    "updated_at": "2026-05-14T23:50:45.829Z",
+    "hypothesis": "v4 TaxEI fixed-size ablation: 10% injection ratio (4,358 total = 3,922 clean + 436 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。",
+    "spec": {
+      "command": "swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --output_dir output/v4-fixed-inject10 --num_train_epochs 3 --learning_rate 1e-4 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --seed 42 --data_seed 42 --bf16 true --gradient_checkpointing true",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "94635",
+      "log_path": "/tmp/v4-fixed-inject10.log",
+      "submitted_at": "2026-05-15T06:12:34Z",
+      "submitted_via": "manual_tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl",
+      "data_count": 4358,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "injection_ratio": 0.1,
+      "clean_count": 3922,
+      "injected_count": 436
+    },
+    "conclusion": "success",
+    "checkpoint_path": "output/v4-fixed-inject10/v0-20260515-061243/checkpoint-1635",
+    "metrics": {
+      "final_loss": 0.308,
+      "token_accuracy": 0.888,
+      "train_steps": 1635,
+      "train_epochs": 3,
+      "train_duration_min": 58
+    },
+    "completed_at": "2026-05-14T23:50:45.829Z"
+  },
+  "timestamp": "2026-05-14T23:50:45.896243+00:00",
+  "trigger": "update_registry"
+}

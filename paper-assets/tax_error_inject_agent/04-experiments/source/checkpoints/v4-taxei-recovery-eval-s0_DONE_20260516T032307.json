@@ -1,0 +1,26 @@
+{
+  "exp_id": "v4-taxei-recovery-eval-s0",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:43:41.449Z",
+    "updated_at": "2026-05-16T03:23:07.706Z",
+    "spec": {
+      "checkpoint_path": "eval_results/v4_taxei_recovery_eval_s0.json",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-recovery-eval-s0.log"
+    },
+    "metrics": {
+      "recovery_rate": 0.468,
+      "successes": 22,
+      "total": 47,
+      "detection_rate": 0
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T03:23:07.706Z"
+  },
+  "timestamp": "2026-05-16T03:23:07.950362+00:00",
+  "trigger": "update_registry"
+}

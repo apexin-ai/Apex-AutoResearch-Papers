@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2be97c1cb284771093",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval gpu2 random s0 collect",
+  "task_key": "worker_eval_gpu2-random-s0-collect_20260516T115333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gpu2-random-s0-collect_20260516T115333_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "8d585912e42bd8ec61ec61990598f3c495527ba2c6cd9f480a44ccc0db494e21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集 random-s0 injected 结果，等待 clean eval 完成（当前 7/47）。3 分钟后继续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gpu2-random-s0-collect.md"
+}

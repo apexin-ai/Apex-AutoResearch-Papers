@@ -1,0 +1,27 @@
+{
+  "exp_id": "v4-recovery-eval-dev",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:42:04.153Z",
+    "updated_at": "2026-05-16T16:26:20.362Z",
+    "hypothesis": "Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)",
+    "conclusion": "success",
+    "metrics": {
+      "pipeline_files": [
+        "eval/injected_eval.py",
+        "scripts/run_injected_eval.sh"
+      ],
+      "injected_eval_lines": 463,
+      "dryrun_result": "PASS",
+      "dryrun_detail": "vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps"
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:20.651822+00:00",
+  "trigger": "update_registry"
+}

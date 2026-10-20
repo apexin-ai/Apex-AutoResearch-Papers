@@ -1,0 +1,41 @@
+{
+  "exp_id": "v4-random-fixed-inject25-s7",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:17:33.574Z",
+    "updated_at": "2026-05-15T23:19:01.837Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s7/v0-20260516-061742/checkpoint-1635",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s7.log"
+    },
+    "hypothesis": "v4 Random fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.",
+    "reproduce": {
+      "finished_at": "2026-05-15T23:15:25.217Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T23:15:27.886821+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 0.4254,
+      "final_step_loss": 0.265,
+      "token_acc": 0.899,
+      "epochs": 3,
+      "steps": 1635,
+      "train_runtime_sec": 3407
+    },
+    "completed_at": "2026-05-15T23:19:01.837Z"
+  },
+  "timestamp": "2026-05-15T23:19:02.057822+00:00",
+  "trigger": "update_registry"
+}

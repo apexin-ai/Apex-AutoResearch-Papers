@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7076f3919a52622dde46",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "run forward pass gpu",
+  "task_key": "worker_run_forward-pass-gpu_20260515T153743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_forward-pass-gpu_20260515T153743_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "f213af9e14b2ee8e6eb854dbfc74ac435fc2d236aaaa5ed9ac39d44ff8ea6708"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the final summary:\n\n**Experiment `v4-training-dynamics-forward` — DONE (success)**\n\n| Checkpoint | Clean Loss | Injected Loss | Gap |\n|---|---|---|---|\n| Vanilla | 0.6853 | — | — |\n| TaxEI Full | 0.7712 | 0.6139 | -0.1573 |\n| Random Full | 0.7354 | 0.5902 | -0.1452 |\n| TaxEI 10% | 0.6628 | 0.6464 | -0.0164 |\n| TaxEI 25% | 0.7010 | 0.5740 | -0.1270 |\n| TaxEI 50% | 0.8516 | 0.6547 | -0.1969 |\n\n**TaxEI Full per-operator loss:** C1=0.5932, P2=0.6161, P1=0.6165, C4=0.6298\n\n**Key findings:**\n- Clear dose-response: injected-clean gap widens monotonically from -0.016 (10%) → -0.127 (25%) → -0.197 (50%)\n- C1_ContextTruncation consistently has the lowest loss (most memorized)\n- Higher injection rates also degrade clean sample loss significantly (0.663 → 0.701 → 0.852)\n- 3 plots generated: dose_response, operator_breakdown, subset_comparison\n\nRegistry updated with full metrics, conclusion=success, status=DONE. Artifact registered."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-forward-pass-gpu.md"
+}

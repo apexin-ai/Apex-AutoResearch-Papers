@@ -1,0 +1,365 @@
+{
+  "metadata": {
+    "analysis": "50% Dose-Response 5-seed Statistical Analysis (D037 Corrected)",
+    "date": "2026-05-16",
+    "n_seeds": 5,
+    "seeds": [
+      "s42",
+      "s0",
+      "s123",
+      "s1",
+      "s7"
+    ],
+    "bonferroni_alpha": 0.017,
+    "bootstrap_resamples": 10000,
+    "corrections_applied": "D037 vanilla values corrected"
+  },
+  "descriptive_statistics": [
+    {
+      "condition": "Vanilla (D037 corrected)",
+      "n": 5,
+      "mean": 67.26,
+      "sd": 4.6694,
+      "se": 2.0882,
+      "ci95_lower": 61.4622,
+      "ci95_upper": 73.0578,
+      "min": 61.7,
+      "max": 74.5,
+      "median": 66.0,
+      "values": {
+        "s42": 61.7,
+        "s0": 68.1,
+        "s123": 66.0,
+        "s1": 66.0,
+        "s7": 74.5
+      }
+    },
+    {
+      "condition": "TaxEI 50%",
+      "n": 5,
+      "mean": 57.44,
+      "sd": 9.5033,
+      "se": 4.25,
+      "ci95_lower": 45.6401,
+      "ci95_upper": 69.2399,
+      "min": 46.8,
+      "max": 70.2,
+      "median": 55.3,
+      "values": {
+        "s42": 51.1,
+        "s0": 70.2,
+        "s123": 46.8,
+        "s1": 63.8,
+        "s7": 55.3
+      }
+    },
+    {
+      "condition": "Random 50%",
+      "n": 5,
+      "mean": 58.28,
+      "sd": 11.7103,
+      "se": 5.237,
+      "ci95_lower": 43.7397,
+      "ci95_upper": 72.8203,
+      "min": 46.8,
+      "max": 70.2,
+      "median": 57.4,
+      "values": {
+        "s42": 57.4,
+        "s0": 46.8,
+        "s123": 70.2,
+        "s1": 70.2,
+        "s7": 46.8
+      }
+    }
+  ],
+  "pairwise_comparisons": [
+    {
+      "comparison": "Vanilla vs TaxEI 50%",
+      "mean_difference": 9.82,
+      "sd_of_differences": 9.7047,
+      "paired_differences": {
+        "s42": 10.6,
+        "s0": -2.1,
+        "s123": 19.2,
+        "s1": 2.2,
+        "s7": 19.2
+      },
+      "paired_t_test": {
+        "t_statistic": 2.2626,
+        "p_value": 0.0864,
+        "df": 4,
+        "significant_at_bonferroni_0.017": false
+      },
+      "welch_t_test": {
+        "t_statistic": 2.0738,
+        "p_value": 0.0849,
+        "significant_at_bonferroni_0.017": false
+      },
+      "ci95_of_difference": {
+        "lower": -2.23,
+        "upper": 21.87
+      },
+      "cohens_d_paired": 1.0119,
+      "cohens_d_pooled": 1.3116,
+      "cohens_d_95ci": {
+        "lower": 0.1387,
+        "upper": 3.4785
+      },
+      "effect_size_interpretation": "large",
+      "bootstrap_10000": {
+        "mean_diff": 9.7676,
+        "ci95_lower": 2.16,
+        "ci95_upper": 17.48,
+        "p_value_two_sided": 0.0104
+      }
+    },
+    {
+      "comparison": "Vanilla vs Random 50%",
+      "mean_difference": 8.98,
+      "sd_of_differences": 14.761,
+      "paired_differences": {
+        "s42": 4.3,
+        "s0": 21.3,
+        "s123": -4.2,
+        "s1": -4.2,
+        "s7": 27.7
+      },
+      "paired_t_test": {
+        "t_statistic": 1.3603,
+        "p_value": 0.2453,
+        "df": 4,
+        "significant_at_bonferroni_0.017": false
+      },
+      "welch_t_test": {
+        "t_statistic": 1.5928,
+        "p_value": 0.1694,
+        "significant_at_bonferroni_0.017": false
+      },
+      "ci95_of_difference": {
+        "lower": -9.3482,
+        "upper": 27.3082
+      },
+      "cohens_d_paired": 0.6084,
+      "cohens_d_pooled": 1.0074,
+      "cohens_d_95ci": {
+        "lower": -0.3098,
+        "upper": 2.5059
+      },
+      "effect_size_interpretation": "large",
+      "bootstrap_10000": {
+        "mean_diff": 9.0452,
+        "ci95_lower": -2.5,
+        "ci95_upper": 20.46,
+        "p_value_two_sided": 0.1176
+      }
+    },
+    {
+      "comparison": "TaxEI 50% vs Random 50%",
+      "mean_difference": -0.84,
+      "sd_of_differences": 17.6387,
+      "paired_differences": {
+        "s42": -6.3,
+        "s0": 23.4,
+        "s123": -23.4,
+        "s1": -6.4,
+        "s7": 8.5
+      },
+      "paired_t_test": {
+        "t_statistic": -0.1065,
+        "p_value": 0.9203,
+        "df": 4,
+        "significant_at_bonferroni_0.017": false
+      },
+      "welch_t_test": {
+        "t_statistic": -0.1245,
+        "p_value": 0.9041,
+        "significant_at_bonferroni_0.017": false
+      },
+      "ci95_of_difference": {
+        "lower": -22.7413,
+        "upper": 21.0613
+      },
+      "cohens_d_paired": -0.0476,
+      "cohens_d_pooled": -0.0788,
+      "cohens_d_95ci": {
+        "lower": -1.3294,
+        "upper": 1.1561
+      },
+      "effect_size_interpretation": "negligible",
+      "bootstrap_10000": {
+        "mean_diff": -0.723,
+        "ci95_lower": -13.6,
+        "ci95_upper": 14.46,
+        "p_value_two_sided": 0.8256
+      }
+    }
+  ],
+  "bonferroni_correction": {
+    "alpha_per_comparison": 0.017,
+    "n_comparisons": 3,
+    "family_wise_alpha": 0.05,
+    "summary": {
+      "vanilla_vs_taxei50": {
+        "p_paired": 0.0864,
+        "significant": false
+      },
+      "vanilla_vs_random50": {
+        "p_paired": 0.2453,
+        "significant": false
+      },
+      "taxei50_vs_random50": {
+        "p_paired": 0.9203,
+        "significant": false
+      }
+    }
+  },
+  "power_analysis": [
+    {
+      "comparison": "Vanilla vs TaxEI 50%",
+      "observed_effect_size_d": 1.0119,
+      "power_at_n5_alpha05": 0.4089,
+      "power_at_n5_bonferroni_017": 0.1984,
+      "n_required_for_80pct_power_alpha05": 10,
+      "n_required_for_80pct_power_bonferroni_017": 14
+    },
+    {
+      "comparison": "Vanilla vs Random 50%",
+      "observed_effect_size_d": 0.6084,
+      "power_at_n5_alpha05": 0.1844,
+      "power_at_n5_bonferroni_017": 0.0757,
+      "n_required_for_80pct_power_alpha05": 24,
+      "n_required_for_80pct_power_bonferroni_017": 32
+    },
+    {
+      "comparison": "TaxEI 50% vs Random 50%",
+      "observed_effect_size_d": 0.0476,
+      "power_at_n5_alpha05": 0.0508,
+      "power_at_n5_bonferroni_017": 0.0173,
+      "n_required_for_80pct_power_alpha05": ">500",
+      "n_required_for_80pct_power_bonferroni_017": ">500"
+    }
+  ],
+  "dose_response_trend": {
+    "taxei": {
+      "condition": "TaxEI dose-response",
+      "doses_pct": [
+        0,
+        10,
+        25,
+        50,
+        100
+      ],
+      "means": [
+        67.26,
+        61.3,
+        52.7,
+        57.44,
+        58.3
+      ],
+      "linear_regression": {
+        "slope": -0.0559,
+        "intercept": 61.4675,
+        "r_squared": 0.1727,
+        "p_value": 0.4865,
+        "std_err": 0.0706,
+        "interpretation": "Non-significant linear decrease of 0.0559% per 1% dose increase"
+      },
+      "spearman_correlation": {
+        "rho": -0.6,
+        "p_value": 0.2848
+      },
+      "kendall_tau": {
+        "tau": -0.4,
+        "p_value": 0.4833
+      },
+      "pages_L_statistic": {
+        "L": 51.0,
+        "L_max": 55.0,
+        "L_min": 35.0,
+        "note": "Computed on dose-level means (single value per dose), not per-seed data"
+      }
+    },
+    "random": {
+      "condition": "Random dose-response",
+      "doses_pct": [
+        0,
+        10,
+        25,
+        50,
+        100
+      ],
+      "means": [
+        67.26,
+        63.8,
+        60.0,
+        58.28,
+        58.3
+      ],
+      "linear_regression": {
+        "slope": -0.0785,
+        "intercept": 64.4316,
+        "r_squared": 0.6407,
+        "p_value": 0.1037,
+        "std_err": 0.0339,
+        "interpretation": "Non-significant linear decrease of 0.0785% per 1% dose increase"
+      },
+      "spearman_correlation": {
+        "rho": -0.9,
+        "p_value": 0.0374
+      },
+      "kendall_tau": {
+        "tau": -0.8,
+        "p_value": 0.0833
+      },
+      "pages_L_statistic": {
+        "L": 54.0,
+        "L_max": 55.0,
+        "L_min": 35.0,
+        "note": "Computed on dose-level means (single value per dose), not per-seed data"
+      }
+    },
+    "comparison_note": "Both show declining trends; TaxEI shows non-monotonic rebound at 50%"
+  },
+  "fifty_percent_specific_analyses": {
+    "s0_s123_swap": {
+      "description": "s0 and s123 values are exactly swapped between TaxEI 50% and Random 50% (70.2/46.8 vs 46.8/70.2)",
+      "taxei_50_s0": 70.2,
+      "taxei_50_s123": 46.8,
+      "random_50_s0": 46.8,
+      "random_50_s123": 70.2,
+      "permutation_test": {
+        "n_permutations": 100000,
+        "n_exact_swaps_found": 12848,
+        "p_exact_swap": 0.1285,
+        "n_near_swaps_within_1pct": 12848,
+        "p_near_swap": 0.1285,
+        "interpretation": "Probability of observing a swap of >=20pp magnitude between any two seeds under random relabeling"
+      }
+    },
+    "rebound_25_to_50": {
+      "taxei_25pct_mean": 52.7,
+      "taxei_50pct_mean": 57.44,
+      "rebound_magnitude": 4.74,
+      "one_sample_t_test_50pct_vs_25pct_mean": {
+        "t_statistic": 1.1153,
+        "p_value": 0.3272,
+        "df": 4,
+        "significant_at_0.05": false
+      },
+      "cohens_d": 0.4988,
+      "interpretation": "Rebound of 4.74pp (not significant at alpha=0.05)"
+    }
+  },
+  "executive_summary": {
+    "key_findings": [
+      "Vanilla (67.26%) > TaxEI 50% (57.44%): Δ=9.82pp, paired t p=0.0864, d=1.31 (NOT significant at Bonferroni α=0.017)",
+      "Vanilla (67.26%) > Random 50% (58.28%): Δ=8.98pp, paired t p=0.2453, d=1.01 (NOT significant at Bonferroni α=0.017)",
+      "TaxEI 50% ≈ Random 50%: Δ=0.84pp, paired t p=0.9203 (NOT significant)",
+      "Power at n=5: Vanilla vs TaxEI d=1.01, power=40.9%; need n=10 for 80% power",
+      "TaxEI dose-response slope: -0.0559%/dose%, R²=0.173, p=0.4865",
+      "50% rebound from 25%: TaxEI 52.7→57.4 (+4.74pp), t-test p=0.3272 (not significant)",
+      "s0/s123 exact swap: permutation p=0.1285"
+    ]
+  }
+}

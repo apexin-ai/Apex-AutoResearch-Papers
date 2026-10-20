@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee3f744a5393fe9bb91",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh verify gate3 script",
+  "task_key": "worker_ssh_verify-gate3-script_20260514T162618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-gate3-script_20260514T162618_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "1aa3655861398f515589be5ebc06136181bb6ca3b1b65a002ae66bf5f11f26f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n### 结论\n\n**analyze_gate3.py 与 v4 eval 输出格式完全兼容，无需修复。**\n\n- v4_vanilla_eval.json 的结构（`episodes` 数组，含 `task_name`/`success`/`task_type` 字段）与脚本 `build_outcome_vectors()` 和 `per_task_type_breakdown()` 的期望完全一致\n- Self-test 运行成功：diff=0.0pp, p=1.0, discordant=0，符合预期\n- `run_v4_eval.sh` 中 taxei/random eval 的输出路径已确认为 `eval_results/v4_taxei_eval.json` 和 `eval_results/v4_random_eval.json`\n- 依赖（scipy）已安装\n\n### eval 完成后直接执行：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/tax_error_inject_agent && \\\npython3 scripts/analyze_gate3.py \\\n  --vanilla eval_results/v4_vanilla_eval.json \\\n  --taxei eval_results/v4_taxei_eval.json \\\n  --random eval_results/v4_random_eval.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-gate3-script.md"
+}

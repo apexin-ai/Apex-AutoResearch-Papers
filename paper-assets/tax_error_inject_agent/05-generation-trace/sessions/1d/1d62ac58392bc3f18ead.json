@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d62ac58392bc3f18ead",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260515T224259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260515T224259_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "2bf09449e5ee94ef0b040dfecf86f5e44da586bb61b6cb4ae5a6083856b53f0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验都还在运行中。\n\n## GPU 状态\n\n| GPU | 显存占用 | GPU利用率 | PID | 进程 |\n|-----|---------|----------|-----|------|\n| cuda:0 | 17082/32607 MiB | 78% | 205279 | v4-taxei-fixed-inject25-s1-eval |\n| cuda:1 | 17082/32607 MiB | 72% | 205415 | v4-random-fixed-inject25-s1-eval |\n| cuda:2 | 17082/32607 MiB | 0% | 205863 | v4-taxei-fixed-inject25-s1-eval-r2 |\n| cuda:3 | 18587/32607 MiB | 77% | 203885 | v4-random-fixed-inject25-s7 (训练) |\n\n## 实验状态\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| **v4-taxei-fixed-inject25-s1-eval** (cuda:0) | 运行中 | 14/47 tasks (OK: 8, FAIL: 6) |\n| **v4-random-fixed-inject25-s1-eval** (cuda:1) | 运行中 | 20/47 tasks (OK: 13, FAIL: 7) |\n| **v4-taxei-fixed-inject25-s1-eval-r2** (cuda:2) | 运行中 | 14/47 tasks (OK: 8, FAIL: 6) — 与 cuda:0 结果完全一致 |\n| **v4-random-fixed-inject25-s7** (cuda:3) | 训练中 | step 741/1635 (45%), ~31min 剩余, loss=0.40, token_acc=0.86 |\n\neval_results/ 目录中尚无 `v4_taxei_fixed_inject25_s1_eval.json` 或 `v4_random_fixed_inject25_s1_eval.json`，这些文件会在 eval 完成后生成。\n\n**注意**: cuda:0 和 cuda:2 跑的是同一个 checkpoint 的 eval（r2 是重跑），当前 14/47 的结果完全一致。cuda:2 GPU利用率为 0% 可能是任务间的间歇。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

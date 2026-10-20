@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0960c1e81f31c1fb2cfe",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh check traj progress",
+  "task_key": "worker_ssh_check-traj-progress_20260514T103246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-traj-progress_20260514T103246_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "c8f327ea6117abef95fe33b4bd367c2a68a71a891993e4a5791bd92521ae83ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## traj_collect_500 进度报告\n\n| 指标 | 值 |\n|------|-----|\n| **进程状态** | PID 11045 存活，已运行 **3h50m** |\n| **成功轨迹** | **300 / 500** (60%) |\n| **失败轨迹** | 101 |\n| **已完成总数** | 401 |\n| **成功率** | 74.8% |\n| **Workers** | 4 并行 |\n\n### 预估剩余时间\n\n- 还需 200 条成功轨迹\n- 按 74.8% 成功率，需再跑 ~267 条总轨迹\n- 当前速率：401 条 / 230 分钟 ≈ 1.74 条/分钟\n- **预估剩余 ~2.5 小时**（约 18:00 前完成，取决于后续任务难度）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-traj-progress.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "v4-taxei-seed1-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:39:59.021Z",
+    "updated_at": "2026-05-15T15:41:00.583Z",
+    "hypothesis": "v4 TaxEI SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion",
+    "parent": "v4-taxei-seed1"
+  },
+  "timestamp": "2026-05-15T15:41:00.785090+00:00",
+  "trigger": "update_registry"
+}

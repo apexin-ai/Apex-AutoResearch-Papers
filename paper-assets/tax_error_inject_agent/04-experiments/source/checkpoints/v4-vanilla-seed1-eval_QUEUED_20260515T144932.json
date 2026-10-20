@@ -1,0 +1,16 @@
+{
+  "exp_id": "v4-vanilla-seed1-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:49:28.411Z",
+    "updated_at": "2026-05-15T14:49:32.434Z",
+    "hypothesis": "v4 Vanilla SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion",
+    "parent": "v4-vanilla-seed1"
+  },
+  "timestamp": "2026-05-15T14:49:32.552922+00:00",
+  "trigger": "update_registry"
+}

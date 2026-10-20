@@ -1,0 +1,35 @@
+{
+  "exp_id": "traj_collect_500",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:45:21.504Z",
+    "updated_at": "2026-05-14T12:20:31.344Z",
+    "spec": {
+      "command": "python collect_trajectories.py --target 500",
+      "server": "autodl-5090",
+      "data_path": "data/trajectories/",
+      "data_count": 575,
+      "model_name": "trajectory_collector",
+      "seed": 0,
+      "pid": 11045,
+      "gpu": "none (CPU task)",
+      "hypothesis": "GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）"
+    },
+    "metrics": {
+      "successful_trajectories": 300,
+      "target": 500,
+      "failed": 101,
+      "total_completed": 401,
+      "success_rate": 0.748,
+      "parallel_workers": 4,
+      "runtime_hours": 3.83,
+      "est_remaining_hours": 2.5
+    }
+  },
+  "timestamp": "2026-05-14T12:20:31.366939+00:00",
+  "trigger": "update_registry"
+}

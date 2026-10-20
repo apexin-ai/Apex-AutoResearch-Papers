@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbad404b04579c8455c0",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval recovery random s1 s7",
+  "task_key": "worker_eval_recovery-random-s1-s7_20260516T143542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_recovery-random-s1-s7_20260516T143542_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "6b36656e9f45d6231be3982df8125792d8542550c59e4632e0e1f0fbf1295138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 registry 已注册完成。15/15 recovery eval 全部完成。\n\n**结果汇总：**\n\n| | Recovery Rate | C1 | C4 | P1 | P2 | Detection |\n|---|---|---|---|---|---|---|\n| **Random s1** | 51.1% | 41.7% | 54.5% | 58.3% | 50.0% | 0% |\n| **Random s7** | 53.2% | 50.0% | 63.6% | 58.3% | 41.7% | 0% |\n\n结果文件：\n- `eval_results/v4_random_recovery_eval_s1.json`\n- `eval_results/v4_random_recovery_eval_s7.json`\n\n这两个 eval 之前已经跑完并保存在服务器上，无需重跑。Registry 已更新为 DONE，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-recovery-random-s1-s7.md"
+}

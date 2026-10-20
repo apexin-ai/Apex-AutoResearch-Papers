@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47b7492e19111da9230d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code multi seed eval prep",
+  "task_key": "worker_code_multi-seed-eval-prep_20260514T182339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi-seed-eval-prep_20260514T182339_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "6f8fb54e4b343b38258dddaf58e47d1df315e21a084287475781595d58c5bb8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**创建了** `scripts/run_multiseed_eval.sh`：\n- 用法：`bash scripts/run_multiseed_eval.sh vanilla 0`\n- 自动发现 seed=42（无后缀目录）+ seed=0/7/123（带后缀目录）的最新 checkpoint\n- 输出命名与 `analyze_multiseed.py` 一致（seed42 → `v4_{type}_eval.json`，其他 → `v4_{type}_seed{N}_eval.json`）\n- 已有结果自动跳过（删除文件可重跑）\n\n**`scripts/aggregate_multiseed.py` 无需创建**——已有 `scripts/analyze_multiseed.py`，功能更完整（bootstrap CI、paired permutation test、per-task-type breakdown）。eval 完后直接运行：\n```bash\npython scripts/analyze_multiseed.py\n```\n\n当前 checkpoint 状态：seed0 有 checkpoint-1090，seed7 有 checkpoint-545（可能还在训练），seed123 尚无 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-seed-eval-prep.md"
+}

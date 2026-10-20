@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30f8531399fe888ff83b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops check recovery datagen",
+  "task_key": "worker_ops_check-recovery-datagen_20260515T183458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-recovery-datagen_20260515T183458_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "b97eb1aafc9fce6247c030b45cdbcf24974e39038f3d2c7d9a2df851ccd71e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**进程**: PID 158010 **仍在运行**，已运行 4h29m\n\n**进度**: 300/760 (39.5%)\n- 日志最后更新：01:47（约 48 分钟前），打印 \"Processed 300/760\"\n- 进度每 100 条打印一次，当前正在处理 301-400 区间\n- 进程活跃：有 socket 打开（API 调用中）\n\n**速度估算**:\n- 0~300 条耗时 ~3h42m → ~0.74 min/条\n- 剩余 460 条 → 预计还需 ~5.7h\n- **预计完成时间：~07:30（北京时间，5月16日）**\n\n**输出**:\n- 输出路径：`data/recovery_paired/recovery_paired.jsonl`（脚本在全部处理完后一次性写入，目前尚未生成）\n- 使用模型：`openai/gpt-5.2`，通过 `http://47.94.22.126/v1` 代理\n- 输入数据：760 条 injected variants × 501 条 source trajectories\n\n**注意**: 脚本把所有结果攒在内存里最后才写文件，中途无增量输出。如果进程中断，已处理的 300 条结果会丢失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-recovery-datagen.md"
+}

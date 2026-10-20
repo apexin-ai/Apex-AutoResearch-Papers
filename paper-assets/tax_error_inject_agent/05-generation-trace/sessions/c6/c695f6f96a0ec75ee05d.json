@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c695f6f96a0ec75ee05d",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_6_1778932281.md",
+  "task_key": "loop_6_1778932281",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778932281.md",
+    "occurrence": 1,
+    "bytes": 3900,
+    "sha256": "ec40848430b06d5d1f8614a834659d4dc62429bf966ceee922d874f1d1a1b2fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T10:47:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090 cuda:0/1/2/3（仅此 4 张，无其他服务器）\n- Eval 并行上限 2 个（8B 模型 eval ~18GB，>2 必 OOM）\n- LLaMA detection_rate 指标是假阳性（\"go back to X\" 中 \"back\" 触发关键词匹配），**不可引用**\n- submit_training_job 必须 `bash -c \"source /root/miniconda3/bin/activate && ...\"` 包裹\n- update_registry 不要对训练实验设 parent 字段（会被误识别为 eval 实验）\n- Cron 对 eval 脚本会误报 failed（不写 sentinel），eval 完成需手动确认\n- 50% 数据集训练必须 bs=4 + grad_accum=2（bs=8 OOM）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型：`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`（15GB, 4 shards）\n- Qwen 模型：`/root/autodl-tmp/models/Qwen3-8B`（主实验已全部完成）\n- 训练框架：ms-swift (`swift sft`)，LoRA rank=16, epoch=3, lr=1e-4, max_len=4096\n- 日志：`~/runs/tax_error_inject_agent/{exp_id}.log`\n- 活跃进程：\n  - llama31-taxei-s0: PID 262833, cuda:1, cron 监控中\n  - llama31-random-s0: PID 260936, cuda:2, cron 监控中\n  - llama31-vanilla-s0-eval: cuda:3, cron 监控中（刚启动 ~10min）\n- cuda:0 当前空闲\n\n### 3. 📊 当前状态\nLLaMA-3.1-8B 跨模型验证 s0 轮次进行中：\n- llama31-vanilla-s0 训练已完成，eval 正在跑（cuda:3）\n- llama31-taxei-s0 训练中（cuda:1，~2h total，已跑 ~1.5h）\n- llama31-random-s0 训练中（cuda:2，~2h total，已跑 ~1.5h）\n- cuda:0 空闲（可铺 recovery eval 或 scale-up 诊断）\n\nLLaMA s42 已完成：Vanilla=74.5%, TaxEI=74.5%, Random=76.6% — 三条件无差异，stronger model 对 injection 免疫。\n\n等待中：\n- 3 个 cron 回调（上述 RUNNING 实验完成时触发）\n- TaxEI-s0/Random-s0 训练完成 → 启动对应 eval\n- 全部 s0 eval 完成 → 启动 s123 轮次训练\n- Scale-up 数据 Phase 1 r2 仍在跑（239/1051 成功时的快照，可能已有更多）\n\n### 4. 📋 待办（条件触发式）\n- llama31-taxei-s0 cron 回调 → 启动 llama31-taxei-s0-eval（cuda:1）\n- llama31-random-s0 cron 回调 → 启动 llama31-random-s0-eval（cuda:2）\n- llama31-vanilla-s0-eval 完成 → 记录结果，cuda:3 可给 RP-s7 eval 或 recovery eval\n- 3 个 s0 eval 全部完成 → 向 Director 汇报 s0 cross-model 结果 → 启动 s123 轮 (V/T/R 训练)\n- cuda:0 空闲 → 应派 Worker 跑 recovery eval 剩余 6 个之一（TaxEI s7 或 Random s42/s0/s123/s1/s7）\n- Scale-up 诊断完成 → 根据 D046（撤销暂停）决定是否继续收集\n- 全部 LLaMA 3-seed 完成 → 向 Director 汇报最终跨模型结论，推进论文写作\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D036: 维持 negative result framing（25% TaxEI vs Random p=0.029 未过 Bonferroni）\n- D041: Recovery ≈ Resilience（模型不学修复，只是\"韧性\"）\n- D043: TaxEI-RP 有害（50.2% < baseline 58.3%，Claim 7 定论）\n- D045: Scope = LLaMA 3-seed + recovery eval multiseed + scale-up\n- D046: Scale-up 暂停撤销（9.3% 成功率是统计口径错误）\n\n**论文 story**：taxonomy 标签对 error injection 零收益（= random noise），且 stronger model 免疫。这是 negative result paper，不是\"我们的方法更好\"。\n\n**易错点**：\n- 不要把 LLaMA 单 seed 结果 claim 为结论（需 3-seed 确认稳定性）\n- Dose-response 数据用 D037 校正后的 Vanilla 值（s1=66.0%, s7=74.5%）\n- v1 forward pass 数据已作废（turn-level aggregation bug），只能引 v2\n- 50% dose TaxEI≈Random（p=0.92），与 25% 的显著差异不同——ceiling effect\n- **cuda:0 空闲是失职**，下一个 session 应立即安排任务上去\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778932281.md"
+}

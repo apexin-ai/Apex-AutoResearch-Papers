@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd0b759e061dd75404b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 taxei seed1",
+  "task_key": "worker_analysis_v4-taxei-seed1_20260515T153218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-taxei-seed1_20260515T153218_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "3d7c11cbcd29deba0deed135fa01743cf6ade7fad8c3274e5b6a68f2a0675c1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## v4-taxei-seed1 训练结果报告\n\n| 指标 | seed1 | seed123 (参考) |\n|------|-------|---------------|\n| final_loss | **0.3561** | 0.355 |\n| token_accuracy | **0.915** | 0.900 |\n| train_steps | 3387/3387 | 3387 |\n| train_epochs | 3 | 3 |\n| duration | 108.9 min | 109.2 min |\n| speed | 1.929 s/it | — |\n| memory | 18.49 GiB | — |\n| EXIT_CODE | 0 | — |\n\n**Checkpoint**: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387`\n- adapter_model.safetensors: 174MB\n\n**W&B**: 未启用（日志和目录中均无 wandb 记录）\n\n**Registry**: DONE / success\n\nseed1 与 seed123 结果高度一致：loss 相差 0.001，token_accuracy seed1 略高（0.915 vs 0.900），训练时长几乎相同。训练正常完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-taxei-seed1.md"
+}

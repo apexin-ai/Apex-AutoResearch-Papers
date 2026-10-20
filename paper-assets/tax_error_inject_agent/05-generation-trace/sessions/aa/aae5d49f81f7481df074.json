@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aae5d49f81f7481df074",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnostic d022 batch1 check",
+  "task_key": "worker_diagnostic_d022-batch1-check_20260515T091641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostic_d022-batch1-check_20260515T091641_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "e0fcbc244bffb6053909e0b67a94146438733b6a5608e6978dd2dd5389c0c518"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 组实验全部完成。汇总如下：\n\n## D022 Batch 1 训练状态\n\n| 实验 | 状态 | train_loss | runtime | checkpoint | EXIT_CODE |\n|------|------|-----------|---------|------------|-----------|\n| v4-taxei-fixed-inject25-s0 | **完成** | 0.4258 | 56m 6s (3365s) | checkpoint-1635 ✅ | 0 |\n| v4-taxei-fixed-inject25-s123 | **完成** | 0.4253 | 55m 56s (3356s) | checkpoint-1635 ✅ | 0 |\n| v4-taxei-fixed-inject50-s0 | **完成** | 0.4342 | 52m 25s (3145s) | checkpoint-1635 ✅ | 0 |\n| v4-taxei-fixed-inject50-s123 | **完成** | 0.4348 | 52m 55s (3175s) | checkpoint-1635 ✅ | 0 |\n\n**关键指标：**\n- 所有进程已退出（PID 不存在），GPU 全部空闲（0% utilization, 0 MiB）\n- 4 组均训练到 1635/1635 steps（epoch 3.0），`EXIT_CODE=0`\n- 每组都有 3 个 checkpoint（545, 1090, 1635），路径：`/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject{25,50}_s{0,123}/v0-20260515-153*/`\n- inject50 比 inject25 训练略快（~52m vs ~56m），因为 inject50 的 token 序列更短（memory 17.99GB vs 18.76GB）\n- 最终 token accuracy 均在 0.89-0.92 之间，loss 收敛正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-d022-batch1-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "v4-taxei-seed7",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:40:29.737Z",
+    "updated_at": "2026-05-15T15:36:34.902Z",
+    "spec": {
+      "command": "swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 7 --lora_rank 16 --lora_alpha 32 --3epochs",
+      "server": "autodl-5090",
+      "data_path": "data/mini_pipeline_v4/sft_taxei_v4.jsonl",
+      "data_count": 9029,
+      "model_name": "Qwen3-8B",
+      "seed": 7,
+      "gpu": "cuda:3",
+      "pid": 155145
+    },
+    "metrics": {
+      "current_step": 180,
+      "total_steps": 3387,
+      "progress_pct": 5,
+      "latest_loss": 0.591,
+      "gpu": "cuda:3",
+      "pid": 155145,
+      "eta_min": 101
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:32:43.183Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:32:44.276153+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:36:35.291559+00:00",
+  "trigger": "update_registry"
+}

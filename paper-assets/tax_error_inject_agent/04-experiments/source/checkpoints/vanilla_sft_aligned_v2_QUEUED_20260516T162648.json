@@ -1,0 +1,29 @@
+{
+  "exp_id": "vanilla_sft_aligned_v2",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:05:05.459Z",
+    "updated_at": "2026-05-16T16:26:48.489Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\n  --lora_rank 16 \\\n  --lora_alpha 32 \\\n  --lora_dropout 0.05 \\\n  --target_modules all-linear \\\n  --num_train_epochs 1 \\\n  --learning_rate 1e-4 \\\n  --per_device_train_batch_size 1 \\\n  --gradient_accumulation_steps 16 \\\n  --warmup_ratio 0.05 \\\n  --seed 42 \\\n  --max_length 4096 \\\n  --gradient_checkpointing true \\\n  --output_dir checkpoints/vanilla_sft_aligned \\\n  --logging_steps 5 \\\n  --logging_first_step true \\\n  --save_strategy epoch \\\n  --bf16 true \\\n  --weight_decay 0.1 \\\n  --adam_beta1 0.9 \\\n  --adam_beta2 0.95 \\\n  --max_grad_norm 1.0 \\\n  --lr_scheduler_type cosine \\\n  --optim adamw_torch_fused 2>&1\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "44492",
+      "log_path": "~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log",
+      "submitted_at": "2026-05-14T11:05:05.434Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:48.771137+00:00",
+  "trigger": "update_registry"
+}

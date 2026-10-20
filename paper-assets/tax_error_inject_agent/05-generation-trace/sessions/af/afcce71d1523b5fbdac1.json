@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afcce71d1523b5fbdac1",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose llama31 s123 failures",
+  "task_key": "worker_diagnose_llama31-s123-failures_20260516T150211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama31-s123-failures_20260516T150211_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "c0d16db193ed8a9d0438d49383c708fc122fa30c5972eca0fb29d564b075f28f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：**两个实验训练实际已完成，EXIT_CODE=129 是假阳性。**\n\n- 两个实验都跑满 3387/3387 steps (epoch=3.0)\n- checkpoint-3387 完整（adapter_model.safetensors ~160MB + optimizer/scheduler 等全部存在）\n- SIGHUP 发生在训练结束后，推测是 tmux/SSH session 断连导致的信号传播\n- **可直接用 checkpoint-3387 进行 eval，无需重训**\n\n报告已写入 `artifacts/diagnose_llama31_s123_failure.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama31-s123-failures.md"
+}

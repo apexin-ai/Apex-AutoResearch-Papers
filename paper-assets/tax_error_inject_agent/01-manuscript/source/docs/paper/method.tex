@@ -1,0 +1,44 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Task Environment}
+\label{sec:task_env}
+
+ALFWorld \cite{shridhar2021alfworld} is a text-based embodied environment where agents execute multi-step household tasks (e.g., \emph{heat a potato and place it in the fridge}). Each task requires a sequence of \texttt{think}/\texttt{act} steps in a ReAct-style loop \cite{yao2023react}. We use the standard 47-task unseen test split across six task types: \texttt{look\_at\_obj}, \texttt{pick\_and\_place}, \texttt{pick\_clean}, \texttt{pick\_cool}, \texttt{pick\_heat}, and \texttt{pick\_two\_obj}.
+
+\subsection{Error Taxonomy}
+\label{sec:error_taxonomy}
+
+We define four error injection operators adapted for embodied planning, organized along two axes:
+
+\paragraph{Local operators} affect single steps without disrupting the overall plan structure:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{C4 (observation\_masking)}: Replaces environment observations with generic placeholders, removing perceptual grounding for one step.
+\item \textbf{P1 (step\_order\_swap)}: Swaps two adjacent action steps, creating a locally incorrect but recoverable sequence.
+\end{itemize}
+
+\paragraph{Global operators} disrupt the trajectory's causal chain:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{P2 (sub\_goal\_deletion)}: Removes a complete sub-goal (e.g., the ``clean'' step in a pick-clean-place task), breaking the plan's logical structure.
+\item \textbf{C1 (context\_truncation)}: Truncates the context window, causing all subsequent decisions to rely on incomplete history.
+\end{itemize}
+
+All operators achieve 100\% injection legality (valid action format) and 97.5\% recovery quality (trajectories remain parseable). Error-recovery pairs are \emph{not} explicitly paired in training data---errors are mixed as additional demonstrations.
+
+\subsection{Training Setup}
+\label{sec:training_setup}
+
+We collect 501 expert trajectories from GPT-5.2 on ALFWorld training tasks, yielding 4{,}358 clean SFT demonstrations. Error injection produces 4{,}671 additional trajectories (round-robin across the four operators).
+
+\paragraph{Three conditions:}
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Vanilla}: 4{,}358 clean demonstrations only.
+\item \textbf{TaxEI}: 4{,}358 clean + 4{,}671 taxonomy-tagged errors (error type labels in prompt) = 9{,}029 total.
+\item \textbf{Random}: 4{,}358 clean + 4{,}671 generic-labeled errors (no taxonomy) = 9{,}029 total.
+\end{itemize}
+
+All models fine-tune Qwen3-8B using LoRA (rank 16, $\alpha{=}32$, lr $1{\times}10^{-4}$, 3 epochs, bf16). Each condition is trained with three seeds (42, 0, 123).
+
+\paragraph{Dose-response ablation.} To control for data volume effects, we fix total training size at 4{,}358 and vary the error injection ratio (10\%, 25\%, 50\%). The 10\% condition uses seed=42 only; 25\% and 50\% are evaluated across three seeds (42, 0, 123).
+
+\paragraph{Recovery evaluation.} We inject errors at inference time using round-robin operator assignment across 47 test tasks and measure whether error-trained models recover better than vanilla.

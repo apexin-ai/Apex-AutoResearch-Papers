@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffd95692776f0a2da681",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code cost logging",
+  "task_key": "worker_code_cost-logging_20260514T054508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cost-logging_20260514T054508_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "f4daf63addc43e6614ed3c28c2b3f98b4e000f5d22e0bfe87f2e6b2b9b4760c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改点已正确应用。\n\n---\n\n**修改汇总：**\n\n1. **新增 `CostTracker` 类**（第 43 行）— 线程安全，含 `record()` 和 `summary()` 方法\n2. **`play_episode()`**（第 198 行）— 增加 `cost_tracker` 参数；每次 API 成功响应后调用 `cost_tracker.record()`；返回值增加 `api_usage` 字典\n3. **`run_episode()`**（第 354 行）— 解包 `cost_tracker`，传入 `play_episode()`；轨迹 JSON 增加 `api_usage` 字段（含错误情况的零值兜底）\n4. **`main()`**（第 426-465 行）— 创建 `CostTracker`（日志路径与 `output_dir` 同级），通过 tasks 元组传递，结束时打印汇总\n\n**验证结果：**\n- `py_compile` 通过\n- `--help` 正常输出\n\n**定价配置：**\n- `openai/gpt-5.2`: input $2.50/M tokens, output $10.00/M tokens（占位值，与 gpt-4o 相同）\n- 如需调整实际定价，修改 `CostTracker.PRICING` 字典即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cost-logging.md"
+}

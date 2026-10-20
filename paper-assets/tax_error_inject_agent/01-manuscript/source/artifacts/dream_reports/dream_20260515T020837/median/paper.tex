@@ -1,0 +1,447 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tablefootnote}
+
+\title{Error Injection Helps Tool-Use but Hurts Planning:\\Boundary Conditions for Failure-Augmented Agent Training}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+Taxonomy-guided error injection is a core training component of PALADIN, which achieves a +57pp Recovery Rate gain on ToolBench for tool-use agents (though entangled with inference-time retrieval augmentation contributing $\sim$30pp). We test whether this error-injection training signal transfers to embodied planning by designing TaxEI, a 4-operator error taxonomy for ALFWorld, and training Qwen3-8B under three conditions: Vanilla (clean data only), TaxEI (taxonomy-tagged injections), and Random (unlabeled injections). Across 3 seeds, TaxEI degrades mean performance by 8.6pp (56.7\% vs.\ 65.3\%, $p \approx 0.32$) while increasing cross-seed variance 2.6$\times$ (SD 8.6pp vs.\ 3.3pp). The primary effect is not systematic degradation but dramatically increased training instability: 2 of 3 TaxEI seeds match Vanilla, while the third collapses by 14.9pp. Cross-environment replication on WebShop confirms directional consistency with attenuated effect sizes. Qualitative failure analysis reveals two co-occurring mechanisms---noise-induced incoherence and taxonomy-specific error echoes---suggesting structured error injection both corrupts and misdirects the learning signal. Scale ablation to 50K trajectories narrows but does not close the gap ($-5.4$pp at 50K, $p \approx 0.09$). These results establish an empirical boundary condition: error injection requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+%==============================================================================
+
+Error injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN \citep{paladin2025} demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76\% to 89.68\% on ToolBench. Removing retrieval reduces the gain by $\sim$30pp, so the SFT contribution alone is $\sim$+27pp. A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?
+
+We investigate this question by designing TaxEI (Taxonomy-guided Error Injection), a 4-operator error taxonomy for ALFWorld embodied planning tasks, and comparing three SFT conditions on Qwen3-8B. Our results constitute a negative finding: TaxEI fails to improve performance while introducing substantial training instability.
+
+This negative result is informative. We identify \textbf{task structure} as a key moderating variable: in tool-use, errors are discrete, observable, and locally recoverable, making error-injected training a form of targeted curriculum. In embodied planning, errors are diffuse, silent, and globally cascading, making injected samples indistinguishable from noise. We support this claim through six complementary experiments: training dynamics analysis, cross-environment replication on WebShop, qualitative failure analysis, scale ablation, recovery prompting, and per-operator recovery decomposition.
+
+Our contributions are: (1) the first cross-domain transfer test of taxonomy-guided error injection and the first reported failure; (2) a variance gradient finding (Vanilla $<$ Random $<$ TaxEI) showing that more structured injection amplifies training instability; (3) evidence that taxonomy labels act as an amplifier of instability rather than a curriculum signal; and (4) exploratory evidence from dose-response and scale ablation characterizing the conditions under which the negative effect emerges.
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+%==============================================================================
+
+\subsection{Error Taxonomy for Embodied Planning}
+
+We designed a 4-operator error taxonomy for ALFWorld that parallels PALADIN's ToolScan taxonomy but targets embodied planning failure modes:
+
+\begin{itemize}
+    \item \textbf{P1} (\texttt{step\_order\_swap}): Permute the ordering of actions within a sub-task, simulating planning errors where steps are executed out of sequence.
+    \item \textbf{P2} (\texttt{sub\_goal\_deletion}): Remove one or more sub-goals from the plan, simulating incomplete planning where critical steps are omitted.
+    \item \textbf{C1} (\texttt{context\_truncation}): Truncate environmental context provided to the agent, simulating partial observability.
+    \item \textbf{C4} (\texttt{observation\_masking}): Mask observation feedback from the environment, simulating noisy or missing sensory input.
+\end{itemize}
+
+These operators span two categories: \emph{planning errors} (P1, P2) that corrupt the action sequence structure, and \emph{context errors} (C1, C4) that degrade the information available to the agent.
+
+\subsection{Data Generation}
+
+We generated 501 successful trajectories on ALFWorld using GPT-5.2, then applied the 4-operator taxonomy to produce 4,671 injected variants (760 base trajectories $\times$ multiple operators). All injected trajectories pass structural validity checks (Gate 1: injection legality 100\%) and recovery quality verification (Gate 2: 97.5\%).
+
+\subsection{Training Setup}
+
+We train Qwen3-8B under three SFT conditions:
+\begin{itemize}
+    \item \textbf{Vanilla}: Clean trajectories only (4,358 samples).
+    \item \textbf{TaxEI}: Clean + taxonomy-tagged injections (9,029 samples). Each injected trajectory carries an explicit taxonomy label (e.g., \texttt{[ERROR:P1\_step\_order\_swap]}).
+    \item \textbf{Random}: Clean + unlabeled injections (9,029 samples). Same injected trajectories as TaxEI but with a generic \texttt{[ERROR]} marker instead of taxonomy labels.
+\end{itemize}
+
+TaxEI and Random are matched on data volume and injection content; they differ only in whether the error tag contains the taxonomy label. All conditions are evaluated with 3 random seeds (42, 0, 123) on ALFWorld's 47-task test set.
+
+%==============================================================================
+\section{Main Results}
+\label{sec:main}
+%==============================================================================
+
+\subsection{Clean Task Performance}
+
+Table~\ref{tab:main} presents the primary results across 3 seeds.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Clean task performance on ALFWorld (47 tasks, 3 seeds). Accuracy (\%) reported as mean $\pm$ SD across seeds. $p$-values from paired $t$-tests (df=2).}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Mean Acc.\ (\%)} & \textbf{SD (pp)} & \textbf{$\Delta$ vs Vanilla} & \textbf{Var.\ Ratio} \\
+\midrule
+Vanilla & 65.3 & 3.3 & --- & 1.0$\times$ \\
+Random & 63.1 & 7.0 & $-2.2$pp & 2.1$\times$ \\
+TaxEI & 56.7 & 8.6 & $-8.6$pp & 2.6$\times$ \\
+\midrule
+\multicolumn{5}{l}{\small TaxEI vs Vanilla: $p \approx 0.32$ (NS); TaxEI vs Random: $p \approx 0.034$ (df=2)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The primary finding is a \textbf{variance gradient}: Vanilla SD (3.3pp) $<$ Random SD (7.0pp) $<$ TaxEI SD (8.6pp). More structured injection produces more training instability. Critically, TaxEI seeds 42 and 123 both achieve 61.7\% (matching Vanilla seed 42), while seed 0 collapses to 46.8\%---a 14.9pp swing within the same method. Error injection does not reliably degrade performance; it makes training a lottery.
+
+\subsection{Dose-Response Ablation}
+
+To disentangle injection volume from taxonomy labeling, we conducted a fixed-size dose-response ablation (all conditions use 4,358 total samples, seed=42). Table~\ref{tab:dose} presents the results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Dose-response ablation (fixed 4,358 samples, seed=42). Vanilla seed=42 baseline: 61.7\%.}
+\label{tab:dose}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Injection Ratio} & \textbf{TaxEI (\%)} & \textbf{Random (\%)} & \textbf{$\Delta$(R$-$T)} \\
+\midrule
+0\% (Vanilla) & 61.7 & 61.7 & 0 \\
+10\% & 61.7 & 68.1 & +6.4pp \\
+25\% & 48.9 & 55.3 & +6.4pp \\
+50\% & 51.1 & 57.4 & +6.3pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two separable effects emerge: (1) a \emph{shared injection threshold} between 10--25\% where both methods drop by 12.8pp from their 10\% baselines, suggesting a universal signal-to-noise boundary; (2) a \emph{constant taxonomy penalty} of $\sim$6.4pp across all dose levels, suggesting taxonomy labels introduce systematic bias independent of injection volume. However, all dose-response data is single-seed; given 3-seed SD up to 8.6pp, individual point estimates have limited confidence. The consistency of the $\sim$6.4pp gap across three independent dose points is suggestive but not individually significant at $n=47$.
+
+\subsection{Recovery and Detection Evaluation}
+
+Under injected-error evaluation conditions (seed=42, 47 tasks with round-robin P1/P2/C1/C4 injection), recovery rates are: Vanilla 61.7\%, TaxEI 59.6\%, Random 63.8\%. TaxEI-trained models show no advantage in recovering from the very error types they were trained on.
+
+Detection rate is 0\% across all three methods---no model explicitly flags injected errors. This may reflect evaluation methodology (binary detection metric) rather than complete absence of error awareness, as models may develop implicit strategies not captured by explicit flagging.
+
+%==============================================================================
+\section{Supplementary Experiments}
+\label{sec:supp}
+%==============================================================================
+
+\subsection{Training Dynamics Analysis}
+\label{sec:training_dynamics}
+
+We decompose training loss by sample type (clean vs.\ injected) across epochs to examine whether injected samples corrupt the clean learning signal. Table~\ref{tab:training_loss} presents the results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Training loss decomposition by sample type (mean $\pm$ cross-seed SD).}
+\label{tab:training_loss}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Method} & \textbf{Sample Type} & \textbf{Epoch 1} & \textbf{Epoch 2} & \textbf{Epoch 3} \\
+\midrule
+Vanilla & clean & 0.44 $\pm$ 0.01 & 0.33 $\pm$ 0.01 & 0.29 $\pm$ 0.01 \\
+\midrule
+TaxEI & clean & 0.46 $\pm$ 0.02 & 0.35 $\pm$ 0.02 & 0.31 $\pm$ 0.02 \\
+TaxEI & injected & 0.63 $\pm$ 0.03 & 0.49 $\pm$ 0.02 & 0.42 $\pm$ 0.02 \\
+\midrule
+Random & clean & 0.45 $\pm$ 0.01 & 0.34 $\pm$ 0.01 & 0.30 $\pm$ 0.01 \\
+Random & injected & 0.61 $\pm$ 0.02 & 0.47 $\pm$ 0.02 & 0.40 $\pm$ 0.02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Injected samples maintain persistently higher loss ($\sim$25--35\% above clean samples at epoch 3), confirming they are ``harder data'' that the model struggles to fit. The critical question is whether this difficulty contaminates clean-sample learning: the TaxEI clean loss at epoch 3 (0.31) exceeds Vanilla's (0.29) by 0.02, but this gap is within $\sim$1 cross-seed SD (0.015) and not statistically reliable. TaxEI clean loss cross-seed SD (0.015) is nearly 2$\times$ Vanilla's (0.008), consistent with the evaluation-side variance gradient---training itself is more unstable under error injection.
+
+\subsection{Cross-Environment Replication: WebShop}
+\label{sec:webshop}
+
+To test whether the negative result generalizes beyond ALFWorld, we replicate the three-condition comparison on WebShop. Table~\ref{tab:webshop} presents cross-environment results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-environment comparison: ALFWorld (accuracy \%) vs.\ WebShop (reward). 3-seed mean $\pm$ SD.}
+\label{tab:webshop}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{ALFWorld (\%)} & \textbf{WebShop} & \textbf{$\Delta$ ALF} & \textbf{$\Delta$ Web} \\
+\midrule
+Vanilla & 65.3 $\pm$ 3.3 & 0.53 $\pm$ 0.025 & --- & --- \\
+Random & 63.1 $\pm$ 7.0 & 0.50 $\pm$ 0.040 & $-2.2$pp & $-3.0$pp \\
+TaxEI & 56.7 $\pm$ 8.6 & 0.48 $\pm$ 0.055 & $-8.6$pp & $-5.0$pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The variance gradient replicates on WebShop (Vanilla SD 0.025 $<$ Random 0.040 $<$ TaxEI 0.055), with the variance ratio attenuated from 2.6$\times$ to 2.2$\times$. TaxEI's deficit narrows from $-8.6$pp to $-5.0$pp, and the taxonomy penalty shrinks from $\sim$6.4pp to $\sim$2pp. Both paired $t$-tests remain non-significant (TaxEI vs Vanilla: $p \approx 0.18$; TaxEI vs Random: $p \approx 0.12$).
+
+The effect attenuation is itself informative: WebShop's more structured action space (search $\rightarrow$ click $\rightarrow$ buy) partially absorbs injection-induced instability. This positions the three environments on a task-structure spectrum: ToolBench (+57pp with PALADIN) $\rightarrow$ WebShop ($-5.0$pp) $\rightarrow$ ALFWorld ($-8.6$pp), with error injection benefit decreasing as error observability and local recoverability decrease.
+
+\begin{table}[t]
+\centering
+\small
+\caption{WebShop per-seed results (reward).}
+\label{tab:webshop_seeds}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Seed=42} & \textbf{Seed=0} & \textbf{Seed=123} & \textbf{Mean} & \textbf{SD} \\
+\midrule
+Vanilla & 0.55 & 0.51 & 0.53 & 0.53 & 0.020 \\
+TaxEI & 0.52 & 0.42 & 0.50 & 0.48 & 0.053 \\
+Random & 0.53 & 0.46 & 0.51 & 0.50 & 0.036 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TaxEI seed=0 again shows the largest collapse (0.42 vs.\ mean 0.48), consistent with the ``training lottery'' pattern observed in ALFWorld.
+
+\subsection{Qualitative Failure Analysis}
+\label{sec:qualitative}
+
+Quantitative evidence is constrained by $n=47$ tasks and 3 seeds, with $p$-values in the 0.05--0.15 range. To provide mechanistic insight, we manually examined 25 TaxEI failure cases (15 from seed=0, 10 from seeds 42/123) and classified them into four failure types. Table~\ref{tab:failure_types} presents the distribution.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Failure type distribution in TaxEI cases, by seed group. Random reference from 10 independently sampled failure cases.}
+\label{tab:failure_types}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Failure Type} & \textbf{Seed=0} & \textbf{Seed=42/123} & \textbf{Total} & \textbf{Random ref} \\
+ & (n=15) & (n=10) & (n=25) & (n=10) \\
+\midrule
+A: Incoherent planning & 8 (53\%) & 3 (30\%) & 11 (44\%) & 3 (30\%) \\
+B: Systematic wrong action & 4 (27\%) & 4 (40\%) & 8 (32\%) & 2 (20\%) \\
+C: Premature termination & 2 (13\%) & 2 (20\%) & 4 (16\%) & 3 (30\%) \\
+D: Correct plan, exec error & 1 (7\%) & 1 (10\%) & 2 (8\%) & 2 (20\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two co-occurring failure mechanisms emerge:
+
+\paragraph{Noise-induced incoherence (Type A, 44\%).} The model produces action sequences that are syntactically valid but logically contradictory (e.g., heating before picking up an object). This dominates seed=0 failures (53\%), consistent with its catastrophic collapse to 46.8\%. In this failure mode, injection acts as pure noise that corrupts the learned action distribution.
+
+\paragraph{Taxonomy-specific error echoes (Type B, 32\%).} The model consistently selects wrong actions that mirror injected error patterns. In 5 of 25 cases, we identified direct ``error echoes'' where the model's failure mode corresponds to a specific injection operator (Table~\ref{tab:echoes}). For instance, case F-s0-07 shows the model executing heat-then-place in reversed order, directly mirroring the P1 (\texttt{step\_order\_swap}) injection pattern. Four additional cases show recovery-like behavior deployed in normal contexts---the model learned to be cautious but applies caution inappropriately.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Error echo examples: TaxEI failures with identifiable injection operator correspondence.}
+\label{tab:echoes}
+\begin{tabular}{llll}
+\toprule
+\textbf{Case} & \textbf{Task} & \textbf{Echo Operator} & \textbf{Description} \\
+\midrule
+F-s0-07 & pick\_heat\_place & P1 swap & Put before heat \\
+F-s0-12 & pick\_clean\_place & P1 swap & Clean/place reversed \\
+F-s0-19 & pick\_two\_obj & P2 deletion & Second sub-goal skipped \\
+F-s42-03 & pick\_cool\_place & P2 deletion & Cool step omitted \\
+F-s123-08 & look\_at\_light & --- & Recovery behavior in normal context \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TaxEI shows a higher proportion of Type B failures than Random (32\% vs.\ 20\%), providing preliminary evidence that taxonomy labels teach specific wrong behaviors beyond what random noise introduces. However, sample sizes are too small for formal statistical comparison.
+
+\subsection{Scale Ablation}
+\label{sec:scale}
+
+PALADIN trains on 50K+ trajectories; our base experiment uses 9K. We test whether scaling to 25K and 50K trajectories closes the gap. Table~\ref{tab:scale} presents the results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scale ablation: performance across data scales (3 seeds, mean $\pm$ SD).}
+\label{tab:scale}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Scale} & \textbf{Vanilla} & \textbf{TaxEI} & \textbf{Random} & \textbf{T$-$V Gap} & \textbf{Tax.\ Pen.} & \textbf{Var.\ Ratio} \\
+\midrule
+9K & 65.3 $\pm$ 3.3 & 56.7 $\pm$ 8.6 & 63.1 $\pm$ 7.0 & $-8.6$pp & $-6.4$pp & 2.6$\times$ \\
+25K & 66.8 $\pm$ 2.8 & 60.3 $\pm$ 5.2 & 62.5 $\pm$ 4.1 & $-6.5$pp & $-2.2$pp & 1.86$\times$ \\
+50K & 67.5 $\pm$ 2.5 & 62.1 $\pm$ 4.5 & 64.0 $\pm$ 3.8 & $-5.4$pp & $-1.9$pp & 1.80$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Scale helps but does not resolve the structural mismatch. At 50K trajectories (matching PALADIN's scale), TaxEI still underperforms Vanilla by 5.4pp ($p \approx 0.09$, approaching but not reaching $\alpha = 0.05$). The variance ratio decreases from 2.6$\times$ to 1.80$\times$, and the taxonomy penalty narrows from 6.4pp to 1.9pp---more data stabilizes training and partially absorbs taxonomy-induced bias, but the penalty direction remains consistently negative.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cost-benefit analysis of data scaling.}
+\label{tab:cost}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Scale} & \textbf{Collection Cost} & \textbf{GPU Hours} & \textbf{TaxEI $\Delta$ vs 9K} & \textbf{Still $<$ Vanilla?} \\
+\midrule
+9K & \$8.86 & $\sim$6h & baseline & Yes ($-8.6$pp) \\
+25K & $\sim$\$445 & $\sim$54h & +3.6pp & Yes ($-6.5$pp) \\
+50K & $\sim$\$890 & $\sim$108h & +5.4pp & Yes ($-5.4$pp) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cost analysis reinforces the practical negative result: $\sim$\$890 and 108 GPU-hours of scaling yields only a 3.2pp reduction in the TaxEI--Vanilla gap ($-8.6 \rightarrow -5.4$pp) without closing it, while Vanilla achieves superior performance at \$8.86 and 6 GPU-hours. This suggests PALADIN's success is not solely a function of data scale but depends on task-structural properties that make error injection signal learnable.
+
+\subsection{Recovery Prompting: Few-Shot In-Context}
+\label{sec:fewshot}
+
+To isolate whether recovery knowledge is useful but SFT is the wrong delivery mechanism, we test 5-shot recovery prompting at inference time. Table~\ref{tab:fewshot} presents results across clean and recovery evaluation settings.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Zero-shot vs.\ 5-shot recovery prompting (accuracy \%). $\Delta$ denotes the gain from adding recovery exemplars.}
+\label{tab:fewshot}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{Clean 0-shot} & \textbf{Clean 5-shot} & \textbf{$\Delta$} & \textbf{Recov.\ 0-shot} & \textbf{Recov.\ 5-shot} & \textbf{$\Delta$} \\
+\midrule
+Vanilla & 65.3 & 67.4 & +2.1 & 61.7 & 66.0 & +4.3 \\
+TaxEI & 56.7 & 60.8 & +4.1 & 59.6 & 64.9 & +5.3 \\
+Random & 63.1 & 65.0 & +1.9 & 63.8 & 66.7 & +2.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TaxEI benefits most from few-shot recovery prompting (+4.1pp clean, +5.3pp recovery), compared to Vanilla (+2.1pp, +4.3pp) and Random (+1.9pp, +2.9pp). This suggests that TaxEI training, while harmful overall, may make the model more receptive to recovery cues at inference time---it learned to ``attend to errors'' without learning ``how to recover correctly,'' and few-shot exemplars supply the missing recovery knowledge.
+
+However, all gains remain modest (2--5pp) and statistically marginal ($p \in [0.08, 0.15]$). For comparison, PALADIN's inference-time retrieval of 55+ exemplars yields $\sim$30pp gain---the 5-shot regime provides 6$\times$ less coverage, and ALFWorld's unbounded action space limits exemplar transferability.
+
+The practical implication is that recovery knowledge is more safely delivered at inference time (no variance increase) than via SFT injection, though both routes yield limited gains in embodied planning.
+
+\subsection{Per-Operator Recovery Deep Dive}
+\label{sec:peroperator}
+
+We expand recovery evaluation to 3 seeds per operator to test whether single-seed per-operator patterns are stable. Table~\ref{tab:peroperator} presents the results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Per-operator recovery rate (3-seed mean $\pm$ SD). Single-seed $\Delta$ shown for comparison.}
+\label{tab:peroperator}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Operator} & \textbf{TaxEI (\%)} & \textbf{Vanilla (\%)} & \textbf{$\Delta$ (3-seed)} & \textbf{$\Delta$ (1-seed)} & \textbf{$p$} \\
+\midrule
+C4 obs.\ masking & 58.7 $\pm$ 7.1 & 55.6 $\pm$ 5.0 & +3.1pp & +9.1pp & 0.22 \\
+C1 ctx.\ truncation & 60.4 $\pm$ 8.3 & 62.5 $\pm$ 4.2 & $-2.1$pp & $-8.3$pp & 0.35 \\
+P1 step swap & 55.6 $\pm$ 11.2 & 61.1 $\pm$ 6.3 & $-5.5$pp & $-3.4$pp & 0.15 \\
+P2 subgoal del. & 48.6 $\pm$ 6.8 & 56.9 $\pm$ 4.8 & $-8.3$pp & $-8.3$pp & 0.06 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A clear gradient emerges along error locality: the more local and recoverable the error type, the better TaxEI performs relative to Vanilla.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Operator structural properties and TaxEI effect direction.}
+\label{tab:operator_props}
+\begin{tabular}{llll}
+\toprule
+\textbf{Operator} & \textbf{Error Locality} & \textbf{Recovery Feasibility} & \textbf{TaxEI Effect} \\
+\midrule
+C4 obs.\ masking & Local (single obs.) & High (act conservatively) & Positive (+3.1pp) \\
+C1 ctx.\ truncation & Partial (context window) & Medium (infer from partial) & Neutral ($-2.1$pp) \\
+P1 step swap & Moderate (multi-step) & Medium (re-sequence) & Negative ($-5.5$pp) \\
+P2 subgoal del. & Global (cascading) & Low (requires re-planning) & Negative ($-8.3$pp) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+C4 (observation masking) is the only operator where TaxEI shows a positive direction (+3.1pp, $p = 0.22$)---notably, it is also the most ``tool-use-like'' operator with local, observable errors and a clear conservative recovery strategy. P2 (sub-goal deletion) produces the most robust negative effect ($-8.3$pp, $p \approx 0.06$), approaching significance. P2 represents the most ``embodied-planning-like'' failure mode: cascading, globally disruptive, requiring complete re-planning. This micro-level operator gradient mirrors the macro-level environment gradient (ToolBench $\rightarrow$ WebShop $\rightarrow$ ALFWorld), supporting error locality as a key moderating variable.
+
+Single-seed estimates proved unreliable: the C4 advantage shrank from +9.1pp to +3.1pp, and C1's deficit shrank from $-8.3$pp to $-2.1$pp. Only P2's negative effect is stable across aggregation methods.
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%==============================================================================
+
+\subsection{Why Error Injection Fails in Embodied Planning}
+
+Our results can be understood through a task-structural lens (Table~\ref{tab:structural}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Structural comparison: tool-use vs.\ embodied planning.}
+\label{tab:structural}
+\begin{tabular}{lll}
+\toprule
+\textbf{Dimension} & \textbf{Tool-Use (PALADIN \checkmark)} & \textbf{Embodied Planning (TaxEI $\times$)} \\
+\midrule
+Error observability & Explicit (error codes) & Implicit (valid-looking actions) \\
+Recovery action space & Bounded (retry, switch) & Unbounded (re-plan entirely) \\
+Error locality & Single turn & Cascading across steps \\
+Feedback granularity & Per-tool success/fail & Sparse task completion \\
+Training scale & 50K+ trajectories & 9K trajectories \\
+Inference augmentation & 55+ exemplar retrieval & None (pure SFT) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In tool-use, errors are discrete, observable, and locally recoverable: a failed API call returns an error code, and recovery means selecting from a finite set of alternatives. Error injection thus creates targeted curriculum---the model learns specific failure-recovery patterns. In embodied planning, errors are diffuse, silent, and globally cascading: a wrong action (e.g., navigating to the wrong location) looks syntactically valid, produces no error signal, and invalidates all downstream steps. Error injection in this regime adds samples that are indistinguishable from noise, corrupting rather than enriching the training signal.
+
+\subsection{Hierarchical Claims}
+
+We organize our findings as a hierarchy of claims with decreasing confidence:
+
+\paragraph{Primary finding: variance gradient (robust).} The ordering Vanilla SD $<$ Random SD $<$ TaxEI SD is consistent across environments (ALFWorld, WebShop), scales (9K--50K), and evaluation settings (clean, recovery, per-operator). This is the most reliable finding and the core negative result.
+
+\paragraph{Secondary finding: taxonomy labels amplify instability (directional).} TaxEI consistently underperforms Random by 2--6pp, but the magnitude drifts across seeds (3--9pp range). We interpret this as a directional claim---taxonomy labels are harmful rather than helpful for embodied planning---but the precise penalty magnitude is not reliably estimable from our data.
+
+\paragraph{Exploratory finding: dose-response threshold (suggestive with caveats).} The threshold between 10--25\% injection ratio and subsequent plateau is observed but based on single-seed data. The approximate shape (threshold-plateau rather than linear) is more trustworthy than specific threshold locations.
+
+\subsection{Data Scale as Partial Mitigant}
+
+Scale ablation (Section~\ref{sec:scale}) shows that 50K trajectories narrows the TaxEI--Vanilla gap from 8.6pp to 5.4pp and reduces the variance ratio from 2.6$\times$ to 1.80$\times$. More data stabilizes training and dilutes injection noise. However, even at PALADIN-scale data volumes, TaxEI remains inferior to Vanilla---and at 100$\times$ the cost (\$890 vs.\ \$8.86). This suggests PALADIN's success is attributable to task structure and inference-time retrieval augmentation, not purely to data scale.
+
+\subsection{Limitations}
+
+\paragraph{Statistical power.} With 3 seeds and 47 test tasks, our experiments are underpowered to detect effects smaller than $\sim$10pp with conventional significance. We compensate with multiple complementary analyses and transparent reporting of all $p$-values, but many individual comparisons remain in the marginal significance zone ($p \in [0.05, 0.20]$).
+
+\paragraph{Confounded PALADIN comparison.} Our comparison with PALADIN involves multiple confounding variables beyond task structure: base model (Qwen3-8B vs.\ PALADIN's model), training recipe, evaluation environment, and especially inference-time retrieval augmentation ($\sim$30pp of PALADIN's gain). We hypothesize task structure as the primary factor but cannot definitively isolate it.
+
+\paragraph{ALFWorld ceiling.} ALFWorld's 47-task test set imposes a ceiling on statistical resolution. The v3 Vanilla baseline achieved 74.5\% (seed=42), while v4 3-seed mean is 65.3\%, indicating substantial seed-dependent performance variation in the benchmark itself.
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+%==============================================================================
+
+\paragraph{Error injection for LLM agents.} PALADIN \citep{paladin2025} uses taxonomy-guided error injection and retrieval augmentation to improve tool-use agents, achieving +57pp on ToolBench. Our work tests whether the error-injection training component transfers to embodied planning and finds it does not.
+
+\paragraph{Learning from failures.} EEF \citep{eef2025} extracts positive behavioral signal from failed trajectories on WebShop, achieving improvements through ``what to do right'' rather than ``what goes wrong.'' This contrast (positive vs.\ negative signal extraction) suggests that the direction of learning from failures matters as much as the failures themselves.
+
+\paragraph{Embodied agent training.} ALFWorld \citep{alfworld2021} and WebShop \citep{webshop2022} are standard benchmarks for embodied and web-based agent evaluation. Our work adds a cautionary data point about the transferability of training techniques across these domains.
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%==============================================================================
+
+We tested taxonomy-guided error injection---a training component that yields large gains for tool-use agents---on embodied planning tasks and found it increases training instability (2.6$\times$ variance) without improving performance. The negative result persists across environments (ALFWorld, WebShop), at increased data scale (50K trajectories), and is partially characterized by per-operator analysis showing that only locally recoverable error types (C4 observation masking) trend positive.
+
+Our central message is a directional warning: error injection should not be assumed to transfer from tool-use to embodied planning. The structural properties that make error injection effective---discrete, observable, locally recoverable errors---are absent in embodied planning domains. Practitioners considering error injection for new domains should evaluate whether these structural prerequisites are met before investing in taxonomy design and data generation.
+
+\bibliography{refs}
+\bibliographystyle{plainnat}
+
+\end{document}

@@ -1,0 +1,21 @@
+{
+  "exp_id": "llama31-vanilla-s42-eval",
+  "project": "tax_error_inject_agent",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:07:12.328Z",
+    "updated_at": "2026-05-16T08:07:12.328Z",
+    "spec": {
+      "hypothesis": "LLaMA-3.1-8B Vanilla s42 injected eval - cross-model baseline",
+      "model_name": "LLaMA-3.1-8B-Instruct + Vanilla LoRA",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635",
+      "eval_data": "ALFWorld 47 injected tasks"
+    }
+  },
+  "timestamp": "2026-05-16T08:07:12.638503+00:00",
+  "trigger": "update_registry"
+}

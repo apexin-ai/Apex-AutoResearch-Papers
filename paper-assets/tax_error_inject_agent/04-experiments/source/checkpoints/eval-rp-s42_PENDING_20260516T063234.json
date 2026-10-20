@@ -1,0 +1,19 @@
+{
+  "exp_id": "eval-rp-s42",
+  "project": "tax_error_inject_agent",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:32:34.645Z",
+    "updated_at": "2026-05-16T06:32:34.645Z",
+    "spec": {
+      "hypothesis": "TaxEI-RP recovery eval seed=42",
+      "model_name": "Qwen3-8B + TaxEI-RP LoRA",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T06:32:34.877214+00:00",
+  "trigger": "update_registry"
+}

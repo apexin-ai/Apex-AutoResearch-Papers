@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf1955a2c8ee76008a7",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops recovery eval multiseed prep",
+  "task_key": "worker_ops_recovery-eval-multiseed-prep_20260516T023021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_recovery-eval-multiseed-prep_20260516T023021_result.json",
+    "occurrence": 1,
+    "bytes": 5029,
+    "sha256": "ecc48f8ba56b3813237f11f5fbee7b282cdfef2d1be93296caaf396eb979494a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the report:\n\n---\n\n## Recovery Eval Multi-seed 准备工作报告\n\n### 1. Recovery Eval 脚本\n\n**位置**: `/root/autodl-tmp/tax_error_inject_agent/eval/recovery.py`\n\n**参数列表**:\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--model_path` | None | LoRA adapter checkpoint 路径 |\n| `--base_model` | Qwen3-8B 路径 | 基座模型 |\n| `--task_list` | None | 任务列表 JSON（使用 `eval/eval_tasks_47.json`） |\n| `--num_episodes` | 134 | 不指定 task_list 时的 episode 数 |\n| `--inject` / `--no_inject` | False | 是否注入错误 |\n| `--inject_mode` | \"action\" | 注入模式 |\n| `--inject_step` | \"auto\" | 注入步骤 |\n| `--output` | eval_results/results.json | 输出路径 |\n| `--device` | cuda:0 | GPU |\n| `--seed` | 42 | eval 随机种子（固定为 42） |\n\n**运行命令格式**（从已有结果反推）:\n```bash\nCUDA_VISIBLE_DEVICES=X python eval/recovery.py \\\n    --model_path <checkpoint> \\\n    --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n    --inject \\\n    --task_list eval/eval_tasks_47.json \\\n    --output eval_results/<name>.json \\\n    --device cuda:0\n```\n\n### 2. Checkpoint 清单 — 全部 15 个存在\n\n所有 checkpoint 在 `/root/autodl-tmp/tax_error_inject_agent/checkpoints/`:\n\n| Condition | seed=42 | seed=0 | seed=123 | seed=1 | seed=7 |\n|-----------|---------|--------|----------|--------|--------|\n| **Vanilla** | `mini_vanilla_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n| **TaxEI** | `mini_taxei_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n| **Random** | `mini_random_sft_v4` | `..._seed0` | `..._seed123` | `..._seed1` | `..._seed7` |\n\n**无需重训任何 checkpoint。**\n\n### 3. Recovery Eval 完成状态\n\n| Condition | seed=42 | seed=0 | seed=123 | seed=1 | seed=7 |\n|-----------|---------|--------|----------|--------|--------|\n| **Vanilla** | ✅ 61.7% | ✅ 68.1% | ✅ 66.0% | ❌ | ❌ |\n| **TaxEI** | ✅ 59.6% | ✅ 46.8% | ✅ 61.7% | ❌ | ❌ |\n| **Random** | ✅ 63.8% | ❌ | ❌ | ❌ | ❌ |\n\n**已完成 7/15，剩余 8 个**：\n- Vanilla: seed=1, seed=7\n- TaxEI: seed=1, seed=7\n- Random: seed=0, seed=123, seed=1, seed=7\n\n### 4. 批量 Recovery Eval 脚本框架\n\n用 4 张 GPU 并行，两轮跑完：\n\n```bash\ncd /root/autodl-tmp/tax_error_inject_agent\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nBASEM=/root/autodl-tmp/models/Qwen/Qwen3-8B\n\nfind_final_ckpt() {\n    ls -dt \"$1\"/v*-*/ 2>/dev/null | head -1 | xargs -I{} sh -c 'ls -d {}checkpoint-* | sort -V | tail -1'\n}\n\n# === Round 1: 4 jobs on 4 GPUs ===\nCUDA_VISIBLE_DEVICES=0 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_vanilla_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_vanilla_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=1 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_taxei_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_taxei_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=2 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed0) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s0.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed123) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s123.json --device cuda:0 &\nwait\n\n# === Round 2: 4 jobs on 4 GPUs ===\nCUDA_VISIBLE_DEVICES=0 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_vanilla_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_vanilla_recovery_eval_s7.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=1 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_taxei_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_taxei_recovery_eval_s7.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=2 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed1) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s1.json --device cuda:0 &\nCUDA_VISIBLE_DEVICES=3 python eval/recovery.py --model_path $(find_final_ckpt checkpoints/mini_random_sft_v4_seed7) --base_model $BASEM --inject --task_list eval/eval_tasks_47.json --output eval_results/v4_random_recovery_eval_s7.json --device cuda:0 &\nwait\n```\n\n### 5. GPU 时间预估\n\n- 从已有结果时间戳推断：每个 recovery eval（47 episodes）约 **1 小时**\n- 8 个剩余 eval，4 GPU 并行 → **2 轮 × ~1h = ~2 小时**\n- 如果顺序跑则 ~8 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-recovery-eval-multiseed-prep.md"
+}

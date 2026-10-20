@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1bc38446701d03934c1",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_4_1778809420.md",
+  "task_key": "loop_4_1778809420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778809420.md",
+    "occurrence": 1,
+    "bytes": 3467,
+    "sha256": "bff3ef0b5494eafc14dc0aeeb49981189e67bad998b2de5acfd3c45cb9596385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T01:23:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090:cuda:0/1/2/3，禁用其他设备\n- `submit_training_job` command 必须 `bash -c '...'` 包装，且显式 `export CUDA_VISIBLE_DEVICES=N &&` 前置（tmux 不传环境变量）\n- eval 参数用 `--device cuda:0`（不是 `--gpu 0`）\n- checkpoint 查找必须 `sort -V | tail -1`，禁止硬编码路径\n- dose-response 所有实验 seed=42，对比 baseline 是 vanilla seed=42 (61.7%)，不是 3-seed 均值 (65.3%)\n- `multiseed_stats.py` 有已知 bug（已修复方案在 memory.md），统计报告不能引用旧 p 值\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：aml-train 镜像，`/root/miniconda3/bin/python`，conda base 环境\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- ms-swift 4.2.0\n- 数据：`data/mini_pipeline_v4/ablation_fixed/` (fixed-size ablation 预生成)\n- HF_HOME: `/root/autodl-tmp/.hf_cache`\n- 活跃进程（全在 autodl-5090）：\n  - v4-random-fixed-inject10: PID 104655, cuda:2, cron 监控中\n  - v4-random-fixed-inject25: PID unknown, cuda:1, cron 监控中\n  - v4-random-fixed-inject50: PID 105879, cuda:3, cron 监控中\n- cuda:0 空闲\n\n### 3. 📊 当前状态\n3 个 Random dose-response 训练同时跑（inject 10%/25%/50%），这是 TaxEI dose-response 的对照组。TaxEI dose-response 已完成 10% (61.7%, 0pp) 和 25% (48.9%, -12.8pp)，TaxEI inject50 也在跑（cuda:3 上，同批）。\n\nRegistry: 57 实验，3 RUNNING / 1 ANALYZING / 27 DONE / 26 PREPARING。\n等待中：3 个 cron 回调（训练完成后自动触发）。无 Worker 回调。无 Director 待决策。\n\ncuda:0 空闲——应考虑启动 TaxEI inject50 训练或其他准备中的实验。\n\n### 4. 📋 待办（条件触发式）\n- v4-random-fixed-inject10 训练完成 → spawn worker eval（47 tasks clean eval, checkpoint 动态查找）→ 与 TaxEI 10% (61.7%) 对比\n- v4-random-fixed-inject25 训练完成 → spawn worker eval → 与 TaxEI 25% (48.9%) 对比，**关键消歧点**：若 Random 25% 也崩 → 注入毒性；若 Random 25% 不崩 → taxonomy 标签本身有害\n- v4-random-fixed-inject50 训练完成 → spawn worker eval → 与 TaxEI 50% (待测) 对比\n- 全部 dose-response 完成 → 生成 comprehensive results artifact + 更新 paper_framing.md dose-response 章节\n- cuda:0 空闲 → 检查是否有 v4-taxei-fixed-inject50 需要重跑或其他 PREPARING 实验可启动\n\n### 5. 🎯 战略上下文\n- 项目已转 negative result paper，目标 EMNLP 2026 Insights from Negative Results track\n- 核心 narrative：Error injection 在 embodied planning (ALFWorld) 无效，对比 PALADIN 在 tool-use 有效 → 边界条件论文\n- 三大 finding：(1) 主效应不显著 p≈0.054 (2) 10%-25% 非线性阈值 (3) 方差梯度 Vanilla<Random<TaxEI\n- **最易判断错的事**：Random inject25 结果的解读——如果 Random 也崩溃则说明是数据稀释问题（注入替换了 clean 样本），如果 Random 不崩则说明 taxonomy 标签本身有毒。这直接决定 paper 的 Discussion 方向\n- **PALADIN 的 confound**：其 +57pp 中 ~30pp 来自 inference-time retrieval，不是纯 SFT。paper 中必须讨论这个 confound\n- 所有 pairwise comparison 修正后均不显著——paper 措辞必须是 \"directional but not statistically significant\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778809420.md"
+}

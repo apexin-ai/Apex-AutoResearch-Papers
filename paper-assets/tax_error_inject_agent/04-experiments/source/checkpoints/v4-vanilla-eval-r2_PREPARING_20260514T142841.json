@@ -1,0 +1,29 @@
+{
+  "exp_id": "v4-vanilla-eval-r2",
+  "project": "tax_error_inject_agent",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:24:25.560Z",
+    "updated_at": "2026-05-14T14:28:40.995Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "61793",
+      "log_path": "~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log",
+      "submitted_at": "2026-05-14T14:24:25.523Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T14:28:41.059065+00:00",
+  "trigger": "update_registry"
+}

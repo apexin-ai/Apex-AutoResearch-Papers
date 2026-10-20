@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f5cc93167476e6fc8e5",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops llama31 vanilla s0 eval",
+  "task_key": "worker_ops_llama31-vanilla-s0-eval_20260516T103856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama31-vanilla-s0-eval_20260516T103856_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "e8ff3b12e46a7063db0316b58b6f0299d188a4168795b9cb3708c3dbb2aa05a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动：\n- **Session**: `llama31-vanilla-s0-eval` (tmux)\n- **GPU**: cuda:3 (空闲)\n- **Checkpoint**: `output/llama31-vanilla-s0/v0-20260516-171603/checkpoint-1635`\n- **Base model**: `/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`\n- **Seed**: 0, 47 episodes\n\n~4.5 分钟后回来检查模型加载和初始 episode 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama31-vanilla-s0-eval.md"
+}

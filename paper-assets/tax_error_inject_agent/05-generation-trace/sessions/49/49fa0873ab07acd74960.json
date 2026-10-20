@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49fa0873ab07acd74960",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval v4 random seed1 eval analysis",
+  "task_key": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-random-seed1-eval-analysis_20260515T173155_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "19ea51ee4a1268f68647234d69ddd8898e1f44e89f36f403317d5687daa5e334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**总结**: v4-random-seed1-eval 完成，success rate **46.8%** (22/47)，是目前 4 个 Random seed 中最低的（seed123=68.1% > seed42=66.0% > seed0=55.3% > seed1=46.8%）。Random SFT baseline 的 seed 间方差较大（跨度 21.3 个百分点），说明训练数据的随机采样对最终性能影响显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-random-seed1-eval-analysis.md"
+}

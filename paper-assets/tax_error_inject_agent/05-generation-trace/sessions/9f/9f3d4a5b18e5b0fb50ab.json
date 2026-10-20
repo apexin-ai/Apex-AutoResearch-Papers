@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f3d4a5b18e5b0fb50ab",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_3_1778804088.md",
+  "task_key": "loop_3_1778804088",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778804088.md",
+    "occurrence": 1,
+    "bytes": 4225,
+    "sha256": "4b02ecd89d1cf72038b691571309d7b2ed6a2e7735711e8eb71c59ce99f83098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T00:10:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **CUDA_VISIBLE_DEVICES 必须显式写在命令字符串里**：`export CUDA_VISIBLE_DEVICES=N &&` 前置到 swift/python 命令。`submit_training_job` 的 gpu 参数**不可靠**，已导致 inject25 r1 OOM 事故（PID 95170 跑到 cuda:0）\n- **Fixed-size ablation 总量 = 4,358**（= vanilla 大小），不是 9,029。数据在 `ablation_fixed/` 目录下已预生成，不要重新生成\n- **eval 用 `--device cuda:0`**（不是 `--gpu 0`），因为 CUDA_VISIBLE_DEVICES 已做映射\n- **checkpoint 路径不统一**：inject10/25 实际输出在 `output/v4-fixed-inject10/` 和 `output/v4-fixed-inject25/`（不是 `checkpoints/`），seed123 在 `checkpoints/mini_taxei_sft_v4_seed123/`。每次用前先 SSH 确认\n- **v4-taxei-fixed-inject25 (非 r2)** 是已关闭的 failed 条目（PID 96835 的追踪在 r2），plan registry_id 指向 `v4-taxei-fixed-inject25-r2`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen/Qwen3-8B`，ms-swift 4.2.0\n- **数据目录**: `data/mini_pipeline_v4/ablation_fixed/` 含 inject10/25/50 的 taxei + random 版本（均 4,358 行）\n- **活跃进程（handoff 时刻）**:\n  - cuda:0: v4-taxei-seed123-eval (PID 100600, tmux=eval_seed123)\n  - cuda:1: v4-random-seed123 训练 (PID 93477) — 应已接近完成或刚完成\n  - cuda:2: Worker 正在启动 inject10 eval (tmux=eval_inject10)\n  - cuda:3: Worker 正在启动 inject25 eval (tmux=eval_inject25)\n- **无活跃 cron**（reconcile 时为 0）\n\n### 3. 📊 当前状态\n刚完成 inject10/inject25 消融训练（DONE），已派两个 eval Worker（cuda:2/3）。taxei-seed123 训练也 DONE，eval 在 cuda:0 上跑。\n\n**RUNNING/PREPARING**:\n- `v4-taxei-seed123-eval`: cuda:0，47 tasks clean eval\n- `v4-random-seed123`: cuda:1，训练中（9,029 samples，应快完成）\n- `v4-taxei-fixed-inject10-eval`: cuda:2，Worker 刚派发\n- `v4-taxei-fixed-inject25-eval`: cuda:3，Worker 刚派发\n\n**等待中**: 4 个 Worker/Cron 回调（上述 4 个实验完成时触发）\n\n### 4. 📋 待办\n- **inject10-eval 或 inject25-eval 完成** → 记录 metrics 到 registry，空出的 GPU 立即启动 `v4-taxei-fixed-inject50` 训练（数据: `ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl`, 4,358 samples = 2,179 clean + 2,179 injected）。inject50 只需 1 卡，另一卡可跑 random-fixed-inject10\n- **random-seed123 完成** → 更新 registry DONE + 启动 random-seed123-eval（cuda:1）\n- **taxei-seed123-eval 完成** → 记录 metrics，更新 3-seed 统计表（配合 seed=42 的 61.7% 和 seed=0 的 46.8%）\n- **3 个 ratio ablation eval 全部完成 (0%/10%/25%)** → inject50 eval 后拼完整 dose-response 曲线，向 Director 汇报。如果呈线性下降 → \"injection 本身有害\"；如果存在拐点 → \"比例问题\"\n- **experiment_plan.yaml 中 supp-ratio-taxei-10pct-eval / 25pct-eval** → 链接 registry_id\n\n### 5. 🎯 战略上下文\n- **项目是 negative result paper**（EMNLP 2026 Insights from Negative Results）。核心假设（TaxEI 优于 random/vanilla）在所有维度被否定（D014）\n- **当前阶段**: 补充消融实验，构建 dose-response 曲线回答\"是注入比例还是注入本身有害\"\n- **paper_framing.md 已审阅通过**：6 条 Claims + 7 条 Reviewer Concerns，对标 PALADIN（tool-use 正面 vs 我们 embodied planning 负面）\n- **统计注意**: n=47 功效极低（binomial std ≈6.8pp），任何单点结论都不可靠。dose-response 曲线的 story 价值在于趋势方向，不在于单点显著性\n- **易踩的坑**: ① 不要把 9,029 samples（additive）和 4,358 samples（fixed-size）的实验混在一起比较 ② v4-taxei-fixed-inject25 有两个 registry 条目（原始 failed + r2 success），plan 指向 r2 ③ TaxEI 50% 在 fixed-size 下是 2,179/4,358（不是之前的 4,671/9,029），这是不同实验，不能直接引用之前的 50% 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778804088.md"
+}

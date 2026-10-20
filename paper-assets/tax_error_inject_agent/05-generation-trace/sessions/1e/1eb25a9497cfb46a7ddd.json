@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb25a9497cfb46a7ddd",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 random fixed inject10 s123",
+  "task_key": "worker_analysis_v4-random-fixed-inject10-s123_20260515T185708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-random-fixed-inject10-s123_20260515T185708_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "45284855c4407ffffa1fba56101e001ed325ea84f249693e31d641366f7439ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**训练结果 `v4-random-fixed-inject10-s123`**：\n- final_loss: 0.3124, train_loss_avg: 0.4236\n- final_token_acc: 88.67%\n- 1635 steps, 3 epochs, 58m56s\n- checkpoint: `checkpoint-1635`\n- Registry 已更新为 DONE/success\n\n**Eval `v4-random-fixed-inject10-s123-eval`**：\n- 已提交到 tmux session，cuda:3 当前被 v4-taxei-fixed-inject10-s0-eval 占用，脚本会自动轮询等待 GPU 释放后启动\n- Registry 已注册为 RUNNING，parent 指向训练实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-random-fixed-inject10-s123.md"
+}

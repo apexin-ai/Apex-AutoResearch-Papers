@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be3afe62bc5115f2a438",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train v4 fixed inject10",
+  "task_key": "worker_train_v4-fixed-inject10_20260514T221001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-fixed-inject10_20260514T221001_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "a9dd44f6a67b59dd6648ce745f66d90da2d41af7980341560d4aa7ca2f40ae91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，registry 状态 RUNNING。\n\n**汇总：**\n- **exp_id**: `v4-fixed-inject10`\n- **数据**: `sft_taxei_v4_fixed_inject10.jsonl`，4,358 samples（10% injection）\n- **GPU**: cuda:2，tmux session `v4-fixed-inject10`\n- **训练进度**: 0/1,635 steps，3 epochs，~2.7s/it\n- **输出目录**: `/root/autodl-tmp/tax_error_inject_agent/output/v4-fixed-inject10/v0-20260515-061243/`\n- **日志**: `/tmp/v4-fixed-inject10.log`\n- **参数**: 完全照抄 mini_taxei_sft_v4 配置（LoRA r=16/α=32, lr=1e-4, bs=1×8, cosine, bf16, max_len=4096）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-v4-fixed-inject10.md"
+}

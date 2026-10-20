@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349a86ffb00034f2221a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis 50pct stats corrected",
+  "task_key": "worker_analysis_50pct-stats-corrected_20260516T020006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_50pct-stats-corrected_20260516T020006_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "544e2fef0a7063bed17e146c0c6fa47ad9947d0975e9d54fc4080c6794baa424"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存并注册 (`art_20260516_c47190`)。核心结论：\n\n**三组对比均未通过 Bonferroni α=0.017**：\n- Vanilla vs TaxEI 50%: Δ=9.82pp, p=0.0864, d=1.31 (large effect but underpowered)\n- Vanilla vs Random 50%: Δ=8.98pp, p=0.2453, d=1.01\n- TaxEI 50% ≈ Random 50%: Δ=0.84pp, p=0.9203\n\n**Bootstrap 提供补充视角**：Vanilla vs TaxEI 50% 的 bootstrap p=0.0104（CI=[2.16, 17.48]不含0），比 t-test 更乐观。\n\n**Power 严重不足**：n=5 时 Vanilla vs TaxEI 仅 40.9% power，需 n=10 达到 80%；Vanilla vs Random 需 n=24。\n\n**Dose-response**：TaxEI 线性斜率 -0.056%/dose%，R²=0.173，不显著（p=0.49），因 50% rebound 破坏单调性。Random 斜率 -0.079%，R²=0.641，Spearman rho=-0.9（p=0.037 显著）。\n\n**50% 特异性**：s0/s123 swap 的 permutation p=0.13，不算罕见；25%→50% rebound +4.74pp 不显著（p=0.33）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-50pct-stats-corrected.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "43b44e2dbb80d47abb6d",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "pipeline mini pipeline v1",
+  "task_key": "worker_pipeline_mini-pipeline-v1_20260514T103649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_mini-pipeline-v1_20260514T103649.log",
+    "occurrence": 1,
+    "bytes": 615630,
+    "sha256": "2f0bbb4cdbda89bb28dffc481b9506b68181114e9044ef00b2748a8ef51a2bf4"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "43b44e2dbb80d47abb6d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "43b44e2dbb80d47abb6d-part-0002.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/pipeline-mini-pipeline-v1.md"
+}

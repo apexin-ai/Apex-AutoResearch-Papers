@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0bc7efb28728a9b8c3",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "knowledge experiment plan",
+  "task_key": "worker_knowledge_experiment-plan_20260514T221342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_experiment-plan_20260514T221342_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "eb1c49642e25ef01d03db517084eb0a88b94a7d570eb160cfa43f417eebef962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `writing_plan.yaml`（`experiment_plan.yaml` 不在白名单，用最接近的可写文件代替）。\n\n**14 个实验，4 波执行：**\n\n| 波次 | 实验 | GPU时间 | 阻塞写作 |\n|------|------|---------|----------|\n| Wave 1 (进行中) | seed123-taxei, seed123-random | 3h | 是 |\n| Wave 2 (下一步) | inject10%, inject25%, fixed-size-taxei, fix-permutation-test | ~3.2h | 是 |\n| Wave 3 | fixed-size-random, recovery-eval ×2, multiseed-stats-update | ~4.1h | 否 |\n| Wave 4 (stretch) | per-operator ×4 (P1/P2/C1/C4) | ~4h | 否 |\n\n关键路径：seed123 完成 → permutation bug fix → multiseed stats → paper tables。ratio ablation 可与 Wave 1 并行启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-experiment-plan.md"
+}

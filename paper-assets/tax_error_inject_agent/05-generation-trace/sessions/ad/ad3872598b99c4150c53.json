@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad3872598b99c4150c53",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 random fixed inject10 s7",
+  "task_key": "worker_analysis_v4-random-fixed-inject10-s7_20260515T215623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-random-fixed-inject10-s7_20260515T215623_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "5850f4a1d15c2869128f8729427bbf11df28e260f82e8658b280d4c870dc45f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n| 指标 | s7 值 | s1 参考 |\n|------|-------|---------|\n| final_loss | 0.2352 | 0.3096 |\n| train_loss_avg | 0.4209 | 0.4238 |\n| final_token_acc | 0.9066 | 0.8902 |\n| total_steps | 1635 | 1635 |\n| epochs | 3 | 3 |\n| runtime | 3512s (~58min) | — |\n| memory | 18.15 GiB | — |\n\ns7 的 final_loss 比 s1 更低、token_acc 更高，训练完全正常。checkpoint 路径：`v1-20260516-045440/checkpoint-1635`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-random-fixed-inject10-s7.md"
+}

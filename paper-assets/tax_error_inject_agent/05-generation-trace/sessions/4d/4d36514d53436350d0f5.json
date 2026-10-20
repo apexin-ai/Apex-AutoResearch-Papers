@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d36514d53436350d0f5",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260515T032801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260515T032801_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "0aca580dae52ae2fa40b7d867fc7f12e1c579cd3f2e87f880eb0e50278d600f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。三篇论文元数据均经 WebSearch 验证后追加到 `literature_map.yaml` 末尾：\n\n| ID | 标题 | 作者 | 年份 | Venue |\n|---|---|---|---|---|\n| `mccoy2020seeds` | BERTs of a feather do not generalize together… | McCoy, Min, Linzen | 2020 | BlackboxNLP@EMNLP 2020 |\n| `mosbach2021stability` | On the Stability of Fine-tuning BERT: Misconceptions, Explanations, and Strong Baselines | Mosbach, Andriushchenko, Klakow | 2021 | ICLR 2021 |\n| `damour2022underspecification` | Underspecification Presents Challenges for Credibility in Modern Machine Learning | D'Amour, Heller, Moldovan, Adlam et al. (40+ authors) | 2022 | JMLR Vol.23 No.226 |\n\narXiv IDs: `1911.02969` / `2006.04884` / `2011.03395`。\n\nSources:\n- [McCoy et al. - ACL Anthology](https://aclanthology.org/2020.blackboxnlp-1.21/)\n- [Mosbach et al. - arXiv](https://arxiv.org/abs/2006.04884)\n- [D'Amour et al. - JMLR](https://www.jmlr.org/papers/v23/20-1335.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-2.md"
+}

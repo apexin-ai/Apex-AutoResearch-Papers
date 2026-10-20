@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "56fb9ba53109fde2651e",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "train v4 random seed7",
+  "task_key": "worker_train_v4-random-seed7_20260515T153911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-random-seed7_20260515T153911.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/train-v4-random-seed7-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fec5c5407ee90f483d84",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fix formatter field",
+  "task_key": "worker_code_fix-formatter-field_20260514T082659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-formatter-field_20260514T082659_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "25461bba1f4bbcf8699231b63e74ecf1f66ed6d9f85064162ae334d9a842e4fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果**：\n- 实际轨迹数据使用 `task_desc` 字段，`task_description` 不存在\n- 已修复服务器端 `/root/autodl-tmp/tax_error_inject_agent/data/formatter.py` 和本地副本，兼容两种字段名\n- formatter 输出的 SFT 数据第一轮对话正确包含任务描述（如 \"Move pump bottle to back of toilet.\"）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-formatter-field.md"
+}

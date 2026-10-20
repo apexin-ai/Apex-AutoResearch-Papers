@@ -1,0 +1,76 @@
+{
+  "exp_id": "v4-taxei-fixed-inject25-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:21:06.936Z",
+    "updated_at": "2026-05-16T16:25:26.890Z",
+    "spec": {
+      "command": "legacy",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "132743",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log",
+      "submitted_at": "2026-05-15T09:21:06.806Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "metrics": {
+        "eval_success_rate": 0.468,
+        "eval_successes": 22,
+        "eval_total": 47
+      },
+      "data_path": "legacy",
+      "data_count": 47,
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.468,
+      "successes": 22,
+      "total": 47,
+      "by_task_type": {
+        "look_at_obj_in_light": {
+          "total": 6,
+          "success": 4,
+          "rate": 0.667
+        },
+        "pick_and_place_simple": {
+          "total": 8,
+          "success": 3,
+          "rate": 0.375
+        },
+        "pick_clean_then_place_in_recep": {
+          "total": 11,
+          "success": 5,
+          "rate": 0.455
+        },
+        "pick_cool_then_place_in_recep": {
+          "total": 7,
+          "success": 1,
+          "rate": 0.143
+        },
+        "pick_heat_then_place_in_recep": {
+          "total": 8,
+          "success": 6,
+          "rate": 0.75
+        },
+        "pick_two_obj_and_place": {
+          "total": 7,
+          "success": 3,
+          "rate": 0.429
+        }
+      }
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:25:27.175220+00:00",
+  "trigger": "update_registry"
+}

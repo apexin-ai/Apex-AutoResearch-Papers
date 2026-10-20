@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "957338090e4b7a30212d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops check llama31 vanilla eval",
+  "task_key": "worker_ops_check-llama31-vanilla-eval_20260516T080539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-llama31-vanilla-eval_20260516T080539_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "2b53d1bfc261aa4e033f0cc742df448d58003f226150ad74376a509df54ce11f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## llama31-vanilla-s42 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| Total episodes | 47 |\n| **Recovery rate (task success)** | **0.745** (35/47) |\n| **Detection rate (think analysis)** | **0.213** (10/47) |\n\n### Per-operator breakdown\n\n| Operator | Recovery | Detection |\n|----------|----------|-----------|\n| C1_context_truncation | 9/12 (0.750) | 2/12 (0.167) |\n| C4_observation_masking | 8/11 (0.727) | 3/11 (0.273) |\n| P1_step_order_swap | 9/12 (0.750) | 2/12 (0.167) |\n| P2_sub_goal_deletion | 9/12 (0.750) | 3/12 (0.250) |\n\n### GPU 状态\n\nGPU 0 已空闲：0 MiB 显存占用，0% 利用率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama31-vanilla-eval.md"
+}

@@ -1,0 +1,59 @@
+{
+  "exp_id": "v4-random-fixed-inject25-s7-eval",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:35:00.186Z",
+    "updated_at": "2026-05-15T23:54:59.193Z",
+    "hypothesis": "v4 Random 25% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.",
+    "parent": "v4-random-fixed-inject25-s7",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s7/v0-20260516-061742/checkpoint-1635",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s7-eval.log"
+    },
+    "metrics": {
+      "success_rate": 0.596,
+      "successes": 28,
+      "total": 47,
+      "by_task_type": {
+        "look_at_obj_in_light": {
+          "total": 6,
+          "success": 4,
+          "rate": 0.667
+        },
+        "pick_and_place_simple": {
+          "total": 8,
+          "success": 5,
+          "rate": 0.625
+        },
+        "pick_clean_then_place_in_recep": {
+          "total": 11,
+          "success": 6,
+          "rate": 0.545
+        },
+        "pick_cool_then_place_in_recep": {
+          "total": 7,
+          "success": 3,
+          "rate": 0.429
+        },
+        "pick_heat_then_place_in_recep": {
+          "total": 8,
+          "success": 6,
+          "rate": 0.75
+        },
+        "pick_two_obj_and_place": {
+          "total": 7,
+          "success": 4,
+          "rate": 0.571
+        }
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T23:54:59.193Z"
+  },
+  "timestamp": "2026-05-15T23:54:59.394520+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "llama31-vanilla-s0-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:39:37.086Z",
+    "updated_at": "2026-05-16T10:40:31.757Z",
+    "hypothesis": "LLaMA-3.1-8B Vanilla s0 injected eval - cross-model validation seed 0"
+  },
+  "timestamp": "2026-05-16T10:40:32.029853+00:00",
+  "trigger": "update_registry"
+}

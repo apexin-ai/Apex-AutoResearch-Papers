@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a8d3b58c851d430e48",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "train v4 random fixed inject10",
+  "task_key": "worker_train_v4-random-fixed-inject10_20260515T002638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_v4-random-fixed-inject10_20260515T002638_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "a2a87b0fc7067ff870351e4408ac4f0972e068543f9cb8a1b0ce24f47929038f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_id**: v4-random-fixed-inject10\n- **GPU**: cuda:2 @ autodl-5090\n- **数据**: `sft_random_v4_fixed_inject10.jsonl` (4,358 samples)\n- **参数**: Qwen3-8B, LoRA rank=16, 3 epochs, seed=42, 与 taxei_fixed_inject10 相同超参\n- **预计**: ~58 min, ~1635 steps\n- **Registry**: RUNNING\n\n注：任务中的文件名 `random_fixed_inject10.jsonl` 不存在，实际文件名是 `sft_random_v4_fixed_inject10.jsonl`，已自动修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-v4-random-fixed-inject10-copy-2.md"
+}

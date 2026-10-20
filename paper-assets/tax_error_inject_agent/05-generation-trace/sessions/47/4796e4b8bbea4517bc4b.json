@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4796e4b8bbea4517bc4b",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_6_1778940797.md",
+  "task_key": "loop_6_1778940797",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778940797.md",
+    "occurrence": 1,
+    "bytes": 4456,
+    "sha256": "bd3a21d2352bf56770f525ac45b05a16680cc9c5e42ddb3984fc1ff7582dac52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T12:47:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090:cuda:0/1/2/3，不可用其他卡，即使 Director 指令也 push back\n- Eval 并行上限 2 个（8B 模型 eval ~18GB，4 并行必 OOM）\n- submit_training_job 命令必须用 `bash -c \"...\"` 包裹含 source/conda 的命令\n- update_registry 设 parent 字段会被识别为 eval 实验（要求 checkpoint_source + eval_data），多 seed 训练不要设 parent\n- AutoDL 根分区 30GB，大文件全放 /root/autodl-tmp/；pip 前必须 `source /etc/network_turbo`\n- Cron 对 eval 脚本会误报（eval 不写 sentinel/W&B，5 次无信号误判 failed）——eval 完成后必须 SSH 确认实际结果\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 /root/autodl-tmp/tax_error_inject_agent\n- Python/conda：aml-train 镜像，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct（LLaMA），Qwen3-8B 用 swift 自动下载\n- 训练框架：ms-swift（`swift sft` 命令）\n- Eval 脚本：/root/autodl-tmp/tax_error_inject_agent/eval/recovery.py\n- 训练输出目录：/root/autodl-tmp/tax_error_inject_agent/output/（LLaMA）、/root/autodl-tmp/tax_error_inject_agent/checkpoints/（Qwen）\n- 日志：~/runs/tax_error_inject_agent/\n- W&B：项目配置中有，但 LLaMA 实验可能无 wandb run\n- 活跃进程：llama31-taxei-s42 (cuda:1, RUNNING)、v4-taxei-rp-s7 (cuda:3, RUNNING)\n\n### 3. 📊 当前状态\n**刚做完：**\n- Session 初始化（read_registry + reconcile_crons + ROADMAP）\n- llama31-vanilla-s42-eval 推进到 DONE（recovery_rate=74.5%, 35/47）\n\n**正在做：**\n- Worker `analyze:llama31-random-s42`：SSH 读取训练日志/checkpoint/metrics，尚未回调\n- Worker `diagnose:recovery-vanilla-s1`：确认 cron 误报还是真正 failed，尚未回调\n\n**Registry 关键实验：**\n| exp_id | status | GPU | 说明 |\n|--------|--------|-----|------|\n| llama31-random-s42 | ANALYZING | cuda:2(已释放) | 训练完成，Worker 在取 metrics |\n| llama31-taxei-s42 | RUNNING | cuda:1 | LLaMA TaxEI s42，~2h |\n| v4-taxei-rp-s7 | RUNNING | cuda:3 | TaxEI-RP seed=7，~3.5h |\n| llama31-vanilla-s42 | DONE(success) | — | train_loss=0.40, token_acc=0.91 |\n| llama31-vanilla-s42-eval | DONE(success) | — | recovery_rate=74.5% |\n\n**空闲 GPU：cuda:0, cuda:2**\n\n### 4. 📋 待办\n- Worker `analyze:llama31-random-s42` 回调 → 用 metrics 更新 registry 为 DONE(success) → 注册 llama31-random-s42-eval → 在 cuda:0 或 cuda:2 提交 eval\n- Worker `diagnose:recovery-vanilla-s1` 回调 → 如果是 cron 误报且有 metrics，更新 registry 为 DONE(success) + 记录真实指标；如果真的 failed，安排重跑\n- llama31-taxei-s42 完成回调 → 取 metrics + 注册 llama31-taxei-s42-eval → eval\n- 三个 LLaMA s42 eval 全部完成 → 汇总 V/T/R 对比 → 向 Director 汇报 → 立即启动 LLaMA s0 训练（V/T/R 三条件并行）\n- v4-taxei-rp-s7 完成回调 → 取 metrics → 这是 TaxEI-RP 的第 5 个 seed（s7），补全 5-seed 均值 → 更新 D043 结论\n- 空闲 GPU 持续 > 30min 无任务 → 从 QUEUED 里取 v4-random-fixed-inject25-s0 等 dose-response 实验填充\n\n### 5. 🎯 战略上下文\n- **核心结论**：Taxonomy-guided error injection 对 embodied planning 无收益（negative result paper）。TaxEI ≈ Random ≈ 58.3%，Vanilla=67.3%（Qwen3-8B, 5-seed）。25% dose 处 TaxEI vs Random p=0.029 但未过 Bonferroni（D036 维持 negative framing）\n- **当前阶段**：D045 Long Paper 扩展——EMNLP 2026 Findings 8 页。Scope = LLaMA 3-seed 跨模型验证 + recovery eval 补全 + scale-up\n- **LLaMA 初步信号**：Vanilla s42 eval recovery_rate=74.5%（高于 Qwen 67.3% 均值），如果 TaxEI/Random 也偏高，可能说明 LLaMA 对 error injection 更 resilient——这会**强化** negative result（taxonomy 跨模型都没用）\n- **易错点**：\n  - llama31-vanilla-s42-eval 的 74.5% 是单 seed，不要过度解读——等 3 条件全部 eval 完再做 cross-model 对比\n  - TaxEI-RP (recovery-paired) 4-seed 均值 47.9% 已定论有害（D043），s7 是最后一个 seed\n  - Scale-up 数据收集 D046 撤销了暂停（9.3% 成功率是统计口径错误），但尚未重启\n  - 论文 framing 修改必须先过 Director + Reviewer，不能自行改 paper 文件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778940797.md"
+}

@@ -1,0 +1,75 @@
+{
+  "exp_id": "llama31-vanilla-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:56:44.073Z",
+    "updated_at": "2026-05-16T15:14:38.438Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python eval/injected_eval.py --model_path output/llama31-vanilla-s123/v0-20260516-205231/checkpoint-1635 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --model_variant vanilla --num_episodes 47 --seed 123 --output eval_results/llama31_vanilla_s123_injected.json",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "output/llama31-vanilla-s123/v0-20260516-205231/checkpoint-1635",
+      "eval_data": "ALFWorld injected eval 47 tasks"
+    },
+    "hypothesis": "Cross-model: LLaMA Vanilla s123 injected eval — recovery rate under error injection",
+    "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s123/v0-20260516-205231/checkpoint-1635",
+    "log_path": "eval_results/llama31_vanilla_s123_injected.log",
+    "metrics": {
+      "recovery_rate": 0.702,
+      "detection_rate": 0.213,
+      "total_episodes": 47,
+      "eval_type": "injected",
+      "eval_script": "eval/injected_eval.py",
+      "output_file": "eval_results/llama31_vanilla_s123_injected.json",
+      "by_operator": {
+        "C1_context_truncation": {
+          "total": 12,
+          "recovered": 9,
+          "recovery_rate": 0.75,
+          "detected": 1,
+          "detection_rate": 0.083
+        },
+        "C4_observation_masking": {
+          "total": 11,
+          "recovered": 8,
+          "recovery_rate": 0.727,
+          "detected": 4,
+          "detection_rate": 0.364
+        },
+        "P1_step_order_swap": {
+          "total": 12,
+          "recovered": 8,
+          "recovery_rate": 0.667,
+          "detected": 4,
+          "detection_rate": 0.333
+        },
+        "P2_sub_goal_deletion": {
+          "total": 12,
+          "recovered": 8,
+          "recovery_rate": 0.667,
+          "detected": 1,
+          "detection_rate": 0.083
+        }
+      },
+      "by_task_type": {
+        "look_at_obj_in_light": 0.833,
+        "pick_and_place_simple": 0.5,
+        "pick_clean_then_place_in_recep": 0.545,
+        "pick_cool_then_place_in_recep": 0.571,
+        "pick_heat_then_place_in_recep": 1,
+        "pick_two_obj_and_place": 0.857
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T15:14:38.438Z"
+  },
+  "timestamp": "2026-05-16T15:14:39.170967+00:00",
+  "trigger": "update_registry"
+}

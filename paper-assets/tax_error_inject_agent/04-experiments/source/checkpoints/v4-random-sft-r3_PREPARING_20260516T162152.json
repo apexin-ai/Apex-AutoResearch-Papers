@@ -1,0 +1,29 @@
+{
+  "exp_id": "v4-random-sft-r3",
+  "project": "tax_error_inject_agent",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:32:26.753Z",
+    "updated_at": "2026-05-16T16:21:51.861Z",
+    "spec": {
+      "command": "bash -c \"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "58826",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-sft-r3.log",
+      "submitted_at": "2026-05-14T13:32:26.722Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T16:21:52.189072+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1dd60b60cd7df04e912",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 taxei rp s7",
+  "task_key": "worker_analysis_v4-taxei-rp-s7_20260516T101303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-taxei-rp-s7_20260516T101303_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "5dafb5f7d4690b478ec36e85a213bde7ba3ec50fbfd8a4cd99de929dfc4ff671"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`v4-taxei-rp-s7` 分析完成，registry 已更新为 DONE。\n\n**最终指标：**\n\n| 指标 | 值 | 其他 seed 范围 |\n|------|-----|----------------|\n| train_loss | 0.3855 | 0.384–0.385 |\n| token_acc | 0.9103 | 0.906–0.925 |\n| duration_minutes | 226.6 | 226–231 |\n| peak_memory_gib | 30.25 | — |\n| train_samples_per_second | 3.185 | — |\n\n**Checkpoint**: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s7/v0-20260516-142303/checkpoint-5415`\n\n**结论**: success — 所有指标与其他 4 个 seed 一致，无 W&B run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-taxei-rp-s7.md"
+}

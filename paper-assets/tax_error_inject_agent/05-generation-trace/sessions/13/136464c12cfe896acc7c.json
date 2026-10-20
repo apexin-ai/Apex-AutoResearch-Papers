@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "136464c12cfe896acc7c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis training dynamics",
+  "task_key": "worker_analysis_training-dynamics_20260515T132054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_training-dynamics_20260515T132054_result.json",
+    "occurrence": 1,
+    "bytes": 3373,
+    "sha256": "a2e9c95564e866cac5ffc580b433e1d01d8477e9b4d9de92b6a02490c846d823"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整分析报告。\n\n---\n\n## 训练 Log 分析报告\n\n### 1. Per-sample loss：**不存在**\n\n现有 log 每行只有 aggregate 指标：\n- `loss`（batch 平均 loss）\n- `token_acc`（token 级准确率）\n- `grad_norm`, `learning_rate`, `epoch`, `memory`\n\n项目代码中无 `per_sample`、`compute_loss` override、`TrainerCallback` 等自定义追踪逻辑。Swift SFT 默认不区分 clean vs injected samples 的 loss。\n\n**结论：需要 re-train 才能获得 per-sample loss。**\n\n### 2. Aggregate Loss 曲线对比\n\n#### 主实验 v4（seed 42，完整数据集）\n\n| 条件 | 数据量 | Steps | Avg Train Loss | Final Loss | Final Token Acc |\n|------|--------|-------|----------------|------------|-----------------|\n| **vanilla** | 4,358 | 1,635 | 0.4173 | 0.2942 | 0.8995 |\n| **taxei** | 9,029 | 3,387 | 0.3558 | 0.1738 | 0.9139 |\n| **random** | 9,029 | 3,387 | 0.3551 | 0.1677 | 0.8987 |\n\n**观察**：taxei 和 random 数据量约为 vanilla 的 2 倍（加了 injected samples），训练步数也多一倍。两者 avg loss 和 final loss 都低于 vanilla，但这主要是因为数据量大、训练步数多。taxei 的 final token_acc (0.9139) 高于 random (0.8987)。\n\n#### 多 Seed 稳定性\n\n| 条件 | seed42 | seed0 | seed123 | Mean±Std |\n|------|--------|-------|---------|----------|\n| **vanilla** train_loss | 0.4173 | 0.4160 | 0.4159 | 0.4164±0.0008 |\n| **taxei** train_loss | 0.3558 | 0.3553 | 0.3551 | 0.3554±0.0004 |\n| **random** train_loss | 0.3551 | 0.3551 | 0.3548 | 0.3550±0.0002 |\n| **taxei** token_acc | 0.9139 | 0.9172 | 0.8998 | 0.9103±0.0093 |\n| **random** token_acc | 0.8987 | 0.9118 | 0.9085 | 0.9063±0.0069 |\n\n**观察**：train_loss 跨 seed 非常稳定。token_acc 波动稍大，taxei 在 seed123 上偏低。\n\n#### Dose-Response（固定数据量 4,358）\n\n| 条件 | Train Loss | Final Loss | Final Token Acc |\n|------|-----------|------------|-----------------|\n| vanilla (0%) | 0.4173 | 0.2942 | 0.8995 |\n| taxei_inject10 (output) | 0.4234 | 0.3077 | 0.8875 |\n| taxei_inject25 (output) | 0.4245 | 0.2851 | 0.8926 |\n| taxei_inject50 | 0.4335 | 0.2586 | 0.9105 |\n\n**观察**：固定数据量下，随 injection 比例增加，avg train_loss 单调上升（injected samples 更难学），但 final loss 在 50% 时反而最低（0.2586）。\n\n### 3. 收敛速度对比\n\n所有实验初始 loss 约 4.0，前 50 步迅速降到 0.6-0.8（一致）。vanilla 在 ~1000 步后基本收敛（loss ~0.3），taxei/random 在 ~2000 步后收敛到更低水平（loss ~0.17）。收敛速度差异主要由数据量/步数差异驱动，非 injection 类型本身。\n\n### 4. 获取 Per-sample Loss 的方案\n\n如果需要区分 clean vs injected samples 的 loss 差异，有两条路径：\n\n**方案 A：Post-hoc 推理（不需 re-train）**\n- 加载已训练好的 checkpoint\n- 分别在 clean subset 和 injected subset 上计算 forward pass loss\n- 对比两组的 loss 分布\n\n**方案 B：Re-train with custom callback**\n- 在训练数据中加标记字段（`is_injected`）\n- 自定义 `TrainerCallback.on_log` 分别记录 clean/injected 的 loss\n- 需要 override `compute_loss` 或在 data collator 中传递标记\n\n方案 A 更快，能直接利用现有 checkpoint，推荐优先尝试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-training-dynamics-copy-2.md"
+}

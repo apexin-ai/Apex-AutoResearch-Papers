@@ -1,0 +1,24 @@
+{
+  "exp_id": "v4-random-seed1-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:17:51.435Z",
+    "updated_at": "2026-05-15T17:17:51.435Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + LoRA(v4-random-seed1)",
+      "seed": 42,
+      "checkpoint_source": "v4-random-seed1",
+      "eval_data": "eval_tasks_47.json"
+    }
+  },
+  "timestamp": "2026-05-15T17:17:51.568445+00:00",
+  "trigger": "update_registry"
+}

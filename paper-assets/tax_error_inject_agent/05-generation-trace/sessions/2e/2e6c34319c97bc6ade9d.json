@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6c34319c97bc6ade9d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis forward pass count audit",
+  "task_key": "worker_analysis_forward-pass-count-audit_20260515T164736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_forward-pass-count-audit_20260515T164736_result.json",
+    "occurrence": 1,
+    "bytes": 2738,
+    "sha256": "22ada0d3e39f29235ae61dec3adfe0fac04b575cab517d6183fe4dc077c2c732"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是审计结论。\n\n---\n\n## 审计结论\n\n### 数据流全貌\n\n```\ninjected_variants.jsonl (760 trajectories)\n  ↓ convert_all_v4.py: 每条 trajectory 按 step 拆为 turn-level SFT 样本\n  ↓ error tag 只标在每条 trajectory 的最后一步 (第 96 行: if i == len(steps) - 1)\n  ↓\nsft_taxei_v4.jsonl (9029 turns) = 4358 clean turns + 4671 injected turns\n                                                       ↑\n                                              760 有 tag + 3911 无 tag\n```\n\n### 1. Forward pass 760 injected 是什么粒度\n\n**Turn 级，但数值恰好等于 trajectory 数量。**\n\n`convert_all_v4.py:96` 只在每条 injected trajectory 的**最后一步**加 `[Error Type: ...]` tag。`classify_sample()` 按 tag 检测，所以 760 tagged turns = 760 trajectories = 一一对应。但其余 3911 个来自 injected trajectories 的 turn（非末尾步）被分类为 \"clean\"。\n\n### 2. 4671 injected variants 是什么粒度\n\n**Turn 级。** 760 条 injected trajectories 展开为 4671 个 per-step SFT 样本，平均 ~6.15 步/轨迹。\n\n验证：9029 (sft_taxei_v4) − 4358 (sft_vanilla_v4) = **4671** ✓\n\n### 3. Per-sample loss 分类问题\n\nLoss 计算本身正确（per-turn response token CE loss），但**分类有污染**：\n\n| Forward pass 分类 | 计数 | 真实构成 |\n|---|---|---|\n| \"clean\" = 8269 | 4358 真 clean + **3911 injected-provenance turns（无 tag）** |\n| \"injected\" = 760 | 760 error-tagged final steps |\n\n\"Clean\" mean loss (0.771) 被 3911 个来自 injected trajectories 的 turn 污染。\n\nDose-response ablation 一致性确认：\n- inject10: 4358 total, 436 provenance-injected turns → 70 tagged (70/436≈16.1%)\n- inject25: 4358 total, 1090 provenance-injected turns → 168 tagged (168/1090≈15.4%)\n- inject50: 4358 total, 2179 provenance-injected turns → 370 tagged (370/2179≈17.0%)\n- full: 9029 total, 4671 provenance-injected turns → 760 tagged (760/4671≈16.3%)\n\nTagged 比例恒定 ~16%，因为平均每条 trajectory ~6 步但只有 1 步有 tag。\n\n### 4. 论文写作建议\n\n应区分三个层级：\n- **760 injected trajectories** — 被注入错误的完整轨迹数\n- **4,671 injected turns** — 这些轨迹展开后的 SFT 训练样本数\n- **760 error-tagged turns** — 实际携带 error tag 的样本数（每 trajectory 1 个）\n\n如果 forward pass 分析要用 tag-based classification，需明确说明只覆盖 injected turns 的 ~16%。或者改用 provenance-based classification（`prepare_fixed_ablation_data.py` 已有实现：比对 vanilla user content set）来正确划分全部 4671 个 injected turns。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-forward-pass-count-audit.md"
+}

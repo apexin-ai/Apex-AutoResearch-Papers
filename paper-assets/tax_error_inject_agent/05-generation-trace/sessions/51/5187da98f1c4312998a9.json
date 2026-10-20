@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5187da98f1c4312998a9",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "knowledge write experiment plan",
+  "task_key": "worker_knowledge_write-experiment-plan_20260514T220305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_write-experiment-plan_20260514T220305_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "7f0bf3c90e029d2287855764a5c0d3839c47a40922a0d677d36bce9ad362af43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存 `experiment_plan.yaml` 到 artifacts 并注册。\n\n汇总：\n- **P1 (8 个实验)**: multi-seed 补齐 (running) → eval → 3-seed 统计 → injection ratio ablation 数据生成 → 10%/25% 训练 (4 runs) → eval (4 runs) → training dynamics 分析。预计 P1 全部完成需 ~5-6 小时，4 卡可全并行。\n- **P2 (2 个)**: WebShop 第二环境 (工程量大，3-5 天) + 定性 failure 分析 (20+ cases 标注)。\n- **P3 (3 个)**: scale ablation / few-shot recovery / per-operator deep dive。\n\n50% injection 的结果可复用已有 v4 seed=42 数据，ablation 实际只需 4 组新训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-write-experiment-plan.md"
+}

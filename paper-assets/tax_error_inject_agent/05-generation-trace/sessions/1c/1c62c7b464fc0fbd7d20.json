@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c62c7b464fc0fbd7d20",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "submit d022 phase2 evals and trains",
+  "task_key": "worker_submit_d022-phase2-evals-and-trains_20260515T092025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d022-phase2-evals-and-trains_20260515T092025_result.json",
+    "occurrence": 1,
+    "bytes": 55,
+    "sha256": "9e0a84e99cf9c6205bbf6a66dd2f477a08148a6e0d3e554eda91be02c59f5018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4.5 分钟后回来检查 eval 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d022-phase2-evals-and-trains.md"
+}

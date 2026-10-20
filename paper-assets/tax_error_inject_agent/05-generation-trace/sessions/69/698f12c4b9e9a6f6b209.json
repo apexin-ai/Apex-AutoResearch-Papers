@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "698f12c4b9e9a6f6b209",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 random fixed inject50 eval",
+  "task_key": "worker_analysis_v4-random-fixed-inject50-eval_20260515T015730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-random-fixed-inject50-eval_20260515T015730_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "a4cde40182b427eecbd25a2abb9c3f30b83d44e40d296648ee7dfac7bb526b09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果: v4-random-fixed-inject50-eval\n\n**模型**: `checkpoint-1635` (random_fixed_inject50/v0-20260515-084528)\n**评估集**: valid_unseen, 47 tasks\n**注入模式**: none (纯净评估)\n**退出码**: 0 (正常退出)\n**W&B**: 无\n\n### 总成绩: 27/47 = 57.4%\n\n### 按任务类型:\n\n| 任务类型 | 成功/总数 | 成功率 |\n|----------|-----------|--------|\n| look_at_obj_in_light | 5/6 | 83.3% |\n| pick_two_obj_and_place | 6/7 | 85.7% |\n| pick_heat_then_place_in_recep | 6/8 | 75.0% |\n| pick_cool_then_place_in_recep | 3/7 | 42.9% |\n| pick_and_place_simple | 3/8 | 37.5% |\n| pick_clean_then_place_in_recep | 4/11 | 36.4% |\n\n简单任务（look_at、pick_two、pick_heat）表现较好（75-86%），涉及清洁和放置的复杂任务（pick_clean、pick_and_place）成功率偏低（36-38%）。所有失败 episode 均跑满 50 步超时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-random-fixed-inject50-eval.md"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "v4-random-fixed-inject50-s1-r2",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:59:00.237Z",
+    "updated_at": "2026-05-16T00:03:31.558Z",
+    "spec": {
+      "command": "swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl --output_dir checkpoints/v4_random_fixed_inject50_s1 --lora_rank 16 --lora_alpha 32 --num_train_epochs 3 --per_device_train_batch_size 4 --gradient_accumulation_steps 2 --learning_rate 1e-4 --warmup_ratio 0.03 --save_strategy epoch --logging_steps 10 --seed 1 --data_seed 1 --bf16 true",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl",
+      "data_count": 4358,
+      "model_name": "Qwen3-8B",
+      "seed": 1
+    },
+    "hypothesis": "v4 Random fixed-size ablation: 50% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion — Wave 2. Retry: bs=4, ga=2.",
+    "metrics": {
+      "error": "CUDA OOM at step 5/1635: tried to allocate 4.25 GiB, only 3.94 GiB free on GPU (31.36 GiB total, 27.41 GiB in use). bs=4 ga=2 still too large.",
+      "train_steps_completed": 5,
+      "train_steps_total": 1635,
+      "memory_gib": 30.63,
+      "initial_loss": 3.356,
+      "initial_token_acc": 0.618
+    },
+    "log_path": "checkpoints/v4_random_fixed_inject50_s1/train.log",
+    "checkpoint_path": "NONE_OOM_FAILED"
+  },
+  "timestamp": "2026-05-16T00:03:31.838231+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b1384c0f6bc46e82cf",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval llama31 missing clean evals",
+  "task_key": "worker_eval_llama31-missing-clean-evals_20260516T145259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama31-missing-clean-evals_20260516T145259_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "b89134ad4c3287f202b20ce5d261dfa93b3d1e136035e000f3c19bcc34407034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three tasks complete. Summary:\n\n| Registry Entry | Status | Key Metric |\n|---|---|---|\n| `eval-llama31-random-s0-clean` | DONE | success_rate=0.745 |\n| `eval-llama31-taxei-s42-clean` | DONE | success_rate=0.766 |\n| `llama31-vanilla-s123-eval` | DONE | recovery_rate=0.702, detection_rate=0.213 |\n\n**llama31-vanilla-s123 injected eval details:**\n- Recovery rate 0.702 (33/47 episodes OK under injection)\n- Detection rate 0.213 (10/47 detected the injected error)\n- Best recovery: C1_context_truncation (0.75), C4_observation_masking (0.727)\n- Best detection: C4_observation_masking (0.364), P1_step_order_swap (0.333)\n- Worst detection: C1 and P2 both at 0.083\n- pick_heat_then_place_in_recep had 100% recovery (8/8)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama31-missing-clean-evals.md"
+}

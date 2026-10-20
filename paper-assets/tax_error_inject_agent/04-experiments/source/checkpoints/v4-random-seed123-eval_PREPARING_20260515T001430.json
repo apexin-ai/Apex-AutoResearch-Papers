@@ -1,0 +1,14 @@
+{
+  "exp_id": "v4-random-seed123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:14:30.699Z",
+    "updated_at": "2026-05-15T00:14:30.699Z"
+  },
+  "timestamp": "2026-05-15T00:14:30.805285+00:00",
+  "trigger": "update_registry"
+}

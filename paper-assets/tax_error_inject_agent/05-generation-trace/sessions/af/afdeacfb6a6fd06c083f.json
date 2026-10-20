@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afdeacfb6a6fd06c083f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis extended statistics 5seed",
+  "task_key": "worker_analysis_extended-statistics-5seed_20260515T174718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extended-statistics-5seed_20260515T174718_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "5fc9f3c33c8f0b341ac09fef2cd28bab9de5f94fecc5cb83a7bfa4114fb8b9bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册为 artifact (`art_20260515_6f8912`)。核心结论：\n\n**主要发现**:\n- **Vanilla > TaxEI**: Bootstrap 95% CI [+3.4, +15.8] 显著, d=1.08 (large), P(Vanilla>TaxEI)=99.2%\n- **TaxEI = Random**: 均值完全相同 (58.3%), d=0.00\n- **Training-eval dissociation 确认**: Training loss CV=0.17% vs eval CV=9.96% (60× 差异), Spearman ρ=0.11 (NS)\n\n**需要注意的问题**:\n- 功效仅 45.2%，paired t-test p=0.073 未达 0.05（bootstrap 显著但参数检验 marginal）\n- BF₁₀=0.68 inconclusive——n=5 太小无法给出 Bayesian 确定结论\n- Cohen's d CI 下界接近 0 ([−0.09, 2.18])\n- 需 **n=9 seeds** 才能在 80% power 下稳定检测到 9pp 差异"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extended-statistics-5seed.md"
+}

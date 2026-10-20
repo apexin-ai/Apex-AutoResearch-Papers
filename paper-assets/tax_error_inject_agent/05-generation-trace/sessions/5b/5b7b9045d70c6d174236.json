@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b7b9045d70c6d174236",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "research alfworld data survey",
+  "task_key": "worker_research_alfworld-data-survey_20260514T044719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_alfworld-data-survey_20260514T044719_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "d34ca7bc09b689805967f46a2508ea00c75d5f5f3bcb2e74dd2a5985cc04f37b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `artifacts/alfworld_data_survey.md`。核心结论：\n\n**任务**: 6 种任务类型，train 3,553 / valid_seen 140 / valid_unseen 134，max 50 步/episode。\n\n**公开数据集**: HuggingFace 上有 u-10bei 的 2,502 条模板生成轨迹，但非真实环境执行，不适合 TaxEI 的 error injection 场景。\n\n**收集方案**: 用 GPT-4o 在真实 ALFWorld 环境中 rollout，zero-shot 成功率 ~93%，收集 500 条成功轨迹约需 538 次 rollout，API 成本约 **$25-35**。建议写独立轻量 rollout 脚本，复用 verl-agent 的 prompt template 和 action projection。\n\n**安装**: `pip install alfworld` + `alfworld-download`，要求 Python 3.9+，text-only 模式不需要 GPU。AutoDL 上需先 `source /etc/network_turbo` 再下载数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-alfworld-data-survey.md"
+}

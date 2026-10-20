@@ -1,0 +1,32 @@
+{
+  "exp_id": "llama31-taxei-s0",
+  "project": "tax_error_inject_agent",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:15:57.399Z",
+    "updated_at": "2026-05-16T10:20:06.830Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir output/llama31-taxei-s0 --lora_rank 16 --num_train_epochs 3 --per_device_train_batch_size 4 --gradient_accumulation_steps 2 --learning_rate 1e-4 --max_length 4096 --seed 0 --data_seed 0 --logging_steps 10 --gradient_checkpointing true --bf16 true --save_strategy epoch\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "257224",
+      "log_path": "~/runs/tax_error_inject_agent/llama31-taxei-s0.log",
+      "submitted_at": "2026-05-16T09:15:57.070Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T10:20:04.360Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T10:20:07.089401+00:00",
+  "trigger": "update_registry"
+}

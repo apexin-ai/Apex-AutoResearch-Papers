@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "939882ad00e10746ec8e",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval s123 taxei random training and eval",
+  "task_key": "worker_eval_s123-taxei-random-training-and-eval_20260516T145033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s123-taxei-random-training-and-eval_20260516T145033_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "5207809c06ffb358e16e338d4d1d7ab7f0e8698d9311723f9f55c6311861c165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 eval 完成并验证。最终结果：\n\n| Condition | Clean SR | Recovery Rate | Detection Rate |\n|-----------|----------|---------------|----------------|\n| TaxEI s123 | 61.7% | 61.4% (27/44) | 75.0% (33/44) |\n| Random s123 | 76.6% | 68.9% (31/45) | 53.3% (24/45) |\n\n**关键发现**：\n- TaxEI 的 detection rate (75%) 显著高于 Random (53.3%)，说明 TaxEI 训练的模型更擅长识别注入错误\n- Random 的 clean SR 和 recovery rate 都高于 TaxEI，但这主要因为 random 模型本身 task 能力更强\n- TaxEI 模型在被注入错误后，clean→injected 的性能下降更小（61.7%→61.4%），而 random 下降更大（76.6%→68.9%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s123-taxei-random-training-and-eval.md"
+}

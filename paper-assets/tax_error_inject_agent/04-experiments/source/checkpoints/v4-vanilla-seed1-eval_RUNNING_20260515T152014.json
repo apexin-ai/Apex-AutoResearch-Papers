@@ -1,0 +1,32 @@
+{
+  "exp_id": "v4-vanilla-seed1-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:49:28.411Z",
+    "updated_at": "2026-05-15T15:20:13.990Z",
+    "hypothesis": "v4 Vanilla SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion",
+    "parent": "v4-vanilla-seed1",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_seed1_eval.json",
+      "server": "autodl-5090",
+      "data_path": "eval/eval_tasks_47.json",
+      "data_count": 47,
+      "model_name": "Qwen3-8B + LoRA (vanilla v4 seed=1)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635",
+      "eval_data": "47 ALFWorld tasks (clean, no injection)",
+      "gpu": [
+        "cuda:0"
+      ]
+    },
+    "log_path": "~/runs/tax_error_inject_agent/v4-vanilla-seed1-eval.log",
+    "checkpoint_path": "eval_results/v4_vanilla_seed1_eval.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:20:14.135197+00:00",
+  "trigger": "update_registry"
+}

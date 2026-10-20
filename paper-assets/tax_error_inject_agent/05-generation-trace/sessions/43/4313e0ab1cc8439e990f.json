@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4313e0ab1cc8439e990f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval v4 taxei seed1 eval gpu2",
+  "task_key": "worker_eval_v4-taxei-seed1-eval-gpu2_20260515T164335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-taxei-seed1-eval-gpu2_20260515T164335_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "f10211c3eed382a96c5f5f5940c643a61e3cac9d1d4934f46a84793b20444c75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v4-taxei-seed1-eval 无需重新提交，已经在正常运行：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 173824 |\n| GPU | cuda:2 (17082/32607 MiB) |\n| 进度 | 21/47 (11 OK, 10 FAIL) |\n| Checkpoint | `checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387` |\n| 输出 | `eval_results/v4_taxei_seed1_eval.json` |\n\nRegistry spec 已更新（补全 gpu、pid 信息）。预计还需约 20 分钟跑完剩余 26 episodes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-taxei-seed1-eval-gpu2.md"
+}

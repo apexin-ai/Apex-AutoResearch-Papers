@@ -1,0 +1,153 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Arpit et~al.(2017)Arpit, Jastrz\k{e}bski, Ballas, Krueger, Bengio,
+  Kanwal, Maharaj, Fischer, Courville, Bengio, and
+  Lacoste-Julien}]{arpit2017memorization}
+D.~Arpit, S.~Jastrz\k{e}bski, N.~Ballas, D.~Krueger, E.~Bengio, M.~S. Kanwal,
+  T.~Maharaj, A.~Fischer, A.~Courville, Y.~Bengio, and S.~Lacoste-Julien. 2017.
+\newblock A closer look at memorization in deep networks.
+\newblock In \emph{Proceedings of the International Conference on Machine
+  Learning}.
+
+\bibitem[{Bengio et~al.(2009)Bengio, Louradour, Collobert, and
+  Weston}]{bengio2009curriculum}
+Y.~Bengio, J.~Louradour, R.~Collobert, and J.~Weston. 2009.
+\newblock Curriculum learning.
+\newblock In \emph{Proceedings of the International Conference on Machine
+  Learning}.
+
+\bibitem[{Chen et~al.(2023)Chen, Shu, Shareghi, Collier, Narasimhan, and
+  Yao}]{chen2023fireact}
+B.~Chen, C.~Shu, E.~Shareghi, N.~Collier, K.~Narasimhan, and S.~Yao. 2023.
+\newblock \href {https://arxiv.org/abs/2310.05915} {{FireAct}: Toward language
+  agent fine-tuning}.
+\newblock \emph{arXiv preprint arXiv:2310.05915}.
+
+\bibitem[{Choudhury(2025)}]{agentprm2025}
+S.~Choudhury. 2025.
+\newblock \href {https://arxiv.org/abs/2502.10325} {Process reward models for
+  llm agents: Practical framework and directions}.
+\newblock \emph{arXiv preprint arXiv:2502.10325}.
+
+\bibitem[{D'Amour et~al.(2022)D'Amour, Heller, Moldovan, Adlam, Alipanahi,
+  Beutel, Chen, Deaton, Eisenstein, Hoffman
+  et~al.}]{damour2022underspecification}
+A.~D'Amour, K.~Heller, D.~Moldovan, B.~Adlam, B.~Alipanahi, A.~Beutel, C.~Chen,
+  J.~Deaton, J.~Eisenstein, M.~D. Hoffman, and 1 others. 2022.
+\newblock Underspecification presents challenges for credibility in modern
+  machine learning.
+\newblock \emph{Journal of Machine Learning Research}, 23(226).
+
+\bibitem[{Ding(2025)}]{agentHER2025}
+L.~Ding. 2025.
+\newblock \href {https://arxiv.org/abs/2603.21357} {{AgentHER}: Hindsight
+  experience replay for llm agent trajectory relabeling}.
+\newblock \emph{arXiv preprint arXiv:2603.21357}.
+
+\bibitem[{Kim and Hwang(2025)}]{kim2025coex}
+M.~Kim and S.-W. Hwang. 2025.
+\newblock \href {https://arxiv.org/abs/2507.22281} {{CoEx} -- co-evolving
+  world-model and exploration}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}.
+
+\bibitem[{Lan et~al.(2025)Lan, Bai, Cheng, Hsieh, and Zhou}]{eef2025}
+L.-C. Lan, A.~Bai, M.~Cheng, C.-J. Hsieh, and T.~Zhou. 2025.
+\newblock \href {https://arxiv.org/abs/2504.13145} {Exploring expert failures
+  improves llm agent tuning}.
+\newblock \emph{arXiv preprint arXiv:2504.13145}.
+
+\bibitem[{McCoy et~al.(2020)McCoy, Min, and Linzen}]{mccoy2020seeds}
+R.~T. McCoy, J.~Min, and T.~Linzen. 2020.
+\newblock {BERTs} of a feather do not generalize together: Large variability in
+  generalization across models with similar test set performance.
+\newblock In \emph{Proceedings of the Third BlackboxNLP Workshop on Analyzing
+  and Interpreting Neural Networks for NLP}.
+
+\bibitem[{Mosbach et~al.(2021)Mosbach, Andriushchenko, and
+  Klakow}]{mosbach2021stability}
+M.~Mosbach, M.~Andriushchenko, and D.~Klakow. 2021.
+\newblock On the stability of fine-tuning {BERT}: Misconceptions, explanations,
+  and strong baselines.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Rolnick et~al.(2017)Rolnick, Veit, Belongie, and
+  Shavit}]{rolnick2017robust}
+D.~Rolnick, A.~Veit, S.~Belongie, and N.~Shavit. 2017.
+\newblock \href {https://arxiv.org/abs/1705.10694} {Deep learning is robust to
+  massive label noise}.
+\newblock \emph{arXiv preprint arXiv:1705.10694}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+N.~Shinn, F.~Cassano, E.~Berman, A.~Gopinath, K.~Narasimhan, and S.~Yao. 2023.
+\newblock \href {https://arxiv.org/abs/2303.11366} {Reflexion: Language agents
+  with verbal reinforcement learning}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Shridhar et~al.(2021)Shridhar, Yuan, C\^{o}t\'{e}, Bisk, Trischler,
+  and Hausknecht}]{shridhar2021alfworld}
+M.~Shridhar, X.~Yuan, M.-A. C\^{o}t\'{e}, Y.~Bisk, A.~Trischler, and
+  M.~Hausknecht. 2021.
+\newblock \href {https://arxiv.org/abs/2010.03768} {{ALFWorld}: Aligning text
+  and embodied environments for interactive learning}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Song et~al.(2024)Song, Yin, Yue, Huang, Li, and Lin}]{song2024eto}
+Y.~Song, D.~Yin, X.~Yue, J.~Huang, S.~Li, and B.~Y. Lin. 2024.
+\newblock Trial and error: Exploration-based trajectory optimization for llm
+  agents.
+\newblock In \emph{Proceedings of the Annual Meeting of the Association for
+  Computational Linguistics}.
+
+\bibitem[{Vuddanti et~al.(2025)Vuddanti, Shah, Chittiprolu, Song, Dev, Zhu, and
+  Chaudhary}]{paladin2025}
+S.~V. Vuddanti, A.~Shah, S.~K. Chittiprolu, T.~Song, S.~Dev, K.~Zhu, and
+  M.~Chaudhary. 2025.
+\newblock \href {https://arxiv.org/abs/2509.25238} {{PALADIN}: Self-correcting
+  language model agents to cure tool-failure cases}.
+\newblock \emph{arXiv preprint arXiv:2509.25238}.
+
+\bibitem[{Wang et~al.(2024)Wang, Li, Han, Zhang, and
+  Baldwin}]{wang2024learning_from_failure}
+R.~Wang, H.~Li, X.~Han, Y.~Zhang, and T.~Baldwin. 2024.
+\newblock \href {https://arxiv.org/abs/2402.11651} {Learning from failure:
+  Integrating negative examples when fine-tuning large language models as
+  agents}.
+\newblock \emph{arXiv preprint arXiv:2402.11651}.
+
+\bibitem[{Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao}]{yao2023react}
+S.~Yao, J.~Zhao, D.~Yu, N.~Du, I.~Shafran, K.~Narasimhan, and Y.~Cao. 2023.
+\newblock \href {https://arxiv.org/abs/2210.03629} {{ReAct}: Synergizing
+  reasoning and acting in language models}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Ye et~al.(2025)}]{ye2025mixing_laws}
+J.~Ye and 1 others. 2025.
+\newblock Data mixing laws: Optimizing data mixtures by predicting language
+  modeling performance.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Yan, Shlapentokh-Rothman, Wang, and
+  Wang}]{zhou2024lats}
+A.~Zhou, K.~Yan, M.~Shlapentokh-Rothman, H.~Wang, and Y.-X. Wang. 2024.
+\newblock \href {https://arxiv.org/abs/2310.04406} {{LATS}: Language agent tree
+  search unifies reasoning, acting, and planning in language models}.
+\newblock In \emph{International Conference on Machine Learning}.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Liu, Xu, Iyer, Sun, Mao, Ma, Efrat, Yu, Yu,
+  Zhang, Ghosh, Lewis, Zettlemoyer, and Levy}]{zhou2023lima}
+C.~Zhou, P.~Liu, P.~Xu, S.~Iyer, J.~Sun, Y.~Mao, X.~Ma, A.~Efrat, P.~Yu, L.~Yu,
+  S.~Zhang, G.~Ghosh, M.~Lewis, L.~Zettlemoyer, and O.~Levy. 2023.
+\newblock {LIMA}: Less is more for alignment.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zhu et~al.(2025)Zhu, Liu, Li, Tian et~al.}]{agentdebug2025}
+K.~Zhu, Z.~Liu, B.~Li, M.~Tian, and 1 others. 2025.
+\newblock \href {https://arxiv.org/abs/2509.25370} {Where llm agents fail and
+  how they can learn from failures}.
+\newblock \emph{arXiv preprint arXiv:2509.25370}.
+
+\end{thebibliography}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371d438a03d0463aa3ff",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "submit d022 gpu23 now",
+  "task_key": "worker_submit_d022-gpu23-now_20260515T101304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d022-gpu23-now_20260515T101304_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "d840a63da0ad76e6b302344d3cc762f03d3c1662e960e4172cf85cd4c65aa184"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 2,3 — Random inject50 训练完成，TaxEI eval 已提交\n\n| 实验 | 状态 | train_loss | token_acc | 运行时间 |\n|------|------|-----------|-----------|---------|\n| v4-random-fixed-inject50-s0 | **完成** ✓ | 0.4355 | 0.911 | 53m 29s |\n| v4-random-fixed-inject50-s123 | **完成** ✓ | 0.257 (final) | 0.911 | 54m 17s |\n\n**TaxEI inject50 eval 已提交：**\n- `v4-taxei-fixed-inject50-s0-eval` → GPU 2, PID 138210\n- `v4-taxei-fixed-inject50-s123-eval` → GPU 3, PID 138352\n\n### GPU 0,1 — Random inject25 训练进行中\n\n| 实验 | 进度 | 剩余时间 |\n|------|------|---------|\n| v4-random-fixed-inject25-s0 | 1300/1635 (79.5%) | ~11m 32s |\n| v4-random-fixed-inject25-s123 | 1295/1635 (79.2%) | ~11m 43s |\n\n预计 ~12 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-d022-gpu23-now.md"
+}

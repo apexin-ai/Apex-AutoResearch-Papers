@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af23aaaa5f072c715f6",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis multiseed stats report",
+  "task_key": "worker_analysis_multiseed-stats-report_20260514T214945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multiseed-stats-report_20260514T214945_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "3baa38607d275c79c9d0f0b717314dbacb53296cc9a98cfd9a50742a9552d614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册完成。关键发现需要注意：\n\n**原 \"3.3x variance\" claim 需要修正** — 实际计算结果是 **10.4x**（TaxEI variance 0.0111 vs Vanilla 0.001064）。原始 3.3x 可能是 SD ratio（0.1054/0.0326 ≈ 3.2x），论文中应明确用哪个指标。\n\n核心统计结论：\n\n| Claim | 状态 | 关键数据 |\n|-------|------|---------|\n| TaxEI 无 clean-eval 优势 | ✅ 支持 | seed=0 显著差于 Vanilla (p=0.0053) |\n| TaxEI 无 recovery 优势 | ✅ 支持 | 所有 pairwise p > 0.38 |\n| TaxEI 增大方差 | ⚠️ 描述性支持 | 10.4x variance ratio，但仅 2 vs 3 seeds |\n| Random ≥ TaxEI | ✅ 支持 | 方向一致，但无显著差异 |\n| 无检测能力 | ✅ 强支持 | 0% detection across all conditions |\n| 研究 underpowered | ✅ 支持 | MDE = h=0.409 (需 ~20pp 差异)，power 仅 0.32 |\n\n产出文件在服务器 `/root/autodl-tmp/tax_error_inject_agent/analysis/` 目录：\n- `multiseed_stats.py` — 分析脚本\n- `multiseed_report.md` — 完整报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-stats-report.md"
+}

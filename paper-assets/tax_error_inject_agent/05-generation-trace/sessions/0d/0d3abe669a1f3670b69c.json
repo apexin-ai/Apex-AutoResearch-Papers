@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d3abe669a1f3670b69c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose vanilla s123 eval cron check",
+  "task_key": "worker_diagnose_vanilla-s123-eval-cron-check_20260516T151358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_vanilla-s123-eval-cron-check_20260516T151358_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "1b7eaf5f32d02c53c7c763e20ebc77032f59fc9f7ea12e767ef4efd632827438"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**llama31-vanilla-s123-eval 已成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| recovery_rate | 0.702 |\n| detection_rate | 0.213 |\n| total_episodes | 47 |\n\nRegistry 已更新为 `status=DONE, conclusion=success`。Cron 条目已不存在（可能之前已被清除）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-vanilla-s123-eval-cron-check.md"
+}

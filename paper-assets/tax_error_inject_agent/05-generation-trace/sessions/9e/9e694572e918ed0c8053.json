@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e694572e918ed0c8053",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh traj collect resume",
+  "task_key": "worker_ssh_traj-collect-resume_20260514T141730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj-collect-resume_20260514T141730_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "8237dc71f580548ab0f889599fccc9483bbf09e84f6e66f13b76a6c407a5990e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集已成功启动并在运行：\n\n- **已有状态**: 400 成功 / 175 失败，已 resume\n- **新采样**: 575 个 game，过滤已完成后剩 474 个新 episode\n- **Workers**: 4 个并发\n- **PID**: 61438\n- **日志**: `/root/runs/tax_error_inject_agent/collect_traj_r2.log`\n\n474 个新尝试按 ~70% 成功率可产出 ~330 条成功轨迹，远超所需的 100 条。脚本会在达到 500 条成功后自动停止。\n\n**预计完成时间**: 之前 575 次尝试的耗时可参考，100 条成功约需 143 次尝试。按每条轨迹平均 ~30-60 秒 API 交互、4 并发，预计 **30-60 分钟**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj-collect-resume.md"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "v4-fixed-inject10",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:09:21.673Z",
+    "updated_at": "2026-05-16T16:26:19.059Z",
+    "spec": {
+      "hypothesis": "Fixed-size ablation: 10% injection ratio (4,358 total samples, ~436 injected + ~3,922 clean). Tests whether low injection ratio still harms clean performance. If yes → injection itself is harmful regardless of ratio. Addresses Reviewer Concern #5.",
+      "parent": "v4-taxei-eval",
+      "plan_id": "fixed-size-ablation",
+      "reviewer_concern": "RC5"
+    },
+    "conclusion": "killed",
+    "failure_reason": "duplicate entry — active experiment is v4-taxei-fixed-inject10 (RUNNING)",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:19.350713+00:00",
+  "trigger": "update_registry"
+}

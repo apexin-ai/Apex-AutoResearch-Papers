@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4deb09be3a99cbce7c5d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "check 5seed pid status",
+  "task_key": "worker_check_5seed-pid-status_20260515T135100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_5seed-pid-status_20260515T135100_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "f3e44ef0aef5516f15be443dee513d39bdc6195087c1359da4d0e6ace5873d72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Batch 1 训练状态总结\n\n### PID 状态：4/4 全部存活\n\n| PID | 任务 | GPU | 运行时间 |\n|-----|------|-----|---------|\n| 154589 | vanilla-seed1 | cuda:0 | 11m04s |\n| 154666 | vanilla-seed7 | cuda:1 | 11m03s |\n| 154937 | taxei-seed1 | cuda:2 | 11m00s |\n| 155145 | taxei-seed7 | cuda:3 | 10m57s |\n\n### GPU 使用情况：全部繁忙\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 18659/32607 MiB | 82% |\n| 1 | 18659/32607 MiB | 85% |\n| 2 | 19537/32607 MiB | 64% |\n| 3 | 19537/32607 MiB | 94% |\n\n### 训练进度\n\n| 任务 | 进度 | 最新 loss | token_acc | 速度 | 预计剩余 |\n|------|------|----------|-----------|------|---------|\n| vanilla-seed1 | 302/1635 (18%) | 0.567 @step150 | 0.817 | ~2.15s/it | ~49min |\n| vanilla-seed7 | 299/1635 (18%) | 0.571 @step150 | 0.816 | ~2.05s/it | ~46min |\n| taxei-seed1 | 333/3387 (10%) | 0.565 @step305 | 0.819 | ~2.02s/it | ~1h40m |\n| taxei-seed7 | 328/3387 (10%) | 0.563 @step305 | 0.819 | ~1.90s/it | ~1h40m |\n\n### 关键信息\n- **无 checkpoint 产生**：save_strategy=epoch，vanilla 首个 checkpoint 在 step 545，taxei 在 step 1129，都还没到\n- **loss 正常下降**，4 个任务的 loss 和 token_acc 走势一致\n- vanilla 两组预计 ~50min 后完成，taxei 两组预计 ~1h40m 后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-5seed-pid-status.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea258064c5bed5a4559",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "exp mini pipeline e2e",
+  "task_key": "worker_exp_mini-pipeline-e2e_20260514T094954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mini-pipeline-e2e_20260514T094954_result.json",
+    "occurrence": 1,
+    "bytes": 2398535,
+    "sha256": "a9877f04b912710a74e69760c06af6bf840e134a05f6e80a6aa52b6dd8688423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2999973,
+                "serialized_sha256": "037fa5e1d92e3353667c38f77eee8d7b9153a5e883a66ebc3d20fd8e708c523b",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mini-pipeline-e2e.md"
+}

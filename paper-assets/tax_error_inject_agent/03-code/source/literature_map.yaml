@@ -1,0 +1,335 @@
+# Literature Map: Dose-Response / Threshold Effects in Data Augmentation
+# Updated: 2026-05-15
+
+entries:
+  # === Category: dose-response / threshold ===
+
+  - id: rolnick2017robust
+    title: "Deep Learning is Robust to Massive Label Noise"
+    authors: "Rolnick, Veit, Belongie, Shavit"
+    year: 2017
+    venue: arXiv 1705.10694
+    category: dose-response
+    role: background
+    key_finding: "DNNs maintain >90% accuracy on MNIST even when correct labels are diluted 100:1, as long as correct label remains most likely by a small margin."
+    relevance: "Contrasts with our finding: image classification is robust to extreme noise, while embodied planning shows sharp degradation at 25%. Task complexity mediates noise tolerance."
+
+  - id: yuan2024early_stopping
+    title: "Early Stopping Against Label Noise Without Validation Data"
+    authors: "Yuan, Feng, Liu"
+    year: 2024
+    venue: ICLR 2024
+    category: dose-response
+    role: background
+    key_finding: "Identifies phase transition where DNNs shift from fitting clean to fitting mislabeled examples. Proposes Label Wave to detect this transition during training."
+    relevance: "Supports existence of phase transition in learning dynamics. Our 10-25% threshold may correspond to such a transition point in the SFT regime."
+
+  - id: dohmatob2025collapse
+    title: "Strong Model Collapse"
+    authors: "Dohmatob, Feng, Subramonian, Kempe"
+    year: 2025
+    venue: ICLR 2025
+    category: threshold
+    role: background
+    key_finding: "Even 0.1% synthetic data can cause model collapse in supervised regression. Past interpolation threshold, larger models become more robust (double-descent)."
+    relevance: "Demonstrates extreme sensitivity to data quality in certain regimes. Our 10-25% threshold is analogous—small quality shifts cause nonlinear degradation."
+
+  - id: beyond_clean_data2024
+    title: "Beyond Clean Data: Exploring the Effects of Label Noise on Object Detection Performance"
+    authors: "Freire, de S. Silva, de Andrade, Fernandes"
+    year: 2024
+    venue: Knowledge-Based Systems
+    category: dose-response
+    role: background
+    key_finding: "Systematically varies noise levels in training and validation for object detection, mapping convergence limits and degradation thresholds."
+    relevance: "Methodologically similar—varies noise proportion to find degradation curves. Shows task-specific threshold behavior."
+
+  # === Category: error-injection / failure augmentation ===
+
+  - id: wang2024learning_from_failure
+    title: "Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents"
+    authors: "Wang, Li, Han, Zhang, Baldwin"
+    year: 2024
+    venue: arXiv 2402.11651
+    category: error-injection
+    role: evaluation
+    key_finding: "Failed trajectories provide valuable signal for LLM agents via contrastive learning. Negative examples improve math, QA, strategic tasks when properly structured."
+    relevance: "Directly related—injects negative trajectories into agent SFT. Key difference: they use contrastive framing, not raw mixing. Our work shows raw mixing has narrow safe window."
+
+  - id: song2024eto
+    title: "Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents"
+    authors: "Song, Yin, Yue, Huang, Li, Lin"
+    year: 2024
+    venue: ACL 2024
+    category: error-injection
+    role: evaluation
+    key_finding: "Iteratively collects failure trajectories, uses DPO-style contrastive learning on success-failure pairs. +8% WebShop, +9.5% ScienceWorld vs SFT."
+    relevance: "Uses failure trajectories via preference optimization (DPO), not direct SFT mixing. Avoids our threshold problem by never training directly on failures."
+
+  - id: paladin2025
+    title: "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases"
+    authors: "Vuddanti, Shah et al."
+    year: 2025
+    venue: arXiv 2509.25238
+    category: error-injection
+    role: evaluation
+    key_finding: "Trains on 50K+ recovery-annotated failure trajectories via LoRA. +57pp recovery rate vs vanilla (32.76%→89.68%), +13.6pp vs CRITIC baseline. Taxonomy of 7 error classes. Includes inference-time retrieval."
+    relevance: "Most similar to our approach (taxonomy-guided error injection). Key difference: they pair failures with recovery demos; we inject standalone error trajectories."
+
+  - id: agentHER2025
+    title: "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling"
+    authors: "Ding"
+    year: 2025
+    venue: arXiv 2603.21357
+    category: error-injection
+    role: evaluation
+    key_finding: "Converts failed trajectories to valid training data by relabeling—failure for task A becomes success for task B."
+    relevance: "Avoids noise problem by redefining failure as success for different goals. Contrasts with our direct injection approach."
+
+  # === Category: data-mixing ===
+
+  - id: dong2024composition
+    title: "How Abilities in Large Language Models are Affected by Supervised Fine-tuning Data Composition"
+    authors: "Dong, Yuan et al."
+    year: 2024
+    venue: ACL 2024
+    category: data-mixing
+    role: background
+    key_finding: "Data amount per domain matters more than ratio. Low-data mixing enables cross-domain transfer; high-data mixing causes ability conflicts."
+    relevance: "Documents ability-conflict at high data amounts—analogous to our threshold. Ratio secondary to amount suggests our threshold may be absolute-count driven."
+
+  - id: ye2025mixing_laws
+    title: "Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance"
+    authors: "Ye et al."
+    year: 2025
+    venue: ICLR 2025
+    category: data-mixing
+    role: background
+    key_finding: "Discovers quantitative scaling laws L=f(r) for mixture proportions. Accurately predicts critical proportion avoiding catastrophic forgetting."
+    relevance: "Their 'critical proportion for catastrophic forgetting' is conceptually identical to our threshold—both mark a phase transition in mixing."
+
+  - id: li2025mixing_optimization
+    title: "Data Mixing Optimization for Supervised Fine-Tuning of Large Language Models"
+    authors: "Li et al."
+    year: 2025
+    venue: ICML 2025
+    category: data-mixing
+    role: background
+    key_finding: "SFT mixing as optimization with scaling-law parameterization. Optimal weights depend on model size and data scale."
+    relevance: "Optimal mixing is model-size dependent—our 7B model may have different threshold than larger models. Finding is scale-specific."
+
+  - id: seddik2024synthetic_bound
+    title: "How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse"
+    authors: "Seddik et al."
+    year: 2024
+    venue: arXiv 2404.05090
+    category: data-mixing
+    role: background
+    key_finding: "Theoretical upper bounds on low-quality data proportion before collapse. Real data proportion must remain high."
+    relevance: "Theoretical grounding for hard thresholds in quality mixing. Our empirical 10-25% window is consistent with their predictions."
+
+  # === Category: curriculum / quality threshold ===
+
+  - id: curriculum_robust2021
+    title: "Robust Curriculum Learning: from Clean Label Detection to Noisy Label Self-Correction"
+    authors: "Zhou, Wang, Bilmes"
+    year: 2021
+    venue: ICLR 2021
+    category: curriculum
+    role: background
+    key_finding: "Networks learn simple patterns first, then overfit noisy labels. Loss-based curriculum selection is unstable; errors accumulate multiplicatively."
+    relevance: "Explains WHY threshold exists: once noisy proportion exceeds implicit curriculum capacity, errors accumulate. Our 25% may exceed model's capacity."
+
+  - id: agentprm2025
+    title: "Process Reward Models for LLM Agents: Practical Framework and Directions"
+    authors: "Choudhury"
+    year: 2025
+    venue: arXiv 2502.10325
+    category: curriculum
+    role: evaluation
+    key_finding: "Best-of-N with process reward model achieves 91.0% on ALFWorld (N=16, base policy 88.1%). Shows reward-guided search outperforms SFT alone."
+    relevance: "ALFWorld SOTA reference. Our 65.3% SFT-only baseline is reasonable given AgentPRM uses test-time search."
+
+  - id: wkm2024alfworld
+    title: "Agent Planning with World Knowledge Model"
+    authors: "Qiao, Fang, Zhang, Zhu, Chen et al."
+    year: 2024
+    venue: NeurIPS 2024
+    category: curriculum
+    role: evaluation
+    key_finding: "World knowledge models reduce hallucinatory actions in ALFWorld. SFT on expert trajectories prone to overfitting."
+    relevance: "ALFWorld baseline showing SFT quality sensitivity. Hallucination increase from poor training data parallels our error-injection degradation."
+
+  # === Category: training-dynamics / memorization ===
+
+  - id: arpit2017memorization
+    title: "A Closer Look at Memorization in Deep Networks"
+    authors: "Arpit, Jastrzębski, Ballas, Krueger, Bengio, Kanwal, Maharaj, Fischer, Courville, Bengio, Lacoste-Julien"
+    year: 2017
+    venue: ICML 2017
+    category: training-dynamics
+    role: background
+    key_finding: "DNNs first learn clean patterns (early learning phase), then memorize noise. Training loss/accuracy improve on noisy data but generalization degrades. Dataset-independent capacity concepts are insufficient."
+    relevance: "Directly explains our '50% injection → lowest train loss but worst eval' paradox. Higher injection = more noisy samples to memorize, better train metrics but worse generalization."
+
+  - id: liu2020early_learning_reg
+    title: "Early-Learning Regularization Prevents Memorization of Noisy Labels"
+    authors: "Liu, Niles-Weed, Razavian, Fernandez-Granda"
+    year: 2020
+    venue: NeurIPS 2020
+    category: training-dynamics
+    role: background
+    key_finding: "Formalizes early learning phenomenon: models predict true labels for mislabeled examples early in training, then memorize wrong labels. ELR regularization exploits this window."
+    relevance: "Our error-injected samples may be correctly handled early in training but memorized later, degrading clean-data generalization. Explains why more epochs could worsen the gap."
+
+  - id: zhou2023lima
+    title: "LIMA: Less Is More for Alignment"
+    authors: "Zhou, Liu, Xu, Iyer, Sun, Mao, Ma, Efrat, Yu, Yu, Zhang, Ghosh, Lewis, Zettlemoyer, Levy"
+    year: 2023
+    venue: NeurIPS 2023
+    category: training-dynamics
+    role: background
+    key_finding: "Superficial Alignment Hypothesis: LLM knowledge/capability comes from pretraining; SFT only teaches output style/format. Limited SFT data suffices."
+    relevance: "Explains why lower SFT loss ≠ better downstream capability. Error injection improves surface-level fitting (lower loss) but doesn't enhance—and may damage—pretrained planning capability."
+
+  - id: luo2023catastrophic_forgetting
+    title: "An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning"
+    authors: "Luo, Yang, Meng, Li, Zhou, Zhang"
+    year: 2023
+    venue: arXiv 2308.08747
+    category: training-dynamics
+    role: background
+    key_finding: "SFT is off-policy learning prone to overfit training distribution and forget pretraining knowledge. Forgetting severity increases with divergence between fine-tuning and pretraining distributions."
+    relevance: "Error injection increases distributional gap from pretraining data, accelerating catastrophic forgetting. 50% injection → maximal divergence → most forgetting of planning capability."
+
+  - id: longpre2020augmentation
+    title: "How Effective is Task-Agnostic Data Augmentation for Pretrained Transformers?"
+    authors: "Longpre, Wang, DuBois"
+    year: 2020
+    venue: Findings of EMNLP 2020
+    category: training-dynamics
+    role: background
+    key_finding: "Data augmentation provides minimal benefit for pretrained transformers; pretrained representations already capture augmentation diversity. Augmentation can hurt when it introduces distribution shift."
+    relevance: "Pretrained LLMs may already have robust representations; error injection adds noise without new information, explaining why augmentation-style injection fails for embodied planning."
+
+  # === Category: training-instability ===
+
+  - id: mccoy2020seeds
+    title: "BERTs of a feather do not generalize together: Large variability in generalization across models with similar test set performance"
+    authors: "McCoy, Min, Linzen"
+    year: 2020
+    venue: "BlackboxNLP Workshop at EMNLP 2020"
+    category: training-instability
+    role: background
+    key_finding: "Fine-tuning 100 BERT instances on MNLI yields near-identical dev accuracy (83.6-84.8%) but wildly different syntactic generalization (0-66.2% on HANS), demonstrating extreme seed-dependent generalization."
+    relevance: "与我们方差梯度发现的关系：error injection 放大了 McCoy 描述的 seed sensitivity"
+
+  - id: mosbach2021stability
+    title: "On the Stability of Fine-tuning BERT: Misconceptions, Explanations, and Strong Baselines"
+    authors: "Mosbach, Andriushchenko, Klakow"
+    year: 2021
+    venue: "ICLR 2021"
+    category: training-instability
+    role: background
+    key_finding: "BERT fine-tuning instability的根因是vanishing gradients导致的优化困难，而非此前假设的catastrophic forgetting或数据集过小。"
+    relevance: "fine-tuning 不稳定性的基础文献，我们的 TaxEI 方差梯度扩展了这一发现到 error-augmented agent training"
+
+  - id: damour2022underspecification
+    title: "Underspecification Presents Challenges for Credibility in Modern Machine Learning"
+    authors: "D'Amour, Heller, Moldovan, Adlam, Alipanahi, Beutel, Chen, Deaton, Eisenstein, Hoffman et al."
+    year: 2022
+    venue: "Journal of Machine Learning Research, Vol. 23, No. 226"
+    category: training-instability
+    role: background
+    key_finding: "ML pipeline underspecification导致测试性能相当的模型在部署域行为截然不同，涵盖CV、NLP、医学等多领域实证。"
+    relevance: "我们的 3 seeds 中 2 个 match vanilla + 1 个 collapse 是 underspecification 的典型表现"
+
+  # === Category: alfworld-methods ===
+
+  - id: shridhar2021alfworld
+    title: "ALFWorld: Aligning Text and Embodied Environments for Interactive Learning"
+    authors: "Shridhar, Yuan, Côté, Bisk, Trischler, Hausknecht"
+    year: 2021
+    venue: "ICLR 2021"
+    arxiv: "2010.03768"
+    category: alfworld-methods
+    role: evaluation
+    key_finding: "Aligns TextWorld text-based environment with ALFRED embodied benchmark, enabling abstract policy learning that transfers to visual grounding."
+    relevance: "我们的实验环境；134 tasks across 6 task types benchmark"
+
+  - id: yao2023react
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    authors: "Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao"
+    year: 2023
+    venue: "ICLR 2023"
+    arxiv: "2210.03629"
+    category: alfworld-methods
+    role: evaluation
+    key_finding: "Interleaved reasoning traces and actions enable LLMs to ground decisions, achieving 75% on ALFWorld (single-trial)."
+    relevance: "我们使用的 prompting paradigm（ReAct format）"
+
+  - id: shinn2023reflexion
+    title: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+    authors: "Shinn, Cassano, Berman, Gopinath, Narasimhan, Yao"
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv: "2303.11366"
+    category: alfworld-methods
+    role: evaluation
+    key_finding: "Verbal self-reflection in episodic memory achieves 97% on ALFWorld (12 trials, 130/134 tasks solved) without weight updates."
+    relevance: "Inference-time reflection 成功 where training-time injection 失败——对比 key point"
+
+  - id: kim2025coex
+    title: "CoEx -- Co-evolving World-model and Exploration"
+    authors: "Kim, Hwang"
+    year: 2025
+    venue: "Findings of EMNLP 2025"
+    arxiv: "2507.22281"
+    category: alfworld-methods
+    role: evaluation
+    key_finding: "Hierarchical state abstraction with dynamically updated neurosymbolic world model achieves 93.28% on ALFWorld."
+    relevance: "ALFWorld SOTA 参考；co-evolving world model 对比我们的 static SFT 方法"
+
+  # === Category: error-injection (补充) ===
+
+  - id: eef2025
+    title: "Exploring Expert Failures Improves LLM Agent Tuning"
+    authors: "Lan, Bai, Cheng, Hsieh, Zhou"
+    year: 2025
+    venue: "arXiv 2504.13145"
+    category: error-injection
+    role: evaluation
+    key_finding: "从失败 expert trajectories 中提取有益 actions（plans、key actions），用于引导 agent exploration，WebShop SOTA 0.81，SciWorld 81/100。"
+    relevance: "从失败中提取正向信号（非注入负信号），成功 on WebShop。与我们的直接注入形成对比——方向相反的 failure utilization。"
+
+  - id: agentdebug2025
+    title: "Where LLM Agents Fail and How They can Learn From Failures"
+    authors: "Zhu, Liu, Li, Tian et al."
+    year: 2025
+    venue: "arXiv 2509.25370"
+    category: error-injection
+    role: evaluation
+    key_finding: "5-dimension AgentErrorTaxonomy（memory, reflection, planning, action, system-level）+ AgentErrorBench 标注数据集 + AgentDebug 纠错框架，跨 ALFWorld/GAIA/WebShop 提升 24% all-correct accuracy。"
+    relevance: "ALFWorld 的另一个 error taxonomy（5维 vs 我们的 4 operator）。对比点：不同 taxonomy 设计选择。"
+
+  # === Category: data-mixing / curriculum (补充) ===
+
+  - id: bengio2009curriculum
+    title: "Curriculum Learning"
+    authors: "Bengio, Louradour, Collobert, Weston"
+    year: 2009
+    venue: "ICML 2009"
+    category: curriculum
+    role: background
+    key_finding: "按难度递增顺序呈现训练样本可加速收敛并改善非凸优化的局部最优质量；curriculum 本质是一种 continuation method。"
+    relevance: "Curriculum learning 中 difficult example proportion 的 threshold 概念与我们的 dose-response 阈值平行——训练数据中困难/噪声样本超过阈值后性能崩溃"
+
+  - id: madry2018adversarial
+    title: "Towards Deep Learning Models Resistant to Adversarial Attacks"
+    authors: "Madry, Makelov, Schmidt, Tsipras, Vladu"
+    year: 2018
+    venue: "ICLR 2018"
+    category: data-mixing
+    role: background
+    key_finding: "基于 PGD 的 adversarial training 通过 robust optimization 框架显著提升对抗鲁棒性，但以 clean accuracy 下降为代价。"
+    relevance: "Adversarial training 的 accuracy-robustness tradeoff 是 dose-response 型——增加 adversarial perturbation 强度提升鲁棒性但降低 clean accuracy，与我们的 injection ratio vs clean eval tradeoff 结构相似"

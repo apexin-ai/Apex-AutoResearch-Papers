@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4c0624dc26ae7fb1778",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops gpu check recovery eval",
+  "task_key": "worker_ops_gpu-check-recovery-eval_20260514T181820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-recovery-eval_20260514T181820_result.json",
+    "occurrence": 1,
+    "bytes": 1595,
+    "sha256": "6c63da566055fedaea25aca0067e3e54cfcd1f4d6ef1644e849aedbe27c5fccc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 seed=42 checkpoint 已就绪。现在汇总状态。\n\n---\n\n## GPU 状态报告\n\n| GPU | 实验 | 进度 | Loss | 剩余时间 |\n|-----|------|------|------|----------|\n| cuda:0 | v4-vanilla-seed0 | 1005/1635 (61%) | 0.407 | **~22 min** |\n| cuda:1 | v4-taxei-seed0 | 1095/3387 (32%) | 0.367 | ~1h 15m |\n| cuda:2 | v4-random-seed0 | 1090/3387 (32%) | 0.434 | ~1h 15m |\n| cuda:3 | v4-vanilla-seed7 | 559/1635 (34%) | 0.449 | **~39 min** |\n\n**4 块 GPU 全部在训练，当前无空闲 GPU。**\n\n### v4-vanilla-seed0 / seed7 状态\n- 都仍在训练中（非已完成）。Registry 显示 cron 未找到可能是因为 cron 监控脚本断了，但进程还在跑。\n- seed0 已过 epoch 1 checkpoint（checkpoint-545 已保存），当前 epoch 1.84\n- seed7 刚到 epoch 1.0\n\n### Recovery Eval 准备情况\n- 脚本 `run_injected_eval.sh` 就绪\n- seed=42 的 3 个 final checkpoint 全部存在：\n  - taxei: `checkpoint-3387`\n  - random: `checkpoint-3387`\n  - vanilla: `checkpoint-1635`\n- `eval/injected_eval.py` 就绪\n\n### 计划\nGPU 0 将最先释放（~22 min），然后 GPU 3（~39 min）。Recovery eval 脚本默认 3 个 variant 分别占 GPU 0/1/2 并行跑，但 GPU 1/2 要 1h15m 后才空。\n\n**两个方案：**\n1. **等 GPU 0 空闲后逐个跑**：先在 GPU 0 跑 taxei eval，GPU 3 空闲后跑 vanilla eval，最后 GPU 1 或 2 空闲跑 random eval\n2. **等 ~1h15m 所有 GPU 空闲后用 `all` 模式 3 个并行跑**\n\n方案 1 更快拿到前两个结果。需要我设置监控、在 GPU 空闲时自动启动吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-recovery-eval.md"
+}

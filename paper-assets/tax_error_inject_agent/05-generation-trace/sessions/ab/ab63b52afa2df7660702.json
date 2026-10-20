@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ab63b52afa2df7660702",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval qwen random recovery s1s7s42",
+  "task_key": "worker_eval_qwen-random-recovery-s1s7s42_20260516T140659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen-random-recovery-s1s7s42_20260516T140659.log",
+    "occurrence": 1,
+    "bytes": 694262,
+    "sha256": "8e242d239e6846805f81ae2a1f1e6106aa2290ff71a00be72faab342ccd2861f"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 0,
+    "tool_calls": 204,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 68,
+      "tool_call": 204,
+      "tool_result": 204,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "ab63b52afa2df7660702-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab63b52afa2df7660702-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab63b52afa2df7660702-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-qwen-random-recovery-s1s7s42.md"
+}

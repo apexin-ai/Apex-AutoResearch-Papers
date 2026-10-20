@@ -1,0 +1,39 @@
+{
+  "exp_id": "llama31-taxei-s42-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:14:40.025Z",
+    "updated_at": "2026-05-16T09:15:08.714Z",
+    "spec": {
+      "hypothesis": "Cross-model: LLaMA TaxEI s42 eval — does taxonomy-guided injection help on LLaMA?",
+      "model_name": "Meta-Llama-3.1-8B-Instruct + TaxEI LoRA",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s42/v0-20260516-142258/checkpoint-3387",
+      "eval_data": "ALFWorld 47 injected tasks",
+      "data_path": "eval/injected_eval.py (47 ALFWorld tasks)",
+      "data_count": 47,
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path output/llama31-taxei-s42/v0-20260516-142258/checkpoint-3387 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --model_variant taxei --output_file eval_results/llama31_taxei_s42.json",
+      "server": "autodl-5090"
+    },
+    "metrics": {
+      "recovery_rate": 0.745,
+      "recovery_count": "35/47",
+      "detection_rate": 0.298,
+      "C1_context_truncation": 0.833,
+      "C4_observation_masking": 0.727,
+      "P1_step_order_swap": 0.583,
+      "P2_sub_goal_deletion": 0.833,
+      "C1_detection": 0.167,
+      "C4_detection": 0.364,
+      "P1_detection": 0.25,
+      "P2_detection": 0.417
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T09:15:08.962844+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "133e992c7c2750dc2e51",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis taxei rp training done",
+  "task_key": "worker_analysis_taxei-rp-training-done_20260516T060627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_taxei-rp-training-done_20260516T060627_result.json",
+    "occurrence": 1,
+    "bytes": 1504,
+    "sha256": "d2519509283999b6ad3c47573fb678462ea43fd8109b0d91f37d76ee2c28302f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。汇总如下：\n\n## v4-taxei-rp-s42\n- **状态**: 成功 (EXIT_CODE=0)\n- **最终 train_loss**: 0.3847 (overall avg)\n- **Epoch loss**: E1=0.419 → E2=0.327 → E3=0.226\n- **训练时间**: 3h 46m 40s (13600s)\n- **Checkpoint**: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s42/v0-20260516-101703/checkpoint-5415`\n- **异常**: 无\n\n## v4-taxei-rp-s123\n- **状态**: 成功 (EXIT_CODE=0)\n- **最终 train_loss**: 0.3852 (overall avg)\n- **Epoch loss**: E1=0.474 → E2=0.334 → E3=0.221\n- **训练时间**: 3h 46m 30s (13590s)\n- **Checkpoint**: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s123/v0-20260516-101708/checkpoint-5415`\n- **异常**: 无\n\n## v4-taxei-rp-s1\n- **状态**: 成功 (EXIT_CODE=0)\n- **最终 train_loss**: 0.3853 (overall avg)\n- **Epoch loss**: E1=0.441 → E2=0.356 → E3=0.243\n- **训练时间**: 3h 46m 18s (13578s)\n- **Checkpoint**: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s1/v0-20260516-101834/checkpoint-5415`\n- **异常**: 无\n\n## v4-taxei-rp-s0 (进行中)\n- **进度**: 99.2% (5372/5415)\n- **当前 loss**: ~0.25 (windowed)\n- **预计剩余**: ~2 min\n\n---\n\n**Cross-seed 一致性**: 3 个 seed 的 overall train_loss 非常接近 (0.3847 / 0.3852 / 0.3853)，训练时间也几乎相同 (~3h46m)，loss 曲线趋势一致 (E1 ~0.44 → E2 ~0.34 → E3 ~0.23)。每个 seed 均保存了 3 个 checkpoint (step 1805/3610/5415)。s0 即将完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-taxei-rp-training-done.md"
+}

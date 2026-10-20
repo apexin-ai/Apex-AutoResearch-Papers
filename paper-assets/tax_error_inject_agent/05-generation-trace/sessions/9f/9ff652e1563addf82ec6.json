@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ff652e1563addf82ec6",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops start 50pct evals all4",
+  "task_key": "worker_ops_start-50pct-evals-all4_20260516T010757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start-50pct-evals-all4_20260516T010757_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "47a73a68dd22f2f65a448b9d902ec099b7b628706761caafdfd683537e7ea0f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部启动成功，registry 已更新到 RUNNING。\n\n| GPU | exp_id | checkpoint | tmux session |\n|-----|--------|------------|--------------|\n| cuda:0 | v4-taxei-fixed-inject50-s1-eval | `v4_taxei_fixed_inject50_s1/v0-20260516-075747/checkpoint-1635` | v4-taxei-fixed-inject50-s1-eval |\n| cuda:1 | v4-random-fixed-inject50-s1-eval | `v4_random_fixed_inject50_s1/v1-20260516-075754/checkpoint-1635` | v4-random-fixed-inject50-s1-eval |\n| cuda:2 | v4-taxei-fixed-inject50-s7-eval | `v4_taxei_fixed_inject50_s7/v0-20260516-075754/checkpoint-1635` | v4-taxei-fixed-inject50-s7-eval |\n| cuda:3 | v4-random-fixed-inject50-s7-eval | `v4_random_fixed_inject50_s7/v0-20260516-075756/checkpoint-1635` | v4-random-fixed-inject50-s7-eval |\n\n4 个 python3 进程均已确认在运行，各占一张 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-50pct-evals-all4.md"
+}

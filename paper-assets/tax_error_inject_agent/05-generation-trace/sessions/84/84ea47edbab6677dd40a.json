@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84ea47edbab6677dd40a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "check 5seed batch1 status",
+  "task_key": "worker_check_5seed-batch1-status_20260515T134602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_5seed-batch1-status_20260515T134602_result.json",
+    "occurrence": 1,
+    "bytes": 1684,
+    "sha256": "ed8f31f58078374515ba5bde8d24157b7961af489e40102583b450d9fbe2c896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Batch 1 训练状态报告\n\n### 进程状态：4/4 全部运行中\n\n| 任务 | PID | GPU | 运行时间 | 当前步数 | 总步数 | 进度 | 最新 loss | 预计剩余 |\n|------|-----|-----|---------|---------|--------|------|----------|---------|\n| v4-vanilla-seed1 | 154589 | cuda:0 | 6h16m | 167/1635 | 1635 | 10% | 0.585 | ~53min |\n| v4-vanilla-seed7 | 154666 | cuda:1 | 6h14m | 166/1635 | 1635 | 10% | 0.580 | ~53min |\n| v4-taxei-seed1 | 154937 | cuda:2 | 6h11m | 183/3387 | 3387 | 5% | 0.591 | ~1h42min |\n| v4-taxei-seed7 | 155145 | cuda:3 | 6h08m | 180/3387 | 3387 | 5% | 0.591 | ~1h41min |\n\n### GPU 占用\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 18,399 MiB | 94% |\n| cuda:1 | 18,399 MiB | 95% |\n| cuda:2 | 19,537 MiB | 91% |\n| cuda:3 | 19,537 MiB | 93% |\n\n### 训练细节\n- 进程已运行 ~6h，但训练实际只跑了 ~6min（前 ~5h54m 为模型加载/数据预处理）\n- 训练速度: vanilla ~2.14s/step, taxei ~1.92s/step\n- **尚无 checkpoint**（save_strategy=epoch，epoch 1 未完成）\n- TaxEI 数据集约为 Vanilla 的 2 倍（3387 vs 1635 总步数）\n\n### Recovery Eval 文件（seed0 & seed123）\n已存在 4 个文件：\n- `v4_taxei_recovery_eval_s0.json` (562KB)\n- `v4_taxei_recovery_eval_s123.json` (467KB)\n- `v4_vanilla_recovery_eval_s0.json` (477KB)\n- `v4_vanilla_recovery_eval_s123.json` (460KB)\n\n### Random seed1/7 训练\n**不存在。** `mini_random_sft_v4_seed1/` 和 `mini_random_sft_v4_seed7/` 目录均未创建，需要后续提交。\n\n### 预计完成时间\n- **Vanilla (seed1 & seed7)**: ~1h 后完成\n- **TaxEI (seed1 & seed7)**: ~1h45min 后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-5seed-batch1-status.md"
+}

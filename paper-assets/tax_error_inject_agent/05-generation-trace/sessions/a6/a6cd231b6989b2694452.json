@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6cd231b6989b2694452",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops alfworld gate recheck",
+  "task_key": "worker_ops_alfworld-gate-recheck_20260516T053728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_alfworld-gate-recheck_20260516T053728_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "52ebcf6dff41e57e95d0ebf736bb5b093c2561fdfdd6cc01b567f3bc04247530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ALFWorld 任务池\n\n**Total game files: 3981 → Gate: PASS**\n\n| 任务类型 | 数量 |\n|---------|------|\n| pick_two_obj_and_place | 904 |\n| pick_and_place_simple | 864 |\n| pick_clean_then_place_in_recep | 745 |\n| pick_cool_then_place_in_recep | 628 |\n| pick_heat_then_place_in_recep | 531 |\n| look_at_obj_in_light | 309 |\n\n## TaxEI-RP 训练进度\n\n| Seed | Step | Progress | Loss | Token Acc | 剩余时间 |\n|------|------|----------|------|-----------|---------|\n| s0 | 4700/5415 | 86.8% | 0.246 | 91.2% | ~30min |\n| s1 | 4760/5415 | 87.9% | 0.256 | 90.8% | ~27min |\n| s123 | 4790/5415 | 88.5% | 0.260 | 90.8% | ~26min |\n| s42 | 4780/5415 | 88.3% | 0.310 | 89.3% | ~27min |\n\n4 个 seed 都在 epoch 2.6 附近，约 30 分钟内全部完成。loss 收敛正常，token accuracy 均在 89-91%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-alfworld-gate-recheck.md"
+}

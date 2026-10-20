@@ -1,0 +1,982 @@
+{
+  "schema_version": "1.0",
+  "id": "30917af4529539ccccd5",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "knowledge fix experiment plan",
+  "task_key": "worker_knowledge_fix-experiment-plan_20260515T022321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_fix-experiment-plan_20260515T022321.log",
+    "occurrence": 1,
+    "bytes": 68452,
+    "sha256": "f62f234972561483bfe472a82cb64d016d40bbda14101370e29de9d929e68411"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+                "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2f0032c7-1f83-4130-8152-6c81143e51be",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778826600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b4726764-4c89-49d7-a824-ea41fe32de55",
+                "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the file first.",
+              "signature": "EtYBClkIDRgCKkC02xCFZLt0sbVXYSW/Mj6nRnHRQCE8JtBAlxfXoWjsXcQHmOJwsjjEUbUqyxlrwcXOMy2HlwN+xM8zeh1207hgMg9jbGF1ZGUtb3B1cy00LTY4ABIMtGqij4Ufr9/7BXgsGgw5qc3Q3Kw+ufHUYMgiMIPo7Hq0oJzn5pxhhiITMxi0tqn/kprotT1jJQoxUAviTQ9i7OLs8+070JdzfqSuOSorFxd4nhdzwwDQAXFCnBnX8WS+fs7/L03Tx1j3GhP2g4wGOuUtQM62ImkDjRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "8abc99df-0427-400f-8bbc-bce210f71304",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhMPNGUBUcJpSSZ9JJMTUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11170,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11170
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016NvYCKx4aDE3CjwQuzo4sA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "b5acefe4-ed50-4c9b-b934-9224fc42a706",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GhMPNGUBUcJpSSZ9JJMTUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11170,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11170
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T02:23:32.475Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016NvYCKx4aDE3CjwQuzo4sA",
+              "type": "tool_result",
+              "content": "1\t# experiment_plan.yaml — tax_error_inject_agent (Negative Result Paper)\n2\t# Updated: 2026-05-15\n3\t#\n4\t# Claims (from paper_framing.md):\n5\t#   C1: TaxEI introduces high variance, fails to improve clean performance\n6\t#   C2: Taxonomy labels provide no benefit over random injection\n7\t#   C3: Error injection increases training instability (variance gradient + dose-response)\n8\t#   C4: Injection-trained models do not improve error recovery\n9\t#   C5: Detection training via error injection is completely ineffective\n10\t#   C6: Divergence from PALADIN reveals task-structural boundary conditions\n11\t\n12\texperiments:\n13\t\n14\t  # ============================================================\n15\t  # Baselines & Prerequisites\n16\t  # ============================================================\n17\t  - plan_id: \"baseline\"\n18\t    description: \"Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\"\n19\t    claim: \"context\"\n20\t    priority: 0\n21\t    status: done\n22\t    registry_ids:\n23\t      - vanilla-react-baseline\n24\t    depends_on: []\n25\t    results:\n26\t      accuracy: \"42.6% (20/47)\"\n27\t\n28\t  - plan_id: \"data-collection\"\n29\t    description: \"GPT-5.2 trajectory collection for SFT training data\"\n30\t    claim: \"prerequisite\"\n31\t    priority: 0\n32\t    status: done\n33\t    registry_ids:\n34\t      - traj_collect_500\n35\t    depends_on: []\n36\t    results:\n37\t      success_rate: \"70.2% (501/714)\"\n38\t      cost: \"$8.86\"\n39\t\n40\t  # ============================================================\n41\t  # v3 Pilot (format-aligned, superseded by v4)\n42\t  # ============================================================\n43\t  - plan_id: \"v3-pilot\"\n44\t    description: \"v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval\"\n45\t    claim: \"supplement\"\n46\t    priority: 0\n47\t    status: done\n48\t    registry_ids:\n49\t      - mini-vanilla-sft-v3\n50\t      - mini-taxei-sft-v3\n51\t      - mini-random-sft-v3\n52\t      - v3-vanilla-eval\n53\t      - v3-taxei-eval\n54\t      - v3-random-eval\n55\t    depends_on:\n56\t      - data-collection\n57\t    results:\n58\t      vanilla: \"74.5%\"\n59\t      taxei: \"66.0%\"\n60\t      random: \"51.1%\"\n61\t    notes: \"Superseded by v4. Vanilla 74.5% vs v4 65.3% discrepancy noted in paper supplement.\"\n62\t\n63\t  # ============================================================\n64\t  # Core Multi-Seed Experiments (v4) — Priority 1\n65\t  # ============================================================\n66\t  - plan_id: \"multiseed-vanilla\"\n67\t    description: \"Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\"\n68\t    claim: \"C1\"\n69\t    priority: 1\n70\t    status: done\n71\t    registry_ids:\n72\t      - mini-vanilla-sft-v4       # train seed=42\n73\t      - v4-vanilla-seed0          # train seed=0\n74\t      - v4-vanilla-seed123        # train seed=123\n75\t      - v4-vanilla-eval-r3        # eval seed=42 → 61.7%\n76\t      - v4-vanilla-seed0-eval     # eval seed=0  → 68.1%\n77\t      - v4-vanilla-seed123-eval   # eval seed=123 → 66.0%\n78\t    depends_on:\n79\t      - data-collection\n80\t    results:\n81\t      seed42: \"61.7%\"\n82\t      seed0: \"68.1%\"\n83\t      seed123: \"66.0%\"\n84\t      mean_sd: \"65.3% ± 3.3pp\"\n85\t\n86\t  - plan_id: \"multiseed-taxei\"\n87\t    description: \"TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections, 9,029 samples)\"\n88\t    claim: \"C1,C2,C3\"\n89\t    priority: 1\n90\t    status: done\n91\t    registry_ids:\n92\t      - v4-taxei-sft-r2           # train seed=42\n93\t      - v4-taxei-seed0            # train seed=0\n94\t      - v4-taxei-seed123          # train seed=123\n95\t      - v4-taxei-eval             # eval seed=42 → 61.7%\n96\t      - v4-taxei-seed0-eval       # eval seed=0  → 46.8%\n97\t      - v4-taxei-seed123-eval     # eval seed=123 → 61.7%\n98\t    depends_on:\n99\t      - data-collection\n100\t    results:\n101\t      seed42: \"61.7%\"\n102\t      seed0: \"46.8%\"\n103\t      seed123: \"61.7%\"\n104\t      mean_sd: \"56.7% ± 8.6pp\"\n105\t      vs_vanilla_paired_t_p: \"0.32 (NS)\"\n106\t      vs_vanilla_pooled_p: \"0.054 (NS at α=0.05)\"\n107\t\n108\t  - plan_id: \"multiseed-random\"\n109\t    description: \"Random SFT 3-seed verification (clean + unlabeled injections, 9,029 samples)\"\n110\t    claim: \"C2,C3\"\n111\t    priority: 1\n112\t    status: done\n113\t    registry_ids:\n114\t      - v4-random-sft-r2          # train seed=42\n115\t      - v4-random-seed0           # train seed=0\n116\t      - v4-random-seed123         # train seed=123\n117\t      - v4-random-eval            # eval seed=42 → 66.0%\n118\t      - v4-random-seed0-eval      # eval seed=0  → 55.3%\n119\t      - v4-random-seed123-eval    # eval seed=123 → 68.1%\n120\t    depends_on:\n121\t      - data-collection\n122\t    results:\n123\t      seed42: \"66.0%\"\n124\t      seed0: \"55.3%\"\n125\t      seed123: \"68.1%\"\n126\t      mean_sd: \"63.1% ± 7.0pp\"\n127\t      vs_taxei_paired_t_p: \"0.034 (suggestive, df=2)\"\n128\t      vs_taxei_pooled_p: \"0.170 (NS)\"\n129\t\n130\t  # ============================================================\n131\t  # Dose-Response Ablation — Priority 1\n132\t  # ============================================================\n133\t  - plan_id: \"dose-response-taxei\"\n134\t    description: \"TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n135\t    claim: \"C3\"\n136\t    priority: 1\n137\t    status: done\n138\t    registry_ids:\n139\t      - v4-taxei-fixed-inject10       # train 10%\n140\t      - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)\n141\t      - v4-taxei-fixed-inject50       # train 50%\n142\t      - v4-taxei-fixed-inject10-eval  # eval 10% → 61.7%\n143\t      - v4-taxei-fixed-inject25-eval  # eval 25% → 48.9%\n144\t      - v4-taxei-fixed-inject50-eval  # eval 50% → 51.1%\n145\t    depends_on:\n146\t      - multiseed-vanilla\n147\t    results:\n148\t      inject0_baseline: \"61.7% (vanilla seed=42)\"\n149\t      inject10: \"61.7% (0pp)\"\n150\t      inject25: \"48.9% (-12.8pp)\"\n151\t      inject50: \"51.1% (-10.6pp)\"\n152\t      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n153\t\n154\t  - plan_id: \"dose-response-random\"\n155\t    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n156\t    claim: \"C3\"\n157\t    priority: 1\n158\t    status: in_progress\n159\t    registry_ids:\n160\t      - v4-random-fixed-inject10       # train 10%\n161\t      - v4-random-fixed-inject25       # train 25%\n162\t      - v4-random-fixed-inject50       # train 50%\n163\t      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n164\t      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n165\t      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n166\t    depends_on:\n167\t      - multiseed-vanilla\n168\t    results:\n169\t      inject0_baseline: \"61.7% (vanilla seed=42)\"\n170\t      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n171\t      inject25: \"eval in progress (cuda:0)\"\n172\t      inject50: \"eval in progress (cuda:3)\"\n173\t    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n174\t\n175\t  # ============================================================\n176\t  # Recovery & Detection Eval — Priority 1\n177\t  # ============================================================\n178\t  - plan_id: \"recovery-eval\"\n179\t    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"\n180\t    claim: \"C4,C5\"\n181\t    priority: 1\n182\t    status: done\n183\t    registry_ids:\n184\t      - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection\n185\t      - v4-taxei-recovery-eval         # taxei r1 (process died 5x)\n186\t      - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection\n187\t      - v4-random-recovery-eval        # random → 63.8% recovery, 0% detection\n188\t    depends_on:\n189\t      - multiseed-vanilla\n190\t      - multiseed-taxei\n191\t      - multiseed-random\n192\t    results:\n193\t      vanilla_recovery: \"61.7%\"\n194\t      taxei_recovery: \"59.6%\"\n195\t      random_recovery: \"63.8%\"\n196\t      detection_rate: \"0% (all methods)\"\n197\t      taxei_per_operator: \"C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\"\n198\t\n199\t  # ============================================================\n200\t  # Priority 2 — Strengthens Paper Significantly\n201\t  # ============================================================\n202\t  - plan_id: \"training-dynamics\"\n203\t    description: \"Training loss curve analysis: clean vs injected samples across epochs\"\n204\t    claim: \"C3\"\n205\t    priority: 2\n206\t    status: planned\n207\t    registry_ids: []\n208\t    depends_on:\n209\t      - multiseed-taxei\n210\t      - multiseed-random\n211\t    notes: \"Plot loss curves to show whether injected samples corrupt clean learning signal\"\n212\t\n213\t  - plan_id: \"second-environment\"\n214\t    description: \"WebShop or ScienceWorld replication to test generalization beyond ALFWorld\"\n215\t    claim: \"C6\"\n216\t    priority: 2\n217\t    status: planned\n218\t    registry_ids: []\n219\t    depends_on:\n220\t      - dose-response-random\n221\t    notes: \"Strengthens boundary condition claim if error injection also fails in second environment\"\n222\t\n223\t  - plan_id: \"qualitative-failure-analysis\"\n224\t    description: \"Manual examination of 20+ TaxEI failure cases: incoherent plans vs wrong actions\"\n225\t    claim: \"C1,C6\"\n226\t    priority: 2\n227\t    status: planned\n228\t    registry_ids: []\n229\t    depends_on:\n230\t      - multiseed-taxei\n231\t    notes: \"Informs noise-vs-wrong-learning distinction\"\n232\t\n233\t  # ============================================================\n234\t  # Priority 3 — Nice-to-Have\n235\t  # ============================================================\n236\t  - plan_id: \"scale-ablation\"\n237\t    description: \"Scale to 25K-50K trajectories to match PALADIN's data scale\"\n238\t    claim: \"C6\"\n239\t    priority: 3\n240\t    status: planned\n241\t    registry_ids: []\n242\t    depends_on:\n243\t      - dose-response-random\n244\t\n245\t  - plan_id: \"recovery-prompting\"\n246\t    description: \"In-context recovery examples (few-shot) to isolate training signal vs knowledge\"\n247\t    claim: \"C6\"\n248\t    priority: 3\n249\t    status: planned\n250\t    registry_ids: []\n251\t    depends_on:\n252\t      - recovery-eval\n253\t\n254\t  - plan_id: \"per-operator-deepdive\"\n255\t    description: \"Multi-seed recovery eval to validate per-operator patterns (esp. C4 +9.1pp)\"\n256\t    claim: \"C4\"\n257\t    priority: 3\n258\t    status: planned\n259\t    registry_ids: []\n260\t    depends_on:\n261\t      - recovery-eval\n262\t\n263\t# ============================================================\n264\t# Failed/Killed Registry Entries (not part of active plan)\n265\t# ============================================================\n266\t# Retries, OOM failures, or superseded entries retained for provenance:\n267\t#   - v4-vanilla-sft (OOM), v4-taxei-sft (failed), v4-random-sft (failed)\n268\t#   - v4-vanilla-eval (failed), v4-vanilla-eval-r2 (failed)\n269\t#   - v4-taxei-sft-r3, v4-random-sft-r3 (retries)\n270\t#   - v4-taxei-fixed-inject25 (OOM, replaced by r2)\n271\t#   - v4-fixed-inject10, v4-fixed-inject25 (killed duplicates)\n272\t#   - v4-vanilla-seed7 (killed)\n273\t#   - v4-recovery-eval-dev, v4-recovery-dryrun (pipeline dev)\n274\t#   - mini-vanilla-sft (278-sample pilot, 14.9%)\n275\t#   - mini-taxei-sft (278-sample pilot, 44.7%)\n276\t#   - mini-pipeline-e2e (failed), sft-dryrun-73 (dryrun)\n277\t#   - vanilla_sft_aligned_v1, vanilla_sft_aligned_v2 (unfinished)\n278\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "57e4e82b-177b-4c57-8aca-a6bc84e1fc34",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "content": "# experiment_plan.yaml — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-15\n#\n# Claims (from paper_framing.md):\n#   C1: TaxEI introduces high variance, fails to improve clean performance\n#   C2: Taxonomy labels provide no benefit over random injection\n#   C3: Error injection increases training instability (variance gradient + dose-response)\n#   C4: Injection-trained models do not improve error recovery\n#   C5: Detection training via error injection is completely ineffective\n#   C6: Divergence from PALADIN reveals task-structural boundary conditions\n\nexperiments:\n\n  # ============================================================\n  # Baselines & Prerequisites\n  # ============================================================\n  - plan_id: \"baseline\"\n    description: \"Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\"\n    claim: \"context\"\n    priority: 0\n    status: done\n    registry_ids:\n      - vanilla-react-baseline\n    depends_on: []\n    results:\n      accuracy: \"42.6% (20/47)\"\n\n  - plan_id: \"data-collection\"\n    description: \"GPT-5.2 trajectory collection for SFT training data\"\n    claim: \"prerequisite\"\n    priority: 0\n    status: done\n    registry_ids:\n      - traj_collect_500\n    depends_on: []\n    results:\n      success_rate: \"70.2% (501/714)\"\n      cost: \"$8.86\"\n\n  # ============================================================\n  # v3 Pilot (format-aligned, superseded by v4)\n  # ============================================================\n  - plan_id: \"v3-pilot\"\n    description: \"v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval\"\n    claim: \"supplement\"\n    priority: 0\n    status: done\n    registry_ids:\n      - mini-vanilla-sft-v3\n      - mini-taxei-sft-v3\n      - mini-random-sft-v3\n      - v3-vanilla-eval\n      - v3-taxei-eval\n      - v3-random-eval\n    depends_on:\n      - data-collection\n    results:\n      vanilla: \"74.5%\"\n      taxei: \"66.0%\"\n      random: \"51.1%\"\n    notes: \"Superseded by v4. Vanilla 74.5% vs v4 65.3% discrepancy noted in paper supplement.\"\n\n  # ============================================================\n  # Core Multi-Seed Experiments (v4) — Priority 1\n  # ============================================================\n  - plan_id: \"multiseed-vanilla\"\n    description: \"Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\"\n    claim: \"C1\"\n    priority: 1\n    status: done\n    registry_ids:\n      - mini-vanilla-sft-v4       # train seed=42\n      - v4-vanilla-seed0          # train seed=0\n      - v4-vanilla-seed123        # train seed=123\n      - v4-vanilla-eval-r3        # eval seed=42 → 61.7%\n      - v4-vanilla-seed0-eval     # eval seed=0  → 68.1%\n      - v4-vanilla-seed123-eval   # eval seed=123 → 66.0%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"68.1%\"\n      seed123: \"66.0%\"\n      mean_sd: \"65.3% ± 3.3pp\"\n\n  - plan_id: \"multiseed-taxei\"\n    description: \"TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections, 9,029 samples)\"\n    claim: \"C1,C2,C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-taxei-sft-r2           # train seed=42\n      - v4-taxei-seed0            # train seed=0\n      - v4-taxei-seed123          # train seed=123\n      - v4-taxei-eval             # eval seed=42 → 61.7%\n      - v4-taxei-seed0-eval       # eval seed=0  → 46.8%\n      - v4-taxei-seed123-eval     # eval seed=123 → 61.7%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"46.8%\"\n      seed123: \"61.7%\"\n      mean_sd: \"56.7% ± 8.6pp\"\n      vs_vanilla_paired_t_p: \"0.32 (NS)\"\n      vs_vanilla_pooled_p: \"0.054 (NS at α=0.05)\"\n\n  - plan_id: \"multiseed-random\"\n    description: \"Random SFT 3-seed verification (clean + unlabeled injections, 9,029 samples)\"\n    claim: \"C2,C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-random-sft-r2          # train seed=42\n      - v4-random-seed0           # train seed=0\n      - v4-random-seed123         # train seed=123\n      - v4-random-eval            # eval seed=42 → 66.0%\n      - v4-random-seed0-eval      # eval seed=0  → 55.3%\n      - v4-random-seed123-eval    # eval seed=123 → 68.1%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"66.0%\"\n      seed0: \"55.3%\"\n      seed123: \"68.1%\"\n      mean_sd: \"63.1% ± 7.0pp\"\n      vs_taxei_paired_t_p: \"0.034 (suggestive, df=2)\"\n      vs_taxei_pooled_p: \"0.170 (NS)\"\n\n  # ============================================================\n  # Dose-Response Ablation — Priority 1\n  # ============================================================\n  - plan_id: \"dose-response-taxei\"\n    description: \"TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-taxei-fixed-inject10       # train 10%\n      - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)\n      - v4-taxei-fixed-inject50       # train 50%\n      - v4-taxei-fixed-inject10-eval  # eval 10% → 61.7%\n      - v4-taxei-fixed-inject25-eval  # eval 25% → 48.9%\n      - v4-taxei-fixed-inject50-eval  # eval 50% → 51.1%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"61.7% (0pp)\"\n      inject25: \"48.9% (-12.8pp)\"\n      inject50: \"51.1% (-10.6pp)\"\n      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n\n  - plan_id: \"dose-response-random\"\n    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: in_progress\n    registry_ids:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n      inject25: \"eval in progress (cuda:0)\"\n      inject50: \"eval in progress (cuda:3)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n\n  # ============================================================\n  # Recovery & Detection Eval — Priority 1\n  # ============================================================\n  - plan_id: \"recovery-eval\"\n    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"\n    claim: \"C4,C5\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection\n      - v4-taxei-recovery-eval         # taxei r1 (process died 5x)\n      - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection\n      - v4-random-recovery-eval        # random → 63.8% recovery, 0% detection\n    depends_on:\n      - multiseed-vanilla\n      - multiseed-taxei\n      - multiseed-random\n    results:\n      vanilla_recovery: \"61.7%\"\n      taxei_recovery: \"59.6%\"\n      random_recovery: \"63.8%\"\n      detection_rate: \"0% (all methods)\"\n      taxei_per_operator: \"C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\"\n\n  # ============================================================\n  # Priority 2 — Strengthens Paper Significantly\n  # ============================================================\n  - plan_id: \"training-dynamics\"\n    description: \"Training loss curve analysis: clean vs injected samples across epochs\"\n    claim: \"C3\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - multiseed-taxei\n      - multiseed-random\n    notes: \"Plot loss curves to show whether injected samples corrupt clean learning signal\"\n\n  - plan_id: \"second-environment\"\n    description: \"WebShop or ScienceWorld replication to test generalization beyond ALFWorld\"\n    claim: \"C6\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - dose-response-random\n    notes: \"Strengthens boundary condition claim if error injection also fails in second environment\"\n\n  - plan_id: \"qualitative-failure-analysis\"\n    description: \"Manual examination of 20+ TaxEI failure cases: incoherent plans vs wrong actions\"\n    claim: \"C1,C6\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - multiseed-taxei\n    notes: \"Informs noise-vs-wrong-learning distinction\"\n\n  # ============================================================\n  # Priority 3 — Nice-to-Have\n  # ============================================================\n  - plan_id: \"scale-ablation\"\n    description: \"Scale to 25K-50K trajectories to match PALADIN's data scale\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - dose-response-random\n\n  - plan_id: \"recovery-prompting\"\n    description: \"In-context recovery examples (few-shot) to isolate training signal vs knowledge\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - recovery-eval\n\n  - plan_id: \"per-operator-deepdive\"\n    description: \"Multi-seed recovery eval to validate per-operator patterns (esp. C4 +9.1pp)\"\n    claim: \"C4\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - recovery-eval\n\n# ============================================================\n# Failed/Killed Registry Entries (not part of active plan)\n# ============================================================\n# Retries, OOM failures, or superseded entries retained for provenance:\n#   - v4-vanilla-sft (OOM), v4-taxei-sft (failed), v4-random-sft (failed)\n#   - v4-vanilla-eval (failed), v4-vanilla-eval-r2 (failed)\n#   - v4-taxei-sft-r3, v4-random-sft-r3 (retries)\n#   - v4-taxei-fixed-inject25 (OOM, replaced by r2)\n#   - v4-fixed-inject10, v4-fixed-inject25 (killed duplicates)\n#   - v4-vanilla-seed7 (killed)\n#   - v4-recovery-eval-dev, v4-recovery-dryrun (pipeline dev)\n#   - mini-vanilla-sft (278-sample pilot, 14.9%)\n#   - mini-taxei-sft (278-sample pilot, 44.7%)\n#   - mini-pipeline-e2e (failed), sft-dryrun-73 (dryrun)\n#   - vanilla_sft_aligned_v1, vanilla_sft_aligned_v2 (unfinished)\n",
+                "numLines": 278,
+                "startLine": 1,
+                "totalLines": 278
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll apply both fixes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "b141f88d-2b4e-4111-a7c6-f5b759143a89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZ2AwzX7Qjri34aYxD5TNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4155,
+                "cache_read_input_tokens": 23011,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4155
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wz536jM38NwUBjHXycgE6F",
+              "name": "Edit",
+              "input": {
+                "replace_all": true,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "old_string": "    registry_ids:",
+                "new_string": "    registry_id:"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "ad414230-d850-42ca-8db1-c0a377258c1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZ2AwzX7Qjri34aYxD5TNw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4155,
+                "cache_read_input_tokens": 23011,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4155
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T02:23:37.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wz536jM38NwUBjHXycgE6F",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "94a95301-8fbe-41b9-b720-ad1ae242daba",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+              "oldString": "    registry_ids:",
+              "newString": "    registry_id:",
+              "originalFile": "# experiment_plan.yaml — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-15\n#\n# Claims (from paper_framing.md):\n#   C1: TaxEI introduces high variance, fails to improve clean performance\n#   C2: Taxonomy labels provide no benefit over random injection\n#   C3: Error injection increases training instability (variance gradient + dose-response)\n#   C4: Injection-trained models do not improve error recovery\n#   C5: Detection training via error injection is completely ineffective\n#   C6: Divergence from PALADIN reveals task-structural boundary conditions\n\nexperiments:\n\n  # ============================================================\n  # Baselines & Prerequisites\n  # ============================================================\n  - plan_id: \"baseline\"\n    description: \"Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\"\n    claim: \"context\"\n    priority: 0\n    status: done\n    registry_ids:\n      - vanilla-react-baseline\n    depends_on: []\n    results:\n      accuracy: \"42.6% (20/47)\"\n\n  - plan_id: \"data-collection\"\n    description: \"GPT-5.2 trajectory collection for SFT training data\"\n    claim: \"prerequisite\"\n    priority: 0\n    status: done\n    registry_ids:\n      - traj_collect_500\n    depends_on: []\n    results:\n      success_rate: \"70.2% (501/714)\"\n      cost: \"$8.86\"\n\n  # ============================================================\n  # v3 Pilot (format-aligned, superseded by v4)\n  # ============================================================\n  - plan_id: \"v3-pilot\"\n    description: \"v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval\"\n    claim: \"supplement\"\n    priority: 0\n    status: done\n    registry_ids:\n      - mini-vanilla-sft-v3\n      - mini-taxei-sft-v3\n      - mini-random-sft-v3\n      - v3-vanilla-eval\n      - v3-taxei-eval\n      - v3-random-eval\n    depends_on:\n      - data-collection\n    results:\n      vanilla: \"74.5%\"\n      taxei: \"66.0%\"\n      random: \"51.1%\"\n    notes: \"Superseded by v4. Vanilla 74.5% vs v4 65.3% discrepancy noted in paper supplement.\"\n\n  # ============================================================\n  # Core Multi-Seed Experiments (v4) — Priority 1\n  # ============================================================\n  - plan_id: \"multiseed-vanilla\"\n    description: \"Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\"\n    claim: \"C1\"\n    priority: 1\n    status: done\n    registry_ids:\n      - mini-vanilla-sft-v4       # train seed=42\n      - v4-vanilla-seed0          # train seed=0\n      - v4-vanilla-seed123        # train seed=123\n      - v4-vanilla-eval-r3        # eval seed=42 → 61.7%\n      - v4-vanilla-seed0-eval     # eval seed=0  → 68.1%\n      - v4-vanilla-seed123-eval   # eval seed=123 → 66.0%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"68.1%\"\n      seed123: \"66.0%\"\n      mean_sd: \"65.3% ± 3.3pp\"\n\n  - plan_id: \"multiseed-taxei\"\n    description: \"TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections, 9,029 samples)\"\n    claim: \"C1,C2,C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-taxei-sft-r2           # train seed=42\n      - v4-taxei-seed0            # train seed=0\n      - v4-taxei-seed123          # train seed=123\n      - v4-taxei-eval             # eval seed=42 → 61.7%\n      - v4-taxei-seed0-eval       # eval seed=0  → 46.8%\n      - v4-taxei-seed123-eval     # eval seed=123 → 61.7%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"46.8%\"\n      seed123: \"61.7%\"\n      mean_sd: \"56.7% ± 8.6pp\"\n      vs_vanilla_paired_t_p: \"0.32 (NS)\"\n      vs_vanilla_pooled_p: \"0.054 (NS at α=0.05)\"\n\n  - plan_id: \"multiseed-random\"\n    description: \"Random SFT 3-seed verification (clean + unlabeled injections, 9,029 samples)\"\n    claim: \"C2,C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-random-sft-r2          # train seed=42\n      - v4-random-seed0           # train seed=0\n      - v4-random-seed123         # train seed=123\n      - v4-random-eval            # eval seed=42 → 66.0%\n      - v4-random-seed0-eval      # eval seed=0  → 55.3%\n      - v4-random-seed123-eval    # eval seed=123 → 68.1%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"66.0%\"\n      seed0: \"55.3%\"\n      seed123: \"68.1%\"\n      mean_sd: \"63.1% ± 7.0pp\"\n      vs_taxei_paired_t_p: \"0.034 (suggestive, df=2)\"\n      vs_taxei_pooled_p: \"0.170 (NS)\"\n\n  # ============================================================\n  # Dose-Response Ablation — Priority 1\n  # ============================================================\n  - plan_id: \"dose-response-taxei\"\n    description: \"TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-taxei-fixed-inject10       # train 10%\n      - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)\n      - v4-taxei-fixed-inject50       # train 50%\n      - v4-taxei-fixed-inject10-eval  # eval 10% → 61.7%\n      - v4-taxei-fixed-inject25-eval  # eval 25% → 48.9%\n      - v4-taxei-fixed-inject50-eval  # eval 50% → 51.1%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"61.7% (0pp)\"\n      inject25: \"48.9% (-12.8pp)\"\n      inject50: \"51.1% (-10.6pp)\"\n      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n\n  - plan_id: \"dose-response-random\"\n    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: in_progress\n    registry_ids:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n      inject25: \"eval in progress (cuda:0)\"\n      inject50: \"eval in progress (cuda:3)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n\n  # ============================================================\n  # Recovery & Detection Eval — Priority 1\n  # ============================================================\n  - plan_id: \"recovery-eval\"\n    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"\n    claim: \"C4,C5\"\n    priority: 1\n    status: done\n    registry_ids:\n      - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection\n      - v4-taxei-recovery-eval         # taxei r1 (process died 5x)\n      - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection\n      - v4-random-recovery-eval        # random → 63.8% recovery, 0% detection\n    depends_on:\n      - multiseed-vanilla\n      - multiseed-taxei\n      - multiseed-random\n    results:\n      vanilla_recovery: \"61.7%\"\n      taxei_recovery: \"59.6%\"\n      random_recovery: \"63.8%\"\n      detection_rate: \"0% (all methods)\"\n      taxei_per_operator: \"C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\"\n\n  # ============================================================\n  # Priority 2 — Strengthens Paper Significantly\n  # ============================================================\n  - plan_id: \"training-dynamics\"\n    description: \"Training loss curve analysis: clean vs injected samples across epochs\"\n    claim: \"C3\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - multiseed-taxei\n      - multiseed-random\n    notes: \"Plot loss curves to show whether injected samples corrupt clean learning signal\"\n\n  - plan_id: \"second-environment\"\n    description: \"WebShop or ScienceWorld replication to test generalization beyond ALFWorld\"\n    claim: \"C6\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - dose-response-random\n    notes: \"Strengthens boundary condition claim if error injection also fails in second environment\"\n\n  - plan_id: \"qualitative-failure-analysis\"\n    description: \"Manual examination of 20+ TaxEI failure cases: incoherent plans vs wrong actions\"\n    claim: \"C1,C6\"\n    priority: 2\n    status: planned\n    registry_ids: []\n    depends_on:\n      - multiseed-taxei\n    notes: \"Informs noise-vs-wrong-learning distinction\"\n\n  # ============================================================\n  # Priority 3 — Nice-to-Have\n  # ============================================================\n  - plan_id: \"scale-ablation\"\n    description: \"Scale to 25K-50K trajectories to match PALADIN's data scale\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - dose-response-random\n\n  - plan_id: \"recovery-prompting\"\n    description: \"In-context recovery examples (few-shot) to isolate training signal vs knowledge\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - recovery-eval\n\n  - plan_id: \"per-operator-deepdive\"\n    description: \"Multi-seed recovery eval to validate per-operator patterns (esp. C4 +9.1pp)\"\n    claim: \"C4\"\n    priority: 3\n    status: planned\n    registry_ids: []\n    depends_on:\n      - recovery-eval\n\n# ============================================================\n# Failed/Killed Registry Entries (not part of active plan)\n# ============================================================\n# Retries, OOM failures, or superseded entries retained for provenance:\n#   - v4-vanilla-sft (OOM), v4-taxei-sft (failed), v4-random-sft (failed)\n#   - v4-vanilla-eval (failed), v4-vanilla-eval-r2 (failed)\n#   - v4-taxei-sft-r3, v4-random-sft-r3 (retries)\n#   - v4-taxei-fixed-inject25 (OOM, replaced by r2)\n#   - v4-fixed-inject10, v4-fixed-inject25 (killed duplicates)\n#   - v4-vanilla-seed7 (killed)\n#   - v4-recovery-eval-dev, v4-recovery-dryrun (pipeline dev)\n#   - mini-vanilla-sft (278-sample pilot, 14.9%)\n#   - mini-taxei-sft (278-sample pilot, 44.7%)\n#   - mini-pipeline-e2e (failed), sft-dryrun-73 (dryrun)\n#   - vanilla_sft_aligned_v1, vanilla_sft_aligned_v2 (unfinished)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 19,
+                  "oldLines": 7,
+                  "newStart": 19,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"context\"",
+                    "     priority: 0",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - vanilla-react-baseline",
+                    "     depends_on: []",
+                    "     results:"
+                  ]
+                },
+                {
+                  "oldStart": 30,
+                  "oldLines": 7,
+                  "newStart": 30,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"prerequisite\"",
+                    "     priority: 0",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - traj_collect_500",
+                    "     depends_on: []",
+                    "     results:"
+                  ]
+                },
+                {
+                  "oldStart": 45,
+                  "oldLines": 7,
+                  "newStart": 45,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"supplement\"",
+                    "     priority: 0",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - mini-vanilla-sft-v3",
+                    "       - mini-taxei-sft-v3",
+                    "       - mini-random-sft-v3"
+                  ]
+                },
+                {
+                  "oldStart": 68,
+                  "oldLines": 7,
+                  "newStart": 68,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C1\"",
+                    "     priority: 1",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - mini-vanilla-sft-v4       # train seed=42",
+                    "       - v4-vanilla-seed0          # train seed=0",
+                    "       - v4-vanilla-seed123        # train seed=123"
+                  ]
+                },
+                {
+                  "oldStart": 88,
+                  "oldLines": 7,
+                  "newStart": 88,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C1,C2,C3\"",
+                    "     priority: 1",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - v4-taxei-sft-r2           # train seed=42",
+                    "       - v4-taxei-seed0            # train seed=0",
+                    "       - v4-taxei-seed123          # train seed=123"
+                  ]
+                },
+                {
+                  "oldStart": 110,
+                  "oldLines": 7,
+                  "newStart": 110,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C2,C3\"",
+                    "     priority: 1",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - v4-random-sft-r2          # train seed=42",
+                    "       - v4-random-seed0           # train seed=0",
+                    "       - v4-random-seed123         # train seed=123"
+                  ]
+                },
+                {
+                  "oldStart": 135,
+                  "oldLines": 7,
+                  "newStart": 135,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C3\"",
+                    "     priority: 1",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - v4-taxei-fixed-inject10       # train 10%",
+                    "       - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)",
+                    "       - v4-taxei-fixed-inject50       # train 50%"
+                  ]
+                },
+                {
+                  "oldStart": 156,
+                  "oldLines": 7,
+                  "newStart": 156,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C3\"",
+                    "     priority: 1",
+                    "     status: in_progress",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - v4-random-fixed-inject10       # train 10%",
+                    "       - v4-random-fixed-inject25       # train 25%",
+                    "       - v4-random-fixed-inject50       # train 50%"
+                  ]
+                },
+                {
+                  "oldStart": 180,
+                  "oldLines": 7,
+                  "newStart": 180,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C4,C5\"",
+                    "     priority: 1",
+                    "     status: done",
+                    "-    registry_ids:",
+                    "+    registry_id:",
+                    "       - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection",
+                    "       - v4-taxei-recovery-eval         # taxei r1 (process died 5x)",
+                    "       - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection"
+                  ]
+                },
+                {
+                  "oldStart": 204,
+                  "oldLines": 7,
+                  "newStart": 204,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C3\"",
+                    "     priority: 2",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - multiseed-taxei",
+                    "       - multiseed-random"
+                  ]
+                },
+                {
+                  "oldStart": 215,
+                  "oldLines": 7,
+                  "newStart": 215,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C6\"",
+                    "     priority: 2",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - dose-response-random",
+                    "     notes: \"Strengthens boundary condition claim if error injection also fails in second environment\""
+                  ]
+                },
+                {
+                  "oldStart": 225,
+                  "oldLines": 7,
+                  "newStart": 225,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C1,C6\"",
+                    "     priority: 2",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - multiseed-taxei",
+                    "     notes: \"Informs noise-vs-wrong-learning distinction\""
+                  ]
+                },
+                {
+                  "oldStart": 238,
+                  "oldLines": 7,
+                  "newStart": 238,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C6\"",
+                    "     priority: 3",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - dose-response-random",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 247,
+                  "oldLines": 7,
+                  "newStart": 247,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C6\"",
+                    "     priority: 3",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - recovery-eval",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 256,
+                  "oldLines": 7,
+                  "newStart": 256,
+                  "newLines": 7,
+                  "lines": [
+                    "     claim: \"C4\"",
+                    "     priority: 3",
+                    "     status: planned",
+                    "-    registry_ids: []",
+                    "+    registry_id: []",
+                    "     depends_on:",
+                    "       - recovery-eval",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": true
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FvGH7AyJSNrKaHsbqY5Pjt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "old_string": "    status: in_progress\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n      inject25: \"eval in progress (cuda:0)\"\n      inject50: \"eval in progress (cuda:3)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"",
+                "new_string": "    status: done\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → 55.3%\n      - v4-random-fixed-inject50-eval  # eval 50% → 57.4%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (32/47, +6.4pp)\"\n      inject25: \"55.3% (26/47, -6.4pp)\"\n      inject50: \"57.4% (27/47, -4.3pp)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "28c55a29-4f7c-4279-a3f7-8da202c886ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UephpBc8VRocZExy7BxQ6U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 218,
+                "cache_read_input_tokens": 27166,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 218
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T02:23:48.607Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FvGH7AyJSNrKaHsbqY5Pjt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "37c4c925-4883-47e1-a1ae-389076669a9d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+              "oldString": "    status: in_progress\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n      inject25: \"eval in progress (cuda:0)\"\n      inject50: \"eval in progress (cuda:3)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"",
+              "newString": "    status: done\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → 55.3%\n      - v4-random-fixed-inject50-eval  # eval 50% → 57.4%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (32/47, +6.4pp)\"\n      inject25: \"55.3% (26/47, -6.4pp)\"\n      inject50: \"57.4% (27/47, -4.3pp)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"",
+              "originalFile": "# experiment_plan.yaml — tax_error_inject_agent (Negative Result Paper)\n# Updated: 2026-05-15\n#\n# Claims (from paper_framing.md):\n#   C1: TaxEI introduces high variance, fails to improve clean performance\n#   C2: Taxonomy labels provide no benefit over random injection\n#   C3: Error injection increases training instability (variance gradient + dose-response)\n#   C4: Injection-trained models do not improve error recovery\n#   C5: Detection training via error injection is completely ineffective\n#   C6: Divergence from PALADIN reveals task-structural boundary conditions\n\nexperiments:\n\n  # ============================================================\n  # Baselines & Prerequisites\n  # ============================================================\n  - plan_id: \"baseline\"\n    description: \"Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\"\n    claim: \"context\"\n    priority: 0\n    status: done\n    registry_id:\n      - vanilla-react-baseline\n    depends_on: []\n    results:\n      accuracy: \"42.6% (20/47)\"\n\n  - plan_id: \"data-collection\"\n    description: \"GPT-5.2 trajectory collection for SFT training data\"\n    claim: \"prerequisite\"\n    priority: 0\n    status: done\n    registry_id:\n      - traj_collect_500\n    depends_on: []\n    results:\n      success_rate: \"70.2% (501/714)\"\n      cost: \"$8.86\"\n\n  # ============================================================\n  # v3 Pilot (format-aligned, superseded by v4)\n  # ============================================================\n  - plan_id: \"v3-pilot\"\n    description: \"v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval\"\n    claim: \"supplement\"\n    priority: 0\n    status: done\n    registry_id:\n      - mini-vanilla-sft-v3\n      - mini-taxei-sft-v3\n      - mini-random-sft-v3\n      - v3-vanilla-eval\n      - v3-taxei-eval\n      - v3-random-eval\n    depends_on:\n      - data-collection\n    results:\n      vanilla: \"74.5%\"\n      taxei: \"66.0%\"\n      random: \"51.1%\"\n    notes: \"Superseded by v4. Vanilla 74.5% vs v4 65.3% discrepancy noted in paper supplement.\"\n\n  # ============================================================\n  # Core Multi-Seed Experiments (v4) — Priority 1\n  # ============================================================\n  - plan_id: \"multiseed-vanilla\"\n    description: \"Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\"\n    claim: \"C1\"\n    priority: 1\n    status: done\n    registry_id:\n      - mini-vanilla-sft-v4       # train seed=42\n      - v4-vanilla-seed0          # train seed=0\n      - v4-vanilla-seed123        # train seed=123\n      - v4-vanilla-eval-r3        # eval seed=42 → 61.7%\n      - v4-vanilla-seed0-eval     # eval seed=0  → 68.1%\n      - v4-vanilla-seed123-eval   # eval seed=123 → 66.0%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"68.1%\"\n      seed123: \"66.0%\"\n      mean_sd: \"65.3% ± 3.3pp\"\n\n  - plan_id: \"multiseed-taxei\"\n    description: \"TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections, 9,029 samples)\"\n    claim: \"C1,C2,C3\"\n    priority: 1\n    status: done\n    registry_id:\n      - v4-taxei-sft-r2           # train seed=42\n      - v4-taxei-seed0            # train seed=0\n      - v4-taxei-seed123          # train seed=123\n      - v4-taxei-eval             # eval seed=42 → 61.7%\n      - v4-taxei-seed0-eval       # eval seed=0  → 46.8%\n      - v4-taxei-seed123-eval     # eval seed=123 → 61.7%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"61.7%\"\n      seed0: \"46.8%\"\n      seed123: \"61.7%\"\n      mean_sd: \"56.7% ± 8.6pp\"\n      vs_vanilla_paired_t_p: \"0.32 (NS)\"\n      vs_vanilla_pooled_p: \"0.054 (NS at α=0.05)\"\n\n  - plan_id: \"multiseed-random\"\n    description: \"Random SFT 3-seed verification (clean + unlabeled injections, 9,029 samples)\"\n    claim: \"C2,C3\"\n    priority: 1\n    status: done\n    registry_id:\n      - v4-random-sft-r2          # train seed=42\n      - v4-random-seed0           # train seed=0\n      - v4-random-seed123         # train seed=123\n      - v4-random-eval            # eval seed=42 → 66.0%\n      - v4-random-seed0-eval      # eval seed=0  → 55.3%\n      - v4-random-seed123-eval    # eval seed=123 → 68.1%\n    depends_on:\n      - data-collection\n    results:\n      seed42: \"66.0%\"\n      seed0: \"55.3%\"\n      seed123: \"68.1%\"\n      mean_sd: \"63.1% ± 7.0pp\"\n      vs_taxei_paired_t_p: \"0.034 (suggestive, df=2)\"\n      vs_taxei_pooled_p: \"0.170 (NS)\"\n\n  # ============================================================\n  # Dose-Response Ablation — Priority 1\n  # ============================================================\n  - plan_id: \"dose-response-taxei\"\n    description: \"TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: done\n    registry_id:\n      - v4-taxei-fixed-inject10       # train 10%\n      - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)\n      - v4-taxei-fixed-inject50       # train 50%\n      - v4-taxei-fixed-inject10-eval  # eval 10% → 61.7%\n      - v4-taxei-fixed-inject25-eval  # eval 25% → 48.9%\n      - v4-taxei-fixed-inject50-eval  # eval 50% → 51.1%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"61.7% (0pp)\"\n      inject25: \"48.9% (-12.8pp)\"\n      inject50: \"51.1% (-10.6pp)\"\n      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n\n  - plan_id: \"dose-response-random\"\n    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: in_progress\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n      inject25: \"eval in progress (cuda:0)\"\n      inject50: \"eval in progress (cuda:3)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n\n  # ============================================================\n  # Recovery & Detection Eval — Priority 1\n  # ============================================================\n  - plan_id: \"recovery-eval\"\n    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"\n    claim: \"C4,C5\"\n    priority: 1\n    status: done\n    registry_id:\n      - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection\n      - v4-taxei-recovery-eval         # taxei r1 (process died 5x)\n      - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection\n      - v4-random-recovery-eval        # random → 63.8% recovery, 0% detection\n    depends_on:\n      - multiseed-vanilla\n      - multiseed-taxei\n      - multiseed-random\n    results:\n      vanilla_recovery: \"61.7%\"\n      taxei_recovery: \"59.6%\"\n      random_recovery: \"63.8%\"\n      detection_rate: \"0% (all methods)\"\n      taxei_per_operator: \"C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\"\n\n  # ============================================================\n  # Priority 2 — Strengthens Paper Significantly\n  # ============================================================\n  - plan_id: \"training-dynamics\"\n    description: \"Training loss curve analysis: clean vs injected samples across epochs\"\n    claim: \"C3\"\n    priority: 2\n    status: planned\n    registry_id: []\n    depends_on:\n      - multiseed-taxei\n      - multiseed-random\n    notes: \"Plot loss curves to show whether injected samples corrupt clean learning signal\"\n\n  - plan_id: \"second-environment\"\n    description: \"WebShop or ScienceWorld replication to test generalization beyond ALFWorld\"\n    claim: \"C6\"\n    priority: 2\n    status: planned\n    registry_id: []\n    depends_on:\n      - dose-response-random\n    notes: \"Strengthens boundary condition claim if error injection also fails in second environment\"\n\n  - plan_id: \"qualitative-failure-analysis\"\n    description: \"Manual examination of 20+ TaxEI failure cases: incoherent plans vs wrong actions\"\n    claim: \"C1,C6\"\n    priority: 2\n    status: planned\n    registry_id: []\n    depends_on:\n      - multiseed-taxei\n    notes: \"Informs noise-vs-wrong-learning distinction\"\n\n  # ============================================================\n  # Priority 3 — Nice-to-Have\n  # ============================================================\n  - plan_id: \"scale-ablation\"\n    description: \"Scale to 25K-50K trajectories to match PALADIN's data scale\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_id: []\n    depends_on:\n      - dose-response-random\n\n  - plan_id: \"recovery-prompting\"\n    description: \"In-context recovery examples (few-shot) to isolate training signal vs knowledge\"\n    claim: \"C6\"\n    priority: 3\n    status: planned\n    registry_id: []\n    depends_on:\n      - recovery-eval\n\n  - plan_id: \"per-operator-deepdive\"\n    description: \"Multi-seed recovery eval to validate per-operator patterns (esp. C4 +9.1pp)\"\n    claim: \"C4\"\n    priority: 3\n    status: planned\n    registry_id: []\n    depends_on:\n      - recovery-eval\n\n# ============================================================\n# Failed/Killed Registry Entries (not part of active plan)\n# ============================================================\n# Retries, OOM failures, or superseded entries retained for provenance:\n#   - v4-vanilla-sft (OOM), v4-taxei-sft (failed), v4-random-sft (failed)\n#   - v4-vanilla-eval (failed), v4-vanilla-eval-r2 (failed)\n#   - v4-taxei-sft-r3, v4-random-sft-r3 (retries)\n#   - v4-taxei-fixed-inject25 (OOM, replaced by r2)\n#   - v4-fixed-inject10, v4-fixed-inject25 (killed duplicates)\n#   - v4-vanilla-seed7 (killed)\n#   - v4-recovery-eval-dev, v4-recovery-dryrun (pipeline dev)\n#   - mini-vanilla-sft (278-sample pilot, 14.9%)\n#   - mini-taxei-sft (278-sample pilot, 44.7%)\n#   - mini-pipeline-e2e (failed), sft-dryrun-73 (dryrun)\n#   - vanilla_sft_aligned_v1, vanilla_sft_aligned_v2 (unfinished)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 155,
+                  "oldLines": 21,
+                  "newStart": 155,
+                  "newLines": 21,
+                  "lines": [
+                    "     description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"",
+                    "     claim: \"C3\"",
+                    "     priority: 1",
+                    "-    status: in_progress",
+                    "+    status: done",
+                    "     registry_id:",
+                    "       - v4-random-fixed-inject10       # train 10%",
+                    "       - v4-random-fixed-inject25       # train 25%",
+                    "       - v4-random-fixed-inject50       # train 50%",
+                    "       - v4-random-fixed-inject10-eval  # eval 10% → 68.1%",
+                    "-      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING",
+                    "-      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING",
+                    "+      - v4-random-fixed-inject25-eval  # eval 25% → 55.3%",
+                    "+      - v4-random-fixed-inject50-eval  # eval 50% → 57.4%",
+                    "     depends_on:",
+                    "       - multiseed-vanilla",
+                    "     results:",
+                    "       inject0_baseline: \"61.7% (vanilla seed=42)\"",
+                    "-      inject10: \"68.1% (+6.4pp, data augmentation effect)\"",
+                    "-      inject25: \"eval in progress (cuda:0)\"",
+                    "-      inject50: \"eval in progress (cuda:3)\"",
+                    "+      inject10: \"68.1% (32/47, +6.4pp)\"",
+                    "+      inject25: \"55.3% (26/47, -6.4pp)\"",
+                    "+      inject50: \"57.4% (27/47, -4.3pp)\"",
+                    "     notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"",
+                    " ",
+                    "   # ============================================================"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G4Q2jWfx1CRH2KZmvXWRj1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "offset": 150,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "4f327ceb-d1ff-4911-94ba-3e81e2cd090e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qbn5ZsrQo7U6Si2P8WPni9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 27384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 727
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T02:23:51.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G4Q2jWfx1CRH2KZmvXWRj1",
+              "type": "tool_result",
+              "content": "150\t      inject25: \"48.9% (-12.8pp)\"\n151\t      inject50: \"51.1% (-10.6pp)\"\n152\t      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n153\t\n154\t  - plan_id: \"dose-response-random\"\n155\t    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n156\t    claim: \"C3\"\n157\t    priority: 1\n158\t    status: done\n159\t    registry_id:\n160\t      - v4-random-fixed-inject10       # train 10%\n161\t      - v4-random-fixed-inject25       # train 25%\n162\t      - v4-random-fixed-inject50       # train 50%\n163\t      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n164\t      - v4-random-fixed-inject25-eval  # eval 25% → 55.3%\n165\t      - v4-random-fixed-inject50-eval  # eval 50% → 57.4%\n166\t    depends_on:\n167\t      - multiseed-vanilla\n168\t    results:\n169\t      inject0_baseline: \"61.7% (vanilla seed=42)\"\n170\t      inject10: \"68.1% (32/47, +6.4pp)\"\n171\t      inject25: \"55.3% (26/47, -6.4pp)\"\n172\t      inject50: \"57.4% (27/47, -4.3pp)\"\n173\t    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n174\t\n175\t  # ============================================================\n176\t  # Recovery & Detection Eval — Priority 1\n177\t  # ============================================================\n178\t  - plan_id: \"recovery-eval\"\n179\t    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\""
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "5eb7be5d-742b-4090-a50a-4bf40f3d39c1",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml",
+                "content": "      inject25: \"48.9% (-12.8pp)\"\n      inject50: \"51.1% (-10.6pp)\"\n      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n\n  - plan_id: \"dose-response-random\"\n    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n    claim: \"C3\"\n    priority: 1\n    status: done\n    registry_id:\n      - v4-random-fixed-inject10       # train 10%\n      - v4-random-fixed-inject25       # train 25%\n      - v4-random-fixed-inject50       # train 50%\n      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n      - v4-random-fixed-inject25-eval  # eval 25% → 55.3%\n      - v4-random-fixed-inject50-eval  # eval 50% → 57.4%\n    depends_on:\n      - multiseed-vanilla\n    results:\n      inject0_baseline: \"61.7% (vanilla seed=42)\"\n      inject10: \"68.1% (32/47, +6.4pp)\"\n      inject25: \"55.3% (26/47, -6.4pp)\"\n      inject50: \"57.4% (27/47, -4.3pp)\"\n    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n\n  # ============================================================\n  # Recovery & Detection Eval — Priority 1\n  # ============================================================\n  - plan_id: \"recovery-eval\"\n    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"",
+                "numLines": 30,
+                "startLine": 150,
+                "totalLines": 278
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项修复完成：\n\n1. **registry_ids → registry_id**：全文 14 处已替换为单数形式。\n2. **dose-response-random**：status 改为 `done`，inject25 = 55.3% (26/47)，inject50 = 57.4% (27/47)，eval 注释中的 RUNNING 也已更新为实际结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "uuid": "fd8f5237-c62a-459a-89a8-93327a579c88",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E3vjBRyA8rXmtPcsWwxDjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 666,
+                "cache_read_input_tokens": 28111,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 666
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项修复完成：\n\n1. **registry_ids → registry_id**：全文 14 处已替换为单数形式。\n2. **dose-response-random**：status 改为 `done`，inject25 = 55.3% (26/47)，inject50 = 57.4% (27/47)，eval 注释中的 RUNNING 也已更新为实际结果。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 26859,
+            "duration_api_ms": 27813,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "c8321b7b-ee55-4029-be12-b02d333e7ec2",
+            "total_cost_usd": 0.1945655,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 16936,
+              "cache_read_input_tokens": 117513,
+              "output_tokens": 1152,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16936,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 108,
+                  "cache_read_input_tokens": 28111,
+                  "cache_creation_input_tokens": 666,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 666
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1029,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001124,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 1152,
+                "cacheReadInputTokens": 117513,
+                "cacheCreationInputTokens": 16936,
+                "webSearchRequests": 0,
+                "costUSD": 0.1934415,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "621e7e79-0861-4639-bb55-fe3bf47585d6"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-fix-experiment-plan.md"
+}

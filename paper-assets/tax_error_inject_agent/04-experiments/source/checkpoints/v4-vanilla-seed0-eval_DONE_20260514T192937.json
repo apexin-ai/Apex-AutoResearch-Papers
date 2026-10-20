@@ -1,0 +1,49 @@
+{
+  "exp_id": "v4-vanilla-seed0-eval",
+  "project": "tax_error_inject_agent",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:30:26.093Z",
+    "updated_at": "2026-05-14T19:29:37.198Z",
+    "hypothesis": "v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)",
+    "spec": {
+      "checkpoint_path": "eval_results/v4_vanilla_seed0_eval.json",
+      "log_path": "~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T19:01:19.696Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T19:01:20.697938+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_success_rate": 0.681,
+      "eval_successes": 32,
+      "eval_total": 47,
+      "vs_seed42_pp": 6.4,
+      "mcnemar_vs_seed42_p": 0.375,
+      "discordant_pairs": 5,
+      "per_task": {
+        "look_at_obj_in_light": "5/6 (83.3%)",
+        "pick_and_place_simple": "5/8 (62.5%)",
+        "pick_clean_then_place": "6/11 (54.5%)",
+        "pick_cool_then_place": "4/7 (57.1%)",
+        "pick_heat_then_place": "7/8 (87.5%)",
+        "pick_two_obj_and_place": "5/7 (71.4%)"
+      }
+    },
+    "completed_at": "2026-05-14T19:29:37.198Z"
+  },
+  "timestamp": "2026-05-14T19:29:37.266931+00:00",
+  "trigger": "update_registry"
+}

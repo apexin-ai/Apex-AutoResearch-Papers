@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf51c1b330d82770036a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops fix crons",
+  "task_key": "worker_ops_fix-crons_20260516T000644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-crons_20260516T000644_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "b8c5fffe21d577b0bb8a1b0ba4f736b28d98cfb61c34aea66c360fcd17dbf72d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 cron 已修复：\n\n| exp_id | 旧 pid | 新 pid |\n|--------|--------|--------|\n| v4-taxei-fixed-inject50-s1-r2 | `v4-taxei-fixed-inject50-s1-r2` | `211989` |\n| v4-taxei-fixed-inject50-s7 | `v4-taxei-fixed-inject50-s7` | `212543` |\n| v4-random-fixed-inject50-s7 | `v4-random-fixed-inject50-s7` | `212673` |\n\n同时清除了 `_no_signal_miss_count` 和 `last_checked`，下次轮询将用正确的 PID 检查进程状态。v4-random-fixed-inject50-s1-r2 (PID 212414) 未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-crons.md"
+}

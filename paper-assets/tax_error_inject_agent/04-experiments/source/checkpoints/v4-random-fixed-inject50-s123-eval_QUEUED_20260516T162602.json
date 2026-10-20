@@ -1,0 +1,42 @@
+{
+  "exp_id": "v4-random-fixed-inject50-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:42:34.082Z",
+    "updated_at": "2026-05-16T16:26:02.066Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject50_s123/v0-20260515-172123/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject50_s123_eval.json --device cuda:0\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "140871",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject50-s123-eval.log",
+      "submitted_at": "2026-05-15T10:42:33.926Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "injection_ratio": 0.5,
+      "method": "random",
+      "parent": "v4-random-fixed-inject50-s123",
+      "checkpoint_source": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject50_s123/v0-20260515-172123/checkpoint-1635",
+      "eval_data": "47 ALFWorld clean tasks"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.702,
+      "successes": 33,
+      "total": 47
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:02.417665+00:00",
+  "trigger": "update_registry"
+}

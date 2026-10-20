@@ -1,0 +1,127 @@
+{
+  "experiment": "v4-vanilla-seed0-eval",
+  "model": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635",
+  "eval_split": "valid_unseen",
+  "seed": 0,
+  "inject": false,
+  "timestamp": "2026-05-14T19:00:55.659210+00:00",
+
+  "summary": {
+    "total": 47,
+    "success": 32,
+    "fail": 15,
+    "success_rate": 0.681,
+    "avg_steps_all": 26.04,
+    "avg_steps_success": 14.81,
+    "avg_steps_fail": 50.0
+  },
+
+  "by_task_type": {
+    "look_at_obj_in_light":          {"total": 6,  "success": 5, "rate": 0.833},
+    "pick_and_place_simple":          {"total": 8,  "success": 5, "rate": 0.625},
+    "pick_clean_then_place_in_recep": {"total": 11, "success": 6, "rate": 0.545},
+    "pick_cool_then_place_in_recep":  {"total": 7,  "success": 4, "rate": 0.571},
+    "pick_heat_then_place_in_recep":  {"total": 8,  "success": 7, "rate": 0.875},
+    "pick_two_obj_and_place":         {"total": 7,  "success": 5, "rate": 0.714}
+  },
+
+  "baseline_comparison": {
+    "v4_vanilla_seed0":  {"success_rate": 0.681, "success": 32, "total": 47},
+    "v4_vanilla_seed42": {"success_rate": 0.617, "success": 29, "total": 47},
+    "v4_taxei_seed42":   {"success_rate": 0.617, "success": 29, "total": 47},
+    "v4_random_seed42":  {"success_rate": 0.660, "success": 31, "total": 47},
+    "zero_shot":         {"success_rate": 0.426, "success": 20, "total": 47},
+
+    "delta_vs_vanilla_seed42": "+6.4pp (+3 tasks)",
+    "delta_vs_taxei_seed42":   "+6.4pp (+3 tasks)",
+    "delta_vs_random_seed42":  "+2.1pp (+1 task)",
+    "delta_vs_zero_shot":      "+25.5pp (+12 tasks)"
+  },
+
+  "by_task_type_comparison_vs_seed42": {
+    "look_at_obj_in_light":          {"seed0": "5/6 (83.3%)", "seed42": "5/6 (83.3%)", "delta": "0"},
+    "pick_and_place_simple":          {"seed0": "5/8 (62.5%)", "seed42": "5/8 (62.5%)", "delta": "0"},
+    "pick_clean_then_place_in_recep": {"seed0": "6/11 (54.5%)", "seed42": "5/11 (45.5%)", "delta": "+1"},
+    "pick_cool_then_place_in_recep":  {"seed0": "4/7 (57.1%)", "seed42": "4/7 (57.1%)", "delta": "0"},
+    "pick_heat_then_place_in_recep":  {"seed0": "7/8 (87.5%)", "seed42": "6/8 (75.0%)", "delta": "+1"},
+    "pick_two_obj_and_place":         {"seed0": "5/7 (71.4%)", "seed42": "4/7 (57.1%)", "delta": "+1"}
+  },
+
+  "mcnemar_test_vs_seed42": {
+    "description": "McNemar test comparing v4-vanilla seed=0 vs seed=42 per-task outcomes",
+    "contingency_table": {
+      "both_succeed": 28,
+      "seed0_only_succeed": 4,
+      "seed42_only_succeed": 1,
+      "both_fail": 14
+    },
+    "discordant_pairs": {
+      "b_seed0_wins": [
+        "pick_clean_then_place_in_recep-Spatula-None-Drawer-10",
+        "pick_cool_then_place_in_recep-Bread-None-CounterTop-10",
+        "pick_heat_then_place_in_recep-Egg-None-GarbageCan-10",
+        "pick_two_obj_and_place-KeyChain-None-Safe-219"
+      ],
+      "c_seed42_wins": [
+        "pick_cool_then_place_in_recep-Pan-None-CounterTop-10"
+      ]
+    },
+    "chi2_with_continuity": 0.8,
+    "chi2_without_continuity": 1.8,
+    "p_value_exact_binomial_two_sided": 0.375,
+    "p_value_chi2_with_continuity": 0.371,
+    "p_value_chi2_without_continuity": 0.180,
+    "significant_at_0.05": false,
+    "interpretation": "Seed=0 gains 3 net tasks over seed=42, but with only 5 discordant pairs, the difference is NOT statistically significant (p=0.375 exact). The improvement is within normal seed variance."
+  },
+
+  "episodes": [
+    {"idx": 1,  "task_name": "look_at_obj_in_light-AlarmClock-None-DeskLamp-308",         "task_type": "look_at_obj_in_light",          "success": true,  "steps": 13, "seed42_success": true,  "seed42_steps": 10},
+    {"idx": 2,  "task_name": "look_at_obj_in_light-Book-None-DeskLamp-308",                "task_type": "look_at_obj_in_light",          "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 3,  "task_name": "look_at_obj_in_light-Bowl-None-DeskLamp-308",                "task_type": "look_at_obj_in_light",          "success": true,  "steps": 10, "seed42_success": true,  "seed42_steps": 17},
+    {"idx": 4,  "task_name": "look_at_obj_in_light-CD-None-DeskLamp-308",                  "task_type": "look_at_obj_in_light",          "success": true,  "steps": 5,  "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 5,  "task_name": "look_at_obj_in_light-Mug-None-DeskLamp-308",                 "task_type": "look_at_obj_in_light",          "success": true,  "steps": 5,  "seed42_success": true,  "seed42_steps": 5},
+    {"idx": 6,  "task_name": "look_at_obj_in_light-Pencil-None-DeskLamp-308",              "task_type": "look_at_obj_in_light",          "success": true,  "steps": 5,  "seed42_success": true,  "seed42_steps": 5},
+    {"idx": 7,  "task_name": "pick_and_place_simple-Mug-None-Desk-308",                    "task_type": "pick_and_place_simple",          "success": true,  "steps": 5,  "seed42_success": true,  "seed42_steps": 5},
+    {"idx": 8,  "task_name": "pick_and_place_simple-Pencil-None-Shelf-308",                "task_type": "pick_and_place_simple",          "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 9,  "task_name": "pick_and_place_simple-PepperShaker-None-Drawer-10",          "task_type": "pick_and_place_simple",          "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 10, "task_name": "pick_and_place_simple-SaltShaker-None-Cabinet-10",           "task_type": "pick_and_place_simple",          "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 11, "task_name": "pick_and_place_simple-SaltShaker-None-Drawer-10",            "task_type": "pick_and_place_simple",          "success": true,  "steps": 25, "seed42_success": true,  "seed42_steps": 24},
+    {"idx": 12, "task_name": "pick_and_place_simple-SoapBottle-None-Toilet-424",           "task_type": "pick_and_place_simple",          "success": true,  "steps": 6,  "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 13, "task_name": "pick_and_place_simple-Vase-None-Safe-219",                   "task_type": "pick_and_place_simple",          "success": true,  "steps": 14, "seed42_success": true,  "seed42_steps": 29},
+    {"idx": 14, "task_name": "pick_and_place_simple-Watch-None-Safe-219",                  "task_type": "pick_and_place_simple",          "success": true,  "steps": 6,  "seed42_success": true,  "seed42_steps": 12},
+    {"idx": 15, "task_name": "pick_clean_then_place_in_recep-Bowl-None-Cabinet-10",        "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 24, "seed42_success": true,  "seed42_steps": 28},
+    {"idx": 16, "task_name": "pick_clean_then_place_in_recep-Cloth-None-Cabinet-424",      "task_type": "pick_clean_then_place_in_recep", "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 17, "task_name": "pick_clean_then_place_in_recep-Cloth-None-CounterTop-424",   "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 6,  "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 18, "task_name": "pick_clean_then_place_in_recep-Egg-None-Microwave-10",       "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 8,  "seed42_success": true,  "seed42_steps": 8},
+    {"idx": 19, "task_name": "pick_clean_then_place_in_recep-Knife-None-CounterTop-10",    "task_type": "pick_clean_then_place_in_recep", "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 20, "task_name": "pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-10",   "task_type": "pick_clean_then_place_in_recep", "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 21, "task_name": "pick_clean_then_place_in_recep-Pan-None-CounterTop-10",      "task_type": "pick_clean_then_place_in_recep", "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 22, "task_name": "pick_clean_then_place_in_recep-Plate-None-CounterTop-10",    "task_type": "pick_clean_then_place_in_recep", "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 23, "task_name": "pick_clean_then_place_in_recep-SoapBar-None-Cabinet-424",    "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 7,  "seed42_success": true,  "seed42_steps": 7},
+    {"idx": 24, "task_name": "pick_clean_then_place_in_recep-SoapBar-None-CounterTop-424", "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 30, "seed42_success": true,  "seed42_steps": 42},
+    {"idx": 25, "task_name": "pick_clean_then_place_in_recep-Spatula-None-Drawer-10",      "task_type": "pick_clean_then_place_in_recep", "success": true,  "steps": 35, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 26, "task_name": "pick_cool_then_place_in_recep-Bread-None-CounterTop-10",     "task_type": "pick_cool_then_place_in_recep",  "success": true,  "steps": 19, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 27, "task_name": "pick_cool_then_place_in_recep-Lettuce-None-CounterTop-10",   "task_type": "pick_cool_then_place_in_recep",  "success": true,  "steps": 21, "seed42_success": true,  "seed42_steps": 9},
+    {"idx": 28, "task_name": "pick_cool_then_place_in_recep-Mug-None-Cabinet-10",          "task_type": "pick_cool_then_place_in_recep",  "success": true,  "steps": 31, "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 29, "task_name": "pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-10",    "task_type": "pick_cool_then_place_in_recep",  "success": true,  "steps": 8,  "seed42_success": true,  "seed42_steps": 8},
+    {"idx": 30, "task_name": "pick_cool_then_place_in_recep-Pan-None-CounterTop-10",       "task_type": "pick_cool_then_place_in_recep",  "success": false, "steps": 50, "seed42_success": true,  "seed42_steps": 45},
+    {"idx": 31, "task_name": "pick_cool_then_place_in_recep-Potato-None-Microwave-10",     "task_type": "pick_cool_then_place_in_recep",  "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 32, "task_name": "pick_cool_then_place_in_recep-Tomato-None-Microwave-10",     "task_type": "pick_cool_then_place_in_recep",  "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 33, "task_name": "pick_heat_then_place_in_recep-Apple-None-Fridge-10",         "task_type": "pick_heat_then_place_in_recep",  "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 34, "task_name": "pick_heat_then_place_in_recep-Apple-None-GarbageCan-10",     "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 10, "seed42_success": true,  "seed42_steps": 11},
+    {"idx": 35, "task_name": "pick_heat_then_place_in_recep-Cup-None-Cabinet-10",          "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 12, "seed42_success": true,  "seed42_steps": 20},
+    {"idx": 36, "task_name": "pick_heat_then_place_in_recep-Egg-None-GarbageCan-10",       "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 39, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 37, "task_name": "pick_heat_then_place_in_recep-Mug-None-Cabinet-10",          "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 6,  "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 38, "task_name": "pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10",    "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 6,  "seed42_success": true,  "seed42_steps": 6},
+    {"idx": 39, "task_name": "pick_heat_then_place_in_recep-Potato-None-GarbageCan-10",    "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 8,  "seed42_success": true,  "seed42_steps": 8},
+    {"idx": 40, "task_name": "pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10",    "task_type": "pick_heat_then_place_in_recep",  "success": true,  "steps": 8,  "seed42_success": true,  "seed42_steps": 8},
+    {"idx": 41, "task_name": "pick_two_obj_and_place-CD-None-Safe-308",                    "task_type": "pick_two_obj_and_place",         "success": true,  "steps": 40, "seed42_success": true,  "seed42_steps": 10},
+    {"idx": 42, "task_name": "pick_two_obj_and_place-KeyChain-None-Safe-219",              "task_type": "pick_two_obj_and_place",         "success": true,  "steps": 29, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 43, "task_name": "pick_two_obj_and_place-PepperShaker-None-Drawer-10",         "task_type": "pick_two_obj_and_place",         "success": true,  "steps": 14, "seed42_success": true,  "seed42_steps": 21},
+    {"idx": 44, "task_name": "pick_two_obj_and_place-Pillow-None-Sofa-219",                "task_type": "pick_two_obj_and_place",         "success": true,  "steps": 11, "seed42_success": true,  "seed42_steps": 9},
+    {"idx": 45, "task_name": "pick_two_obj_and_place-SoapBar-None-Cabinet-424",            "task_type": "pick_two_obj_and_place",         "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50},
+    {"idx": 46, "task_name": "pick_two_obj_and_place-SoapBar-None-GarbageCan-424",         "task_type": "pick_two_obj_and_place",         "success": true,  "steps": 8,  "seed42_success": true,  "seed42_steps": 8},
+    {"idx": 47, "task_name": "pick_two_obj_and_place-ToiletPaper-None-Cabinet-424",        "task_type": "pick_two_obj_and_place",         "success": false, "steps": 50, "seed42_success": false, "seed42_steps": 50}
+  ]
+}

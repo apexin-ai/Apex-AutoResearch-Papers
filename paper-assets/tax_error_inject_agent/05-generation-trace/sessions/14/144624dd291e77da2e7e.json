@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "144624dd291e77da2e7e",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "submit d022 phaseD",
+  "task_key": "worker_submit_d022-phaseD_20260515T093247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_d022-phaseD_20260515T093247.log",
+    "occurrence": 1,
+    "bytes": 598840,
+    "sha256": "7c38088f880de1dd4425ca201dd028fdf516f3127d0a99563c4f7bd8aea5c2ca"
+  },
+  "statistics": {
+    "messages": 271,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 61,
+      "record": 2,
+      "assistant": 45,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 16
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "144624dd291e77da2e7e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "144624dd291e77da2e7e-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-d022-phased.md"
+}

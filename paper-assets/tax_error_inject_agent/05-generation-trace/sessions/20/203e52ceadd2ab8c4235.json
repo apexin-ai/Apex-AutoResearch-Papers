@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "203e52ceadd2ab8c4235",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_7_1778944003.md",
+  "task_key": "loop_7_1778944003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778944003.md",
+    "occurrence": 1,
+    "bytes": 4993,
+    "sha256": "55700805862e5fd062edf0defdbf1d4e18eb379565de626382905383f9cf28d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-16T14:51:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `autodl-5090:cuda:0/1/2/3`，无其他服务器 GPU 可用。bjb2-33216 仅作辅助，无 GPU\n- 项目路径 `/root/autodl-tmp/tax_error_inject_agent`（不是 `/root/tax_error_inject_agent`，多次踩坑）\n- 必须设 `TMPDIR=/root/autodl-tmp/tmp`，否则 /tmp 满导致训练 crash（llama31-taxei-s0 丢过 1h）\n- Eval 并行上限 2 个（8B 模型 eval ~18GB，4 并行必 OOM）\n- `detection_rate` 指标在 LLaMA 上是假阳性（\"go back\" 触发关键词匹配），不可引用\n- `injected_eval.py` 永远注入错误，clean eval 用 `eval/recovery.py`（不加 `--inject`）\n- Vanilla=4,358 samples vs TaxEI/Random=9,029 — 训练数据量 confound 必须在论文中控制或声明\n- Cron 监控对 eval 脚本会误报 failed（eval 不写 sentinel），eval 完成需手动确认\n- submit_training_job 命令必须用 `bash -c \"...\"` 包裹含 source/conda 的命令\n- 后台进程必须 nohup+disown，否则 SSH 断连时 SIGHUP kill\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-5090`，工作目录 `/root/autodl-tmp/tax_error_inject_agent`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：LLaMA → `/root/autodl-tmp/Meta-Llama-3.1-8B-Instruct`，Qwen → 需确认具体路径\n- HF cache：`HF_HOME=/root/autodl-tmp/.hf_cache`\n- AutoDL 网络加速：`source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL cert env vars\n- 活跃进程：\n  - `llama31-taxei-s123`: PID 277419, cuda:2, 训练中（~2h，started 12:53 UTC）\n  - `llama31-random-s123`: PID 277565, cuda:3, 训练中（~2h，started 12:53 UTC）\n  - Scale-up 数据收集 Phase 1 r2: PID 266813, 8 workers, CPU 任务\n- 活跃 Worker：`worker_eval_vanilla-s123-injected-urgent`（running，eval 任务）\n- Cron：本 session 无活跃 cron（reconcile 返回 0）。需要为 RUNNING 实验重新注册 cron\n\n### 3. 📊 当前状态\n**刚完成**：LLaMA s42+s0 两轮训练+eval（3 条件各 2 seed），TaxEI-RP 5-seed 定论（D043），D045 scope 最终决策，D046 撤销 scale-up 暂停。\n\n**Registry 概览**：180 实验，128 DONE (115 success / 5 negative / 7 failed / 6 killed)，2 RUNNING，3 QUEUED，47 PREPARING。\n\n**RUNNING**：\n- `llama31-taxei-s123` (cuda:2, PID 277419) — LLaMA 跨模型第 3 seed TaxEI 训练\n- `llama31-random-s123` (cuda:3, PID 277565) — LLaMA 跨模型第 3 seed Random 训练\n\n**等待中**：\n- Worker `eval_vanilla-s123-injected-urgent` 正在运行（LLaMA Vanilla s123 injected eval）\n- cuda:0 和 cuda:1 当前空闲（LLaMA s123 Vanilla 训练已完成，等 eval 结果）\n- 3 个 QUEUED（25% dose-response s0/s123），等 GPU\n- Scale-up 数据收集在 CPU 后台跑\n- Qwen Recovery eval 剩 Random s1 + s7 共 2 个待跑\n\n### 4. 📋 待办（条件触发式）\n- `llama31-taxei-s123` + `llama31-random-s123` 训练完成 → 分别启动 injected eval + clean eval（注意 eval 并行 ≤2）\n- Worker `eval_vanilla-s123-injected-urgent` 返回 → 记录 Vanilla s123 injected recovery rate 到 registry，启动 Vanilla s123 clean eval\n- LLaMA 3-seed 全部 eval 完成 → 汇总跨模型对比表（Qwen vs LLaMA），更新 memory.md，向 Director 汇报\n- cuda:0/1 空闲 → 可穿插跑 Qwen Recovery eval (Random s1/s7) 或 25% dose-response QUEUED 实验\n- Scale-up PID 266813 完成 → 分析成功率，决定是否重试（D046 已撤销暂停）\n- 所有 LLaMA + Recovery + Scale-up 完成 → 论文写作就绪，按 D045 scope 开始 8-page long paper\n\n### 5. 🎯 战略上下文\n- **核心结论**：Taxonomy-guided error injection 在 embodied planning (ALFWorld) 上相对 random injection 无显著优势 → **negative result paper**（D036 确认维持此 framing）\n- **关键发现**：25% dose 是唯一出现 TaxEI vs Random 差异的点（p=0.029），但未过 Bonferroni（α=0.017）→ secondary finding only\n- **TaxEI-RP（recovery-paired）适得其反**：50.2±8.6% 低于 TaxEI baseline 58.3%，模型学到错误模式而非恢复能力（D043 Claim 7 定论）\n- **LLaMA 跨模型 2-seed 初步**：三条件 injection penalty 几乎消失（均 ~75% recovery rate），stronger model \"免疫\" injected errors → 论文新发现\n- **投稿目标**：EMNLP 2026 Findings (Budapest, Oct 22-29), 8-page long paper\n- **易错点**：\n  - 不要把 injected_eval.py 的 recovery_rate 当成 clean success_rate（之前犯过）\n  - LLaMA detection_rate 是假阳性，绝对不能引用\n  - Vanilla 训练数据量只有 TaxEI/Random 的一半，这是 confound\n  - 50% dose s0/s123 值完全对调，看起来可疑但 permutation p=0.13 不算罕见\n  - update_registry 设 parent 字段会被识别为 eval 实验，多 seed 训练实验不要设 parent\n  - Cron 对 eval 误报 failed，eval 结果需 SSH 手动确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778944003.md"
+}

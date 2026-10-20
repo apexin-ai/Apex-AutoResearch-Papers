@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "26b3c565a5adc9c14572",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "eval v4 random fixed inject10 eval",
+  "task_key": "worker_eval_v4-random-fixed-inject10-eval_20260515T013008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-random-fixed-inject10-eval_20260515T013008.log",
+    "occurrence": 1,
+    "bytes": 688376,
+    "sha256": "480fdfac4032190dbbc905a94a5078d08f7fb7360bb2892e82fef1fffc659e26"
+  },
+  "statistics": {
+    "messages": 417,
+    "user_turns": 0,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 176,
+      "tool_result": 176,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 417,
+      "chunks": [
+        {
+          "path": "26b3c565a5adc9c14572-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "26b3c565a5adc9c14572-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "26b3c565a5adc9c14572-part-0003.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-v4-random-fixed-inject10-eval.md"
+}

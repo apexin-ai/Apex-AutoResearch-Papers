@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04260acf2cbd7287252f",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops full gpu check and collect",
+  "task_key": "worker_ops_full-gpu-check-and-collect_20260515T235320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-gpu-check-and-collect_20260515T235320_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "8bbc62e5589f9ade49142e95d427c4c08122125903f69acd20956807b1ee7eb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被之前的 session 清理）。全部 registry 更新完毕。\n\n## GPU 状态汇总\n\n| GPU | 任务 | 状态 | 结果 |\n|-----|------|------|------|\n| cuda:0 | v4-random-fixed-inject50-s1 (训练) | **FAILED** | OOM at step 5/1635 — `Tried to allocate 4.25 GiB`，batch_size=8 + max_length=4096 对 50% 数据集太大 |\n| cuda:1 | v4-taxei-fixed-inject50-s1 (训练) | **FAILED** | ModelScope 报错 `Invalid repo_id: model`——swift sft 的 `--model Qwen3-8B` 缺少完整路径，应为 `/root/autodl-tmp/models/Qwen/Qwen3-8B` |\n| cuda:2 | v4-taxei-fixed-inject25-s7-eval-r2 | **DONE** | **success_rate = 57.4%** (27/47) |\n| cuda:3 | v4-random-fixed-inject25-s7-eval | **DONE** | **success_rate = 59.6%** (28/47) |\n\n### 25% s7 Eval 详细对比\n\n| task_type | TaxEI (s7) | Random (s7) |\n|-----------|-----------|-------------|\n| look_at_obj_in_light | 5/6 (83.3%) | 4/6 (66.7%) |\n| pick_and_place_simple | 3/8 (37.5%) | 5/8 (62.5%) |\n| pick_clean_then_place | 5/11 (45.5%) | 6/11 (54.5%) |\n| pick_cool_then_place | 3/7 (42.9%) | 3/7 (42.9%) |\n| pick_heat_then_place | 6/8 (75.0%) | 6/8 (75.0%) |\n| pick_two_obj_and_place | 5/7 (71.4%) | 4/7 (57.1%) |\n\n### 50% 训练失败原因\n\n- **cuda:0 (random)**: CUDA OOM — `per_device_train_batch_size=8` 配合 50% 数据集（4358条）溢出。需降到 batch_size=4 或加 gradient_checkpointing\n- **cuda:1 (taxei)**: `--model Qwen3-8B` 被 ModelScope 解析为 repo_id 失败。命令中缺少完整模型路径 `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n\n4 块 GPU 全部空闲，可重新调度 50% 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-check-and-collect.md"
+}

@@ -1,0 +1,692 @@
+{
+  "schema_version": "1.0",
+  "id": "74cc6ab6119fc6ae3d7e",
+  "project": "tax_error_inject_agent",
+  "kind": "conversation",
+  "title": "code ablation data prep",
+  "task_key": "worker_code_ablation-data-prep_20260514T215005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_ablation-data-prep_20260514T215005.jsonl",
+    "occurrence": 1,
+    "bytes": 26801,
+    "sha256": "a64b02dac4c885bf547a0048ef3f6e48db8d88ead68189ab0378e28e4eee00b5"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:52:06.456123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T21:52:06.456375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T21:52:06.456552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -2 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T21:52:06.456744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\\\\\nYour task is to: Move pump bottle to back of toilet.\\\\\\\\nPrior to this step, you have already taken 0 step(s).\\\\\\\\nBelow are the most recent observations and actions:\\\\\\\\n\\\\\\\\nYour current observation is: -= Welcome to TextWorld, ALFRED! =-\\\\\\\\n\\\\\\\\nYou are in the middle of a room. Looking quickly around you, you see a bathtubbasin 1, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a countertop 1, a garbagecan 1, a handtowelholder 2, a handtowelholder 1, a sinkbasin 1, a toilet 1, a toiletpaperhanger 1, and a towelholder 1.\\\\\\\\n\\\\\\\\nYour task is to: put a soapbottle in toilet.\\\\\\\\nYour admissible actions are: [go to bathtubbasin 1, go to cabinet 1, go to cabinet 2, go to cabinet 3, go to cabinet 4, go to cabinet 5, go to countertop 1, go to garbagecan 1, go to handtowelholder 1, go to handtowelholder 2, go to sinkbasin 1, go to toilet 1, go to toiletpaperhanger 1, go to towelholder 1, help, inventory, look]\\\\\\\\n\\\\\\\\nThink step by step in <think></think> tags, then choose an action in <action></action> tags.\\\\\\\\nThe action MUST be one of the admissible actions listed above.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"<think>Need to locate the soap/pump bottle first. It’s most likely on the countertop near the sink, so I’ll check there.</think>\\\\\\\\n<action>go to countertop 1</action>\\\\\\\"}]}\\\\n{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\\\\\nYour task is to: Move pump bottle to back of toilet.\\\\\\\\nPrior to this step, you have already taken 1 step(s).\\\\\\\\nBelow are the most recent observations and actions:\\\\\\\\nObservation: -= Welcome to TextWorld, ALFRED! =-\\\\\\\\n\\\\\\\\nYou are in the middle of a room. Looking quickly around you, you see a bathtubbas\n…[truncated 1482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T21:52:06.456892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_random_v4.jsonl /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T21:52:06.457019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    9029 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl\\\\n    9029 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_random_v4.jsonl\\\\n    4358 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\\n   22416 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T21:52:06.457175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import json; lines=open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl').readlines(); d=json.loads(lines[0]); print(sorted(d.keys()))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T21:52:06.457298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T21:52:06.457411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "python3 -c \"import json; lines=open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl').readlines(); keys_set=set(); [keys_set.update(json.loads(l).keys()) for l in lines]; print(sorted(keys_set))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T21:52:06.457556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T21:52:06.457693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -o '\"[^\"]*\":' /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T21:52:06.457824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T21:52:06.457937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"is_injected\" /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T21:52:06.458050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T21:52:06.458165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "grep -c \"error_type\\|Error Type\\|injected\\|error_injected\" /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T21:52:06.458277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T21:52:06.458414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# Check all keys in taxei data\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl') as f:\n    lines = f.readlines()\n\nkeys_set = set()\nfor l in lines:\n    d = json.loads(l)\n    keys_set.update(d.keys())\nprint('All keys in taxei:', sorted(keys_set))\n\n# Check first few samples for structure differences\nfor i in [0, 4000, 8000]:\n    d = json.loads(lines[i])\n    print(f'\\nSample {i} keys: {sorted(d.keys())}')\n    msgs = d.get('messages', [])\n    print(f'  num_messages: {len(msgs)}')\n    # Check if there's any error-related content in user message\n    user_msg = msgs[0]['content'] if msgs else ''\n    print(f'  user_msg first 200 chars: {user_msg[:200]}')\n    if len(msgs) > 1:\n        asst_msg = msgs[1]['content']\n        print(f'  asst_msg first 200 chars: {asst_msg[:200]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T21:52:06.458591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All keys in taxei: ['messages']\\\\n\\\\nSample 0 keys: ['messages']\\\\n  num_messages: 2\\\\n  user_msg first 200 chars: You are an expert agent operating in the ALFRED Embodied Environment.\\\\nYour task is to: Move pump bottle to back of toilet.\\\\nPrior to this step, you have already taken 0 step(s).\\\\nBelow are the most rece\\\\n  asst_msg first 200 chars: <think>Need to locate the soap/pump bottle first. It’s most likely on the countertop near the sink, so I’ll check there.</think>\\\\n<action>go to countertop 1</action>\\\\n\\\\nSample 4000 keys: ['messages']\\\\n  num_messages: 2\\\\n  user_msg first 200 chars: You are an expert agent operating in the ALFRED Embodied Environment.\\\\nYour task is to: Examine the book under the light of the lamp\\\\nPrior to this step, you have already taken 3 step(s).\\\\nBelow are the \\\\n  asst_msg first 200 chars: <think>The desklamp is now on, but the book is on the desk. I need to move back to the desk to interact with the book under the lamp’s light.</think>\\\\n<action>go to desk 1</action>\\\\n\\\\nSample 8000 keys: ['messages']\\\\n  num_messages: 2\\\\n  user_msg first 200 chars: You are an expert agent operating in the ALFRED Embodied Environment.\\\\nYour task is to: Place the refrigerated bread on top of the white table in the corner of the room.\\\\nPrior to this step, you have al\\\\n  asst_msg first 200 chars: <think>We still haven’t found the bread. Since nearby storage (drawers/cabinets) may contain it, I’ll continue searching by opening the next drawer (drawer 3).</think>\\\\n<action>open drawer 3</action>\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T21:52:06.458771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# Load vanilla (clean) data\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl') as f:\n    vanilla = [json.loads(l) for l in f]\n\n# Load taxei data\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl') as f:\n    taxei = [json.loads(l) for l in f]\n\nprint(f'Vanilla: {len(vanilla)} samples')\nprint(f'TaxEI: {len(taxei)} samples')\n\n# Check if vanilla samples are a subset of taxei by comparing user messages\nvanilla_users = set()\nfor s in vanilla:\n    vanilla_users.add(s['messages'][0]['content'])\n\ntaxei_in_vanilla = 0\ntaxei_not_in_vanilla = 0\nfor s in taxei:\n    if s['messages'][0]['content'] in vanilla_users:\n        taxei_in_vanilla += 1\n    else:\n        taxei_not_in_vanilla += 1\n\nprint(f'TaxEI samples with user msg matching vanilla: {taxei_in_vanilla}')\nprint(f'TaxEI samples with user msg NOT in vanilla: {taxei_not_in_vanilla}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T21:52:06.458905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Vanilla: 4358 samples\\\\nTaxEI: 9029 samples\\\\nTaxEI samples with user msg matching vanilla: 4358\\\\nTaxEI samples with user msg NOT in vanilla: 4671\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T21:52:06.459050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_vanilla_v4.jsonl') as f:\n    vanilla = [json.loads(l) for l in f]\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_random_v4.jsonl') as f:\n    random_data = [json.loads(l) for l in f]\n\nvanilla_users = set(s['messages'][0]['content'] for s in vanilla)\n\nrandom_in = sum(1 for s in random_data if s['messages'][0]['content'] in vanilla_users)\nrandom_not = sum(1 for s in random_data if s['messages'][0]['content'] not in vanilla_users)\nprint(f'Random matching vanilla: {random_in}')\nprint(f'Random NOT in vanilla: {random_not}')\n\n# Also check: do clean samples in taxei have same assistant response as vanilla?\nvanilla_map = {s['messages'][0]['content']: s['messages'][1]['content'] for s in vanilla}\n\nwith open('/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl') as f:\n    taxei = [json.loads(l) for l in f]\n\nsame_asst = 0\ndiff_asst = 0\nfor s in taxei:\n    u = s['messages'][0]['content']\n    if u in vanilla_map:\n        if s['messages'][1]['content'] == vanilla_map[u]:\n            same_asst += 1\n        else:\n            diff_asst += 1\n\nprint(f'Clean samples with identical assistant response: {same_asst}')\nprint(f'Clean samples with different assistant response: {diff_asst}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T21:52:06.459181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Random matching vanilla: 4358\\\\nRandom NOT in vanilla: 4671\\\\nClean samples with identical assistant response: 4357\\\\nClean samples with different assistant response: 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T21:52:06.459333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "mkdir -p /root/autodl-tmp/tax_error_inject_agent/scripts /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T21:52:06.459455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T21:52:06.459598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat > /root/autodl-tmp/tax_error_inject_agent/scripts/prepare_ablation_data.py << 'SCRIPT_EOF'\n# Input:\n#   data/mini_pipeline_v4/sft_vanilla_v4.jsonl   (4,358 clean samples)\n#   data/mini_pipeline_v4/sft_taxei_v4.jsonl      (4,358 clean + 4,671 injected)\n#   data/mini_pipeline_v4/sft_random_v4.jsonl     (4,358 clean + 4,671 injected)\n# Output:\n#   data/mini_pipeline_v4/ablation/sft_{taxei,random}_v4_inject{10,25}.jsonl\n# Clean/injected distinguished by whether user message matches vanilla data.\n\nimport json\nimport random\nimport os\n\nSEED = 42\nBASE = \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4\"\nOUT_DIR = os.path.join(BASE, \"ablation\")\n\nRATIOS = {\n    \"inject10\": 0.10,\n    \"inject25\": 0.25,\n}\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\ndef save_jsonl(data, path):\n    with open(path, \"w\") as f:\n        for item in data:\n            f.write(json.dumps(item, ensure_ascii=False) + \"\\n\")\n\ndef split_clean_injected(data, vanilla_user_set):\n    clean, injected = [], []\n    for s in data:\n        if s[\"messages\"][0][\"content\"] in vanilla_user_set:\n            clean.append(s)\n        else:\n            injected.append(s)\n    return clean, injected\n\ndef main():\n    vanilla = load_jsonl(os.path.join(BASE, \"sft_vanilla_v4.jsonl\"))\n    vanilla_user_set = set(s[\"messages\"][0][\"content\"] for s in vanilla)\n    n_clean = len(vanilla_user_set)\n    print(f\"Vanilla (clean reference): {len(vanilla)} samples, {n_clean} unique user messages\")\n\n    for method in [\"taxei\", \"random\"]:\n        data = load_jsonl(os.path.join(BASE, f\"sft_{method}_v4.jsonl\"))\n        clean, injected = split_clean_injected(data, vanilla_user_set)\n        print(f\"\\n{method.upper()}: {len(data)} total = {len(clean)} clean + {len(injected)} injected\")\n\n        for ratio_name, ratio in RATIOS.items():\n            # injected_count = n_clean * ratio / (1 - ratio)\n            n_injected_target = round(n_clean * ratio / (1 - ratio))\n            rng = random.Random(SEED)\n            sampled_injected = rng.sample(injected, n_injected_target)\n            combined = clean + sampled_injected\n            rng2 = random.Random(SEED)\n            rng2.shuffle(combined)\n\n            out_path = os.path.join(OUT_DIR, f\"sft_{method}_v4_{ratio_name}.jsonl\")\n            save_jsonl(combined, out_path)\n\n            actual_ratio = n_injected_target / len(combined)\n            print(f\"  {ratio_name}: {len(clean)} clean + {n_injected_target} injected = {len(combined)} total \"\n                  f\"(actual ratio: {actual_ratio:.1%})\")\n\n    print(\"\\nDone.\")\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T21:52:06.459738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T21:52:06.459848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 scripts/prepare_ablation_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T21:52:06.459968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Vanilla (clean reference): 4358 samples, 4357 unique user messages\\\\n\\\\nTAXEI: 9029 total = 4358 clean + 4671 injected\\\\n  inject10: 4358 clean + 484 injected = 4842 total (actual ratio: 10.0%)\\\\n  inject25: 4358 clean + 1452 injected = 5810 total (actual ratio: 25.0%)\\\\n\\\\nRANDOM: 9029 total = 4358 clean + 4671 injected\\\\n  inject10: 4358 clean + 484 injected = 4842 total (actual ratio: 10.0%)\\\\n  inject25: 4358 clean + 1452 injected = 5810 total (actual ratio: 25.0%)\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T21:52:06.460095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "wc -l /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/*.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T21:52:06.460212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    4842 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/sft_random_v4_inject10.jsonl\\\\n    5810 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/sft_random_v4_inject25.jsonl\\\\n    4842 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/sft_taxei_v4_inject10.jsonl\\\\n    5810 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/sft_taxei_v4_inject25.jsonl\\\\n   21304 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T21:52:06.460323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "head -1 /root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/ablation/sft_taxei_v4_inject10.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T21:52:06.460460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an expert agent operating in the ALFRED Embodied Environment.\\\\\\\\nYour task is to: Put a chilled pot on the counter, right of sink. \\\\\\\\nPrior to this step, you have already taken 13 step(s).\\\\\\\\nBelow are the most recent observations and actions:\\\\\\\\nObservation: You arrive at cabinet 2. On the cabinet 2, you see a spraybottle 1.\\\\\\\\nAction: examine cabinet 3\\\\\\\\nObservation: On the cabinet 3, you see nothing.\\\\\\\\nAction: go to sinkbasin 1\\\\\\\\nObservation: You arrive at sinkbasin 1. On the sinkbasin 1, you see a egg 2, and a fork 2.\\\\\\\\nAction: go to countertop 1\\\\\\\\nObservation: You arrive at countertop 1. On the countertop 1, you see nothing.\\\\\\\\nAction: go to countertop 2\\\\\\\\nObservation: You arrive at countertop 2. On the countertop 2, you see a apple 1, a butterknife 2, a cellphone 2, a pan 2, a soapbottle 1, and a tomato 2.\\\\\\\\nAction: go to fridge 1\\\\\\\\nObservation: You arrive at fridge 1. The fridge 1 is closed.\\\\\\\\nAction: open fridge 1\\\\\\\\nObservation: You open the fridge 1. The fridge 1 is open. In it, you see nothing.\\\\\\\\nAction: go to cabinet 4\\\\\\\\nObservation: You arrive at cabinet 4. On the cabinet 4, you see a glassbottle 1, and a plate 1.\\\\\\\\nAction: go to cabinet 5\\\\\\\\nObservation: You arrive at cabinet 5. The cabinet 5 is closed.\\\\\\\\nAction: open cabinet 5\\\\\\\\nObservation: You open the cabinet 5. The cabinet 5 is open. In it, you see nothing.\\\\\\\\nAction: inventory\\\\\\\\n\\\\\\\\nYour current observation is: You are not carrying anything.\\\\\\\\nYour admissible actions are: [close cabinet 5, examine cabinet 5, go to cabinet 1, go to cabinet 10, go to cabinet 11, go to cabinet 12, go to cabinet 13, go to cabinet 14, go to cabinet 15, go to cabinet 16, go to cabinet 17, go to cabinet 18, go to cabinet 19, go to cabinet 2, go to cabinet 20, go to cabinet 3, go to cabinet 4, go to cabinet 6, go to cabinet 7, go to cabinet 8, go \n…[truncated 1015 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T21:52:06.460652+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果汇总：\n\n| 文件 | 行数 | Clean | Injected | 注入比例 |\n|------|------|-------|----------|----------|\n| `sft_taxei_v4_inject10.jsonl` | 4,842 | 4,358 | 484 | 10.0% |\n| `sft_taxei_v4_inject25.jsonl` | 5,810 | 4,358 | 1,452 | 25.0% |\n| `sft_random_v4_inject10.jsonl` | 4,842 | 4,358 | 484 | 10.0% |\n| `sft_random_v4_inject25.jsonl` | 5,810 | 4,358 | 1,452 | 25.0% |\n\n脚本位于 `scripts/prepare_ablation_data.py`，seed=42 可重复。Clean/injected 的区分方式：user message 是否与 vanilla 数据匹配。injected samples 从 4,671 条中随机采样到目标数量，最终数据已 shuffle。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_ablation-data-prep_20260514T215005"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/code-ablation-data-prep.md"
+}

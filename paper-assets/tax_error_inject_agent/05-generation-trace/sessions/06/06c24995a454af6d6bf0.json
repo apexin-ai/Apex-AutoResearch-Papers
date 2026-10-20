@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06c24995a454af6d6bf0",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops llama31 download check",
+  "task_key": "worker_ops_llama31-download-check_20260516T053432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama31-download-check_20260516T053432_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "6228244169a5097a0a6ef74f3fe751b943597a10ce74c3dce2f40b2ef5b6a7b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **下载状态** | ✅ 完成 |\n| **模型大小** | 15GB（4 个 safetensors 分片，符合预期） |\n| **临时文件** | 无 `._____temp` 目录，下载干净 |\n| **config.json** | 正常 — model_type=llama, hidden_size=4096, num_hidden_layers=32 |\n| **tokenizer** | tokenizer.json + tokenizer_config.json 均存在 |\n| **磁盘剩余** | /root/autodl-tmp 250G 总量，已用 135G，剩余 116G (54%) |\n\n模型文件完整，可直接使用。路径：`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama31-download-check.md"
+}

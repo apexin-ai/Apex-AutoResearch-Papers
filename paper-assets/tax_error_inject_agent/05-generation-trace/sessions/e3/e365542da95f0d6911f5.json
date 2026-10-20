@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e365542da95f0d6911f5",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code sft training config",
+  "task_key": "worker_code_sft-training-config_20260514T070528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft-training-config_20260514T070528_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "dbfce10a6c4c3f395e5eaf1e44e0b4047ce6120cb173f4458dce250a6b064fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 1. Qwen3-8B 加载验证\n- Tokenizer: vocab_size=151643\n- Model: 4096d, 36L, bf16 加载 15.3GB（device_map=auto 分布到 4 卡）\n\n### 2. ms-swift 4.2.0 CLI 参数格式\n关键参数名映射（4.x vs 旧版）：\n| 参数 | 4.x 实际名 |\n|------|-----------|\n| 模型路径 | `--model` |\n| 数据集 | `--dataset`（接受 JSONL 路径） |\n| 模板 | `--template`（自动检测，无需指定） |\n| 调优方式 | `--tuner_type`（默认 lora） |\n| LoRA rank | `--lora_rank` |\n\n启动命令：`swift sft --config configs/sft_taxei.yaml`\n或直接 CLI：`CUDA_VISIBLE_DEVICES=0 swift sft --model ... --dataset ... --lora_rank 16 ...`\n\n### 3. 配置文件\n- `configs/sft_taxei.yaml` — TaxEI-SFT（注入+恢复轨迹）\n- `configs/sft_vanilla.yaml` — Vanilla SFT baseline（仅正常轨迹）\n- 唯一区别：dataset_path 和 output_dir\n\n### 4. Dry-run 结果\n- 单卡启动成功，LoRA 注入到所有 linear 层（q/k/v/o/gate/up/down_proj）\n- 可训参数：43.6M / 8234M = 0.53%\n- bs=1 显存 16.2GB，bs=2 显存 16.5GB（测试数据短序列）\n- 速度：~0.8 s/step（bs=2, 短序列）\n\n### 5. 训练资源估算\n- **单卡足够**：RTX 5090 32GB，bs=2 + LoRA 约 20-24GB（真实 4096 长序列）\n- **无需 DeepSpeed/多卡 DDP**\n- ~1300 条 × 3 epochs = 3900 samples，effective batch=16 → ~244 steps\n- 真实长序列约 2-4s/step → **预计 8-16 分钟/模型**\n- 两个模型共计 **~30 分钟内完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-training-config.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89b3cc9d848ca9788ec2",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh prep v4 eval scripts",
+  "task_key": "worker_ssh_prep-v4-eval-scripts_20260514T142517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-v4-eval-scripts_20260514T142517_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "bc21f53e72183f4273de2a631e57495d075a4df06fddc830084e42ba0753f016"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**eval/recovery.py 参数确认**：`--model_path`、`--base_model`、`--output`、`--no_inject`、`--device cuda:0`（与预期一致）\n\n**scripts/run_v4_eval.sh 已创建**，语法验证通过。支持：\n- `bash scripts/run_v4_eval.sh taxei` → cuda:0\n- `bash scripts/run_v4_eval.sh random` → cuda:1\n- `bash scripts/run_v4_eval.sh both` → 并行启动\n\n脚本自动查找最新 run 目录下最大 step 的 checkpoint，并验证 `adapter_config.json` 存在后再执行。\n\n**v4 训练进度**：step 1705/3387（epoch 1.51/3），约 54 分钟后完成，final checkpoint 将在 step 3387。\n\n**v4-vanilla-eval-r2**：PID 61793 已停止，失败原因 — `checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635` 缺少 `adapter_config.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-v4-eval-scripts.md"
+}

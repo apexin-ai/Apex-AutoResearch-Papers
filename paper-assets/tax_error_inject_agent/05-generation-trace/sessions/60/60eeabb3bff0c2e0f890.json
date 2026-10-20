@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60eeabb3bff0c2e0f890",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 taxei rp s0",
+  "task_key": "worker_analysis_v4-taxei-rp-s0_20260516T061331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-taxei-rp-s0_20260516T061331_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "bba507c64c52640c4873a15a1dd828c9d5f9703695efdeb223f792f46797335d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。\n\n## 总结\n\n**v4-taxei-rp-s0 指标：**\n\n| 指标 | s0 | s1 | s42 | s123 |\n|------|----|----|-----|------|\n| train_loss | 0.3847 | 0.3853 | 0.3847 | 0.3852 |\n| token_acc | 0.9065 | 0.9176 | 0.9249 | 0.9137 |\n| duration (min) | 231.07 | 226.3 | 226.67 | 226.5 |\n| peak_memory (GiB) | 30.37 | 30.17 | 30.68 | 30.66 |\n| samples/s | 3.124 | 3.19 | 3.185 | 3.187 |\n\n**Checkpoint 路径（全部 4 seeds）：**\n- s0: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s0/v0-20260516-101706/checkpoint-5415`\n- s1: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s1/v0-20260516-101834/checkpoint-5415`\n- s42: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s42/v0-20260516-101703/checkpoint-5415`\n- s123: `/root/autodl-tmp/tax_error_inject_agent/output/v4-taxei-rp-s123/v0-20260516-101708/checkpoint-5415`\n\n**一致性：** train_loss 高度一致（0.3847-0.3853）。s0 的 token_acc（0.9065）比其他 3 个 seed 低约 1%，duration 多 ~5 min（可能因 cuda:1 略有调度差异），总体正常。所有 4 个 seed 均已 DONE + checkpoint_path 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-taxei-rp-s0.md"
+}

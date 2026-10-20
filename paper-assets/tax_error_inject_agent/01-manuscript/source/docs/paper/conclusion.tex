@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We tested whether unpaired taxonomy-guided error injection---effective for tool-use agents---transfers to embodied planning. On ALFWorld, TaxEI provides no statistically significant improvement over clean training ($-8.6$pp, $p{=}0.054$). Two competing hypotheses explain this: embodied planning may lack the discrete, observable error structure required for injection to help, or the absence of recovery pairing (present in PALADIN) may render standalone errors unlearnable. We additionally identify a dose-dependent dual regime (3-seed confirmed at 25\%/50\%): deterministic degradation at moderate injection, chaotic seed-dependent outcomes at high injection. We also observe a per-operator local/global split (exploratory, $N{=}11$--$12$).
+
+We hypothesize four properties that may moderate error injection effectiveness---all require independent validation, including on ALFWorld itself: (1)~are errors discrete and observable? (2)~can recovery be achieved locally? (3)~does the task provide immediate diagnostic feedback (indicating error type or correction direction, not merely binary success/failure)? (4)~are errors paired with explicit recovery demonstrations (untested in this work; inferred from PALADIN's design)?
+
+Future work should first test recovery-paired injection on ALFWorld to disentangle the task-structure hypothesis from recovery-pairing effects, then replicate on a second environment (e.g., WebShop) and investigate the seed-initialization $\times$ injection interaction observed at high doses.

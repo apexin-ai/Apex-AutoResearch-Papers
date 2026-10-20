@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b21f8d9f943885870ac",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "knowledge experiment plan yaml",
+  "task_key": "worker_knowledge_experiment-plan-yaml_20260515T015318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_experiment-plan-yaml_20260515T015318_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "ec94e51dcba53988e6caddbbe31211262a7e5bb9e2ca333e5541e072617cc783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。experiment_plan.yaml 已重构，包含 15 个逻辑分组：\n\n| 优先级 | 状态 | 计划数 | 覆盖 |\n|--------|------|--------|------|\n| P0 | done | 3 | baseline、data-collection、v3-pilot |\n| P1 | 6 done / 1 in_progress | 7 | 3× multiseed、2× dose-response、recovery-eval |\n| P2 | planned | 3 | training-dynamics、second-environment、qualitative-failure-analysis |\n| P3 | planned | 3 | scale-ablation、recovery-prompting、per-operator-deepdive |\n\n每个 plan_id 均包含 description、claim (C1-C6)、priority、registry_ids（含训练+eval）、depends_on、results/status。底部注释列出了 20+ 个 failed/killed registry 条目供溯源。唯一未完成的 P1 实验是 dose-response-random（inject25/50 eval 运行中）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-experiment-plan-yaml.md"
+}

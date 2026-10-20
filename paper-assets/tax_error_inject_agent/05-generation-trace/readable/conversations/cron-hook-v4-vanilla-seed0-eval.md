@@ -1,0 +1,1108 @@
+# cron hook v4 vanilla seed0 eval
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/cron_hook_v4-vanilla-seed0-eval.jsonl`
+- **Structured JSON:** [`4782730bdd39d74a0c12.json`](../../sessions/47/4782730bdd39d74a0c12.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T01:23:44.116687+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #5。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：autodl-5090:cuda:0/1/2/3，禁用其他设备
+- `submit_training_job` command 必须 `bash -c '...'` 包装，且显式 `export CUDA_VISIBLE_DEVICES=N &&` 前置（tmux 不传环境变量）
+- eval 参数用 `--device cuda:0`（不是 `--gpu 0`）
+- checkpoint 查找必须 `sort -V | tail -1`，禁止硬编码路径
+- dose-response 所有实验 seed=42，对比 baseline 是 vanilla seed=42 (61.7%)，不是 3-seed 均值 (65.3%)
+- `multiseed_stats.py` 有已知 bug（已修复方案在 memory.md），统计报告不能引用旧 p 值
+
+### 2. 🖥️ 基础设施快照
+- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent`
+- Python：aml-train 镜像，`/root/miniconda3/bin/python`，conda base 环境
+- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-8B`
+- ms-swift 4.2.0
+- 数据：`data/mini_pipeline_v4/ablation_fixed/` (fixed-size ablation 预生成)
+- HF_HOME: `/root/autodl-tmp/.hf_cache`
+- 活跃进程（全在 autodl-5090）：
+  - v4-random-fixed-inject10: PID 104655, cuda:2, cron 监控中
+  - v4-random-fixed-inject25: PID unknown, cuda:1, cron 监控中
+  - v4-random-fixed-inject50: PID 105879, cuda:3, cron 监控中
+- cuda:0 空闲
+
+### 3. 📊 当前状态
+3 个 Random dose-response 训练同时跑（inject 10%/25%/50%），这是 TaxEI dose-response 的对照组。TaxEI dose-response 已完成 10% (61.7%, 0pp) 和 25% (48.9%, -12.8pp)，TaxEI inject50 也在跑（cuda:3 上，同批）。
+
+Registry: 57 实验，3 RUNNING / 1 ANALYZING / 27 DONE / 26 PREPARING。
+等待中：3 个 cron 回调（训练完成后自动触发）。无 Worker 回调。无 Director 待决策。
+
+cuda:0 空闲——应考虑启动 TaxEI inject50 训练或其他准备中的实验。
+
+### 4. 📋 待办（条件触发式）
+- v4-random-fixed-inject10 训练完成 → spawn worker eval（47 tasks clean eval, checkpoint 动态查找）→ 与 TaxEI 10% (61.7%) 对比
+- v4-random-fixed-inject25 训练完成 → spawn worker eval → 与 TaxEI 25% (48.9%) 对比，**关键消歧点**：若 Random 25% 也崩 → 注入毒性；若 Random 25% 不崩 → taxonomy 标签本身有害
+- v4-random-fixed-inject50 训练完成 → spawn worker eval → 与 TaxEI 50% (待测) 对比
+- 全部 dose-response 完成 → 生成 comprehensive results artifact + 更新 paper_framing.md dose-response 章节
+- cuda:0 空闲 → 检查是否有 v4-taxei-fixed-inject50 需要重跑或其他 PREPARING 实验可启动
+
+### 5. 🎯 战略上下文
+- 项目已转 negative result paper，目标 EMNLP 2026 Insights from Negative Results track
+- 核心 narrative：Error injection 在 embodied planning (ALFWorld) 无效，对比 PALADIN 在 tool-use 有效 → 边界条件论文
+- 三大 finding：(1) 主效应不显著 p≈0.054 (2) 10%-25% 非线性阈值 (3) 方差梯度 Vanilla<Random<TaxEI
+- **最易判断错的事**：Random inject25 结果的解读——如果 Random 也崩溃则说明是数据稀释问题（注入替换了 clean 样本），如果 Random 不崩则说明 taxonomy 标签本身有毒。这直接决定 paper 的 Discussion 方向
+- **PALADIN 的 confound**：其 +57pp 中 ~30pp 来自 inference-time retrieval，不是纯 SFT。paper 中必须讨论这个 confound
+- 所有 pairwise comparison 修正后均不显著——paper 措辞必须是 "directional but not statistically significant"
+
+## 项目硬约束 (memory.md 节选)
+
+## 约束
+
+- **submit_training_job 的 CUDA_VISIBLE_DEVICES 不可靠**: tmux wrapper 不一定正确传递环境变量。**必须**在 command 字符串中显式前置 `export CUDA_VISIBLE_DEVICES=N &&`（放在 swift 命令之前，同一 shell）。仅靠 gpu 参数不够。[2026-05-14 事故: inject25 r1 因此 OOM]
+- **submit_training_job 必须 bash -c 包装**: tmux 用 sh，不包装会 EXIT_CODE=127。
+- **eval 参数: `--device cuda:0`（不是 `--gpu 0`）**。
+- **checkpoint 查找必须用 `sort -V`**: `ls -dt .../v0-*/ | head -1` 选最新 run，`ls -d checkpoint-* | sort -V | tail -1` 选最大 step。不要硬编码路径。
+- **轨迹收集**: `export TMPDIR=/root/autodl-tmp/tmp` 防 /tmp 满。已完成 501 条。
+- **SIGHUP 误杀**: Worker 执行 `tmux kill-session` 前必须先确认进程异常。
+- **[2026-05-15] Dose-response baseline**: 所有 dose-response ablation 用 seed=42，对比 vanilla seed=42 (61.7%)，不用 3-seed 均值。
+
+## 可查的历史
+前 8 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T01:23:57.200758+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T01:23:57.201160+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T01:24:00.563758+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "tax_error_inject_agent",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "tax_error_inject_agent",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T01:24:01.169649+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T01:24:01.170174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-random-fixed-inject25\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:44.436Z\", \"updated_at\": \"2026-05-15T00:47:27.396Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对比 taxonomy 标签在中等注入比例下是否有差异。\", \"spec\": {\"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --output_dir checkpoints/v4_random_fixed_inject25 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\", \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"max_steps\": 1635, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject25/v1-20260515-084707\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25.log\"}}, \"v4-random-fixed-inject10\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:41.996Z\", \"updated_at\": \"2026-05-15T00:45:58.420Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对比 taxonomy 标签在低注入比例下是否有差异。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=2 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --output_dir checkpoints/v4_random_fixed_inject10 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_sched
+…[truncated 1998 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 606
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T01:24:01.722599+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "tax_error_inject_agent",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T01:24:01.823246+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "tax_error_inject_agent"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T01:24:04.731641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"v4-random-fixed-inject10\", \"success\": true, \"actions\": [\"Job still running (pid=104655)\"]}, {\"exp_id\": \"v4-random-fixed-inject50\", \"success\": true, \"actions\": [\"Job still running (pid=105879)\"]}, {\"exp_id\": \"v4-random-fixed-inject25\", \"success\": true, \"actions\": [\"Job still running (pid=v4-random-fixed-inject25)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 3561
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T01:24:04.782303+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T01:22:24Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 57 个实验 — ANALYZING 1, DONE 27, PREPARING 26, RUNNING 3\\n**DONE 分布**: failed 1, killed 1, negative 4, success 21\\n\\n### GPU 占用\\n- **实际运行**: 3 张 — autodl-5090:cuda:2(v4-random-fixed-inject10), autodl-5090:cuda:1(v4-random-fixed-inject25), autodl-5090:cuda:3(v4-random-fixed-inject50)\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `v4-random-fixed-inject10` | autodl-5090 | cuda:2 | 104655 | `~/runs/tax_error_inject_agent/v4-random-fixed-inject10.log` |\\n| `v4-random-fixed-inject25` | autodl-5090 | cuda:1 | ? | `~/runs/tax_error_inject_agent/v4-random-fixed-inject25.log` |\\n| `v4-random-fixed-inject50` | autodl-5090 | cuda:3 | 105879 | `~/runs/tax_error_inject_agent/v4-random-fixed-inject50.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `v4-random-seed123-eval` [negative] — 2026-05-15T00:27:24\\n- `v4-taxei-fixed-inject25-eval` [success] — 2026-05-15T00:14:40\\n- `v4-taxei-fixed-inject10-eval` [success] — 2026-05-15T00:14:38\\n- `v4-taxei-seed123-eval` [success] — 2026-05-15T00:14:37\\n- `v4-random-seed123` [success] — 2026-05-14T23:52:15\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| v4-random-fixed-inject25 | v4 Random fixed-size ablation: 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对比 taxonomy 标签在中等注入比例下是否有差异。 | — | — | — |\\n| v4-random-fixed-inject10 | v4 Random fixed-size ablation: 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对比 taxonomy 标签在低注入比例下是否有差异。 | — | — | — |\\n| v4-random-fixed-inject50 | v4 Random fixed-size ablation: 50% i
+…[truncated 2045 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3059
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T01:24:04.782862+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/ROADMAP.md\", \"content\": \"# tax_error_inject_agent — Research Dashboard\\n\\n> 最后更新: 2026-05-15 00:41 UTC | 更新原因: Random 3-seed 完成(63.1%±7.0pp)，dose-response baseline 修正(same-seed comparison)，非线性阈值发现\\n\\n## 核心方向\\n**Negative result paper: \\\"Error Injection Helps Tool-Use but Hurts Planning — Boundary Conditions for Failure-Augmented Agent Training\\\"**\\n\\nD015 修正：3-seed TaxEI p≈0.32 不显著，主效应从\\\"系统性损害\\\"转为\\\"高方差训练彩票\\\"。Dose-response 揭示 10%-25% 间非线性阈值效应。详见 paper_framing.md。\\n\\n## 阶段\\n**MVP FAIL → Negative Result Paper（补充实验收尾中）**\\n\\n## 全维度结果汇总\\n\\n### Clean Eval（3-seed 全部完成）\\n| 方法 | seed=42 | seed=0 | seed=123 | 均值±SD |\\n|------|---------|--------|----------|---------|\\n| Vanilla | 61.7% | 68.1% | 66.0% | **65.3%±3.3pp** |\\n| TaxEI | 61.7% | 46.8% | 61.7% | **56.7%±8.6pp** |\\n| Random | 66.0% | 55.3% | 68.1% | **63.1%±7.0pp** |\\n\\n- TaxEI vs Vanilla: p≈0.32 (NS, 3-seed)\\n- TaxEI vs Random: paired t p≈0.034 (df=2, 需谨慎)\\n- **方差梯度**: Vanilla(3.3) < Random(7.0) < TaxEI(8.6) — 注入越结构化，方差越大\\n\\n### Dose-Response（fixed-size 4,358, seed=42, vs vanilla-seed42=61.7%）\\n| 注入比例 | Accuracy | Δ vs same-seed vanilla |\\n|----------|----------|------------------------|\\n| 0% | 61.7% | baseline |\\n| 10% | 61.7% | **0pp**（完全无害） |\\n| 25% | 48.9% | **-12.8pp**（阶跃崩溃） |\\n| 50% | 训练中 | 待测 |\\n\\n**关键发现**: 10%-25% 间存在非线性临界阈值。10% 注入零伤害，25% 剧烈退化。\\n\\n### Recovery Eval（seed=42, 47 tasks）\\n| 指标 | Vanilla | TaxEI | Random |\\n|------|---------|-------|--------|\\n| Recovery | 61.7% | 59.6% | **63.8%** |\\n| Detection | 0% | 0% | 0% |\\n\\n## 当前 GPU 状态\\n| GPU | 实验 | 状态 |\\n|-----|------|------|\\n| cuda:0 | v4-taxei-fixed-inject50 | RUNNING |\\n| cuda:1 | v4-random-fixed-inject25 | 待启动（已派） |\\n| cuda:2 | v4-random-fixed-inject10 | RUNNING |\\n| cuda:3 | v4-random-fixed-inject50 | 待启动（已派） |\\n\\n## 近期任务\\n- [ ] inject50 训练+eval → dose
+…[truncated 2292 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 2959
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T01:24:17.529357+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "tax_error_inject_agent",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "tax_error_inject_agent",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T01:24:17.982635+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-taxei-fixed-inject50\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:25:38.284Z\", \"updated_at\": \"2026-05-15T01:22:23.865Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"104236\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\", \"submitted_at\": \"2026-05-15T00:27:51.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:22:23.688Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:22:25.093365+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1098}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T01:24:18.083274+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T01:24:18.183988+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T01:24:27.467380+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "tax_error_inject_agent",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "tax_error_inject_agent",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T01:24:27.568278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"tax_error_inject_agent\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"autodl-5090:cuda:0\", \"autodl-5090:cuda:1\", \"autodl-5090:cuda:2\", \"autodl-5090:cuda:3\"], \"project_path\": \"/root/autodl-tmp/tax_error_inject_agent\", \"servers\": [\"autodl-5090\", \"bjb2-33216\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T01:24:28.421980+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T01:24:28.472668+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T01:25:08.810592+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "eval:v4-taxei-fixed-inject50-eval",
+  "project": "tax_error_inject_agent",
+  "task_prompt": "## 任务：v4-taxei-fixed-inject50 训练完成，执行 47 tasks clean eval\n\n### 环境\n- 服务器：autodl-5090\n- Python：conda base 环境，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录：`/root/autodl-tmp/tax_error_inject_agent`\n- ms-swift 4.2.0\n- GPU：使用 cuda:0（必须 `export CUDA_VISIBLE_DEVICES=0`）\n- 模型：Qwen3-8B + LoRA adapter\n\n### 步骤\n\n1. **动态查找 checkpoint**（禁止硬编码路径）：\n```bash\ncd /root/autodl-tmp/tax_error_inject_agent\n# 找最新 run 目录\nRUN_DIR=$(ls -dt checkpoints/v4_taxei_fixed_inject50/v*/ 2>/dev/null | head -1)\n# 如果没有 v* 子目录，直接用 checkpoints/v4_taxei_fixed_inject50\nif [ -z \"$RUN_DIR\" ]; then\n  RUN_DIR=\"checkpoints/v4_taxei_fixed_inject50\"\nfi\n# 找最大 step 的 checkpoint\nCKPT=$(ls -d ${RUN_DIR}/checkpoint-* 2>/dev/null | sort -V | tail -1)\necho \"Checkpoint: $CKPT\"\n# 验证 adapter_config.json 存在\nls ${CKPT}/adapter_config.json\n```\n\n2. **确认 checkpoint 有效** — 必须有 adapter_config.json，否则报错停止。\n\n3. **执行 eval**（47 tasks clean eval）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=0\nexport TMPDIR=/root/autodl-tmp/tmp\ncd /root/autodl-tmp/tax_error_inject_agent\npython run_alfworld_eval.py \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --adapter_path &lt;CKPT_FROM_STEP_1> \\\n  --device cuda:0 \\\n  --eval_tasks 47 \\\n  --output_dir eval_results/v4_taxei_fixed_inject50_eval \\\n  --seed 42\n```\n\n注意：`--device cuda:0`（不是 `--gpu 0`）。\n\n4. **记录结果**：\n- 成功率（X/47 = Y%）\n- 与 vanilla seed=42 baseline (61.7%) 的差异\n- 与 TaxEI inject10 (61.7%) 和 TaxEI inject25 (48.9%) 的对比\n\n5. **更新 registry**：\n- exp_id: `v4-taxei-fixed-inject50-eval`\n- 创建实验并设置状态、metrics、conclusion\n- conclusion 判定：与 vanilla 61.7% 对比，≥59% 算 success（marginal），<59% 算 negative\n- 设置 checkpoint_path 和 log_path\n- parent: v4-taxei-fixed-inject50\n\n### 产出\n- eval 成功率和详细结果\n- registry 更新完毕\n- 简要结论：dose-response 50% 数据点的含义\n\n### 注意\n- 如果 run_alfworld_eval.py 不存在，检查 eval 脚本的实际名称（可能是 evaluate.py 或 eval_alfworld.py）\n- 如果 eval 脚本参数不对，先 `python &lt;script> --help` 查看正确参数\n- eval 可能需要 20-40 分钟，使用 submit_training_job 提交以防超时",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "## 硬约束\n- eval 参数用 --device cuda:0（不是 --gpu 0）\n- checkpoint 查找必须 sort -V | tail -1，禁止硬编码路径\n- submit_training_job command 必须 bash -c 包装，且显式 export CUDA_VISIBLE_DEVICES=0\n- dose-response baseline: vanilla seed=42 = 61.7%\n- TaxEI dose-response 已有数据点: 0%=61.7%, 10%=61.7%, 25%=48.9%, 50%=待测\n\n## Dose-response 上下文\n这是 TaxEI dose-response 的最后一个数据点（50% injection）。完成后我们有完整曲线：0%→10%→25%→50%。\n关键问题：50% 是否比 25% (-12.8pp) 更差？还是触底？这决定了 dose-response 曲线的形状。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:v4-taxei-fixed-inject50-eval",
+    "project": "tax_error_inject_agent",
+    "task_prompt": "## 任务：v4-taxei-fixed-inject50 训练完成，执行 47 tasks clean eval\n\n### 环境\n- 服务器：autodl-5090\n- Python：conda base 环境，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录：`/root/autodl-tmp/tax_error_inject_agent`\n- ms-swift 4.2.0\n- GPU：使用 cuda:0（必须 `export CUDA_VISIBLE_DEVICES=0`）\n- 模型：Qwen3-8B + LoRA adapter\n\n### 步骤\n\n1. **动态查找 checkpoint**（禁止硬编码路径）：\n```bash\ncd /root/autodl-tmp/tax_error_inject_agent\n# 找最新 run 目录\nRUN_DIR=$(ls -dt checkpoints/v4_taxei_fixed_inject50/v*/ 2>/dev/null | head -1)\n# 如果没有 v* 子目录，直接用 checkpoints/v4_taxei_fixed_inject50\nif [ -z \"$RUN_DIR\" ]; then\n  RUN_DIR=\"checkpoints/v4_taxei_fixed_inject50\"\nfi\n# 找最大 step 的 checkpoint\nCKPT=$(ls -d ${RUN_DIR}/checkpoint-* 2>/dev/null | sort -V | tail -1)\necho \"Checkpoint: $CKPT\"\n# 验证 adapter_config.json 存在\nls ${CKPT}/adapter_config.json\n```\n\n2. **确认 checkpoint 有效** — 必须有 adapter_config.json，否则报错停止。\n\n3. **执行 eval**（47 tasks clean eval）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=0\nexport TMPDIR=/root/autodl-tmp/tmp\ncd /root/autodl-tmp/tax_error_inject_agent\npython run_alfworld_eval.py \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B \\\n  --adapter_path &lt;CKPT_FROM_STEP_1> \\\n  --device cuda:0 \\\n  --eval_tasks 47 \\\n  --output_dir eval_results/v4_taxei_fixed_inject50_eval \\\n  --seed 42\n```\n\n注意：`--device cuda:0`（不是 `--gpu 0`）。\n\n4. **记录结果**：\n- 成功率（X/47 = Y%）\n- 与 vanilla seed=42 baseline (61.7%) 的差异\n- 与 TaxEI inject10 (61.7%) 和 TaxEI inject25 (48.9%) 的对比\n\n5. **更新 registry**：\n- exp_id: `v4-taxei-fixed-inject50-eval`\n- 创建实验并设置状态、metrics、conclusion\n- conclusion 判定：与 vanilla 61.7% 对比，≥59% 算 success（marginal），<59% 算 negative\n- 设置 checkpoint_path 和 log_path\n- parent: v4-taxei-fixed-inject50\n\n### 产出\n- eval 成功率和详细结果\n- registry 更新完毕\n- 简要结论：dose-response 50% 数据点的含义\n\n### 注意\n- 如果 run_alfworld_eval.py 不存在，检查 eval 脚本的实际名称（可能是 evaluate.py 或 eval_alfworld.py）\n- 如果 eval 脚本参数不对，先 `python &lt;script> --help` 查看正确参数\n- eval 可能需要 20-40 分钟，使用 submit_training_job 提交以防超时",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "## 硬约束\n- eval 参数用 --device cuda:0（不是 --gpu 0）\n- checkpoint 查找必须 sort -V | tail -1，禁止硬编码路径\n- submit_training_job command 必须 bash -c 包装，且显式 export CUDA_VISIBLE_DEVICES=0\n- dose-response baseline: vanilla seed=42 = 61.7%\n- TaxEI dose-response 已有数据点: 0%=61.7%, 10%=61.7%, 25%=48.9%, 50%=待测\n\n## Dose-response 上下文\n这是 TaxEI dose-response 的最后一个数据点（50% injection）。完成后我们有完整曲线：0%→10%→25%→50%。\n关键问题：50% 是否比 25% (-12.8pp) 更差？还是触底？这决定了 dose-response 曲线的形状。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T01:25:09.917389+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T01:25:11.323199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/logs/workers/worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509 started. Use get_worker_status('worker_eval_v4-taxei-fixed-inject50-eval_20260515T012509') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2512
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T01:25:11.323653+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/.claude/sessions/agent_59663d7c.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Read",
+  "elapsed_ms": 1406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T01:25:15.940792+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T01:25:16.041668+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T01:25:17.949289+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T01:25:17.999909+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T01:25:21.335122+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T01:25:21.335507+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T01:25:23.950876+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T01:25:24.052659+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T01:25:26.560937+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T01:25:26.611730+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T01:25:52.268065+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:v4-vanilla-seed0-eval",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "tax_error_inject_agent",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T01:43:44.332080+00:00_
+
+Worker 池只有 1 个（eval worker），需要再 spawn 一个 CPU 任务 worker 满足 ≥2 硬约束。同时向 Director 汇报 session 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:v4-vanilla-seed0-eval"
+}
+```
+
+</details>
+
+---

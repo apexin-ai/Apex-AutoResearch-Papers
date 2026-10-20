@@ -1,0 +1,35 @@
+{
+  "exp_id": "v4-taxei-rp-s123",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:16:59.271Z",
+    "updated_at": "2026-05-16T06:05:09.397Z",
+    "spec": {
+      "command": "swift sft --model Qwen3-8B --dataset sft_taxei_rp.jsonl --lora_rank 16 --epochs 3 --bs 4 --ga 2 --lr 1e-4 --max_length 4096 --seed 123",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "223254",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-rp-s123.log",
+      "submitted_at": "2026-05-16T02:16:58.962Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/tax_error_inject_agent/data/recovery_paired/sft_taxei_rp.jsonl",
+      "data_count": 14437,
+      "model_name": "Qwen3-8B",
+      "seed": 123,
+      "hypothesis": "Recovery-paired training multi-seed replication (seed=123)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T06:05:08.878Z"
+    }
+  },
+  "timestamp": "2026-05-16T06:05:09.640587+00:00",
+  "trigger": "update_registry"
+}

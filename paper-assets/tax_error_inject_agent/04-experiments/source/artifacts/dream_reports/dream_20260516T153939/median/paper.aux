@@ -1,0 +1,93 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{chen2025paladin}
+\citation{shridhar2021alfworld}
+\citation{qwen3}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2025eef}
+\citation{chen2025paladin}
+\citation{wang2025eef}
+\citation{shridhar2021alfworld}
+\citation{yao2023react}
+\citation{shinn2023reflexion}
+\citation{mccoy2020berts}
+\citation{mosbach2021few}
+\citation{damour2022underspecification}
+\citation{madry2018towards}
+\citation{bengio2009curriculum}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Error injection for LLM agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embodied planning agents.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training instability and seed sensitivity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial training and curriculum learning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Error Taxonomy for Embodied Planning}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Planning-level operators.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Context-level operators.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Generation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training Conditions}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: 5-Seed Aggregate (Qwen3-8B)}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main-results}{{4.1}{3}{Main Results: 5-Seed Aggregate (Qwen3-8B)}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 5-seed recovery evaluation on Qwen3-8B (47 tasks/seed). Clean and Recovery columns show mean $\pm $ SD across seeds. $\Delta $ = Recovery $-$ Clean (pp). Detection rate is 0\% for all conditions and seeds.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main-recovery}{{1}{4}{5-seed recovery evaluation on Qwen3-8B (47 tasks/seed). Clean and Recovery columns show mean $\pm $ SD across seeds. $\Delta $ = Recovery $-$ Clean (pp). Detection rate is 0\% for all conditions and seeds}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model recovery rate comparison. LLaMA results are preliminary (3 seeds). T SD / R SD = ratio of TaxEI to Random standard deviation. Catastrophic = fraction of seeds with $>$10pp degradation vs.\ Vanilla.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:cross-model}{{2}{4}{Cross-model recovery rate comparison. LLaMA results are preliminary (3 seeds). T SD / R SD = ratio of TaxEI to Random standard deviation. Catastrophic = fraction of seeds with $>$10pp degradation vs.\ Vanilla}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Replication: LLaMA-3.1-8B}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross-model}{{4.2}{4}{Cross-Model Replication: LLaMA-3.1-8B}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LLaMA-3.1-8B per-seed recovery and clean evaluation. Seed 123 (bold) shows catastrophic TaxEI collapse ($-$10.6pp vs.\ Vanilla, $-$19.1pp vs.\ Random).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:llama-perseed}{{3}{5}{LLaMA-3.1-8B per-seed recovery and clean evaluation. Seed 123 (bold) shows catastrophic TaxEI collapse ($-$10.6pp vs.\ Vanilla, $-$19.1pp vs.\ Random)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scale ablation results (3-seed at 2,500 trajectories). Gap = condition mean $-$ Vanilla mean. Increasing data 5$\times $ narrows the TaxEI penalty from 9.0pp to 6.4pp (29\% reduction) and eliminates catastrophic seeds.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:scale}{{4}{5}{Scale ablation results (3-seed at 2,500 trajectories). Gap = condition mean $-$ Vanilla mean. Increasing data 5$\times $ narrows the TaxEI penalty from 9.0pp to 6.4pp (29\% reduction) and eliminates catastrophic seeds}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Scale Ablation: 500 vs.\ 2,500 Trajectories}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale}{{4.3}{5}{Scale Ablation: 500 vs.\ 2,500 Trajectories}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Few-Shot Recovery Prompting}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:fewshot}{{4.4}{5}{Few-Shot Recovery Prompting}{subsection.4.4}{}}
+\citation{chen2025paladin}
+\citation{wang2025eef}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Diminishing returns in gap reduction with data scaling. ALFWorld's 134-task diversity ceiling means scaling beyond 500 trajectories adds repetition, not diversity.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:diminishing}{{5}{6}{Diminishing returns in gap reduction with data scaling. ALFWorld's 134-task diversity ceiling means scaling beyond 500 trajectories adds repetition, not diversity}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Few-shot recovery prompting (seed=42). $\Delta $ = 4-shot $-$ 0-shot improvement (pp). All conditions benefit comparably from in-context examples (ANOVA NS).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:fewshot}{{6}{6}{Few-shot recovery prompting (seed=42). $\Delta $ = 4-shot $-$ 0-shot improvement (pp). All conditions benefit comparably from in-context examples (ANOVA NS)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Per-Operator Analysis (Exploratory)}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:per-operator}{{4.5}{6}{Per-Operator Analysis (Exploratory)}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}A 2$\times $2 Framework for Error-Signal Approaches}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Why Error Injection Fails in Embodied Planning}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Error observability.}{6}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-operator TaxEI$-$Vanilla recovery delta (pp). $\Delta $ columns show seed=42 and 5-seed mean differences. $p$ values are Fisher exact tests. All effects are non-significant; the directional pattern is consistent with error locality but should be interpreted as hypothesis-generating only.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:per-operator}{{7}{7}{Per-operator TaxEI$-$Vanilla recovery delta (pp). $\Delta $ columns show seed=42 and 5-seed mean differences. $p$ values are Fisher exact tests. All effects are non-significant; the directional pattern is consistent with error locality but should be interpreted as hypothesis-generating only}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Error locality.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recovery action space.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:limitations}{{5.3}{7}{Limitations}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark scale.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-model evidence.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confounding variables in PALADIN comparison.}{7}{section*.13}\protected@file@percent }
+\bibcite{bengio2009curriculum}{{1}{2009}{{Bengio et~al.}}{{}}}
+\bibcite{chen2025paladin}{{2}{2025}{{Chen et~al.}}{{}}}
+\bibcite{damour2022underspecification}{{3}{2022}{{D'Amour et~al.}}{{}}}
+\bibcite{madry2018towards}{{4}{2018}{{Madry et~al.}}{{}}}
+\bibcite{mccoy2020berts}{{5}{2020}{{McCoy et~al.}}{{}}}
+\bibcite{mosbach2021few}{{6}{2021}{{Mosbach et~al.}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Power curve for detecting $d$=1.58 effect (TaxEI vs.\ Vanilla) at Bonferroni-corrected $\alpha $=0.017. Current study ($n$=5) achieves 45\% power; $n$=9 is needed for the conventional 80\% threshold.}}{8}{figure.1}\protected@file@percent }
+\newlabel{fig:power}{{1}{8}{Power curve for detecting $d$=1.58 effect (TaxEI vs.\ Vanilla) at Bonferroni-corrected $\alpha $=0.017. Current study ($n$=5) achieves 45\% power; $n$=9 is needed for the conventional 80\% threshold}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data volume asymmetry.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{qwen3}{{7}{2025}{{Qwen Team}}{{}}}
+\bibcite{shinn2023reflexion}{{8}{2023}{{Shinn et~al.}}{{}}}
+\bibcite{shridhar2021alfworld}{{9}{2021}{{Shridhar et~al.}}{{}}}
+\bibcite{wang2025eef}{{10}{2025}{{Wang et~al.}}{{}}}
+\bibcite{yao2023react}{{11}{2023}{{Yao et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Per-Seed Results}{9}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen3-8B recovery evaluation (5 seeds).}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen3-8B clean evaluation (5 seeds).}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Scale-Up Data Collection Details}{9}{appendix.B}\protected@file@percent }
+\gdef \@abspage@last{9}

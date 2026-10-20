@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72e16416ecdd7242e39a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops kill seed7",
+  "task_key": "worker_ops_kill-seed7_20260514T182304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-seed7_20260514T182304_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "8897db4023ad195b292e7fef68de28f5e13d7e1ffa13e88e09c5e8630b16e573"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n- **v4-vanilla-seed7** tmux session 已销毁，PID 75036 已终止\n- **cuda:3** 已完全释放（0MiB 占用，0% 利用率）\n- cuda:0/1/2 上的其他训练（v4-vanilla-seed0、v4-taxei-seed0、v4-random-seed0）正常运行\n\n注意：PID 76797（seed123）在服务器上不存在——seed123 训练并未在运行。cuda:3 当前空闲，可以提交 seed123 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-seed7.md"
+}

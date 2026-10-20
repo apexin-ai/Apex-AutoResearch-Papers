@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "605ffc0cf7b5511bd07c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval gpu0 clean persistent",
+  "task_key": "worker_eval_gpu0-clean-persistent_20260516T115226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gpu0-clean-persistent_20260516T115226_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "92ea19ea7df4c598d33d35c07bdf0f63227e4bafa05e5378219b8575fd12a0aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n- **Vanilla s42 clean**: 0.723 ✓\n- **Vanilla s0 clean**: 0.723 ✓\n\n等待中：\n- **TaxEI s42 clean** (PID 273420) — 约 15-25 分钟，3 分钟后首次轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gpu0-clean-persistent.md"
+}

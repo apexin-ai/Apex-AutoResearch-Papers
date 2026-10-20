@@ -1,0 +1,220 @@
+{
+  "pairwise_comparisons": {
+    "Vanilla_vs_TaxEI10": {
+      "comparison": "Vanilla vs TaxEI_10pct",
+      "mean_A": 67.24000000000001,
+      "mean_B": 61.279999999999994,
+      "mean_diff": 5.96,
+      "SE_diff": 4.42,
+      "paired_ttest": {
+        "t": 1.3484,
+        "p": 0.2488,
+        "df": 4
+      },
+      "welch_ttest": {
+        "t": 1.4786,
+        "p": 0.1923
+      },
+      "bootstrap_95CI": [
+        -0.84,
+        14.44
+      ],
+      "cohens_d_paired": 0.603,
+      "significant_005": false
+    },
+    "Vanilla_vs_Random10": {
+      "comparison": "Vanilla vs Random_10pct",
+      "mean_A": 67.24000000000001,
+      "mean_B": 63.839999999999996,
+      "mean_diff": 3.4,
+      "SE_diff": 2.834,
+      "paired_ttest": {
+        "t": 1.1996,
+        "p": 0.2965,
+        "df": 4
+      },
+      "welch_ttest": {
+        "t": 1.1404,
+        "p": 0.2906
+      },
+      "bootstrap_95CI": [
+        -1.72,
+        7.68
+      ],
+      "cohens_d_paired": 0.5365,
+      "significant_005": false
+    },
+    "TaxEI10_vs_Random10": {
+      "comparison": "TaxEI_10pct vs Random_10pct",
+      "mean_A": 61.279999999999994,
+      "mean_B": 63.839999999999996,
+      "mean_diff": -2.56,
+      "SE_diff": 4.218,
+      "paired_ttest": {
+        "t": -0.607,
+        "p": 0.5766,
+        "df": 4
+      },
+      "welch_ttest": {
+        "t": -0.5841,
+        "p": 0.5775
+      },
+      "bootstrap_95CI": [
+        -10.2,
+        4.24
+      ],
+      "cohens_d_paired": -0.2714,
+      "significant_005": false
+    }
+  },
+  "variance_tests": {
+    "levene_3group": {
+      "statistic": 1.4143,
+      "p_value": 0.2809,
+      "groups": [
+        "Vanilla",
+        "TaxEI_10pct",
+        "Random_10pct"
+      ],
+      "group_SDs": [
+        3.85,
+        8.15,
+        5.44
+      ]
+    },
+    "f_test_taxei10_vs_random10": {
+      "var_taxei10": 66.41,
+      "var_random10": 29.62,
+      "SD_taxei10": 8.15,
+      "SD_random10": 5.44,
+      "F_ratio": 2.2423,
+      "p_value": 0.4534
+    }
+  },
+  "dose_response_trend": {
+    "TaxEI": {
+      "condition": "TaxEI",
+      "mean_0pct": 67.24,
+      "mean_10pct": 61.28,
+      "mean_100pct": 58.28,
+      "drop_0_to_10": 5.96,
+      "drop_0_to_100": 8.96,
+      "drop_10_to_100": 3.0,
+      "effect_size_0v10_d": 0.603,
+      "effect_size_0v100_d": 1.1167,
+      "dose_10_vs_full_paired_t": {
+        "t": 0.4687,
+        "p": 0.6637,
+        "cohens_d": 0.2096
+      },
+      "linearity": "monotonic"
+    },
+    "Random": {
+      "condition": "Random",
+      "mean_0pct": 67.24,
+      "mean_10pct": 63.84,
+      "mean_100pct": 58.3,
+      "drop_0_to_10": 3.4,
+      "drop_0_to_100": 8.94,
+      "drop_10_to_100": 5.54,
+      "effect_size_0v10_d": 0.5365,
+      "effect_size_0v100_d": 0.7292,
+      "dose_10_vs_full_paired_t": {
+        "t": 0.9919,
+        "p": 0.3774,
+        "cohens_d": 0.4436
+      },
+      "linearity": "monotonic"
+    }
+  },
+  "power_analysis": {
+    "Vanilla_vs_TaxEI10": {
+      "observed_d": 0.603,
+      "observed_power": 0.182,
+      "n_current": 5,
+      "n_for_80pct_power": 24
+    },
+    "Vanilla_vs_Random10": {
+      "observed_d": 0.5365,
+      "observed_power": 0.1543,
+      "n_current": 5,
+      "n_for_80pct_power": 30
+    },
+    "TaxEI10_vs_Random10": {
+      "observed_d": 0.2714,
+      "observed_power": 0.0764,
+      "n_current": 5,
+      "n_for_80pct_power": 109
+    },
+    "TaxEI10_vs_TaxEI_full": {
+      "observed_d": 0.2096,
+      "observed_power": 0.0657,
+      "n_current": 5,
+      "n_for_80pct_power": 181
+    },
+    "Random10_vs_Random_full": {
+      "observed_d": 0.4436,
+      "observed_power": 0.1211,
+      "n_current": 5,
+      "n_for_80pct_power": 42
+    }
+  },
+  "descriptive_stats": {
+    "Vanilla": {
+      "mean": 67.24,
+      "SD": 3.85,
+      "values": [
+        61.7,
+        68.1,
+        66.0,
+        72.3,
+        68.1
+      ]
+    },
+    "TaxEI_10pct": {
+      "mean": 61.28,
+      "SD": 8.15,
+      "values": [
+        61.7,
+        70.2,
+        55.3,
+        51.1,
+        68.1
+      ]
+    },
+    "Random_10pct": {
+      "mean": 63.84,
+      "SD": 5.44,
+      "values": [
+        68.1,
+        66.0,
+        55.3,
+        68.1,
+        61.7
+      ]
+    },
+    "TaxEI_full": {
+      "mean": 58.28,
+      "SD": 6.83,
+      "values": [
+        61.7,
+        46.8,
+        61.7,
+        63.8,
+        57.4
+      ]
+    },
+    "Random_full": {
+      "mean": 58.3,
+      "SD": 8.74,
+      "values": [
+        66.0,
+        55.3,
+        68.1,
+        46.8,
+        55.3
+      ]
+    }
+  },
+  "summary": "10% dose 5-seed analysis (n=5 per condition): Vanilla 67.2±3.9%, TaxEI-10% 61.3±8.1%, Random-10% 63.8±5.4%. No pairwise comparison reaches significance (all p>0.05). Vanilla vs TaxEI-10%: Δ=6.0pp, p=0.249, d=0.60. Vanilla vs Random-10%: Δ=3.4pp, p=0.296, d=0.54. TaxEI-10% vs Random-10%: Δ=-2.6pp, p=0.577, d=-0.27. Levene's test: p=0.281 (no sig variance difference). Dose-response: TaxEI 0%→10%→100% = 67.2→61.3→58.3% (monotonic); Random 0%→10%→100% = 67.2→63.8→58.3% (monotonic). 10% vs full-dose: TaxEI p=0.664, Random p=0.377. Power at n=5 is low across all comparisons (max 18.2%). Largest comparison (Vanilla vs TaxEI-10%) needs ~24 seeds for 80% power."
+}

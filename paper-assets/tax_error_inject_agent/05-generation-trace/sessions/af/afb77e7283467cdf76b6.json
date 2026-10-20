@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afb77e7283467cdf76b6",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ssh tmux sighup investigation",
+  "task_key": "worker_ssh_tmux-sighup-investigation_20260514T133107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_tmux-sighup-investigation_20260514T133107_result.json",
+    "occurrence": 1,
+    "bytes": 2809,
+    "sha256": "3573f602e121db61dd4f6e2a148c4276e88419cf7a154bd2819817a49c7f911a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**找到根因了。**\n\nWorker 日志第 8 行清楚记录了：`worker_ssh_v4-tmux-cleanup-resubmit` 在 13:28:08 UTC 执行了：\n\n```\ntmux kill-session -t v4-taxei-sft 2>/dev/null; tmux kill-session -t v4-random-sft 2>/dev/null\n```\n\n## 根因分析报告\n\n### 直接原因\n\n框架派发的 Worker `worker_ssh_v4-tmux-cleanup-resubmit`（启动于 2026-05-14T13:27:53Z）**主动执行了 `tmux kill-session`**，杀死了 v4-taxei-sft 和 v4-random-sft 两个 tmux session。\n\n`tmux kill-session` 向 session 内所有进程发送 SIGHUP。启动脚本的 trap (`trap 'exit 129' HUP`) 捕获信号后以 exit code 129 退出，触发 EXIT trap 写入 `EXIT_CODE=129` 到日志。训练进程的 `Pin memory thread exited unexpectedly` 是 dataloader worker 线程被 SIGHUP 杀死的二级效应。\n\n### 时间线 (UTC)\n\n| 时间 | 事件 |\n|------|------|\n| ~13:26 | 原始 v4-taxei-sft / v4-random-sft 提交并开始训练 |\n| 13:27:53 | Worker `v4-tmux-cleanup-resubmit` 被调度 |\n| 13:28:08 | 执行 `tmux kill-session -t v4-taxei-sft; tmux kill-session -t v4-random-sft` |\n| 13:28:12 | 确认 session 已清除 |\n| 13:28:23 | 用同名 exp_id 重新提交 v4-taxei-sft |\n| 13:28:26 | 重新提交 v4-random-sft |\n| 13:28:48 | 旧进程 EXIT trap 写入 EXIT_CODE=129 到日志 |\n| 13:30:52 | v4-taxei-sft-r2 提交（第三次尝试，改了名） |\n| 13:30:54 | v4-random-sft-r2 提交 |\n\n### 不是以下原因\n\n- 不是 AutoDL 平台重启（uptime 174 天，v3-eval sessions 存活）\n- 不是 crontab/cleanup 脚本（服务器上无 crontab）\n- 不是框架 `_check_stale_workers`（那个用 SIGTERM 且只杀本地进程）\n- 不是 OOM 或 GPU 错误\n\n### 当前状态\n\n- v4-taxei-sft-r2：运行中，cuda:2，94% util，step 67+，~1.96s/it\n- v4-random-sft-r2：运行中，cuda:3，96% util\n- v3-taxei-eval：运行中，cuda:0\n- v3-random-eval：运行中，cuda:1\n- 4 张 RTX 5090 全部在用\n\n### 防止再次发生的建议\n\n1. **Worker 在执行 `tmux kill-session` 前必须验证进程状态** — 先 `ps -p <PID>` 确认进程是否健康、检查日志是否有错误，再决定是否 kill。ml-experiment-guide.skill.md 已有此规则但本次未被遵守。\n\n2. **`submit_training_job` 应检测同名 tmux session 是否已存在** — 如果存在且进程健康，应拒绝提交而非静默覆盖。当前 `tmux new-session -d -s` 对已有 session 会直接报错，但 Worker 在 submit 前手动 kill 了 session，绕过了这个保护。\n\n3. **考虑在 `tmux_backend.py` 的 kill 方法中先发 SIGTERM 等待优雅退出**，而非直接 `tmux kill-session`（后者发 SIGHUP）。当前代码对 numeric PID 会先 SIGTERM，但对 tmux session name 跳过了 SIGTERM 直接 kill-session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-tmux-sighup-investigation.md"
+}

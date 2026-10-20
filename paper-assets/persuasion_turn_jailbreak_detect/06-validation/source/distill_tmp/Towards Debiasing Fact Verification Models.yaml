@@ -1,0 +1,29 @@
+paper_key: "Towards Debiasing Fact Verification Models"
+title: "Towards Debiasing Fact Verification Models"
+venue: "EMNLP 2019"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - claim-only classifier
+    - evidence-aware fact verification models
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "performance drop on debiased set", direction: "lower_better"}
+  datasets:
+    - {name: "FEVER", size: "185k claims"}
+    - {name: "debiased evaluation set (proposed)", size: "unknown"}
+  ablation_dimensions:
+    - claim-only vs evidence-aware
+    - regularization for debiasing
+  training_recipe: {info_available: false}
+  method_family: "debiasing / regularization for fact verification"
+
+positioning:
+  core_claim: "FEVER models exploit claim-only biases; a regularization technique mitigates training data bias and a new debiased evaluation set better measures true reasoning."
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

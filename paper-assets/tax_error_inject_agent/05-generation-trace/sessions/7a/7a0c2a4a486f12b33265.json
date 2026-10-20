@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a0c2a4a486f12b33265",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fix injection format",
+  "task_key": "worker_code_fix-injection-format_20260514T082216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-injection-format_20260514T082216_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "b205430ef471758f8bdfd822fb0b104848d815e7407300a4b5a6ac87f2de01e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。`data/inject_and_generate.py` 做了 4 处修改：\n\n| 修改 | 位置 | 内容 |\n|------|------|------|\n| 字段名统一 | `inject_single` 返回值 | `task_desc` → `task_description`（读取时兼容两种源字段名） |\n| API 调用适配 | `call_recovery_api` | `record[\"task_desc\"]` → `record[\"task_description\"]` |\n| 输出格式重构 | `_serialize_record` | 原来把 `corrupted_history` 压成字符串；改为构建 `steps` 列表（含 observation/think/action），末尾追加 recovery step，输出 `{task_description, steps, injection_info, success}` |\n| DRY_RUN 占位符 | `run` 方法 | `\"DRY_RUN\"` → 描述性占位文本 |\n\n验证结果：\n- Vanilla SFT: 139 条\n- TaxEI SFT: 141 条（139 + 2 注入）\n- 注入样本含完整 `<think>` + `<action>` 多轮对话格式\n- formatter.py 无需修改\n\n**附注**：源轨迹数据（`collect_trajectories.py` 产出）用的也是 `task_desc`，formatter.py 期望 `task_description`。vanilla 轨迹的 task description 行目前会被跳过（`if task_desc:` 为空）。如果需要 vanilla SFT 数据也包含任务描述，需要另改 `collect_trajectories.py` 或 formatter.py。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-injection-format.md"
+}

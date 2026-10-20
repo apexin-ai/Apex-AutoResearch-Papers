@@ -1,0 +1,1280 @@
+# analysis llama detection mechanism
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_llama-detection-mechanism_20260516T091859.jsonl`
+- **Structured JSON:** [`c29e307c9f5198e61850.json`](../../sessions/c2/c29e307c9f5198e61850.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T09:23:16.450529+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T09:23:16.450909+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T09:23:16.451100+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval/injected_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval/injected_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T09:23:16.451237+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_vanilla_s42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_vanilla_s42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T09:23:16.451498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nTaxEI Injected Evaluation — measure error recovery under mid-episode injection.\\n\\nRuns ALFWorld episodes, injecting an error at a specified step using taxonomy\\noperators (P1_step_order_swap, P2_sub_goal_deletion, C1_context_truncation,\\nC4_observation_masking). After injection, tracks:\\n  - Detection: did the model's &lt;think> output acknowledge the anomaly?\\n  - Recovery: did the model take corrective/re-grounding actions?\\n  - Success: did the task succeed despite the injection?\\n\\nUsage:\\n  # Full run (47 tasks on cuda:3)\\n  CUDA_VISIBLE_DEVICES=3 python eval/injected_eval.py \\\\\\\\\\n      --model_path &lt;checkpoint> --model_variant taxei \\\\\\\\\\n      --num_episodes 47 --output eval_results/injected_taxei.json\\n\\n  # Dry-run (3 tasks)\\n  CUDA_VISIBLE_DEVICES=3 python eval/injected_eval.py \\\\\\\\\\n      --model_path &lt;checkpoint> --model_variant taxei \\\\\\\\\\n      --num_episodes 3 --output eval_results/dryrun_recovery.json\\n\\n  # Compare two result files\\n  python eval/injected_eval.py \\\\\\\\\\n      --output eval_results/injected_taxei.json \\\\\\\\\\n      --compare_with eval_results/injected_vanilla.json \\\\\\\\\\n      --compare_output eval_results/compare_taxei_vs_vanilla_injected.json\\n\\nArgs:\\n  --model_path      LoRA adapter checkpoint (omit for base model zero-shot)\\n  --base_model      Base model path (default: Qwen3-8B)\\n  --model_variant   Label: taxei / random / vanilla\\n  --inject_step     Fixed injection step, -1 = random in [2,6] (default: -1)\\n  --num_episodes    Number of episodes (default: 47)\\n  --seed            Random seed (default: 42)\\n  --device          Torch device (default: cuda:0, use with CUDA_VISIBLE_DEVICES)\\n\\nOutput JSON:\\n  {\\n    \\\"model\\\", \\\"model_variant\\\", \\\"inject\\\": true,\\n    \\\"total_episodes\\\", \\\"success_rate\\\", \\\"recovery_rate\\\", \\\"detection_rate\\\",\\n   
+…[truncated 7284 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T09:23:16.451686+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_taxei_s42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_taxei_s42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T09:23:16.452003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/output/llama31-vanilla-s42/v0-20260516-143227/checkpoint-1635\\\",\\n  \\\"model_variant\\\": \\\"vanilla\\\",\\n  \\\"inject\\\": true,\\n  \\\"seed\\\": 42,\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.745,\\n  \\\"recovery_rate\\\": 0.745,\\n  \\\"detection_rate\\\": 0.213,\\n  \\\"timestamp\\\": \\\"2026-05-16T08:05:12.684762+00:00\\\",\\n  \\\"by_operator\\\": {\\n    \\\"C1_context_truncation\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 9,\\n      \\\"detected\\\": 2,\\n      \\\"recovery_rate\\\": 0.75,\\n      \\\"detection_rate\\\": 0.167\\n    },\\n    \\\"C4_observation_masking\\\": {\\n      \\\"total\\\": 11,\\n      \\\"recovered\\\": 8,\\n      \\\"detected\\\": 3,\\n      \\\"recovery_rate\\\": 0.727,\\n      \\\"detection_rate\\\": 0.273\\n    },\\n    \\\"P1_step_order_swap\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 9,\\n      \\\"detected\\\": 2,\\n      \\\"recovery_rate\\\": 0.75,\\n      \\\"detection_rate\\\": 0.167\\n    },\\n    \\\"P2_sub_goal_deletion\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 9,\\n      \\\"detected\\\": 3,\\n      \\\"recovery_rate\\\": 0.75,\\n      \\\"detection_rate\\\": 0.25\\n    }\\n  },\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 6,\\n      \\\"detected\\\": 2,\\n      \\\"rate\\\": 1.0\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 5,\\n      \\\"detected\\\": 1,\\n      \\\"rate\\\": 0.625\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 7,\\n      \\\"detected\\\": 2,\\n      \\\"rate\\\": 0.636\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 4,\\n      \\\"detected\\\": 3,\\n      \\\"r
+…[truncated 7845 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T09:23:16.452342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/output/llama31-taxei-s42/v0-20260516-142258/checkpoint-3387\\\",\\n  \\\"model_variant\\\": \\\"taxei\\\",\\n  \\\"inject\\\": true,\\n  \\\"seed\\\": 42,\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.745,\\n  \\\"recovery_rate\\\": 0.745,\\n  \\\"detection_rate\\\": 0.298,\\n  \\\"timestamp\\\": \\\"2026-05-16T09:03:01.520829+00:00\\\",\\n  \\\"by_operator\\\": {\\n    \\\"C1_context_truncation\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 10,\\n      \\\"detected\\\": 2,\\n      \\\"recovery_rate\\\": 0.833,\\n      \\\"detection_rate\\\": 0.167\\n    },\\n    \\\"C4_observation_masking\\\": {\\n      \\\"total\\\": 11,\\n      \\\"recovered\\\": 8,\\n      \\\"detected\\\": 4,\\n      \\\"recovery_rate\\\": 0.727,\\n      \\\"detection_rate\\\": 0.364\\n    },\\n    \\\"P1_step_order_swap\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 7,\\n      \\\"detected\\\": 3,\\n      \\\"recovery_rate\\\": 0.583,\\n      \\\"detection_rate\\\": 0.25\\n    },\\n    \\\"P2_sub_goal_deletion\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 10,\\n      \\\"detected\\\": 5,\\n      \\\"recovery_rate\\\": 0.833,\\n      \\\"detection_rate\\\": 0.417\\n    }\\n  },\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 5,\\n      \\\"detected\\\": 3,\\n      \\\"rate\\\": 0.833\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 5,\\n      \\\"detected\\\": 2,\\n      \\\"rate\\\": 0.625\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 7,\\n      \\\"detected\\\": 3,\\n      \\\"rate\\\": 0.636\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 5,\\n      \\\"detected\\\": 1,\\n      \\
+…[truncated 7870 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T09:23:16.452509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_random_s42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/llama31_random_s42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T09:23:16.452833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/output/llama31-random-s42/v0-20260516-142300/checkpoint-3387\\\",\\n  \\\"model_variant\\\": \\\"random\\\",\\n  \\\"inject\\\": true,\\n  \\\"seed\\\": 42,\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.766,\\n  \\\"recovery_rate\\\": 0.766,\\n  \\\"detection_rate\\\": 0.298,\\n  \\\"timestamp\\\": \\\"2026-05-16T09:01:58.401870+00:00\\\",\\n  \\\"by_operator\\\": {\\n    \\\"C1_context_truncation\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 8,\\n      \\\"detected\\\": 5,\\n      \\\"recovery_rate\\\": 0.667,\\n      \\\"detection_rate\\\": 0.417\\n    },\\n    \\\"C4_observation_masking\\\": {\\n      \\\"total\\\": 11,\\n      \\\"recovered\\\": 8,\\n      \\\"detected\\\": 4,\\n      \\\"recovery_rate\\\": 0.727,\\n      \\\"detection_rate\\\": 0.364\\n    },\\n    \\\"P1_step_order_swap\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 11,\\n      \\\"detected\\\": 4,\\n      \\\"recovery_rate\\\": 0.917,\\n      \\\"detection_rate\\\": 0.333\\n    },\\n    \\\"P2_sub_goal_deletion\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 9,\\n      \\\"detected\\\": 1,\\n      \\\"recovery_rate\\\": 0.75,\\n      \\\"detection_rate\\\": 0.083\\n    }\\n  },\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 5,\\n      \\\"detected\\\": 3,\\n      \\\"rate\\\": 0.833\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 6,\\n      \\\"detected\\\": 3,\\n      \\\"rate\\\": 0.75\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 7,\\n      \\\"detected\\\": 2,\\n      \\\"rate\\\": 0.636\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 4,\\n      \\\"detected\\\": 0,\\n      \\
+…[truncated 7884 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T09:23:16.452999+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/autodl-tmp/tax_error_inject_agent/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T09:23:16.453160+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adapter_test.json\\ndryrun_injected_vanilla.json\\ndryrun_recovery.json\\nfailure_analysis.json\\nfailure_modes_5seed_phase1.json\\ngate1_injection_validity.json\\ngate2_recovery_quality.json\\ngate3_judgment.json\\nllama31_random_s42.json\\nllama31_taxei_s42.json\\nllama31_vanilla_s42.json\\nmini_taxei_clean.json\\nmini_vanilla_clean.json\\npipeline_test.json\\nresults.json\\nv3_random.json\\nv3_taxei.json\\nv3_vanilla.json\\nv4_random_eval.json\\nv4_random_fixed_inject10_eval.json\\nv4_random_fixed_inject10_s0_eval.json\\nv4_random_fixed_inject10_s123_eval.json\\nv4_random_fixed_inject10_s1_eval.json\\nv4_random_fixed_inject10_s7_eval.json\\nv4_random_fixed_inject25_eval.json\\nv4_random_fixed_inject25_s0_eval.json\\nv4_random_fixed_inject25_s123_eval.json\\nv4_random_fixed_inject25_s7_eval.json\\nv4_random_fixed_inject50_eval.json\\nv4_random_fixed_inject50_s0_eval.json\\nv4_random_fixed_inject50_s123_eval.json\\nv4_random_fixed_inject50_s1_eval.json\\nv4_random_fixed_inject50_s1_eval.log\\nv4_random_fixed_inject50_s7_eval.json\\nv4_random_fixed_inject50_s7_eval.log\\nv4_random_recovery_eval.json\\nv4_random_seed0_eval.json\\nv4_random_seed123_eval.json\\nv4_random_seed1_eval.json\\nv4_random_seed7_eval.json\\nv4_taxei_eval.json\\nv4_taxei_fixed_inject10_eval.json\\nv4_taxei_fixed_inject10_s0_eval.json\\nv4_taxei_fixed_inject10_s123_eval.json\\nv4_taxei_fixed_inject10_s1_eval.json\\nv4_taxei_fixed_inject10_s7_eval.json\\nv4_taxei_fixed_inject25_eval.json\\nv4_taxei_fixed_inject25_s0_eval.json\\nv4_taxei_fixed_inject25_s123_eval.json\\nv4_taxei_fixed_inject50_eval.json\\nv4_taxei_fixed_inject50_s0_eval.json\\nv4_taxei_fixed_inject50_s123_eval.json\\nv4_taxei_fixed_inject50_s1_eval.json\\nv4_taxei_fixed_inject50_s1_eval.log\\nv4_taxei_fixed_inject50_s7_eval.json\\nv4_taxei_fixed_inject50_s7_eval.log\\nv4_taxei_recovery_eval.json\\nv4_taxei_recovery_eval_r2.json\\nv4_taxei_recovery_eval_s0.json\\nv4_taxei_recov
+…[truncated 740 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T09:23:16.453344+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Load all three LLaMA files\nfiles = {\n    'vanilla': 'eval_results/llama31_vanilla_s42.json',\n    'taxei': 'eval_results/llama31_taxei_s42.json',\n    'random': 'eval_results/llama31_random_s42.json',\n}\n\nfor cond, fpath in files.items():\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    print(f'\\\\n===== {cond.upper()} (detection_rate={data[\\\"detection_rate\\\"]}) =====')\n    \n    for i, ep in enumerate(data['episodes']):\n        ra = ep['recovery_analysis']\n        if not ra['detected']:\n            continue\n        \n        print(f'\\\\n--- Episode {i}: {ep[\\\"task_name\\\"]} ---')\n        print(f'  Operator: {ep[\\\"operator\\\"]}')\n        print(f'  Inject step: {ep[\\\"injection_step\\\"]}')\n        print(f'  Detection step: {ra[\\\"detection_step\\\"]}')\n        print(f'  Success: {ep[\\\"success\\\"]}')\n        print(f'  Total steps: {ep[\\\"steps\\\"]}')\n        print(f'  Recovery actions: {ra[\\\"recovery_actions_count\\\"]}')\n        \n        # Print think snippets for detection steps and a few steps around\n        for step in ep['trajectory']:\n            if step['detected_error']:\n                print(f'  [DETECTED @ step {step[\\\"step\\\"]}]')\n                print(f'    Observation: {step[\\\"observation\\\"][:200]}')\n                print(f'    Think: {step[\\\"think_snippet\\\"][:400]}')\n                print(f'    Action: {step[\\\"action\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Load all three LLaMA files\nfiles = {\n    'vanilla': 'eval_results/llama31_vanilla_s42.json',\n    'taxei': 'eval_results/llama31_taxei_s42.json',\n    'random': 'eval_results/llama31_random_s42.json',\n}\n\nfor cond, fpath in files.items():\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    print(f'\\\\n===== {cond.upper()} (detection_rate={data[\\\"detection_rate\\\"]}) =====')\n    \n    for i, ep in enumerate(data['episodes']):\n        ra = ep['recovery_analysis']\n        if not ra['detected']:\n            continue\n        \n        print(f'\\\\n--- Episode {i}: {ep[\\\"task_name\\\"]} ---')\n        print(f'  Operator: {ep[\\\"operator\\\"]}')\n        print(f'  Inject step: {ep[\\\"injection_step\\\"]}')\n        print(f'  Detection step: {ra[\\\"detection_step\\\"]}')\n        print(f'  Success: {ep[\\\"success\\\"]}')\n        print(f'  Total steps: {ep[\\\"steps\\\"]}')\n        print(f'  Recovery actions: {ra[\\\"recovery_actions_count\\\"]}')\n        \n        # Print think snippets for detection steps and a few steps around\n        for step in ep['trajectory']:\n            if step['detected_error']:\n                print(f'  [DETECTED @ step {step[\\\"step\\\"]}]')\n                print(f'    Observation: {step[\\\"observation\\\"][:200]}')\n                print(f'    Think: {step[\\\"think_snippet\\\"][:400]}')\n                print(f'    Action: {step[\\\"action\\\"]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T09:23:16.453583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n===== VANILLA (detection_rate=0.213) =====\\n\\n--- Episode 0: look_at_obj_in_light-AlarmClock-None-DeskLamp-308 ---\\n  Operator: P1_step_order_swap\\n  Inject step: 2\\n  Detection step: 6\\n  Success: True\\n  Total steps: 7\\n  Recovery actions: 1\\n  [DETECTED @ step 6]\\n    Observation: You are carrying: a alarmclock 1.\\n    Think: I’m already holding the alarmclock. The desklamp was turned on earlier, so I’ll go back to desk 1 to confirm the lamp is on and the “hold the clock and turn on the lamp” goal is satisfied.\\n    Action: go to desk 1\\n\\n--- Episode 1: look_at_obj_in_light-Book-None-DeskLamp-308 ---\\n  Operator: P2_sub_goal_deletion\\n  Inject step: 2\\n  Detection step: 18\\n  Success: True\\n  Total steps: 35\\n  Recovery actions: 1\\n  [DETECTED @ step 18]\\n    Observation: You arrive at shelf 2. On the shelf 2, you see a creditcard 1, and a pencil 2.\\n    Think: The desk lamp is already on at desk 1. To look at a book by the light of the lamp, I should go back to desk 1 where the lamp is and then locate a book to examine there.\\n    Action: go to desk 1\\n\\n--- Episode 13: pick_and_place_simple-Watch-None-Safe-219 ---\\n  Operator: P2_sub_goal_deletion\\n  Inject step: 2\\n  Detection step: 25\\n  Success: True\\n  Total steps: 27\\n  Recovery actions: 2\\n  [DETECTED @ step 25]\\n    Observation: You pick up the watch 1 from the dresser 1.\\n    Think: I’m holding the watch. To place it inside the safe, I need to go back to the open safe first.\\n    Action: go to safe 1\\n\\n--- Episode 15: pick_clean_then_place_in_recep-Cloth-None-Cabinet-424 ---\\n  Operator: C4_observation_masking\\n  Inject step: 3\\n  Detection step: 6\\n  Success: False\\n  Total steps: 50\\n  Recovery actions: 14\\n  [DETECTED @ step 6]\\n    Observation: You arrive at sinkbasin 2. On the sinkbasin 2, you see nothing.\\n    Think: We need to clean the cloth (towel) at a sinkbasin. Since sinkbasin 2 is emp
+…[truncated 6552 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T09:23:16.453746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -50 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -50 /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_recovery_eval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T09:23:16.453906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\",\\n  \\\"model_variant\\\": \\\"taxei\\\",\\n  \\\"inject\\\": true,\\n  \\\"seed\\\": 42,\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.596,\\n  \\\"recovery_rate\\\": 0.596,\\n  \\\"detection_rate\\\": 0.0,\\n  \\\"timestamp\\\": \\\"2026-05-14T20:49:14.687239+00:00\\\",\\n  \\\"by_operator\\\": {\\n    \\\"C1_context_truncation\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 8,\\n      \\\"detected\\\": 0,\\n      \\\"recovery_rate\\\": 0.667,\\n      \\\"detection_rate\\\": 0.0\\n    },\\n    \\\"C4_observation_masking\\\": {\\n      \\\"total\\\": 11,\\n      \\\"recovered\\\": 7,\\n      \\\"detected\\\": 0,\\n      \\\"recovery_rate\\\": 0.636,\\n      \\\"detection_rate\\\": 0.0\\n    },\\n    \\\"P1_step_order_swap\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 7,\\n      \\\"detected\\\": 0,\\n      \\\"recovery_rate\\\": 0.583,\\n      \\\"detection_rate\\\": 0.0\\n    },\\n    \\\"P2_sub_goal_deletion\\\": {\\n      \\\"total\\\": 12,\\n      \\\"recovered\\\": 6,\\n      \\\"detected\\\": 0,\\n      \\\"recovery_rate\\\": 0.5,\\n      \\\"detection_rate\\\": 0.0\\n    }\\n  },\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 6,\\n      \\\"detected\\\": 0,\\n      \\\"rate\\\": 1.0\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 4,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T09:23:16.454099+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json, re\n\nDETECTION_PATTERNS = [\n    (r'\\b(?:wrong|error|mistake|incorrect|unexpected)\\b', 'wrong/error/mistake'),\n    (r'\\b(?:strange|odd|confused|confusing|inconsistent)\\b', 'strange/odd/confused'),\n    (r\\\"(?:doesn'?t\\s+match|doesn'?t\\s+make\\s+sense|not\\s+right)\\\", 'doesnt_match/not_right'),\n    (r'\\b(?:something\\s+(?:is\\s+)?(?:off|wrong)|went\\s+wrong)\\b', 'something_wrong'),\n    (r'\\b(?:missing|lost|truncated|disappeared)\\b', 'missing/lost'),\n    (r'\\b(?:should\\s+have|need\\s+to\\s+redo|go\\s+back|try\\s+again)\\b', 'should_have/go_back'),\n    (r'\\b(?:problem|issue|anomal)', 'problem/issue'),\n    (r'\\b(?:wait|hmm)\\b.*\\b(?:but|however|actually)\\b', 'wait_but'),\n]\n\nfiles = {\n    'vanilla': 'eval_results/llama31_vanilla_s42.json',\n    'taxei': 'eval_results/llama31_taxei_s42.json',\n    'random': 'eval_results/llama31_random_s42.json',\n}\n\n# Also count pattern matches\npattern_counts = {cond: {name: 0 for _, name in DETECTION_PATTERNS} for cond in files}\ngo_back_only = {cond: 0 for cond in files}\ntotal_det = {cond: 0 for cond in files}\n\nfor cond, fpath in files.items():\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    print(f'\\\\n===== {cond.upper()} =====')\n    \n    for i, ep in enumerate(data['episodes']):\n        if not ep['recovery_analysis']['detected']:\n            continue\n        total_det[cond] += 1\n        \n        # Collect all detected think texts\n        ep_patterns = set()\n        for step in ep['trajectory']:\n            if step['detected_error']:\n                text = step['think_snippet'].lower()\n                matched = []\n                for pat, name in DETECTION_PATTERNS:\n                    if re.search(pat, text):\n                        matched.append(name)\n                        pattern_counts[cond][name] += 1\n                        ep_patterns.add(name)\n                \n                print(f'  Ep{i} step{step[\\\"step\\\"]} [{ep[\\\"operator\\\"]}]: {matched}')\n                # Show the exact matching text\n                for pat, name in DETECTION_PATTERNS:\n                    m = re.search(pat, text)\n                    if m:\n                        start = max(0, m.start()-20)\n                        end = min(len(text), m.end()+20)\n                        print(f'    -> {name}: ...{text[start:end]}...')\n        \n        if ep_patterns == {'should_have/go_back'}:\n            go_back_only[cond] += 1\n\nprint('\\\\n\\\\n===== SUMMARY =====')\nfor cond in files:\n    print(f'\\\\n{cond}: {total_det[cond]} detected episodes, {go_back_only[cond]} ONLY matched go_back')\n    for _, name in DETECTION_PATTERNS:\n        if pattern_counts[cond][name] > 0:\n            print(f'  {name}: {pattern_counts[cond][name]} step-level matches')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json, re\n\nDETECTION_PATTERNS = [\n    (r'\\b(?:wrong|error|mistake|incorrect|unexpected)\\b', 'wrong/error/mistake'),\n    (r'\\b(?:strange|odd|confused|confusing|inconsistent)\\b', 'strange/odd/confused'),\n    (r\\\"(?:doesn'?t\\s+match|doesn'?t\\s+make\\s+sense|not\\s+right)\\\", 'doesnt_match/not_right'),\n    (r'\\b(?:something\\s+(?:is\\s+)?(?:off|wrong)|went\\s+wrong)\\b', 'something_wrong'),\n    (r'\\b(?:missing|lost|truncated|disappeared)\\b', 'missing/lost'),\n    (r'\\b(?:should\\s+have|need\\s+to\\s+redo|go\\s+back|try\\s+again)\\b', 'should_have/go_back'),\n    (r'\\b(?:problem|issue|anomal)', 'problem/issue'),\n    (r'\\b(?:wait|hmm)\\b.*\\b(?:but|however|actually)\\b', 'wait_but'),\n]\n\nfiles = {\n    'vanilla': 'eval_results/llama31_vanilla_s42.json',\n    'taxei': 'eval_results/llama31_taxei_s42.json',\n    'random': 'eval_results/llama31_random_s42.json',\n}\n\n# Also count pattern matches\npattern_counts = {cond: {name: 0 for _, name in DETECTION_PATTERNS} for cond in files}\ngo_back_only = {cond: 0 for cond in files}\ntotal_det = {cond: 0 for cond in files}\n\nfor cond, fpath in files.items():\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    print(f'\\\\n===== {cond.upper()} =====')\n    \n    for i, ep in enumerate(data['episodes']):\n        if not ep['recovery_analysis']['detected']:\n            continue\n        total_det[cond] += 1\n        \n        # Collect all detected think texts\n        ep_patterns = set()\n        for step in ep['trajectory']:\n            if step['detected_error']:\n                text = step['think_snippet'].lower()\n                matched = []\n                for pat, name in DETECTION_PATTERNS:\n                    if re.search(pat, text):\n                        matched.append(name)\n                        pattern_counts[cond][name] += 1\n                        ep_patterns.add(name)\n                \n                print(f'  Ep{i} step{step[\\\"step\\\"]} [{ep[\\\"operator\\\"]}]: {matched}')\n                # Show the exact matching text\n                for pat, name in DETECTION_PATTERNS:\n                    m = re.search(pat, text)\n                    if m:\n                        start = max(0, m.start()-20)\n                        end = min(len(text), m.end()+20)\n                        print(f'    -> {name}: ...{text[start:end]}...')\n        \n        if ep_patterns == {'should_have/go_back'}:\n            go_back_only[cond] += 1\n\nprint('\\\\n\\\\n===== SUMMARY =====')\nfor cond in files:\n    print(f'\\\\n{cond}: {total_det[cond]} detected episodes, {go_back_only[cond]} ONLY matched go_back')\n    for _, name in DETECTION_PATTERNS:\n        if pattern_counts[cond][name] > 0:\n            print(f'  {name}: {pattern_counts[cond][name]} step-level matches')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T09:23:16.454319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n===== VANILLA =====\\n  Ep0 step6 [P1_step_order_swap]: ['should_have/go_back']\\n    -> should_have/go_back: ...on earlier, so i’ll go back to desk 1 to confir...\\n  Ep1 step18 [P2_sub_goal_deletion]: ['should_have/go_back']\\n    -> should_have/go_back: ... the lamp, i should go back to desk 1 where the...\\n  Ep13 step25 [P2_sub_goal_deletion]: ['should_have/go_back']\\n    -> should_have/go_back: ...the safe, i need to go back to the open safe fi...\\n  Ep15 step6 [C4_observation_masking]: ['should_have/go_back']\\n    -> should_have/go_back: ... is empty, i should go back to sinkbasin 1 to e...\\n  Ep15 step9 [C4_observation_masking]: ['should_have/go_back']\\n    -> should_have/go_back: ...eaning, so i should go back to the sink area to...\\n  Ep16 step17 [P1_step_order_swap]: ['should_have/go_back']\\n    -> should_have/go_back: ...right now, i should go back to the countertop w...\\n  Ep16 step41 [P1_step_order_swap]: ['should_have/go_back']\\n    -> should_have/go_back: ...e counter. i should go back to the countertop t...\\n  Ep26 step5 [C1_context_truncation]: ['should_have/go_back']\\n    -> should_have/go_back: ... the fridge. first, go back to the fridge....\\n  Ep29 step15 [P2_sub_goal_deletion]: ['should_have/go_back']\\n    -> should_have/go_back: ... the fridge. first, go back to the fridge to lo...\\n  Ep29 step39 [P2_sub_goal_deletion]: ['should_have/go_back']\\n    -> should_have/go_back: ...he fridge. i should go back to the fridge to lo...\\n  Ep31 step11 [C4_observation_masking]: ['should_have/go_back']\\n    -> should_have/go_back: ...he fridge. i should go back to the open fridge ...\\n  Ep31 step14 [C4_observation_masking]: ['should_have/go_back']\\n    -> should_have/go_back: ...he fridge. i should go back to the open fridge ...\\n  Ep31 step23 [C4_observation_masking]: ['should_have/go_back']\\n    -> should_have/go_back: ...he fridge. i should go back to the open fridge ...\\n 
+…[truncated 6449 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T09:23:16.454560+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Load Qwen v4 taxei recovery eval - pick episodes matching LLaMA detected ones\n# First, find which episodes are 'detected' in LLaMA vanilla\nwith open('eval_results/llama31_vanilla_s42.json') as f:\n    llama = json.load(f)\n\ndetected_tasks = []\nfor i, ep in enumerate(llama['episodes']):\n    if ep['recovery_analysis']['detected']:\n        detected_tasks.append((i, ep['task_name'], ep['operator']))\n\nprint('LLaMA Vanilla detected tasks:')\nfor idx, name, op in detected_tasks:\n    print(f'  {idx}: {name} [{op}]')\n\n# Load Qwen results\nqwen_files = ['v4_taxei_recovery_eval.json', 'v4_vanilla_recovery_eval.json', 'v4_random_eval.json']\nfor qf in qwen_files:\n    fpath = f'eval_results/{qf}'\n    try:\n        with open(fpath) as f:\n            qdata = json.load(f)\n        print(f'\\\\nQwen {qf}: detection_rate={qdata[\\\"detection_rate\\\"]}, episodes={len(qdata[\\\"episodes\\\"])}')\n        \n        # Find matching episodes by task_name\n        qwen_map = {ep['task_name']: ep for ep in qdata['episodes']}\n        \n        # Show Qwen think for first 3 detected LLaMA episodes\n        shown = 0\n        for idx, name, op in detected_tasks:\n            if name in qwen_map and shown < 3:\n                qep = qwen_map[name]\n                print(f'\\\\n  Qwen ep [{name}]:')\n                print(f'    Success: {qep[\\\"success\\\"]}, Steps: {qep[\\\"steps\\\"]}')\n                print(f'    Operator: {qep[\\\"operator\\\"]}')\n                # Show post-injection think snippets\n                for step in qep['trajectory']:\n                    if step.get('post_injection', False):\n                        print(f'    Step {step[\\\"step\\\"]}: think={step[\\\"think_snippet\\\"][:250]}')\n                        if shown < 3:\n                            break\n                shown += 1\n    except Exception as e:\n        print(f'Error loading {qf}: {e}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Load Qwen v4 taxei recovery eval - pick episodes matching LLaMA detected ones\n# First, find which episodes are 'detected' in LLaMA vanilla\nwith open('eval_results/llama31_vanilla_s42.json') as f:\n    llama = json.load(f)\n\ndetected_tasks = []\nfor i, ep in enumerate(llama['episodes']):\n    if ep['recovery_analysis']['detected']:\n        detected_tasks.append((i, ep['task_name'], ep['operator']))\n\nprint('LLaMA Vanilla detected tasks:')\nfor idx, name, op in detected_tasks:\n    print(f'  {idx}: {name} [{op}]')\n\n# Load Qwen results\nqwen_files = ['v4_taxei_recovery_eval.json', 'v4_vanilla_recovery_eval.json', 'v4_random_eval.json']\nfor qf in qwen_files:\n    fpath = f'eval_results/{qf}'\n    try:\n        with open(fpath) as f:\n            qdata = json.load(f)\n        print(f'\\\\nQwen {qf}: detection_rate={qdata[\\\"detection_rate\\\"]}, episodes={len(qdata[\\\"episodes\\\"])}')\n        \n        # Find matching episodes by task_name\n        qwen_map = {ep['task_name']: ep for ep in qdata['episodes']}\n        \n        # Show Qwen think for first 3 detected LLaMA episodes\n        shown = 0\n        for idx, name, op in detected_tasks:\n            if name in qwen_map and shown < 3:\n                qep = qwen_map[name]\n                print(f'\\\\n  Qwen ep [{name}]:')\n                print(f'    Success: {qep[\\\"success\\\"]}, Steps: {qep[\\\"steps\\\"]}')\n                print(f'    Operator: {qep[\\\"operator\\\"]}')\n                # Show post-injection think snippets\n                for step in qep['trajectory']:\n                    if step.get('post_injection', False):\n                        print(f'    Step {step[\\\"step\\\"]}: think={step[\\\"think_snippet\\\"][:250]}')\n                        if shown < 3:\n                            break\n                shown += 1\n    except Exception as e:\n        print(f'Error loading {qf}: {e}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T09:23:16.454771+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLaMA Vanilla detected tasks:\\n  0: look_at_obj_in_light-AlarmClock-None-DeskLamp-308 [P1_step_order_swap]\\n  1: look_at_obj_in_light-Book-None-DeskLamp-308 [P2_sub_goal_deletion]\\n  13: pick_and_place_simple-Watch-None-Safe-219 [P2_sub_goal_deletion]\\n  15: pick_clean_then_place_in_recep-Cloth-None-Cabinet-424 [C4_observation_masking]\\n  16: pick_clean_then_place_in_recep-Cloth-None-CounterTop-424 [P1_step_order_swap]\\n  26: pick_cool_then_place_in_recep-Lettuce-None-CounterTop-10 [C1_context_truncation]\\n  29: pick_cool_then_place_in_recep-Pan-None-CounterTop-10 [P2_sub_goal_deletion]\\n  31: pick_cool_then_place_in_recep-Tomato-None-Microwave-10 [C4_observation_masking]\\n  43: pick_two_obj_and_place-Pillow-None-Sofa-219 [C4_observation_masking]\\n  46: pick_two_obj_and_place-ToiletPaper-None-Cabinet-424 [C1_context_truncation]\\n\\nQwen v4_taxei_recovery_eval.json: detection_rate=0.0, episodes=47\\n\\n  Qwen ep [look_at_obj_in_light-AlarmClock-None-DeskLamp-308]:\\n    Success: True, Steps: 5\\n    Operator: P1_step_order_swap\\n    Step 2: think=\\n\\n  Qwen ep [look_at_obj_in_light-Book-None-DeskLamp-308]:\\n    Success: True, Steps: 25\\n    Operator: P2_sub_goal_deletion\\n    Step 2: think=\\n\\n  Qwen ep [pick_and_place_simple-Watch-None-Safe-219]:\\n    Success: False, Steps: 50\\n    Operator: P2_sub_goal_deletion\\n    Step 2: think=\\n\\nQwen v4_vanilla_recovery_eval.json: detection_rate=0.0, episodes=47\\n\\n  Qwen ep [look_at_obj_in_light-AlarmClock-None-DeskLamp-308]:\\n    Success: True, Steps: 12\\n    Operator: P1_step_order_swap\\n    Step 2: think=\\n\\n  Qwen ep [look_at_obj_in_light-Book-None-DeskLamp-308]:\\n    Success: False, Steps: 50\\n    Operator: P2_sub_goal_deletion\\n    Step 2: think=\\n\\n  Qwen ep [pick_and_place_simple-Watch-None-Safe-219]:\\n    Success: True, Steps: 8\\n    Operator: P2_sub_goal_deletion\\n    Step 2: think=\\nError loading v4_random_eval.json: 'de
+…[truncated 120 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T09:23:16.454990+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Check Qwen think snippet structure - are they empty or just not present?\nwith open('eval_results/v4_taxei_recovery_eval.json') as f:\n    qdata = json.load(f)\n\n# Check first 3 episodes in detail\nfor i in range(3):\n    ep = qdata['episodes'][i]\n    print(f'\\\\nEp{i}: {ep[\\\"task_name\\\"]} [{ep[\\\"operator\\\"]}]')\n    print(f'  Success: {ep[\\\"success\\\"]}, Steps: {ep[\\\"steps\\\"]}')\n    for step in ep['trajectory'][:8]:\n        ts = step.get('think_snippet', 'NO_KEY')\n        print(f'  Step {step[\\\"step\\\"]}: think_snippet=\\\"{ts}\\\" | action=\\\"{step[\\\"action\\\"]}\\\" | injected={step.get(\\\"injected_this_step\\\",False)}')\n\n# Count how many steps have non-empty think\ntotal_steps = 0\nempty_think = 0\nfor ep in qdata['episodes']:\n    for step in ep['trajectory']:\n        total_steps += 1\n        ts = step.get('think_snippet', '')\n        if not ts or ts.strip() == '':\n            empty_think += 1\n\nprint(f'\\\\nTotal steps: {total_steps}, Empty think: {empty_think} ({100*empty_think/total_steps:.1f}%)')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Check Qwen think snippet structure - are they empty or just not present?\nwith open('eval_results/v4_taxei_recovery_eval.json') as f:\n    qdata = json.load(f)\n\n# Check first 3 episodes in detail\nfor i in range(3):\n    ep = qdata['episodes'][i]\n    print(f'\\\\nEp{i}: {ep[\\\"task_name\\\"]} [{ep[\\\"operator\\\"]}]')\n    print(f'  Success: {ep[\\\"success\\\"]}, Steps: {ep[\\\"steps\\\"]}')\n    for step in ep['trajectory'][:8]:\n        ts = step.get('think_snippet', 'NO_KEY')\n        print(f'  Step {step[\\\"step\\\"]}: think_snippet=\\\"{ts}\\\" | action=\\\"{step[\\\"action\\\"]}\\\" | injected={step.get(\\\"injected_this_step\\\",False)}')\n\n# Count how many steps have non-empty think\ntotal_steps = 0\nempty_think = 0\nfor ep in qdata['episodes']:\n    for step in ep['trajectory']:\n        total_steps += 1\n        ts = step.get('think_snippet', '')\n        if not ts or ts.strip() == '':\n            empty_think += 1\n\nprint(f'\\\\nTotal steps: {total_steps}, Empty think: {empty_think} ({100*empty_think/total_steps:.1f}%)')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T09:23:16.455168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nEp0: look_at_obj_in_light-AlarmClock-None-DeskLamp-308 [P1_step_order_swap]\\n  Success: True, Steps: 5\\n  Step 0: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=False\\n  Step 1: think_snippet=\\\"\\\" | action=\\\"use desklamp 1\\\" | injected=False\\n  Step 2: think_snippet=\\\"\\\" | action=\\\"go to desk 2\\\" | injected=True\\n  Step 3: think_snippet=\\\"\\\" | action=\\\"take alarmclock 1 from desk 2\\\" | injected=False\\n  Step 4: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=False\\n\\nEp1: look_at_obj_in_light-Book-None-DeskLamp-308 [P2_sub_goal_deletion]\\n  Success: True, Steps: 25\\n  Step 0: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=False\\n  Step 1: think_snippet=\\\"\\\" | action=\\\"use desklamp 1\\\" | injected=False\\n  Step 2: think_snippet=\\\"\\\" | action=\\\"go to desk 2\\\" | injected=True\\n  Step 3: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=False\\n  Step 4: think_snippet=\\\"\\\" | action=\\\"go to shelf 1\\\" | injected=False\\n  Step 5: think_snippet=\\\"\\\" | action=\\\"go to shelf 2\\\" | injected=False\\n  Step 6: think_snippet=\\\"\\\" | action=\\\"go to shelf 3\\\" | injected=False\\n  Step 7: think_snippet=\\\"\\\" | action=\\\"go to shelf 4\\\" | injected=False\\n\\nEp2: look_at_obj_in_light-Bowl-None-DeskLamp-308 [C1_context_truncation]\\n  Success: True, Steps: 6\\n  Step 0: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=False\\n  Step 1: think_snippet=\\\"\\\" | action=\\\"examine desk 1\\\" | injected=False\\n  Step 2: think_snippet=\\\"\\\" | action=\\\"go to desk 2\\\" | injected=False\\n  Step 3: think_snippet=\\\"\\\" | action=\\\"take bowl 1 from desk 2\\\" | injected=False\\n  Step 4: think_snippet=\\\"\\\" | action=\\\"go to desk 1\\\" | injected=True\\n  Step 5: think_snippet=\\\"\\\" | action=\\\"use desklamp 1\\\" | injected=False\\n\\nTotal steps: 1250, Empty 
+…[truncated 127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T09:23:16.455325+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Count 'go back' in LLaMA vs Qwen think snippets (including non-detected steps)\n# to see if 'go back' is just normal LLaMA language\n\nfor label, fpath in [('LLaMA vanilla', 'eval_results/llama31_vanilla_s42.json'),\n                      ('LLaMA taxei', 'eval_results/llama31_taxei_s42.json'),\n                      ('Qwen taxei', 'eval_results/v4_taxei_recovery_eval.json')]:\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    total_steps = 0\n    go_back_count = 0\n    pre_inj_go_back = 0\n    post_inj_go_back = 0\n    \n    for ep in data['episodes']:\n        for step in ep['trajectory']:\n            total_steps += 1\n            ts = (step.get('think_snippet', '') or '').lower()\n            if 'go back' in ts:\n                go_back_count += 1\n                if step.get('post_injection', False):\n                    post_inj_go_back += 1\n                else:\n                    pre_inj_go_back += 1\n    \n    print(f'{label}: {total_steps} steps, {go_back_count} with \\\"go back\\\" (pre-inj: {pre_inj_go_back}, post-inj: {post_inj_go_back})')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Count 'go back' in LLaMA vs Qwen think snippets (including non-detected steps)\n# to see if 'go back' is just normal LLaMA language\n\nfor label, fpath in [('LLaMA vanilla', 'eval_results/llama31_vanilla_s42.json'),\n                      ('LLaMA taxei', 'eval_results/llama31_taxei_s42.json'),\n                      ('Qwen taxei', 'eval_results/v4_taxei_recovery_eval.json')]:\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    total_steps = 0\n    go_back_count = 0\n    pre_inj_go_back = 0\n    post_inj_go_back = 0\n    \n    for ep in data['episodes']:\n        for step in ep['trajectory']:\n            total_steps += 1\n            ts = (step.get('think_snippet', '') or '').lower()\n            if 'go back' in ts:\n                go_back_count += 1\n                if step.get('post_injection', False):\n                    post_inj_go_back += 1\n                else:\n                    pre_inj_go_back += 1\n    \n    print(f'{label}: {total_steps} steps, {go_back_count} with \\\"go back\\\" (pre-inj: {pre_inj_go_back}, post-inj: {post_inj_go_back})')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T09:23:16.455488+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLaMA vanilla: 1128 steps, 21 with \\\"go back\\\" (pre-inj: 1, post-inj: 20)\\nLLaMA taxei: 1085 steps, 19 with \\\"go back\\\" (pre-inj: 1, post-inj: 18)\\nQwen taxei: 1250 steps, 0 with \\\"go back\\\" (pre-inj: 0, post-inj: 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T09:23:16.455686+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Detailed: rate of 'go back' per step, pre vs post injection\nfor label, fpath in [('LLaMA vanilla', 'eval_results/llama31_vanilla_s42.json'),\n                      ('LLaMA taxei', 'eval_results/llama31_taxei_s42.json'),\n                      ('LLaMA random', 'eval_results/llama31_random_s42.json')]:\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    pre_total = 0\n    pre_goback = 0\n    post_total = 0\n    post_goback = 0\n    \n    for ep in data['episodes']:\n        for step in ep['trajectory']:\n            ts = (step.get('think_snippet', '') or '').lower()\n            if step.get('post_injection', False):\n                post_total += 1\n                if 'go back' in ts:\n                    post_goback += 1\n            else:\n                pre_total += 1\n                if 'go back' in ts:\n                    pre_goback += 1\n    \n    pre_rate = pre_goback/pre_total*100 if pre_total else 0\n    post_rate = post_goback/post_total*100 if post_total else 0\n    print(f'{label}:')\n    print(f'  Pre-injection:  {pre_goback}/{pre_total} = {pre_rate:.1f}%')\n    print(f'  Post-injection: {post_goback}/{post_total} = {post_rate:.1f}%')\n    print()\n\n# Also check: in non-injected eval, how often does LLaMA say 'go back'?\n# Check if there's a clean eval\nimport os\nfor f in os.listdir('eval_results'):\n    if 'clean' in f or 'baseline' in f:\n        print(f'Found: {f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Detailed: rate of 'go back' per step, pre vs post injection\nfor label, fpath in [('LLaMA vanilla', 'eval_results/llama31_vanilla_s42.json'),\n                      ('LLaMA taxei', 'eval_results/llama31_taxei_s42.json'),\n                      ('LLaMA random', 'eval_results/llama31_random_s42.json')]:\n    with open(fpath) as f:\n        data = json.load(f)\n    \n    pre_total = 0\n    pre_goback = 0\n    post_total = 0\n    post_goback = 0\n    \n    for ep in data['episodes']:\n        for step in ep['trajectory']:\n            ts = (step.get('think_snippet', '') or '').lower()\n            if step.get('post_injection', False):\n                post_total += 1\n                if 'go back' in ts:\n                    post_goback += 1\n            else:\n                pre_total += 1\n                if 'go back' in ts:\n                    pre_goback += 1\n    \n    pre_rate = pre_goback/pre_total*100 if pre_total else 0\n    post_rate = post_goback/post_total*100 if post_total else 0\n    print(f'{label}:')\n    print(f'  Pre-injection:  {pre_goback}/{pre_total} = {pre_rate:.1f}%')\n    print(f'  Post-injection: {post_goback}/{post_total} = {post_rate:.1f}%')\n    print()\n\n# Also check: in non-injected eval, how often does LLaMA say 'go back'?\n# Check if there's a clean eval\nimport os\nfor f in os.listdir('eval_results'):\n    if 'clean' in f or 'baseline' in f:\n        print(f'Found: {f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T09:23:16.455840+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLaMA vanilla:\\n  Pre-injection:  1/173 = 0.6%\\n  Post-injection: 20/955 = 2.1%\\n\\nLLaMA taxei:\\n  Pre-injection:  1/173 = 0.6%\\n  Post-injection: 18/912 = 2.0%\\n\\nLLaMA random:\\n  Pre-injection:  0/173 = 0.0%\\n  Post-injection: 24/862 = 2.8%\\n\\nFound: vanilla_react_baseline.json\\nFound: mini_vanilla_clean.json\\nFound: mini_taxei_clean.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T09:23:16.455972+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Check Qwen's raw model output to understand why think is empty\n# Look at v4_taxei_recovery_eval more carefully - maybe think is in a different field\nwith open('eval_results/v4_taxei_recovery_eval.json') as f:\n    qdata = json.load(f)\n\n# Print all keys of first episode trajectory step\nep0 = qdata['episodes'][0]\nprint('Episode keys:', list(ep0.keys()))\nprint('Trajectory step keys:', list(ep0['trajectory'][0].keys()))\n\n# Check if raw_output exists\nfor step in ep0['trajectory']:\n    for k, v in step.items():\n        if k not in ('step', 'observation', 'action', 'think_snippet', 'injected_this_step', 'post_injection', 'detected_error', 'recovery_action'):\n            print(f'  Extra key: {k} = {str(v)[:200]}')\n    break\n\n# Check Qwen v4 seed42 injected eval for think\nfor qf in ['v4_vanilla_recovery_eval.json']:\n    with open(f'eval_results/{qf}') as f:\n        d = json.load(f)\n    ep = d['episodes'][0]\n    print(f'\\\\n{qf} ep0 trajectory[0] keys: {list(ep[\\\"trajectory\\\"][0].keys())}')\n    for step in ep['trajectory'][:3]:\n        print(f'  Step {step[\\\"step\\\"]}: think=\\\"{step.get(\\\"think_snippet\\\",\\\"N/A\\\")}\\\" action=\\\"{step[\\\"action\\\"]}\\\"')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/autodl-tmp/tax_error_inject_agent && python3 -c \"\nimport json\n\n# Check Qwen's raw model output to understand why think is empty\n# Look at v4_taxei_recovery_eval more carefully - maybe think is in a different field\nwith open('eval_results/v4_taxei_recovery_eval.json') as f:\n    qdata = json.load(f)\n\n# Print all keys of first episode trajectory step\nep0 = qdata['episodes'][0]\nprint('Episode keys:', list(ep0.keys()))\nprint('Trajectory step keys:', list(ep0['trajectory'][0].keys()))\n\n# Check if raw_output exists\nfor step in ep0['trajectory']:\n    for k, v in step.items():\n        if k not in ('step', 'observation', 'action', 'think_snippet', 'injected_this_step', 'post_injection', 'detected_error', 'recovery_action'):\n            print(f'  Extra key: {k} = {str(v)[:200]}')\n    break\n\n# Check Qwen v4 seed42 injected eval for think\nfor qf in ['v4_vanilla_recovery_eval.json']:\n    with open(f'eval_results/{qf}') as f:\n        d = json.load(f)\n    ep = d['episodes'][0]\n    print(f'\\\\n{qf} ep0 trajectory[0] keys: {list(ep[\\\"trajectory\\\"][0].keys())}')\n    for step in ep['trajectory'][:3]:\n        print(f'  Step {step[\\\"step\\\"]}: think=\\\"{step.get(\\\"think_snippet\\\",\\\"N/A\\\")}\\\" action=\\\"{step[\\\"action\\\"]}\\\"')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T09:23:16.456111+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episode keys: ['task_name', 'task_type', 'task_desc', 'success', 'steps', 'operator', 'injection_step', 'injected', 'recovery_analysis', 'trajectory']\\nTrajectory step keys: ['step', 'observation', 'action', 'think_snippet', 'injected_this_step', 'post_injection', 'detected_error', 'recovery_action']\\n\\nv4_vanilla_recovery_eval.json ep0 trajectory[0] keys: ['step', 'observation', 'action', 'think_snippet', 'injected_this_step', 'post_injection', 'detected_error', 'recovery_action']\\n  Step 0: think=\\\"\\\" action=\\\"go to desk 1\\\"\\n  Step 1: think=\\\"\\\" action=\\\"use desklamp 1\\\"\\n  Step 2: think=\\\"\\\" action=\\\"go to shelf 1\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T09:23:16.456262+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"think\\|parse_response\\|no_think\\|enable_think\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"think\\|parse_response\\|no_think\\|enable_think\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T09:23:16.456390+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T09:23:16.456506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"think\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -n \"think\" /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T09:23:16.456655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"80:        f\\\"Think step by step in &lt;think>&lt;/think> tags, then choose an action \\\"\\n87:    think_m = re.search(r\\\"&lt;think>(.*?)&lt;/think>\\\", text, re.DOTALL)\\n89:    think = think_m.group(1).strip() if think_m else \\\"\\\"\\n91:    return think, action\\n148:def detect_recovery_signal(think_texts: List[str]) -> bool:\\n149:    return any(RECOVERY_KEYWORDS.search(t) for t in think_texts if t)\\n227:            enable_thinking=False,\\n309:        post_inject_thinks: List[str] = []\\n333:            think, action = parse_response(response_text)\\n352:                post_inject_thinks.append(think)\\n380:            detect_recovery_signal(post_inject_thinks) if injected else False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T09:23:16.456800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat -n /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat -n /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T09:23:16.457043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t#!/usr/bin/env python3\\n     2\\t\\\"\\\"\\\"TaxEI Recovery Evaluation — evaluate injection recovery and baseline success.\\\"\\\"\\\"\\n     3\\tfrom __future__ import annotations\\n     4\\t\\n     5\\timport argparse\\n     6\\timport copy\\n     7\\timport json\\n     8\\timport os\\n     9\\timport random\\n    10\\timport re\\n    11\\timport sys\\n    12\\timport time\\n    13\\tfrom collections import defaultdict\\n    14\\tfrom datetime import datetime, timezone\\n    15\\tfrom difflib import SequenceMatcher\\n    16\\tfrom pathlib import Path\\n    17\\tfrom typing import Any, Dict, List, Optional, Tuple\\n    18\\t\\n    19\\timport numpy as np\\n    20\\timport torch\\n    21\\tfrom scipy.stats import chi2\\n    22\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n    23\\tfrom peft import PeftModel\\n    24\\t\\n    25\\timport textworld\\n    26\\timport textworld.gym\\n    27\\tfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n    28\\t\\n    29\\tPROJECT_ROOT = Path(__file__).resolve().parent.parent\\n    30\\tsys.path.insert(0, str(PROJECT_ROOT))\\n    31\\t\\n    32\\tfrom injection import (\\n    33\\t    P1_StepOrderSwap,\\n    34\\t    P2_SubGoalDeletion,\\n    35\\t    C1_ContextTruncation,\\n    36\\t    C4_ObservationMasking,\\n    37\\t)\\n    38\\t\\n    39\\tMAX_STEPS = 50\\n    40\\tHISTORY_WINDOW = 10\\n    41\\t\\n    42\\tOPERATORS = [\\n    43\\t    P1_StepOrderSwap(),\\n    44\\t    P2_SubGoalDeletion(),\\n    45\\t    C1_ContextTruncation(),\\n    46\\t    C4_ObservationMasking(),\\n    47\\t]\\n    48\\t\\n    49\\tOPERATOR_CONFIGS = {\\n    50\\t    \\\"P1_step_order_swap\\\": {\\\"swap_range\\\": 5},\\n    51\\t    \\\"P2_sub_goal_deletion\\\": {\\\"deletion_strategy\\\": \\\"critical\\\"},\\n    52\\t    \\\"C1_context_truncation\\\": {\\\"truncation_ratio\\\": 0.5},\\n    53\\t    \\\"C4_observation_masking\\\": {
+…[truncated 7429 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T09:23:16.457228+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat -n /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat -n /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T09:23:16.457481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t#!/usr/bin/env python3\\n     2\\t\\\"\\\"\\\"TaxEI Recovery Evaluation — evaluate injection recovery and baseline success.\\\"\\\"\\\"\\n     3\\tfrom __future__ import annotations\\n     4\\t\\n     5\\timport argparse\\n     6\\timport copy\\n     7\\timport json\\n     8\\timport os\\n     9\\timport random\\n    10\\timport re\\n    11\\timport sys\\n    12\\timport time\\n    13\\tfrom collections import defaultdict\\n    14\\tfrom datetime import datetime, timezone\\n    15\\tfrom difflib import SequenceMatcher\\n    16\\tfrom pathlib import Path\\n    17\\tfrom typing import Any, Dict, List, Optional, Tuple\\n    18\\t\\n    19\\timport numpy as np\\n    20\\timport torch\\n    21\\tfrom scipy.stats import chi2\\n    22\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n    23\\tfrom peft import PeftModel\\n    24\\t\\n    25\\timport textworld\\n    26\\timport textworld.gym\\n    27\\tfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n    28\\t\\n    29\\tPROJECT_ROOT = Path(__file__).resolve().parent.parent\\n    30\\tsys.path.insert(0, str(PROJECT_ROOT))\\n    31\\t\\n    32\\tfrom injection import (\\n    33\\t    P1_StepOrderSwap,\\n    34\\t    P2_SubGoalDeletion,\\n    35\\t    C1_ContextTruncation,\\n    36\\t    C4_ObservationMasking,\\n    37\\t)\\n    38\\t\\n    39\\tMAX_STEPS = 50\\n    40\\tHISTORY_WINDOW = 10\\n    41\\t\\n    42\\tOPERATORS = [\\n    43\\t    P1_StepOrderSwap(),\\n    44\\t    P2_SubGoalDeletion(),\\n    45\\t    C1_ContextTruncation(),\\n    46\\t    C4_ObservationMasking(),\\n    47\\t]\\n    48\\t\\n    49\\tOPERATOR_CONFIGS = {\\n    50\\t    \\\"P1_step_order_swap\\\": {\\\"swap_range\\\": 5},\\n    51\\t    \\\"P2_sub_goal_deletion\\\": {\\\"deletion_strategy\\\": \\\"critical\\\"},\\n    52\\t    \\\"C1_context_truncation\\\": {\\\"truncation_ratio\\\": 0.5},\\n    53\\t    \\\"C4_observation_masking\\\": {
+…[truncated 7428 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T09:23:16.457670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -260 /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -260 /root/autodl-tmp/tax_error_inject_agent/eval/recovery.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T09:23:16.457916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"TaxEI Recovery Evaluation — evaluate injection recovery and baseline success.\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport copy\\nimport json\\nimport os\\nimport random\\nimport re\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom datetime import datetime, timezone\\nfrom difflib import SequenceMatcher\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\nimport torch\\nfrom scipy.stats import chi2\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom peft import PeftModel\\n\\nimport textworld\\nimport textworld.gym\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\nPROJECT_ROOT = Path(__file__).resolve().parent.parent\\nsys.path.insert(0, str(PROJECT_ROOT))\\n\\nfrom injection import (\\n    P1_StepOrderSwap,\\n    P2_SubGoalDeletion,\\n    C1_ContextTruncation,\\n    C4_ObservationMasking,\\n)\\n\\nMAX_STEPS = 50\\nHISTORY_WINDOW = 10\\n\\nOPERATORS = [\\n    P1_StepOrderSwap(),\\n    P2_SubGoalDeletion(),\\n    C1_ContextTruncation(),\\n    C4_ObservationMasking(),\\n]\\n\\nOPERATOR_CONFIGS = {\\n    \\\"P1_step_order_swap\\\": {\\\"swap_range\\\": 5},\\n    \\\"P2_sub_goal_deletion\\\": {\\\"deletion_strategy\\\": \\\"critical\\\"},\\n    \\\"C1_context_truncation\\\": {\\\"truncation_ratio\\\": 0.5},\\n    \\\"C4_observation_masking\\\": {\\\"mask_type\\\": \\\"generic\\\", \\\"max_masks\\\": 2},\\n}\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt (identical to collect_trajectories.py)\\n# ---------------------------------------------------------------------------\\n\\ndef build_prompt(\\n    task_desc: str,\\n    step_count: int,\\n    history: List[Dict[str, str]],\\n    current_obs: str,\\n    admissible_commands: List[str],\\n) -> str:\\n    history_str =
+…[truncated 7123 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T09:23:16.458145+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/llama_detection_analysis.md",
+  "content": "## Detection 机制分析\n\n### 1. Detection 定义\n\n`injected_eval.py` 中 detection 通过 `detect_error_in_think()` 函数判定，对模型 `&lt;think>` 输出应用 8 个正则 pattern：\n\n```python\nDETECTION_PATTERNS = [\n    r\"\\b(?:wrong|error|mistake|incorrect|unexpected)\\b\",\n    r\"\\b(?:strange|odd|confused|confusing|inconsistent)\\b\",\n    r\"(?:doesn'?t\\s+match|doesn'?t\\s+make\\s+sense|not\\s+right)\",\n    r\"\\b(?:something\\s+(?:is\\s+)?(?:off|wrong)|went\\s+wrong)\\b\",\n    r\"\\b(?:missing|lost|truncated|disappeared)\\b\",\n    r\"\\b(?:should\\s+have|need\\s+to\\s+redo|go\\s+back|try\\s+again)\\b\",   # ← Pattern 6\n    r\"\\b(?:problem|issue|anomal)\",\n    r\"\\b(?:wait|hmm)\\b.*\\b(?:but|however|actually)\\b\",\n]\n```\n\n任何 post-injection step 的 `&lt;think>` 文本匹配上述任一 pattern，该 episode 即标记为 `detected=True`。\n\n### 2. Detection 分布（报告值）\n\n| Condition | Total Det | C1 | C4 | P1 | P2 |\n|-----------|----------|----|----|----|----|\n| Vanilla   | 10/47 (21.3%) | 2/12 | 3/11 | 2/12 | 3/12 |\n| TaxEI     | 14/47 (29.8%) | 2/12 | 4/11 | 3/12 | 5/12 |\n| Random    | 14/47 (29.8%) | 5/12 | 4/11 | 4/12 | 1/12 |\n\n### 3. 关键发现：全部 Detection 是 \"go back\" 假阳性\n\n**所有 38 个 detected episodes（三组共计）100% 仅匹配了 Pattern 6 中的 \"go back\" 子模式。** 没有任何一个匹配了 wrong/error/mistake/strange/missing/problem 等真正表达错误意识的 pattern。\n\n具体数据：\n- Vanilla: 10 detected episodes, 10/10 **仅匹配** \"go back\"（20 个 step-level matches）\n- TaxEI: 14 detected episodes, 14/14 **仅匹配** \"go back\"（18 个 step-level matches）\n- Random: 14 detected episodes, 14/14 **仅匹配** \"go back\"（24 个 step-level matches）\n\n### 4. 典型 Examples\n\n#### Example 1: Vanilla Ep0 — P1_step_order_swap\n\n- **Task**: look_at_obj_in_light-AlarmClock-None-DeskLamp-308\n- **Inject**: step 2, step order swap\n- **Detection step**: 6\n- **Think**: \"I'm already holding the alarmclock. The desklamp was turned on earlier, so I'll **go back** to desk 1 to confirm the lamp is on and the 'hold the clock and turn on the lamp' goal is satisfied.\"\n- **判定原因**: \"go back\" 是正常导航语言（返回灯所在位置完成任务），不是对错误的识别\n- **结果**: 任务成功（7 steps）\n\n#### Example 2: Vanilla Ep31 — C4_observation_masking\n\n- **Task**: pick_cool_then_place_in_recep-Tomato-None-Microwave-10\n- **Inject**: step 3, observation masking\n- **Detection steps**: 11, 14, 23, 26, 36, 49（同一 episode 6 次触发）\n- **Think**: 反复出现 \"I should **go back** to the open fridge to locate the tomato\"\n- **判定原因**: 模型陷入循环，反复导航回冰箱，\"go back\" 是循环行为的副产物\n- **结果**: 任务失败（50 steps，达到上限）\n\n#### Example 3: Random Ep7 — C4_observation_masking\n\n- **Task**: pick_and_place_simple-CellPhone-None-Drawer-219\n- **Inject**: step 2, observation masking\n- **Detection steps**: 8, 14, 20, 26, 32, 38, 44（7 次触发）\n- **Think**: 反复 \"I need to **go back** to the desk and place the phone in the drawer\"\n- **判定原因**: 同上，stuck in loop + 导航语言\n- **结果**: 任务失败（50 steps）\n\n### 5. \"go back\" 频率分析\n\n| Condition | Pre-injection steps | \"go back\" rate | Post-injection steps | \"go back\" rate |\n|-----------|----:|------:|----:|------:|\n| LLaMA Vanilla | 173 | 0.6% (1) | 955 | 2.1% (20) |\n| LLaMA TaxEI | 173 | 0.6% (1) | 912 | 2.0% (18) |\n| LLaMA Random | 173 | 0.0% (0) | 862 | 2.8% (24) |\n| Qwen TaxEI | — | — | 1250 total | **0.0% (0)** |\n\nPost-injection \"go back\" 频率（2-3%）略高于 pre-injection（0-0.6%），但这是因为注入打断了正常流程后，模型需要导航回之前位置继续任务——是 **行为层面的正常响应**，不是错误意识。\n\n### 6. Qwen 对比\n\n#### Qwen detection=0% 的根本原因：无 think 输出\n\n`recovery.py` 第 227 行：\n```python\ntext = self.tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True,\n    enable_thinking=False,  # ← 关键：禁用 Qwen3 native thinking\n)\n```\n\n- **Qwen3-8B**: `enable_thinking=False` 触发 Qwen3 的 `/no_think` 模式，模型不生成 `&lt;think>` 标签，直接输出 action。`parse_response()` 提取 think_snippet 永远为空字符串。\n- **LLaMA-3.1-8B**: `enable_thinking` 参数被 LLaMA tokenizer 忽略（非 Qwen 特有）。LLaMA 看到 prompt 中 \"Think step by step in `&lt;think>&lt;/think>` tags\" 的指令，忠实地生成 `&lt;think>` 内容 → 给 detection heuristic 提供了匹配文本。\n\n**验证**: Qwen 全部 1250 个 trajectory steps 的 think_snippet 均为空字符串（100%）。\n\n#### 同一 episode 对比（Episode 0: AlarmClock-DeskLamp-308, P1_step_order_swap）\n\n| | LLaMA Vanilla | Qwen TaxEI |\n|---|---|---|\n| Success | True (7 steps) | True (5 steps) |\n| Detection | True (step 6) | False |\n| Think content | 每步有完整推理文本 | 全部为空 |\n| Post-injection behavior | 导航搜索 → 找到 → \"go back\" 到灯 | 直接导航到目标 |\n\n### 7. 结论\n\n**Detection 指标不可信，不应作为论文 contribution。** 具体原因：\n\n1. **LLaMA 的 detection 全部是假阳性**：38/38 detected episodes 仅因 \"go back\"（正常 ALFWorld 导航用语）触发 Pattern 6，没有一个包含 wrong/error/strange/missing 等真正表达错误意识的词汇。模型在 `&lt;think>` 中从未表达 \"我注意到出错了\"。\n\n2. **Qwen detection=0% 是评估 artifact**：Qwen3 的 `enable_thinking=False` 导致无 think 输出，detection heuristic 无文本可匹配。这不代表 Qwen \"不能检测错误\"，只是没有可分析的推理 trace。\n\n3. **LLaMA vs Qwen 的 detection 差异完全由输出格式决定**：LLaMA 产生 `&lt;think>` 文本 → 有词可匹配；Qwen 不产生 → 无词可匹配。与错误检测能力无关。\n\n4. **\"go back\" 在 Pattern 6 中是过于宽泛的匹配词**：在 ALFWorld 这种需要空间导航的环境中，\"go back to X\" 是极其常见的正常导航表述，不应作为错误检测信号。\n\n### 8. 建议\n\n- **从论文中移除 detection_rate 指标**，或明确标注为 unreliable heuristic\n- 如果要保留 detection 分析，需要：\n  - 从 Pattern 6 中移除 \"go back\"\n  - 对 Qwen 启用 `enable_thinking=True` 以获得可比较的 think trace\n  - 人工标注一个 gold standard detection 集来验证 heuristic 质量\n- 论文的核心贡献应聚焦于 **recovery rate**（任务成功率），这是一个不依赖 think 文本的客观指标\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/llama_detection_analysis.md",
+    "content": "## Detection 机制分析\n\n### 1. Detection 定义\n\n`injected_eval.py` 中 detection 通过 `detect_error_in_think()` 函数判定，对模型 `&lt;think>` 输出应用 8 个正则 pattern：\n\n```python\nDETECTION_PATTERNS = [\n    r\"\\b(?:wrong|error|mistake|incorrect|unexpected)\\b\",\n    r\"\\b(?:strange|odd|confused|confusing|inconsistent)\\b\",\n    r\"(?:doesn'?t\\s+match|doesn'?t\\s+make\\s+sense|not\\s+right)\",\n    r\"\\b(?:something\\s+(?:is\\s+)?(?:off|wrong)|went\\s+wrong)\\b\",\n    r\"\\b(?:missing|lost|truncated|disappeared)\\b\",\n    r\"\\b(?:should\\s+have|need\\s+to\\s+redo|go\\s+back|try\\s+again)\\b\",   # ← Pattern 6\n    r\"\\b(?:problem|issue|anomal)\",\n    r\"\\b(?:wait|hmm)\\b.*\\b(?:but|however|actually)\\b\",\n]\n```\n\n任何 post-injection step 的 `&lt;think>` 文本匹配上述任一 pattern，该 episode 即标记为 `detected=True`。\n\n### 2. Detection 分布（报告值）\n\n| Condition | Total Det | C1 | C4 | P1 | P2 |\n|-----------|----------|----|----|----|----|\n| Vanilla   | 10/47 (21.3%) | 2/12 | 3/11 | 2/12 | 3/12 |\n| TaxEI     | 14/47 (29.8%) | 2/12 | 4/11 | 3/12 | 5/12 |\n| Random    | 14/47 (29.8%) | 5/12 | 4/11 | 4/12 | 1/12 |\n\n### 3. 关键发现：全部 Detection 是 \"go back\" 假阳性\n\n**所有 38 个 detected episodes（三组共计）100% 仅匹配了 Pattern 6 中的 \"go back\" 子模式。** 没有任何一个匹配了 wrong/error/mistake/strange/missing/problem 等真正表达错误意识的 pattern。\n\n具体数据：\n- Vanilla: 10 detected episodes, 10/10 **仅匹配** \"go back\"（20 个 step-level matches）\n- TaxEI: 14 detected episodes, 14/14 **仅匹配** \"go back\"（18 个 step-level matches）\n- Random: 14 detected episodes, 14/14 **仅匹配** \"go back\"（24 个 step-level matches）\n\n### 4. 典型 Examples\n\n#### Example 1: Vanilla Ep0 — P1_step_order_swap\n\n- **Task**: look_at_obj_in_light-AlarmClock-None-DeskLamp-308\n- **Inject**: step 2, step order swap\n- **Detection step**: 6\n- **Think**: \"I'm already holding the alarmclock. The desklamp was turned on earlier, so I'll **go back** to desk 1 to confirm the lamp is on and the 'hold the clock and turn on the lamp' goal is satisfied.\"\n- **判定原因**: \"go back\" 是正常导航语言（返回灯所在位置完成任务），不是对错误的识别\n- **结果**: 任务成功（7 steps）\n\n#### Example 2: Vanilla Ep31 — C4_observation_masking\n\n- **Task**: pick_cool_then_place_in_recep-Tomato-None-Microwave-10\n- **Inject**: step 3, observation masking\n- **Detection steps**: 11, 14, 23, 26, 36, 49（同一 episode 6 次触发）\n- **Think**: 反复出现 \"I should **go back** to the open fridge to locate the tomato\"\n- **判定原因**: 模型陷入循环，反复导航回冰箱，\"go back\" 是循环行为的副产物\n- **结果**: 任务失败（50 steps，达到上限）\n\n#### Example 3: Random Ep7 — C4_observation_masking\n\n- **Task**: pick_and_place_simple-CellPhone-None-Drawer-219\n- **Inject**: step 2, observation masking\n- **Detection steps**: 8, 14, 20, 26, 32, 38, 44（7 次触发）\n- **Think**: 反复 \"I need to **go back** to the desk and place the phone in the drawer\"\n- **判定原因**: 同上，stuck in loop + 导航语言\n- **结果**: 任务失败（50 steps）\n\n### 5. \"go back\" 频率分析\n\n| Condition | Pre-injection steps | \"go back\" rate | Post-injection steps | \"go back\" rate |\n|-----------|----:|------:|----:|------:|\n| LLaMA Vanilla | 173 | 0.6% (1) | 955 | 2.1% (20) |\n| LLaMA TaxEI | 173 | 0.6% (1) | 912 | 2.0% (18) |\n| LLaMA Random | 173 | 0.0% (0) | 862 | 2.8% (24) |\n| Qwen TaxEI | — | — | 1250 total | **0.0% (0)** |\n\nPost-injection \"go back\" 频率（2-3%）略高于 pre-injection（0-0.6%），但这是因为注入打断了正常流程后，模型需要导航回之前位置继续任务——是 **行为层面的正常响应**，不是错误意识。\n\n### 6. Qwen 对比\n\n#### Qwen detection=0% 的根本原因：无 think 输出\n\n`recovery.py` 第 227 行：\n```python\ntext = self.tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True,\n    enable_thinking=False,  # ← 关键：禁用 Qwen3 native thinking\n)\n```\n\n- **Qwen3-8B**: `enable_thinking=False` 触发 Qwen3 的 `/no_think` 模式，模型不生成 `&lt;think>` 标签，直接输出 action。`parse_response()` 提取 think_snippet 永远为空字符串。\n- **LLaMA-3.1-8B**: `enable_thinking` 参数被 LLaMA tokenizer 忽略（非 Qwen 特有）。LLaMA 看到 prompt 中 \"Think step by step in `&lt;think>&lt;/think>` tags\" 的指令，忠实地生成 `&lt;think>` 内容 → 给 detection heuristic 提供了匹配文本。\n\n**验证**: Qwen 全部 1250 个 trajectory steps 的 think_snippet 均为空字符串（100%）。\n\n#### 同一 episode 对比（Episode 0: AlarmClock-DeskLamp-308, P1_step_order_swap）\n\n| | LLaMA Vanilla | Qwen TaxEI |\n|---|---|---|\n| Success | True (7 steps) | True (5 steps) |\n| Detection | True (step 6) | False |\n| Think content | 每步有完整推理文本 | 全部为空 |\n| Post-injection behavior | 导航搜索 → 找到 → \"go back\" 到灯 | 直接导航到目标 |\n\n### 7. 结论\n\n**Detection 指标不可信，不应作为论文 contribution。** 具体原因：\n\n1. **LLaMA 的 detection 全部是假阳性**：38/38 detected episodes 仅因 \"go back\"（正常 ALFWorld 导航用语）触发 Pattern 6，没有一个包含 wrong/error/strange/missing 等真正表达错误意识的词汇。模型在 `&lt;think>` 中从未表达 \"我注意到出错了\"。\n\n2. **Qwen detection=0% 是评估 artifact**：Qwen3 的 `enable_thinking=False` 导致无 think 输出，detection heuristic 无文本可匹配。这不代表 Qwen \"不能检测错误\"，只是没有可分析的推理 trace。\n\n3. **LLaMA vs Qwen 的 detection 差异完全由输出格式决定**：LLaMA 产生 `&lt;think>` 文本 → 有词可匹配；Qwen 不产生 → 无词可匹配。与错误检测能力无关。\n\n4. **\"go back\" 在 Pattern 6 中是过于宽泛的匹配词**：在 ALFWorld 这种需要空间导航的环境中，\"go back to X\" 是极其常见的正常导航表述，不应作为错误检测信号。\n\n### 8. 建议\n\n- **从论文中移除 detection_rate 指标**，或明确标注为 unreliable heuristic\n- 如果要保留 detection 分析，需要：\n  - 从 Pattern 6 中移除 \"go back\"\n  - 对 Qwen 启用 `enable_thinking=True` 以获得可比较的 think trace\n  - 人工标注一个 gold standard detection 集来验证 heuristic 质量\n- 论文的核心贡献应聚焦于 **recovery rate**（任务成功率），这是一个不依赖 think 文本的客观指标\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T09:23:16.458410+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/llama_detection_analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T09:23:16.458590+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "LLaMA Detection Mechanism Analysis",
+  "type": "report",
+  "description": "深入分析 LLaMA-3.1-8B 的 error detection 机制：发现全部 38 个 detection 是 \"go back\" 假阳性，Qwen detection=0% 是 enable_thinking=False 导致的评估 artifact",
+  "project": "tax_error_inject_agent",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/llama_detection_analysis.md",
+  "tags": "['detection', 'llama', 'qwen', 'analysis', 'false-positive']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "LLaMA Detection Mechanism Analysis",
+    "type": "report",
+    "description": "深入分析 LLaMA-3.1-8B 的 error detection 机制：发现全部 38 个 detection 是 \"go back\" 假阳性，Qwen detection=0% 是 enable_thinking=False 导致的评估 artifact",
+    "project": "tax_error_inject_agent",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/llama_detection_analysis.md",
+    "tags": "['detection', 'llama', 'qwen', 'analysis', 'false-positive']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T09:23:16.458766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_288f0e\", \"name\": \"LLaMA Detection Mechanism Analysis\", \"type\": \"report\", \"description\": \"深入分析 LLaMA-3.1-8B 的 error detection 机制：发现全部 38 个 detection 是 \\\"go back\\\" 假阳性，Qwen detection=0% 是 enable_thinking=False 导致的评估 artifact\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/report/llama_detection_analysis.md\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T09:23:07.013916+00:00\", \"tags\": [\"detection\", \"llama\", \"qwen\", \"analysis\", \"false-positive\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-16T09:23:16.458951+00:00_
+
+报告已写入并注册。核心结论：
+
+**Detection 指标不可信，不应作为论文 contribution。**
+
+1. **LLaMA 的 38 个 "detection" 全部是假阳性** — 100% 仅匹配 "go back"（ALFWorld 正常导航用语），没有一个真正表达了错误意识（如 wrong/error/strange/missing）
+2. **Qwen detection=0% 是评估 artifact** — `recovery.py:227` 传入 `enable_thinking=False`，Qwen3 不生成 `&lt;think>` 文本，heuristic 无词可匹配。与检测能力无关
+3. **LLaMA vs Qwen 差异完全由输出格式决定** — LLaMA 遵循 prompt 生成 `&lt;think>` 标签 → 导航语言被误匹配；Qwen 跳过 `&lt;think>` → 永远不触发
+
+建议从论文中移除 detection_rate，聚焦 recovery rate 作为核心指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_llama-detection-mechanism_20260516T091859"
+}
+```
+
+</details>
+
+---

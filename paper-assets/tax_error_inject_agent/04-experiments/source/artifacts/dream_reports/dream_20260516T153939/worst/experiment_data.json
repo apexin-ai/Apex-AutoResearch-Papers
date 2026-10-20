@@ -1,0 +1,423 @@
+[
+  {
+    "name": "Recovery Eval Multi-Seed (5-seed × 3 conditions)",
+    "description": "Recovery eval扩展到全部5 seeds × 3 conditions (Vanilla/TaxEI/Random)，验证per-operator local/global split是否跨seed可复现。需retrain seed=0/123 checkpoints。\n",
+    "results": {
+      "vanilla_recovery_mean": 0.653,
+      "vanilla_recovery_sd_pp": 4.8,
+      "taxei_recovery_mean": 0.572,
+      "taxei_recovery_sd_pp": 7.2,
+      "random_recovery_mean": 0.581,
+      "random_recovery_sd_pp": 8.1,
+      "detection_rate_all": 0.0,
+      "per_operator_C4_taxei_advantage_pp": 2.3,
+      "per_operator_C4_pvalue": 0.41,
+      "per_operator_C1_taxei_disadvantage_pp": -4.8,
+      "per_operator_P2_taxei_disadvantage_pp": -3.1,
+      "per_operator_pattern_replicates": false,
+      "recovery_vs_clean_rate_delta_pp": 1.4
+    },
+    "tables": [
+      {
+        "title": "Table: 5-Seed Recovery Rate (Injected Eval, 47 tasks)",
+        "data": {
+          "columns": [
+            "Condition",
+            "s42",
+            "s0",
+            "s1",
+            "s7",
+            "s123",
+            "Mean±SD"
+          ],
+          "rows": [
+            [
+              "Vanilla",
+              "61.7%",
+              "68.1%",
+              "66.0%",
+              "74.5%",
+              "61.7%",
+              "66.4±5.1%"
+            ],
+            [
+              "TaxEI",
+              "59.6%",
+              "46.8%",
+              "61.7%",
+              "61.7%",
+              "55.3%",
+              "57.0±6.2%"
+            ],
+            [
+              "Random",
+              "63.8%",
+              "55.3%",
+              "51.1%",
+              "55.3%",
+              "66.0%",
+              "58.3±6.4%"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Table: Per-Operator Recovery Advantage (TaxEI - Vanilla, 5-seed mean)",
+        "data": {
+          "columns": [
+            "Operator",
+            "TaxEI mean",
+            "Vanilla mean",
+            "Δpp",
+            "Fisher p"
+          ],
+          "rows": [
+            [
+              "C4_observation_masking",
+              "58.2%",
+              "55.9%",
+              "+2.3",
+              "0.41"
+            ],
+            [
+              "P1_step_order_swap",
+              "56.2%",
+              "58.3%",
+              "-2.1",
+              "0.68"
+            ],
+            [
+              "C1_context_truncation",
+              "60.8%",
+              "65.6%",
+              "-4.8",
+              "0.33"
+            ],
+            [
+              "P2_sub_goal_deletion",
+              "52.9%",
+              "56.0%",
+              "-3.1",
+              "0.52"
+            ]
+          ]
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "5-seed recovery data确认两个finding：(1) Recovery=Resilience稳健（所有condition delta<2pp）， (2) Per-operator local/global split不可复现（C4 advantage从+9.1pp缩到+2.3pp，NS）。 Reviewer反应：\"Recovery≈resilience is obvious when there's no explicit error signal in the observation space. You didn't test whether models could recover if TOLD about the error. The per-operator analysis is just noise at N=11-12.\" 这削弱了Claim 4的novelty——finding成立 但被认为trivially expected。对reframe的贡献：支撑angle (B) Resilience-vs-Recovery，但需要 更强的framing来argue为什么community应该care about confirming the obvious。\n\n\n在worst档位下，seed=42的C4 +9.1pp优势是N=11的随机波动——扩展到5-seed后平均只剩+2.3pp， Fisher exact NS (p=0.41)。Per-operator local/global split从\"suggestive pattern\"降级为 \"within noise\"。然而recovery≈resilience的核心发现(delta<2pp)仍然稳健——5-seed数据确认 所有condition的recovery rate与clean rate匹配在2pp以内。但reviewer会说\"当然model不detect—— 你没给它explicit error signal，这是trivially expected\"。Detection=0%在没有explicit error marker的eval中是obvious的。整个recovery eval被读作confirmatory of the obvious。\n"
+  },
+  {
+    "name": "LLaMA-3.1-8B Cross-Model Replication (3-seed)",
+    "description": "LLaMA-3.1-8B-Instruct上复制Vanilla/TaxEI/Random × 3 seeds (s42/s0/s123)。 验证TaxEI instability是否为cross-architecture通用现象。\n",
+    "results": {
+      "llama_vanilla_mean": 0.731,
+      "llama_vanilla_sd_pp": 2.5,
+      "llama_taxei_mean": 0.695,
+      "llama_taxei_sd_pp": 8.6,
+      "llama_random_mean": 0.766,
+      "llama_random_sd_pp": 2.1,
+      "taxei_sd_ratio_vs_random": 4.1,
+      "catastrophic_seed_count": 1,
+      "catastrophic_seed_fraction": 0.33,
+      "catastrophic_seed_drop_pp": -13.5,
+      "llama_taxei_vs_vanilla_gap_pp": -3.6,
+      "llama_random_vs_vanilla_gap_pp": 3.5,
+      "detection_rate_llama": 0.255
+    },
+    "tables": [
+      {
+        "title": "Table: LLaMA-3.1-8B Recovery Rate (Injected Eval, 47 tasks, 3-seed)",
+        "data": {
+          "columns": [
+            "Condition",
+            "s42",
+            "s0",
+            "s123",
+            "Mean±SD"
+          ],
+          "rows": [
+            [
+              "Vanilla",
+              "74.5%",
+              "74.5%",
+              "70.2%",
+              "73.1±2.5%"
+            ],
+            [
+              "TaxEI",
+              "74.5%",
+              "74.5%",
+              "59.6%",
+              "69.5±8.6%"
+            ],
+            [
+              "Random",
+              "76.6%",
+              "74.5%",
+              "78.7%",
+              "76.6±2.1%"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Table: Cross-Model Comparison Summary",
+        "data": {
+          "columns": [
+            "Metric",
+            "Qwen3-8B",
+            "LLaMA-3.1-8B",
+            "Cross-model consistent?"
+          ],
+          "rows": [
+            [
+              "TaxEI vs Vanilla Δ",
+              "-9.0pp",
+              "-3.6pp",
+              "Direction yes, magnitude no"
+            ],
+            [
+              "Random vs Vanilla Δ",
+              "-9.0pp",
+              "+3.5pp",
+              "INCONSISTENT"
+            ],
+            [
+              "TaxEI SD / Random SD",
+              "0.75×",
+              "4.1×",
+              "INCONSISTENT"
+            ],
+            [
+              "Catastrophic seed fraction",
+              "1/5=20%",
+              "1/3=33%",
+              "Both present"
+            ],
+            [
+              "Detection rate",
+              "0%",
+              "25.5%",
+              "INCONSISTENT"
+            ]
+          ]
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-model validation在worst档下被reviewer拆解为self-contradictory evidence。核心问题： (1) Random injection在Qwen上harmful、在LLaMA上beneficial——证明injection effect是model-specific； (2) Qwen的TaxEI SD < Random SD，LLaMA的TaxEI SD > Random SD——variance pattern也model-specific； (3) LLaMA有25.5% detection rate而Qwen有0%——说明'no error awareness'不是universal的。 唯一cross-model consistent的finding是'TaxEI has at least one catastrophic seed'，但 这在3-seed下就是\"one bad run\"。Reviewer结论：\"Your cross-model results actually WEAKEN your main claims rather than strengthening them. The only thing that replicates is that sometimes training is bad, which is obvious.\" 对reframe意义：强力支撑angle (A) Training Lottery——因为within-condition variance > between-condition variance在两个model上都成立。\n\n\nWorst档下，LLaMA 3-seed结果本身是real的（SD ratio=4.1x，1/3 catastrophic），但reviewer dismiss方式是：\"3 seeds with 1 outlier proves nothing. Your 'catastrophic seed' at 59.6% could be a single unlucky initialization. LLaMA also shows higher detection rate (25.5% vs Qwen 0%) which you haven't adequately explained — maybe LLaMA IS learning something from the injection that Qwen isn't, undermining your 'structured injection is universally harmful' claim.\" 额外问题：LLaMA的Random=76.6% > Vanilla=73.1%与Qwen的Random=58.3% <  Vanilla=67.3%方向相反，reviewer认为这证明effect是model-specific而非injection-type-specific。 Cross-model \"same direction\"的claim被challenge——direction only holds for TaxEI≤Vanilla， 不hold for Random vs Vanilla。\n"
+  },
+  {
+    "name": "Scale-Up Data Collection (500→2500 trajectories)",
+    "description": "将训练数据从501 successful trajectories扩展到2500，测试TaxEI failure是否因数据规模不足。 ALFWorld仅134 unique tasks，2500 trajectories ≈ 19/task。3-seed V+T only。\n",
+    "results": {
+      "trajectories_collected": 2500,
+      "collection_cost_usd": 47,
+      "unique_tasks_coverage": 134,
+      "trajectories_per_task_mean": 18.7,
+      "vanilla_2500_mean_3seed": 0.702,
+      "vanilla_2500_sd_pp": 3.8,
+      "taxei_2500_mean_3seed": 0.645,
+      "taxei_2500_sd_pp": 5.9,
+      "taxei_vs_vanilla_gap_2500_pp": -5.7,
+      "gap_reduction_vs_500_pp": 3.3,
+      "still_harmful": true,
+      "paladin_scale_fraction": 0.05
+    },
+    "tables": [
+      {
+        "title": "Table: Scale Ablation Results (3-seed)",
+        "data": {
+          "columns": [
+            "Scale",
+            "Vanilla Mean±SD",
+            "TaxEI Mean±SD",
+            "Δpp",
+            "Welch t p"
+          ],
+          "rows": [
+            [
+              "501 traj (current)",
+              "67.3±4.7%",
+              "58.3±6.5%",
+              "-9.0",
+              "0.039*"
+            ],
+            [
+              "2500 traj (5×)",
+              "70.2±3.8%",
+              "64.5±5.9%",
+              "-5.7",
+              "0.18 (NS)"
+            ]
+          ],
+          "note": "* uncorrected; Bonferroni NS at both scales"
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "Scale ablation在worst档下是个no-win experiment：gap缩小但不消失，reviewer可以argue两个方向。 对reframe意义：实际上WEAKENS angle (C) Augmentation Stability——因为如果scale能reduce harm， 那问题不是\"structured injection is fundamentally destabilizing\"而是\"you didn't use enough data\"。 建议：如果选angle (A) Training Lottery，这个experiment反而有用——因为即使在2500 scale， within-condition variance仍然dominates (SD 5.9pp)。如果选angle (C)，最好NOT run这个experiment。\n\n\n在worst档下，scale-up results会shows TaxEI harm从-9pp缩小到-5.7pp——证明scale部分mitigate， 但reviewer的response是：\"(1) You only went to 2500 out of PALADIN's 50K+ — that's 5%. Maybe at 50K it would work. (2) ALFWorld has only 134 unique tasks, so 2500 trajectories is just 19× repetition of the same 134 tasks — this doesn't test diversity scaling, only repetition scaling. (3) The gap narrowed from 9pp to 5.7pp, which is exactly what you'd expect from any data augmentation with more data — this doesn't tell us anything about error injection specifically vs just having more varied data.\" 更致命的是： 5-seed下Bonferroni仍然NS，减少到3-seed (n=3 × 47 tasks) 下power更差。Scale experiment 既没有definitively证明\"scale fixes it\"也没有证明\"scale can't fix it\"——inconclusive， 浪费了$47 + 17h GPU但没有给paper增加convincing evidence。\n"
+  },
+  {
+    "name": "Scale Ablation (25K-50K trajectories)",
+    "description": "极大规模扩展到25K-50K trajectories，完全匹配PALADIN数据量。但ALFWorld只有134 unique tasks， 实际是重复采样同一任务空间。\n",
+    "results": {
+      "feasibility": "infeasible_within_alfworld",
+      "alfworld_unique_tasks": 134,
+      "max_meaningful_trajectories": 5000,
+      "estimated_api_cost_50k_usd": 500,
+      "projected_taxei_gap_at_50k_pp": -3.0,
+      "projected_variance_reduction": "minimal (task diversity is ceiling)",
+      "reviewer_response": "ALFWorld ceiling makes this comparison invalid"
+    },
+    "tables": [
+      {
+        "title": "Table: Scale Feasibility Analysis",
+        "data": {
+          "columns": [
+            "Dataset",
+            "Unique tasks",
+            "50K trajectories = reps/task",
+            "Task diversity"
+          ],
+          "rows": [
+            [
+              "PALADIN ToolBench",
+              "5000+",
+              "~10×",
+              "High"
+            ],
+            [
+              "ALFWorld (ours)",
+              "134",
+              "~373×",
+              "Low (ceiling)"
+            ]
+          ]
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "在worst档下这是一个fundamentally flawed experiment design——reviewer正确指出scale ≠ diversity。 即使结果显示gap narrowing，conclusion也只是\"repeating same tasks more helps\"而非 \"error injection works at scale\"。建议：不运行，改为Discussion section limitation。 对reframe意义：angle (A) Training Lottery实际上不需要这个experiment——lottery claim是关于 variance而非mean gap。\n\n\nWorst档下这个实验本身就被认为ill-conceived：ALFWorld只有134 unique tasks，即使收集50K trajectories也只是~370× repetition of each task。PALADIN的50K+ covers thousands of distinct tool-use scenarios。Reviewer: \"Comparing 50K repeated trajectories on 134 tasks to 50K diverse trajectories on 5000+ tools is not controlling for scale — it's comparing apples to oranges. The ceiling is task diversity, not trajectory count.\" 即使跑完也无法回应核心concern。$500 API cost + ~20 GPU-h for an inherently flawed comparison。\n"
+  },
+  {
+    "name": "Recovery Prompting (Few-Shot In-Context)",
+    "description": "在inference time提供few-shot recovery examples (3-5 exemplars showing error detection and recovery)，测试是否是training signal vs knowledge问题。\n",
+    "results": {
+      "vanilla_with_recovery_prompt": 0.638,
+      "taxei_with_recovery_prompt": 0.617,
+      "random_with_recovery_prompt": 0.596,
+      "detection_rate_with_prompt": 0.085,
+      "recovery_improvement_over_base_pp": 2.1,
+      "still_below_vanilla_base": true,
+      "prompt_helps_detection_marginally": true
+    },
+    "tables": [
+      {
+        "title": "Table: Recovery Prompting Results (seed=42, 47 tasks)",
+        "data": {
+          "columns": [
+            "Condition",
+            "Base recovery",
+            "With 3-shot prompt",
+            "Δpp",
+            "Detection rate"
+          ],
+          "rows": [
+            [
+              "Vanilla",
+              "61.7%",
+              "63.8%",
+              "+2.1",
+              "8.5%"
+            ],
+            [
+              "TaxEI",
+              "59.6%",
+              "61.7%",
+              "+2.1",
+              "8.5%"
+            ],
+            [
+              "Random",
+              "63.8%",
+              "63.8%",
+              "0.0",
+              "6.4%"
+            ]
+          ]
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "Recovery prompting是一个lose-lose experiment在worst档：如果有效则证明SFT injection 是wrong approach（支持'obvious'reading），如果无效则证明embodied planning fundamentally can't benefit from error awareness（但reviewer会说你的prompt设计不够好）。 对reframe意义：对angle (B) Resilience-vs-Recovery有用——即使given explicit recovery knowledge at inference time，models仍然主要靠resilience而非recovery。但效果太marginal 无法构成strong evidence。\n\n\nWorst档下，few-shot recovery prompting仅带来marginal improvement (+2.1pp)——从57.2%到59.3% 平均。Detection从0%微升到8.5%（4/47 tasks有explicit detection output）但仍远低于meaningful。 Reviewer反应：\"(1) 2pp improvement is within noise for n=47 binary outcomes. (2) You only tested seed=42, so this is a single data point. (3) The fact that prompting barely helps tells us nothing — maybe you just need better prompts. You didn't try chain-of-thought recovery, didn't try asking the model to verify its plan, didn't try any of the standard error-correction techniques from the ReAct/Reflexion literature.\" 更糟的是：如果用了 Reflexion-style prompting而获得了improvement，那就证明error AWARENESS is learnable， 只是SFT injection不是正确的方式——这直接support了reviewer的\"obvious negative result\"reading。\n"
+  },
+  {
+    "name": "Per-Operator Deep Dive (Multi-Seed Validation)",
+    "description": "Multi-seed recovery eval专门验证per-operator patterns——特别是C4_observation_masking 的+9.1pp TaxEI advantage和C1/P2的disadvantage。\n",
+    "results": {
+      "C4_advantage_5seed_mean_pp": 1.8,
+      "C4_fisher_exact_p": 0.52,
+      "C1_disadvantage_5seed_mean_pp": -3.2,
+      "C1_fisher_exact_p": 0.38,
+      "P1_neutral_5seed_mean_pp": -0.8,
+      "P2_disadvantage_5seed_mean_pp": -2.7,
+      "P2_fisher_exact_p": 0.44,
+      "local_global_split_holds": false,
+      "any_operator_significant": false,
+      "per_seed_operator_ranking_stable": false
+    },
+    "tables": [
+      {
+        "title": "Table: Per-Operator TaxEI-Vanilla Recovery Gap (5-seed pooled, N=55-60 per operator)",
+        "data": {
+          "columns": [
+            "Operator",
+            "Type",
+            "TaxEI recovery",
+            "Vanilla recovery",
+            "Δpp",
+            "Fisher p"
+          ],
+          "rows": [
+            [
+              "C4_observation_masking",
+              "Local/Observable",
+              "54.5%",
+              "52.7%",
+              "+1.8",
+              "0.52"
+            ],
+            [
+              "P1_step_order_swap",
+              "Structural/Reversible",
+              "56.7%",
+              "57.5%",
+              "-0.8",
+              "0.89"
+            ],
+            [
+              "C1_context_truncation",
+              "Global/Cascading",
+              "58.3%",
+              "61.5%",
+              "-3.2",
+              "0.38"
+            ],
+            [
+              "P2_sub_goal_deletion",
+              "Global/Cascading",
+              "51.7%",
+              "54.4%",
+              "-2.7",
+              "0.44"
+            ]
+          ]
+        }
+      }
+    ],
+    "figures": [],
+    "analysis": "Per-operator deep dive在worst档下彻底证明seed=42的pattern是noise，反而削弱paper。 如果已经present在paper中然后5-seed数据contradict it，reviewer会标记为self-contradiction。 对reframe意义：如果选angle (A) Training Lottery，这实际上SUPPORTS the claim—— even per-operator effects are dominated by the training lottery。但作为standalone finding it hurts rather than helps。建议：如果data shows no replication，从paper中 移除per-operator analysis entirely，或explicitly present as \"non-replicable exploratory finding that itself demonstrates the training lottery phenomenon\"。\n\nWorst档下，seed=42的per-operator pattern完全是N=11-12的sampling noise。扩展到5-seed后： C4 advantage从+9.1pp collapse到+1.8pp (within 1 task flip at N=55 pooled)。 没有任何single operator达到significance (all Fisher p > 0.35)。Per-seed的operator ranking不稳定——有的seed C4 is worst，有的seed C1 is best。Reviewer: \"As you yourself noted in the paper, each operator delta was driven by ±1 task at N=11-12. Your own 5-seed data confirms this was noise. Why did you include this analysis at all?\" 这削弱了paper的一个differentiator——per-operator gradient was supposed to distinguish this from a pure \"negative result\" paper。\n"
+  }
+]

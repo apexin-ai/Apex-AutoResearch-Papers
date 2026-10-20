@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "084232dd946115bdf5ea",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis v4 recovery paired datagen",
+  "task_key": "worker_analysis_v4-recovery-paired-datagen_20260515T230730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4-recovery-paired-datagen_20260515T230730_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "2463a3e2b1d182fe901803e17c2cb9ae56b92e879545eda147e26a3d8c4d01e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删除或名称不同）。\n\n**v4-recovery-paired-datagen 结果：✅ 成功**\n\n| 指标 | 值 |\n|------|-----|\n| 总注入 variants | 760 |\n| 成功处理 | 711 |\n| 跳过（无源匹配） | 49 |\n| 输出文件 | `data/recovery_paired/recovery_paired.jsonl` (20.8MB) |\n| Operator 分布 | C1: 182, C4: 175, P1: 170, P2: 184 |\n| Recovery 步数 | mean 7.6, min 1, max 46 |\n| 总 recovery API calls | 5,408 |\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-recovery-paired-datagen.md"
+}

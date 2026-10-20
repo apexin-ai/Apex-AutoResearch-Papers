@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c45bfac93cd25ce0c6be",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval llama31 vanilla s42",
+  "task_key": "worker_eval_llama31-vanilla-s42_20260516T074824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama31-vanilla-s42_20260516T074824_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "5897d8ccb3bba83f8c2448568a35ca48e4ae084a25d60a58443596f85fa6bea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并在运行中。\n\n**状态报告：**\n- tmux session: `llama31-vanilla-s42-eval`\n- GPU 0 显存: 16837 / 32607 MiB (52%), 利用率 88%\n- 进度: `[1/47]` — 共 47 个 episode，第 1 个已完成\n- 第 1 个结果: `look_at_obj_in_light-AlarmClock-None-DeskLamp-308: OK [P1_step_order_swap@step2] det=D (7 steps)`\n- 未修改 eval 脚本，`--base_model` 参数原生支持\n- 预计完成时间: 按每 episode ~15-20s 估算，约 12-15 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama31-vanilla-s42.md"
+}

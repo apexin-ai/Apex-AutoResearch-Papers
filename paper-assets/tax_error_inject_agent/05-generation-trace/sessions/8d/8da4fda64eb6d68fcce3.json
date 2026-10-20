@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8da4fda64eb6d68fcce3",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis taxei rp batch",
+  "task_key": "worker_analysis_taxei-rp-batch_20260516T060637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_taxei-rp-batch_20260516T060637_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "f3795d114ac47ff28ebb02cbb112bb841d6f61cea7c54f4212a6b0c7492232ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 3 个 TaxEI-RP 训练实验结果\n\n| exp_id | seed | train_loss | token_acc | duration | status |\n|--------|------|-----------|-----------|----------|--------|\n| v4-taxei-rp-s42 | 42 | **0.3847** | 0.9249 | 3h 46m 40s | SUCCESS |\n| v4-taxei-rp-s123 | 123 | **0.3852** | 0.9137 | 3h 46m 30s | SUCCESS |\n| v4-taxei-rp-s1 | 1 | **0.3853** | 0.9176 | 3h 46m 18s | SUCCESS |\n\n**关键发现**：\n- 3 个 seed 的 train_loss 极度一致（std=0.0003），训练稳定\n- 无 eval_loss（未配置 eval split）\n- 无 wandb（未配置）\n- 唯一 warning 是 bitsandbytes 的 libnvJitLink.so.13（非关键，bnb 未使用）\n- 每个实验保存了 3 个 checkpoint（epoch 1/2/3），final checkpoint 均为 `checkpoint-5415`\n\n**已更新 registry**：`metrics`（train_loss, duration_minutes, token_acc 等）和 `spec.checkpoint_path`（指向 final checkpoint）。报告已注册为 artifact `art_20260516_ab31b3`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-taxei-rp-batch.md"
+}

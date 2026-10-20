@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3962390d4b4a5cfde221",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "code fix multiseed stats",
+  "task_key": "worker_code_fix-multiseed-stats_20260515T002038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-multiseed-stats_20260515T002038_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "6166951fb3e45f1e8afc957863a46143563593536dab4e7663f305991d108465"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复生效。关键对比：\n\n| 对比 | 修复前 p | 修复后 p | McNemar p |\n|------|---------|---------|-----------|\n| TaxEI vs Random seed=0 | **0.0000** | **0.1243** | 0.1250 |\n| TaxEI vs Vanilla pooled | 0.0170 | **0.0540** | 0.0525 |\n| TaxEI vs Random pooled | 0.0512 | **0.1702** | 0.1796 |\n\n修复后 permutation test 与 McNemar test 一致，pooled TaxEI vs Vanilla 从显著 (p=0.017) 变为不显著 (p=0.054)。\n\n**Bug 本质**：`diff_obs = np.mean(a) - np.mean(b)` 与 `perm_diff = np.mean((a-b) * signs)` 使用不同的浮点运算路径。`mean(a) - mean(b)` 是两次除法再相减，`mean(a-b)` 是一次整数差的除法。两者差 ~1.4e-17，但足以让 `>=` 比较在边界情况（如只有 4 个 discordant pairs 时）全部失败，导致 p=0。\n\n**修复**：\n1. `diff_obs` 改为 `np.mean(diffs)` 确保与 `perm_diff` 计算路径一致\n2. p 值改为 `(count+1)/(n_perm+1)` 避免 p=0（标准做法，Phipson & Smyth 2010）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-multiseed-stats.md"
+}

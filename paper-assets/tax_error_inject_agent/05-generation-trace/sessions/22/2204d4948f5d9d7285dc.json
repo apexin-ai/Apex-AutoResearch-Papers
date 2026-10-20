@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2204d4948f5d9d7285dc",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops taxei rp progress check",
+  "task_key": "worker_ops_taxei-rp-progress-check_20260516T032657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_taxei-rp-progress-check_20260516T032657_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "a74ba86668c6c311423a1bccd87ea5d8b063d7bfb3867eb388027a9958fe0951"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## TaxEI-RP 4-seed 训练状态\n\n所有 4 个训练正常运行，进程存活 ~1h10m。\n\n| Seed | GPU | Step | 进度 | Loss | Token Acc | 显存 | GPU利用率 |\n|------|-----|------|------|------|-----------|------|-----------|\n| s42 | cuda:0 | **1671**/5415 | **30.9%** | 0.449 | 0.851 | 29.7/32.6 GiB | 99% |\n| s0 | cuda:1 | **1636**/5415 | **30.2%** | 0.474 | 0.847 | 30.7/32.6 GiB | 99% |\n| s123 | cuda:2 | **1671**/5415 | **30.9%** | 0.461 | 0.846 | 30.9/32.6 GiB | 93% |\n| s1 | cuda:3 | **1634**/5415 | **30.2%** | 0.472 | 0.840 | 30.4/32.6 GiB | 99% |\n\n**预估剩余时间**（基于 ~2.5 s/step）：\n\n| Seed | 已用时间 | 剩余步数 | 预计剩余 | 预计完成 |\n|------|---------|---------|---------|---------|\n| s42 | 1h10m | 3744 | **~2h 37m** | ~14:04 |\n| s0 | 1h10m | 3779 | **~2h 41m** | ~14:08 |\n| s123 | 1h10m | 3744 | **~2h 36m** | ~14:03 |\n| s1 | 1h08m | 3781 | **~2h 38m** | ~14:05 |\n\n**训练趋势**：4 个 seed 的 loss 在 step 1260→1540 区间稳定在 0.44-0.55 之间，token accuracy 稳定在 0.83-0.86，收敛正常。所有 GPU 温度 65-75°C，功耗接近满载（558-571W/575W），状态健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-taxei-rp-progress-check.md"
+}

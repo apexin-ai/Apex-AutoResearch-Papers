@@ -1,0 +1,23 @@
+{
+  "exp_id": "v4-fixed-inject25",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:09:23.317Z",
+    "updated_at": "2026-05-16T16:26:17.785Z",
+    "spec": {
+      "hypothesis": "Fixed-size ablation: 25% injection ratio (4,358 total samples, ~1,090 injected + ~3,269 clean). Tests intermediate injection ratio. Combined with 10%/50% results, reveals dose-response curve. Addresses Reviewer Concern #5.",
+      "parent": "v4-taxei-eval",
+      "plan_id": "fixed-size-ablation",
+      "reviewer_concern": "RC5"
+    },
+    "conclusion": "killed",
+    "failure_reason": "duplicate entry — active experiment is v4-taxei-fixed-inject25 (RUNNING)",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:18.069582+00:00",
+  "trigger": "update_registry"
+}

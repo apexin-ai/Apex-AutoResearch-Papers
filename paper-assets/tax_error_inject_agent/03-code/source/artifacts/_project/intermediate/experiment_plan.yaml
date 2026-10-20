@@ -1,0 +1,241 @@
+# experiment_plan.yaml — tax_error_inject_agent
+# 基于 paper_framing.md 的 Supplementary Experiments
+# 生成时间: 2026-05-14
+
+# ==================== 已完成基线 ====================
+# vanilla-react-baseline: 42.6% (Qwen3-8B zero-shot)
+# v4 Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)
+# v4 TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0, seed=123 训练中)
+# v4 Random SFT: 60.7% ± 7.6pp (seeds 42/0, seed=123 训练中)
+# Recovery eval (seed=42): Vanilla 61.7%, TaxEI 59.6%, Random 63.8%
+# Detection rate: 0% across all methods
+
+experiments:
+  # ============================================================
+  # P1: 投稿前必须完成
+  # ============================================================
+
+  - id: "p1-multiseed-train"
+    name: "Multi-seed 补齐训练 (TaxEI/Random seed=123)"
+    priority: P1
+    category: "multi-seed"
+    hypothesis: "补齐第 3 个 seed，使 TaxEI/Random 达到与 Vanilla 相同的 3-seed 覆盖，获得可靠的均值和方差估计"
+    method: "v4 同源数据 (9,029 samples)，LoRA rank=16, 3 epochs, lr=1e-4, seed=123。与 seed=42/0 完全相同的超参。"
+    data: "sft_taxei_v4.jsonl (9,029), sft_random_v4.jsonl (9,029)"
+    gpu: "cuda:0 (TaxEI), cuda:1 (Random), 各 ~110min"
+    status: "running"
+    registry_id: "v4-taxei-seed123, v4-random-seed123"
+    supports_claim: ["Claim 1", "Claim 2", "Claim 3"]
+
+  - id: "p1-multiseed-eval"
+    name: "Multi-seed seed=123 Clean Eval"
+    priority: P1
+    category: "multi-seed"
+    hypothesis: "seed=123 的 clean eval 结果应与 seed=42/0 方向一致 (TaxEI ≤ Vanilla)"
+    method: "recovery.py --no_inject，47 tasks (valid_unseen)，对 seed=123 checkpoints 跑 clean eval"
+    data: "ALFWorld valid_unseen 47 tasks"
+    gpu: "cuda:0 + cuda:1, 各 ~25min"
+    depends_on: ["p1-multiseed-train"]
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2", "Claim 3"]
+
+  - id: "p1-3seed-stats"
+    name: "3-seed 统计更新"
+    priority: P1
+    category: "analysis"
+    hypothesis: "3-seed 结果将提高统计功效，使 TaxEI vs Vanilla 的 p 值更可靠"
+    method: "multiseed_stats.py: 更新 paired permutation test, bootstrap CI, 方差比较。3 seeds × 3 methods。"
+    data: "所有 3-seed eval 结果 JSON"
+    gpu: "无 (CPU 分析)"
+    depends_on: ["p1-multiseed-eval"]
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2", "Claim 3"]
+
+  - id: "p1-ablation-datagen"
+    name: "Injection Ratio Ablation 数据生成"
+    priority: P1
+    category: "ablation"
+    hypothesis: "固定总数据量 ~9K samples，变化注入比例 (10%/25%/50%)，如果低比例缓解退化则支持 'noise overwhelms signal' 假设"
+    method: |
+      Fixed-size 方案: 总量固定 ~9,029 samples
+      - 10% injection: ~903 injected + ~8,126 clean
+      - 25% injection: ~2,257 injected + ~6,772 clean
+      - 50% injection: 已有 (v4 数据, 4,671 injected + 4,358 clean)
+      从现有 4,671 条 injected_variants 中随机采样，TaxEI/Random 各自格式化。
+    data: "data/mini_pipeline_v4/injected_variants + clean trajectories"
+    gpu: "无 (CPU 数据处理)"
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2"]
+
+  - id: "p1-ablation-train-10pct"
+    name: "Injection Ratio 10% 训练 (TaxEI + Random)"
+    priority: P1
+    category: "ablation"
+    hypothesis: "10% 注入比例下 TaxEI/Random 退化幅度显著小于 50%"
+    method: "与 v4 相同超参 (LoRA rank=16, 3 epochs, lr=1e-4, seed=42), 仅数据不同"
+    data: "~9,029 samples (10% injection)"
+    gpu: "cuda:0 (TaxEI-10%), cuda:1 (Random-10%), 各 ~110min"
+    depends_on: ["p1-ablation-datagen"]
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2"]
+
+  - id: "p1-ablation-train-25pct"
+    name: "Injection Ratio 25% 训练 (TaxEI + Random)"
+    priority: P1
+    category: "ablation"
+    hypothesis: "25% 注入比例是 noise vs signal 的转折点"
+    method: "与 v4 相同超参, 仅数据不同"
+    data: "~9,029 samples (25% injection)"
+    gpu: "cuda:2 (TaxEI-25%), cuda:3 (Random-25%), 各 ~110min"
+    depends_on: ["p1-ablation-datagen"]
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2"]
+
+  - id: "p1-ablation-eval"
+    name: "Injection Ratio Ablation Eval (4 组新 + 2 组复用)"
+    priority: P1
+    category: "ablation"
+    hypothesis: "低注入比例 (10%/25%) 下 TaxEI/Random 性能接近或优于 Vanilla (65.3%)"
+    method: |
+      Clean eval (--no_inject) 对 4 个新 checkpoint:
+      - TaxEI-10%, Random-10%, TaxEI-25%, Random-25%
+      50% 复用已有 v4 seed=42 结果: TaxEI 61.7%, Random 66.0%
+    data: "ALFWorld valid_unseen 47 tasks"
+    gpu: "4 卡并行, 各 ~25min"
+    depends_on: ["p1-ablation-train-10pct", "p1-ablation-train-25pct"]
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 2"]
+
+  - id: "p1-training-dynamics"
+    name: "Training Dynamics 分析 (Loss 曲线)"
+    priority: P1
+    category: "analysis"
+    hypothesis: "注入样本的 training loss 系统性高于 clean 样本，且随 epoch 不收敛，说明模型无法有效学习注入 pattern"
+    method: |
+      从现有 logging.jsonl 提取:
+      1. 逐 step loss 曲线 (Vanilla vs TaxEI vs Random)
+      2. 如可区分 clean/injected batch: 分别画 loss 子曲线
+      3. 方差随 epoch 的变化趋势
+      不需要新训练——从已有 v4 seed=42 的 logging.jsonl 提取。
+    data: "checkpoints/mini_*_sft_v4/*/logging.jsonl"
+    gpu: "无 (CPU 分析 + matplotlib)"
+    status: "planned"
+    supports_claim: ["Claim 3"]
+
+  # ============================================================
+  # P2: 显著增强论文
+  # ============================================================
+
+  - id: "p2-webshop"
+    name: "第二环境验证 (WebShop)"
+    priority: P2
+    category: "environment"
+    hypothesis: "如果 error injection 在 WebShop 同样失败，boundary condition claim 更强；如果成功，则发现 ALFWorld 特异性"
+    method: |
+      需要:
+      1. WebShop 环境部署 + trajectory collection pipeline
+      2. Error taxonomy 适配 (WebShop 是 web 购物, 不同 action space)
+      3. TaxEI/Vanilla/Random 三组 SFT + eval
+      工程量大 (~3-5 天), 但对 Claim 6 支撑力极强。
+      注: EEF (arXiv 2504.13145) 已在 WebShop 上做过类似实验, 需要差异化。
+    data: "WebShop dataset (需要新采集)"
+    gpu: "4 卡, 预计 2-3 天 (含 pipeline 开发)"
+    status: "planned"
+    supports_claim: ["Claim 6"]
+
+  - id: "p2-failure-analysis"
+    name: "定性 Failure 分析"
+    priority: P2
+    category: "analysis"
+    hypothesis: "TaxEI failure cases 呈现特定 pattern: 注入训练导致模型在复杂任务中产生 incoherent plans 而非简单 wrong actions"
+    method: |
+      从 v4 TaxEI seed=42 eval 结果中:
+      1. 收集 TaxEI 失败但 Vanilla 成功的 cases (约 5-8 个)
+      2. 收集 TaxEI 失败且 Vanilla 也失败的 cases
+      3. 分析失败模式: action incoherence vs wrong object vs wrong location vs timeout
+      4. 与 Vanilla failure cases 对比
+      目标: 20+ cases 手动标注。
+    data: "eval_results/v4_taxei_eval.json + eval trajectory logs"
+    gpu: "无 (人工分析)"
+    status: "planned"
+    supports_claim: ["Claim 1", "Claim 4", "Claim 6"]
+
+  # ============================================================
+  # P3: 锦上添花
+  # ============================================================
+
+  - id: "p3-scale-ablation"
+    name: "Scale Ablation (25K/50K trajectories)"
+    priority: P3
+    category: "ablation"
+    hypothesis: "PALADIN 在 50K+ scale 成功, 可能是规模而非 task structure 决定效果; 如果 scaling 仍然无效则排除此混淆"
+    method: |
+      需要:
+      1. 额外采集 ~20K-45K GPT-5.2 trajectories (当前只有 501 条)
+      2. 对应的 injection + recovery 数据生成
+      3. 训练 + eval
+      API 成本高 (~$80-400), 时间长 (~2-5 天 trajectory collection)
+    data: "需新采集 25K/50K trajectories"
+    gpu: "4 卡, 训练时间随数据量线性增长"
+    status: "planned"
+    supports_claim: ["Claim 6"]
+
+  - id: "p3-fewshot-recovery"
+    name: "Few-shot Recovery (In-context, 非 SFT)"
+    priority: P3
+    category: "analysis"
+    hypothesis: "如果 in-context recovery examples 能提升性能, 说明问题不在 knowledge 而在 SFT training signal corruption"
+    method: |
+      在 eval 时在 prompt 中加入 2-3 个 recovery 示例 (从训练数据采样):
+      - Vanilla + few-shot recovery examples
+      - 对比 Vanilla (无 few-shot) 和 TaxEI SFT
+      不需要新训练, 只修改 eval 的 prompt template。
+    data: "ALFWorld valid_unseen 47 tasks + recovery exemplars from training data"
+    gpu: "1 卡, ~30min"
+    status: "planned"
+    supports_claim: ["Claim 4", "Claim 6"]
+
+  - id: "p3-per-operator-deep"
+    name: "Per-operator Recovery Deep Dive (多 seed)"
+    priority: P3
+    category: "multi-seed"
+    hypothesis: "C4 observation_masking 上 TaxEI 的 +9.1pp 优势是真实效应还是 seed 噪声"
+    method: |
+      对 seed=0, seed=123 的 checkpoints 也跑 recovery eval (injected_eval.py),
+      得到 3-seed per-operator recovery rates, 检验 C4 优势是否跨 seed 稳定。
+    data: "ALFWorld valid_unseen 47 tasks × 3 seeds × 3 methods"
+    gpu: "1 卡/run, ~30min/run, 总计 6 runs (TaxEI/Random seed=0,123 + Vanilla seed=0,123)"
+    depends_on: ["p1-multiseed-train"]
+    status: "planned"
+    supports_claim: ["Claim 4"]
+
+# ============================================================
+# GPU 排班计划 (autodl-5090, cuda:0-3)
+# ============================================================
+#
+# Phase 1 (当前, ~100min 剩余):
+#   cuda:0: v4-taxei-seed123 训练 (运行中)
+#   cuda:1: v4-random-seed123 训练 (运行中)
+#   cuda:2: 空闲
+#   cuda:3: 空闲
+#
+# Phase 2 (seed=123 训练完成后, ~25min):
+#   cuda:0: p1-multiseed-eval TaxEI seed=123
+#   cuda:1: p1-multiseed-eval Random seed=123
+#   cuda:2: 空闲 (可跑 p1-training-dynamics 分析)
+#   cuda:3: 空闲
+#
+# Phase 3 (数据生成, ~30min, CPU):
+#   p1-ablation-datagen: 生成 10%/25% fixed-size 数据集
+#   p1-3seed-stats: 3-seed 统计分析
+#
+# Phase 4 (ablation 训练, ~110min):
+#   cuda:0: TaxEI-10%
+#   cuda:1: Random-10%
+#   cuda:2: TaxEI-25%
+#   cuda:3: Random-25%
+#
+# Phase 5 (ablation eval, ~25min):
+#   cuda:0-3: 4 组 ablation eval 并行
+#
+# 总预计时间: ~5-6 小时 (P1 全部完成)

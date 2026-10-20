@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca43bb757ce304e8df7a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval director urgent kill and launch 3evals",
+  "task_key": "worker_eval_director-urgent-kill-and-launch-3evals_20260516T150512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_director-urgent-kill-and-launch-3evals_20260516T150512_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "1d2365879ba98cab20f67f17af660cd3a5ba47ecb773c48cfdd0c27579404bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部在跑，3 分钟后首次轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-director-urgent-kill-and-launch-3evals.md"
+}

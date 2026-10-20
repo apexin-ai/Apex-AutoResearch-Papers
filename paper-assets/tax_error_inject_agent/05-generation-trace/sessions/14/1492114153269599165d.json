@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1492114153269599165d",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analyze dose response 10pct batch",
+  "task_key": "worker_analyze_dose-response-10pct-batch_20260515T185522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_dose-response-10pct-batch_20260515T185522_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "2d51045ea50e4e03133a0f632279db2cdd9c86a62cc8df0d6562490377290413"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部更新为 DONE。\n\n```\nexp_id                        | train_loss | final_loss | final_token_acc | steps | runtime_sec | checkpoint\n------------------------------|------------|------------|-----------------|-------|-------------|----------\nv4-taxei-fixed-inject10-s1    | 0.4225     | 0.3013     | 0.8947          | 1635  | 3469        | .../v0-20260516-015427/checkpoint-1635\nv4-random-fixed-inject10-s0   | 0.4227     | 0.2760     | 0.9067          | 1635  | 3531        | .../v0-20260516-014835/checkpoint-1635\nv4-taxei-fixed-inject10-s123  | 0.4234     | 0.3097     | 0.8882          | 1635  | 3497        | .../v0-20260516-014833/checkpoint-1635\n```\n\n三者 train_loss 高度一致（~0.423），与此前 s0 的 0.4238 对齐。random-s0 的 final_token_acc 略高（0.9067），taxei-s123 略低（0.8882），属正常 seed 间波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-dose-response-10pct-batch.md"
+}

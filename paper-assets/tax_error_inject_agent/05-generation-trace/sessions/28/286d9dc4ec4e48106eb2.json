@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "286d9dc4ec4e48106eb2",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_6_1778928467.md",
+  "task_key": "loop_6_1778928467",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778928467.md",
+    "occurrence": 1,
+    "bytes": 3760,
+    "sha256": "430e5e206f4b46df777d4869c634d8c96b92055a889baf86c8d67621218de7d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T10:41:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：autodl-5090:cuda:0/1/2/3，不得使用其他设备\n- eval-rp-s0/s1/s123 刚失败，**不要盲目重试**——必须先等诊断 Worker 回调确认失败原因再决定\n- TaxEI-RP 训练 checkpoint 已在 autodl-5090 上，eval 脚本可能有路径/依赖问题，重试前必须修复\n- v4-taxei-rp-s7 仍在 PREPARING，未训练（无 GPU 分配），不要假设它已完成\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 /root/autodl-tmp/tax_error_inject_agent\n- 另一台可用：bjb2-33216（config 中列出但当前未使用）\n- Python：大概率 conda（aml-train 镜像），`/root/miniconda3/bin/python`，需 Worker 确认\n- 模型：Qwen3-8B（LoRA rank=16），LLaMA-3.1-8B-Instruct 已下载（15GB verified）\n- 4 块 GPU 全空闲（report.md 确认 cuda:0-3 空闲，无 RUNNING 实验）\n- 活跃 Worker：`worker_diagnose_eval-rp-failure_20260516T063921`（正在诊断 eval 失败原因）\n- 失败日志路径：/tmp/eval_rp_s1.log, /tmp/eval_rp_s0.log, /tmp/eval_rp_s123.log（在 autodl-5090 上）\n\n### 3. 📊 当前状态\n刚收到 eval-rp-s1 失败 cron 回调，reconcile 同时发现 eval-rp-s0 也失败。eval-rp-s123 同样失败。三个 eval 实验全军覆没，错误统一为\"process dead 5× with no sentinel/W&B\"。已派诊断 Worker（SSH read-only）去读日志。\n\nRegistry 关键状态：\n- **DONE(success)**：v4-taxei-rp-s0/s1/s42/s123（训练完成），另有 83 个历史 success\n- **DONE(failed)**：eval-rp-s0/s1/s123（本次失败），另有 4 个历史 failed\n- **PREPARING**：v4-taxei-rp-s7（训练未开始）、v4-taxei-rp-s7-eval 等约 53 个\n- **QUEUED**：3 个（v4-random-fixed-inject25-s0 等 dose-response 实验等 GPU）\n- **RUNNING**：无\n\n等待中：\n- 诊断 Worker 回调 → 确定 eval 失败根因 → 修复后重试或上报 Director\n- Director 未就 LLaMA 跨模型实验或 s7 训练给出 GPU 分配指令\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读失败原因 → 如果是可修复错误（路径/OOM/脚本bug）→ 派 Worker 修复 → 重新提交 eval-rp-s0/s1/s123（4 GPU 并行）\n- 诊断 Worker 回调到达 → 如果是不可修复错误 → 汇报 Director 请求决策\n- eval-rp 修复并重跑成功 → 汇报 Director eval 结果 → 按 ROADMAP 执行链推进：批次 2a LLaMA V/T/R s42（3 GPU）+ 批次 2b TaxEI-RP s7 训练（1 GPU）\n- QUEUED 的 dose-response 25% 实验（3 个）→ GPU 空出后可并行提交\n- v4-taxei-rp-s7 训练 → 需 Director 分配 GPU 后才能启动\n\n### 5. 🎯 战略上下文\n- 项目方向：Taxonomy-guided error injection 从 tool-use 迁移到 embodied planning 的**边界条件研究（negative result paper）**，目标 EMNLP 2026 Findings 8 页长文\n- 当前阶段 D042：Long Paper 扩展 + Scope 扩大，加 LLaMA-3.1-8B 跨模型验证 + scale-up 25\n- 核心数据：Vanilla 67.3±4.7 vs TaxEI 58.3±6.5 vs Random 58.3±8.7（5-seed mean±SD）——TaxEI 和 Random 均值相同但 TaxEI 方差更小，这是 paper framing 的关键论点\n- D041 结论：Recovery rate ≈ normal eval rate，模型展现 resilience 而非 recovery\n- D039：Recovery-paired SFT 已启动（就是这次失败的 eval-rp 系列），训练成功但 eval 全挂\n- 易踩坑：eval-rp 实验的 spec 全为空（{}），说明之前提交时没有正确填写 provenance，重试时务必补全 spec\n- 易踩坑：AutoDL 实例重启后 SSH 端口会变；大文件下载前必须 `source /etc/network_turbo`\n- GPU 预算紧张（总计 ~41 GPU-h = ~10h wall），4 块 GPU 全空闲是资源浪费，诊断完成后应立即恢复利用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778928467.md"
+}

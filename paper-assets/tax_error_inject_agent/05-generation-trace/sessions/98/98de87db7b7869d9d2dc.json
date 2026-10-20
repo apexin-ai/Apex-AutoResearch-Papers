@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "98de87db7b7869d9d2dc",
+  "project": "tax_error_inject_agent",
+  "kind": "worker",
+  "title": "code fix recovery api errors",
+  "task_key": "worker_code_fix-recovery-api-errors_20260514T090218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-recovery-api-errors_20260514T090218.log",
+    "occurrence": 1,
+    "bytes": 692068,
+    "sha256": "b1f413521050f7183351681ff692fca563826edfba8790856d632d3186cfb842"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 2,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 50,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 96,
+      "user": 2,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "98de87db7b7869d9d2dc-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 133,
+      "chunks": [
+        {
+          "path": "98de87db7b7869d9d2dc-part-0001.json",
+          "message_count": 133
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "98de87db7b7869d9d2dc-part-0001.json",
+          "message_count": 40
+        },
+        {
+          "path": "98de87db7b7869d9d2dc-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-recovery-api-errors.md"
+}

@@ -1,0 +1,50 @@
+{
+  "exp_id": "v3-taxei-eval",
+  "project": "tax_error_inject_agent",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:26:24.552Z",
+    "updated_at": "2026-05-16T16:28:14.308Z",
+    "spec": {
+      "command": "legacy",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "55848",
+      "log_path": "~/runs/tax_error_inject_agent/v3-taxei-eval.log",
+      "submitted_at": "2026-05-14T13:26:51.905Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "legacy",
+      "data_count": 1,
+      "model_name": "legacy",
+      "seed": 0
+    },
+    "hypothesis": "v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)",
+    "metrics": {
+      "eval_success_rate": 0.66,
+      "eval_successes": 31,
+      "eval_total": 47,
+      "vs_baseline_pp": 23.4,
+      "vs_vanilla_sft_pp": -8.5,
+      "per_task": {
+        "look_at_obj_in_light": "5/6 (83.3%)",
+        "pick_clean_then_place": "8/11 (72.7%)",
+        "pick_heat_then_place": "6/8 (75.0%)",
+        "pick_and_place_simple": "5/8 (62.5%)",
+        "pick_two_obj_and_place": "4/7 (57.1%)",
+        "pick_cool_then_place": "3/7 (42.9%)"
+      }
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:28:14.601752+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4236dd1328d5939e564b",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops collect eval results 10pct",
+  "task_key": "worker_ops_collect-eval-results-10pct_20260515T200133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-eval-results-10pct_20260515T200133_result.json",
+    "occurrence": 1,
+    "bytes": 2126,
+    "sha256": "6fcc9932d30f5634d9a7939d9e102bf5cac56183e1d55e5c68a607713171a38c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。汇总表格：\n\n## 10% Dose-Response Eval 结果汇总\n\n| Condition | seed=42 | seed=0 | seed=123 | seed=1 | seed=7 | Mean±SD |\n|-----------|---------|--------|----------|--------|--------|---------|\n| **TaxEI 10%** | 61.7% (29/47) | **70.2% (33/47)** | OOM | OOM | train pending | 66.0%±6.0 (n=2) |\n| **Random 10%** | 68.1% (32/47) | OOM | **55.3% (26/47)** | train pending | train pending | 61.7%±9.1 (n=2) |\n\n### 状态明细\n\n| Eval | 状态 | 原因 |\n|------|------|------|\n| v4-taxei-fixed-inject10-s0-eval | **完成** | 70.2% |\n| v4-random-fixed-inject10-s123-eval | **完成** | 55.3% |\n| v4-taxei-fixed-inject10-s123-eval | **失败** | CUDA OOM（模型加载时 GPU 0 内存不足） |\n| v4-random-fixed-inject10-s0-eval | **失败** | CUDA OOM（同上） |\n| v4-taxei-fixed-inject10-s1-eval | **失败** | CUDA OOM（同上） |\n| v4-taxei-fixed-inject10-s7 | 训练未完成 | registry 状态 PREPARING |\n| v4-random-fixed-inject10-s1 | 训练未完成 | registry 状态 PREPARING |\n| v4-random-fixed-inject10-s7 | 训练未完成 | registry 状态 PREPARING |\n\n### 关键问题\n\n5 个 eval 中 3 个因 CUDA OOM 失败——4 张 GPU 并行跑 eval 时 GPU 0 内存被占满。这 3 个 OOM 的 eval 和 3 个未完成训练的 seed 都需要重跑，才能得到完整的 5-seed 统计。\n\n### by_task_type（已完成的新 eval）\n\n**TaxEI 10% seed=0 (70.2%)**:\n| Task Type | Rate |\n|-----------|------|\n| look_at_obj_in_light | 5/6 (83.3%) |\n| pick_and_place_simple | 5/8 (62.5%) |\n| pick_clean_then_place_in_recep | 8/11 (72.7%) |\n| pick_cool_then_place_in_recep | 4/7 (57.1%) |\n| pick_heat_then_place_in_recep | 7/8 (87.5%) |\n| pick_two_obj_and_place | 4/7 (57.1%) |\n\n**Random 10% seed=123 (55.3%)**:\n| Task Type | Rate |\n|-----------|------|\n| look_at_obj_in_light | 5/6 (83.3%) |\n| pick_and_place_simple | 5/8 (62.5%) |\n| pick_clean_then_place_in_recep | 5/11 (45.5%) |\n| pick_cool_then_place_in_recep | 2/7 (28.6%) |\n| pick_heat_then_place_in_recep | 6/8 (75.0%) |\n| pick_two_obj_and_place | 3/7 (42.9%) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-results-10pct.md"
+}

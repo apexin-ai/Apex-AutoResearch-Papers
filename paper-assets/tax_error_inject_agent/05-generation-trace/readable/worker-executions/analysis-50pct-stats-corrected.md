@@ -1,0 +1,983 @@
+# analysis 50pct stats corrected
+
+**When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_analysis_50pct-stats-corrected_20260516T020006.log`
+- **Structured JSON:** [`cd6a151014a882bc0703.json`](../../sessions/cd/cd6a151014a882bc0703.json)
+
+## Before a recorded user message
+
+21 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d2dfd33e-6372-4c56-a722-0897ad7c0a49",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778907000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0b71a3a7-2680-4660-b326-b24a63eb161c",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to perform a comprehensive statistical analysis using Python, then save the results as a JSON file. Let me write a Python script that computes all the requested statistics and outputs the JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "3d1b0866-6c5a-4ea2-a88f-6df528a73a39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABvB6b8XLWF5B49WJ7UbuW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12150,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12150
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我来写 Python 脚本执行完整统计分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "d8024665-c8c9-4c6e-bcbb-7bac407ae9c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABvB6b8XLWF5B49WJ7UbuW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12150,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12150
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01F1mC43oJePfiHi4KH1S9UM`</summary>
+
+```json
+{
+  "command": "cat << 'PYEOF' | python3\nimport json\nimport numpy as np\nfrom scipy import stats\nimport warnings\nwarnings.filterwarnings('ignore')\n\nnp.random.seed(42)\n\n# Data\nvanilla = np.array([61.7, 68.1, 66.0, 66.0, 74.5])\ntaxei_50 = np.array([51.1, 70.2, 46.8, 63.8, 55.3])\nrandom_50 = np.array([57.4, 46.8, 70.2, 70.2, 46.8])\n\nseeds = [\"s42\", \"s0\", \"s123\", \"s1\", \"s7\"]\n\n# ============================================================\n# 1. Descriptive stats\n# ============================================================\ndef desc_stats(data, name):\n    n = len(data)\n    mean = np.mean(data)\n    sd = np.std(data, ddof=1)\n    se = sd / np.sqrt(n)\n    ci95 = stats.t.interval(0.95, df=n-1, loc=mean, scale=se)\n    return {\n        \"condition\": name,\n        \"n\": n,\n        \"mean\": round(mean, 4),\n        \"sd\": round(sd, 4),\n        \"se\": round(se, 4),\n        \"ci95_lower\": round(ci95[0], 4),\n        \"ci95_upper\": round(ci95[1], 4),\n        \"min\": round(float(np.min(data)), 4),\n        \"max\": round(float(np.max(data)), 4),\n        \"median\": round(float(np.median(data)), 4),\n        \"values\": {s: round(float(v), 1) for s, v in zip(seeds, data)}\n    }\n\ndescriptive = [\n    desc_stats(vanilla, \"Vanilla (D037 corrected)\"),\n    desc_stats(taxei_50, \"TaxEI 50%\"),\n    desc_stats(random_50, \"Random 50%\")\n]\n\n# ============================================================\n# 2. Pairwise comparisons\n# ============================================================\ndef pairwise(a, b, name_a, name_b):\n    diff = a - b\n    mean_diff = np.mean(diff)\n    sd_diff = np.std(diff, ddof=1)\n    n = len(a)\n    \n    # Paired t-test\n    t_paired, p_paired = stats.ttest_rel(a, b)\n    \n    # Welch t-test\n    t_welch, p_welch = stats.ttest_ind(a, b, equal_var=False)\n    \n    # Cohen's d (paired: using SD of differences)\n    cohens_d_paired = mean_diff / sd_diff\n    \n    # Cohen's d (pooled)\n    sd_pooled = np.sqrt((np.var(a, ddof=1) + np.var(b, ddof=1)) / 2)\n    cohens_d_pooled = mean_diff / sd_pooled\n    \n    # 95% CI of mean difference (paired)\n    se_diff = sd_diff / np.sqrt(n)\n    ci_diff = stats.t.interval(0.95, df=n-1, loc=mean_diff, scale=se_diff)\n    \n    # 95% CI of Cohen's d (using noncentral t)\n    # ncp = d * sqrt(n)\n    ncp = cohens_d_paired * np.sqrt(n)\n    try:\n        ci_d_lower = stats.nct.ppf(0.025, df=n-1, nc=ncp) / np.sqrt(n)\n        ci_d_upper = stats.nct.ppf(0.975, df=n-1, nc=ncp) / np.sqrt(n)\n    except:\n        ci_d_lower = ci_d_upper = float('nan')\n    \n    # Bootstrap (10000 resamples)\n    boot_diffs = []\n    for _ in range(10000):\n        idx = np.random.randint(0, n, size=n)\n        boot_diffs.append(np.mean(a[idx]) - np.mean(b[idx]))\n    boot_diffs = np.array(boot_diffs)\n    boot_ci = (np.percentile(boot_diffs, 2.5), np.percentile(boot_diffs, 97.5))\n    boot_p = 2 * min(np.mean(boot_diffs <= 0), np.mean(boot_diffs >= 0))\n    \n    bonferroni_sig = p_paired < 0.017\n    \n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_difference\": round(mean_diff, 4),\n        \"sd_of_differences\": round(sd_diff, 4),\n        \"paired_differences\": {s: round(float(d), 1) for s, d in zip(seeds, diff)},\n        \"paired_t_test\": {\n            \"t_statistic\": round(t_paired, 4),\n            \"p_value\": round(p_paired, 4),\n            \"df\": n - 1,\n            \"significant_at_bonferroni_0.017\": bonferroni_sig\n        },\n        \"welch_t_test\": {\n            \"t_statistic\": round(t_welch, 4),\n            \"p_value\": round(p_welch, 4),\n            \"significant_at_bonferroni_0.017\": p_welch < 0.017\n        },\n        \"ci95_of_difference\": {\n            \"lower\": round(ci_diff[0], 4),\n            \"upper\": round(ci_diff[1], 4)\n        },\n        \"cohens_d_paired\": round(cohens_d_paired, 4),\n        \"cohens_d_pooled\": round(cohens_d_pooled, 4),\n        \"cohens_d_95ci\": {\n            \"lower\": round(ci_d_lower, 4),\n            \"upper\": round(ci_d_upper, 4)\n        },\n        \"effect_size_interpretation\": (\n            \"negligible\" if abs(cohens_d_pooled) < 0.2 else\n            \"small\" if abs(cohens_d_pooled) < 0.5 else\n            \"medium\" if abs(cohens_d_pooled) < 0.8 else\n            \"large\"\n        ),\n        \"bootstrap_10000\": {\n            \"mean_diff\": round(np.mean(boot_diffs), 4),\n            \"ci95_lower\": round(boot_ci[0], 4),\n            \"ci95_upper\": round(boot_ci[1], 4),\n            \"p_value_two_sided\": round(boot_p, 4)\n        }\n    }\n\npairwise_results = [\n    pairwise(vanilla, taxei_50, \"Vanilla\", \"TaxEI 50%\"),\n    pairwise(vanilla, random_50, \"Vanilla\", \"Random 50%\"),\n    pairwise(taxei_50, random_50, \"TaxEI 50%\", \"Random 50%\")\n]\n\n# ============================================================\n# 4. Power analysis\n# ============================================================\ndef power_analysis(a, b, name):\n    diff = a - b\n    mean_diff = np.mean(diff)\n    sd_diff = np.std(diff, ddof=1)\n    n = len(a)\n    d = abs(mean_diff / sd_diff)\n    \n    # Power at n=5 (paired t-test, two-sided, alpha=0.05)\n    # Using noncentral t distribution\n    ncp = d * np.sqrt(n)\n    t_crit = stats.t.ppf(1 - 0.025, df=n-1)\n    power = 1 - stats.nct.cdf(t_crit, df=n-1, nc=ncp) + stats.nct.cdf(-t_crit, df=n-1, nc=ncp)\n    \n    # Power at Bonferroni alpha=0.017\n    t_crit_bonf = stats.t.ppf(1 - 0.017/2, df=n-1)\n    power_bonf = 1 - stats.nct.cdf(t_crit_bonf, df=n-1, nc=ncp) + stats.nct.cdf(-t_crit_bonf, df=n-1, nc=ncp)\n    \n    # Required n for 80% power at alpha=0.05\n    for req_n in range(5, 500):\n        ncp_req = d * np.sqrt(req_n)\n        t_crit_req = stats.t.ppf(1 - 0.025, df=req_n-1)\n        pwr = 1 - stats.nct.cdf(t_crit_req, df=req_n-1, nc=ncp_req) + stats.nct.cdf(-t_crit_req, df=req_n-1, nc=ncp_req)\n        if pwr >= 0.80:\n            n_for_80 = req_n\n            break\n    else:\n        n_for_80 = \">500\"\n    \n    # Required n for 80% power at Bonferroni alpha=0.017\n    for req_n in range(5, 500):\n        ncp_req = d * np.sqrt(req_n)\n        t_crit_req = stats.t.ppf(1 - 0.017/2, df=req_n-1)\n        pwr = 1 - stats.nct.cdf(t_crit_req, df=req_n-1, nc=ncp_req) + stats.nct.cdf(-t_crit_req, df=req_n-1, nc=ncp_req)\n        if pwr >= 0.80:\n            n_for_80_bonf = req_n\n            break\n    else:\n        n_for_80_bonf = \">500\"\n    \n    return {\n        \"comparison\": name,\n        \"observed_effect_size_d\": round(d, 4),\n        \"power_at_n5_alpha05\": round(power, 4),\n        \"power_at_n5_bonferroni_017\": round(power_bonf, 4),\n        \"n_required_for_80pct_power_alpha05\": n_for_80,\n        \"n_required_for_80pct_power_bonferroni_017\": n_for_80_bonf\n    }\n\npower_results = [\n    power_analysis(vanilla, taxei_50, \"Vanilla vs TaxEI 50%\"),\n    power_analysis(vanilla, random_50, \"Vanilla vs Random 50%\"),\n    power_analysis(taxei_50, random_50, \"TaxEI 50% vs Random 50%\")\n]\n\n# ============================================================\n# 5. Dose-response trend analysis\n# ============================================================\n\n# Dose levels and means\ndoses = np.array([0, 10, 25, 50, 100])\ntaxei_means = np.array([67.26, 61.3, 52.7, 57.44, 58.3])\nrandom_means = np.array([67.26, 63.8, 60.0, 58.28, 58.3])\n\ndef dose_response_analysis(doses, means, name):\n    # Linear regression\n    slope, intercept, r_value, p_value, std_err = stats.linregress(doses, means)\n    \n    # Spearman rank correlation\n    spearman_r, spearman_p = stats.spearmanr(doses, means)\n    \n    # Kendall tau\n    kendall_tau, kendall_p = stats.kendalltau(doses, means)\n    \n    # Page's trend test (rank-based)\n    # For Page's test: ranks within each dose level\n    # Since we only have means (not per-seed at all doses), we use the rank of means\n    n_doses = len(doses)\n    ranks = stats.rankdata(means)  # ascending ranks\n    # For decreasing trend, we want higher doses to have lower values\n    # Page's L = sum(i * rank_i) where i is the dose order (1,2,3,4,5)\n    dose_order = np.arange(1, n_doses + 1)\n    # For decreasing trend, reverse the ranks\n    L = np.sum(dose_order * (n_doses + 1 - ranks))\n    # Max L for perfect decreasing trend\n    L_max = np.sum(dose_order * dose_order)\n    L_min = np.sum(dose_order * (n_doses + 1 - dose_order))\n    \n    return {\n        \"condition\": name,\n        \"doses_pct\": doses.tolist(),\n        \"means\": means.tolist(),\n        \"linear_regression\": {\n            \"slope\": round(slope, 4),\n            \"intercept\": round(intercept, 4),\n            \"r_squared\": round(r_value**2, 4),\n            \"p_value\": round(p_value, 4),\n            \"std_err\": round(std_err, 4),\n            \"interpretation\": f\"{'Significant' if p_value < 0.05 else 'Non-significant'} linear decrease of {abs(slope):.3f}% per 1% dose increase\"\n        },\n        \"spearman_correlation\": {\n            \"rho\": round(spearman_r, 4),\n            \"p_value\": round(spearman_p, 4)\n        },\n        \"kendall_tau\": {\n            \"tau\": round(kendall_tau, 4),\n            \"p_value\": round(kendall_p, 4)\n        },\n        \"pages_L_statistic\": {\n            \"L\": round(L, 4),\n            \"L_max\": round(L_max, 4),\n            \"L_min\": round(L_min, 4),\n            \"note\": \"Computed on dose-level means (single value per dose), not per-seed data\"\n        }\n    }\n\ndose_response = {\n    \"taxei\": dose_response_analysis(doses, taxei_means, \"TaxEI dose-response\"),\n    \"random\": dose_response_analysis(doses, random_means, \"Random dose-response\"),\n    \"comparison_note\": \"Both show declining trends; TaxEI shows non-monotonic rebound at 50%\"\n}\n\n# ============================================================\n# 6. 50%-specific analyses\n# ============================================================\n\n# s0/s123 swap analysis\n# TaxEI 50%: s0=70.2, s123=46.8\n# Random 50%: s0=46.8, s123=70.2\n# These are exact mirrors. What's the probability?\n\ndef permutation_test_swap():\n    \"\"\"Test: how likely is an exact swap of two seed values between conditions?\"\"\"\n    # Under null: TaxEI and Random 50% draw from same distribution\n    # We observe that s0 and s123 values are exactly swapped\n    # Permutation test on the difference pattern\n    \n    observed_diff = taxei_50 - random_50  # [-6.3, 23.4, -23.4, -6.4, 8.5]\n    # The s0 and s123 diffs are exactly opposite: 23.4 and -23.4\n    \n    n_perms = 100000\n    n_exact_swaps = 0\n    n_near_swaps = 0  # within 1%\n    \n    all_vals = np.concatenate([taxei_50, random_50])\n    \n    for _ in range(n_perms):\n        perm = np.random.permutation(10)\n        perm_a = all_vals[perm[:5]]\n        perm_b = all_vals[perm[5:]]\n        perm_diff = perm_a - perm_b\n        \n        # Check if any pair of differences are exactly opposite\n        for i in range(5):\n            for j in range(i+1, 5):\n                if abs(perm_diff[i] + perm_diff[j]) < 0.01 and abs(perm_diff[i]) > 20:\n                    n_exact_swaps += 1\n                    break\n                if abs(perm_diff[i] + perm_diff[j]) < 1.0 and abs(perm_diff[i]) > 20:\n                    n_near_swaps += 1\n                    break\n            else:\n                continue\n            break\n    \n    return {\n        \"description\": \"s0 and s123 values are exactly swapped between TaxEI 50% and Random 50% (70.2/46.8 vs 46.8/70.2)\",\n        \"taxei_50_s0\": 70.2, \"taxei_50_s123\": 46.8,\n        \"random_50_s0\": 46.8, \"random_50_s123\": 70.2,\n        \"permutation_test\": {\n            \"n_permutations\": n_perms,\n            \"n_exact_swaps_found\": n_exact_swaps,\n            \"p_exact_swap\": round(n_exact_swaps / n_perms, 4),\n            \"n_near_swaps_within_1pct\": n_near_swaps,\n            \"p_near_swap\": round(n_near_swaps / n_perms, 4),\n            \"interpretation\": \"Probability of observing a swap of >=20pp magnitude between any two seeds under random relabeling\"\n        }\n    }\n\n# Rebound analysis: TaxEI 25% vs TaxEI 50%\ndef rebound_analysis():\n    \"\"\"Is the rebound from 25% to 50% TaxEI significant?\"\"\"\n    # We only have means, not per-seed data for 25%\n    # Use the available information\n    taxei_25_mean = 52.7\n    taxei_50_mean = 57.44\n    diff = taxei_50_mean - taxei_25_mean\n    \n    # We can estimate using TaxEI 50% SD as proxy\n    taxei_50_sd = np.std(taxei_50, ddof=1)\n    \n    # One-sample t-test: is TaxEI 50% mean significantly different from 52.7?\n    t_stat, p_val = stats.ttest_1samp(taxei_50, taxei_25_mean)\n    \n    # Cohen's d\n    d = diff / taxei_50_sd\n    \n    return {\n        \"taxei_25pct_mean\": taxei_25_mean,\n        \"taxei_50pct_mean\": round(taxei_50_mean, 4),\n        \"rebound_magnitude\": round(diff, 4),\n        \"one_sample_t_test_50pct_vs_25pct_mean\": {\n            \"t_statistic\": round(t_stat, 4),\n            \"p_value\": round(p_val, 4),\n            \"df\": 4,\n            \"significant_at_0.05\": p_val < 0.05,\n            \"note\": \"Tests whether TaxEI 50% seed distribution mean differs from TaxEI 25% mean (52.7)\"\n        },\n        \"cohens_d\": round(d, 4),\n        \"interpretation\": f\"Rebound of {diff:.2f}pp ({'significant' if p_val < 0.05 else 'not significant'} at alpha=0.05)\"\n    }\n\nswap_analysis = permutation_test_swap()\nrebound = rebound_analysis()\n\n# ============================================================\n# Assemble final report\n# ============================================================\nreport = {\n    \"metadata\": {\n        \"analysis\": \"50% Dose-Response 5-seed Statistical Analysis (D037 Corrected)\",\n        \"date\": \"2026-05-16\",\n        \"n_seeds\": 5,\n        \"seeds\": [\"s42\", \"s0\", \"s123\", \"s1\", \"s7\"],\n        \"bonferroni_alpha\": 0.017,\n        \"bootstrap_resamples\": 10000,\n        \"corrections_applied\": \"D037 vanilla values corrected\"\n    },\n    \"descriptive_statistics\": descriptive,\n    \"pairwise_comparisons\": pairwise_results,\n    \"bonferroni_correction\": {\n        \"alpha_per_comparison\": 0.017,\n        \"n_comparisons\": 3,\n        \"family_wise_alpha\": 0.05,\n        \"summary\": {\n            \"vanilla_vs_taxei50\": {\n                \"p_paired\": round(pairwise_results[0][\"paired_t_test\"][\"p_value\"], 4),\n                \"significant\": pairwise_results[0][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            },\n            \"vanilla_vs_random50\": {\n                \"p_paired\": round(pairwise_results[1][\"paired_t_test\"][\"p_value\"], 4),\n                \"significant\": pairwise_results[1][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            },\n            \"taxei50_vs_random50\": {\n                \"p_paired\": round(pairwise_results[2][\"paired_t_test\"][\"p_value\"], 4),\n                \"significant\": pairwise_results[2][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            }\n        }\n    },\n    \"power_analysis\": power_results,\n    \"dose_response_trend\": dose_response,\n    \"fifty_percent_specific_analyses\": {\n        \"s0_s123_swap\": swap_analysis,\n        \"rebound_25_to_50\": rebound\n    },\n    \"executive_summary\": {\n        \"key_findings\": []\n    }\n}\n\n# Build executive summary\np_vt = pairwise_results[0][\"paired_t_test\"][\"p_value\"]\np_vr = pairwise_results[1][\"paired_t_test\"][\"p_value\"]\np_tr = pairwise_results[2][\"paired_t_test\"][\"p_value\"]\nd_vt = pairwise_results[0][\"cohens_d_pooled\"]\nd_vr = pairwise_results[1][\"cohens_d_pooled\"]\n\nfindings = [\n    f\"Vanilla (67.26%) > TaxEI 50% (57.44%): Δ=9.82pp, paired t p={p_vt:.4f}, d={d_vt:.2f} ({'significant' if p_vt < 0.017 else 'NOT significant'} at Bonferroni α=0.017)\",\n    f\"Vanilla (67.26%) > Random 50% (58.28%): Δ=8.98pp, paired t p={p_vr:.4f}, d={d_vr:.2f} ({'significant' if p_vr < 0.017 else 'NOT significant'} at Bonferroni α=0.017)\",\n    f\"TaxEI 50% ≈ Random 50%: Δ=0.84pp, paired t p={p_tr:.4f} (NOT significant)\",\n    f\"Power at n=5: Vanilla vs TaxEI d={power_results[0]['observed_effect_size_d']:.2f}, power={power_results[0]['power_at_n5_alpha05']:.1%}; need n={power_results[0]['n_required_for_80pct_power_alpha05']} for 80% power\",\n    f\"TaxEI dose-response slope: {dose_response['taxei']['linear_regression']['slope']:.3f}%/dose%, R²={dose_response['taxei']['linear_regression']['r_squared']:.3f}, p={dose_response['taxei']['linear_regression']['p_value']:.4f}\",\n    f\"50% rebound from 25%: TaxEI 52.7→57.4 (+4.74pp), t-test p={rebound['one_sample_t_test_50pct_vs_25pct_mean']['p_value']:.4f} ({'significant' if rebound['one_sample_t_test_50pct_vs_25pct_mean']['significant_at_0.05'] else 'not significant'})\",\n    f\"s0/s123 exact swap between TaxEI and Random 50%: permutation p={swap_analysis['permutation_test']['p_exact_swap']:.4f}\"\n]\nreport[\"executive_summary\"][\"key_findings\"] = findings\n\nout = json.dumps(report, indent=2, ensure_ascii=False)\nprint(out)\nPYEOF\n",
+  "description": "Run statistical analysis for 50% dose-response",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "cc7c61d1-8f9c-4ebf-9584-e0139ec3ace6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABvB6b8XLWF5B49WJ7UbuW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12150,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12150
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 7_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bbhmgoze7",
+  "tool_use_id": "toolu_01F1mC43oJePfiHi4KH1S9UM",
+  "description": "Run statistical analysis for 50% dose-response",
+  "task_type": "local_bash",
+  "uuid": "7737dff5-0d0f-4b33-98e1-11c344b6c40e",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7"
+}
+```
+
+---
+
+### System
+
+_source line 8_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bbhmgoze7",
+  "tool_use_id": "toolu_01F1mC43oJePfiHi4KH1S9UM",
+  "status": "failed",
+  "output_file": "",
+  "summary": "Run statistical analysis for 50% dose-response",
+  "uuid": "04ab0489-e2f9-4116-916c-ef7c21564555",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T02:01:40.447Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01F1mC43oJePfiHi4KH1S9UM`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;stdin>", line 417, in &lt;module>
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bool is not JSON serializable
+when serializing dict item 'significant_at_bonferroni_0.017'
+when serializing dict item 'paired_t_test'
+when serializing list item 0
+when serializing dict item 'pairwise_comparisons'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "9dec40d4-957b-4a26-80b6-00b11f9cabc6",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;stdin>\", line 417, in &lt;module>\n  File \"/usr/lib/python3.14/json/__init__.py\", line 242, in dumps\n    **kw).encode(obj)\n          ~~~~~~^^^^^\n  File \"/usr/lib/python3.14/json/encoder.py\", line 202, in encode\n    chunks = self.iterencode(o, _one_shot=True)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 263, in iterencode\n    return _iterencode(o, 0)\n  File \"/usr/lib/python3.14/json/encoder.py\", line 182, in default\n    raise TypeError(f'Object of type {o.__class__.__name__} '\n                    f'is not JSON serializable')\nTypeError: Object of type bool is not JSON serializable\nwhen serializing dict item 'significant_at_bonferroni_0.017'\nwhen serializing dict item 'paired_t_test'\nwhen serializing list item 0\nwhen serializing dict item 'pairwise_comparisons'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+numpy bool 序列化问题，修复一下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "1e9b019a-bb99-4cbf-a5ac-e1f92779fd00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GLvNswJWAoa8VSNV17KWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6723,
+      "cache_read_input_tokens": 23597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6723
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01U1TXxPEQAJugMRKiu7H6nn`</summary>
+
+```json
+{
+  "command": "cat << 'PYEOF' | python3\nimport json\nimport numpy as np\nfrom scipy import stats\nimport warnings\nwarnings.filterwarnings('ignore')\n\nnp.random.seed(42)\n\n# Custom JSON encoder for numpy types\nclass NpEncoder(json.JSONEncoder):\n    def default(self, obj):\n        if isinstance(obj, np.integer):\n            return int(obj)\n        if isinstance(obj, np.floating):\n            return float(obj)\n        if isinstance(obj, np.ndarray):\n            return obj.tolist()\n        if isinstance(obj, np.bool_):\n            return bool(obj)\n        return super().default(obj)\n\n# Data\nvanilla = np.array([61.7, 68.1, 66.0, 66.0, 74.5])\ntaxei_50 = np.array([51.1, 70.2, 46.8, 63.8, 55.3])\nrandom_50 = np.array([57.4, 46.8, 70.2, 70.2, 46.8])\n\nseeds = [\"s42\", \"s0\", \"s123\", \"s1\", \"s7\"]\n\n# ============================================================\n# 1. Descriptive stats\n# ============================================================\ndef desc_stats(data, name):\n    n = len(data)\n    mean = np.mean(data)\n    sd = np.std(data, ddof=1)\n    se = sd / np.sqrt(n)\n    ci95 = stats.t.interval(0.95, df=n-1, loc=mean, scale=se)\n    return {\n        \"condition\": name,\n        \"n\": int(n),\n        \"mean\": round(float(mean), 4),\n        \"sd\": round(float(sd), 4),\n        \"se\": round(float(se), 4),\n        \"ci95_lower\": round(float(ci95[0]), 4),\n        \"ci95_upper\": round(float(ci95[1]), 4),\n        \"min\": round(float(np.min(data)), 4),\n        \"max\": round(float(np.max(data)), 4),\n        \"median\": round(float(np.median(data)), 4),\n        \"values\": {s: round(float(v), 1) for s, v in zip(seeds, data)}\n    }\n\ndescriptive = [\n    desc_stats(vanilla, \"Vanilla (D037 corrected)\"),\n    desc_stats(taxei_50, \"TaxEI 50%\"),\n    desc_stats(random_50, \"Random 50%\")\n]\n\n# ============================================================\n# 2. Pairwise comparisons\n# ============================================================\ndef pairwise(a, b, name_a, name_b):\n    diff = a - b\n    mean_diff = float(np.mean(diff))\n    sd_diff = float(np.std(diff, ddof=1))\n    n = len(a)\n    \n    t_paired, p_paired = stats.ttest_rel(a, b)\n    t_welch, p_welch = stats.ttest_ind(a, b, equal_var=False)\n    \n    cohens_d_paired = mean_diff / sd_diff if sd_diff > 0 else 0.0\n    sd_pooled = float(np.sqrt((np.var(a, ddof=1) + np.var(b, ddof=1)) / 2))\n    cohens_d_pooled = mean_diff / sd_pooled if sd_pooled > 0 else 0.0\n    \n    se_diff = sd_diff / np.sqrt(n)\n    ci_diff = stats.t.interval(0.95, df=n-1, loc=mean_diff, scale=se_diff)\n    \n    ncp = cohens_d_paired * np.sqrt(n)\n    try:\n        ci_d_lower = float(stats.nct.ppf(0.025, df=n-1, nc=ncp) / np.sqrt(n))\n        ci_d_upper = float(stats.nct.ppf(0.975, df=n-1, nc=ncp) / np.sqrt(n))\n    except:\n        ci_d_lower = ci_d_upper = float('nan')\n    \n    boot_diffs = []\n    for _ in range(10000):\n        idx = np.random.randint(0, n, size=n)\n        boot_diffs.append(float(np.mean(a[idx]) - np.mean(b[idx])))\n    boot_diffs = np.array(boot_diffs)\n    boot_ci = (float(np.percentile(boot_diffs, 2.5)), float(np.percentile(boot_diffs, 97.5)))\n    boot_p = float(2 * min(np.mean(boot_diffs <= 0), np.mean(boot_diffs >= 0)))\n    \n    return {\n        \"comparison\": f\"{name_a} vs {name_b}\",\n        \"mean_difference\": round(mean_diff, 4),\n        \"sd_of_differences\": round(sd_diff, 4),\n        \"paired_differences\": {s: round(float(d), 1) for s, d in zip(seeds, diff)},\n        \"paired_t_test\": {\n            \"t_statistic\": round(float(t_paired), 4),\n            \"p_value\": round(float(p_paired), 4),\n            \"df\": n - 1,\n            \"significant_at_bonferroni_0.017\": bool(p_paired < 0.017)\n        },\n        \"welch_t_test\": {\n            \"t_statistic\": round(float(t_welch), 4),\n            \"p_value\": round(float(p_welch), 4),\n            \"significant_at_bonferroni_0.017\": bool(p_welch < 0.017)\n        },\n        \"ci95_of_difference\": {\n            \"lower\": round(float(ci_diff[0]), 4),\n            \"upper\": round(float(ci_diff[1]), 4)\n        },\n        \"cohens_d_paired\": round(cohens_d_paired, 4),\n        \"cohens_d_pooled\": round(cohens_d_pooled, 4),\n        \"cohens_d_95ci\": {\n            \"lower\": round(ci_d_lower, 4),\n            \"upper\": round(ci_d_upper, 4)\n        },\n        \"effect_size_interpretation\": (\n            \"negligible\" if abs(cohens_d_pooled) < 0.2 else\n            \"small\" if abs(cohens_d_pooled) < 0.5 else\n            \"medium\" if abs(cohens_d_pooled) < 0.8 else\n            \"large\"\n        ),\n        \"bootstrap_10000\": {\n            \"mean_diff\": round(float(np.mean(boot_diffs)), 4),\n            \"ci95_lower\": round(boot_ci[0], 4),\n            \"ci95_upper\": round(boot_ci[1], 4),\n            \"p_value_two_sided\": round(boot_p, 4)\n        }\n    }\n\npairwise_results = [\n    pairwise(vanilla, taxei_50, \"Vanilla\", \"TaxEI 50%\"),\n    pairwise(vanilla, random_50, \"Vanilla\", \"Random 50%\"),\n    pairwise(taxei_50, random_50, \"TaxEI 50%\", \"Random 50%\")\n]\n\n# ============================================================\n# 4. Power analysis\n# ============================================================\ndef power_analysis(a, b, name):\n    diff = a - b\n    mean_diff = float(np.mean(diff))\n    sd_diff = float(np.std(diff, ddof=1))\n    n = len(a)\n    d = abs(mean_diff / sd_diff) if sd_diff > 0 else 0.0\n    \n    ncp = d * np.sqrt(n)\n    t_crit = float(stats.t.ppf(1 - 0.025, df=n-1))\n    power = float(1 - stats.nct.cdf(t_crit, df=n-1, nc=ncp) + stats.nct.cdf(-t_crit, df=n-1, nc=ncp))\n    \n    t_crit_bonf = float(stats.t.ppf(1 - 0.017/2, df=n-1))\n    power_bonf = float(1 - stats.nct.cdf(t_crit_bonf, df=n-1, nc=ncp) + stats.nct.cdf(-t_crit_bonf, df=n-1, nc=ncp))\n    \n    n_for_80 = \">500\"\n    for req_n in range(5, 500):\n        ncp_req = d * np.sqrt(req_n)\n        t_crit_req = float(stats.t.ppf(1 - 0.025, df=req_n-1))\n        pwr = float(1 - stats.nct.cdf(t_crit_req, df=req_n-1, nc=ncp_req) + stats.nct.cdf(-t_crit_req, df=req_n-1, nc=ncp_req))\n        if pwr >= 0.80:\n            n_for_80 = req_n\n            break\n    \n    n_for_80_bonf = \">500\"\n    for req_n in range(5, 500):\n        ncp_req = d * np.sqrt(req_n)\n        t_crit_req = float(stats.t.ppf(1 - 0.017/2, df=req_n-1))\n        pwr = float(1 - stats.nct.cdf(t_crit_req, df=req_n-1, nc=ncp_req) + stats.nct.cdf(-t_crit_req, df=req_n-1, nc=ncp_req))\n        if pwr >= 0.80:\n            n_for_80_bonf = req_n\n            break\n    \n    return {\n        \"comparison\": name,\n        \"observed_effect_size_d\": round(d, 4),\n        \"power_at_n5_alpha05\": round(power, 4),\n        \"power_at_n5_bonferroni_017\": round(power_bonf, 4),\n        \"n_required_for_80pct_power_alpha05\": n_for_80,\n        \"n_required_for_80pct_power_bonferroni_017\": n_for_80_bonf\n    }\n\npower_results = [\n    power_analysis(vanilla, taxei_50, \"Vanilla vs TaxEI 50%\"),\n    power_analysis(vanilla, random_50, \"Vanilla vs Random 50%\"),\n    power_analysis(taxei_50, random_50, \"TaxEI 50% vs Random 50%\")\n]\n\n# ============================================================\n# 5. Dose-response trend analysis\n# ============================================================\ndoses = np.array([0, 10, 25, 50, 100])\ntaxei_means = np.array([67.26, 61.3, 52.7, 57.44, 58.3])\nrandom_means = np.array([67.26, 63.8, 60.0, 58.28, 58.3])\n\ndef dose_response_analysis(doses, means, name):\n    slope, intercept, r_value, p_value, std_err = stats.linregress(doses, means)\n    spearman_r, spearman_p = stats.spearmanr(doses, means)\n    kendall_tau, kendall_p = stats.kendalltau(doses, means)\n    \n    n_doses = len(doses)\n    ranks = stats.rankdata(means)\n    dose_order = np.arange(1, n_doses + 1)\n    L = float(np.sum(dose_order * (n_doses + 1 - ranks)))\n    L_max = float(np.sum(dose_order * dose_order))\n    L_min = float(np.sum(dose_order * (n_doses + 1 - dose_order)))\n    \n    return {\n        \"condition\": name,\n        \"doses_pct\": doses.tolist(),\n        \"means\": [round(float(m), 4) for m in means],\n        \"linear_regression\": {\n            \"slope\": round(float(slope), 4),\n            \"intercept\": round(float(intercept), 4),\n            \"r_squared\": round(float(r_value**2), 4),\n            \"p_value\": round(float(p_value), 4),\n            \"std_err\": round(float(std_err), 4),\n            \"interpretation\": f\"{'Significant' if p_value < 0.05 else 'Non-significant'} linear decrease of {abs(slope):.4f}% per 1% dose increase\"\n        },\n        \"spearman_correlation\": {\n            \"rho\": round(float(spearman_r), 4),\n            \"p_value\": round(float(spearman_p), 4)\n        },\n        \"kendall_tau\": {\n            \"tau\": round(float(kendall_tau), 4),\n            \"p_value\": round(float(kendall_p), 4)\n        },\n        \"pages_L_statistic\": {\n            \"L\": round(L, 4),\n            \"L_max\": round(L_max, 4),\n            \"L_min\": round(L_min, 4),\n            \"note\": \"Computed on dose-level means (single value per dose), not per-seed data\"\n        }\n    }\n\ndose_response = {\n    \"taxei\": dose_response_analysis(doses, taxei_means, \"TaxEI dose-response\"),\n    \"random\": dose_response_analysis(doses, random_means, \"Random dose-response\"),\n    \"comparison_note\": \"Both show declining trends; TaxEI shows non-monotonic rebound at 50%\"\n}\n\n# ============================================================\n# 6. 50%-specific analyses\n# ============================================================\ndef permutation_test_swap():\n    n_perms = 100000\n    n_exact_swaps = 0\n    n_near_swaps = 0\n    \n    all_vals = np.concatenate([taxei_50, random_50])\n    \n    for _ in range(n_perms):\n        perm = np.random.permutation(10)\n        perm_a = all_vals[perm[:5]]\n        perm_b = all_vals[perm[5:]]\n        perm_diff = perm_a - perm_b\n        \n        found_exact = False\n        found_near = False\n        for i in range(5):\n            for j in range(i+1, 5):\n                if abs(perm_diff[i] + perm_diff[j]) < 0.01 and abs(perm_diff[i]) > 20:\n                    found_exact = True\n                if abs(perm_diff[i] + perm_diff[j]) < 1.0 and abs(perm_diff[i]) > 20:\n                    found_near = True\n        if found_exact:\n            n_exact_swaps += 1\n        if found_near:\n            n_near_swaps += 1\n    \n    return {\n        \"description\": \"s0 and s123 values are exactly swapped between TaxEI 50% and Random 50% (70.2/46.8 vs 46.8/70.2)\",\n        \"taxei_50_s0\": 70.2, \"taxei_50_s123\": 46.8,\n        \"random_50_s0\": 46.8, \"random_50_s123\": 70.2,\n        \"permutation_test\": {\n            \"n_permutations\": n_perms,\n            \"n_exact_swaps_found\": n_exact_swaps,\n            \"p_exact_swap\": round(n_exact_swaps / n_perms, 4),\n            \"n_near_swaps_within_1pct\": n_near_swaps,\n            \"p_near_swap\": round(n_near_swaps / n_perms, 4),\n            \"interpretation\": \"Probability of observing a swap of >=20pp magnitude between any two seeds under random relabeling\"\n        }\n    }\n\ndef rebound_analysis():\n    taxei_25_mean = 52.7\n    taxei_50_mean = float(np.mean(taxei_50))\n    diff = taxei_50_mean - taxei_25_mean\n    taxei_50_sd = float(np.std(taxei_50, ddof=1))\n    \n    t_stat, p_val = stats.ttest_1samp(taxei_50, taxei_25_mean)\n    d = diff / taxei_50_sd\n    \n    return {\n        \"taxei_25pct_mean\": taxei_25_mean,\n        \"taxei_50pct_mean\": round(taxei_50_mean, 4),\n        \"rebound_magnitude\": round(diff, 4),\n        \"one_sample_t_test_50pct_vs_25pct_mean\": {\n            \"t_statistic\": round(float(t_stat), 4),\n            \"p_value\": round(float(p_val), 4),\n            \"df\": 4,\n            \"significant_at_0.05\": bool(p_val < 0.05)\n        },\n        \"cohens_d\": round(d, 4),\n        \"interpretation\": f\"Rebound of {diff:.2f}pp ({'significant' if p_val < 0.05 else 'not significant'} at alpha=0.05)\"\n    }\n\nswap_analysis = permutation_test_swap()\nrebound = rebound_analysis()\n\n# ============================================================\n# Assemble\n# ============================================================\nreport = {\n    \"metadata\": {\n        \"analysis\": \"50% Dose-Response 5-seed Statistical Analysis (D037 Corrected)\",\n        \"date\": \"2026-05-16\",\n        \"n_seeds\": 5,\n        \"seeds\": [\"s42\", \"s0\", \"s123\", \"s1\", \"s7\"],\n        \"bonferroni_alpha\": 0.017,\n        \"bootstrap_resamples\": 10000,\n        \"corrections_applied\": \"D037 vanilla values corrected\"\n    },\n    \"descriptive_statistics\": descriptive,\n    \"pairwise_comparisons\": pairwise_results,\n    \"bonferroni_correction\": {\n        \"alpha_per_comparison\": 0.017,\n        \"n_comparisons\": 3,\n        \"family_wise_alpha\": 0.05,\n        \"summary\": {\n            \"vanilla_vs_taxei50\": {\n                \"p_paired\": round(float(pairwise_results[0][\"paired_t_test\"][\"p_value\"]), 4),\n                \"significant\": pairwise_results[0][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            },\n            \"vanilla_vs_random50\": {\n                \"p_paired\": round(float(pairwise_results[1][\"paired_t_test\"][\"p_value\"]), 4),\n                \"significant\": pairwise_results[1][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            },\n            \"taxei50_vs_random50\": {\n                \"p_paired\": round(float(pairwise_results[2][\"paired_t_test\"][\"p_value\"]), 4),\n                \"significant\": pairwise_results[2][\"paired_t_test\"][\"significant_at_bonferroni_0.017\"]\n            }\n        }\n    },\n    \"power_analysis\": power_results,\n    \"dose_response_trend\": dose_response,\n    \"fifty_percent_specific_analyses\": {\n        \"s0_s123_swap\": swap_analysis,\n        \"rebound_25_to_50\": rebound\n    },\n    \"executive_summary\": {\n        \"key_findings\": []\n    }\n}\n\np_vt = pairwise_results[0][\"paired_t_test\"][\"p_value\"]\np_vr = pairwise_results[1][\"paired_t_test\"][\"p_value\"]\np_tr = pairwise_results[2][\"paired_t_test\"][\"p_value\"]\nd_vt = pairwise_results[0][\"cohens_d_pooled\"]\nd_vr = pairwise_results[1][\"cohens_d_pooled\"]\n\nfindings = [\n    f\"Vanilla (67.26%) > TaxEI 50% (57.44%): Δ=9.82pp, paired t p={p_vt:.4f}, d={d_vt:.2f} ({'SIGNIFICANT' if pairwise_results[0]['paired_t_test']['significant_at_bonferroni_0.017'] else 'NOT significant'} at Bonferroni α=0.017)\",\n    f\"Vanilla (67.26%) > Random 50% (58.28%): Δ=8.98pp, paired t p={p_vr:.4f}, d={d_vr:.2f} ({'SIGNIFICANT' if pairwise_results[1]['paired_t_test']['significant_at_bonferroni_0.017'] else 'NOT significant'} at Bonferroni α=0.017)\",\n    f\"TaxEI 50% ≈ Random 50%: Δ=0.84pp, paired t p={p_tr:.4f} (NOT significant)\",\n    f\"Power at n=5: Vanilla vs TaxEI d={power_results[0]['observed_effect_size_d']:.2f}, power={power_results[0]['power_at_n5_alpha05']:.1%}; need n={power_results[0]['n_required_for_80pct_power_alpha05']} for 80% power\",\n    f\"TaxEI dose-response slope: {dose_response['taxei']['linear_regression']['slope']:.4f}%/dose%, R²={dose_response['taxei']['linear_regression']['r_squared']:.3f}, p={dose_response['taxei']['linear_regression']['p_value']:.4f}\",\n    f\"50% rebound from 25%: TaxEI 52.7→57.4 (+{rebound['rebound_magnitude']:.2f}pp), t-test p={rebound['one_sample_t_test_50pct_vs_25pct_mean']['p_value']:.4f} ({'significant' if rebound['one_sample_t_test_50pct_vs_25pct_mean']['significant_at_0.05'] else 'not significant'})\",\n    f\"s0/s123 exact swap: permutation p={swap_analysis['permutation_test']['p_exact_swap']:.4f}\"\n]\nreport[\"executive_summary\"][\"key_findings\"] = findings\n\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dose_response_50pct_stats_corrected.json\"\nwith open(out_path, 'w') as f:\n    json.dump(report, f, indent=2, ensure_ascii=False, cls=NpEncoder)\n\nprint(\"=== SAVED ===\")\nprint(f\"Path: {out_path}\")\nprint()\n\n# Print key results\nprint(\"=== EXECUTIVE SUMMARY ===\")\nfor f in findings:\n    print(f\"  • {f}\")\nprint()\nprint(\"=== DESCRIPTIVE ===\")\nfor d in descriptive:\n    print(f\"  {d['condition']}: M={d['mean']:.2f}, SD={d['sd']:.2f}, 95%CI=[{d['ci95_lower']:.2f}, {d['ci95_upper']:.2f}]\")\nprint()\nprint(\"=== PAIRWISE (paired t) ===\")\nfor p in pairwise_results:\n    sig = \"***\" if p['paired_t_test']['significant_at_bonferroni_0.017'] else \"ns\"\n    print(f\"  {p['comparison']}: Δ={p['mean_difference']:.2f}, t={p['paired_t_test']['t_statistic']:.3f}, p={p['paired_t_test']['p_value']:.4f} {sig}, d_pooled={p['cohens_d_pooled']:.3f}\")\n    print(f\"    Bootstrap 95%CI: [{p['bootstrap_10000']['ci95_lower']:.2f}, {p['bootstrap_10000']['ci95_upper']:.2f}], boot-p={p['bootstrap_10000']['p_value_two_sided']:.4f}\")\nprint()\nprint(\"=== POWER ===\")\nfor pw in power_results:\n    print(f\"  {pw['comparison']}: d={pw['observed_effect_size_d']:.3f}, power@n5={pw['power_at_n5_alpha05']:.3f}, need n={pw['n_required_for_80pct_power_alpha05']} for 80%\")\nprint()\nprint(\"=== DOSE-RESPONSE ===\")\nfor key in ['taxei', 'random']:\n    dr = dose_response[key]\n    lr = dr['linear_regression']\n    print(f\"  {dr['condition']}: slope={lr['slope']:.4f}, R²={lr['r_squared']:.3f}, p={lr['p_value']:.4f}\")\n    print(f\"    Spearman rho={dr['spearman_correlation']['rho']:.3f}, p={dr['spearman_correlation']['p_value']:.4f}\")\nprint()\nprint(\"=== 50% SPECIFIC ===\")\nprint(f\"  Swap: p_exact={swap_analysis['permutation_test']['p_exact_swap']:.4f}, p_near={swap_analysis['permutation_test']['p_near_swap']:.4f}\")\nprint(f\"  Rebound: +{rebound['rebound_magnitude']:.2f}pp, p={rebound['one_sample_t_test_50pct_vs_25pct_mean']['p_value']:.4f}\")\nPYEOF\n",
+  "description": "Run full statistical analysis and save JSON",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "74b2b865-6997-4e09-befe-73fe51d53e83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GLvNswJWAoa8VSNV17KWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6723,
+      "cache_read_input_tokens": 23597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6723
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 12_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bnooc1w39",
+  "tool_use_id": "toolu_01U1TXxPEQAJugMRKiu7H6nn",
+  "description": "Run full statistical analysis and save JSON",
+  "task_type": "local_bash",
+  "uuid": "b7841a07-7977-491d-b1d0-836182c4fc88",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7"
+}
+```
+
+---
+
+### System
+
+_source line 13_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bnooc1w39",
+  "tool_use_id": "toolu_01U1TXxPEQAJugMRKiu7H6nn",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run full statistical analysis and save JSON",
+  "uuid": "d85a167e-19e9-4949-a892-aa34f4809d79",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T02:02:51.556Z_
+
+<details><summary>↩ Tool result · `toolu_01U1TXxPEQAJugMRKiu7H6nn`</summary>
+
+```text
+=== SAVED ===
+Path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dose_response_50pct_stats_corrected.json
+
+=== EXECUTIVE SUMMARY ===
+  • Vanilla (67.26%) > TaxEI 50% (57.44%): Δ=9.82pp, paired t p=0.0864, d=1.31 (NOT significant at Bonferroni α=0.017)
+  • Vanilla (67.26%) > Random 50% (58.28%): Δ=8.98pp, paired t p=0.2453, d=1.01 (NOT significant at Bonferroni α=0.017)
+  • TaxEI 50% ≈ Random 50%: Δ=0.84pp, paired t p=0.9203 (NOT significant)
+  • Power at n=5: Vanilla vs TaxEI d=1.01, power=40.9%; need n=10 for 80% power
+  • TaxEI dose-response slope: -0.0559%/dose%, R²=0.173, p=0.4865
+  • 50% rebound from 25%: TaxEI 52.7→57.4 (+4.74pp), t-test p=0.3272 (not significant)
+  • s0/s123 exact swap: permutation p=0.1285
+
+=== DESCRIPTIVE ===
+  Vanilla (D037 corrected): M=67.26, SD=4.67, 95%CI=[61.46, 73.06]
+  TaxEI 50%: M=57.44, SD=9.50, 95%CI=[45.64, 69.24]
+  Random 50%: M=58.28, SD=11.71, 95%CI=[43.74, 72.82]
+
+=== PAIRWISE (paired t) ===
+  Vanilla vs TaxEI 50%: Δ=9.82, t=2.263, p=0.0864 ns, d_pooled=1.312
+    Bootstrap 95%CI: [2.16, 17.48], boot-p=0.0104
+  Vanilla vs Random 50%: Δ=8.98, t=1.360, p=0.2453 ns, d_pooled=1.007
+    Bootstrap 95%CI: [-2.50, 20.46], boot-p=0.1176
+  TaxEI 50% vs Random 50%: Δ=-0.84, t=-0.106, p=0.9203 ns, d_pooled=-0.079
+    Bootstrap 95%CI: [-13.60, 14.46], boot-p=0.8256
+
+=== POWER ===
+  Vanilla vs TaxEI 50%: d=1.012, power@n5=0.409, need n=10 for 80%
+  Vanilla vs Random 50%: d=0.608, power@n5=0.184, need n=24 for 80%
+  TaxEI 50% vs Random 50%: d=0.048, power@n5=0.051, need n=>500 for 80%
+
+=== DOSE-RESPONSE ===
+  TaxEI dose-response: slope=-0.0559, R²=0.173, p=0.4865
+    Spearman rho=-0.600, p=0.2848
+  Random dose-response: slope=-0.0785, R²=0.641, p=0.1037
+    Spearman rho=-0.900, p=0.0374
+
+=== 50% SPECIFIC ===
+  Swap: p_exact=0.1285, p_near=0.1285
+  Rebound: +4.74pp, p=0.3272
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "47041fcc-552e-4138-9e76-ffa3a9c17f4f",
+  "tool_use_result": {
+    "stdout": "=== SAVED ===\nPath: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dose_response_50pct_stats_corrected.json\n\n=== EXECUTIVE SUMMARY ===\n  • Vanilla (67.26%) > TaxEI 50% (57.44%): Δ=9.82pp, paired t p=0.0864, d=1.31 (NOT significant at Bonferroni α=0.017)\n  • Vanilla (67.26%) > Random 50% (58.28%): Δ=8.98pp, paired t p=0.2453, d=1.01 (NOT significant at Bonferroni α=0.017)\n  • TaxEI 50% ≈ Random 50%: Δ=0.84pp, paired t p=0.9203 (NOT significant)\n  • Power at n=5: Vanilla vs TaxEI d=1.01, power=40.9%; need n=10 for 80% power\n  • TaxEI dose-response slope: -0.0559%/dose%, R²=0.173, p=0.4865\n  • 50% rebound from 25%: TaxEI 52.7→57.4 (+4.74pp), t-test p=0.3272 (not significant)\n  • s0/s123 exact swap: permutation p=0.1285\n\n=== DESCRIPTIVE ===\n  Vanilla (D037 corrected): M=67.26, SD=4.67, 95%CI=[61.46, 73.06]\n  TaxEI 50%: M=57.44, SD=9.50, 95%CI=[45.64, 69.24]\n  Random 50%: M=58.28, SD=11.71, 95%CI=[43.74, 72.82]\n\n=== PAIRWISE (paired t) ===\n  Vanilla vs TaxEI 50%: Δ=9.82, t=2.263, p=0.0864 ns, d_pooled=1.312\n    Bootstrap 95%CI: [2.16, 17.48], boot-p=0.0104\n  Vanilla vs Random 50%: Δ=8.98, t=1.360, p=0.2453 ns, d_pooled=1.007\n    Bootstrap 95%CI: [-2.50, 20.46], boot-p=0.1176\n  TaxEI 50% vs Random 50%: Δ=-0.84, t=-0.106, p=0.9203 ns, d_pooled=-0.079\n    Bootstrap 95%CI: [-13.60, 14.46], boot-p=0.8256\n\n=== POWER ===\n  Vanilla vs TaxEI 50%: d=1.012, power@n5=0.409, need n=10 for 80%\n  Vanilla vs Random 50%: d=0.608, power@n5=0.184, need n=24 for 80%\n  TaxEI 50% vs Random 50%: d=0.048, power@n5=0.051, need n=>500 for 80%\n\n=== DOSE-RESPONSE ===\n  TaxEI dose-response: slope=-0.0559, R²=0.173, p=0.4865\n    Spearman rho=-0.600, p=0.2848\n  Random dose-response: slope=-0.0785, R²=0.641, p=0.1037\n    Spearman rho=-0.900, p=0.0374\n\n=== 50% SPECIFIC ===\n  Swap: p_exact=0.1285, p_near=0.1285\n  Rebound: +4.74pp, p=0.3272",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "3d911b2f-7685-452a-bfb8-dcf596a7086a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V752uhbtvBzEgTco5pNJTS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7734,
+      "cache_read_input_tokens": 30320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AFmUfYj68VNKc8DXu42y3r`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "3277c1d7-b5d7-4696-9655-baabb50fed15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V752uhbtvBzEgTco5pNJTS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7734,
+      "cache_read_input_tokens": 30320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7734
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:02:54.945Z_
+
+<details><summary>↩ Tool result · `toolu_01AFmUfYj68VNKc8DXu42y3r`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "96ac050c-63c2-4c10-86ba-f62599d06a48",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01TxHhdHQ5j6vPDaAiBk2oiy`</summary>
+
+```json
+{
+  "name": "dose_response_50pct_stats_corrected",
+  "type": "report",
+  "description": "50% Dose-Response 5-seed 完整统计分析 (D037校正版): 描述统计、paired/Welch t-test、Cohen's d、Bootstrap、Power analysis、dose-response回归、s0/s123 swap permutation test、rebound分析",
+  "project": "tax_error_inject_agent",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dose_response_50pct_stats_corrected.json",
+  "tags": [
+    "statistics",
+    "dose-response",
+    "50pct",
+    "D037-corrected",
+    "5-seed"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "7d758004-a371-451a-8159-9a690f8db050",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dA4cFRWGnu8qj6uHY1rSg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 38054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T02:03:03.924Z_
+
+<details><summary>↩ Tool result · `toolu_01TxHhdHQ5j6vPDaAiBk2oiy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_c47190\", \"name\": \"dose_response_50pct_stats_corrected\", \"type\": \"report\", \"description\": \"50% Dose-Response 5-seed 完整统计分析 (D037校正版): 描述统计、paired/Welch t-test、Cohen's d、Bootstrap、Power analysis、dose-response回归、s0/s123 swap permutation test、rebound分析\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/report/dose_response_50pct_stats_corrected.json\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T02:03:03.649349+00:00\", \"tags\": [\"statistics\", \"dose-response\", \"50pct\", \"D037-corrected\", \"5-seed\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "2508b936-2cef-4841-9709-cbbf849c5c7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_c47190\\\", \\\"name\\\": \\\"dose_response_50pct_stats_corrected\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"50% Dose-Response 5-seed 完整统计分析 (D037校正版): 描述统计、paired/Welch t-test、Cohen's d、Bootstrap、Power analysis、dose-response回归、s0/s123 swap permutation test、rebound分析\\\", \\\"path\\\": \\\"projects/tax_error_inject_agent/artifacts/_project/report/dose_response_50pct_stats_corrected.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"tax_error_inject_agent\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T02:03:03.649349+00:00\\\", \\\"tags\\\": [\\\"statistics\\\", \\\"dose-response\\\", \\\"50pct\\\", \\\"D037-corrected\\\", \\\"5-seed\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_c47190\", \"name\": \"dose_response_50pct_stats_corrected\", \"type\": \"report\", \"description\": \"50% Dose-Response 5-seed 完整统计分析 (D037校正版): 描述统计、paired/Welch t-test、Cohen's d、Bootstrap、Power analysis、dose-response回归、s0/s123 swap permutation test、rebound分析\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/report/dose_response_50pct_stats_corrected.json\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T02:03:03.649349+00:00\", \"tags\": [\"statistics\", \"dose-response\", \"50pct\", \"D037-corrected\", \"5-seed\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+JSON 已保存并注册 (`art_20260516_c47190`)。核心结论：
+
+**三组对比均未通过 Bonferroni α=0.017**：
+- Vanilla vs TaxEI 50%: Δ=9.82pp, p=0.0864, d=1.31 (large effect but underpowered)
+- Vanilla vs Random 50%: Δ=8.98pp, p=0.2453, d=1.01
+- TaxEI 50% ≈ Random 50%: Δ=0.84pp, p=0.9203
+
+**Bootstrap 提供补充视角**：Vanilla vs TaxEI 50% 的 bootstrap p=0.0104（CI=[2.16, 17.48]不含0），比 t-test 更乐观。
+
+**Power 严重不足**：n=5 时 Vanilla vs TaxEI 仅 40.9% power，需 n=10 达到 80%；Vanilla vs Random 需 n=24。
+
+**Dose-response**：TaxEI 线性斜率 -0.056%/dose%，R²=0.173，不显著（p=0.49），因 50% rebound 破坏单调性。Random 斜率 -0.079%，R²=0.641，Spearman rho=-0.9（p=0.037 显著）。
+
+**50% 特异性**：s0/s123 swap 的 permutation p=0.13，不算罕见；25%→50% rebound +4.74pp 不显著（p=0.33）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "uuid": "fc4b8d83-9629-4369-853f-6d47ed3c0728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vn8Bj7NqJTi9hpNNQmxfCY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 649,
+      "cache_read_input_tokens": 38772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 649
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 21_
+
+JSON 已保存并注册 (`art_20260516_c47190`)。核心结论：
+
+**三组对比均未通过 Bonferroni α=0.017**：
+- Vanilla vs TaxEI 50%: Δ=9.82pp, p=0.0864, d=1.31 (large effect but underpowered)
+- Vanilla vs Random 50%: Δ=8.98pp, p=0.2453, d=1.01
+- TaxEI 50% ≈ Random 50%: Δ=0.84pp, p=0.9203
+
+**Bootstrap 提供补充视角**：Vanilla vs TaxEI 50% 的 bootstrap p=0.0104（CI=[2.16, 17.48]不含0），比 t-test 更乐观。
+
+**Power 严重不足**：n=5 时 Vanilla vs TaxEI 仅 40.9% power，需 n=10 达到 80%；Vanilla vs Random 需 n=24。
+
+**Dose-response**：TaxEI 线性斜率 -0.056%/dose%，R²=0.173，不显著（p=0.49），因 50% rebound 破坏单调性。Random 斜率 -0.079%，R²=0.641，Spearman rho=-0.9（p=0.037 显著）。
+
+**50% 特异性**：s0/s123 swap 的 permutation p=0.13，不算罕见；25%→50% rebound +4.74pp 不显著（p=0.33）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 177623,
+  "duration_api_ms": 171972,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "83fd720d-0143-4015-810b-bebb729f17e7",
+  "total_cost_usd": 0.5976544999999999,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 27974,
+    "cache_read_input_tokens": 142190,
+    "output_tokens": 14000,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27974,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 432,
+        "cache_read_input_tokens": 38772,
+        "cache_creation_input_tokens": 649,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 649
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1592,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016820000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 14000,
+      "cacheReadInputTokens": 142190,
+      "cacheCreationInputTokens": 27974,
+      "webSearchRequests": 0,
+      "costUSD": 0.5959724999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1fda3888-0169-477c-8388-f2a3c375658b"
+}
+```
+
+</details>
+
+---

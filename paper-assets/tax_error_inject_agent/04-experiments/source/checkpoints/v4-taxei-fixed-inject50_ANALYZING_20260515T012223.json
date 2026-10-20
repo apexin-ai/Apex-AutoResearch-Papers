@@ -1,0 +1,35 @@
+{
+  "exp_id": "v4-taxei-fixed-inject50",
+  "project": "tax_error_inject_agent",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:25:38.284Z",
+    "updated_at": "2026-05-15T01:22:23.865Z",
+    "hypothesis": "v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。",
+    "spec": {
+      "command": "swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "104236",
+      "log_path": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log",
+      "submitted_at": "2026-05-15T00:27:51.219Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl",
+      "data_count": 4358,
+      "model_name": "Qwen3-8B",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T01:22:23.688Z"
+    }
+  },
+  "timestamp": "2026-05-15T01:22:23.941635+00:00",
+  "trigger": "update_registry"
+}

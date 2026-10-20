@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf5e1085bbb595067aa5",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "research dose response literature",
+  "task_key": "worker_research_dose-response-literature_20260515T010151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dose-response-literature_20260515T010151_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "d0a8018ecd2236d2b96b4be9598671386cf2945f805d09e64874111a018edbc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n1. **`literature_map.yaml`** — 14篇论文，覆盖4个方向：\n   - dose-response/threshold: 4篇 (Rolnick 2017, Li ICLR 2024, Dohmatob ICLR 2025, Beyond Clean Data 2024)\n   - error-injection: 4篇 (Wang 2024, ETO ACL 2024, PALADIN 2025, AgentHER 2025)\n   - data-mixing: 4篇 (Dong ACL 2024, Ye ICLR 2025, Li ICML 2025, Seddik 2024)\n   - curriculum/quality: 2篇 (Robust Curriculum 2024, WKM NeurIPS 2024)\n\n2. **Survey report** (`artifacts/dose_response_literature_survey.md`, registered as `art_20260515_1b989f`)\n\n核心定位：**没有先前工作报告过 agent SFT 中直接错误注入的 dose-response 曲线**。现有方法要么用 contrastive/DPO 框架（ETO），要么配对 recovery 演示（PALADIN），都回避了直接混入问题。我们的 10%→25% 阈值发现是该设定下的首个实证锚点，与理论 mixing-law 文献（Ye et al., Seddik et al.）的预测一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dose-response-literature.md"
+}

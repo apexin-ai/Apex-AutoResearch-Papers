@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc0aeb355c5b10001ea4",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval v4 random recovery eval",
+  "task_key": "worker_eval_v4-random-recovery-eval_20260514T210431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_v4-random-recovery-eval_20260514T210431_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "438d7bf3c04f5a731c1e54ed9674a478c66f14490968c7df195b9e4c7f19c497"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **实验**: `v4-random-recovery-eval`\n- **PID**: 89157\n- **tmux session**: `v4-random-recovery-eval`\n- **日志**: `~/runs/tax_error_inject_agent/v4-random-recovery-eval.log`\n- **GPU**: cuda:0\n- **输出**: `eval_results/v4_random_recovery_eval.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-random-recovery-eval.md"
+}

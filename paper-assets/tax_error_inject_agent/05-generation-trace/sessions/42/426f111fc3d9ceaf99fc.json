@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426f111fc3d9ceaf99fc",
+  "project": "tax_error_inject_agent",
+  "kind": "history",
+  "title": "agent / loop_6_1778941182.md",
+  "task_key": "loop_6_1778941182",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778941182.md",
+    "occurrence": 1,
+    "bytes": 4008,
+    "sha256": "c7bc46d471085409e6407353ae6e92ffd251d7dea350a91e6a1a81cf83fa0434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-16T14:13:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3 on autodl-5090（4× RTX 5090 32GB）。无其他服务器可用。\n- LLaMA detection_rate 数据 **禁止引用**：21-30% 全是 \"go back to X\" 关键词假阳性。\n- 训练数据量混淆：Vanilla=4,358 vs TaxEI/Random=9,029。LLaMA TaxEI/Random clean SR > Vanilla 不能 claim 为注入方法优势，是数据量效应。\n- TMPDIR=/root/autodl-tmp/tmp 必须设置在所有 job 上，否则 /tmp 满 crash。\n- Eval 并行上限 2 个（8B 模型 eval ~18GB，3 并行 OOM）。\n- `injected_eval.py` 输出文件名由 `--output_file` 参数决定（不一定是 `_injected.json` 后缀），找结果时看实际提交命令。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-5090，工作目录 `/root/autodl-tmp/tax_error_inject_agent/`\n- Python：`/root/miniconda3/bin/python`（conda base env，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- LLaMA 模型：`/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct/`\n- Qwen 模型：`/root/autodl-tmp/models/` 下（Qwen2.5-7B-Instruct 系列）\n- Qwen Random checkpoints：`checkpoints/mini_random_sft_v4_seed{N}/v0-.../checkpoint-3387`\n- LLaMA TaxEI s0 checkpoint：`output/llama31-taxei-s0/v1-20260516-181826/checkpoint-3387`\n- 训练框架：ms-swift (`swift sft`)，LoRA rank 16, 3 epochs, effective batch 8\n- 活跃进程：3× `swift sft` (PID 277575/277781/277973) = s123 训练 GPU 1/2/3\n- 无活跃 tmux 会话（训练直接由 swift 进程运行）\n- Cron：reconcile 返回 0，无活跃 cron 监控\n\n### 3. 📊 当前状态\n刚完成：TaxEI s0 eval 谜团解决（文件名问题），注册了所有已完成的 LLaMA 2-seed 结果，向 Director 汇报。\n\n**Registry RUNNING：**\n- `llama31-vanilla-s123` — 训练 GPU 1，~80% 完成，约 14min 后出 checkpoint\n- `llama31-taxei-s123` — 训练 GPU 2，~44%，约 1h 剩余\n- `llama31-random-s123` — 训练 GPU 3，~44%，约 1h 剩余\n\n**活跃 Workers（2 个）：**\n- `worker_eval_qwen-random-recovery-s1s7s42_20260516T140659` — GPU 0 跑 Qwen Random Recovery s1/s7/s42 队列（每个 ~30min）\n- `worker_eval_vanilla-s123-monitor-and-eval_20260516T140800` — 等 vanilla-s123 训练完 → 立即跑 clean+injected eval on GPU 1\n\n### 4. 📋 待办\n- `worker_eval_qwen-random-recovery-s1s7s42` 回调 → 注册 Random s1/s7/s42 recovery_rate → 更新 memory.md Qwen Recovery 条目为 15/15 完成 → 计算 Random 5-seed 均值 → 汇报 Director\n- `worker_eval_vanilla-s123-monitor-and-eval` 回调 → 注册 vanilla-s123 clean SR + injected recovery_rate → 如果 GPU 1 空闲，排 vanilla-s42 injected eval\n- taxei-s123 训练完成（~1h）→ 派 Worker GPU 2 跑 clean+injected eval\n- random-s123 训练完成（~1h）→ 派 Worker GPU 3 跑 clean+injected eval\n- 全部 s123 eval 完成 → LLaMA 3-seed 完整表 → 统计检验 → 汇报 Director\n- s42 injected evals（V/T/R）仍未做 → 穿插在 s123 eval 之间跑\n\n### 5. 🎯 战略上下文\n- **论文核心 negative result**：taxonomy 标签对 error injection SFT 零收益（Qwen: TaxEI=Random=58.3% vs Vanilla 67.3%）\n- **跨模型发现**：LLaMA injection penalty ≈ 0（max -2.1pp），Qwen ≈ -9pp → stronger model \"免疫\"注入，taxonomy 跨模型依然零收益\n- **D045 执行链进度**：s42 ✅ → s0 ✅ → s123 训练中 → s123 eval 待做\n- **数据量混淆是 Reviewer 必攻点**：LLaMA TaxEI/Random clean > Vanilla +4pp 看似\"注入有益\"，实际是 2× 数据量效应。论文需要控制实验或 limitation 段明确说明。\n- **易错**：Workers 有前科频繁\"假完成\"（报 done 但进程未跑完）。收到 Worker 回调后务必 SSH 验证输出文件存在且内容完整。\n- **Qwen Recovery 差一步**：TaxEI 5/5 done (mean 57.9%), Vanilla 5/5 done (67.3%), Random 仅 2/5 (s0=55.3%, s123=66.0%)。GPU 0 正在补剩余 3 个。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778941182.md"
+}

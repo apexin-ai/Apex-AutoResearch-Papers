@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0",
+  "id": "9f8f128e63819b9993f6",
+  "project": "tax_error_inject_agent",
+  "kind": "conversation",
+  "title": "eval v4 random seed1 eval analysis",
+  "task_key": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_v4-random-seed1-eval-analysis_20260515T173155.jsonl",
+    "occurrence": 1,
+    "bytes": 21732,
+    "sha256": "b8a619f4e7c0dcc2078416a822fe17fe87b377a13aff6679bb67d04b8fec66fd"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:32:43.744009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T17:32:43.744393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T17:32:43.744605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_seed1_eval.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T17:32:43.745255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-5090",
+              "command": "tail -30 /root/runs/tax_error_inject_agent/v4-random-seed1-eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T17:32:43.746378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387\\\\\\\",\\\\n  \\\\\\\"eval_split\\\\\\\": \\\\\\\"valid_unseen\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": false,\\\\n  \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.468,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-15T17:27:53.367113+00:00\\\\\\\",\\\\n  \\\\\\\"by_task_type\\\\\\\": {\\\\n    \\\\\\\"look_at_obj_in_light\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 6,\\\\n      \\\\\\\"success\\\\\\\": 5,\\\\n      \\\\\\\"rate\\\\\\\": 0.833\\\\n    },\\\\n    \\\\\\\"pick_and_place_simple\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 2,\\\\n      \\\\\\\"rate\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"pick_clean_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n      \\\\\\\"success\\\\\\\": 5,\\\\n      \\\\\\\"rate\\\\\\\": 0.455\\\\n    },\\\\n    \\\\\\\"pick_cool_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 2,\\\\n      \\\\\\\"rate\\\\\\\": 0.286\\\\n    },\\\\n    \\\\\\\"pick_heat_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 5,\\\\n      \\\\\\\"rate\\\\\\\": 0.625\\\\n    },\\\\n    \\\\\\\"pick_two_obj_and_place\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 3,\\\\n      \\\\\\\"rate\\\\\\\": 0.429\\\\n    }\\\\n  },\\\\n  \\\\\\\"episodes\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Hold the clock and turn on the lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 5,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Look at a book by the light of a lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\n…[truncated 8761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T17:32:43.746803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [25/47] pick_clean_then_place_in_recep-Spatula-None-Drawer-10: FAIL (50 steps)\\\\n  [26/47] pick_cool_then_place_in_recep-Bread-None-CounterTop-10: FAIL (50 steps)\\\\n  [27/47] pick_cool_then_place_in_recep-Lettuce-None-CounterTop-10: FAIL (50 steps)\\\\n  [28/47] pick_cool_then_place_in_recep-Mug-None-Cabinet-10: OK (24 steps)\\\\n  [29/47] pick_cool_then_place_in_recep-Mug-None-CoffeeMachine-10: OK (10 steps)\\\\n  [30/47] pick_cool_then_place_in_recep-Pan-None-CounterTop-10: FAIL (50 steps)\\\\n  [31/47] pick_cool_then_place_in_recep-Potato-None-Microwave-10: FAIL (50 steps)\\\\n  [32/47] pick_cool_then_place_in_recep-Tomato-None-Microwave-10: FAIL (50 steps)\\\\n  [33/47] pick_heat_then_place_in_recep-Apple-None-Fridge-10: FAIL (50 steps)\\\\n  [34/47] pick_heat_then_place_in_recep-Apple-None-GarbageCan-10: OK (12 steps)\\\\n  [35/47] pick_heat_then_place_in_recep-Cup-None-Cabinet-10: OK (9 steps)\\\\n  [36/47] pick_heat_then_place_in_recep-Egg-None-GarbageCan-10: FAIL (50 steps)\\\\n  [37/47] pick_heat_then_place_in_recep-Mug-None-Cabinet-10: OK (6 steps)\\\\n  [38/47] pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10: OK (4 steps)\\\\n  [39/47] pick_heat_then_place_in_recep-Potato-None-GarbageCan-10: FAIL (50 steps)\\\\n  [40/47] pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10: OK (13 steps)\\\\n  [41/47] pick_two_obj_and_place-CD-None-Safe-308: OK (11 steps)\\\\n  [42/47] pick_two_obj_and_place-KeyChain-None-Safe-219: FAIL (50 steps)\\\\n  [43/47] pick_two_obj_and_place-PepperShaker-None-Drawer-10: FAIL (50 steps)\\\\n  [44/47] pick_two_obj_and_place-Pillow-None-Sofa-219: OK (9 steps)\\\\n  [45/47] pick_two_obj_and_place-SoapBar-None-Cabinet-424: FAIL (50 steps)\\\\n  [46/47] pick_two_obj_and_place-SoapBar-None-GarbageCan-424: OK (8 steps)\\\\n  [47/47] pick_two_obj_and_place-ToiletPaper-None-Cabinet-424: FAIL (50 steps)\\\\n\\\\nReport saved to eval_results/v4_random_seed1_eval.json\\\\n\\\\n=== Summary ===\\\\nTotal: 47\\\\nSuccess rate: 0\n…[truncated 125 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T17:32:43.747342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "v4-random-seed1-eval",
+              "field": "metrics",
+              "value": "{'success_rate': 0.468, 'successes': 22, 'total': 47, 'by_task_type': {'look_at_obj_in_light': {'success': 5, 'total': 6, 'rate': 0.833}, 'pick_and_place_simple': {'success': 2, 'total': 8, 'rate': 0.25}, 'pick_clean_then_place_in_recep': {'success': 5, 'total': 11, 'rate': 0.455}, 'pick_cool_then_place_in_recep': {'success': 2, 'total': 7, 'rate': 0.286}, 'pick_heat_then_place_in_recep': {'success': 5, 'total': 8, 'rate': 0.625}, 'pick_two_obj_and_place': {'success': 3, 'total': 7, 'rate': 0.429}}}",
+              "project": "tax_error_inject_agent"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T17:32:43.747662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-seed1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:17:51.435Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:28.684Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"178005\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:18:03.664Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:30:35.329Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:30:38.085288+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3689}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T17:32:43.747977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "v4-random-seed1-eval",
+              "field": "checkpoint_path",
+              "value": "checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387",
+              "project": "tax_error_inject_agent"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T17:32:43.748159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-seed1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:17:51.435Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:31.009Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"178005\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:18:03.664Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:30:35.329Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:30:38.085288+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3278}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T17:32:43.749014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "v4-random-seed1-eval",
+              "field": "log_path",
+              "value": "~/runs/tax_error_inject_agent/v4-random-seed1-eval.log",
+              "project": "tax_error_inject_agent"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T17:32:43.749213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-seed1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:17:51.435Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:31.930Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"178005\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:18:03.664Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:30:35.329Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:30:38.085288+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\"}}, \\\"error\\\": null, \\\"me\n…[truncated 42 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T17:32:43.749382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "v4-random-seed1-eval",
+              "field": "conclusion",
+              "value": "success",
+              "project": "tax_error_inject_agent"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T17:32:43.751045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-seed1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:17:51.435Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:36.046Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"178005\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:18:03.664Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:30:35.329Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:30:38.085288+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"conclusion\\\": \\\"succe\n…[truncated 71 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T17:32:43.751261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "v4-random-seed1-eval",
+              "field": "status",
+              "value": "DONE",
+              "project": "tax_error_inject_agent"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T17:32:43.751462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-seed1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:17:51.435Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:32:36.551Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && mkdir -p eval_results && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_seed1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"178005\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:18:03.664Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 872.9, \\\"gpu_hours\\\": 0.24}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:30:35.329Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:30:38.085288+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed1/v0-20260515-232340/checkpoint-3387\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-r\n…[truncated 217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T17:32:43.752138+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**总结**: v4-random-seed1-eval 完成，success rate **46.8%** (22/47)，是目前 4 个 Random seed 中最低的（seed123=68.1% > seed42=66.0% > seed0=55.3% > seed1=46.8%）。Random SFT baseline 的 seed 间方差较大（跨度 21.3 个百分点），说明训练数据的随机采样对最终性能影响显著。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_v4-random-seed1-eval-analysis_20260515T173155"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/eval-v4-random-seed1-eval-analysis.md"
+}

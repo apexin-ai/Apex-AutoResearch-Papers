@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae3003b1ce9758b126dd",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "eval llama31 s123 evalseed42 3gpu",
+  "task_key": "worker_eval_llama31-s123-evalseed42-3gpu_20260516T161827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama31-s123-evalseed42-3gpu_20260516T161827_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "662e77750cab05b5149ec04e96b6f67fb2898840aae86fd205999e5d068a5a16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 已在 GPU 0/1/2 上并行运行，预计约 40 分钟完成。4.5 分钟后首次轮询检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama31-s123-evalseed42-3gpu.md"
+}

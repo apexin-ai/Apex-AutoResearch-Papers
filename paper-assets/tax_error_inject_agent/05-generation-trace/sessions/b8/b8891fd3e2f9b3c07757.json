@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8891fd3e2f9b3c07757",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "analysis failure mode 5seed update",
+  "task_key": "worker_analysis_failure-mode-5seed-update_20260516T025031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_failure-mode-5seed-update_20260516T025031_result.json",
+    "occurrence": 1,
+    "bytes": 3097,
+    "sha256": "4da394549371ffeb3ff40d578830aa745ec7a26c854934d6a80c954e2a03c270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 已排队（PID 227425），会在训练结束后自动启动。下面是当前可报告的完整结果。\n\n---\n\n## 5-seed Failure Analysis 报告\n\n### 1. 数据可用性\n\n| 条件 | Eval 文件数 | Seeds | 每文件 Episodes | 总 Episodes |\n|------|-----------|-------|---------------|------------|\n| Vanilla | 5 | 42, 0, 1, 7, 123 | 47 | **235** |\n| TaxEI | 5 | 42, 0, 1, 7, 123 | 47 | **235** |\n| Random | 5 | 42, 0, 1, 7, 123 | 47 | **235** |\n\n三个条件完全平衡。\n\n### 2. 总体失败率（5-seed balanced）\n\n| 条件 | Total | Failures | Fail Rate | Success Mean ± Std |\n|------|-------|----------|-----------|-------------------|\n| Vanilla | 235 | 77 | **32.8%** | 67.3% ± 4.7% |\n| TaxEI | 235 | 98 | **41.7%** | 58.3% ± 6.5% |\n| Random | 235 | 98 | **41.7%** | 58.3% ± 8.7% |\n\nPer-seed:\n- Vanilla: s0=68.1%, s1=66.0%, s7=74.5%, s42=61.7%, s123=66.0%\n- TaxEI: s0=46.8%, s1=59.6%, s7=61.7%, s42=61.7%, s123=61.7%\n- Random: s0=55.3%, s1=46.8%, s7=55.3%, s42=66.0%, s123=68.1%\n\n### 3. Failure Mode 分布（recovery eval 数据，有 trajectory）\n\n由于 clean eval 文件不存 trajectory，暂用 recovery eval（3 seed for V/T, 1 seed for R）：\n\n| Failure Mode | Vanilla (141 ep) | TaxEI (141 ep) | Random (47 ep) |\n|-------------|-------------------|----------------|----------------|\n| loop_repetition | 22 (15.6%) | **49 (34.8%)** | 6 (12.8%) |\n| object_not_found | 13 (9.2%) | 6 (4.3%) | 4 (8.5%) |\n| exploration_wandering | 13 (9.2%) | 7 (5.0%) | 6 (12.8%) |\n| max_steps_exhaustion | 1 (0.7%) | 0 | 1 (2.1%) |\n\n**TaxEI 的 loop_repetition 率 (34.8%) 是 vanilla (15.6%) 的 2.2 倍，random (12.8%) 的 2.7 倍。** Loop 占 TaxEI 失败的 79.0%。\n\n### 4. 与之前结果对比\n\n| 指标 | 之前（不平衡） | 当前（recovery eval） |\n|-----|---------------|---------------------|\n| TaxEI loop rate | 17.4% (49/282) | 34.8% (49/141)* |\n| Vanilla loop rate | 7.8% (22/282) | 15.6% (22/141)* |\n| Random loop rate | 3.2% (6/188) | 12.8% (6/47)* |\n\n*之前用的分母包含 clean eval episodes（无 trajectory → 归入 max_steps_exhaustion），拉低了比例。实际上 loop_repetition 全部来自 recovery eval 的 trajectory 数据。纯 recovery eval 基准下比例更高，但趋势一致：TaxEI >> Vanilla > Random。\n\n### 5. 条件特异性 per-task 分析\n\n**TaxEI 比 Vanilla 多失败 ≥ 2 seeds 的 task（7 个）：**\n- pick_and_place_simple: SaltShaker-Cabinet (V:3, T:5), Watch-Safe (V:0, T:3)\n- pick_clean: Pan-CounterTop (V:3, T:5), Spatula-Drawer (V:1, T:3)\n- pick_cool: Lettuce-CounterTop (V:0, T:4), Pan-CounterTop (V:3, T:5)\n- pick_two: PepperShaker-Drawer (V:0, T:4)\n\nTaxEI 额外失败集中在 pick_and_place 和 pick_cool 类 task。\n\n### 6. 待完成\n\nPhase 2（重跑失败 episodes 获取 clean eval trajectory）已排队（PID 227425），等当前训练（~3h 后）完成自动启动。完成后运行：\n```bash\npython scripts/analyze_failure_modes_5seed.py --combine\n```\n即可获得 clean eval 的详细 failure mode 分类。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-failure-mode-5seed-update.md"
+}

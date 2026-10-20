@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "5af3959b7622eb284a9a",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "diagnose v4 vanilla seed123",
+  "task_key": "worker_diagnose_v4-vanilla-seed123_20260514T192848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v4-vanilla-seed123_20260514T192848_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "5008b8639708b1123d9b0d46b1d84c7704b7110bed213e088e907c651c51d289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\"checkpoint_exists\": true, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\", \"adapter_config_ok\": true, \"adapter_model_size_bytes\": 174655536, \"all_checkpoints\": [\"checkpoint-545\", \"checkpoint-1090\", \"checkpoint-1635\"], \"verdict\": \"USABLE\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "checkpoint_exists": true,
+              "checkpoint_path": "/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635",
+              "adapter_config_ok": true,
+              "adapter_model_size_bytes": 174655536,
+              "all_checkpoints": [
+                "checkpoint-545",
+                "checkpoint-1090",
+                "checkpoint-1635"
+              ],
+              "verdict": "USABLE"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v4-vanilla-seed123.md"
+}

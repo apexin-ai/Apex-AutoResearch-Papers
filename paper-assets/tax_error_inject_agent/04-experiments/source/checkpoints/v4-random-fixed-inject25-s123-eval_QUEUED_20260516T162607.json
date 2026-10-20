@@ -1,0 +1,43 @@
+{
+  "exp_id": "v4-random-fixed-inject25-s123-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:28:36.999Z",
+    "updated_at": "2026-05-16T16:26:07.440Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s123/v0-20260515-173124/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject25_s123_eval.json --device cuda:0\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "139943",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s123-eval.log",
+      "submitted_at": "2026-05-15T10:31:06.664Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.511,
+      "total": 47,
+      "successes": 24,
+      "by_task": {
+        "look_at_obj_in_light": 0.667,
+        "pick_and_place_simple": 0.375,
+        "pick_clean_then_place_in_recep": 0.545,
+        "pick_cool_then_place_in_recep": 0.143,
+        "pick_heat_then_place_in_recep": 0.75,
+        "pick_two_obj_and_place": 0.571
+      }
+    },
+    "checkpoint_path": "legacy_not_tracked",
+    "log_path": "legacy_not_tracked"
+  },
+  "timestamp": "2026-05-16T16:26:07.729280+00:00",
+  "trigger": "update_registry"
+}

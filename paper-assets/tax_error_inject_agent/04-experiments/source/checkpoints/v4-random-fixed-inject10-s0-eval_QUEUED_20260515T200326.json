@@ -1,0 +1,35 @@
+{
+  "exp_id": "v4-random-fixed-inject10-s0-eval",
+  "project": "tax_error_inject_agent",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:57:43.603Z",
+    "updated_at": "2026-05-15T20:03:26.623Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s0_eval.json\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "188022",
+      "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log",
+      "submitted_at": "2026-05-15T18:57:43.056Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "parent": "v4-random-fixed-inject10-s0",
+      "checkpoint_source": "v4-random-fixed-inject10-s0",
+      "eval_data": "eval_tasks_47.json",
+      "data_count": 47,
+      "data_path": "eval/eval_tasks_47.json",
+      "model_name": "Qwen3-8B + LoRA (random fixed inject10 s0)",
+      "seed": 42
+    },
+    "hypothesis": "v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion."
+  },
+  "timestamp": "2026-05-15T20:03:26.782328+00:00",
+  "trigger": "update_registry"
+}

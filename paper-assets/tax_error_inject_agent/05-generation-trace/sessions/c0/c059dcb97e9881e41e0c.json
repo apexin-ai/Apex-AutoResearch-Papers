@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c059dcb97e9881e41e0c",
+  "project": "tax_error_inject_agent",
+  "kind": "result",
+  "title": "ops verify eval gpu status",
+  "task_key": "worker_ops_verify-eval-gpu-status_20260516T061507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-eval-gpu-status_20260516T061507_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "b98291cbec62644ab78a37796ae4b87bd17fcc6e476ca3213dbaf4c5106519b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**4 个 eval 全部存在且正常运行，无需重启。**\n\n| Session | GPU | PID | 进度 | 状态 |\n|---------|-----|-----|------|------|\n| eval-rp-s0 | cuda:1 | 240920 | 25/47 (53%) | 运行中，CPU 115% |\n| eval-rp-s123 | cuda:2 | 241056 | 29/47 (62%) | 运行中，CPU 113% |\n| eval-rp-s1 | cuda:3 | 241193 | 26/47 (55%) | 运行中，CPU 119% |\n| eval-rp-s42 | cuda:0 | — | 未开始 | 等待 PID 239377 (`analyze_failure_modes_5seed.py --condition vanilla`) 完成后自动启动 |\n\n**GPU 使用**：\n| GPU | Util | 显存占用 |\n|-----|------|---------|\n| 0 | 87% | 17091/32607 MiB（failure analysis 脚本） |\n| 1 | 65% | 17091/32607 MiB（eval-rp-s0） |\n| 2 | 84% | 17091/32607 MiB（eval-rp-s123） |\n| 3 | 0%* | 17091/32607 MiB（eval-rp-s1） |\n\n*GPU 3 utilization 瞬时为 0%，但进程在跑（119% CPU），属正常波动。\n\n**eval-rp-s42** 的 tmux session 里有 wait loop（`while kill -0 239377; do sleep 10; done`），一旦 GPU 0 上的 failure analysis 跑完就会自动启动 eval。无需人工干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-gpu-status.md"
+}
